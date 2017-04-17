@@ -15,14 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import re
+import logging
+import pprint
+
 from scap.collector.cli.WindowsCollector import WindowsCollector
 from scap.model.cpe_2_3.CPE import CPE
-import re, logging, pprint
 
 logger = logging.getLogger(__name__)
 class CPECollector(WindowsCollector):
     def collect(self):
-        self.host.facts['cpe'] = {'os', 'application', 'hardware'}
+        self.host.facts['cpe'] = {'os': [], 'application': [], 'hardware': []}
 
         # hardware
         from scap.collector.cli.windows.WmicPnPEntityCollector import WmicPnPEntityCollector
