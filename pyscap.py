@@ -180,7 +180,7 @@ elif args['benchmark']:
         chk.collect()
         host.disconnect()
 
-    rep = Reporter.load(hosts, content, args)
+    rep = Reporter.load(hosts, args, content)
     report = rep.report()
 
     if args['pretty']:
