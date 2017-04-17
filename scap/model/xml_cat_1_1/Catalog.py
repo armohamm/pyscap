@@ -15,11 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
+from collections.abc import MutableMapping
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
-class Catalog(Model, collections.abc.MutableMapping):
+class Catalog(Model, MutableMapping):
     MODEL_MAP = {
         'xml_namespace': 'urn:oasis:names:tc:entity:xmlns:xml:catalog',
         'tag_name': 'catalog',
