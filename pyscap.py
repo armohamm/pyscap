@@ -100,8 +100,8 @@ elif args[0].benchmark:
     arg_parser.add_argument('--output', nargs='?', default='-')
     arg_parser.add_argument('--pretty', action='store_true')
 elif args[0].list_hosts:
-    arg_parser.add_argument('--host', nargs='+')
     arg_parser.add_argument('--inventory', nargs='+')
+    arg_parser.add_argument('--host', nargs='+')
 # elif args[0].test:
 #     logger.info("Test operation")
 #     arg_parser.add_argument('--host', required=True, nargs='+')
@@ -121,15 +121,16 @@ for k,v in list(NAMESPACES.items()):
 # expand the hosts
 if args['collect'] or args['benchmark'] or args['list_hosts']:
     inventory = Inventory()
-    for filename in args['inventory']:
-        try:
-            with open(filename, 'r') as fp:
-                logger.debug('Loading inventory from ' + filename)
-                Inventory().readfp(fp)
-        except IOError:
-            logger.error('Could not read from inventory file ' + filename)
+    if args['inventory'] is not None:
+        for filename in args['inventory']:
+            try:
+                with open(filename, 'r') as fp:
+                    logger.debug('Loading inventory from ' + filename)
+                    Inventory().readfp(fp)
+            except IOError:
+                logger.error('Could not read from inventory file ' + filename)
 
-    if len(args['host']) == 0:
+    if args['host'] is None or len(args['host']) == 0:
         arg_parser.error('No host specified (--host)')
 
     hosts = []
@@ -163,7 +164,7 @@ elif args['benchmark']:
     # validated against the XCCDF schema given in Appendix A.) Go to the next
     # step: Loading.Noticing.
 
-    if len(args['content']) == 0:
+    if args['content'] is None or len(args['content']) == 0:
         arg_parser.error('No content specified (--content)')
 
     for uri in args['content']:
