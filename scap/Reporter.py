@@ -24,25 +24,25 @@ import importlib
 logger = logging.getLogger(__name__)
 class Reporter(object):
     @staticmethod
-    def load(hosts, args, content):
+    def load(hosts, args, model):
         from scap.model.xccdf_1_1.BenchmarkType import BenchmarkType as xccdf_1_1_BenchmarkType
         from scap.model.xccdf_1_2.BenchmarkType import BenchmarkType as xccdf_1_2_BenchmarkType
         from scap.model.scap_1_2.DataStreamCollectionElement import DataStreamCollectionElement
-        if isinstance(content, xccdf_1_1_BenchmarkType):
+        if isinstance(model, xccdf_1_1_BenchmarkType):
             from scap.reporter.xccdf_1_1.BenchmarkReporter import BenchmarkReporter
-            return BenchmarkReporter(hosts, args, content)
-        elif isinstance(content, xccdf_1_2_BenchmarkType):
+            return BenchmarkReporter(hosts, args, model)
+        elif isinstance(model, xccdf_1_2_BenchmarkType):
             from scap.reporter.xccdf_1_2.BenchmarkReporter import BenchmarkReporter
-            return BenchmarkReporter(hosts, args, content)
-        elif isinstance(content, DataStreamCollectionElement):
+            return BenchmarkReporter(hosts, args, model)
+        elif isinstance(model, DataStreamCollectionElement):
             from scap.reporter.scap_1_2.DataStreamCollectionReporter import DataStreamCollectionReporter
-            return DataStreamCollectionReporter(hosts, args, content)
+            return DataStreamCollectionReporter(hosts, args, model)
         else:
-            raise NotImplementedError('Reporting with ' + content.tag + ' content has not been implemented')
+            raise NotImplementedError('Reporting with ' + model.__class__.__name__ + ' model has not been implemented')
 
-    def __init__(self, hosts, args, content):
+    def __init__(self, hosts, args, model):
         self.hosts = hosts
-        self.content = content
+        self.model = model
 
     def report(self):
         import inspect
