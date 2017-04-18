@@ -15,9 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.NCName import NCName
+from scap.model.xs.String import String
 import logging
 
 logger = logging.getLogger(__name__)
-class BenchmarkIDPattern(NCName):
-    pass
+class UriIdrefType(String):
+    MODEL_MAP = {
+        'attributes': {
+            'idref': {'type': 'AnyURI', 'required': True},
+        }
+    }

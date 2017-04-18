@@ -23,7 +23,6 @@ class BenchmarkType(Model):
     MODEL_MAP = {
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}status': {'append': 'statuses', 'class': 'StatusType', 'min': 1, 'max': None, 'ignore': True},
-            '{http://purl.org/dc/elements/1.1/}dc-status': {'append': 'dc_statuses', 'class': 'DCStatusType', 'min': 0, 'max': None, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.1}title': {'append': 'titles', 'class': 'TextType', 'min': 0, 'max': None, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.1}description': {'append': 'descriptions', 'class': 'HTMLTextWithSubType', 'min': 0, 'max': None, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.1}notice': {'map': 'notices', 'class': 'NoticeType', 'min': 0, 'max': None},
@@ -31,9 +30,18 @@ class BenchmarkType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}rear-matter': {'append': 'rear_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.1}reference': {'append': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.1}plain-text': {'append': 'plain_texts', 'class': 'PlainTextType', 'min': 0, 'max': None, 'ignore': True},
-            '{http://cpe.mitre.org/language/2.0}platform-specification': {'class': 'scap.model.cpe_2_3.PlatformSpecificationType', 'min': 0, 'max': 1, 'ignore': True},
-            '{http://checklists.nist.gov/xccdf/1.1}platform': {'class': 'CPE2IDRefType', 'min': 0, 'max': None, 'ignore': True},
-            '{http://checklists.nist.gov/xccdf/1.1}version': {'class': 'VersionType', 'min': 1, 'max': 1, 'ignore': True},
+            # TODO choice of one of the following
+            # CIS Platform schema, compatibility with XCCDF 1.0
+            '{http://www.cisecurity.org/xccdf/platform/0.2.3}platform-definitions': {'ignore': True, 'class': 'scap.model.xccdf_platform_0_2_3.PlatformDefinitionsType', 'min': 0, 'max': 1},
+            # XCCDF-P 1.0 schema, compatibility with XCCDF 1.1
+            '{http://checklists.nist.gov/xccdf-p/1.1}Platform-Specification': {'ignore': True, 'class': 'scap.model.xccdf_p_1_1.PlatformSpecificationType', 'min': 0, 'max': 1},
+            # CPE 1.0 schema, compatibility with XCCDF 1.1.3
+            '{http://cpe.mitre.org/XMLSchema/cpe/1.0}cpe-list': {'ignore': True, 'class': 'scap.model.cpe_1_0.CpeListType', 'min': 0, 'max': 1},
+            # CPE 2.0 language schema, for SCAP 1.0 conformance
+            '{http://cpe.mitre.org/language/2.0}platform-specification': {'class': 'scap.model.cpe_2_3.PlatformSpecificationType', 'min': 0, 'max': 1},
+
+            '{http://checklists.nist.gov/xccdf/1.1}platform': {'class': 'UriIdrefType', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}version': {'class': 'VersionType', 'min': 1, 'max': 1},
             '{http://checklists.nist.gov/xccdf/1.1}metadata': {'append': 'metadata', 'class': 'MetadataType', 'min': 0, 'max': None, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.1}model': {'append': 'models', 'class': 'ModelType', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}Profile': {'class': 'ProfileType', 'min': 0, 'max': None, 'map': 'profiles'},
@@ -44,7 +52,7 @@ class BenchmarkType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1, 'ignore': True},
         },
         'attributes': {
-            'id': {'required': True, 'type': 'BenchmarkIDPattern'},
+            'id': {'required': True, 'type': 'NCName'},
             'Id': {'ignore': True, 'type': 'ID'},
             'resolved': {'type': 'Boolean', 'default': False},
             'style': {'ignore': True, 'type': 'String'},
