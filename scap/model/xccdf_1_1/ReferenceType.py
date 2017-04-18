@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.String import String
+from scap.Model import Model
 import logging
 
 logger = logging.getLogger(__name__)
-class ReferenceType(String):
+class ReferenceType(Model):
     MODEL_MAP = {
         'attributes': {
             'href': {'type': 'AnyURI'},
