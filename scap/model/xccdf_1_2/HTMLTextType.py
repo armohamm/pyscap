@@ -24,4 +24,7 @@ class HTMLTextType(Model):
         'attributes': {
             'override': {'type': 'Boolean', 'default': False, 'min': 0, 'max': None},
         },
+        'elements': {
+            '{http://www.w3.org/1999/xhtml}*': {'ignore': True, 'min': 0, 'max': None},
+        },
     }
