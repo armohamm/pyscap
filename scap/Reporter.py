@@ -25,9 +25,18 @@ logger = logging.getLogger(__name__)
 class Reporter(object):
     @staticmethod
     def load(hosts, args, content):
-        if content.tag == '{http://checklists.nist.gov/xccdf/1.1}Benchmark':
+        from scap.model.xccdf_1_1.BenchmarkType import BenchmarkType as xccdf_1_1_BenchmarkType
+        from scap.model.xccdf_1_2.BenchmarkType import BenchmarkType as xccdf_1_2_BenchmarkType
+        from scap.model.scap_1_2.DataStreamCollectionElement import DataStreamCollectionElement
+        if isinstance(content, xccdf_1_1_BenchmarkType):
             from scap.reporter.xccdf_1_1.BenchmarkReporter import BenchmarkReporter
             return BenchmarkReporter(hosts, args, content)
+        elif isinstance(content, xccdf_1_2_BenchmarkType):
+            from scap.reporter.xccdf_1_2.BenchmarkReporter import BenchmarkReporter
+            return BenchmarkReporter(hosts, args, content)
+        elif isinstance(content, DataStreamCollectionElement):
+            from scap.reporter.scap_1_2.DataStreamCollectionReporter import DataStreamCollectionReporter
+            return DataStreamCollectionReporter(hosts, args, content)
         else:
             raise NotImplementedError('Reporting with ' + content.tag + ' content has not been implemented')
 
