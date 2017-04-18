@@ -22,15 +22,15 @@ import re
 logger = logging.getLogger(__name__)
 class SelectableItemType(ItemType):
     MODEL_MAP = {
-        'attributes': {
-            'selected': {'type': 'Boolean', 'default': True},
-            'weight': {'type': 'Weight', 'default': 1.0},
-        },
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}rationale': {'append': 'rationales', 'ignore': True, 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
-            '{http://checklists.nist.gov/xccdf/1.1}platform': {'append': 'platforms', 'ignore': True, 'min': 0, 'max': None, 'class': 'OverrideableCPE2IDRefType'},
-            '{http://checklists.nist.gov/xccdf/1.1}requires': {'append': 'requires', 'min': 0, 'max': None, 'class': 'IDRefListType'},
-            '{http://checklists.nist.gov/xccdf/1.1}conflicts': {'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IDRefType'},
+            '{http://checklists.nist.gov/xccdf/1.1}platform': {'append': 'platforms', 'ignore': True, 'min': 0, 'max': None, 'class': 'OverrideableUriIdrefType'},
+            '{http://checklists.nist.gov/xccdf/1.1}requires': {'append': 'requires', 'min': 0, 'max': None, 'class': 'IdrefListType'},
+            '{http://checklists.nist.gov/xccdf/1.1}conflicts': {'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},
+        },
+        'attributes': {
+            'selected': {'type': 'Boolean', 'default': True},
+            'weight': {'type': 'WeightType', 'default': 1.0},
         },
     }
 
