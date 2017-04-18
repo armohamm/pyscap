@@ -46,7 +46,7 @@ class Model(object):
             return None, tag
 
         if xml_namespace not in NAMESPACES:
-            logger.critical('Unsupported ' + tag_name + ' tag with namespace: ' + xml_namespace)
+            logger.critical('Unsupported namespace: ' + xml_namespace + ', tag name: ' + tag_name)
             sys.exit()
 
         return xml_namespace, tag_name
