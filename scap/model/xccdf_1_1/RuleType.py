@@ -37,7 +37,7 @@ class RuleType(SelectableItemType):
             '{http://checklists.nist.gov/xccdf/1.1}ident': {'append': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
             '{http://checklists.nist.gov/xccdf/1.1}impact-metric': {'min': 0, 'max': 1, 'type': 'String'},
             '{http://checklists.nist.gov/xccdf/1.1}profile-note': {'append': 'profile_notes', 'ignore': True, 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
-            '{http://checklists.nist.gov/xccdf/1.1}fixtext': {'class': 'FixtextType', 'min': 0, 'max': None, 'append': 'fixtexts'},
+            '{http://checklists.nist.gov/xccdf/1.1}fixtext': {'class': 'FixTextType', 'min': 0, 'max': None, 'append': 'fixtexts'},
             '{http://checklists.nist.gov/xccdf/1.1}fix': {'class': 'FixType', 'min': 0, 'max': None, 'append': 'fixes'},
             # choice
             '{http://checklists.nist.gov/xccdf/1.1}check': {'class': 'CheckType', 'min': 0, 'max': None, 'map': 'checks', 'key': 'selector'},
