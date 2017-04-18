@@ -32,17 +32,16 @@ class TestResultType(Model):
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}benchmark': {'class': 'BenchmarkReferenceType', 'min': 0, 'max': 1},
             '{http://checklists.nist.gov/xccdf/1.1}tailoring-file': {'class': 'TailoringReferenceType', 'min': 0, 'max': 1},
-            '{http://checklists.nist.gov/xccdf/1.1}title': {'ignore': True, 'class': 'TextType', 'append': 'titles', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}remark': {'ignore': True, 'class': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}organization': {'ignore': True, 'type': 'String', 'append': 'organizations', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}identity': {'ignore': True, 'class': 'IdentityType', 'min': 0, 'max': 1},
-            '{http://checklists.nist.gov/xccdf/1.1}profile': {'ignore': True, 'class': 'IDRefType', 'min': 0, 'max': 1},
-            '{http://checklists.nist.gov/xccdf/1.1}target': {'ignore': True, 'type': 'String', 'append': 'targets', 'min': 1, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}target-address': {'ignore': True, 'type': 'String', 'append': 'target_addresses', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}target-facts': {'ignore': True, 'class': 'TargetFactsType', 'append': 'target_facts', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}target-id-ref': {'ignore': True, 'class': 'TargetIDRefType', 'append': 'target_id_refs', 'min': 0, 'max': None},
-            '*': {'ignore': True, 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}platform': {'ignore': True, 'class': 'CPE2IDRefType', 'append': 'platforms', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}title': {'class': 'TextType', 'append': 'titles', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}remark': {'class': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}organization': {'type': 'String', 'append': 'organizations', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}identity': {'class': 'IdentityType', 'min': 0, 'max': 1},
+            '{http://checklists.nist.gov/xccdf/1.1}profile': {'class': 'IDRefType', 'min': 0, 'max': 1},
+            '{http://checklists.nist.gov/xccdf/1.1}target': {'type': 'String', 'append': 'targets', 'min': 1, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}target-address': {'type': 'String', 'append': 'target_addresses', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}target-facts': {'class': 'TargetFactsType', 'append': 'target_facts', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}target-id-ref': {'class': 'TargetIDRefType', 'append': 'target_id_refs', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}platform': {'class': 'CPE2IDRefType', 'append': 'platforms', 'min': 0, 'max': None},
 
             '{http://checklists.nist.gov/xccdf/1.1}set-value': {'class': 'ProfileSetValueType', 'map': 'set_values', 'key': 'idref', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}set-complex-value': {'class': 'ProfileSetComplexValueType', 'map': 'set_values', 'key': 'idref', 'min': 0, 'max': None},
@@ -51,6 +50,8 @@ class TestResultType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}score': {'class': 'ScoreType', 'append': 'scores', 'min': 1, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}metadata': {'ignore': True, 'class': 'MetadataType', 'append': 'metadata', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': 1},
+
+            '*': {'ignore': True, 'min': 0, 'max': None},
         },
     }
     # urn:xccdf:fact:asset:identifier:mac Ethernet media access control address (SHOULD be sent as a pair with the IPv4 or IPv6 address to ensure uniqueness)
