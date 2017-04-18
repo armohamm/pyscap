@@ -15,21 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 from scap.Model import Model
 from scap.model.xccdf_1_1.CheckOperatorEnumeration import CHECK_OPERATOR_ENUMERATION, AND, OR, negate
-import logging
 
 logger = logging.getLogger(__name__)
 class ComplexCheckType(Model):
     MODEL_MAP = {
-        'attributes': {
-            'operator': {'enum': CHECK_OPERATOR_ENUMERATION, 'required': True},
-            'negate': {'type': 'Boolean', 'default': False},
-        },
         'elements': {
             # TODO: ensure checks has at least 1
             '{http://checklists.nist.gov/xccdf/1.1}check': {'class': 'CheckType', 'min': 0, 'max': None, 'append': 'checks'},
             '{http://checklists.nist.gov/xccdf/1.1}complex-check': {'class': 'ComplexCheckType', 'min': 0, 'max': None, 'append': 'checks'},
+        },
+        'attributes': {
+            'operator': {'enum': CHECK_OPERATOR_ENUMERATION, 'required': True},
+            'negate': {'type': 'Boolean', 'default': False},
         },
     }
 

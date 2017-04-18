@@ -15,23 +15,24 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 from scap.Model import Model
 from scap.model.xccdf_1_1.SeverityEnumeration import SEVERITY_ENUMERATION
 from scap.model.xccdf_1_1.RoleEnumeration import ROLE_ENUMERATION
-import logging
 
 logger = logging.getLogger(__name__)
 class ProfileRefineRuleType(Model):
     MODEL_MAP = {
+        'elements': {
+            '{http://checklists.nist.gov/xccdf/1.1}remark': {'ignore': True, 'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+        },
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},
-            'weight': {'type': 'Weight'},
+            'weight': {'type': 'WeightType'},
             'selector': {'type': 'String'},
             'severity': {'enum': SEVERITY_ENUMERATION},
             'role': {'enum': ROLE_ENUMERATION},
-        },
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}remark': {'ignore': True, 'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
         },
     }
 

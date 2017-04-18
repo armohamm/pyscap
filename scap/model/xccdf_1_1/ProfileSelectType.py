@@ -15,18 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
+
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 class ProfileSelectType(Model):
     MODEL_MAP = {
+        'elements': {
+            '{http://checklists.nist.gov/xccdf/1.1}remark': {'ignore': True, 'class': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+        },
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},
             'selected': {'type': 'Boolean', 'required': True},
-        },
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}remark': {'ignore': True, 'class': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
         },
     }
 

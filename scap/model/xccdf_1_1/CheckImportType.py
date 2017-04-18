@@ -15,11 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.model.xs.String import String
+
 logger = logging.getLogger(__name__)
-class CheckImportType(Model):
+class CheckImportType(String):
     MODEL_MAP = {
         'attributes': {
             'import-name': {'type': 'String', 'required': True},

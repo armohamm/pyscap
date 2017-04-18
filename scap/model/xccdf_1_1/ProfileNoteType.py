@@ -15,8 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
+
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 class ProfileNoteType(Model):

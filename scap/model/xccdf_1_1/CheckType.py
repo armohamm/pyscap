@@ -15,32 +15,26 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
+
+from scap.Model import Model
+from scap.model.xccdf_1_1.CheckSystemEnumeration import CHECK_SYSTEM_ENUMERATION
 
 logger = logging.getLogger(__name__)
 class CheckType(Model):
     MODEL_MAP = {
-        'attributes': {
-            'system': {'type': 'AnyURI', 'required': True},
-            'negate': {'type': 'Boolean', 'default': False},
-            'id': {'type': 'NCName'},
-            'selector': {'default': None, 'type': 'String'},
-            'multi-check': {'type': 'Boolean', 'default': False},
-        },
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}check-import': {'class': 'CheckImportType', 'append': 'check_imports', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}check-export': {'class': 'CheckExportType', 'append': 'check_exports', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}check-content-ref': {'class': 'CheckContentRefType', 'append': 'check_content_refs', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}check-content': {'class': 'CheckContentType', 'min': 0, 'max': 1},
         },
+        'attributes': {
+            'system': {'type': 'AnyURI', 'required': True},
+            'id': {'type': 'NCName'},
+            'selector': {'default': '', 'type': 'String'},
+        },
     }
-
-    SYSTEM_ENUMERATION = [
-        'http://oval.mitre.org/XMLSchema/oval-definitions-5',
-        'http://scap.nist.gov/schema/ocil/2.0',
-        'http://scap.nist.gov/schema/ocil/2',
-    ]
 
     def __str__(self):
         s = self.__class__.__name__ + ' '
@@ -49,14 +43,7 @@ class CheckType(Model):
         if self.id is not None:
             s += self.id + ':'
 
-        if self.system == 'http://oval.mitre.org/XMLSchema/oval-definitions-5':
-            s += 'oval-definitions-5:'
-        elif self.system == 'http://scap.nist.gov/schema/ocil/2.0':
-            s += 'ocil-2.0:'
-        elif self.system == 'http://scap.nist.gov/schema/ocil/2':
-            s += 'ocil-2:'
-        else:
-            s += self.system + ':'
+        s += self.system + ':'
 
         s += '['
         if len(self.check_content_refs) > 0:
@@ -68,7 +55,7 @@ class CheckType(Model):
         return s + ']'
 
     def check(self, benchmark, host):
-        if self.system not in self.SYSTEM_ENUMERATION:
+        if self.system not in CHECK_SYSTEM_ENUMERATION:
             return {
                 'result': 'error',
                 'message': 'Unknown system ' + self.system,

@@ -15,35 +15,35 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 from scap.model.xccdf_1_1.ItemType import ItemType
 from scap.model.xccdf_1_1.ValueTypeEnumeration import VALUE_TYPE_ENUMERATION
 from scap.model.xccdf_1_1.ValueOperatorEnumeration import VALUE_OPERATOR_ENUMERATION
 from scap.model.xccdf_1_1.InterfaceHintEnumeration import INTERFACE_HINT_ENUMERATION
-import logging
 
 logger = logging.getLogger(__name__)
 class ValueType(ItemType):
     MODEL_MAP = {
-        'attributes': {
-            'id': {'type': 'ValueIDPattern', 'required': True},
-            'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'string'},
-            'operator': {'enum': VALUE_OPERATOR_ENUMERATION, 'default': 'equals'},
-            'interactive': {'ignore': True, 'type': 'Boolean'},
-            'interfaceHint': {'ignore': True, 'enum': INTERFACE_HINT_ENUMERATION},
-        },
         'elements': {
             # TODO: at least one value
             # TODO: since order matters in xml (and for values) we might need a list vs. dict here
 
-            '{http://checklists.nist.gov/xccdf/1.1}value': {'class': 'SelStringType', 'map': 'values', 'key': 'selector', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}default': {'class': 'SelStringType', 'min': 0, 'max': None, 'map': 'defaults', 'key': 'selector'},
+            '{http://checklists.nist.gov/xccdf/1.1}value': {'class': 'SelStringType', 'map': 'values', 'key': 'selector', 'min': 1, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}default': {'class': 'SelStringType', 'map': 'defaults', 'key': 'selector', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}match': {'class': 'SelStringType', 'map': 'matches', 'key': 'selector', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}lower-bound': {'class': 'SelNumType', 'map': 'lower_bounds', 'key': 'selector', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}upper-bound': {'class': 'SelNumType', 'map': 'upper_bounds', 'key': 'selector', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}choices': {'class': 'SelChoicesType', 'map': 'choice_selections', 'key': 'selector', 'min': 0, 'max': None},
 
-            '{http://checklists.nist.gov/xccdf/1.1}source': {'class': 'URIRefType', 'append': 'sources', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}source': {'class': 'UriRefType', 'append': 'sources', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': 1},
+        },
+        'attributes': {
+            'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'string'},
+            'operator': {'enum': VALUE_OPERATOR_ENUMERATION, 'default': 'equals'},
+            'interactive': {'ignore': True, 'type': 'Boolean'},
+            'interfaceHint': {'ignore': True, 'enum': INTERFACE_HINT_ENUMERATION},
         },
     }
 

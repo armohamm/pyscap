@@ -17,13 +17,21 @@
 
 FIX_STRATEGY_ENUMERATION = [
     'unknown',
+    # strategy not defined (default for forward compatibility for XCCDF 1.0)
     'configure',
-    'combination',
-    'disable',
-    'enable',
+    # adjust target config or settings
     'patch',
+    # apply a patch, hotfix, or update
     'policy',
+    # remediation by changing policies/procedures
+    'disable',
+    # turn off or deinstall something
+    'enable',
+    # turn on or install something
     'restrict',
+    # adjust permissions or ACLs
     'update',
-    
+    # install upgrade or update the system
+    'combination',
+    # combo of two or more of the above
 ]

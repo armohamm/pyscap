@@ -15,17 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 from scap.model.xccdf_1_1.HTMLTextWithSubType import HTMLTextWithSubType
 from scap.model.xccdf_1_1.FixStrategyEnumeration import FIX_STRATEGY_ENUMERATION
 from scap.model.xccdf_1_1.RatingEnumeration import RATING_ENUMERATION
-import logging
 
 logger = logging.getLogger(__name__)
-class FixtextType(HTMLTextWithSubType):
+class FixTextType(HTMLTextWithSubType):
     MODEL_MAP = {
         'attributes': {
             'fixref': {'ignore': True, 'type': 'NCName'},
-            'reboot': {'ignore': True, 'type': 'Boolean'},
+            'reboot': {'ignore': True, 'type': 'Boolean', 'default': False},
             'strategy': {'ignore': True, 'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
             'disruption': {'ignore': True, 'enum': RATING_ENUMERATION, 'default': 'unknown'},
             'complexity': {'ignore': True, 'enum': RATING_ENUMERATION, 'default': 'unknown'},

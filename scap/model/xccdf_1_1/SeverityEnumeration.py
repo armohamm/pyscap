@@ -17,8 +17,15 @@
 
 SEVERITY_ENUMERATION = [
     'unknown',
+    # severity not defined (default, for forward compatibility from XCCDF 1.0)
     'info',
+    # rule is informational only, failing the rule does not imply failure to
+    # conform to the security guidance of the benchmark. (usually would also
+    # have a weight of 0)
     'low',
+    # not a serious problem
     'medium',
+    # fairly serious problem
     'high',
+    # a grave or critical problem
 ]

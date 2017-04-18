@@ -15,14 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 from scap.Model import Model
 from scap.model.xccdf_1_1.FixStrategyEnumeration import FIX_STRATEGY_ENUMERATION
 from scap.model.xccdf_1_1.RatingEnumeration import RATING_ENUMERATION
-import logging
 
 logger = logging.getLogger(__name__)
 class FixType(Model):
     MODEL_MAP = {
+        'elements': {
+            '{http://checklists.nist.gov/xccdf/1.1}sub': {'ignore': True, 'append': 'subs', 'min': 0, 'max': None, 'class': 'IdrefType'},
+            '{http://checklists.nist.gov/xccdf/1.1}instance': {'ignore': True, 'append': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
+        },
         'attributes': {
             'id': {'type': 'NCName'},
             'reboot': {'type': 'Boolean'},
@@ -31,10 +36,6 @@ class FixType(Model):
             'complexity': {'ignore': True, 'enum': RATING_ENUMERATION, 'default': 'unknown'},
             'system': {'type': 'AnyURI'},
             'platform': {'type': 'AnyURI'},
-        },
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}sub': {'append': 'subs', 'ignore': True, 'min': 0, 'max': None, 'class': 'SubType'},
-            '{http://checklists.nist.gov/xccdf/1.1}instance': {'append': 'instance', 'ignore': True, 'min': 0, 'max': None, 'class': 'InstanceFixType'},
         },
     }
 

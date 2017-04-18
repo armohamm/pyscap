@@ -15,9 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 from scap.model.xccdf_1_1.SelectableItemType import SelectableItemType
 from scap.Model import Model
-import logging
 
 logger = logging.getLogger(__name__)
 class GroupType(SelectableItemType):

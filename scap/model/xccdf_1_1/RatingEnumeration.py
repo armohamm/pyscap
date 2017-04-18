@@ -17,7 +17,12 @@
 
 RATING_ENUMERATION = [
     'unknown',
+    # rating unknown or impossible to estimate (default for forward
+    # compatibility for XCCDF 1.0)
     'low',
+    # little or no potential for disruption, very modest complexity
     'medium',
+    # some chance of minor disruption,  substantial complexity
     'high',
+    # likely to cause serious disruption, very complex
 ]

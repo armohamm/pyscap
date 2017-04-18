@@ -15,19 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
+
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 class SelChoicesType(Model):
     MODEL_MAP = {
-        'attributes': {
-            'mustMatch': {'type': 'Boolean'},
-            'selector': {'type': 'String', 'default': None},
-        },
         'elements': {
             # TODO at least one choice/complex-choice
-            '{http://checklists.nist.gov/xccdf/1.1}choice': {'class': 'scap.model.xs.String', 'append': 'choices', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}complex-choice': {'class': 'ComplexValueType', 'min': 0, 'max': 1},
+            '{http://checklists.nist.gov/xccdf/1.1}choice': {'type': 'String', 'append': 'choices', 'min': 1, 'max': None},
+        },
+        'attributes': {
+            'mustMatch': {'type': 'Boolean'},
+            'selector': {'type': 'String', 'default': ''},
         },
     }

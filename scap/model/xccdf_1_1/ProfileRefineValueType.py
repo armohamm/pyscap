@@ -15,20 +15,21 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 from scap.Model import Model
 from scap.model.xccdf_1_1.ValueOperatorEnumeration import VALUE_OPERATOR_ENUMERATION
-import logging
 
 logger = logging.getLogger(__name__)
 class ProfileRefineValueType(Model):
     MODEL_MAP = {
+        'elements': {
+            '{http://checklists.nist.gov/xccdf/1.1}remark': {'ignore': True, 'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+        },
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},
             'selector': {'type': 'String'},
             'operator': {'enum': VALUE_OPERATOR_ENUMERATION},
-        },
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}remark': {'ignore': True, 'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
         },
     }
 

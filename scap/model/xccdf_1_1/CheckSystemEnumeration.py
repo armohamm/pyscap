@@ -15,13 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
-import logging
-
-logger = logging.getLogger(__name__)
-class DCStatusType(Model):
-    MODEL_MAP = {
-        'elements': {
-            '{http://purl.org/dc/elements/1.1/}*': {'min': 1, 'max': None, 'ignore': True},
-        },
-    }
+CHECK_SYSTEM_ENUMERATION = [
+    'http://oval.mitre.org/XMLSchema/oval-definitions-5',
+    'http://scap.nist.gov/schema/ocil/2.0',
+    'http://scap.nist.gov/schema/ocil/2',
+]

@@ -15,16 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
+
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 class ModelType(Model):
     MODEL_MAP = {
-        'attributes': {
-            'system': {'required': True, 'type': 'AnyURI'},
-        },
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}param': {'class': 'ParamType', 'map': 'params', 'key': 'name', 'min': 0, 'max': None},
         }
+        'attributes': {
+            'system': {'type': 'AnyURI', 'required': True},
+        },
     }

@@ -33,21 +33,22 @@ from scap.model.xccdf_1_1.ScoringModelEnumeration import SCORING_MODEL_ENUMERATI
 logger = logging.getLogger(__name__)
 class RuleType(SelectableItemType):
     MODEL_MAP = {
-        'attributes': {
-            'id': {'required': True, 'type': 'RuleIDPattern'},
-            'role': {'enum': ROLE_ENUMERATION, 'default': 'full'},
-            'severity': {'enum': SEVERITY_ENUMERATION, 'default': 'unknown'},
-            'multiple': {'type': 'Boolean', 'default': False},
-        },
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}ident': {'append': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
             '{http://checklists.nist.gov/xccdf/1.1}impact-metric': {'min': 0, 'max': 1, 'type': 'String'},
             '{http://checklists.nist.gov/xccdf/1.1}profile-note': {'append': 'profile_notes', 'ignore': True, 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
-            '{http://checklists.nist.gov/xccdf/1.1}fix': {'class': 'FixType', 'min': 0, 'max': None, 'append': 'fixes'},
             '{http://checklists.nist.gov/xccdf/1.1}fixtext': {'class': 'FixtextType', 'min': 0, 'max': None, 'append': 'fixtexts'},
+            '{http://checklists.nist.gov/xccdf/1.1}fix': {'class': 'FixType', 'min': 0, 'max': None, 'append': 'fixes'},
+            # choice
             '{http://checklists.nist.gov/xccdf/1.1}check': {'class': 'CheckType', 'min': 0, 'max': None, 'map': 'checks', 'key': 'selector'},
             '{http://checklists.nist.gov/xccdf/1.1}complex-check': {'class': 'ComplexCheckType', 'min': 0, 'max': 1},
+
             '{http://checklists.nist.gov/xccdf/1.1}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': 1},
+        },
+        'attributes': {
+            'role': {'enum': ROLE_ENUMERATION, 'default': 'full'},
+            'severity': {'enum': SEVERITY_ENUMERATION, 'default': 'unknown'},
+            'multiple': {'type': 'Boolean', 'default': False},
         },
     }
 

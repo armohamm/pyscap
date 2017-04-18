@@ -15,9 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+
 from scap.model.xs.String import String
 from scap.model.xccdf_1_1.MessageSeverityEnumeration import MESSAGE_SEVERITY_ENUMERATION
-import logging
 
 logger = logging.getLogger(__name__)
 class MessageType(String):

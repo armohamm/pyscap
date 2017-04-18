@@ -17,6 +17,14 @@
 
 ROLE_ENUMERATION = [
     'full',
+    # if the rule is selected, then check it and let the result contribute to
+    # the score and appear in reports (default, for compatibility for XCCDF
+    # 1.0).
     'unscored',
+    # check the rule, and include the results in  any report, but do not include
+    # the result in  score computations (in the default scoring model the same
+    # effect can be achieved with weight=0)
     'unchecked',
+    # don't check the rule, just force the result status to 'unknown'.  Include
+    # the rule's  information in any reports.
 ]
