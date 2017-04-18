@@ -22,10 +22,10 @@ logger = logging.getLogger(__name__)
 class ProfileNoteType(Model):
     MODEL_MAP = {
         'attributes': {
-            'tag': {'type': 'NCName'},
+            'tag': {'type': 'NCName', 'required': True},
         },
         'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}sub': {'class': 'SubType', 'append': 'subs', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}sub': {'class': 'IdrefType', 'append': 'subs', 'min': 0, 'max': None},
             '{http://www.w3.org/1999/xhtml}*': {'ignore': True, 'min': 0, 'max': None},
         },
     }
