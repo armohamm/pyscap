@@ -22,15 +22,6 @@ logger = logging.getLogger(__name__)
 class ItemType(Extendable):
     MODEL_MAP = {
         # abstract
-        'attributes': {
-            'id': {'type': 'NCName', 'required': True},
-            'abstract': {'type': 'Boolean', 'default': False},
-            'cluster-id': {'ignore': True, 'type': 'NCName'},
-            'extends': {'type': 'NCName'},
-            'hidden': {'type': 'Boolean', 'default': False},
-            'prohibitChanges': {'type': 'Boolean', 'default': False},
-            'Id': {'ignore': True, 'type': 'ID'},
-        },
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}status': {'class': 'StatusType', 'append': 'statuses', 'ignore': True, 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}version': {'class': 'VersionType', 'min': 0, 'max': 1, 'ignore': True},
@@ -39,6 +30,15 @@ class ItemType(Extendable):
             '{http://checklists.nist.gov/xccdf/1.1}warning': {'class': 'WarningType', 'min': 0, 'max': None, 'type': 'String', 'append': 'warnings'},
             '{http://checklists.nist.gov/xccdf/1.1}question': {'append': 'questions', 'class': 'TextType', 'min': 0, 'max': None, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.1}reference': {'append': 'references', 'min': 0, 'max': None, 'class': 'ReferenceType', 'ignore': True},
+        },
+        'attributes': {
+            'id': {'type': 'NCName', 'required': True},
+            'abstract': {'type': 'Boolean', 'default': False},
+            'cluster-id': {'ignore': True, 'type': 'NCName'},
+            'extends': {'type': 'NCName'},
+            'hidden': {'type': 'Boolean', 'default': False},
+            'prohibitChanges': {'type': 'Boolean', 'default': False},
+            'Id': {'ignore': True, 'type': 'ID'},
         },
     }
 
