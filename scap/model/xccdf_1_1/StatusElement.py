@@ -15,10 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.String import String
+from scap.model.xccdf_1_1.StatusType import StatusType
 import logging
 
 logger = logging.getLogger(__name__)
-class StatusType(String):
+class StatusElement(StatusType):
     MODEL_MAP = {
+        'attributes': {
+            'date': {'type': 'Date'},
+        }
     }
