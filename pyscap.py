@@ -170,17 +170,17 @@ elif args['benchmark']:
     for uri in args['content']:
         logger.debug('Loading content file: ' + uri)
         with open(uri, mode='r', encoding='utf_8') as f:
-            content = Model.load(None, ET.parse(f).getroot(), uri)
+            model = Model.load(None, ET.parse(f).getroot(), uri)
 
     for host in hosts:
         host.connect()
         for collector in host.detect_collectors(args):
             collector.collect()
-        chk = Checker.load(host, args, content)
+        chk = Checker.load(host, args, model)
         chk.collect()
         host.disconnect()
 
-    rep = Reporter.load(hosts, args, content)
+    rep = Reporter.load(hosts, args, model)
     report = rep.report()
 
     if args['pretty']:
