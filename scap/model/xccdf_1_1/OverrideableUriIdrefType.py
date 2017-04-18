@@ -15,13 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
+from scap.model.xccdf_1_1.UriIdrefType import UriIdrefType
 import logging
 
 logger = logging.getLogger(__name__)
-class UriIdrefType(Model):
+class OverrideableUriIdrefType(UriIdrefType):
     MODEL_MAP = {
         'attributes': {
-            'idref': {'type': 'AnyURI', 'required': True},
+            'override': {'type': 'Boolean', 'default': False},
         }
     }
