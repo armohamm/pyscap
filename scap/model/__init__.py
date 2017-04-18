@@ -43,5 +43,8 @@ NAMESPACES = {
     'http://www.w3.org/2001/XMLSchema': 'xs',
     'http://www.w3.org/XML/1998/namespace': 'xml',
     'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0': 'xnl_2_0',
-    'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0': 'xal_2_0'
+    'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0': 'xal_2_0',
+    'http://checklists.nist.gov/xccdf-p/1.1': 'xccdf_p_1_1',
+    'http://cpe.mitre.org/XMLSchema/cpe/1.0': 'cpe_1_0',
+    'http://www.cisecurity.org/xccdf/platform/0.2.3': 'xccdf_p_0_2_3',
 }
