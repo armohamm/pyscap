@@ -54,10 +54,10 @@ from scap.model.rep_core_1_1.RefElement import RefElement
 
 logger = logging.getLogger(__name__)
 class DataStreamCollectionReporter(Reporter):
-    def __init__(self, hosts, args, content):
-        super(DataStreamCollectionReporter, self).__init__(hosts, args, content)
+    def __init__(self, hosts, args, model):
+        super(DataStreamCollectionReporter, self).__init__(hosts, args, model)
 
-        benchmark = content.components[self.hosts[0].facts['selected_checklist']].model
+        benchmark = model.components[self.hosts[0].facts['selected_checklist']].model
         self.reporter = Reporter.load(benchmark, hosts, args)
 
     def report(self):

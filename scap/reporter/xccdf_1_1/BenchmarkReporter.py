@@ -20,5 +20,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 class BenchmarkReporter(Reporter):
+    def __init__(self, hosts, args, model):
+        super(BenchmarkReporter, self).__init__(hosts, args, model)
+
     def report(self):
         return self.reporter.report(host)
