@@ -438,6 +438,8 @@ class Model(object):
                 # TODO: implement keyElement as well
                 else:
                     key = el.get('id')
+                    if key is None:
+                        raise ValueError('Unable to determine key name for map ' + tag_map['map'] + ' in ' + self.__class__.__name__)
 
                 if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
