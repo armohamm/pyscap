@@ -31,7 +31,7 @@ class BenchmarkType(Model):
             '{http://checklists.nist.gov/xccdf/1.2}rear-matter': {'append': 'rear_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.2}reference': {'append': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.2}plain-text': {'append': 'plain_texts', 'class': 'PlainTextType', 'min': 0, 'max': None, 'ignore': True},
-            '{http://cpe.mitre.org/language/2.0}platform-specification': {'class': 'scap.model.cpe_2_3.PlatformSpecificationType', 'min': 0, 'max': 1, 'ignore': True},
+            '{http://cpe.mitre.org/language/2.0}platform-specification': {'class': 'scap.model.cpe_lang_2_3.PlatformSpecificationType', 'min': 0, 'max': 1, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.2}platform': {'class': 'CPE2IDRefType', 'min': 0, 'max': None, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.2}version': {'class': 'VersionType', 'min': 1, 'max': 1, 'ignore': True},
             '{http://checklists.nist.gov/xccdf/1.2}metadata': {'append': 'metadata', 'class': 'MetadataType', 'min': 0, 'max': None, 'ignore': True},
