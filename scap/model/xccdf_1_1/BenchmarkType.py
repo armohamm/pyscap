@@ -16,6 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import datetime
 
 from scap.Model import Model
 
@@ -79,6 +80,7 @@ class BenchmarkType(Model):
     def resolve(self):
         if self.resolved:
             return
+
         ### Loading.Resolve.Items
 
         for item_id in self.items:
@@ -114,8 +116,19 @@ class BenchmarkType(Model):
         # Set the Benchmark resolved property to true; Loading succeeds.
         self.resolved = True
 
-    def process(self, host, selected_profile=None):
+    def process(self, host):
         ### Benchmark.Front
+
+        if 'checklist' not in host.facts:
+            host.facts['checklist'] = {}
+
+        if self.id not in host.facts['checklist']:
+            host.facts['checklist'][self.id] = {
+                'start_time': datetime.datetime.utcnow(),
+                'profile': {},
+                'rule': {},
+                'check': {},
+            }
 
         # Process the properties of the Benchmark object
 
@@ -127,42 +140,41 @@ class BenchmarkType(Model):
 
         ### Benchmark.Profile
 
-        if selected_profile is None:
-            if len(self.profiles) == 0:
-                # No profiles; skip the step
-                pass
-            elif len(self.profiles) == 1:
-                selected_profile = list(self.profiles.keys())[0]
+        if not hasattr(self, 'selected_profiles'):
+            raise ValueError('No profiles have been selected for Benchmark ' + self.id)
+
+        for profile in self.selected_profiles:
+            logger.info('Selecting profile ' + str(profile))
+            if profile not in host.facts['checklist'][self.id]['profile']:
+                host.facts['checklist'][self.id]['profile'][profile] = {
+                    'scores': [],
+                }
+            self.profiles[profile].apply(self, host)
+
+            ### Benchmark.Content
+
+            # For each Item in the Benchmark object’s items property, initiate
+            # Item.Process
+            for item in self.items.values():
+                item.process(self, host, profile)
+
+            if len(self.models) == 0:
+                self._score_model(host, 'urn:xccdf:scoring:default', profile, [])
             else:
-                logger.critical('No --profile specified and unable to implicitly choose one. Available profiles: ' + str(self.profiles.keys()))
-                import sys
-                sys.exit()
-        else:
-            if selected_profile not in self.profiles:
-                raise ValueError('Specified --profile, ' + selected_profile + ', not found in content. Available profiles: ' + str(self.profiles.keys()))
-
-        logger.info('Selecting profile ' + str(selected_profile))
-        self.profiles[selected_profile].apply(self, host)
-
-        ### Benchmark.Content
-
-        # For each Item in the Benchmark object’s items property, initiate
-        # Item.Process
-        for item in self.items.values():
-            item.process(self, host)
+                for model in self.models:
+                    params = {}
+                    for p in model.params:
+                        params[p.name] = p.value
+                    self._score_model(host, model.system, self.id, profile, params)
 
         ### Benchmark.Back
 
         # Perform any additional processing of the Benchmark object properties
-        # TODO
+        host.facts['checklist'][self.id]['end_time'] =  datetime.datetime.utcnow()
 
-
-    def _score_model(self, host, model_system, params):
+    def _score_model(self, host, model_system, checklist, profile, params):
         from scap.model.xccdf_1_1.GroupType import GroupType
         from scap.model.xccdf_1_1.RuleType import RuleType
-
-        if 'scores' not in host.facts:
-            host.facts['scores'] = []
 
         if model_system == 'urn:xccdf:scoring:default':
             ### Score.Group.Init
@@ -212,7 +224,7 @@ class BenchmarkType(Model):
                 score = score / accumulator
 
             logger.debug(model_system + ' score: ' + str(score))
-            host.facts['scores'].append({'score': score, 'system': model_system})
+            host.facts['checklist'][checklist]['profile'][profile]['scores'].append({'score': score, 'system': model_system})
 
         elif model_system == 'urn:xccdf:scoring:flat':
             scores = {}
@@ -237,7 +249,7 @@ class BenchmarkType(Model):
                     score += scores[rule_id]['weight']
 
             logger.debug(model_system + ' score: ' + str(score) + ' / ' + str(max_score))
-            host.facts['scores'].append({'score': score, 'max_score': max_score, 'system': model_system})
+            host.facts['checklist'][checklist]['profile'][profile]['scores'].append({'score': score, 'max_score': max_score, 'system': model_system})
 
         elif model_system == 'urn:xccdf:scoring:flat-unweighted':
             scores = {}
@@ -262,7 +274,7 @@ class BenchmarkType(Model):
                     score += 1.0
 
             logger.debug(model_system + ' score: ' + str(score) + ' / ' + str(max_score))
-            host.facts['scores'].append({'score': score, 'max_score': max_score, 'system': model_system})
+            host.facts['checklist'][checklist]['profile'][profile]['scores'].append({'score': score, 'max_score': max_score, 'system': model_system})
 
         elif model_system == 'urn:xccdf:scoring:absolute':
             scores = {}
@@ -292,18 +304,7 @@ class BenchmarkType(Model):
                 score = 0.0
 
             logger.debug(model_system + ' score: ' + str(score))
-            host.facts['scores'].append({'score': score, 'system': model_system})
+            host.facts['checklist'][checklist]['profile'][profile]['scores'].append({'score': score, 'system': model_system})
 
         else:
             raise NotImplementedError('Scoring model ' + model_system + ' is not implemented')
-
-    def score(self, host):
-        if len(self.models) == 0:
-            self._score_model(host, 'urn:xccdf:scoring:default', [])
-            return
-
-        for model in self.models:
-            params = {}
-            for p in model.params:
-                params[p.name] = p.value
-            self._score_model(host, model.system, params)

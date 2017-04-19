@@ -54,12 +54,6 @@ from scap.model.rep_core_1_1.RefElement import RefElement
 
 logger = logging.getLogger(__name__)
 class DataStreamCollectionReporter(Reporter):
-    def __init__(self, hosts, args, model, content):
-        super(DataStreamCollectionReporter, self).__init__(hosts, args, model, content)
-
-        benchmark = model.components[self.hosts[0].facts['selected_checklist']].model
-        self.reporter = Reporter.load(benchmark, hosts, args)
-
     def report(self):
         arc = AssetReportCollectionElement()
         arc.id = 'asset_report_collection_' + uuid.uuid4().hex
@@ -154,7 +148,10 @@ class DataStreamCollectionReporter(Reporter):
 
             report = ReportType()
             report.content = ReportContentElement()
-            report.content.append(self.reporter.report(host))
+            for selected_checklist in self.selected_checklists:
+                checklist_model = self.model.components[selected_checklist].model
+                checklist_content = content.find("./component/*[@id='"+ selected_checklist + "']/")
+                report.content.append(Reporter.load(self.hosts, self.args, checklist_model, checklist_content).report())
             arc.reports.reports.append(report)
             report.id = 'report_' + uuid.uuid4().hex
 

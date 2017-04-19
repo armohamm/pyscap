@@ -55,6 +55,9 @@ class CheckType(Model):
         return s + ']'
 
     def check(self, benchmark, host):
+        if self.id is not None and self.id in host.facts['checklist'][benchmark.id]['check']:
+            return host.facts['checklist'][benchmark.id]['check'][self.id]
+
         if self.system not in CHECK_SYSTEM_ENUMERATION:
             return {
                 'result': 'error',
@@ -104,4 +107,7 @@ class CheckType(Model):
             or check_import.import_name not in result['imports']:
                 raise ValueError('Expected import not returned by check: ' + check_import.import_name)
 
+        if self.id is not None:
+            host.facts['checklist'][benchmark.id]['check'][self.id] = result
+            
         return result

@@ -84,11 +84,14 @@ class RuleType(SelectableItemType):
         logger.debug('Check result: ' + str(check_result))
         return check_result
 
-    def process(self, benchmark, host):
-        super(RuleType, self).process(benchmark, host)
+    def process(self, benchmark, host, profile):
+        super(RuleType, self).process(benchmark, host, profile)
 
         if not self._continue_processing():
             return
+
+        if self.id in host.facts['checklist'][benchmark.id]['rule']:
+            return host.facts['checklist'][benchmark.id]['rule'][self.id]
 
         ### Rule.Content
 
@@ -141,9 +144,7 @@ class RuleType(SelectableItemType):
 
         # result retention
         logger.debug('Rule result: ' + str(check_result))
-        if 'rule_results' not in host.facts:
-            host.facts['rule_results'] = {}
-        host.facts['rule_results'][self.id] = check_result
+        host.facts['checklist'][benchmark.id]['rule'][self.id] = check_result
 
     def score(self, host, model = 'urn:xccdf:scoring:default'):
         ### Score.Rule

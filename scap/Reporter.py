@@ -30,18 +30,19 @@ class Reporter(object):
         from scap.model.scap_source_1_2.DataStreamCollectionElement import DataStreamCollectionElement
         if isinstance(model, xccdf_1_1_BenchmarkType):
             from scap.reporter.xccdf_1_1.BenchmarkReporter import BenchmarkReporter
-            return BenchmarkReporter(hosts, args, model)
+            return BenchmarkReporter(hosts, args, model, content)
         elif isinstance(model, xccdf_1_2_BenchmarkType):
             from scap.reporter.xccdf_1_2.BenchmarkReporter import BenchmarkReporter
-            return BenchmarkReporter(hosts, args, model)
+            return BenchmarkReporter(hosts, args, model, content)
         elif isinstance(model, DataStreamCollectionElement):
             from scap.reporter.scap_source_1_2.DataStreamCollectionReporter import DataStreamCollectionReporter
-            return DataStreamCollectionReporter(hosts, args, model)
+            return DataStreamCollectionReporter(hosts, args, model, content)
         else:
             raise NotImplementedError('Reporting with ' + model.__class__.__name__ + ' model has not been implemented')
 
     def __init__(self, hosts, args, model, content):
         self.hosts = hosts
+        self.args = args
         self.model = model
         self.content = content
 

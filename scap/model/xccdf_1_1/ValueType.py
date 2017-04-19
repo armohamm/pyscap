@@ -64,7 +64,7 @@ class ValueType(ItemType):
         self.upper_bound_selector = None
         self.choices_selector = None
 
-    def process(self, benchmark, host):
+    def process(self, benchmark, host, profile):
         ### Value.Content
 
         # If the Item is a Value, then process the properties of the Value.

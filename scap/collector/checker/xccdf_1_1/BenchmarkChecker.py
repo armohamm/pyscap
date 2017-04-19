@@ -25,8 +25,6 @@ class BenchmarkChecker(Checker):
     def __init__(self, host, args, model):
         super(BenchmarkChecker, self).__init__(host, args, model)
 
-        self.host.facts['benchmark'] = {'start_time': datetime.datetime.utcnow()}
-
         self.model.noticing()
 
         self.model.selected_profiles = []
@@ -36,14 +34,10 @@ class BenchmarkChecker(Checker):
         else:
             for profile in args['profile']:
                 if profile not in list(self.model.profiles.keys()):
-                    raise ValueError('Unable to select non-existent profile: ' + profile)
-                self.model.selected_profiles += profile
+                    raise ValueError('Unable to select non-existent profile: ' + profile + ' Available profiles: ' + str(self.profiles.keys()))
+                self.model.selected_profiles.append(profile)
 
         self.model.resolve()
 
     def collect(self):
-        self.model.process(self.host, self.selected_profile)
-
-        self.model.score(self.host)
-
-        self.host.facts['benchmark']['end_time'] = datetime.datetime.utcnow()
+        self.model.process(self.host)

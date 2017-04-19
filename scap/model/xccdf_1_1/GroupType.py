@@ -100,8 +100,8 @@ class GroupType(SelectableItemType):
 
         # Otherwise, go to the next step: Loading.Resolve.Profiles.
 
-    def process(self, benchmark, host):
-        super(GroupType, self).process(benchmark, host)
+    def process(self, benchmark, host, profile):
+        super(GroupType, self).process(benchmark, host, profile)
 
         if not self._continue_processing():
             return
@@ -119,7 +119,7 @@ class GroupType(SelectableItemType):
         # If the Item is a Group, then for each Item in the Group’s items
         # property, initiate Item.Process.
         for item_id in self.items:
-            self.items[item_id].process(benchmark, host)
+            self.items[item_id].process(benchmark, host, profile)
 
         # TODO result retention
 

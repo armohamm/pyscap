@@ -113,7 +113,9 @@ else:
 
 # final argument parsing
 args = vars(arg_parser.parse_args())
-
+logger.debug('Arguments: ' + str(args))
+pp = pprint.PrettyPrinter(width=132)
+pp.pprint(args)
 # configure ElementTree
 for k,v in list(NAMESPACES.items()):
     ET.register_namespace(v, k)
