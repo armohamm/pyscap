@@ -16,6 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import uuid
 
 from scap.Model import Model
 
@@ -39,11 +40,15 @@ class TestResultType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': 1},
         },
         'attributes': {
-            'id': {'required': True, 'type': 'NCName'},
+            'id': {'type': 'NCName', 'required': True},
             'start-time': {'type': 'DateTime'},
-            'end-time': {'type': 'DateTime'},
+            'end-time': {'type': 'DateTime', 'required': True},
             'test-system': {'type': 'String'},
             'version': {'type': 'String'},
             'Id': {'ignore': True, 'type': 'ID'},
         },
     }
+
+    @staticmethod
+    def generate_id():
+        return 'xccdf_biz.jaymes_testresult_' + uuid.uuid4().hex
