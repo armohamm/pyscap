@@ -18,7 +18,7 @@
 from scap.collector.cli.WindowsCollector import WindowsCollector
 import logging
 import re
-from scap.model.cpe_2_3.CPE import CPE
+from scap.model.cpe_matching_2_3.CPE import CPE
 import time
 
 logger = logging.getLogger(__name__)

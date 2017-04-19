@@ -16,7 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 from scap.collector.cli.LinuxCollector import LinuxCollector
-from scap.model.cpe_2_3.CPE import CPE
+from scap.model.cpe_matching_2_3.CPE import CPE
 import re, logging, pprint
 
 logger = logging.getLogger(__name__)

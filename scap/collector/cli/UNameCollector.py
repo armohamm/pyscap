@@ -16,7 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 from scap.collector.CLICollector import CLICollector
-from scap.model.cpe_2_3.CPE import CPE
+from scap.model.cpe_matching_2_3.CPE import CPE
 import re, logging
 
 logger = logging.getLogger(__name__)

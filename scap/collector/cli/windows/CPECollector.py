@@ -20,7 +20,7 @@ import logging
 import pprint
 
 from scap.collector.cli.WindowsCollector import WindowsCollector
-from scap.model.cpe_2_3.CPE import CPE
+from scap.model.cpe_matching_2_3.CPE import CPE
 
 logger = logging.getLogger(__name__)
 class CPECollector(WindowsCollector):
