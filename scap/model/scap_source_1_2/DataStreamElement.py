@@ -16,8 +16,8 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 from scap.Model import Model
-from scap.model.scap_1_2.UseCaseEnumeration import USE_CASE_ENUMERATION
-from scap.model.scap_1_2.SCAPVersionEnumeration import SCAP_VERSION_ENUMERATION
+from scap.model.scap_source_1_2.UseCaseEnumeration import USE_CASE_ENUMERATION
+from scap.model.scap_source_1_2.SCAPVersionEnumeration import SCAP_VERSION_ENUMERATION
 import logging
 
 logger = logging.getLogger(__name__)
