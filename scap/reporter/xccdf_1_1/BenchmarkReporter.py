@@ -23,5 +23,27 @@ class BenchmarkReporter(Reporter):
     def __init__(self, hosts, args, model):
         super(BenchmarkReporter, self).__init__(hosts, args, model)
 
+        self.test_result = TestResultType()
+        self.test_result.id = TestResultType.generate_id()
+        self.test_result.start_time =
+        self.test_result.end_time =
+        self.test_result.test_system =
+        # TODO Id
+
+        self.test_result.targets =
+        self.test_result.titles =
+        self.test_result.remarks =
+        self.test_result.organizations =
+        self.test_result.identity =
+        self.test_result.profile =
+        self.test_result.targets =
+        self.test_result.target_addresses =
+        self.test_result.target_facts =
+        self.test_result.platforms =
+        self.test_result.set_values =
+        self.test_result.rule_results =
+        self.test_result.scores =
+        # TODO signature
+
     def report(self):
-        return self.reporter.report(host)
+        return self.test_result.to_xml()
