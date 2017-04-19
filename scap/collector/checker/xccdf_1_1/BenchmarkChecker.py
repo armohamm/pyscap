@@ -29,11 +29,15 @@ class BenchmarkChecker(Checker):
 
         self.model.noticing()
 
-        # TODO multiple profiles?
+        self.model.selected_profiles = []
         if args['profile'] is None or len(args['profile']) == 0:
-            self.selected_profile = None
+            # check them all
+            self.model.selected_profiles.extend(self.model.profiles.keys())
         else:
-            self.selected_profile = args['profile'][0]
+            for profile in args['profile']:
+                if profile not in list(self.model.profiles.keys()):
+                    raise ValueError('Unable to select non-existent profile: ' + profile)
+                self.model.selected_profiles += profile
 
         self.model.resolve()
 
