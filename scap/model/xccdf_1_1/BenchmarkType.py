@@ -39,7 +39,7 @@ class BenchmarkType(Model):
             # CPE 1.0 schema, compatibility with XCCDF 1.1.3
             '{http://cpe.mitre.org/XMLSchema/cpe/1.0}cpe-list': {'ignore': True, 'class': 'scap.model.cpe_1_0.CpeListType', 'min': 0, 'max': 1},
             # CPE 2.0 language schema, for SCAP 1.0 conformance
-            '{http://cpe.mitre.org/language/2.0}platform-specification': {'class': 'scap.model.cpe_2_3.PlatformSpecificationType', 'min': 0, 'max': 1},
+            '{http://cpe.mitre.org/language/2.0}platform-specification': {'class': 'scap.model.cpe_lang_2_3.PlatformSpecificationType', 'min': 0, 'max': 1},
 
             '{http://checklists.nist.gov/xccdf/1.1}platform': {'class': 'UriIdrefType', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}version': {'class': 'VersionType', 'min': 1, 'max': 1},
