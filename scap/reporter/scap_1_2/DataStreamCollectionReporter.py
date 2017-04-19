@@ -54,8 +54,8 @@ from scap.model.rep_core_1_1.RefElement import RefElement
 
 logger = logging.getLogger(__name__)
 class DataStreamCollectionReporter(Reporter):
-    def __init__(self, hosts, args, model):
-        super(DataStreamCollectionReporter, self).__init__(hosts, args, model)
+    def __init__(self, hosts, args, model, content):
+        super(DataStreamCollectionReporter, self).__init__(hosts, args, model, content)
 
         benchmark = model.components[self.hosts[0].facts['selected_checklist']].model
         self.reporter = Reporter.load(benchmark, hosts, args)
@@ -180,5 +180,4 @@ class DataStreamCollectionReporter(Reporter):
 
             # TODO 'hasMetadata' relationship
 
-        arc_et = ET.ElementTree(element=arc.to_xml())
-        return arc_et
+        return arc.to_xml()

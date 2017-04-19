@@ -24,7 +24,7 @@ import importlib
 logger = logging.getLogger(__name__)
 class Reporter(object):
     @staticmethod
-    def load(hosts, args, model):
+    def load(hosts, args, model, content):
         from scap.model.xccdf_1_1.BenchmarkType import BenchmarkType as xccdf_1_1_BenchmarkType
         from scap.model.xccdf_1_2.BenchmarkType import BenchmarkType as xccdf_1_2_BenchmarkType
         from scap.model.scap_source_1_2.DataStreamCollectionElement import DataStreamCollectionElement
@@ -40,9 +40,10 @@ class Reporter(object):
         else:
             raise NotImplementedError('Reporting with ' + model.__class__.__name__ + ' model has not been implemented')
 
-    def __init__(self, hosts, args, model):
+    def __init__(self, hosts, args, model, content):
         self.hosts = hosts
         self.model = model
+        self.content = content
 
     def report(self):
         import inspect
