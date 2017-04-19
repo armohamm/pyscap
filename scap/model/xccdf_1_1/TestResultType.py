@@ -37,8 +37,6 @@ class TestResultType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}rule-result': {'class': 'RuleResultType', 'map': 'rule_results', 'key': 'idref', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}score': {'class': 'ScoreType', 'append': 'scores', 'min': 1, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': 1},
-
-            '*': {'ignore': True, 'min': 0, 'max': None},
         },
         'attributes': {
             'id': {'required': True, 'type': 'NCName'},
