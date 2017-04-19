@@ -170,7 +170,8 @@ elif args['benchmark']:
     for uri in args['content']:
         logger.debug('Loading content file: ' + uri)
         with open(uri, mode='r', encoding='utf_8') as f:
-            model = Model.load(None, ET.parse(f).getroot(), uri)
+            content = ET.parse(f).getroot()
+            model = Model.load(None, content, uri)
 
     for host in hosts:
         host.connect()
@@ -180,8 +181,8 @@ elif args['benchmark']:
         chk.collect()
         host.disconnect()
 
-    rep = Reporter.load(hosts, args, model)
-    report = rep.report()
+    rep = Reporter.load(hosts, args, model, content)
+    report = ET.ElementTree(element=rep.report())
 
     if args['pretty']:
         sio = StringIO()
