@@ -20,8 +20,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 class BenchmarkReporter(Reporter):
-    def __init__(self, hosts, args, model, content):
-        super(BenchmarkReporter, self).__init__(hosts, args, model, content)
+    def __init__(self, hosts, args, model):
+        super(BenchmarkReporter, self).__init__(hosts, args, model)
 
         self.test_result = TestResultType()
         self.test_result.id = TestResultType.generate_id()

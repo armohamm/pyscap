@@ -150,8 +150,7 @@ class DataStreamCollectionReporter(Reporter):
             report.content = ReportContentElement()
             for selected_checklist in self.selected_checklists:
                 checklist_model = self.model.components[selected_checklist].model
-                checklist_content = content.find("./component/*[@id='"+ selected_checklist + "']/")
-                report.content.append(Reporter.load(self.hosts, self.args, checklist_model, checklist_content).report())
+                report.content.append(Reporter.load(self.hosts, self.args, checklist_model).report())
             arc.reports.reports.append(report)
             report.id = 'report_' + uuid.uuid4().hex
 
