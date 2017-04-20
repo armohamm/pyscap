@@ -26,6 +26,7 @@ TAG_MAP = {
     '{http://purl.org/dc/elements/1.1/}type': {'class': 'Type'},
     '{http://purl.org/dc/elements/1.1/}format': {'class': 'Format'},
     '{http://purl.org/dc/elements/1.1/}identifier': {'class': 'Identifier'},
+    '{http://purl.org/dc/elements/1.1/}source': {'class': 'Source'},
     '{http://purl.org/dc/elements/1.1/}language': {'class': 'Language'},
     '{http://purl.org/dc/elements/1.1/}relation': {'class': 'Relation'},
     '{http://purl.org/dc/elements/1.1/}coverage': {'class': 'Coverage'},

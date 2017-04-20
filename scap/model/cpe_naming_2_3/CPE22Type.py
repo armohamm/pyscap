@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.xs.AnyURI import AnyURI
+from scap.model.xs_2001.AnyURI import AnyURI
 
 logger = logging.getLogger(__name__)
 class CPE22Type(AnyURI):

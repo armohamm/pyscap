@@ -27,6 +27,6 @@ class ReferenceType(Model):
             'override': {'type': 'Boolean'},
         },
         'elements': {
-            '{http://purl.org/dc/elements/1.1/}*': {'min': 0, 'max': None},
+            '{http://purl.org/dc/elements/1.1/}*': {'min': 0},
         },
     }

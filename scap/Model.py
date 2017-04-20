@@ -84,10 +84,35 @@ class Model(object):
                 sys.exit()
         else:
             mmap = Model._get_model_map(parent.__class__)
-            if child_el.tag not in mmap['elements'] or 'class' not in mmap['elements'][child_el.tag]:
+            ns_any = '{' + xml_namespace + '}*'
+
+            logger.debug('Checking ' + parent.__class__.__name__ + ' for tag ' + child_el.tag)
+            module_name = None
+            for name in [child_el.tag, tag_name, ns_any, '*']:
+                if name not in mmap['elements']:
+                    continue
+
+                logger.debug(child_el.tag + ' matched ' + name + ' mapping in ' + parent.__class__.__name__)
+                if name.endswith('*'):
+                    # look up from __init__ file
+                    pkg_mod = importlib.import_module('scap.model.' + model_namespace)
+                    try:
+                        module_name = pkg_mod.TAG_MAP[child_el.tag]['class']
+                    except AttributeError:
+                        logger.critical(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + child_el.tag)
+                        sys.exit()
+                    except KeyError:
+                        logger.critical(pkg_mod.__name__ + ' does not define mapping for ' + child_el.tag + ' tag')
+                        sys.exit()
+                    break
+                elif 'class' in mmap['elements'][name]:
+                    module_name = mmap['elements'][child_el.tag]['class']
+                    break
+
+            if module_name is None:
+                logger.debug('Did not match any of ' + str([child_el.tag, tag_name, ns_any, '*']))
                 logger.critical(parent.__class__.__name__ + ' does not define mapping for ' + child_el.tag + ' tag')
                 sys.exit()
-            module_name = mmap['elements'][child_el.tag]['class']
 
         if '.' in module_name:
             model_module = 'scap.model.' + module_name
@@ -208,9 +233,6 @@ class Model(object):
         # initialize attribute values
         for name in self.model_map['attributes']:
             attr_map = self.model_map['attributes'][name]
-            if 'ignore' in attr_map and attr_map['ignore']:
-                raise ValueError('ignore is deprecated: attr ' + name + ' in class ' + self.__class__.__name__)
-
             if 'in' in attr_map:
                 attr_name = attr_map['in']
             else:
@@ -238,9 +260,6 @@ class Model(object):
                 if name not in list(self.__dict__.keys()):
                     logger.debug('Initializing ' + name + ' to []')
                     setattr(self, name, [])
-
-            elif 'ignore' in tag_map and tag_map['ignore']:
-                raise ValueError('ignore is deprecated: tag ' + tag + ' in class ' + self.__class__.__name__)
 
             elif 'append' in tag_map:
                 # initialze the array if it doesn't exist
@@ -332,8 +351,6 @@ class Model(object):
 
         for tag in self.model_map['elements']:
             tag_map = self.model_map['elements'][tag]
-            if 'ignore' in tag_map and tag_map['ignore']:
-                raise ValueError('ignore is deprecated: tag ' + tag + ' in class ' + self.__class__.__name__)
 
             min_ = 1
             if 'map' in tag_map or 'append' in tag_map:
@@ -370,13 +387,13 @@ class Model(object):
                 raise NotImplementedError('Type value scap.model.' + type_ + ' was not found')
         else:
             try:
-                mod = importlib.import_module('scap.model.xs.' + type_)
+                mod = importlib.import_module('scap.model.xs_2001.' + type_)
             except ImportError:
                 model_namespace = self.get_model_namespace()
                 try:
                     mod = importlib.import_module('scap.model.' + model_namespace + '.' + type_)
                 except ImportError:
-                    raise NotImplementedError('Type value ' + type_ + ' not defined in scap.model.xs or local namespace (scap.model.' + model_namespace + ')')
+                    raise NotImplementedError('Type value ' + type_ + ' not defined in scap.model.xs_2001 or local namespace (scap.model.' + model_namespace + ')')
         class_ = getattr(mod, type_)
         return class_().parse_value(value)
 
@@ -389,30 +406,30 @@ class Model(object):
             ns_any = '{' + xml_namespace + '}*'
 
         for name in [name, attr_name, ns_any, '*']:
+            if name not in self.model_map['attributes']:
+                continue
+
             attr_map = self.model_map['attributes'][name]
-            if name in self.model_map['attributes']:
-                if 'ignore' in attr_map and attr_map['ignore']:
-                    raise ValueError('ignore is deprecated: attr ' + name + ' in class ' + self.__class__.__name__)
 
-                if 'notImplemented' in attr_map and attr_map['notImplemented']:
-                    raise NotImplementedError(name + ' attribute support is not implemented')
+            if 'notImplemented' in attr_map and attr_map['notImplemented']:
+                raise NotImplementedError(name + ' attribute support is not implemented')
 
-                if 'enum' in attr_map and value not in attr_map['enum']:
-                    raise ValueError(name + ' attribute must be one of ' + str(attr_map['enum']) + ': ' + str(value))
+            if 'enum' in attr_map and value not in attr_map['enum']:
+                raise ValueError(name + ' attribute must be one of ' + str(attr_map['enum']) + ': ' + str(value))
 
-                # convert value
-                if 'type' in attr_map:
-                    logger.debug('Parsing ' + str(value) + ' as ' + attr_map['type'] + ' type')
-                    value = self._parse_value_as_type(value, attr_map['type'])
+            # convert value
+            if 'type' in attr_map:
+                logger.debug('Parsing ' + str(value) + ' as ' + attr_map['type'] + ' type')
+                value = self._parse_value_as_type(value, attr_map['type'])
 
-                if 'in' in attr_map:
-                    setattr(self, attr_map['in'], value)
-                    logger.debug('Set attribute ' + attr_map['in'] + ' = ' + str(value))
-                else:
-                    name = attr_name.replace('-', '_')
-                    setattr(self, name, value)
-                    logger.debug('Set attribute ' + name + ' = ' + str(value))
-                return True
+            if 'in' in attr_map:
+                setattr(self, attr_map['in'], value)
+                logger.debug('Set attribute ' + attr_map['in'] + ' = ' + str(value))
+            else:
+                name = attr_name.replace('-', '_')
+                setattr(self, name, value)
+                logger.debug('Set attribute ' + name + ' = ' + str(value))
+            return True
         return False
 
     def parse_element(self, el):
@@ -428,14 +445,35 @@ class Model(object):
             if tag not in self.model_map['elements']:
                 continue
 
+            logger.debug('Tag ' + el.tag + ' matched ' + tag)
             tag_map = self.model_map['elements'][tag]
-            if 'ignore' in tag_map and tag_map['ignore']:
-                raise ValueError('ignore is deprecated: tag ' + tag + ' in class ' + self.__class__.__name__)
 
             if 'notImplemented' in tag_map and tag_map['notImplemented']:
                 raise NotImplementedError(tag + ' element support is not implemented')
 
-            if 'append' in tag_map:
+            if tag.endswith('*'):
+                if 'in' in tag_map:
+                    name = tag_map['in']
+                else:
+                    name = '_tags'
+
+                lst = getattr(self, name)
+
+                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+                    # check if we can accept nil
+                    if 'nillable' in tag_map and tag_map['nillable']:
+                        value = None
+                    else:
+                        raise ValueError(el.tag + ' is nil, but not expecting nil value')
+                elif 'type' in tag_map:
+                    value = self._parse_value_as_type(el.text, tag_map['type'])
+                else:
+                    value = Model.load(self, el)
+
+                lst.append(value)
+                logger.debug('Appended ' + str(value) + ' to ' + name)
+
+            elif 'append' in tag_map:
                 lst = getattr(self, tag_map['append'])
 
                 if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
@@ -563,9 +601,6 @@ class Model(object):
 
         xml_namespace, attr_name = Model.parse_tag(name)
         attr_map = self.model_map['attributes'][name]
-
-        if 'ignore' in attr_map and attr_map['ignore']:
-            raise ValueError('ignore is deprecated: attr ' + name + ' in class ' + self.__class__.__name__)
 
         if 'notImplemented' in attr_map and attr_map['notImplemented']:
             raise NotImplementedError(name + ' attribute support is not implemented')

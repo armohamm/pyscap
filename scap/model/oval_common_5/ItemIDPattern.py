@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Integer import Integer
+from scap.model.xs_2001.Integer import Integer
 import logging
 
 logger = logging.getLogger(__name__)

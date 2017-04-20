@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.xs.String import String
+from scap.xs_2001.String import String
 import logging
 
 logger = logging.getLogger(__name__)

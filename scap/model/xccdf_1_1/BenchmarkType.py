@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class BenchmarkType(Model):
     MODEL_MAP = {
         'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}status': {'append': 'statuses', 'class': 'StatusType', 'min': 1, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}status': {'append': 'statuses', 'class': 'StatusElement', 'min': 1, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}title': {'append': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}description': {'append': 'descriptions', 'class': 'HTMLTextWithSubType', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}notice': {'map': 'notices', 'class': 'NoticeType', 'min': 0, 'max': None},
