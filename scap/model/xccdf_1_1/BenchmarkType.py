@@ -147,6 +147,7 @@ class BenchmarkType(Model):
             logger.info('Selecting profile ' + str(profile_id))
             if profile_id not in host.facts['checklist'][self.id]['profile']:
                 host.facts['checklist'][self.id]['profile'][profile_id] = {
+                    'start_time': datetime.datetime.utcnow(),
                     'rule': {},
                     'value': {},
                     'scores': [],
@@ -168,6 +169,7 @@ class BenchmarkType(Model):
             for model in self.models:
                 model.score(host, self, profile_id)
 
+            host.facts['checklist'][self.id]['profile'][profile_id]['end_time'] =  datetime.datetime.utcnow()
         ### Benchmark.Back
 
         # Perform any additional processing of the Benchmark object properties
