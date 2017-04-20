@@ -27,6 +27,6 @@ class ThoroughfareTrailingTypeType(Model):
         'attributes': {
             'Type': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

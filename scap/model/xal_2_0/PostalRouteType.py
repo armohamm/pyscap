@@ -28,10 +28,10 @@ class PostalRouteType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalRouteName': {'append': 'postal_route_names', 'class': 'PostalRouteNameType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalRouteNumber': {'in': 'postal_route_number', 'class': 'PostalRouteNumberType'},
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'Type': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

@@ -28,6 +28,6 @@ class PostalCodeNumberExtensionType(Model):
             'Type': {},
             'NumberExtensionSeparator': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

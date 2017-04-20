@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class MetadataType(Model):
     MODEL_MAP = {
         'elements': {
-            '{http://purl.org/dc/elements/1.1/}*': {'ignore': True, 'min': 1, 'max': None},
-            '{http://checklists.nist.gov/sccf/0.1}*': {'ignore': True, 'min': 1, 'max': None},
+            '{http://purl.org/dc/elements/1.1/}*': {'min': 1, 'max': None},
+            '{http://checklists.nist.gov/sccf/0.1}*': {'min': 1, 'max': None},
         }
     }

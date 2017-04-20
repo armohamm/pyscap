@@ -27,6 +27,6 @@ class TitleElement(Model):
         'attributes': {
             'Type': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

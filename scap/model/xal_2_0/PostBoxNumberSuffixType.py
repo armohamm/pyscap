@@ -27,6 +27,6 @@ class PostBoxNumberSuffixType(Model):
         'attributes': {
             'NumberSuffixSeparator': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

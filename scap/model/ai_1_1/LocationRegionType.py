@@ -28,6 +28,6 @@ class LocationRegionType(LocationType, NormalizedString):
         'attributes': {
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

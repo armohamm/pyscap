@@ -26,6 +26,6 @@ class FunctionElement(Model):
         'tag_name': 'Function',
         'attributes': {
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

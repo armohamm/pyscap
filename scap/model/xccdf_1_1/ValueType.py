@@ -37,13 +37,13 @@ class ValueType(ItemType):
             '{http://checklists.nist.gov/xccdf/1.1}choices': {'class': 'SelChoicesType', 'map': 'choice_selections', 'key': 'selector', 'min': 0, 'max': None},
 
             '{http://checklists.nist.gov/xccdf/1.1}source': {'class': 'UriRefType', 'append': 'sources', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': 1},
+            '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
         'attributes': {
             'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'string'},
             'operator': {'enum': VALUE_OPERATOR_ENUMERATION, 'default': 'equals'},
-            'interactive': {'ignore': True, 'type': 'Boolean'},
-            'interfaceHint': {'ignore': True, 'enum': INTERFACE_HINT_ENUMERATION},
+            'interactive': {'type': 'Boolean'},
+            'interfaceHint': {'enum': INTERFACE_HINT_ENUMERATION},
         },
     }
 

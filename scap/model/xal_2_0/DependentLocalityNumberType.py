@@ -27,6 +27,6 @@ class DependentLocalityNumberType(Model):
         'attributes': {
             'NameNumberOccurrence': {'enum': ['Before', 'After']},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

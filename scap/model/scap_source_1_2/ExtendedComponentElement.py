@@ -23,9 +23,9 @@ class ExtendedComponentElement(Model):
     MODEL_MAP = {
         'attributes': {
             'id': {'required': True, 'type': 'ExtendedComponentIDPattern'},
-            'timestamp': {'type': 'DateTime', 'required': True, 'ignore': True}
+            'timestamp': {'type': 'DateTime', 'required': True}
         },
         'elements': {
-            '*': {'ignore': True}
+            '*': {}
         },
     }

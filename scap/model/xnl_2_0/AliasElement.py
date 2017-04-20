@@ -28,6 +28,6 @@ class AliasElement(Model):
             'Type': {},
             'NameType': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

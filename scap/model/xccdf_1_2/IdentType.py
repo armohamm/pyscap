@@ -23,6 +23,6 @@ class IdentType(String):
     MODEL_MAP = {
         'attributes': {
             'system': {'type': 'AnyURI', 'required': True},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

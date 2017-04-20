@@ -39,6 +39,6 @@ class AssetsAssetElement(Model):
         },
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

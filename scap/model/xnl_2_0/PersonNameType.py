@@ -42,6 +42,6 @@ class PersonNameType(Model):
             'Type': {},
             'Code': {},
             'NameDetailsKeyRef': {}, # from grKeyRefs
-            '*': {'ignore': True},
+            '*': {},
         }
     }

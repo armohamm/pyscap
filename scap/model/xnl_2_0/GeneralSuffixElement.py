@@ -27,6 +27,6 @@ class GeneralSuffixElement(Model):
         'attributes': {
             'Type': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

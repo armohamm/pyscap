@@ -23,27 +23,27 @@ logger = logging.getLogger(__name__)
 class ProfileType(Extendable):
     MODEL_MAP = {
         'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}status': {'ignore': True, 'class': 'StatusType', 'append': 'statuses', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}version': {'ignore': True, 'class': 'VersionType', 'min': 0, 'max': 1},
-            '{http://checklists.nist.gov/xccdf/1.1}title': {'ignore': True, 'class': 'TextWithSubType', 'append': 'titles', 'min': 1, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}description': {'ignore': True, 'class': 'HTMLTextWithSubType', 'append': 'descriptions', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}reference': {'ignore': True, 'class': 'ReferenceType', 'append': 'references', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}platform': {'ignore': True, 'class': 'UriIdrefType', 'append': 'platforms', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}status': {'class': 'StatusType', 'append': 'statuses', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}version': {'class': 'VersionType', 'min': 0, 'max': 1},
+            '{http://checklists.nist.gov/xccdf/1.1}title': {'class': 'TextWithSubType', 'append': 'titles', 'min': 1, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}description': {'class': 'HTMLTextWithSubType', 'append': 'descriptions', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}reference': {'class': 'ReferenceType', 'append': 'references', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}platform': {'class': 'UriIdrefType', 'append': 'platforms', 'min': 0, 'max': None},
             # choice
             '{http://checklists.nist.gov/xccdf/1.1}select': {'class': 'ProfileSelectType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}set-value': {'class': 'ProfileSetValueType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}refine-value': {'class': 'ProfileRefineValueType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}refine-rule': {'class': 'ProfileRefineRuleType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
 
-            '{http://checklists.nist.gov/xccdf/1.1}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': 1},
+            '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
         'attributes': {
             'id': {'required': True, 'type': 'NCName'},
-            'prohibitChanges': {'ignore': True, 'type': 'Boolean', 'default': False},
+            'prohibitChanges': {'type': 'Boolean', 'default': False},
             'abstract': {'type': 'Boolean', 'default': False},
-            'note-tag': {'ignore': True, 'type': 'NCName'},
+            'note-tag': {'type': 'NCName'},
             'extends': {'type': 'NCName'},
-            'Id': {'ignore': True, 'type': 'ID'},
+            'Id': {'type': 'ID'},
         },
     }
 

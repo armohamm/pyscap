@@ -25,10 +25,10 @@ class ExtendedInfoElement(Model):
         'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1',
         'tag_name': 'extended-info',
         'elements': {
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

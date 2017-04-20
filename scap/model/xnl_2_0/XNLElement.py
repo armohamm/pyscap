@@ -26,10 +26,10 @@ class XNLElement(Model):
         'tag_name': 'xNL',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}NameDetails': {'append': 'name_details', 'class': 'NameDetailsType'},
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'Version': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

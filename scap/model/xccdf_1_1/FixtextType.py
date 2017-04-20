@@ -25,10 +25,10 @@ logger = logging.getLogger(__name__)
 class FixTextType(HTMLTextWithSubType):
     MODEL_MAP = {
         'attributes': {
-            'fixref': {'ignore': True, 'type': 'NCName'},
-            'reboot': {'ignore': True, 'type': 'Boolean', 'default': False},
-            'strategy': {'ignore': True, 'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
-            'disruption': {'ignore': True, 'enum': RATING_ENUMERATION, 'default': 'unknown'},
-            'complexity': {'ignore': True, 'enum': RATING_ENUMERATION, 'default': 'unknown'},
+            'fixref': {'type': 'NCName'},
+            'reboot': {'type': 'Boolean', 'default': False},
+            'strategy': {'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
+            'disruption': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
+            'complexity': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
         },
     }

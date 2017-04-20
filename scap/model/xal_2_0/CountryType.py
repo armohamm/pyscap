@@ -31,9 +31,9 @@ class CountryType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AdministrativeArea': {'in': 'administrative_area', 'class': 'AdministrativeAreaType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Locality': {'in': 'locality', 'class': 'LocalityType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Thoroughfare': {'in': 'thoroughfare', 'class': 'ThoroughfareType'},
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
-            '*': {'ignore': True},
+            '*': {},
         }
     }

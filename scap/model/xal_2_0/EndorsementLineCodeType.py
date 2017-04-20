@@ -27,6 +27,6 @@ class EndorsementLineCodeType(Model):
         'attributes': {
             'Type': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

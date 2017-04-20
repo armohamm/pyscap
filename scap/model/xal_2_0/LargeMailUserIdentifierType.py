@@ -28,6 +28,6 @@ class LargeMailUserIdentifierType(Model):
             'Type': {'type': 'String'},
             'Indicator': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

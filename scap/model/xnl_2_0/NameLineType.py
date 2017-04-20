@@ -28,6 +28,6 @@ class NameLineType(Model):
             'Type': {},
             'NameType': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class SelectableItemType(ItemType):
     MODEL_MAP = {
         'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}rationale': {'append': 'rationales', 'ignore': True, 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
-            '{http://checklists.nist.gov/xccdf/1.1}platform': {'append': 'platforms', 'ignore': True, 'min': 0, 'max': None, 'class': 'OverrideableUriIdrefType'},
+            '{http://checklists.nist.gov/xccdf/1.1}rationale': {'append': 'rationales', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
+            '{http://checklists.nist.gov/xccdf/1.1}platform': {'append': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableUriIdrefType'},
             '{http://checklists.nist.gov/xccdf/1.1}requires': {'append': 'requires', 'min': 0, 'max': None, 'class': 'IdrefListType'},
             '{http://checklists.nist.gov/xccdf/1.1}conflicts': {'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},
         },

@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 class ProfileRefineRuleType(Model):
     MODEL_MAP = {
         'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}remark': {'ignore': True, 'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.1}remark': {'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
         },
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},

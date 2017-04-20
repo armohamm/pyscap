@@ -27,6 +27,6 @@ class PrecedingTitleElement(Model):
         'attributes': {
             'Type': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

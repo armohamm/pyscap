@@ -32,6 +32,6 @@ class PersonNameElement(PersonNameType):
             'Type': {},
             'Code': {},
             'NameDetailsKeyRef': {}, # from grKeyRefs
-            '*': {'ignore': True},
+            '*': {},
         }
     }

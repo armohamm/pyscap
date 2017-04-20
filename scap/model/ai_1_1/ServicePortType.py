@@ -27,6 +27,6 @@ class ServicePortType(PortType):
         'attributes': {
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

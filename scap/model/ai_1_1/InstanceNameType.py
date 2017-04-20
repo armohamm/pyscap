@@ -27,6 +27,6 @@ class InstanceNameType(Token):
         'attributes': {
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

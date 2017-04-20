@@ -30,6 +30,6 @@ class AssetElement(Model):
         },
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

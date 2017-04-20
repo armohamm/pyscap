@@ -31,6 +31,6 @@ class SubPremiseNumberType(Model):
             'PremiseNumberSeparator': {},
             'Type': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

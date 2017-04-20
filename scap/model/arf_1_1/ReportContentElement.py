@@ -25,11 +25,11 @@ class ReportContentElement(Model):
         'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1',
         'tag_name': 'content',
         'elements': {
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'data-valid-start-date': {'type': 'Date'},
             'data-valid-end-date': {'type': 'Date'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

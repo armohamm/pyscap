@@ -22,14 +22,25 @@ import xml.etree.ElementTree as ET
 
 from scap.model import NAMESPACES
 
+XML_SPACE_ENUMERATION = [
+    'default',
+    # The value "default" signals that applications' default white-space
+    # processing modes are acceptable for this element
+    'preserve',
+    # the value "preserve" indicates the intent that applications preserve all
+    # the white space
+]
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 class Model(object):
     MODEL_MAP = {
         'attributes': {
-            '{http://www.w3.org/XML/1998/namespace}lang': {'ignore': True},
-            '{http://www.w3.org/XML/1998/namespace}base': {'ignore': True},
-            '{http://www.w3.org/2001/XMLSchema-instance}schemaLocation': {'ignore': True},
+            '{http://www.w3.org/XML/1998/namespace}lang': {'type': 'String'},
+            '{http://www.w3.org/XML/1998/namespace}space': {'enum': XML_SPACE_ENUMERATION, 'default': 'default'},
+            '{http://www.w3.org/XML/1998/namespace}base': {'type': 'AnyURI'},
+            '{http://www.w3.org/XML/1998/namespace}id': {'type': 'ID'},
+            '{http://www.w3.org/2001/XMLSchema-instance}schemaLocation': {'type': 'AnyURI'},
         },
     }
 
@@ -198,7 +209,7 @@ class Model(object):
         for name in self.model_map['attributes']:
             attr_map = self.model_map['attributes'][name]
             if 'ignore' in attr_map and attr_map['ignore']:
-                continue
+                raise ValueError('ignore is deprecated: attr ' + name + ' in class ' + self.__class__.__name__)
 
             if 'in' in attr_map:
                 attr_name = attr_map['in']
@@ -218,24 +229,37 @@ class Model(object):
             xml_namespace, tag_name = Model.parse_tag(tag)
             tag_map = self.model_map['elements'][tag]
 
-            if tag.endswith('*') or 'ignore' in tag_map and tag_map['ignore']:
-                continue
+            if tag.endswith('*'):
+                if 'in' in tag_map:
+                    name = tag_map['in']
+                else:
+                    name = '_tags'
 
-            if 'append' in tag_map:
+                if name not in list(self.__dict__.keys()):
+                    logger.debug('Initializing ' + name + ' to []')
+                    setattr(self, name, [])
+
+            elif 'ignore' in tag_map and tag_map['ignore']:
+                raise ValueError('ignore is deprecated: tag ' + tag + ' in class ' + self.__class__.__name__)
+
+            elif 'append' in tag_map:
                 # initialze the array if it doesn't exist
                 if tag_map['append'] not in list(self.__dict__.keys()):
-                    logger.debug('Initializing ' + tag_map['append'] + ' to empty list')
+                    logger.debug('Initializing ' + tag_map['append'] + ' to []')
                     setattr(self, tag_map['append'], [])
+
             elif 'map' in tag_map:
                 # initialze the dict if it doesn't exist
                 if tag_map['map'] not in list(self.__dict__.keys()):
-                    logger.debug('Initializing ' + tag_map['map'] + ' to empty hash')
+                    logger.debug('Initializing ' + tag_map['map'] + ' to {}')
                     setattr(self, tag_map['map'], {})
+
             else:
                 if 'in' in tag_map:
                     name = tag_map['in']
                 else:
                     name = tag_name.replace('-', '_')
+
                 if name not in list(self.__dict__.keys()):
                     logger.debug('Initializing ' + name + ' to None')
                     setattr(self, name, None)
@@ -309,7 +333,7 @@ class Model(object):
         for tag in self.model_map['elements']:
             tag_map = self.model_map['elements'][tag]
             if 'ignore' in tag_map and tag_map['ignore']:
-                continue
+                raise ValueError('ignore is deprecated: tag ' + tag + ' in class ' + self.__class__.__name__)
 
             min_ = 1
             if 'map' in tag_map or 'append' in tag_map:
@@ -358,16 +382,17 @@ class Model(object):
 
     def parse_attribute(self, name, value):
         xml_namespace, attr_name = Model.parse_tag(name)
+
         if xml_namespace is None:
             ns_any = '{' + self.model_map['xml_namespace'] + '}*'
         else:
             ns_any = '{' + xml_namespace + '}*'
+
         for name in [name, attr_name, ns_any, '*']:
             attr_map = self.model_map['attributes'][name]
             if name in self.model_map['attributes']:
                 if 'ignore' in attr_map and attr_map['ignore']:
-                    logger.debug('Ignoring attribute ' + name + ' = ' + str(value))
-                    return True
+                    raise ValueError('ignore is deprecated: attr ' + name + ' in class ' + self.__class__.__name__)
 
                 if 'notImplemented' in attr_map and attr_map['notImplemented']:
                     raise NotImplementedError(name + ' attribute support is not implemented')
@@ -405,7 +430,7 @@ class Model(object):
 
             tag_map = self.model_map['elements'][tag]
             if 'ignore' in tag_map and tag_map['ignore']:
-                return True
+                raise ValueError('ignore is deprecated: tag ' + tag + ' in class ' + self.__class__.__name__)
 
             if 'notImplemented' in tag_map and tag_map['notImplemented']:
                 raise NotImplementedError(tag + ' element support is not implemented')
@@ -540,7 +565,7 @@ class Model(object):
         attr_map = self.model_map['attributes'][name]
 
         if 'ignore' in attr_map and attr_map['ignore']:
-            return
+            raise ValueError('ignore is deprecated: attr ' + name + ' in class ' + self.__class__.__name__)
 
         if 'notImplemented' in attr_map and attr_map['notImplemented']:
             raise NotImplementedError(name + ' attribute support is not implemented')

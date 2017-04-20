@@ -28,8 +28,8 @@ class ValueType(ItemType):
             'id': {'type': 'ValueIDPattern', 'required': True},
             'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'string'},
             'operator': {'enum': VALUE_OPERATOR_ENUMERATION, 'default': 'equals'},
-            'interactive': {'ignore': True, 'type': 'Boolean'},
-            'interfaceHint': {'ignore': True, 'enum': INTERFACE_HINT_ENUMERATION},
+            'interactive': {'type': 'Boolean'},
+            'interfaceHint': {'enum': INTERFACE_HINT_ENUMERATION},
         },
         'elements': {
             # TODO: at least one value
@@ -45,6 +45,6 @@ class ValueType(ItemType):
             '{http://checklists.nist.gov/xccdf/1.2}upper-bound': {'class': 'SelNumType', 'map': 'upper_bounds', 'key': 'selector', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.2}choices': {'class': 'SelChoicesType', 'map': 'choices', 'key': 'selector', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.2}source': {'class': 'URIRefType', 'append': 'sources', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.2}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.2}signature': {'class': 'SignatureType', 'min': 0, 'max': None},
         },
     }

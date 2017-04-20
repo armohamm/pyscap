@@ -27,6 +27,6 @@ class PostalRouteNameType(Model):
         'attributes': {
             'Type': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

@@ -26,13 +26,13 @@ class Catalog(Model, MutableMapping):
         'xml_namespace': 'urn:oasis:names:tc:entity:xmlns:xml:catalog',
         'tag_name': 'catalog',
         'attributes': {
-            'id': {'ignore': True, 'type': 'ID'},
-            'prefer': {'ignore': True, 'enum': ['system', 'public']},
-            '*': {'ignore': True}
+            'id': {'type': 'ID'},
+            'prefer': {'enum': ['system', 'public']},
+            '*': {}
         },
         'elements': {
             '{urn:oasis:names:tc:entity:xmlns:xml:catalog}uri': {'map': 'entries', 'key': 'name', 'value': 'uri'},
-            '*': {'ignore': True},
+            '*': {},
         },
     }
 

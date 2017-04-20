@@ -26,7 +26,7 @@ class DependencyNameElement(NameDetailsType):
         'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0',
         'tag_name': 'DependencyName',
         'elements': {
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'DependencyType': {},

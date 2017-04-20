@@ -24,6 +24,6 @@ class FQDNType(Token):
         'attributes': {
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

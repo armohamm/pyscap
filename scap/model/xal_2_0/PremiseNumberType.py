@@ -31,6 +31,6 @@ class PremiseNumberType(Model):
             'IndicatorOccurrence': {'enum': ['Before', 'After']},
             'NumberTypeOccurrence': {'enum': ['Before', 'After']},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

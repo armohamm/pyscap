@@ -27,6 +27,6 @@ class LargeMailUserNameType(Model):
         'attributes': {
             'Type': {'type': 'String'},
             'Code': {'type': 'String'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

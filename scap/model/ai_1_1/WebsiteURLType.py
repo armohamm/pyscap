@@ -24,6 +24,6 @@ class WebsiteURLType(AnyURI):
         'attributes': {
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

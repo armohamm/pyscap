@@ -37,7 +37,7 @@ class TestResultType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}set-value': {'class': 'ProfileSetValueType', 'map': 'set_values', 'key': 'idref', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}rule-result': {'class': 'RuleResultType', 'map': 'rule_results', 'key': 'idref', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}score': {'class': 'ScoreType', 'append': 'scores', 'min': 1, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': 1},
+            '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
@@ -45,7 +45,7 @@ class TestResultType(Model):
             'end-time': {'type': 'DateTime', 'required': True},
             'test-system': {'type': 'String'},
             'version': {'type': 'String'},
-            'Id': {'ignore': True, 'type': 'ID'},
+            'Id': {'type': 'ID'},
         },
     }
 

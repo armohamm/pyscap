@@ -31,10 +31,10 @@ class DependentThoroughfareType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareName': {'append': 'thoroughfare_names', 'class': 'ThoroughfareNameType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareTrailingType': {'in': 'thoroughfare_trailing_type', 'class': 'ThoroughfareTrailingTypeType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfarePostDirection': {'in': 'thoroughfare_post_direction', 'class': 'ThoroughfarePostDirectionType'},
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'Type': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

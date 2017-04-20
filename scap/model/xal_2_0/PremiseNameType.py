@@ -28,6 +28,6 @@ class PremiseNameType(Model):
             'Type': {},
             'TypeOccurrence': {'enum': ['Before', 'After']},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

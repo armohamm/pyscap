@@ -31,6 +31,6 @@ class ThoroughfareNumberType(Model):
             'IndicatorOccurrence': {'enum': ['Before', 'After']},
             'NumberOccurrence': {'enum': ['BeforeName', 'AfterName', 'BeforeType', 'AfterType']},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

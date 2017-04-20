@@ -27,7 +27,7 @@ class GroupType(SelectableItemType):
             '{http://checklists.nist.gov/xccdf/1.1}Value': {'class': 'ValueType', 'map': 'items', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}Group': {'class': 'GroupType', 'map': 'items', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}Rule': {'class': 'RuleType', 'map': 'items', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': 1},
+            '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
     }
 
@@ -54,8 +54,6 @@ class GroupType(SelectableItemType):
         # (5) remove duplicate properties and apply property overrides, and
         for name in self.model_map['attributes']:
             attr_map = self.model_map['attributes'][name]
-            if 'ignore' in attr_map and attr_map['ignore']:
-                continue
 
             if 'in' in attr_map:
                 attr_name = attr_map['in']
@@ -70,8 +68,6 @@ class GroupType(SelectableItemType):
                 continue
 
             tag_map = self.model_map['elements'][tag]
-            if 'ignore' in tag_map and tag_map['ignore']:
-                continue
 
             if 'append' in tag_map:
                 self.resolve_property(extended, tag_map['append'])

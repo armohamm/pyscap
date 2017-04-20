@@ -28,6 +28,6 @@ class FirstNameElement(Model):
             'Type': {},
             'NameType': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

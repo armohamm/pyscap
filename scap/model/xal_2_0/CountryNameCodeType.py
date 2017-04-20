@@ -27,6 +27,6 @@ class CountryNameCodeType(Model):
         'attributes': {
             'Scheme': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

@@ -22,6 +22,6 @@ class NetworkCIDRType(CIDRType):
         'attributes': {
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

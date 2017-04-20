@@ -41,6 +41,6 @@ class AddressDetailsType(Model):
             'Usage': {},
             'Code': {}, # from grPostal
             'AddressDetailsKey': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

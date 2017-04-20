@@ -26,10 +26,10 @@ class XALType(Model):
         'tag_name': 'xAL',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressDetails': {'append': 'address_details', 'class': 'AddressDetailsType'},
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'Version': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

@@ -33,6 +33,6 @@ class NameDetailsType(Model):
         'attributes': {
             'PartyType': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

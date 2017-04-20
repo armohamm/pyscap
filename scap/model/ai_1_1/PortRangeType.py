@@ -29,6 +29,6 @@ class PortRangeType(Model):
             'upper-bound': {'class': 'PortType', 'required': True},
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

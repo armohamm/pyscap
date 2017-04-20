@@ -30,6 +30,6 @@ class CPEType(String):
         'attributes': {
             'source': {'class': 'Source'},
             'timestamp': {'class': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

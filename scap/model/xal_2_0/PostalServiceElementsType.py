@@ -35,10 +35,10 @@ class PostalServiceElementsType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLongitude': {'class': 'AddressLongitudeType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLongitudeDirection': {'class': 'AddressLongitudeDirectionType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}SupplementaryPostalServiceData': {'class': 'SupplementaryPostalServiceDataType'},
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'Type': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

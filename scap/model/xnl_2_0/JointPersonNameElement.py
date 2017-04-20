@@ -27,11 +27,11 @@ class JointPersonNameElement(Model):
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}NameLine': {'append': 'name_lines', 'class': 'NameLineType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}PersonName': {'append': 'person_names', 'class': 'PersonNameElement'},
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'JointNameConnector': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

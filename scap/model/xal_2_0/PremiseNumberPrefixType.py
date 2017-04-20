@@ -28,6 +28,6 @@ class PremiseNumberPrefixType(String):
             'NumberPrefixSeparator': {},
             'Type': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

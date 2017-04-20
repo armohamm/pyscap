@@ -26,7 +26,7 @@ class ComponentRefElement(Model):
         },
         'attributes': {
             'id': {'required': True, 'type': 'ComponentRefIDPattern'},
-            '{http://www.w3.org/1999/xlink}type': {'enum': ['simple'], 'ignore': True},
+            '{http://www.w3.org/1999/xlink}type': {'enum': ['simple']},
             '{http://www.w3.org/1999/xlink}href': {'type': 'String', 'required': True},
         },
     }

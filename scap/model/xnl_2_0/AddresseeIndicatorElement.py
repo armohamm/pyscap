@@ -26,6 +26,6 @@ class AddresseeIndicatorElement(Model):
         'tag_name': 'AddresseeIndicator',
         'attributes': {
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

@@ -25,15 +25,15 @@ class FixType(Model):
     MODEL_MAP = {
         'attributes': {
             'id': {'type': 'NCNAME'},
-            'reboot': {'ignore': True, 'type': 'Boolean'},
-            'strategy': {'ignore': True, 'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
-            'disruption': {'ignore': True, 'enum': RATING_ENUMERATION, 'default': 'unknown'},
-            'complexity': {'ignore': True, 'enum': RATING_ENUMERATION, 'default': 'unknown'},
-            'system': {'ignore': True, 'type': 'AnyURI'},
-            'platform': {'ignore': True, 'type': 'AnyURI'},
+            'reboot': {'type': 'Boolean'},
+            'strategy': {'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
+            'disruption': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
+            'complexity': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
+            'system': {'type': 'AnyURI'},
+            'platform': {'type': 'AnyURI'},
         },
         'elements': {
-            '{http://checklists.nist.gov/xccdf/1.2}sub': {'append': 'subs', 'ignore': True, 'min': 0, 'max': None, 'class': 'SubType'},
-            '{http://checklists.nist.gov/xccdf/1.2}instance': {'append': 'instance', 'ignore': True, 'min': 0, 'max': None, 'class': 'InstanceFixType'},
+            '{http://checklists.nist.gov/xccdf/1.2}sub': {'append': 'subs', 'min': 0, 'max': None, 'class': 'SubType'},
+            '{http://checklists.nist.gov/xccdf/1.2}instance': {'append': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
         },
     }

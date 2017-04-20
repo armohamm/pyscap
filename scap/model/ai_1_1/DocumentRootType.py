@@ -27,6 +27,6 @@ class DocumentRootType(Token):
         'attributes': {
             'source': {'class': 'Source'},
             'timestamp': {'class': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

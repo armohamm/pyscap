@@ -28,6 +28,6 @@ class MiddleNameElement(Model):
             'Type': {},
             'NameType': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

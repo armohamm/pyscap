@@ -36,13 +36,13 @@ class DependentLocalityType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Premise': {'in': 'premise', 'class': 'PremiseType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}DependentLocality': {'in': 'premise', 'class': 'DependentLocalityType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalCode': {'in': 'postal_code', 'class': 'PostalCodeType'},
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'Type': {},
             'UsageType': {},
             'Connector': {},
             'Indicator': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

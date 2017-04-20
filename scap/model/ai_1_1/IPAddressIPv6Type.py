@@ -27,6 +27,6 @@ class IPAddressIPv6Type(IPv6Type):
         'attributes': {
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

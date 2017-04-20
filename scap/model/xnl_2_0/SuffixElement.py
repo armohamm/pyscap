@@ -27,6 +27,6 @@ class SuffixElement(Model):
         'attributes': {
             'Type': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

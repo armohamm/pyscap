@@ -31,6 +31,6 @@ class LocationPointType(LocationType):
             'radius': {'type': 'Double'},
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

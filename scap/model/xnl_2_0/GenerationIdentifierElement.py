@@ -27,6 +27,6 @@ class GenerationIdentifierElement(Model):
         'attributes': {
             'Type': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

@@ -25,9 +25,9 @@ class ReportRequestContentElement(Model):
         'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1',
         'tag_name': 'content',
         'elements': {
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
-            '*': {'ignore': True},
+            '*': {},
         }
     }

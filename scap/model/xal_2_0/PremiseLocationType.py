@@ -26,6 +26,6 @@ class PremiseLocationType(Model):
         'tag_name': 'PremiseLocation',
         'attributes': {
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

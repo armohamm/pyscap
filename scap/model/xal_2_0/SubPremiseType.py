@@ -36,10 +36,10 @@ class SubPremiseType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}MailStop': {'in': 'firm', 'class': 'MailStopType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalCode': {'in': 'postal_code', 'class': 'PostalCodeType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}SubPremise': {'append': 'sub_premises', 'class': 'SubPremiseType'},
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'Type': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

@@ -28,6 +28,6 @@ class PostOfficeNumberType(Model):
             'Indicator': {},
             'IndicatorOccurrence': {'enum': ['Before', 'After']},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

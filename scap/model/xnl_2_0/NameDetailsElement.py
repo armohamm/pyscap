@@ -28,7 +28,7 @@ class NameDetailsElement(NameDetailsType):
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}AddresseeIndicator': {'in': 'adressee_indicator', 'class': 'AddresseeIndicatorElement'},
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}Function': {'in': 'function', 'class': 'FunctionElement'},
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}DependencyName': {'in': 'dependency_name', 'class': 'DependencyNameElement'},
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'NameDetailsKey': {},

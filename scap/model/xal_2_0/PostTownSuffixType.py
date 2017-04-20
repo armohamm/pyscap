@@ -26,6 +26,6 @@ class PostTownSuffixType(Model):
         'tag_name': 'PostTownSuffix',
         'attributes': {
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

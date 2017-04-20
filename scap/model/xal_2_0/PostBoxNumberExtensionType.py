@@ -27,6 +27,6 @@ class PostBoxNumberExtensionType(Model):
         'attributes': {
             'NumberExtensionSeparator': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

@@ -28,6 +28,6 @@ class AddressIdentifierType(Model):
             'IdentifierType': {},
             'Type': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

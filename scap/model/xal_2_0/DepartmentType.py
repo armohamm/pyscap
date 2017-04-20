@@ -32,6 +32,6 @@ class DepartmentType(Model):
         },
         'attributes': {
             'Type': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

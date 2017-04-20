@@ -26,6 +26,6 @@ class PostBoxNumberType(Model):
         'tag_name': 'PostBoxNumber',
         'attributes': {
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

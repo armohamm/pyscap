@@ -28,6 +28,6 @@ class PremiseNumberSuffixType(Model):
             'NumberSuffixSeparator': {},
             'Type': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

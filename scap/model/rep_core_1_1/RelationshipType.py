@@ -30,6 +30,6 @@ class RelationshipType(Model):
             'type': {'type': 'QName', 'required': True},
             'scope': {'enum': ['inclusive', 'exclusive'], 'default': 'inclusive'},
             'subject': {'type': 'NCName', 'required': True},
-            '*': {'ignore': True},
+            '*': {},
         },
     }

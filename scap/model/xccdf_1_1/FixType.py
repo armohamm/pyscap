@@ -25,15 +25,15 @@ logger = logging.getLogger(__name__)
 class FixType(Model):
     MODEL_MAP = {
         'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}sub': {'ignore': True, 'append': 'subs', 'min': 0, 'max': None, 'class': 'IdrefType'},
-            '{http://checklists.nist.gov/xccdf/1.1}instance': {'ignore': True, 'append': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
+            '{http://checklists.nist.gov/xccdf/1.1}sub': {'append': 'subs', 'min': 0, 'max': None, 'class': 'IdrefType'},
+            '{http://checklists.nist.gov/xccdf/1.1}instance': {'append': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
         },
         'attributes': {
             'id': {'type': 'NCName'},
             'reboot': {'type': 'Boolean'},
             'strategy': {'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
-            'disruption': {'ignore': True, 'enum': RATING_ENUMERATION, 'default': 'unknown'},
-            'complexity': {'ignore': True, 'enum': RATING_ENUMERATION, 'default': 'unknown'},
+            'disruption': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
+            'complexity': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
             'system': {'type': 'AnyURI'},
             'platform': {'type': 'AnyURI'},
         },

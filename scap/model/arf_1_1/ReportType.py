@@ -29,6 +29,6 @@ class ReportType(Model):
         },
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

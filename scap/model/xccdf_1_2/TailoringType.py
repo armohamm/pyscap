@@ -32,6 +32,6 @@ class TailoringType(Model):
             '{http://checklists.nist.gov/xccdf/1.2}version': {'class': 'TailoringVersionType', 'min': 1, 'max': 1},
             '{http://checklists.nist.gov/xccdf/1.2}metadata': {'class': 'MetadataType', 'append': 'metadata', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.2}Profile': {'class': 'ProfileType', 'append': 'profiles', 'min': 1, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.2}signature': {'ignore': True, 'class': 'SignatureType', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.2}signature': {'class': 'SignatureType', 'min': 0, 'max': None},
         },
     }

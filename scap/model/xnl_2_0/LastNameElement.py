@@ -28,6 +28,6 @@ class LastNameElement(Model):
             'Type': {},
             'NameType': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

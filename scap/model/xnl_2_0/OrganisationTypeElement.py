@@ -28,6 +28,6 @@ class OrganisationTypeElement(Model):
             'Type': {},
             'NameType': {},
             'Code': {},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

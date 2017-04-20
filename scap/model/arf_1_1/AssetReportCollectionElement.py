@@ -32,6 +32,6 @@ class AssetReportCollectionElement(RelationshipsContainerType):
         },
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

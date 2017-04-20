@@ -28,6 +28,6 @@ class ThoroughfareNumberPrefixType(Model):
             'NumberPrefixSeparator': {},
             'Type': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

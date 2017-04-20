@@ -35,6 +35,6 @@ class DataStreamElement(Model):
             'id': {'required': True, 'type': 'DataStreamIDPattern'},
             'use-case': {'required': True, 'enum': USE_CASE_ENUMERATION}, # TODO: spec also allows Token
             'scap-version': {'required': True, 'enum': SCAP_VERSION_ENUMERATION}, # TODO: spec also allows Token
-            'timestamp': {'required': True, 'ignore': True, 'type': 'DateTime'},
+            'timestamp': {'required': True, 'type': 'DateTime'},
         },
     }

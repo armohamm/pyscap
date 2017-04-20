@@ -26,6 +26,6 @@ class CheckImportType(Model):
             'import-xpath': {'type': 'String'}
         },
         'elements': {
-            '*': {'ignore': True, 'min': 0},
+            '*': {'min': 0},
         },
     }

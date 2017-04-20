@@ -27,6 +27,6 @@ class IPAddressIPv4Type(IPv4Type):
         'attributes': {
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

@@ -26,6 +26,6 @@ class AddressLinesType(Model):
         'tag_name': 'AddressLines',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '*': {'ignore': True},
+            '*': {},
         },
     }

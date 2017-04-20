@@ -25,7 +25,7 @@ class OrganisationKnownAsElement(OrganisationNameDetailsType):
         'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0',
         'tag_name': 'OrganisationNameDetails',
         'elements': {
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'ValidFrom': {},

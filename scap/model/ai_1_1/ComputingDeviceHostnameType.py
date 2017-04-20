@@ -27,6 +27,6 @@ class ComputingDeviceHostnameType(HostnameType):
         'attributes': {
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

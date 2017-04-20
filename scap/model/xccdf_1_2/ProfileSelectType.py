@@ -26,6 +26,6 @@ class ProfileSelectType(Model):
             'selected': {'type': 'Boolean', 'required': True},
         },
         'elements': {
-            '{http://checklists.nist.gov/xccdf/1.2}remark': {'ignore': True, 'class': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+            '{http://checklists.nist.gov/xccdf/1.2}remark': {'class': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
         },
     }

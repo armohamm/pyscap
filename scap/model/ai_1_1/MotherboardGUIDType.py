@@ -27,6 +27,6 @@ class MotherboardGUIDType(String):
         'attributes': {
             'source': {'class': 'Source'},
             'timestamp': {'class': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

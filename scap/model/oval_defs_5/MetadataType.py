@@ -26,6 +26,6 @@ class MetadataType(Model):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}affected': {'append': 'affecteds', 'class': 'AffectedType', 'min': 0, 'max': None},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}reference': {'append': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}description': {'type': 'String'},
-            '*': {'ignore': True},
+            '*': {},
         },
     }

@@ -29,6 +29,6 @@ class TelephoneNumberType(Token):
         'attributes': {
             'source': {'class': 'Source'},
             'timestamp': {'class': 'Timestamp'},
-            '*': {'ignore': True},
+            '*': {},
         }
     }

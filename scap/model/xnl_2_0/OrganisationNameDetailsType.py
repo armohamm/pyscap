@@ -32,6 +32,6 @@ class OrganisationNameDetailsElement(Model):
         'attributes': {
             'Type': {},
             'NameDetailsKeyRef': {}, # from grKeyRefs
-            '*': {'ignore': True},
+            '*': {},
         }
     }

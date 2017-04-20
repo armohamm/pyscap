@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class MetadataType(Model):
     MODEL_MAP = {
         'elements': {
-            '*': {'ignore': True, 'min': 1, 'max': None},
+            '*': {'min': 1, 'max': None},
         }
     }

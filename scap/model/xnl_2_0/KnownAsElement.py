@@ -25,7 +25,7 @@ class KnownAsElement(PersonNameType):
         'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0',
         'tag_name': 'KnownAs',
         'elements': {
-            '*': {'ignore': True},
+            '*': {},
         },
         'attributes': {
             'ValidFrom': {},

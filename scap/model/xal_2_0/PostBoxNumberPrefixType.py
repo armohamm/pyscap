@@ -27,6 +27,6 @@ class PostBoxNumberPrefixType(Model):
         'attributes': {
             'NumberPrefixSeparator': {},
             'Code': {}, # from grPostal
-            '*': {'ignore': True},
+            '*': {},
         }
     }

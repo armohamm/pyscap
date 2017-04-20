@@ -27,10 +27,10 @@ class DataStreamCollectionElement(Model):
             '{http://scap.nist.gov/schema/scap/source/1.2}data-stream': {'max': None, 'class': 'DataStreamElement', 'map': 'data_streams'},
             '{http://scap.nist.gov/schema/scap/source/1.2}component': {'max': None, 'class': 'ComponentElement', 'map': 'components' },
             '{http://scap.nist.gov/schema/scap/source/1.2}extended-component': {'max': None, 'min': 0, 'class': 'ExtendedComponentElement', 'map': 'components' },
-            '{http://www.w3.org/2000/09/xmldsig#}Signature': {'max': None, 'min': 0, 'ignore': True},
+            '{http://www.w3.org/2000/09/xmldsig#}Signature': {'max': None, 'min': 0},
         },
         'attributes': {
             'id': {'required': True, 'type': 'DataStreamCollectionIDPattern'},
-            'schematron-version':{'type': 'Token', 'required': True, 'ignore': True},
+            'schematron-version':{'type': 'Token', 'required': True},
         },
     }
