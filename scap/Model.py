@@ -216,12 +216,14 @@ class Model(object):
         else:
             return None
 
-    def __init__(self):
+    def __init__(self, tag_name=None):
         self.parent = None
         self.sub_references = {}
         self.text = None
         self.tail = None
         self.model_map = Model._get_model_map(self.__class__)
+        if tag_name is not None:
+            self.tag_name = tag_name
 
         # must have namespace for concrete classes
         if 'xml_namespace' not in self.model_map or self.model_map['xml_namespace'] is None:
@@ -295,6 +297,8 @@ class Model(object):
         visitor.visit(self)
 
     def get_tag_name(self):
+        if hasattr(self, 'tag_name'):
+            return self.tag_name
         if 'tag_name' not in self.model_map or self.model_map['tag_name'] is None:
             raise NotImplementedError('Subclass ' + self.__class__.__name__ + ' does not define tag_name')
         return self.model_map['tag_name']
@@ -693,10 +697,12 @@ class Model(object):
             if 'min' in tag_map and tag_map['min'] > len(dic):
                 logger.critical(self.__class__.__name__ + ' must have at least ' + tag_map['min'] + ' ' + tag + ' elements')
                 sys.exit()
+
             # check maximum tag count
-            if 'max' in tag_map and tag_map['max'] <= len(dic):
+            if 'max' in tag_map and tag_map['max'] is not None and tag_map['max'] <= len(dic):
                 logger.critical(self.__class__.__name__ + ' must have at most ' + tag_map['max'] + ' ' + tag + ' elements')
                 sys.exit()
+
             if 'key' in tag_map:
                 key_name = tag_map['key']
             else:
@@ -716,6 +722,7 @@ class Model(object):
                     else:
                         el.text = v
                     sub_els.append(el)
+
         elif 'class' in tag_map or 'type' in tag_map or 'enum' in tag_map:
             if 'in' in tag_map:
                 name = tag_map['in']
@@ -733,6 +740,7 @@ class Model(object):
                 sub_els.append(value)
             else:
                 raise ValueError('Unknown class to add to sub elemetns: ' + i.__class__.__name__)
+
         return sub_els
 
     def is_reference(self, ref):
