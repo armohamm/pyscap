@@ -1,0 +1,78 @@
+# Copyright 2016 Casey Jaymes
+
+# This file is part of PySCAP.
+#
+# PySCAP is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# PySCAP is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
+
+import logging
+
+from scap import VERSION
+from scap.Reporter import Reporter
+
+from scap.model.xccdf_1_1.TestResultType import TestResultType
+from scap.model.xccdf_1_1.TextType import TextType
+from scap.model.xccdf_1_1.IdentityType import IdentityType
+from scap.model.xccdf_1_1.ProfileSetValueType import ProfileSetValueType
+
+logger = logging.getLogger(__name__)
+class ProfileReporter(Reporter):
+    def report(self, host, benchmark_id):
+        profile_facts = host.facts['checklist'][benchmark_id]['profile'][self.model.id]
+
+        test_result = TestResultType()
+
+        test_result.id = TestResultType.generate_id()
+
+        test_result.start_time = profile_facts['start_time']
+
+        test_result.end_time = profile_facts['end_time']
+
+        test_result.test_system = 'pyscap ' + VERSION
+
+        test_result.Id = test_result.id
+
+        t = TextType()
+        t.value = 'Results for ' + host.hostname + ', profile ' + self.model.id
+        test_result.titles.append(t)
+
+        # TODO test_result.remarks.append()
+
+        # TODO test_result.organizations.append()
+
+        test_result.identity = IdentityType()
+
+        test_result.profile = self.model.id
+
+        test_result.targets.append(host.hostname)
+
+        # TODO test_result.target_addresses =
+
+        # TODO test_result.target_facts =
+        # pass off to TargetFactsType
+
+        # TODO test_result.platforms =
+
+        for value_id, value in profile_facts['value']:
+            sv = ProfileSetValueType()
+            sv.type = value_id
+            sv.value = value['value']
+            test_result.set_values.append(sv)
+
+        # TODO test_result.rule_results =
+
+        # TODO test_result.scores =
+
+        # TODO signature
+
+        return test_result

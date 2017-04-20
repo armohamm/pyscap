@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import getpass
 import logging
 
 from scap.model.xs_2001.String import String
@@ -27,3 +28,12 @@ class IdentityType(String):
             'privileged': {'type': 'Boolean', 'required': True},
         }
     }
+
+    def __init__(self):
+        super(IdentityType, self).__init__()
+
+        self.value = getpass.getuser()
+
+        # TODO
+        self.authenticated = False
+        self.privileged = False

@@ -25,6 +25,7 @@ from scap.model.xccdf_1_1.ModelType import ModelType
 logger = logging.getLogger(__name__)
 class BenchmarkType(Model):
     MODEL_MAP = {
+        'tag_name': 'Benchmark',
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}status': {'append': 'statuses', 'class': 'StatusElement', 'min': 1, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}title': {'append': 'titles', 'class': 'TextType', 'min': 0, 'max': None},

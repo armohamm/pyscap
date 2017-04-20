@@ -182,8 +182,8 @@ elif args['benchmark']:
         chk.collect()
         host.disconnect()
 
-    rep = Reporter.load(hosts, args, model)
-    report = ET.ElementTree(element=rep.report())
+    rep = Reporter.load(args, model)
+    report = ET.ElementTree(element=rep.report(hosts))
 
     if args['pretty']:
         sio = StringIO()
