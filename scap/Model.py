@@ -328,6 +328,10 @@ class Model(object):
 
         logger.debug('Parsing ' + el.tag + ' element into ' + self.__class__.__module__ + '.' + self.__class__.__name__ + ' class')
 
+        # save the tag_name
+        xml_namespace, tag_name = Model.parse_tag(el.tag)
+
+        # check that required attributes are defined
         for attrib in self.model_map['attributes']:
             if 'required' in self.model_map['attributes'][attrib] \
             and self.model_map['attributes'][attrib]['required'] \
@@ -473,6 +477,7 @@ class Model(object):
                     value = self._parse_value_as_type(el.text, tag_map['type'])
                 else:
                     value = Model.load(self, el)
+                    value.tag_name = tag_name
 
                 lst.append(value)
                 logger.debug('Appended ' + str(value) + ' to ' + name)
@@ -490,6 +495,7 @@ class Model(object):
                     value = self._parse_value_as_type(el.text, tag_map['type'])
                 else:
                     value = Model.load(self, el)
+                    value.tag_name = tag_name
 
                 lst.append(value)
                 logger.debug('Appended ' + str(value) + ' to ' + tag_map['append'])
@@ -528,6 +534,7 @@ class Model(object):
                         value = self._parse_value_as_type(el.text, tag_map['type'])
                     else:
                         value = Model.load(self, el)
+                        value.tag_name = tag_name
 
                 dic[key] = value
                 logger.debug('Mapped ' + str(key) + ' to ' + str(value) + ' in ' + tag_map['map'])
@@ -541,6 +548,7 @@ class Model(object):
                         raise ValueError(el.tag + ' is nil, but not expecting nil value')
                 else:
                     value = Model.load(self, el)
+                    value.tag_name = tag_name
 
                 if 'in' in tag_map:
                     name = tag_map['in']
