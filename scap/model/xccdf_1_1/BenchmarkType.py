@@ -163,7 +163,7 @@ class BenchmarkType(Model):
                 item.process(host, self, profile_id)
 
             if len(self.models) == 0:
-                def_model = ModelType()
+                def_model = ModelType('model')
                 def_model.system = 'urn:xccdf:scoring:default'
                 self.models.append(def_model)
 

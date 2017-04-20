@@ -21,8 +21,8 @@ import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
 class Simple(Model):
-    def __init__(self, value=None):
-        super(Simple, self).__init__()
+    def __init__(self, value=None, tag_name=None):
+        super(Simple, self).__init__(tag_name=tag_name)
 
         if value is None:
             self.value = None
@@ -32,6 +32,9 @@ class Simple(Model):
     def parse_value(self, value):
         self.value = value
         return self.value
+
+    def produce_value(self, value):
+        return str(value)
 
     def is_none(self):
         return self.value is None
@@ -56,6 +59,6 @@ class Simple(Model):
         # should be no subelements as a Simple
 
         if not self.is_none():
-            el.text = str(self)
+            el.text = self.produce_value(self.value)
 
         return el

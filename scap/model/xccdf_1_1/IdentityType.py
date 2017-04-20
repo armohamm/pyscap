@@ -29,8 +29,8 @@ class IdentityType(String):
         }
     }
 
-    def __init__(self):
-        super(IdentityType, self).__init__()
+    def __init__(self, tag_name=None):
+        super(IdentityType, self).__init__(tag_name=tag_name)
 
         self.value = getpass.getuser()
 

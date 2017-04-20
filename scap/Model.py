@@ -405,6 +405,25 @@ class Model(object):
         class_ = getattr(mod, type_)
         return class_().parse_value(value)
 
+    def _produce_value_as_type(self, value, type_):
+        if '.' in type_:
+            try:
+                mod = importlib.import_module('scap.model.' + type_)
+                type_ = type_.partition('.')[2]
+            except ImportError:
+                raise NotImplementedError('Type value scap.model.' + type_ + ' was not found')
+        else:
+            try:
+                mod = importlib.import_module('scap.model.xs_2001.' + type_)
+            except ImportError:
+                model_namespace = self.get_model_namespace()
+                try:
+                    mod = importlib.import_module('scap.model.' + model_namespace + '.' + type_)
+                except ImportError:
+                    raise NotImplementedError('Type value ' + type_ + ' not defined in scap.model.xs_2001 or local namespace (scap.model.' + model_namespace + ')')
+        class_ = getattr(mod, type_)
+        return class_().produce_value(value)
+
     def parse_attribute(self, name, value):
         xml_namespace, attr_name = Model.parse_tag(name)
 
@@ -654,8 +673,8 @@ class Model(object):
             #         value = None
             #     else:
             #         raise ValueError(el.tag + ' is nil, but not expecting nil value')
-            logger.debug('Parsing ' + str(value) + ' as ' + attr_map['type'] + ' type')
-            v = self._parse_value_as_type(value, attr_map['type'])
+            logger.debug('Producing ' + str(value) + ' as ' + attr_map['type'] + ' type')
+            v = self._produce_value_as_type(value, attr_map['type'])
 
             el.set(attr_name, v)
         elif 'enum' in attr_map:

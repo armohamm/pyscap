@@ -30,7 +30,7 @@ class ProfileReporter(Reporter):
     def report(self, host, benchmark_id):
         profile_facts = host.facts['checklist'][benchmark_id]['profile'][self.model.id]
 
-        test_result = TestResultType()
+        test_result = TestResultType(tag_name='TestResult')
 
         test_result.id = TestResultType.generate_id()
 
@@ -42,7 +42,7 @@ class ProfileReporter(Reporter):
 
         test_result.Id = test_result.id
 
-        t = TextType()
+        t = TextType(tag_name='title')
         t.value = 'Results for ' + host.hostname + ', profile ' + self.model.id
         test_result.titles.append(t)
 
@@ -50,7 +50,7 @@ class ProfileReporter(Reporter):
 
         # TODO test_result.organizations.append()
 
-        test_result.identity = IdentityType()
+        test_result.identity = IdentityType(tag_name='identity')
 
         test_result.profile = self.model.id
 
@@ -64,7 +64,7 @@ class ProfileReporter(Reporter):
         # TODO test_result.platforms =
 
         for value_id, value in profile_facts['value']:
-            sv = ProfileSetValueType()
+            sv = ProfileSetValueType(tag_name='set-value')
             sv.type = value_id
             sv.value = value['value']
             test_result.set_values.append(sv)
