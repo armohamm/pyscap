@@ -64,7 +64,7 @@ class ValueType(ItemType):
         self.upper_bound_selector = None
         self.choices_selector = None
 
-    def process(self, benchmark, host, profile):
+    def process(self, host, benchmark, profile_id):
         ### Value.Content
 
         # If the Item is a Value, then process the properties of the Value.
@@ -106,3 +106,12 @@ class ValueType(ItemType):
             self.choices = self.choice_selections[self.choice_selector]
         elif '' in self.choice_selections:
             self.choices = self.choice_selections['']
+
+        host.facts['checklist'][benchmark.id]['profile'][profile_id]['value'][self.id] = {
+            'default': self.default,
+            'value': self.value,
+            'match': self.match,
+            'lower_bound': self.lower_bound,
+            'upper_bound': self.upper_bound,
+            'choices': self.choices,
+        }

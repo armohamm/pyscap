@@ -59,6 +59,6 @@ class ItemType(Extendable):
 
         return extended
 
-    def process(self, benchmark, host, profile):
+    def process(self, host, benchmark, profile):
         import inspect
         raise NotImplementedError(inspect.stack()[0][3] + '() has not been implemented in subclass: ' + self.__class__.__name__)

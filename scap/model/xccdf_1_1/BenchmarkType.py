@@ -20,6 +20,8 @@ import datetime
 
 from scap.Model import Model
 
+from scap.model.xccdf_1_1.ModelType import ModelType
+
 logger = logging.getLogger(__name__)
 class BenchmarkType(Model):
     MODEL_MAP = {
@@ -126,8 +128,6 @@ class BenchmarkType(Model):
             host.facts['checklist'][self.id] = {
                 'start_time': datetime.datetime.utcnow(),
                 'profile': {},
-                'rule': {},
-                'check': {},
             }
 
         # Process the properties of the Benchmark object
@@ -143,168 +143,32 @@ class BenchmarkType(Model):
         if not hasattr(self, 'selected_profiles'):
             raise ValueError('No profiles have been selected for Benchmark ' + self.id)
 
-        for profile in self.selected_profiles:
-            logger.info('Selecting profile ' + str(profile))
-            if profile not in host.facts['checklist'][self.id]['profile']:
-                host.facts['checklist'][self.id]['profile'][profile] = {
+        for profile_id in self.selected_profiles:
+            logger.info('Selecting profile ' + str(profile_id))
+            if profile_id not in host.facts['checklist'][self.id]['profile']:
+                host.facts['checklist'][self.id]['profile'][profile_id] = {
+                    'rule': {},
+                    'value': {},
                     'scores': [],
                 }
-            self.profiles[profile].apply(self, host)
+            self.profiles[profile_id].apply(host, self)
 
             ### Benchmark.Content
 
             # For each Item in the Benchmark object’s items property, initiate
             # Item.Process
             for item in self.items.values():
-                item.process(self, host, profile)
+                item.process(host, self, profile_id)
 
             if len(self.models) == 0:
-                self._score_model(host, 'urn:xccdf:scoring:default', profile, [])
-            else:
-                for model in self.models:
-                    params = {}
-                    for p in model.params:
-                        params[p.name] = p.value
-                    self._score_model(host, model.system, self.id, profile, params)
+                def_model = ModelType()
+                def_model.system = 'urn:xccdf:scoring:default'
+                self.models.append(def_model)
+
+            for model in self.models:
+                model.score(host, self, profile_id)
 
         ### Benchmark.Back
 
         # Perform any additional processing of the Benchmark object properties
         host.facts['checklist'][self.id]['end_time'] =  datetime.datetime.utcnow()
-
-    def _score_model(self, host, model_system, checklist, profile, params):
-        from scap.model.xccdf_1_1.GroupType import GroupType
-        from scap.model.xccdf_1_1.RuleType import RuleType
-
-        if model_system == 'urn:xccdf:scoring:default':
-            ### Score.Group.Init
-
-            # If the node is a Group or the Benchmark, assign a count of 0, a
-            # score s of 0.0, and an accumulator a of 0.0.
-            count = 0
-            score = 0.0
-            accumulator = 0.0
-
-            ### Score.Group.Recurse
-
-            # For each selected child of this Group or Benchmark, do the following:
-            # (1) compute the count and weighted score for the child using this
-            # algorithm,
-            # (2) if the child’s count value is not 0, then add the child’s
-            # weighted score to this node’s score s, add 1 to this node’s count,
-            # and add the child’s weight value to the accumulator a.
-            for item_id in self.items:
-                item = self.items[item_id]
-
-                if not isinstance(item, GroupType) \
-                and not isinstance(item, RuleType):
-                    continue
-
-                if not item.selected:
-                    continue
-
-                item_score = item.score(host, model_system)
-                if item_score[item_id]['score'] is None:
-                    continue
-
-                if item_score[item_id]['count'] != 0:
-                    score += item_score[item_id]['score'] * item_score[item_id]['weight']
-                    count += 1
-                    accumulator += item_score[item_id]['weight']
-
-            ### Score.Group.Normalize
-
-            # Normalize this node’s score: compute s = s / a.
-            if accumulator == 0.0:
-                if score != 0.0:
-                    raise ValueError('Got to score normalization with score ' + str(score) + ' / ' + str(accumulator))
-                else:
-                    score = 0.0
-            else:
-                score = score / accumulator
-
-            logger.debug(model_system + ' score: ' + str(score))
-            host.facts['checklist'][checklist]['profile'][profile]['scores'].append({'score': score, 'system': model_system})
-
-        elif model_system == 'urn:xccdf:scoring:flat':
-            scores = {}
-            for item_id in self.items:
-                item = self.items[item_id]
-
-                if not isinstance(item, GroupType) \
-                and not isinstance(item, RuleType):
-                    continue
-
-                # just pass the scores upstream for processing
-                scores.update(item.score(host, model_system))
-
-            score = 0.0
-            max_score = 0.0
-            for rule_id in scores:
-                if scores[rule_id]['result'] in ['notapplicable', 'notchecked', 'informational', 'notselected']:
-                    continue
-
-                max_score += scores[rule_id]['weight']
-                if scores[rule_id]['result'] in ['pass', 'fixed']:
-                    score += scores[rule_id]['weight']
-
-            logger.debug(model_system + ' score: ' + str(score) + ' / ' + str(max_score))
-            host.facts['checklist'][checklist]['profile'][profile]['scores'].append({'score': score, 'max_score': max_score, 'system': model_system})
-
-        elif model_system == 'urn:xccdf:scoring:flat-unweighted':
-            scores = {}
-            for item_id in self.items:
-                item = self.items[item_id]
-
-                if not isinstance(item, GroupType) \
-                and not isinstance(item, RuleType):
-                    continue
-
-                # just pass the scores upstream for processing
-                scores.update(item.score(host, model_system))
-
-            score = 0.0
-            max_score = 0.0
-            for rule_id in scores:
-                if scores[rule_id]['result'] in ['notapplicable', 'notchecked', 'informational', 'notselected']:
-                    continue
-
-                max_score += 1.0
-                if scores[rule_id]['result'] in ['pass', 'fixed']:
-                    score += 1.0
-
-            logger.debug(model_system + ' score: ' + str(score) + ' / ' + str(max_score))
-            host.facts['checklist'][checklist]['profile'][profile]['scores'].append({'score': score, 'max_score': max_score, 'system': model_system})
-
-        elif model_system == 'urn:xccdf:scoring:absolute':
-            scores = {}
-            for item_id in self.items:
-                item = self.items[item_id]
-
-                if not isinstance(item, GroupType) \
-                and not isinstance(item, RuleType):
-                    continue
-
-                # just pass the scores upstream for processing
-                scores.update(item.score(host, model_system))
-
-            score = 0.0
-            max_score = 0.0
-            for rule_id in scores:
-                if scores[rule_id]['result'] in ['notapplicable', 'notchecked', 'informational', 'notselected']:
-                    continue
-
-                max_score += scores[rule_id]['weight']
-                if scores[rule_id]['result'] in ['pass', 'fixed']:
-                    score += scores[rule_id]['weight']
-
-            if score == max_score:
-                score = 1.0
-            else:
-                score = 0.0
-
-            logger.debug(model_system + ' score: ' + str(score))
-            host.facts['checklist'][checklist]['profile'][profile]['scores'].append({'score': score, 'system': model_system})
-
-        else:
-            raise NotImplementedError('Scoring model ' + model_system + ' is not implemented')

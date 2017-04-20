@@ -96,8 +96,8 @@ class GroupType(SelectableItemType):
 
         # Otherwise, go to the next step: Loading.Resolve.Profiles.
 
-    def process(self, benchmark, host, profile):
-        super(GroupType, self).process(benchmark, host, profile)
+    def process(self, host, benchmark, profile_id):
+        super(GroupType, self).process(host, benchmark, profile_id)
 
         if not self._continue_processing():
             return
@@ -115,14 +115,14 @@ class GroupType(SelectableItemType):
         # If the Item is a Group, then for each Item in the Group’s items
         # property, initiate Item.Process.
         for item_id in self.items:
-            self.items[item_id].process(benchmark, host, profile)
+            self.items[item_id].process(host, benchmark, profile_id)
 
         # TODO result retention
 
-    def score(self, host, model = 'urn:xccdf:scoring:default'):
+    def score(self, host, benchmark, profile_id, model_system):
         from scap.model.xccdf_1_1.RuleType import RuleType
 
-        if model == 'urn:xccdf:scoring:default':
+        if model_system == 'urn:xccdf:scoring:default':
             ### Score.Group.Init
 
             # If the node is a Group or the Benchmark, assign a count of 0, a
@@ -149,7 +149,7 @@ class GroupType(SelectableItemType):
                 if not item.selected:
                     continue
 
-                item_score = item.score(host, model)
+                item_score = item.score(host, benchmark, profile_id, model_system)
                 if item_score[item_id]['score'] is None:
                     continue
 
@@ -175,11 +175,11 @@ class GroupType(SelectableItemType):
             # and its weight.
             # (done upstream)
 
-            return {self.id: {'model': model, 'score': score, 'weight': self.weight, 'count': count}}
+            return {self.id: {'model': model_system, 'score': score, 'weight': self.weight, 'count': count}}
 
-        elif model == 'urn:xccdf:scoring:flat' \
-        or model == 'urn:xccdf:scoring:flat-unweighted' \
-        or model == 'urn:xccdf:scoring:absolute':
+        elif model_system == 'urn:xccdf:scoring:flat' \
+        or model_system == 'urn:xccdf:scoring:flat-unweighted' \
+        or model_system == 'urn:xccdf:scoring:absolute':
             scores = {}
             for item_id in self.items:
                 item = self.items[item_id]
@@ -192,8 +192,8 @@ class GroupType(SelectableItemType):
                     continue
 
                 # just pass the scores upstream for processing
-                scores.update(item.score(host, model))
+                scores.update(item.score(host, benchmark, profile_id, model_system))
             return scores
 
         else:
-            raise NotImplementedError('Scoring model ' + model + ' is not implemented')
+            raise NotImplementedError('Scoring model ' + model_system + ' is not implemented')

@@ -84,14 +84,11 @@ class RuleType(SelectableItemType):
         logger.debug('Check result: ' + str(check_result))
         return check_result
 
-    def process(self, benchmark, host, profile):
-        super(RuleType, self).process(benchmark, host, profile)
+    def process(self, host, benchmark, profile_id):
+        super(RuleType, self).process(benchmark, host, profile_id)
 
         if not self._continue_processing():
             return
-
-        if self.id in host.facts['checklist'][benchmark.id]['rule']:
-            return host.facts['checklist'][benchmark.id]['rule'][self.id]
 
         ### Rule.Content
 
@@ -144,35 +141,38 @@ class RuleType(SelectableItemType):
 
         # result retention
         logger.debug('Rule result: ' + str(check_result))
-        host.facts['checklist'][benchmark.id]['rule'][self.id] = check_result
+        host.facts['checklist'][benchmark.id]['profile'][profile_id]['rule'][self.id] = check_result
 
-    def score(self, host, model = 'urn:xccdf:scoring:default'):
+    def score(self, host, benchmark, profile_id, model_system):
         ### Score.Rule
 
         # If the node is a Rule, then assign a count of 1, and if the test
         # result is ‘pass’, assign the node a score of 100, otherwise assign a
         # score of 0.
 
-        if host.facts['rule_results'][self.id]['result'] in ['pass', 'fixed']:
+        check_result = host.facts['checklist'][benchmark.id]['profile'][profile_id]['rule'][self.id]
+        if check_result['result'] in ['pass', 'fixed']:
+            return {
+                self.id: {
+                    'result': check_result['result'],
+                    'model': model_system,
+                    'score': 100.0,
+                    'weight': self.weight,
+                    'count': 1,
+                    },
+            }
+        elif check_result['result'] in ['error', 'unknown']:
             return {self.id: {
-                'result': host.facts['rule_results'][self.id]['result'],
-                'model': model,
-                'score': 100.0,
-                'weight': self.weight,
-                'count': 1,
-            }}
-        elif host.facts['rule_results'][self.id]['result'] in ['error', 'unknown']:
-            return {self.id: {
-                'result': host.facts['rule_results'][self.id]['result'],
-                'model': model,
+                'result': check_result['result'],
+                'model': model_system,
                 'score': 0.0,
                 'weight': self.weight,
                 'count': 1,
             }}
         else:
             return {self.id: {
-                'result': host.facts['rule_results'][self.id]['result'],
-                'model': model,
+                'result': check_result['result'],
+                'model': model_system,
                 'score': None,
                 'weight': self.weight,
                 'count': 1,

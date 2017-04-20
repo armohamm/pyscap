@@ -61,7 +61,7 @@ class ProfileType(Extendable):
 
         return extended
 
-    def apply(self, benchmark, host):
+    def apply(self, host, benchmark):
         ### Benchmark.Profile
 
         # TODO check that if this group has a platform identified, that the
