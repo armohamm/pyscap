@@ -113,7 +113,6 @@ else:
 
 # final argument parsing
 args = vars(arg_parser.parse_args())
-logger.debug('Arguments: ' + str(args))
 pp = pprint.PrettyPrinter(width=132)
 pp.pprint(args)
 # configure ElementTree
@@ -183,7 +182,7 @@ elif args['benchmark']:
         chk.collect()
         host.disconnect()
 
-    rep = Reporter.load(hosts, args, model, content)
+    rep = Reporter.load(hosts, args, model)
     report = ET.ElementTree(element=rep.report())
 
     if args['pretty']:
