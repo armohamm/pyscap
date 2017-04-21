@@ -494,6 +494,7 @@ class Model(object):
                 raise NotImplementedError(tag + ' element support is not implemented')
 
             if tag.endswith('*'):
+                logger.debug(str(self) + ' parsing ' + tag + ' elements matching *')
                 if 'in' in tag_map:
                     name = tag_map['in']
                 else:
@@ -517,6 +518,7 @@ class Model(object):
                 logger.debug('Appended ' + str(value) + ' to ' + name)
 
             elif 'append' in tag_map:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements from ' + tag_map['append'])
                 lst = getattr(self, tag_map['append'])
 
                 if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
@@ -535,6 +537,7 @@ class Model(object):
                 logger.debug('Appended ' + str(value) + ' to ' + tag_map['append'])
 
             elif 'map' in tag_map:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements from ' + tag_map['map'])
                 dic = getattr(self, tag_map['map'])
 
                 if 'key' in tag_map:
@@ -574,6 +577,7 @@ class Model(object):
                 logger.debug('Mapped ' + str(key) + ' to ' + str(value) + ' in ' + tag_map['map'])
 
             elif 'class' in tag_map:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements as ' + tag_map['class'])
                 if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
                     if 'nillable' in tag_map and tag_map['nillable']:
@@ -593,6 +597,7 @@ class Model(object):
                 logger.debug('Set attribute ' + str(name) + ' to ' + str(value) + ' in ' + str(self))
 
             elif 'type' in tag_map:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements as ' + tag_map['type'])
                 if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
                     if 'nillable' in tag_map and tag_map['nillable']:
@@ -611,6 +616,7 @@ class Model(object):
                 logger.debug('Set attribute ' + str(name) + ' to ' + str(value) + ' in ' + str(self))
 
             elif 'enum' in tag_map:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements from enum ' + tag_map['enum'])
                 if el.text not in tag_map['enum']:
                     raise ValueError(tag + ' value must be one of ' + str(tag_map['enum']))
 
@@ -625,6 +631,7 @@ class Model(object):
                 logger.debug('Set enum attribute ' + str(name) + ' to ' + str(value) + ' in ' + str(self))
 
             else:
+                logger.debug(str(self) + ' could not parse ' + tag + ' element')
                 return False
             return True
 
