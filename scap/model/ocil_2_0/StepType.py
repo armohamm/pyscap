@@ -26,6 +26,7 @@ class StepType(object):
             '{http://scap.nist.gov/schema/ocil/2.0}reference': {'append': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}step': {'append': 'steps', 'class': 'StepType', 'min': 0, 'max': None},
         },
+		'element_order': [],
         'attributes': {
             'is_done': {'type': 'Boolean', 'default': False},
             'is_required': {'type': 'Boolean', 'default': True},

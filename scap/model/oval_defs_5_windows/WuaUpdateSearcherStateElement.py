@@ -27,5 +27,6 @@ class WuaUpdateSearcherStateElement(StateType):
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}search_criteria': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}update_id': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-        }
+        },
+        'element_order': [],
     }

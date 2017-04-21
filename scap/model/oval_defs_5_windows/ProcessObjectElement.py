@@ -26,5 +26,6 @@ class ProcessObjectElement(ObjectType):
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'oval_defs_5.SetElement', 'min': 0, 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}command_line': {'class': 'oval_defs_5.EntityObjectStringType'},
-        }
+        },
+        'element_order': []
     }

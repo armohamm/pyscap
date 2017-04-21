@@ -28,4 +28,5 @@ class OrganisationNameDetailsElement(OrganisationNameDetailsType):
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}OrganisationFormerName': {'append': 'organisation_former_names', 'class': 'OrganisationFormerNameElement'},
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}OrganisationKnownAs': {'append': 'organisation_known_as', 'class': 'OrganisationKnownAsElement'},
         },
+        'element_order': [],
     }

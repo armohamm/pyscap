@@ -27,5 +27,6 @@ class EnvironmentVariable58StateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pid': {'class': 'oval_defs_5.EntityObjectIntType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}name': {'class': 'oval_defs_5.EntityObjectStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}value': {'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
-        }
+        },
+		'element_order': []
     }

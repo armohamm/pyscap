@@ -26,5 +26,6 @@ class EnvironmentVariableObjectElement(ObjectType):
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'SetElement'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}name': {'class': 'oval_defs_5.EntityObjectStringType'},
-        }
+        },
+		'element_order': []
     }

@@ -29,5 +29,6 @@ class QuestionsType(Model):
             '{http://scap.nist.gov/schema/ocil/2.0}string_question': {'append': 'questions', 'class': 'StringQuestionElement', 'min': 0, 'max': None},
 
             '{http://scap.nist.gov/schema/ocil/2.0}choice_group': {'append': 'questions', 'class': 'ChoiceGroupType', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': []
     }

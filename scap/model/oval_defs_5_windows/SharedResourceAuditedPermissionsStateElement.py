@@ -36,5 +36,6 @@ class SharedResourceAuditedPermissionsStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}generic_write': {'class': 'EntityStateAuditType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}generic_execute': {'class': 'EntityStateAuditType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}generic_all': {'class': 'EntityStateAuditType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

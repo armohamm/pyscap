@@ -30,5 +30,6 @@ class FormerNameElement(PersonNameType):
         'attributes': {
             'ValidFrom': {},
             'ValidTo': {},
-        }
+        },
+        'element_order': [],
     }

@@ -26,6 +26,7 @@ class ReferenceType(Model):
             'href': {'type': 'AnyURI'},
             'override': {'type': 'Boolean'},
         },
+        'element_order': [],
         'elements': {
             '{http://purl.org/dc/elements/1.1/}*': {'min': 0},
         },

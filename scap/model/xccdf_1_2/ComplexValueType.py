@@ -24,4 +24,5 @@ class ComplexValueType(Model):
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.2}item': {'class': 'String', 'append': 'items', 'min': 0, 'max': None},
         },
+        'element_order': [],
     }

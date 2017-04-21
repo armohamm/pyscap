@@ -27,5 +27,6 @@ class SidSidStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}trustee_sid': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}trustee_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}trustee_domain': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

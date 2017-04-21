@@ -46,5 +46,6 @@ class PremiseType(Model):
             'PremiseDependencyType': {},
             'PremiseThoroughfareConnector': {},
             '*': {},
-        }
+        },
+        'element_order': [],
     }

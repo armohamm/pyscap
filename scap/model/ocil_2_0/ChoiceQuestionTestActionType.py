@@ -24,4 +24,7 @@ class ChoiceQuestionTestActionType(QuestionTestActionType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}when_choice': {'append': 'when_choices', 'class': 'ChoiceTestActionConditionType', 'min': 1, 'max': None},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}when_choice',
+        ],
     }

@@ -37,7 +37,8 @@ class TestType(Model):
             'state_operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
             'comment': {'type': 'oval_common_5.NonEmptyString', 'required': True},
             'deprecated': {'type': 'Boolean', 'default': False},
-        }
+        },
+        'element_order': [],
     }
 
     def resolve_object(self):

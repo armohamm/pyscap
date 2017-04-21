@@ -27,6 +27,9 @@ class ReportContentElement(Model):
         'elements': {
             '*': {},
         },
+        'element_order': [
+            '*',
+        ],
         'attributes': {
             'data-valid-start-date': {'type': 'Date'},
             'data-valid-end-date': {'type': 'Date'},

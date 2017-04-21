@@ -40,5 +40,6 @@ class PrinterEffectiveRightsStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}printer_access_use': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}job_access_administer': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}job_access_read': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

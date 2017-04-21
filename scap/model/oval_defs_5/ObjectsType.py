@@ -25,7 +25,8 @@ class ObjectsType(Model):
         'tag_name' : 'objects',
         'elements': {
             # TODO minOccurs="1" maxOccurs="unbounded"
-        }
+        },
+        'element_order': [],
     }
     from scap.model.oval_defs_5_independent import OBJECT_MAP
     MODEL_MAP['elements'].update(OBJECT_MAP)
@@ -33,3 +34,5 @@ class ObjectsType(Model):
     MODEL_MAP['elements'].update(OBJECT_MAP)
     from scap.model.oval_defs_5_windows import OBJECT_MAP
     MODEL_MAP['elements'].update(OBJECT_MAP)
+
+    # TODO element_order

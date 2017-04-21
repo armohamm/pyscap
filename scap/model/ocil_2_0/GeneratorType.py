@@ -30,5 +30,13 @@ class GeneratorType(Model):
             '{http://scap.nist.gov/schema/ocil/2.0}schema_version': {'type': 'Decimal', 'min': 1, 'max': 1},
             '{http://scap.nist.gov/schema/ocil/2.0}timestamp': {'type': 'DateTime', 'min': 1, 'max': 1},
             '{http://scap.nist.gov/schema/ocil/2.0}additional_data': {'class': 'ExtensionContainerType', 'min': 0},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}product_name',
+            '{http://scap.nist.gov/schema/ocil/2.0}product_version',
+            '{http://scap.nist.gov/schema/ocil/2.0}author',
+            '{http://scap.nist.gov/schema/ocil/2.0}schema_version',
+            '{http://scap.nist.gov/schema/ocil/2.0}timestamp',
+            '{http://scap.nist.gov/schema/ocil/2.0}additional_data',
+        ]
     }

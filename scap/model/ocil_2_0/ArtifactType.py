@@ -25,6 +25,10 @@ class ArtifactType(ItemBaseType):
             '{http://scap.nist.gov/schema/ocil/2.0}title': {'class': 'TextType', 'min': 1, 'max': 1},
             '{http://scap.nist.gov/schema/ocil/2.0}description': {'class': 'TextType', 'min': 1, 'max': 1},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}title',
+            '{http://scap.nist.gov/schema/ocil/2.0}description',
+        ],
         'attributes': {
             'id': {'type': 'ArtifactIDPattern', 'required': True},
             'persistent': {'type': 'Boolean', 'default': True},

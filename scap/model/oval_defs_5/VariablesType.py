@@ -28,5 +28,6 @@ class VariablesType(Model):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}external_variable': {'map': 'variables', 'class': 'ExternalVariableElement', 'min': 0, 'max': None},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}constant_variable': {'map': 'variables', 'class': 'ConstantVariableElement', 'min': 0, 'max': None},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable': {'map': 'variables', 'class': 'LocalVariableElement', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': [],
     }

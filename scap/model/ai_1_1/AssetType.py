@@ -32,5 +32,11 @@ class AssetType(Model):
             '{http://scap.nist.gov/schema/asset-identification/1.1}locations': {'class': 'LocationsType', 'min': 0},
             '{http://scap.nist.gov/schema/asset-identification/1.1}extended-information': {'class': 'ExtendedInformationType', 'min': 0},
             '*': {},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}synthetic-id',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}locations',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}extended-information',
+            '*',
+        ],
     }

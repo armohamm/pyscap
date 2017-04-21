@@ -37,5 +37,6 @@ class SharedResourceStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}access_atrib_permission': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}access_perm_permission': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}access_all_permission': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

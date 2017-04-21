@@ -30,5 +30,6 @@ class ActiveDirectory57ObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}relative_dn': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}attribute': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': []
     }

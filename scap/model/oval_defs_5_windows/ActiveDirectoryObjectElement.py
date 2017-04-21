@@ -29,5 +29,6 @@ class ActiveDirectoryObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}naming_context': {'class': 'EntityObjectNamingContextType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}relative_dn': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}attribute': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-        }
+        },
+        'element_order': []
     }

@@ -28,5 +28,6 @@ class LockoutPolicyStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}lockout_duration': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}lockout_observation_window': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}lockout_threshold': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

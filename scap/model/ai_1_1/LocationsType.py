@@ -29,5 +29,10 @@ class LocationsType(Model):
             '{http://scap.nist.gov/schema/asset-identification/1.1}location-address': {'append': 'locations', 'class': 'LocationAddressType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/asset-identification/1.1}location-point': {'append': 'locations', 'class': 'LocationPointType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/asset-identification/1.1}location-region': {'append': 'locations', 'class': 'LocationRegionType', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}location-address',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}location-point',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}location-region',
+        ],
     }

@@ -32,5 +32,6 @@ class VariableType(Model):
             'datatype': {'enum': SIMPLE_DATATYPE_ENUMERATION, 'required': True},
             'comment': {'type': 'oval_common_5.NonEmptyString', 'required': True},
             'deprecated': {'type': 'Boolean', 'default': False},
-        }
+        },
+        'element_order': [],
     }

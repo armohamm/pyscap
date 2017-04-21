@@ -25,7 +25,8 @@ class StatesType(Model):
         'tag_name' : 'states',
         'elements': {
             # TODO: minOccurs="1" maxOccurs="unbounded"
-        }
+        },
+        'element_order': [],
     }
     from scap.model.oval_defs_5_independent import STATE_MAP
     MODEL_MAP['elements'].update(STATE_MAP)
@@ -33,3 +34,4 @@ class StatesType(Model):
     MODEL_MAP['elements'].update(STATE_MAP)
     from scap.model.oval_defs_5_windows import STATE_MAP
     MODEL_MAP['elements'].update(STATE_MAP)
+    # TODO element_order

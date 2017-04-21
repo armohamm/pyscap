@@ -28,4 +28,5 @@ class ReferenceType(String):
         'elements': {
             '{http://purl.org/dc/elements/1.1/}*': {'min': 0, 'max': None},
         },
+        'element_order': [],
     }

@@ -29,5 +29,6 @@ class InetListeningServersObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}local_address': {'class': 'oval_defs_5.EntityObjectIPAddressStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}local_port': {'class': 'oval_defs_5.EntityObjectIntType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'FilterElement', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': []
     }

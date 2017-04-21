@@ -28,5 +28,6 @@ class RpmInfoObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}behaviors': {'class': 'RpmInfoBehaviors', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}name': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'FilterElement', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': []
     }

@@ -29,6 +29,7 @@ class ProfileType(Model):
             'extends': {'notImplemented': True, 'type': 'NCName'},
             'Id': {'type': 'ID'},
         },
+        'element_order': [],
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.2}status': {'class': 'StatusType', 'append': 'statuses', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.2}dc-status': {'class': 'DCStatusType', 'append': 'dc_statuses', 'min': 0, 'max': None},

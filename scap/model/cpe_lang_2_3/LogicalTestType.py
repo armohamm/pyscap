@@ -27,6 +27,10 @@ class LogicalTestType(Model):
             '{http://cpe.mitre.org/language/2.0}logical-test': {'append': 'logical_tests', 'class': 'LogicalTestType', 'min': 0, 'max': None},
             '{http://cpe.mitre.org/language/2.0}fact-ref': {'append': 'fact_refs', 'class': 'FactRefType', 'min': 0, 'max': None},
         },
+        'element_order': [
+            '{http://cpe.mitre.org/language/2.0}logical-test',
+            '{http://cpe.mitre.org/language/2.0}fact-ref',
+        ],
         'attributes': {
             'operator': {'enum': OPERATOR_ENUMERATION, 'required': True},
             'negate': {'type': 'Boolean', 'required': True},

@@ -24,6 +24,9 @@ class ItemBaseType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}notes': {'append': 'notes', 'type': 'String', 'min': 0, 'max': None},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}notes',
+        ],
         'attributes': {
             'revision': {'type': 'NonNegativeInteger', 'default': 0},
         }

@@ -23,5 +23,6 @@ class ExtensionContainerType(Model):
     MODEL_MAP = {
         'elements': {
             '*': {'append': 'additional_data', 'min': 1, 'max': None},
-        }
+        },
+        'element_order': ['*']
     }

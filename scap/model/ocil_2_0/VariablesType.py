@@ -26,5 +26,6 @@ class VariablesType(Model):
             '{http://scap.nist.gov/schema/ocil/2.0}constant_variable': {'append': 'variables', 'class': 'ConstantVariableElement', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}local_variable': {'append': 'variables', 'class': 'LocalVariableElement', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}external_variable': {'append': 'variables', 'class': 'ExternalVariableElement', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': []
     }

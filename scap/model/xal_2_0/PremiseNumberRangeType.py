@@ -35,5 +35,6 @@ class PremiseNumberRangeType(Model):
             'Type': {},
             'IndicatorOccurrence': {'enum': ['Before', 'After']},
             'NumberRangeOccurrence': {'enum': ['BeforeName', 'AfterName', 'BeforeType', 'AfterType']},
-        }
+        },
+        'element_order': [],
     }

@@ -28,5 +28,10 @@ class NetworkType(ITAssetType):
             '{http://scap.nist.gov/schema/asset-identification/1.1}network-name': {'class': 'NetworkNameType', 'min': 0},
             '{http://scap.nist.gov/schema/asset-identification/1.1}ip-net-range': {'class': 'IPNetRangeType', 'min': 0},
             '{http://scap.nist.gov/schema/asset-identification/1.1}cidr': {'class': 'NetworkCIDRType', 'min': 0},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}network-name',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-net-range',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}cidr',
+        ]
     }

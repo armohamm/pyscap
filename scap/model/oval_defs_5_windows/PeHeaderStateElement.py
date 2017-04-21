@@ -79,5 +79,6 @@ class PeHeaderStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}loader_flags': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}number_of_rva_and_sizes': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}real_number_of_directory_entries': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

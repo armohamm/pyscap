@@ -32,4 +32,5 @@ class RelationshipType(Model):
             'subject': {'type': 'NCName', 'required': True},
             '*': {},
         },
+        'element_order': [],
     }

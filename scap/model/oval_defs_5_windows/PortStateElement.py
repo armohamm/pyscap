@@ -30,5 +30,6 @@ class PortStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}pid': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}foreign_address': {'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}foreign_port': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

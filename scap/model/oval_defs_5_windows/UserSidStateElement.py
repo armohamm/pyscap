@@ -27,5 +27,6 @@ class UserSidStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}enabled': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}group': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

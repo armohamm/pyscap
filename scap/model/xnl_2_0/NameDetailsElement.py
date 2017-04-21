@@ -32,5 +32,6 @@ class NameDetailsElement(NameDetailsType):
         },
         'attributes': {
             'NameDetailsKey': {},
-        }
+        },
+        'element_order': [],
     }

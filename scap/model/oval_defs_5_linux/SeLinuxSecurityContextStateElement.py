@@ -39,5 +39,6 @@ class SeLinuxSecurityContextStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}rawlow_category': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}rawhigh_sensitivity': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}rawhigh_category': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

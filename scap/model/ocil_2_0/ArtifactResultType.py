@@ -31,6 +31,13 @@ class ArtifactResultType(Model):
             '{http://scap.nist.gov/schema/ocil/2.0}provider': {'type': 'ProviderValuePattern', 'min': 1, 'max': 1},
             '{http://scap.nist.gov/schema/ocil/2.0}submitter': {'class': 'UserType', 'min': 1, 'max': 1},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}text_artifact_value',
+            '{http://scap.nist.gov/schema/ocil/2.0}binary_artifact_value',
+            '{http://scap.nist.gov/schema/ocil/2.0}reference_artifact_value',
+            '{http://scap.nist.gov/schema/ocil/2.0}provider',
+            '{http://scap.nist.gov/schema/ocil/2.0}submitter',
+        ],
         'attributes': {
             'artifact_ref': {'type': 'ArtifactIDPattern', 'required': True},
             'timestamp': {'type': 'DateTime', 'required': True},

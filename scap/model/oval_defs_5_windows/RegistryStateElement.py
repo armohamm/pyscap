@@ -32,5 +32,6 @@ class RegistryStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}type': {'class': 'EntityStateRegistryTypeType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}value': {'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}windows_view': {'class': 'EntityStateWindowsViewType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

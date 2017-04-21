@@ -23,6 +23,4 @@ class LockoutPolicyObjectElement(ObjectType):
     MODEL_MAP = {
         'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'lockoutpolicy_object',
-        'elements': {
-        }
     }

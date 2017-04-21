@@ -27,5 +27,6 @@ class DnsCacheStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}domain_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}ttl': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}ip_address': {'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

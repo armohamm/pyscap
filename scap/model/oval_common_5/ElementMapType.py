@@ -26,5 +26,6 @@ class ElementMapType(Model):
             '{http://oval.mitre.org/XMLSchema/oval-common-5}object': {'class': 'ElementMapItemType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-common-5}state': {'class': 'ElementMapItemType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-common-5}item': {'class': 'ElementMapItemType', 'min': 0},
-        }
+        },
+		'element_order': []
     }

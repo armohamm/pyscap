@@ -24,4 +24,5 @@ class DCStatusType(Model):
         'elements': {
             '{http://purl.org/dc/elements/1.1/}*': {'min': 1, 'max': None},
         },
+        'element_order': [],
     }

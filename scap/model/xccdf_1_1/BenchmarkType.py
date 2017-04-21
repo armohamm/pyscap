@@ -56,6 +56,7 @@ class BenchmarkType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}TestResult': {'class': 'TestResultType', 'min': 0, 'max': None, 'map': 'test_results'},
             '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
+        'element_order': [],
         'attributes': {
             'id': {'required': True, 'type': 'NCName'},
             'Id': {'type': 'ID'},

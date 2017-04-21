@@ -26,5 +26,8 @@ class DatabaseType(ITAssetType):
         'tag_name': 'database',
         'elements': {
             '{http://scap.nist.gov/schema/asset-identification/1.1}instance-name': {'class': 'InstanceNameType', 'min': 0},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}instance-name',
+        ],
     }

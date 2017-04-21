@@ -47,5 +47,6 @@ class FileAuditedpermissionsStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}file_read_attributes': {'class': 'EntityStateAuditType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}file_write_attributes': {'class': 'EntityStateAuditType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}windows_view': {'class': 'EntityStateWindowsViewType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

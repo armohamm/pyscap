@@ -24,4 +24,7 @@ class ChoiceQuestionResultType(QuestionResultType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}answer': {'class': 'ChoiceAnswerType', 'max': 1},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}answer',
+        ],
     }

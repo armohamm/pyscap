@@ -23,5 +23,8 @@ class ArtifactsType(Model):
     MODEL_MAP = {
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}artifact': {'append': 'artifacts', 'class': 'ArtifactElement', 'min': 1, 'max': None},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}artifact',
+        ]
     }

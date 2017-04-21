@@ -34,4 +34,5 @@ class TailoringType(Model):
             '{http://checklists.nist.gov/xccdf/1.2}Profile': {'class': 'ProfileType', 'append': 'profiles', 'min': 1, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.2}signature': {'class': 'SignatureType', 'min': 0, 'max': None},
         },
+        'element_order': [],
     }

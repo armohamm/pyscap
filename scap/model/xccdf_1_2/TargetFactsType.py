@@ -23,5 +23,6 @@ class TargetFactsType(Model):
     MODEL_MAP = {
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.2}fact': {'class': 'FactType', 'append': 'facts', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': [],
     }

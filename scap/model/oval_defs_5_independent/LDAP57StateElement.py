@@ -30,5 +30,6 @@ class LDAP57StateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object_class': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}ldaptype': {'class': 'EntityStateLdaptypeType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}value': {'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

@@ -52,6 +52,7 @@ class TestResultType(Model):
             '{http://checklists.nist.gov/xccdf/1.2}metadata': {'class': 'MetadataType', 'append': 'metadata', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.2}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
+        'element_order': [],
     }
     # urn:xccdf:fact:asset:identifier:mac Ethernet media access control address (SHOULD be sent as a pair with the IPv4 or IPv6 address to ensure uniqueness)
     # urn:xccdf:fact:asset:identifier:ipv4 IPv4 address

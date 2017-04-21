@@ -31,5 +31,6 @@ class XMLFileContentObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filename': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}xpath': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'FilterElement', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': []
     }

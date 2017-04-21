@@ -33,4 +33,5 @@ class DataStreamCollectionElement(Model):
             'id': {'required': True, 'type': 'DataStreamCollectionIDPattern'},
             'schematron-version':{'type': 'Token', 'required': True},
         },
+        'element_order': [],
     }

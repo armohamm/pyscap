@@ -30,6 +30,7 @@ class DepartmentType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}MailStop': {'in': 'mail_stop', 'class': 'MailStopType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalCode': {'in': 'postal_code', 'class': 'PostalCodeType'},
         },
+        'element_order': [],
         'attributes': {
             'Type': {},
             '*': {},

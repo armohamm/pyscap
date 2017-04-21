@@ -27,4 +27,7 @@ class ConnectionsType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/asset-identification/1.1}connection': {'append': 'connections', 'class': 'NetworkInterfaceType', 'max': None},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}connection',
+        ],
     }

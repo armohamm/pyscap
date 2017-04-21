@@ -34,5 +34,6 @@ class NameDetailsType(Model):
             'PartyType': {},
             'Code': {},
             '*': {},
-        }
+        },
+        'element_order': [],
     }

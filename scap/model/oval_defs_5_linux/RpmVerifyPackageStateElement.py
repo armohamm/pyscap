@@ -34,5 +34,6 @@ class RpmVerifyPackageStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}digest_check_passed': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}verification_script_successful': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}signature_check_passed': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

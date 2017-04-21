@@ -32,5 +32,6 @@ class PartitionStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}total_space': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}space_used': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}space_left': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

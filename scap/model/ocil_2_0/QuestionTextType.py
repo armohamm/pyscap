@@ -24,4 +24,5 @@ class QuestionTextType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}sub': {'class': 'SubstitutionTextType', 'min': 0, 'max': None},
         },
+		'element_order': [],
     }

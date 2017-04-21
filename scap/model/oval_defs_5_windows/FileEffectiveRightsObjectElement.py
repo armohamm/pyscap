@@ -29,5 +29,6 @@ class FileEffectiveRightsObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}path': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}filename': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}trustee_name': {'class': 'oval_defs_5.EntityObjectStringType'},
-        }
+        },
+        'element_order': []
     }

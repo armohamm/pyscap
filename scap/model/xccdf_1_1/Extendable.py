@@ -188,7 +188,7 @@ class Extendable(Model):
                 attr_name = attr_name.replace('-', '_')
             self.resolve_property(extended, attr_name)
 
-        for tag in self.model_map['elements']:
+        for tag in self.model_map['element_order']:
             xml_namespace, tag_name = Model.parse_tag(tag)
             if tag.endswith('*'):
                 continue

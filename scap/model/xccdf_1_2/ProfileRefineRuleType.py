@@ -33,4 +33,5 @@ class ProfileRefineRuleType(Model):
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.2}remark': {'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
         },
+        'element_order': [],
     }

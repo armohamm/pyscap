@@ -27,5 +27,9 @@ class WebsiteType(ITAssetType):
         'elements': {
             '{http://scap.nist.gov/schema/asset-identification/1.1}document-root': {'class': 'DocumentRootType', 'min': 0},
             '{http://scap.nist.gov/schema/asset-identification/1.1}locale': {'class': 'WebsiteLocaleType', 'min': 0},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}document-root',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}locale',
+        ],
     }

@@ -39,6 +39,7 @@ class TestResultType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}score': {'class': 'ScoreType', 'append': 'scores', 'min': 1, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
+        'element_order': [],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             'start-time': {'type': 'DateTime'},

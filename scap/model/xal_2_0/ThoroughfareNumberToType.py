@@ -33,5 +33,6 @@ class ThoroughfareNumberToType(Model):
         'attributes': {
             'Code': {}, # from grPostal
             '*': {},
-        }
+        },
+        'element_order': [],
     }

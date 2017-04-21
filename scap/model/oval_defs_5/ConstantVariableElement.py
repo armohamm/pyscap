@@ -26,4 +26,5 @@ class ConstantVariableElement(Variable):
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}value': {'append': 'values', 'class': 'ValueType', 'min': 1, 'max': None},
         },
+        'element_order': [],
     }

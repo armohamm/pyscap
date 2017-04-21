@@ -31,6 +31,7 @@ class ValueType(ItemType):
             'interactive': {'type': 'Boolean'},
             'interfaceHint': {'enum': INTERFACE_HINT_ENUMERATION},
         },
+        'element_order': [],
         'elements': {
             # TODO: at least one value
             # TODO: since order matters in xml (and for values) we might need a list vs. dict here

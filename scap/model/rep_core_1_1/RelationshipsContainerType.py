@@ -27,4 +27,5 @@ class RelationshipsContainerType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/reporting-core/1.1}relationships': {'class': 'RelationshipsType'},
         },
+        'element_order': [],
     }

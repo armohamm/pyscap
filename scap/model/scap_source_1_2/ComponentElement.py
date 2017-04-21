@@ -32,4 +32,5 @@ class ComponentElement(Model):
             '{http://cpe.mitre.org/dictionary/2.0}cpe-list': {'in': 'model', 'min': 0},
             '{http://checklists.nist.gov/xccdf/1.2}Tailoring': {'in': 'model', 'min': 0},
         },
+        'element_order': [],
     }

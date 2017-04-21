@@ -28,5 +28,6 @@ class SidObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}behaviors': {'class': 'SidBehaviors', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}trustee_name': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': []
     }

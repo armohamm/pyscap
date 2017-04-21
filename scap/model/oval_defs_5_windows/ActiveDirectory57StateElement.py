@@ -31,5 +31,6 @@ class ActiveDirectory57StateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}object_class': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}adstype': {'class': 'EntityStateAdstypeType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}value': {'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

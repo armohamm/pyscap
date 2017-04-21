@@ -34,6 +34,7 @@ class Catalog(Model, MutableMapping):
             '{urn:oasis:names:tc:entity:xmlns:xml:catalog}uri': {'map': 'entries', 'key': 'name', 'value': 'uri'},
             '*': {},
         },
+        'element_order': [],
     }
 
 

@@ -27,5 +27,6 @@ class WmiObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'oval_defs_5.SetElement', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}namespace': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wql': {'class': 'oval_defs_5.EntityObjectStringType'},
-        }
+        },
+        'element_order': [],
     }

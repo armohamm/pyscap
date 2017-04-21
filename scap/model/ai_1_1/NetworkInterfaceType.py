@@ -30,5 +30,12 @@ class NetworkInterfaceType(Model):
             '{http://scap.nist.gov/schema/asset-identification/1.1}url': {'append': 'urls', 'class': 'URLType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/asset-identification/1.1}subnet-mask': {'class': 'IPAddressType', 'min': 0},
             '{http://scap.nist.gov/schema/asset-identification/1.1}default-route': {'class': 'IPAddressType', 'min': 0},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-address',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}mac-address',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}url',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}subnet-mask',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}default-route',
+        ],
     }

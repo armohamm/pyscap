@@ -40,4 +40,5 @@ class RuleType(SelectableItemType):
             '{http://checklists.nist.gov/xccdf/1.2}complex-check': {'class': 'ComplexCheckType', 'min': 0, 'max': 1},
             '{http://checklists.nist.gov/xccdf/1.2}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
+        'element_order': [],
     }

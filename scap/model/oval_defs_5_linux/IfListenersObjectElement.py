@@ -27,5 +27,6 @@ class IfListenersObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'SetElement'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}interface_name': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'FilterElement', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': []
     }

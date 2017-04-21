@@ -28,6 +28,7 @@ class PersonNameElement(PersonNameType):
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}FormerName': {'append': 'former_names', 'class': 'FormerNameElement'},
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}KnownAs': {'append': 'known_ases', 'class': 'KnownAsElement'},
         },
+        'element_order': [],
         'attributes': {
             'Type': {},
             'Code': {},

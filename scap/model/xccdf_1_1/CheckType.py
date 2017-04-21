@@ -29,6 +29,7 @@ class CheckType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}check-content-ref': {'class': 'CheckContentRefType', 'append': 'check_content_refs', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}check-content': {'class': 'CheckContentType', 'min': 0, 'max': 1},
         },
+        'element_order': [],
         'attributes': {
             'system': {'type': 'AnyURI', 'required': True},
             'id': {'type': 'NCName'},
@@ -109,5 +110,5 @@ class CheckType(Model):
 
         if self.id is not None:
             host.facts['checklist'][benchmark.id]['check'][self.id] = result
-            
+
         return result

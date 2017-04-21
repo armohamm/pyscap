@@ -23,5 +23,6 @@ class NotesType(Model):
     MODEL_MAP = {
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-common-5}note': {'append': 'notes', 'type': 'String', 'min': 0, 'max': None},
-        }
+        },
+		'element_order': []
     }

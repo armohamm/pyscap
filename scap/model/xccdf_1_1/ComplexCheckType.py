@@ -28,6 +28,7 @@ class ComplexCheckType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}check': {'class': 'CheckType', 'min': 0, 'max': None, 'append': 'checks'},
             '{http://checklists.nist.gov/xccdf/1.1}complex-check': {'class': 'ComplexCheckType', 'min': 0, 'max': None, 'append': 'checks'},
         },
+        'element_order': [],
         'attributes': {
             'operator': {'enum': CHECK_OPERATOR_ENUMERATION, 'required': True},
             'negate': {'type': 'Boolean', 'default': False},

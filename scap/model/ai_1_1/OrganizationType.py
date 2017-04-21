@@ -29,5 +29,11 @@ class OrganizationType(AssetType):
             '{http://scap.nist.gov/schema/asset-identification/1.1}email-address': {'append': 'email_addresses', 'class': 'EmailAddressType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/asset-identification/1.1}telephone-number': {'append': 'telephone_numbers', 'class': 'TelephoneNumberType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/asset-identification/1.1}website-url': {'append': 'website_urls', 'class': 'WebsiteURLType', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': [
+            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}OrganisationNameDetails',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}email-address',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}telephone-number',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}website-url',
+        ]
     }

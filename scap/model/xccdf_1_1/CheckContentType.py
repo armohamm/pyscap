@@ -25,6 +25,7 @@ class CheckContentType(Model):
         'elements': {
             '*': {'min': 0, 'max': None}
         },
+        'element_order': [],
     }
 
     def check(self, host, exports, import_names):

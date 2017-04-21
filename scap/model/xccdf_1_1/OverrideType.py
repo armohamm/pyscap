@@ -28,6 +28,7 @@ class OverrideType(Decimal):
             '{http://checklists.nist.gov/xccdf/1.1}new-result': {'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
             '{http://checklists.nist.gov/xccdf/1.1}remark': {'class': 'TextType', 'min': 1, 'max': 1},
         },
+        'element_order': [],
         'attributes': {
             'time': {'type': 'DateTime', 'required': True},
             'authority': {'type': 'String', 'required': True},

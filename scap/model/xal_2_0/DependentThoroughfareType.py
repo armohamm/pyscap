@@ -33,6 +33,7 @@ class DependentThoroughfareType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfarePostDirection': {'in': 'thoroughfare_post_direction', 'class': 'ThoroughfarePostDirectionType'},
             '*': {},
         },
+        'element_order': [],
         'attributes': {
             'Type': {},
             '*': {},

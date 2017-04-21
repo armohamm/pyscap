@@ -26,6 +26,7 @@ class AffectedType(Model):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}platform': {'append': 'platforms', 'type': 'String', 'min': 0, 'max': None},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}product': {'append': 'products', 'type': 'String', 'min': 0, 'max': None},
         },
+        'element_order': [],
         'attributes': {
             'family': {'enum': FAMILY_ENUMERATION, 'required': True},
         }

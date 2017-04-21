@@ -30,5 +30,6 @@ class SQL57ObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}connection_string': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}sql': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'FilterElement'},
-        }
+        },
+        'element_order': []
     }

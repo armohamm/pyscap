@@ -24,4 +24,5 @@ class EntityStateRecordType(EntityStateComplexBaseType):
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}field': {'append': 'fields', 'class': 'EntityStateFieldType', 'min': 0, 'max': None},
         },
+        'element_order': [],
     }

@@ -30,5 +30,6 @@ class ProcessStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}priority': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}image_path': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}current_dir': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

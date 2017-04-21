@@ -49,5 +49,6 @@ class ThoroughfareType(Model):
             'DependentThoroughfaresConnector': {},
             'DependentThoroughfaresType': {},
             '*': {},
-        }
+        },
+        'element_order': [],
     }

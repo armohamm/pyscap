@@ -27,5 +27,10 @@ class DocumentType(Model):
             '{http://scap.nist.gov/schema/ocil/2.0}title': {'type': 'NormalizedString', 'min': 1, 'max': 1},
             '{http://scap.nist.gov/schema/ocil/2.0}description': {'append': 'descriptions', 'type': 'NormalizedString', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}notice': {'append': 'notices', 'type': 'String', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}title',
+            '{http://scap.nist.gov/schema/ocil/2.0}description',
+            '{http://scap.nist.gov/schema/ocil/2.0}notice',
+        ]
     }

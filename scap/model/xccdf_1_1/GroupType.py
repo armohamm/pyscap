@@ -29,6 +29,7 @@ class GroupType(SelectableItemType):
             '{http://checklists.nist.gov/xccdf/1.1}Rule': {'class': 'RuleType', 'map': 'items', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
+        'element_order': [],
     }
 
     def resolve(self, benchmark):
@@ -62,7 +63,7 @@ class GroupType(SelectableItemType):
                 attr_name = attr_name.replace('-', '_')
             self.resolve_property(extended, attr_name)
 
-        for tag in self.model_map['elements']:
+        for tag in self.model_map['element_order']:
             xml_namespace, tag_name = Model.parse_tag(tag)
             if tag.endswith('*'):
                 continue

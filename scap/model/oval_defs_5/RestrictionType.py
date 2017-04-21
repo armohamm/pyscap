@@ -25,6 +25,7 @@ class RestrictionType(Simple):
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}restriction': {'append': 'restrictions', 'class': 'RestrictionType', 'min': 1, 'max': None},
         },
+        'element_order': [],
         'attributes': {
             'operation': {'enum': OPERATION_ENUMERATION, 'required': True},
         },

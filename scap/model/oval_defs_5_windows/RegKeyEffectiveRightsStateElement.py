@@ -47,5 +47,6 @@ class RegKeyEffectiveRightsStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}key_wow64_32key': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}key_wow64_res': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}windows_view': {'class': 'EntityStateWindowsViewType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

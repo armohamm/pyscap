@@ -43,6 +43,7 @@ class RuleType(SelectableItemType):
 
             '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
+        'element_order': [],
         'attributes': {
             'role': {'enum': ROLE_ENUMERATION, 'default': 'full'},
             'severity': {'enum': SEVERITY_ENUMERATION, 'default': 'unknown'},

@@ -30,4 +30,5 @@ class PremiseNumberFromType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PremiseNumber': {'append': 'premise_numbers', 'class': 'PremiseNumberType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PremiseNumberSuffix': {'append': 'premise_number_suffixes', 'class': 'PremiseNumberSuffixType'},
         },
+        'element_order': [],
     }

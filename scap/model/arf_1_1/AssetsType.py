@@ -27,4 +27,7 @@ class AssetsType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}asset': {'append': 'assets', 'class': 'AssetElement', 'max': None},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}asset',
+        ],
     }

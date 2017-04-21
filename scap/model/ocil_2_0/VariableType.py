@@ -25,6 +25,7 @@ class VariableType(ItemBaseType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}description': {'class': 'TextType', 'min': 0, 'max': 1},
         },
+		'element_order': [],
         'attributes': {
             'id': {'type': 'VariableIDPattern', 'required': True},
             'datatype': {'enum': ['TEXT', 'NUMERIC'], 'required': True},

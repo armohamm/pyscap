@@ -37,6 +37,7 @@ class PostalServiceElementsType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}SupplementaryPostalServiceData': {'class': 'SupplementaryPostalServiceDataType'},
             '*': {},
         },
+        'element_order': [],
         'attributes': {
             'Type': {},
             '*': {},

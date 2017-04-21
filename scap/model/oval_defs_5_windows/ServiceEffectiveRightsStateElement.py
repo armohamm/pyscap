@@ -42,5 +42,6 @@ class ServiceEffectiveRightsStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}service_pause': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}service_interrogate': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}service_user_defined': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

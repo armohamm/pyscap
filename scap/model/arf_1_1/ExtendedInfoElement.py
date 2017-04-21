@@ -27,6 +27,7 @@ class ExtendedInfoElement(Model):
         'elements': {
             '*': {},
         },
+        'element_order': ['*'],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             '*': {},

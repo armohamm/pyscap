@@ -41,6 +41,7 @@ class GlobToRegexFunctionType(Model):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}regex_capture': {'append': 'components', 'class': 'RegexCaptureFunctionType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}glob_to_regex': {'append': 'components', 'class': 'GlobToRegexFunctionType'},
         },
+        'element_order': [],
         'attributes': {
             'glob_noescape': {'type': 'Boolean', 'default': False},
         }

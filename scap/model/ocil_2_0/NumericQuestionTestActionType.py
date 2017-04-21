@@ -26,4 +26,5 @@ class NumericQuestionTestActionType(QuestionTestActionType):
             '{http://scap.nist.gov/schema/ocil/2.0}when_equals': {'append': 'when_equals', 'class': 'EqualsTestActionConditionType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}when_range': {'append': 'when_ranges', 'class': 'RangeTestActionConditionType', 'min': 0, 'max': None},
         },
+        'element_order': [],
     }

@@ -34,5 +34,6 @@ class InetListeningServersStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}foreign_full_address': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}pid': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}user_id': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

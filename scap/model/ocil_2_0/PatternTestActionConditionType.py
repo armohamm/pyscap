@@ -25,4 +25,5 @@ class PatternTestActionConditionType(TestActionConditionType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}pattern': {'append': 'patterns', 'class': 'PatternType', 'min': 1, 'max': None},
         },
+		'element_order': [],
     }

@@ -27,4 +27,7 @@ class ReportRequestsType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}report-request': {'append': 'report_requests', 'class': 'ReportRequestType', 'max': None},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}report-request',
+        ],
     }

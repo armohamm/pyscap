@@ -30,5 +30,6 @@ class KnownAsElement(PersonNameType):
         'attributes': {
             'ValidFrom': {},
             'ValidTo': {},
-        }
+        },
+        'element_order': [],
     }

@@ -23,6 +23,4 @@ class FamilyObjectElement(ObjectType):
     MODEL_MAP = {
         'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent',
         'tag_name': 'family_object',
-        'elements': {
-        }
     }

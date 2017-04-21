@@ -34,5 +34,6 @@ class AuditEventPolicyStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}policy_change': {'class': 'EntityStateAuditType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}privilege_use': {'class': 'EntityStateAuditType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}system': {'class': 'EntityStateAuditType', 'min': 0},
-        }
+        },
+        'element_order': [],
     }

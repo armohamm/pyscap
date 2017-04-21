@@ -30,5 +30,6 @@ class MetabaseStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_type': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}data_type': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}data': {'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

@@ -26,5 +26,6 @@ class VariableStateElement(StateType):
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}var_ref': {'class': 'EntityStateVariableRefType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}value': {'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

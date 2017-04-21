@@ -33,6 +33,7 @@ class AddressDetailsType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Locality': {'class': 'LocalityType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Thoroughfare': {'class': 'ThoroughfareType'},
         },
+        'element_order': [],
         'attributes': {
             'AddressType': {},
             'CurrentStatus': {},

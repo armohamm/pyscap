@@ -41,5 +41,6 @@ class SubPremiseType(Model):
         'attributes': {
             'Type': {},
             '*': {},
-        }
+        },
+        'element_order': [],
     }

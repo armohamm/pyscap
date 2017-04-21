@@ -28,4 +28,5 @@ class ExternalVariableElement(VariableType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}possible_value': {'append': 'possible_values', 'class': 'PossibleValueType', 'min': 0, 'max': None},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}possible_restriction': {'append': 'possible_restrictions', 'class': 'PossibleRestrictionType', 'min': 0, 'max': None},
         },
+        'element_order': [],
     }

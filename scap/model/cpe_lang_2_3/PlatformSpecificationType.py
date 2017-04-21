@@ -23,6 +23,9 @@ logger = logging.getLogger(__name__)
 class PlatformSpecificationType(Model):
     MODEL_MAP = {
         'elements': {
-            '{http://cpe.mitre.org/language/2.0}platform': {'append': 'platforms', 'class': 'PlatformType', 'min': 1, 'max': None}
-        }
+            '{http://cpe.mitre.org/language/2.0}platform': {'append': 'platforms', 'class': 'PlatformType', 'min': 1, 'max': None},
+        },
+        'element_order': [
+            '{http://cpe.mitre.org/language/2.0}platform',
+        ]
     }

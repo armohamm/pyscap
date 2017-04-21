@@ -30,6 +30,7 @@ class PostalRouteType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalRouteNumber': {'in': 'postal_route_number', 'class': 'PostalRouteNumberType'},
             '*': {},
         },
+        'element_order': [],
         'attributes': {
             'Type': {},
             '*': {},

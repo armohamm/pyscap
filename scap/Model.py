@@ -143,6 +143,7 @@ class Model(object):
         if fq_model_class_name not in Model.maps:
             at_map = {}
             el_map = {}
+            el_order = []
             xml_namespace = None
             tag_name = None
             for class_ in model_class.__mro__:
@@ -193,6 +194,16 @@ class Model(object):
                     #logger.debug('Class ' + fq_class_name + ' does not have MODEL_MAP[elements] defined')
                     pass
 
+
+                # update the super class' element map with subclass
+                try:
+                    super_el_order = class_.MODEL_MAP['element_order'].copy()
+                    super_el_order.extend(el_order)
+                    el_order = super_el_order
+                except KeyError:
+                    #logger.debug('Class ' + fq_class_name + ' does not have MODEL_MAP[elements] defined')
+                    pass
+
             if xml_namespace is None:
                 # try to auto detect from module name
                 NAMESPACES_reverse = {v: k for k, v in NAMESPACES.items()}
@@ -206,6 +217,7 @@ class Model(object):
                 'tag_name': tag_name,
                 'attributes': at_map,
                 'elements': el_map,
+                'element_order': el_order,
             }
         return Model.maps[fq_model_class_name]
 
@@ -252,7 +264,7 @@ class Model(object):
                 setattr(self, attr_name, None)
 
         # initialize elements
-        for tag in self.model_map['elements']:
+        for tag in self.model_map['element_order']:
             xml_namespace, tag_name = Model.parse_tag(tag)
             tag_map = self.model_map['elements'][tag]
 
@@ -360,7 +372,7 @@ class Model(object):
             else:
                 sub_el_counts[sub_el.tag] += 1
 
-        for tag in self.model_map['elements']:
+        for tag in self.model_map['element_order']:
             tag_map = self.model_map['elements'][tag]
 
             min_ = 1
@@ -640,7 +652,7 @@ class Model(object):
         for name in self.model_map['attributes']:
             value = self.produce_attribute(name, el)
 
-        for tag in self.model_map['elements']:
+        for tag in self.model_map['element_order']:
             el.extend(self.produce_sub_elements(tag))
 
         if self.tail is not None:
@@ -714,19 +726,48 @@ class Model(object):
 
     def produce_sub_elements(self, tag):
         sub_els = []
-        if tag.endswith('*'):
-            return []
-
         xml_namespace, tag_name = Model.parse_tag(tag)
         tag_map = self.model_map['elements'][tag]
-        if 'append' in tag_map:
-            lst = getattr(self, tag_map['append'])
-            logger.debug(str(self) + ' Appending ' + tag + ' elements from append ' + tag_map['append'])
+
+        if tag.endswith('*'):
+            if 'in' in tag_map:
+                name = tag_map['in']
+            else:
+                name = '_tags'
+
+            lst = getattr(self, name)
+            logger.debug(str(self) + ' Appending ' + tag + ' elements from append ' + name)
 
             # check minimum tag count
             if 'min' in tag_map and tag_map['min'] > len(lst):
                 logger.critical(str(self) + ' must have at least ' + str(tag_map['min']) + ' ' + tag + ' elements')
                 sys.exit()
+
+            # check maximum tag count
+            if 'max' in tag_map and tag_map['max'] is not None and tag_map['max'] <= len(lst):
+                logger.critical(str(self) + ' must have at most ' + str(tag_map['max']) + ' ' + tag + ' elements')
+                sys.exit()
+
+            for i in lst:
+                if isinstance(i, Model):
+                    sub_els.append(i.to_xml())
+                elif isinstance(i, ET.Element):
+                    sub_els.append(i)
+                else:
+                    el = ET.Element(tag)
+                    el.text = i
+                    sub_els.append(el)
+        elif 'append' in tag_map:
+            name = tag_map['append']
+
+            lst = getattr(self, name)
+            logger.debug(str(self) + ' Appending ' + tag + ' elements from append ' + name)
+
+            # check minimum tag count
+            if 'min' in tag_map and tag_map['min'] > len(lst):
+                logger.critical(str(self) + ' must have at least ' + str(tag_map['min']) + ' ' + tag + ' elements')
+                sys.exit()
+
             # check maximum tag count
             if 'max' in tag_map and tag_map['max'] is not None and tag_map['max'] <= len(lst):
                 logger.critical(str(self) + ' must have at most ' + str(tag_map['max']) + ' ' + tag + ' elements')

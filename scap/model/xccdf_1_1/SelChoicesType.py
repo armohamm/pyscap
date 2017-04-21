@@ -26,6 +26,7 @@ class SelChoicesType(Model):
             # TODO at least one choice/complex-choice
             '{http://checklists.nist.gov/xccdf/1.1}choice': {'type': 'String', 'append': 'choices', 'min': 1, 'max': None},
         },
+        'element_order': [],
         'attributes': {
             'mustMatch': {'type': 'Boolean'},
             'selector': {'type': 'String', 'default': ''},

@@ -29,6 +29,7 @@ class DefinitionType(Model):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}notes': {'class': 'NotesType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria': {'class': 'CriteriaType', 'min': 0, 'max': 1},
         },
+        'element_order': [],
         'attributes': {
             'id': {'type': 'oval_common_5.DefinitionIDPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},

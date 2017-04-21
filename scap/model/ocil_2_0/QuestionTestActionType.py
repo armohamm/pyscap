@@ -30,6 +30,7 @@ class QuestionTestActionType(ItemBaseType):
             '{http://scap.nist.gov/schema/ocil/2.0}when_not_applicable': {'class': 'TestActionConditionType', 'min': 0},
             '{http://scap.nist.gov/schema/ocil/2.0}when_error': {'class': 'TestActionConditionType', 'min': 0},
         },
+		'element_order': [],
         'attributes': {
             'question_ref': {'type': 'QuestionIDPattern', 'required': True},
             'id': {'type': 'QuestionTestActionIDPattern', 'required': True},

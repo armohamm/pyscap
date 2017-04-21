@@ -36,5 +36,6 @@ class SharedResourceEffectiveRightsStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}generic_write': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}generic_execute': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}generic_all': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

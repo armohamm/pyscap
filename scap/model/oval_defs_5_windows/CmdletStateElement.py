@@ -33,5 +33,6 @@ class CmdletStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}parameters': {'class': 'oval_defs_5.EntityStateRecordType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}select': {'class': 'oval_defs_5.EntityStateRecordType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}value': {'class': 'oval_defs_5.EntityStateRecordType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

@@ -28,5 +28,10 @@ class SoftwareType(ITAssetType):
             '{http://scap.nist.gov/schema/asset-identification/1.1}installation-id': {'class': 'InstallationIDType', 'min': 0},
             '{http://scap.nist.gov/schema/asset-identification/1.1}cpe': {'class': 'CPEType', 'min': 0},
             '{http://scap.nist.gov/schema/asset-identification/1.1}license': {'class': 'LicenseType', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}installation-id',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}cpe',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}license',
+        ]
     }

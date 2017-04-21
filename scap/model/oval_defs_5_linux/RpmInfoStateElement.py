@@ -33,5 +33,6 @@ class RpmInfoStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}signature_keyid': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}extended_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}filepath': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

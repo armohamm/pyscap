@@ -25,4 +25,5 @@ class RangeTestActionConditionType(TestActionConditionType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}range': {'append': 'ranges', 'class': 'RangeType', 'min': 1, 'max': None},
         },
+		'element_order': [],
     }

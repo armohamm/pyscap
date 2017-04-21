@@ -29,5 +29,6 @@ class TextFileContentObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}path': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filename': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}line': {'class': 'oval_defs_5.EntityObjectStringType'},
-        }
+        },
+        'element_order': []
     }

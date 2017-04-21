@@ -24,4 +24,7 @@ class BinaryArtifactValueType(EmbeddedArtifactValueType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}data': {'type': 'Base64Binary'},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}data',
+        ],
     }

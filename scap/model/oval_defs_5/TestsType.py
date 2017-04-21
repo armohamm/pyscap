@@ -25,7 +25,8 @@ class TestsType(Model):
         'tag_name' : 'tests',
         'elements': {
             #TODO minOccurs="1" maxOccurs="unbounded"
-        }
+        },
+        'element_order': [],
     }
     from scap.model.oval_defs_5_independent import TEST_MAP
     MODEL_MAP['elements'].update(TEST_MAP)
@@ -33,3 +34,4 @@ class TestsType(Model):
     MODEL_MAP['elements'].update(TEST_MAP)
     from scap.model.oval_defs_5_windows import TEST_MAP
     MODEL_MAP['elements'].update(TEST_MAP)
+    # TODO element_order

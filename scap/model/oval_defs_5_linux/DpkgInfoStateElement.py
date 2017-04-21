@@ -30,5 +30,6 @@ class DpkgInfoStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}release': {'class': 'ReleaseElement', 'min': 0, 'max': None},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}version': {'class': 'VersionElement', 'min': 0, 'max': None},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}evr': {'class': 'DpkgInfoStateEvrElement', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': []
     }

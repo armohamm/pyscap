@@ -32,5 +32,6 @@ class InterfaceStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}broadcast_addr': {'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}netmask': {'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}addr_type': {'class': 'EntityStateAddrTypeType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

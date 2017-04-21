@@ -24,6 +24,9 @@ class ChoiceGroupType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}choice': {'append': 'choices', 'class': 'ChoiceType', 'min': 1},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}choice',
+        ],
         'attributes': {
             'id': {'type': 'ChoiceGroupIDPattern', 'required': True},
         },

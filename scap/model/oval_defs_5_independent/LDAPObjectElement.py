@@ -28,5 +28,6 @@ class LDAPObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}suffix': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}relative_dn': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}attribute': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-        }
+        },
+        'element_order': []
     }

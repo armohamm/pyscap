@@ -72,5 +72,6 @@ class AccessTokenStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}sedenyremoteInteractivelogonright': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}sedenyservicelogonright': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}setrustedcredmanaccessnameright': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

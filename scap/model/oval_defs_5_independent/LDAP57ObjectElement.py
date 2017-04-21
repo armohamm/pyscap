@@ -30,5 +30,6 @@ class LDAP57ObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}relative_dn': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}attribute': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'FilterElement', 'min': 0, 'max': None},
-        }
+        },
+		'element_order': []
     }

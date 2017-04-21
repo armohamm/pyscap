@@ -32,5 +32,13 @@ class ComputingDeviceType(ITAssetType):
             '{http://scap.nist.gov/schema/asset-identification/1.1}hostname': {'class': 'ComputingDeviceHostnameType', 'min': 0},
             '{http://scap.nist.gov/schema/asset-identification/1.1}motherboard-guid': {'class': 'MotherboardGUIDType', 'min': 0},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}distinguished-name',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}cpe',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}connections',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}fqdn',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}hostname',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}motherboard-guid',
+        ],
     }
     #TODO: cpes as fs_string

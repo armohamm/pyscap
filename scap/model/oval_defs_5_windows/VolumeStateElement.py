@@ -50,5 +50,6 @@ class VolumeStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}file_supports_extended_attributes': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}file_supports_open_by_file_id': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}file_supports_usn_journal': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-        }
+        },
+        'element_order': [],
     }

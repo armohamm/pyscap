@@ -27,5 +27,6 @@ class QuestionResultsType(Model):
             '{http://scap.nist.gov/schema/ocil/2.0}choice_question_result': {'append': 'question_results', 'class': 'ChoiceQuestionResultType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}numeric_question_result': {'append': 'question_results', 'class': 'NumericQuestionResultType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}string_question_result': {'append': 'question_results', 'class': 'StringQuestionResultType', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': []
     }

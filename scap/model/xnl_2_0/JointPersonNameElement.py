@@ -33,5 +33,6 @@ class JointPersonNameElement(Model):
             'JointNameConnector': {},
             'Code': {},
             '*': {},
-        }
+        },
+        'element_order': [],
     }

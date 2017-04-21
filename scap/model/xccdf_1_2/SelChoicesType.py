@@ -30,4 +30,5 @@ class SelChoicesType(Model):
             '{http://checklists.nist.gov/xccdf/1.2}choice': {'class': 'scap.model.xs_2001.String', 'append': 'choices', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.2}complex-choice': {'class': 'ComplexValueType', 'min': 0, 'max': 1},
         },
+        'element_order': [],
     }

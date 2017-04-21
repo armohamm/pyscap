@@ -46,5 +46,6 @@ class RpmVerifyFileStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}ghost_file': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}license_file': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}readme_file': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

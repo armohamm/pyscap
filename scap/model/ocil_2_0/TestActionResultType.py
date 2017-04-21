@@ -24,6 +24,7 @@ class TestActionResultType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}artifact_results': {'class': 'ArtifactRefsType', 'min': 0, 'max': 1},
         },
+		'element_order': [],
         'attributes': {
             'test_action_ref': {'type': 'TestActionRefValuePattern', 'required': True},
             'result': {'class': 'ResultType', 'required': True},

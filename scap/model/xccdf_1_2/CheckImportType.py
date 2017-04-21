@@ -28,4 +28,5 @@ class CheckImportType(Model):
         'elements': {
             '*': {'min': 0},
         },
+        'element_order': [],
     }

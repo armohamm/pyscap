@@ -30,5 +30,6 @@ class PasswordPolicyStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}password_hist_len': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}password_complexity': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}reversible_encryption': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-        }
+        },
+        'element_order': [],
     }

@@ -25,4 +25,8 @@ class InstructionsType(object):
             '{http://scap.nist.gov/schema/ocil/2.0}title': {'class': 'TextType', 'min': 1, 'max': 1},
             '{http://scap.nist.gov/schema/ocil/2.0}step': {'append': 'steps', 'class': 'StepType', 'min': 1, 'max': None},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}title',
+            '{http://scap.nist.gov/schema/ocil/2.0}step',
+        ],
     }

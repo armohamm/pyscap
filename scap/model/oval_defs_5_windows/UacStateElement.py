@@ -33,5 +33,6 @@ class UacStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}run_admins_aam': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}secure_desktop': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}virtualize_write_failures': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

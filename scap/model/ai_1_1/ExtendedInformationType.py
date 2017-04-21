@@ -25,5 +25,6 @@ class ExtendedInformationType(Model):
         'tag_name': 'extended-information',
         'elements': {
             '*': {},
-        }
+        },
+        'element_order': ['*'],
     }

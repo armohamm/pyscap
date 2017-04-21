@@ -31,5 +31,6 @@ class SelectableItemType(ItemType):
             '{http://checklists.nist.gov/xccdf/1.2}requires': {'append': 'requires', 'min': 0, 'max': None, 'class': 'IDRefListType'},
             '{http://checklists.nist.gov/xccdf/1.2}conflicts': {'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IDRefType'},
         },
+        'element_order': [],
     }
     # abstract

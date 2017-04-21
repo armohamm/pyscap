@@ -29,6 +29,7 @@ class SelectableItemType(ItemType):
             '{http://checklists.nist.gov/xccdf/1.1}requires': {'append': 'requires', 'min': 0, 'max': None, 'class': 'IdrefListType'},
             '{http://checklists.nist.gov/xccdf/1.1}conflicts': {'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},
         },
+        'element_order': [],
         'attributes': {
             'selected': {'type': 'Boolean', 'default': True},
             'weight': {'type': 'WeightType', 'default': 1.0},

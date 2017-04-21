@@ -29,5 +29,6 @@ class RegKeyEffectiveRightsObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}hive': {'class': 'EntityObjectRegistryHiveType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}key': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}trustee_name': {'class': 'oval_defs_5.EntityObjectStringType'},
-        }
+        },
+        'element_order': []
     }

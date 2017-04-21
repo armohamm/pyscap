@@ -27,6 +27,10 @@ class ReportType(Model):
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}content': {'class': 'ReportContentElement'},
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}remote-resource': {'class': 'RemoteResourceElement'},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}content',
+            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}remote-resource',
+        ],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             '*': {},

@@ -37,4 +37,5 @@ class DataStreamElement(Model):
             'scap-version': {'required': True, 'enum': SCAP_VERSION_ENUMERATION}, # TODO: spec also allows Token
             'timestamp': {'required': True, 'type': 'DateTime'},
         },
+        'element_order': [],
     }

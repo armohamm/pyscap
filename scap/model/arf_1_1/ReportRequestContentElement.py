@@ -27,6 +27,9 @@ class ReportRequestContentElement(Model):
         'elements': {
             '*': {},
         },
+        'element_order': [
+            '*',
+        ],
         'attributes': {
             '*': {},
         }

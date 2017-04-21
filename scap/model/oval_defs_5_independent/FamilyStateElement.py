@@ -25,5 +25,6 @@ class FamilyStateElement(StateType):
         'tag_name': 'family_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}family': {'class': 'EntityStateFamilyType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': [],
     }

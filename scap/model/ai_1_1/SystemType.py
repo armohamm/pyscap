@@ -27,5 +27,9 @@ class SystemType(ITAssetType):
         'elements': {
             '{http://scap.nist.gov/schema/asset-identification/1.1}system-name': {'append': 'system_names', 'class': 'SystemNameType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/asset-identification/1.1}version': {'class': 'VersionType', 'min': 0},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}system-name',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}version',
+        ],
     }

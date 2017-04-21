@@ -27,5 +27,6 @@ class VariableObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'SetElement'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}var_ref': {'class': 'EntityObjectVariableRefType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'FilterElement', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': [],
     }

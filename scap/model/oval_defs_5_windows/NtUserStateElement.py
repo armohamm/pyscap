@@ -37,5 +37,6 @@ class NtUserStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}last_write_time': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}type': {'class': 'oval_defs_5.EntityStateRegistryTypeType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}value': {'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

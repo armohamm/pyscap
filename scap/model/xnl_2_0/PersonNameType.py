@@ -38,6 +38,7 @@ class PersonNameType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}Suffix': {'append': 'suffixes', 'class': 'SuffixElement'},
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}GeneralSuffix': {'append': 'general_suffix', 'class': 'GeneralSuffixElement'},
         },
+        'element_order': [],
         'attributes': {
             'Type': {},
             'Code': {},

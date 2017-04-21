@@ -23,5 +23,6 @@ class MetadataType(Model):
     MODEL_MAP = {
         'elements': {
             '*': {'min': 1, 'max': None},
-        }
+        },
+        'element_order': [],
     }

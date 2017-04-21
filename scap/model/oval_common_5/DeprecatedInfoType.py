@@ -25,5 +25,6 @@ class DeprecatedInfoType(Model):
             '{http://oval.mitre.org/XMLSchema/oval-common-5}version': {'type': 'SchemaVersionPattern'},
             '{http://oval.mitre.org/XMLSchema/oval-common-5}reason': {'type': 'String'},
             '{http://oval.mitre.org/XMLSchema/oval-common-5}comment': {'type': 'String', 'min': 0, 'max': 1},
-        }
+        },
+		'element_order': []
     }

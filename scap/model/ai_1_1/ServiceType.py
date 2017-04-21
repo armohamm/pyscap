@@ -29,5 +29,11 @@ class ServiceType(ITAssetType):
             '{http://scap.nist.gov/schema/asset-identification/1.1}port': {'append': 'ports', 'class': 'ServicePortType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/asset-identification/1.1}port-range': {'append': 'port_ranges', 'class': 'PortRangeType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/asset-identification/1.1}protocol': {'class': 'ProtocolType', 'min': 0},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}host',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}port',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}port-range',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}protocol',
+        ]
     }

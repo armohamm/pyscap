@@ -28,6 +28,7 @@ class XNLElement(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}NameDetails': {'append': 'name_details', 'class': 'NameDetailsType'},
             '*': {},
         },
+        'element_order': [],
         'attributes': {
             'Version': {},
             '*': {},

@@ -30,6 +30,7 @@ class SetElement(Model):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_reference': {'append': 'object_references', 'type': 'oval_common_5.ObjectIDPattern', 'min': 0, 'max': 2},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'FilterElement', 'min': 0, 'max': None},
         },
+        'element_order': [],
         'attributes': {
             'set_operator': {'enum': SET_OPERATOR_ENUMERATION, 'default': 'UNION'},
         }

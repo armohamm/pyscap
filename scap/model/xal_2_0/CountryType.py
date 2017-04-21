@@ -33,6 +33,7 @@ class CountryType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Thoroughfare': {'in': 'thoroughfare', 'class': 'ThoroughfareType'},
             '*': {},
         },
+        'element_order': [],
         'attributes': {
             '*': {},
         }

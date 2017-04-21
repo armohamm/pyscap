@@ -28,8 +28,12 @@ class AssetElement(Model):
             '{http://scap.nist.gov/schema/asset-identification/1.1}asset': {'append': 'assets', 'class': 'AssetType'},
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}remote-resource': {'append': 'remote_resources', 'class': 'RemoteResourceElement'},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}asset',
+            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}remote-resource',
+        ],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             '*': {},
-        }
+        },
     }

@@ -28,4 +28,5 @@ class ExtendedComponentElement(Model):
         'elements': {
             '*': {}
         },
+        'element_order': [],
     }

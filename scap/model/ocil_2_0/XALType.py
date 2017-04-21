@@ -28,6 +28,7 @@ class XALType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressDetails': {'append': 'address_details', 'class': 'AddressDetailsType'},
             '*': {},
         },
+		'element_order': [],
         'attributes': {
             'Version': {},
             '*': {},

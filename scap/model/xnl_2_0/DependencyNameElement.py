@@ -31,5 +31,6 @@ class DependencyNameElement(NameDetailsType):
         'attributes': {
             'DependencyType': {},
             'NameDetailsKeyRef': {}, # from grKeyRefs
-        }
+        },
+        'element_order': [],
     }

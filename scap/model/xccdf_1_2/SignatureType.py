@@ -23,5 +23,6 @@ class SignatureType(Model):
     MODEL_MAP = {
         'elements': {
             '{http://www.w3.org/2000/09/xmldsig#}*': {'min': 1, 'max': 1},
-        }
+        },
+        'element_order': [],
     }

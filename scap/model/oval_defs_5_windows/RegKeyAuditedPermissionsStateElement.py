@@ -47,5 +47,6 @@ class RegKeyAuditedPermissionsStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}key_wow64_32key': {'class': 'EntityStateAuditType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}key_wow64_res': {'class': 'EntityStateAuditType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}windows_view': {'class': 'EntityStateWindowsViewType', 'min': 0},
-        }
+        },
+        'element_order': []
     }

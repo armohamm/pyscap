@@ -27,5 +27,9 @@ class HostType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/asset-identification/1.1}fqdn': {'class': 'FQDNType'},
             '{http://scap.nist.gov/schema/asset-identification/1.1}ip-address': {'class': 'IPAddressType'},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}fqdn',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-address',
+        ]
     }

@@ -27,4 +27,5 @@ class RelationshipsType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/reporting-core/1.1}relationship': {'append': 'relationships', 'class': 'RelationshipType'},
         },
+        'element_order': [],
     }

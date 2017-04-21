@@ -30,5 +30,6 @@ class OrganisationFormerNameElement(OrganisationNameDetailsType):
         'attributes': {
             'ValidFrom': {},
             'ValidTo': {},
-        }
+        },
+        'element_order': [],
     }

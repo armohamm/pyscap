@@ -31,5 +31,6 @@ class XALType(Model):
         'attributes': {
             'Version': {},
             '*': {},
-        }
+        },
+        'element_order': [],
     }

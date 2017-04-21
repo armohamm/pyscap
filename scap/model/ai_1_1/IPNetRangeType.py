@@ -27,5 +27,9 @@ class IPNetRangeType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/asset-identification/1.1}ip-net-range-start': {'class': 'IPAddressType'},
             '{http://scap.nist.gov/schema/asset-identification/1.1}ip-net-range-end': {'class': 'IPAddressType'},
-        }
+        },
+        'element_order': [
+            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-net-range-start',
+            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-net-range-end',
+        ],
     }

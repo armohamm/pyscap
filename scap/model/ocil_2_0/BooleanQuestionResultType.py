@@ -24,4 +24,7 @@ class BooleanQuestionResultType(QuestionResultType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}answer': {'type': 'Boolean', 'max': 1},
         },
+        'element_order': [
+            '{http://scap.nist.gov/schema/ocil/2.0}answer',
+        ],
     }

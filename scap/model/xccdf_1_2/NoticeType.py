@@ -27,4 +27,5 @@ class NoticeType(String):
         'elements': {
             '{http://www.w3.org/1999/xhtml}*': {'min': 0, 'max': None},
         },
+        'element_order': [],
     }

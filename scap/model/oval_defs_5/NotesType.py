@@ -23,5 +23,6 @@ class NotesType(scap.model.oval_common_5.NotesType.NotesType):
     MODEL_MAP = {
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}note': {'append': 'notes', 'type': 'String', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': [],
     }

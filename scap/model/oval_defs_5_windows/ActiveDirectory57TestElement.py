@@ -27,5 +27,6 @@ class ActiveDirectory57TestElement(TestType):
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}object': {'class': 'oval_defs_5.ObjectRefType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}state': {'append': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
-        }
+        },
+        'element_order': []
     }

@@ -30,5 +30,6 @@ class FileHashStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}md5': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}sha1': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}windows_view': {'class': 'EntityStateWindowsViewType', 'min': 0},
-        }
+        },
+		'element_order': []
     }

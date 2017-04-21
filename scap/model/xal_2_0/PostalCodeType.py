@@ -31,6 +31,7 @@ class PostalCodeType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostTown': {'in': 'post_town', 'class': 'PostTownType'},
             '*': {},
         },
+        'element_order': [],
         'attributes': {
             'Type': {},
             '*': {},

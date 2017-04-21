@@ -24,6 +24,7 @@ class OperationType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}test_action_ref': {'append': 'test_action_refs', 'class': 'TestActionRefType', 'min': 1, 'max': None},
         },
+		'element_order': [],
         'attributes': {
             'operation': {'enum': ['AND', 'OR'], 'default': 'AND'},
             'negate': {'type': 'Boolean', 'default': False},

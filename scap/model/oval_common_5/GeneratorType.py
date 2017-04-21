@@ -27,5 +27,6 @@ class GeneratorType(Model):
             '{http://oval.mitre.org/XMLSchema/oval-common-5}schema_version': {'append': 'versions', 'class': 'SchemaVersionType', 'max': None},
             '{http://oval.mitre.org/XMLSchema/oval-common-5}timestamp': {'type': 'DateTime'},
             '*': {'max': None},
-        }
+        },
+		'element_order': []
     }

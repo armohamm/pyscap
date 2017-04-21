@@ -26,5 +26,6 @@ class SystemDUnitDependencyStateElement(StateType):
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}unit': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}dependency': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-        }
+        },
+        'element_order': []
     }

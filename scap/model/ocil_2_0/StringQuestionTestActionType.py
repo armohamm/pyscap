@@ -24,4 +24,5 @@ class StringQuestionTestActionType(QuestionTestActionType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}when_pattern': {'append': 'when_ranges', 'class': 'PatternTestActionConditionType', 'min': 1, 'max': None},
         },
+		'element_order': [],
     }

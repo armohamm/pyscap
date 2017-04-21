@@ -28,4 +28,5 @@ class AddressLinesType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
             '*': {},
         },
+        'element_order': [],
     }

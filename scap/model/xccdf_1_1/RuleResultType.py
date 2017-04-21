@@ -34,6 +34,7 @@ class RuleResultType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}fix': {'class': 'FixType', 'append': 'fixes', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}check': {'class': 'CheckType', 'append': 'checks', 'min': 0, 'max': None},
         },
+        'element_order': [],
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},
             'role': {'enum': ROLE_ENUMERATION},

@@ -31,4 +31,5 @@ class ComplexCheckType(Model):
             '{http://checklists.nist.gov/xccdf/1.2}check': {'class': 'CheckType', 'min': 0, 'max': None, 'append': 'checks'},
             '{http://checklists.nist.gov/xccdf/1.2}complex-check': {'class': 'ComplexCheckType', 'min': 0, 'max': None, 'append': 'checks'},
         },
+        'element_order': [],
     }
