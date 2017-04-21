@@ -21,6 +21,7 @@
 import argparse
 import atexit
 from io import StringIO
+import locale
 import logging
 import pprint
 import sys
@@ -113,8 +114,8 @@ else:
 
 # final argument parsing
 args = vars(arg_parser.parse_args())
-pp = pprint.PrettyPrinter(width=132)
-pp.pprint(args)
+for arg in args:
+    logger.debug('Argument: ' + arg + ' = ' + str(args[arg]))
 # configure ElementTree
 for k,v in list(NAMESPACES.items()):
     ET.register_namespace(v, k)
@@ -141,9 +142,9 @@ if args['collect'] or args['benchmark'] or args['list_hosts']:
 
 # open output if it's not stdout
 if args['output'] != '-':
-    output = open(uri, mode='w')
+    output = open(uri, mode='wb', encoding='unicode')
 else:
-    output = sys.stdout
+    output = sys.stdout.buffer
 
 if args['collect']:
     for host in hosts:
@@ -185,15 +186,15 @@ elif args['benchmark']:
     rep = Reporter.load(args, model)
     report = ET.ElementTree(element=rep.report(hosts))
 
+    logger.debug('Preferred encoding: ' + locale.getpreferredencoding())
+    sio = StringIO()
+    report.write(sio, encoding='unicode', xml_declaration=True)
+    sio.write("\n")
     if args['pretty']:
-        sio = StringIO()
-        report.write(sio, encoding='unicode', xml_declaration=True)
-        sio.write("\n")
-
         pretty_xml = xml.dom.minidom.parseString(sio.getvalue()).toprettyxml(indent='  ')
-        output.write(pretty_xml)
+        output.write(pretty_xml.encode(locale.getpreferredencoding()))
     else:
-        report.write(output, encoding='unicode')
+        report.write(sio.getvalue().encode(locale.getpreferredencoding()))
 elif args['list_hosts']:
     print('Hosts: ')
     for host in hosts:

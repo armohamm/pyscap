@@ -36,11 +36,11 @@ logger.setLevel(logging.INFO)
 class Model(object):
     MODEL_MAP = {
         'attributes': {
-            '{http://www.w3.org/XML/1998/namespace}lang': {'type': 'String'},
-            '{http://www.w3.org/XML/1998/namespace}space': {'enum': XML_SPACE_ENUMERATION, 'default': 'default'},
-            '{http://www.w3.org/XML/1998/namespace}base': {'type': 'AnyURI'},
-            '{http://www.w3.org/XML/1998/namespace}id': {'type': 'ID'},
-            '{http://www.w3.org/2001/XMLSchema-instance}schemaLocation': {'type': 'AnyURI'},
+            '{http://www.w3.org/XML/1998/namespace}lang': {'type': 'String', 'in': '_xml_lang'},
+            '{http://www.w3.org/XML/1998/namespace}space': {'enum': XML_SPACE_ENUMERATION, 'in': '_xml_space'},
+            '{http://www.w3.org/XML/1998/namespace}base': {'type': 'AnyURI', 'in': '_xml_base'},
+            '{http://www.w3.org/XML/1998/namespace}id': {'type': 'ID', 'in': '_xml_id'},
+            '{http://www.w3.org/2001/XMLSchema-instance}schemaLocation': {'type': 'AnyURI', 'in': '_xsi_schemaLocation'},
         },
     }
 
@@ -216,10 +216,13 @@ class Model(object):
         else:
             return None
 
-    def __init__(self, tag_name=None):
+    def __init__(self, value=None, tag_name=None):
         self.parent = None
         self.sub_references = {}
-        self.text = None
+        if value is None:
+            self.text = None
+        else:
+            self.text = value
         self.tail = None
         self.model_map = Model._get_model_map(self.__class__)
         if tag_name is not None:
@@ -615,8 +618,24 @@ class Model(object):
 
         return False
 
+    def __str__(self):
+        s = self.__class__.__name__
+        if hasattr(self, 'id') and self.id is not None:
+            s += ' ' + self.id
+        elif hasattr(self, 'Id') and self.Id is not None:
+            s += ' ' + self.Id
+        elif hasattr(self, 'name') and self.name is not None:
+            s += ' ' + self.name
+        else:
+            s += ' ' + str(id(self))
+
+        return s
+
     def to_xml(self):
+        logger.debug(str(self) + ' to xml')
         el = ET.Element(self.get_tag())
+        if self.text is not None:
+            el.text = str(self.text)
 
         for name in self.model_map['attributes']:
             value = self.produce_attribute(name, el)
@@ -624,17 +643,19 @@ class Model(object):
         for tag in self.model_map['elements']:
             el.extend(self.produce_sub_elements(tag))
 
+        if self.tail is not None:
+            el.tail = str(self.tail)
         return el
 
     def produce_attribute(self, name, el):
         if name.endswith('*'):
             return
 
-        xml_namespace, attr_name = Model.parse_tag(name)
+        attr_namespace, attr_name = Model.parse_tag(name)
         attr_map = self.model_map['attributes'][name]
 
         if 'notImplemented' in attr_map and attr_map['notImplemented']:
-            raise NotImplementedError(name + ' attribute support is not implemented')
+            raise NotImplementedError(str(self) + '.' + name + ' attribute support is not implemented')
 
         if 'in' in attr_map:
             attr_name = attr_map['in']
@@ -645,7 +666,7 @@ class Model(object):
             value = getattr(self, attr_name)
         except AttributeError:
             if 'required' in attr_map and attr_map['required']:
-                logger.critical(self.__class__.__name__ + ' must assign required attribute ' + attr_name)
+                logger.critical(str(self) + ' must assign required attribute ' + attr_name)
                 sys.exit()
             else:
                 logger.debug('Skipping attribute ' + attr_name)
@@ -653,18 +674,23 @@ class Model(object):
 
         if value is None:
             if 'required' in attr_map and attr_map['required']:
-                logger.critical(self.__class__.__name__ + ' must assign required attribute ' + attr_name)
+                logger.critical(str(self) + ' must assign required attribute ' + attr_name)
                 sys.exit()
             else:
-                logger.debug('Skipping attribute ' + attr_name)
+                logger.debug(str(self) + ' Skipping attribute ' + attr_name)
                 return
+
+        # if model's xml_namespace doesn't match attribute's, then we need to include it
+        if attr_namespace is not None and self.get_xml_namespace() != attr_namespace:
+            attr_name = name
 
         if 'class' in attr_map:
             if not isinstance(value, Model):
-                raise ValueError('Need a subclass of Model to set attribute ' + attr_name + ' on ' + self.get_tag() + '; got ' + str(value))
+                raise ValueError(str(self) + ' Need a subclass of Model to set attribute ' + attr_name + ' on ' + self.get_tag() + '; got ' + str(value))
 
-            logger.debug('Setting attribute ' + attr_name + ' on ' + self.get_tag() + ' to ' + value.__class__.__name__ + ' value ' + value.to_string())
+            logger.debug(str(self) + 'Setting attribute ' + attr_name + ' on ' + self.get_tag() + ' to ' + value.__class__.__name__ + ' value ' + value.to_string())
             el.set(attr_name, value.to_string())
+
         elif 'type' in attr_map:
             # TODO nillable
             # if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
@@ -673,16 +699,18 @@ class Model(object):
             #         value = None
             #     else:
             #         raise ValueError(el.tag + ' is nil, but not expecting nil value')
-            logger.debug('Producing ' + str(value) + ' as ' + attr_map['type'] + ' type')
+            logger.debug(str(self) + ' Producing ' + str(value) + ' as ' + attr_map['type'] + ' type')
             v = self._produce_value_as_type(value, attr_map['type'])
 
             el.set(attr_name, v)
+
         elif 'enum' in attr_map:
             if value not in attr_map['enum']:
-                raise ValueError(name + ' attribute must be one of ' + str(attr_map['enum']) + ': ' + str(value))
+                raise ValueError(str(self) + '.' + name + ' attribute must be one of ' + str(attr_map['enum']) + ': ' + str(value))
             el.set(attr_name, value)
+
         else:
-            raise ValueError('Unable to produce attribute ' + attr_name + '; no class, type or enum definition')
+            raise ValueError(str(self) + ' Unable to produce attribute ' + attr_name + '; no class, type or enum definition')
 
     def produce_sub_elements(self, tag):
         sub_els = []
@@ -693,15 +721,15 @@ class Model(object):
         tag_map = self.model_map['elements'][tag]
         if 'append' in tag_map:
             lst = getattr(self, tag_map['append'])
-            logger.debug('Appending ' + tag + ' elements from append ' + tag_map['append'])
+            logger.debug(str(self) + ' Appending ' + tag + ' elements from append ' + tag_map['append'])
 
             # check minimum tag count
             if 'min' in tag_map and tag_map['min'] > len(lst):
-                logger.critical(self.__class__.__name__ + ' must have at least ' + tag_map['min'] + ' ' + tag + ' elements')
+                logger.critical(str(self) + ' must have at least ' + str(tag_map['min']) + ' ' + tag + ' elements')
                 sys.exit()
             # check maximum tag count
             if 'max' in tag_map and tag_map['max'] is not None and tag_map['max'] <= len(lst):
-                logger.critical(self.__class__.__name__ + ' must have at most ' + tag_map['max'] + ' ' + tag + ' elements')
+                logger.critical(str(self) + ' must have at most ' + str(tag_map['max']) + ' ' + tag + ' elements')
                 sys.exit()
 
             for i in lst:
@@ -711,23 +739,23 @@ class Model(object):
                     elif isinstance(i, ET.Element):
                         sub_els.append(i)
                     else:
-                        raise ValueError('Unknown class to add to sub elemetns: ' + i.__class__.__name__)
+                        raise ValueError(str(self) + ' Unknown class of ' + tag + ' to add to sub elements: ' + i.__class__.__name__)
                 else:
                     el = ET.Element(tag)
                     el.text = i
                     sub_els.append(el)
         elif 'map' in tag_map:
             dic = getattr(self, tag_map['map'])
-            logger.debug('Appending ' + tag + ' elements from map ' + tag_map['map'])
+            logger.debug(str(self) + ' Appending ' + tag + ' elements from map ' + tag_map['map'])
 
             # check minimum tag count
             if 'min' in tag_map and tag_map['min'] > len(dic):
-                logger.critical(self.__class__.__name__ + ' must have at least ' + tag_map['min'] + ' ' + tag + ' elements')
+                logger.critical(str(self) + ' must have at least ' + str(tag_map['min']) + ' ' + tag + ' elements')
                 sys.exit()
 
             # check maximum tag count
             if 'max' in tag_map and tag_map['max'] is not None and tag_map['max'] <= len(dic):
-                logger.critical(self.__class__.__name__ + ' must have at most ' + tag_map['max'] + ' ' + tag + ' elements')
+                logger.critical(str(self) + ' must have at most ' + str(tag_map['max']) + ' ' + tag + ' elements')
                 sys.exit()
 
             if 'key' in tag_map:
@@ -760,13 +788,13 @@ class Model(object):
             if value is None:
                 return []
 
-            logger.debug('Appending ' + value.__class__.__name__ + ' to ' + self.get_tag())
+            logger.debug(str(self) + ' Setting .' + name + ' to ' + value.__class__.__name__ + '(' + str(value) + ')')
             if isinstance(value, Model):
                 sub_els.append(value.to_xml())
             elif isinstance(value, ET.Element):
                 sub_els.append(value)
             else:
-                raise ValueError('Unknown class to add to sub elemetns: ' + i.__class__.__name__)
+                raise ValueError(str(self) + ' Unknown class to add to sub elements: ' + value.__class__.__name__)
 
         return sub_els
 

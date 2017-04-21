@@ -22,6 +22,7 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class ModelType(Model):
     MODEL_MAP = {
+        'tag_name': 'model',
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}param': {'class': 'ParamType', 'map': 'params', 'key': 'name', 'min': 0, 'max': None},
         },

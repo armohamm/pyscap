@@ -24,6 +24,10 @@ from scap.model.xccdf_1_1.TestResultType import TestResultType
 from scap.model.xccdf_1_1.TextType import TextType
 from scap.model.xccdf_1_1.IdentityType import IdentityType
 from scap.model.xccdf_1_1.ProfileSetValueType import ProfileSetValueType
+from scap.model.xccdf_1_1.IdrefType import IdrefType
+from scap.model.xccdf_1_1.ScoreType import ScoreType
+
+from scap.model.xs_2001.String import String
 
 logger = logging.getLogger(__name__)
 class ProfileReporter(Reporter):
@@ -32,6 +36,7 @@ class ProfileReporter(Reporter):
 
         test_result = TestResultType(tag_name='TestResult')
 
+        # attributes
         test_result.id = TestResultType.generate_id()
 
         test_result.start_time = profile_facts['start_time']
@@ -42,6 +47,7 @@ class ProfileReporter(Reporter):
 
         test_result.Id = test_result.id
 
+        # elements
         t = TextType(tag_name='title')
         t.value = 'Results for ' + host.hostname + ', profile ' + self.model.id
         test_result.titles.append(t)
@@ -52,9 +58,10 @@ class ProfileReporter(Reporter):
 
         test_result.identity = IdentityType(tag_name='identity')
 
-        test_result.profile = self.model.id
+        test_result.profile = IdrefType(tag_name='profile')
+        test_result.profile.idref = self.model.id
 
-        test_result.targets.append(host.hostname)
+        test_result.targets.append(String(value=host.hostname, tag_name='target'))
 
         # TODO test_result.target_addresses =
 
@@ -71,7 +78,12 @@ class ProfileReporter(Reporter):
 
         # TODO test_result.rule_results =
 
-        # TODO test_result.scores =
+        for score in profile_facts['scores']:
+            s = ScoreType(tag_name='score', value=score['score'])
+            s.system = score['system']
+            if 'max_score' in score:
+                s.maximum = score['max_score']
+            test_result.scores.append(s)
 
         # TODO signature
 

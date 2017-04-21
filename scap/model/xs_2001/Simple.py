@@ -22,43 +22,29 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class Simple(Model):
     def __init__(self, value=None, tag_name=None):
-        super(Simple, self).__init__(tag_name=tag_name)
+        super(Simple, self).__init__(value=value, tag_name=tag_name)
 
-        if value is None:
-            self.value = None
-        else:
-            self.parse_value(value)
+        if value is not None:
+            self.text = value
 
     def parse_value(self, value):
-        self.value = value
-        return self.value
+        return value
 
     def produce_value(self, value):
         return str(value)
 
     def is_none(self):
-        return self.value is None
+        return self.text is None
 
     def __str__(self):
-        return self.__class__.__name__ + '(' + str(self.value) + ')'
+        return self.__class__.__name__ + '(' + str(self.text) + ')'
 
     def from_xml(self, parent, sub_el):
         super(Simple, self).from_xml(parent, sub_el)
 
-        if sub_el.text:
-            self.parse_value(sub_el.text)
-        else:
-            self.value = None
+        if sub_el.text is not None:
+            self.text = self.parse_value(sub_el.text)
 
     def to_xml(self):
-        el = ET.Element(self.get_tag())
-
-        for name in self.model_map['attributes']:
-            self.produce_attribute(name, el)
-
-        # should be no subelements as a Simple
-
-        if not self.is_none():
-            el.text = self.produce_value(self.value)
-
-        return el
+        self.text = self.produce_value(self.text)
+        return super(Simple, self).to_xml()

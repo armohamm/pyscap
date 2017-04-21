@@ -24,6 +24,5 @@ class GregorianYearMonth(Simple):
         for sep in ['-', '/', '.', ' ', ',']:
             if sep in value:
                 year, month = value.split(sep)
-                self.value = (year, month)
-                return self.value
+                return (year, month)
         raise ValueError('Unable to parse YearMonth')

@@ -21,5 +21,4 @@ import logging
 logger = logging.getLogger(__name__)
 class GregorianMonth(Simple):
     def parse_value(self, value):
-        self.value = int(value)
-        return self.value
+        return int(value)

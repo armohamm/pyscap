@@ -24,6 +24,9 @@ class GregorianMonthDay(Simple):
         for sep in ['-', '/', '.', ' ', ',']:
             if sep in value:
                 month, day = value.split(sep)
-                self.value = (month, day)
-                return self.value
+                return (month, day)
         raise ValueError('Unable to parse MonthDay')
+
+    def produce_value(self, value):
+        month, day = value
+        return str(month) + '-' + str(day)

@@ -43,7 +43,7 @@ NAMESPACES = {
     'http://www.cisecurity.org/xccdf/platform/0.2.3': 'xccdf_p_0_2_3',
     'http://www.w3.org/1999/xhtml': 'xhtml_1999',
     'http://www.w3.org/1999/xlink': 'xlink_1999',
-    'http://www.w3.org/XML/1998/namespace': 'xml_1998',
+    'http://www.w3.org/XML/1998/namespace': 'xml',
     'urn:oasis:names:tc:entity:xmlns:xml:catalog': 'xml_cat_1_1',
     'http://www.w3.org/2000/09/xmldsig#': 'xmldsig_2000_09',
     'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0': 'xnl_2_0',

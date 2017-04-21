@@ -39,5 +39,7 @@ class Date(Simple):
                 else:
                     tz = datetime.timezone.utc
 
-        self.value = datetime.datetime(int(year), int(month), int(day), 0, 0, 0, 0, tz)
-        return self.value
+        return datetime.datetime(int(year), int(month), int(day), 0, 0, 0, 0, tz)
+
+    def produce_value(self, value):
+        return value.strftime('%Y-%m-%d%z')

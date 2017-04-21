@@ -21,5 +21,4 @@ import logging
 logger = logging.getLogger(__name__)
 class Double(Simple):
     def parse_value(self, value):
-        self.value = float(value)
-        return self.value
+        return float(value)
