@@ -188,18 +188,8 @@ class Model(object):
                 # update the super class' element map with subclass
                 try:
                     super_elmap = class_.MODEL_MAP['elements'].copy()
-                    super_elmap.update(el_map)
+                    super_elmap.extend(el_map)
                     el_map = super_elmap
-                except KeyError:
-                    #logger.debug('Class ' + fq_class_name + ' does not have MODEL_MAP[elements] defined')
-                    pass
-
-
-                # update the super class' element map with subclass
-                try:
-                    super_el_order = class_.MODEL_MAP['element_order'].copy()
-                    super_el_order.extend(el_order)
-                    el_order = super_el_order
                 except KeyError:
                     #logger.debug('Class ' + fq_class_name + ' does not have MODEL_MAP[elements] defined')
                     pass
@@ -212,12 +202,20 @@ class Model(object):
                     logger.debug('Found xml namespace ' + NAMESPACES_reverse[module_parts[2]] + ' for model namespace ' + module_parts[2])
                     xml_namespace = NAMESPACES_reverse[module_parts[2]]
 
+            el_lookup = {}
+            for element_def in el_map:
+                if 'xml_namespace' in element_def:
+                    el_lookup['{' + element_def['xml_namespace'] + '}' + element_def['tag_name']] = element_def
+                else:
+                    # try using element's xml_namespace
+                    el_lookup['{' + xml_namespace + '}' + element_def['tag_name']] = element_def
+
             Model.maps[fq_model_class_name] = {
                 'xml_namespace': xml_namespace,
                 'tag_name': tag_name,
                 'attributes': at_map,
                 'elements': el_map,
-                'element_order': el_order,
+                'element_lookup': el_lookup,
             }
         return Model.maps[fq_model_class_name]
 
@@ -264,37 +262,34 @@ class Model(object):
                 setattr(self, attr_name, None)
 
         # initialize elements
-        for tag in self.model_map['element_order']:
-            xml_namespace, tag_name = Model.parse_tag(tag)
-            tag_map = self.model_map['elements'][tag]
-
-            if tag.endswith('*'):
-                if 'in' in tag_map:
-                    name = tag_map['in']
+        for element_def in self.model_map['elements']:
+            if element_def['tag_name'].endswith('*'):
+                if 'in' in element_def:
+                    name = element_def['in']
                 else:
-                    name = '_tags'
+                    name = '_elements'
 
                 if name not in list(self.__dict__.keys()):
                     logger.debug('Initializing ' + name + ' to []')
                     setattr(self, name, [])
 
-            elif 'append' in tag_map:
+            elif 'append' in element_def:
                 # initialze the array if it doesn't exist
-                if tag_map['append'] not in list(self.__dict__.keys()):
-                    logger.debug('Initializing ' + tag_map['append'] + ' to []')
-                    setattr(self, tag_map['append'], [])
+                if element_def['append'] not in list(self.__dict__.keys()):
+                    logger.debug('Initializing ' + element_def['append'] + ' to []')
+                    setattr(self, element_def['append'], [])
 
-            elif 'map' in tag_map:
+            elif 'map' in element_def:
                 # initialze the dict if it doesn't exist
-                if tag_map['map'] not in list(self.__dict__.keys()):
-                    logger.debug('Initializing ' + tag_map['map'] + ' to {}')
-                    setattr(self, tag_map['map'], {})
+                if element_def['map'] not in list(self.__dict__.keys()):
+                    logger.debug('Initializing ' + element_def['map'] + ' to {}')
+                    setattr(self, element_def['map'], {})
 
             else:
-                if 'in' in tag_map:
-                    name = tag_map['in']
+                if 'in' in element_def:
+                    name = element_def['in']
                 else:
-                    name = tag_name.replace('-', '_')
+                    name = element_def['tag_name'].replace('-', '_')
 
                 if name not in list(self.__dict__.keys()):
                     logger.debug('Initializing ' + name + ' to None')
@@ -372,20 +367,18 @@ class Model(object):
             else:
                 sub_el_counts[sub_el.tag] += 1
 
-        for tag in self.model_map['element_order']:
-            tag_map = self.model_map['elements'][tag]
-
+        for element_def in self.model_map['elements']:
             min_ = 1
-            if 'map' in tag_map or 'append' in tag_map:
+            if 'map' in element_def or 'append' in element_def:
                 # maps and appends default to no max
                 max_ = None
             else:
                 max_ = 1
 
-            if 'min' in tag_map:
-                min_ = tag_map['min']
-            if 'max' in tag_map:
-                max_ = tag_map['max']
+            if 'min' in element_def:
+                min_ = element_def['min']
+            if 'max' in element_def:
+                max_ = element_def['max']
 
             if min_ == 0:
                 pass
@@ -395,13 +388,13 @@ class Model(object):
 
             if max_ is None:
                 pass
-            elif tag in sub_el_counts and sub_el_counts[tag] > max_:
-                logger.critical(self.__class__.__name__ + ' must have at most ' + str(max_) + ' ' + tag + ' elements')
+            elif element_def['tag_name'] in sub_el_counts and sub_el_counts[element_def['tag_name']] > max_:
+                logger.critical(self.__class__.__name__ + ' must have at most ' + str(max_) + ' ' + element_def['tag_name'] + ' elements')
                 sys.exit()
 
         self.text = el.text
 
-    def _parse_value_as_type(self, value, type_):
+    def _load_type_class(self, type_):
         if '.' in type_:
             try:
                 mod = importlib.import_module('scap.model.' + type_)
@@ -417,26 +410,14 @@ class Model(object):
                     mod = importlib.import_module('scap.model.' + model_namespace + '.' + type_)
                 except ImportError:
                     raise NotImplementedError('Type value ' + type_ + ' not defined in scap.model.xs_2001 or local namespace (scap.model.' + model_namespace + ')')
-        class_ = getattr(mod, type_)
+        return getattr(mod, type_)
+
+    def _parse_value_as_type(self, value, type_):
+        class_ = self._load_type_class(type_)
         return class_().parse_value(value)
 
     def _produce_value_as_type(self, value, type_):
-        if '.' in type_:
-            try:
-                mod = importlib.import_module('scap.model.' + type_)
-                type_ = type_.partition('.')[2]
-            except ImportError:
-                raise NotImplementedError('Type value scap.model.' + type_ + ' was not found')
-        else:
-            try:
-                mod = importlib.import_module('scap.model.xs_2001.' + type_)
-            except ImportError:
-                model_namespace = self.get_model_namespace()
-                try:
-                    mod = importlib.import_module('scap.model.' + model_namespace + '.' + type_)
-                except ImportError:
-                    raise NotImplementedError('Type value ' + type_ + ' not defined in scap.model.xs_2001 or local namespace (scap.model.' + model_namespace + ')')
-        class_ = getattr(mod, type_)
+        class_ = self._load_type_class(type_)
         return class_().produce_value(value)
 
     def parse_attribute(self, name, value):
@@ -484,32 +465,33 @@ class Model(object):
 
         for tag in [el.tag, tag_name, ns_any, '*']:
             # check both namespace + tag_name and just tag_name
-            if tag not in self.model_map['elements']:
+            if tag not in self.model_map['element_lookup']:
                 continue
 
             logger.debug('Tag ' + el.tag + ' matched ' + tag)
-            tag_map = self.model_map['elements'][tag]
+            element_def = self.model_map['element_lookup'][tag]
 
-            if 'notImplemented' in tag_map and tag_map['notImplemented']:
+            if 'notImplemented' in element_def and element_def['notImplemented']:
                 raise NotImplementedError(tag + ' element support is not implemented')
 
             if tag.endswith('*'):
                 logger.debug(str(self) + ' parsing ' + tag + ' elements matching *')
-                if 'in' in tag_map:
-                    name = tag_map['in']
+                if 'in' in element_def:
+                    name = element_def['in']
                 else:
-                    name = '_tags'
+                    name = '_elements'
 
                 lst = getattr(self, name)
 
-                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
+                and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
-                    if 'nillable' in tag_map and tag_map['nillable']:
+                    if 'nillable' in element_def and element_def['nillable']:
                         value = None
                     else:
                         raise ValueError(el.tag + ' is nil, but not expecting nil value')
-                elif 'type' in tag_map:
-                    value = self._parse_value_as_type(el.text, tag_map['type'])
+                elif 'type' in element_def:
+                    value = self._parse_value_as_type(el.text, element_def['type'])
                 else:
                     value = Model.load(self, el)
                     value.tag_name = tag_name
@@ -517,70 +499,70 @@ class Model(object):
                 lst.append(value)
                 logger.debug('Appended ' + str(value) + ' to ' + name)
 
-            elif 'append' in tag_map:
-                logger.debug(str(self) + ' parsing ' + tag + ' elements from ' + tag_map['append'])
-                lst = getattr(self, tag_map['append'])
+            elif 'append' in element_def:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements into ' + element_def['append'])
+                lst = getattr(self, element_def['append'])
 
                 if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
-                    if 'nillable' in tag_map and tag_map['nillable']:
+                    if 'nillable' in element_def and element_def['nillable']:
                         value = None
                     else:
                         raise ValueError(el.tag + ' is nil, but not expecting nil value')
-                elif 'type' in tag_map:
-                    value = self._parse_value_as_type(el.text, tag_map['type'])
+                elif 'type' in element_def:
+                    value = self._parse_value_as_type(el.text, element_def['type'])
                 else:
                     value = Model.load(self, el)
                     value.tag_name = tag_name
 
                 lst.append(value)
-                logger.debug('Appended ' + str(value) + ' to ' + tag_map['append'])
+                logger.debug('Appended ' + str(value) + ' to ' + element_def['append'])
 
-            elif 'map' in tag_map:
-                logger.debug(str(self) + ' parsing ' + tag + ' elements from ' + tag_map['map'])
-                dic = getattr(self, tag_map['map'])
+            elif 'map' in element_def:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements into ' + element_def['map'])
+                dic = getattr(self, element_def['map'])
 
-                if 'key' in tag_map:
+                if 'key' in element_def:
                     try:
-                        key = el.get(tag_map['key'])
+                        key = el.get(element_def['key'])
                     except KeyError:
                         key = None
                 # TODO: implement keyElement as well
                 else:
                     key = el.get('id')
                     if key is None:
-                        raise ValueError('Unable to determine key name for map ' + tag_map['map'] + ' in ' + self.__class__.__name__)
+                        raise ValueError('Unable to determine key name for map ' + element_def['map'] + ' in ' + self.__class__.__name__)
 
                 if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
-                    if 'nillable' in tag_map and tag_map['nillable']:
+                    if 'nillable' in element_def and element_def['nillable']:
                         value = None
                     else:
                         raise ValueError(el.tag + ' is nil, but not expecting nil value')
-                elif 'value' in tag_map:
+                elif 'value' in element_def:
                     try:
-                        if 'type' in tag_map:
-                            value = self._parse_value_as_type(value, tag_map['type'])
+                        if 'type' in element_def:
+                            value = self._parse_value_as_type(value, element_def['type'])
                         else:
-                            value = el.get(tag_map['value'])
+                            value = el.get(element_def['value'])
                     except KeyError:
                         value = None
                 # TODO: implement valueElement? as well
                 else:
-                    if 'type' in tag_map:
-                        value = self._parse_value_as_type(el.text, tag_map['type'])
+                    if 'type' in element_def:
+                        value = self._parse_value_as_type(el.text, element_def['type'])
                     else:
                         value = Model.load(self, el)
                         value.tag_name = tag_name
 
                 dic[key] = value
-                logger.debug('Mapped ' + str(key) + ' to ' + str(value) + ' in ' + tag_map['map'])
+                logger.debug('Mapped ' + str(key) + ' to ' + str(value) + ' in ' + element_def['map'])
 
-            elif 'class' in tag_map:
-                logger.debug(str(self) + ' parsing ' + tag + ' elements as ' + tag_map['class'])
+            elif 'class' in element_def:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements as ' + element_def['class'])
                 if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
-                    if 'nillable' in tag_map and tag_map['nillable']:
+                    if 'nillable' in element_def and element_def['nillable']:
                         value = None
                     else:
                         raise ValueError(el.tag + ' is nil, but not expecting nil value')
@@ -588,40 +570,40 @@ class Model(object):
                     value = Model.load(self, el)
                     value.tag_name = tag_name
 
-                if 'in' in tag_map:
-                    name = tag_map['in']
+                if 'in' in element_def:
+                    name = element_def['in']
                 else:
                     name = tag_name.replace('-', '_')
 
                 setattr(self, name, value)
                 logger.debug('Set attribute ' + str(name) + ' to ' + str(value) + ' in ' + str(self))
 
-            elif 'type' in tag_map:
-                logger.debug(str(self) + ' parsing ' + tag + ' elements as ' + tag_map['type'])
+            elif 'type' in element_def:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements as ' + element_def['type'])
                 if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
-                    if 'nillable' in tag_map and tag_map['nillable']:
+                    if 'nillable' in element_def and element_def['nillable']:
                         value = None
                     else:
                         raise ValueError(el.tag + ' is nil, but not expecting nil value')
                 else:
-                    value = self._parse_value_as_type(el.text, tag_map['type'])
+                    value = self._parse_value_as_type(el.text, element_def['type'])
 
-                if 'in' in tag_map:
-                    name = tag_map['in']
+                if 'in' in element_def:
+                    name = element_def['in']
                 else:
                     name = tag_name.replace('-', '_')
 
                 setattr(self, name, value)
                 logger.debug('Set attribute ' + str(name) + ' to ' + str(value) + ' in ' + str(self))
 
-            elif 'enum' in tag_map:
-                logger.debug(str(self) + ' parsing ' + tag + ' elements from enum ' + tag_map['enum'])
-                if el.text not in tag_map['enum']:
-                    raise ValueError(tag + ' value must be one of ' + str(tag_map['enum']))
+            elif 'enum' in element_def:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements from enum ' + element_def['enum'])
+                if el.text not in element_def['enum']:
+                    raise ValueError(tag + ' value must be one of ' + str(element_def['enum']))
 
-                if 'in' in tag_map:
-                    name = tag_map['in']
+                if 'in' in element_def:
+                    name = element_def['in']
                 else:
                     name = tag_name.replace('-', '_')
 
@@ -659,8 +641,8 @@ class Model(object):
         for name in self.model_map['attributes']:
             value = self.produce_attribute(name, el)
 
-        for tag in self.model_map['element_order']:
-            el.extend(self.produce_sub_elements(tag))
+        for element_def in self.model_map['elements']:
+            el.extend(self.produce_sub_elements(element_def))
 
         if self.tail is not None:
             el.tail = str(self.tail)
@@ -714,7 +696,7 @@ class Model(object):
             # TODO nillable
             # if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
             #     # check if we can accept nil
-            #     if 'nillable' in tag_map and tag_map['nillable']:
+            #     if 'nillable' in element_def and element_def['nillable']:
             #         value = None
             #     else:
             #         raise ValueError(el.tag + ' is nil, but not expecting nil value')
@@ -731,28 +713,26 @@ class Model(object):
         else:
             raise ValueError(str(self) + ' Unable to produce attribute ' + attr_name + '; no class, type or enum definition')
 
-    def produce_sub_elements(self, tag):
+    def produce_sub_elements(self, element_def):
         sub_els = []
-        xml_namespace, tag_name = Model.parse_tag(tag)
-        tag_map = self.model_map['elements'][tag]
 
-        if tag.endswith('*'):
-            if 'in' in tag_map:
-                name = tag_map['in']
+        if element_def['tag_name'].endswith('*'):
+            if 'in' in element_def:
+                name = element_def['in']
             else:
-                name = '_tags'
+                name = '_elements'
 
             lst = getattr(self, name)
-            logger.debug(str(self) + ' Appending ' + tag + ' elements from append ' + name)
+            logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from wildcard ' + name)
 
             # check minimum tag count
-            if 'min' in tag_map and tag_map['min'] > len(lst):
-                logger.critical(str(self) + ' must have at least ' + str(tag_map['min']) + ' ' + tag + ' elements')
+            if 'min' in element_def and element_def['min'] > len(lst):
+                logger.critical(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements')
                 sys.exit()
 
             # check maximum tag count
-            if 'max' in tag_map and tag_map['max'] is not None and tag_map['max'] <= len(lst):
-                logger.critical(str(self) + ' must have at most ' + str(tag_map['max']) + ' ' + tag + ' elements')
+            if 'max' in element_def and element_def['max'] is not None and element_def['max'] <= len(lst):
+                logger.critical(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements')
                 sys.exit()
 
             for i in lst:
@@ -764,73 +744,77 @@ class Model(object):
                     el = ET.Element(tag)
                     el.text = i
                     sub_els.append(el)
-        elif 'append' in tag_map:
-            name = tag_map['append']
+        elif 'append' in element_def:
+            name = element_def['append']
 
             lst = getattr(self, name)
-            logger.debug(str(self) + ' Appending ' + tag + ' elements from append ' + name)
+            logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from append ' + name)
 
             # check minimum tag count
-            if 'min' in tag_map and tag_map['min'] > len(lst):
-                logger.critical(str(self) + ' must have at least ' + str(tag_map['min']) + ' ' + tag + ' elements')
+            if 'min' in element_def and element_def['min'] > len(lst):
+                logger.critical(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements')
                 sys.exit()
 
             # check maximum tag count
-            if 'max' in tag_map and tag_map['max'] is not None and tag_map['max'] <= len(lst):
-                logger.critical(str(self) + ' must have at most ' + str(tag_map['max']) + ' ' + tag + ' elements')
+            if 'max' in element_def and element_def['max'] is not None and element_def['max'] <= len(lst):
+                logger.critical(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements')
                 sys.exit()
 
             for i in lst:
-                if 'class' in tag_map or 'type' in tag_map:
+                if 'class' in element_def or 'type' in element_def:
                     if isinstance(i, Model):
                         sub_els.append(i.to_xml())
                     elif isinstance(i, ET.Element):
                         sub_els.append(i)
                     else:
-                        raise ValueError(str(self) + ' Unknown class of ' + tag + ' to add to sub elements: ' + i.__class__.__name__)
+                        raise ValueError(str(self) + ' Unknown class of ' + element_def['tag_name'] + ' to add to sub elements: ' + i.__class__.__name__)
                 else:
                     el = ET.Element(tag)
                     el.text = i
                     sub_els.append(el)
-        elif 'map' in tag_map:
-            dic = getattr(self, tag_map['map'])
-            logger.debug(str(self) + ' Appending ' + tag + ' elements from map ' + tag_map['map'])
+        elif 'map' in element_def:
+            dic = getattr(self, element_def['map'])
+            logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from map ' + element_def['map'])
 
             # check minimum tag count
-            if 'min' in tag_map and tag_map['min'] > len(dic):
-                logger.critical(str(self) + ' must have at least ' + str(tag_map['min']) + ' ' + tag + ' elements')
+            if 'min' in element_def and element_def['min'] > len(dic):
+                logger.critical(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements')
                 sys.exit()
 
             # check maximum tag count
-            if 'max' in tag_map and tag_map['max'] is not None and tag_map['max'] <= len(dic):
-                logger.critical(str(self) + ' must have at most ' + str(tag_map['max']) + ' ' + tag + ' elements')
+            if 'max' in element_def and element_def['max'] is not None and element_def['max'] <= len(dic):
+                logger.critical(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements')
                 sys.exit()
 
-            if 'key' in tag_map:
-                key_name = tag_map['key']
+            if 'key' in element_def:
+                key_name = element_def['key']
             else:
                 key_name = 'id'
+
             for k,v in list(dic.items()):
-                if 'class' in tag_map:
+                if 'class' in element_def:
                     sub_els.append(v.to_xml())
-                elif 'type' in tag_map:
-                    sub_els.append()
+                elif 'type' in element_def:
+                    class_ = self._load_type_class(element_def['type'])
+                    inst = class_(value=v, tag_name=element_def['tag_name'])
+                    inst.id = k
+                    sub_els.append(inst.to_xml())
                 else:
-                    el = ET.Element(tag)
+                    el = ET.Element('{' + element_def['xml_namespace'] + '}' + element_def['tag_name'])
                     el.set(key_name, k)
 
-                    if 'value' in tag_map:
-                        value_name = tag_map['value']
-                        el.set(value_name, v)
+                    if 'value' in element_def:
+                        value_name = element_def['value']
+                        el.set(element_def, v)
                     else:
                         el.text = v
                     sub_els.append(el)
 
-        elif 'class' in tag_map or 'type' in tag_map or 'enum' in tag_map:
-            if 'in' in tag_map:
-                name = tag_map['in']
+        elif 'class' in element_def or 'type' in element_def or 'enum' in element_def:
+            if 'in' in element_def:
+                name = element_def['in']
             else:
-                name = tag_name.replace('-', '_')
+                name = element_def['tag_name'].replace('-', '_')
 
             value = getattr(self, name)
             if value is None:
