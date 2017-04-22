@@ -24,7 +24,7 @@ class NoticeType(String):
         'attributes': {
             'id': {'required': True, 'type': 'NCName'},
         },
-        'elements': {
-            '{http://www.w3.org/1999/xhtml}*': {'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
+        ],
     }

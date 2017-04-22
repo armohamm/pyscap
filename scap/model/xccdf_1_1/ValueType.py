@@ -25,20 +25,19 @@ from scap.model.xccdf_1_1.InterfaceHintEnumeration import INTERFACE_HINT_ENUMERA
 logger = logging.getLogger(__name__)
 class ValueType(ItemType):
     MODEL_MAP = {
-        'elements': {
+        'elements': [
             # TODO: at least one value
             # TODO: since order matters in xml (and for values) we might need a list vs. dict here
 
-            '{http://checklists.nist.gov/xccdf/1.1}value': {'class': 'SelStringType', 'map': 'values', 'key': 'selector', 'min': 1, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}default': {'class': 'SelStringType', 'map': 'defaults', 'key': 'selector', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}match': {'class': 'SelStringType', 'map': 'matches', 'key': 'selector', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}lower-bound': {'class': 'SelNumType', 'map': 'lower_bounds', 'key': 'selector', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}upper-bound': {'class': 'SelNumType', 'map': 'upper_bounds', 'key': 'selector', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}choices': {'class': 'SelChoicesType', 'map': 'choice_selections', 'key': 'selector', 'min': 0, 'max': None},
-
-            '{http://checklists.nist.gov/xccdf/1.1}source': {'class': 'UriRefType', 'append': 'sources', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
-        },
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'value', 'class': 'SelStringType', 'map': 'values', 'key': 'selector', 'min': 1, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'default', 'class': 'SelStringType', 'map': 'defaults', 'key': 'selector', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'match', 'class': 'SelStringType', 'map': 'matches', 'key': 'selector', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'lower-bound', 'class': 'SelNumType', 'map': 'lower_bounds', 'key': 'selector', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'upper-bound', 'class': 'SelNumType', 'map': 'upper_bounds', 'key': 'selector', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'choices', 'class': 'SelChoicesType', 'map': 'choice_selections', 'key': 'selector', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'source', 'class': 'UriRefType', 'append': 'sources', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
+        ],
         'attributes': {
             'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'string'},
             'operator': {'enum': VALUE_OPERATOR_ENUMERATION, 'default': 'equals'},

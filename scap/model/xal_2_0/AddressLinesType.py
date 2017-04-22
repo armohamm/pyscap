@@ -23,8 +23,7 @@ logger = logging.getLogger(__name__)
 class AddressLinesType(Model):
     MODEL_MAP = {
         'tag_name': 'AddressLines',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},'*': {},
+        ],
     }

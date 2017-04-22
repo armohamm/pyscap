@@ -22,12 +22,12 @@ import logging
 logger = logging.getLogger(__name__)
 class CriteriaType(Model):
     MODEL_MAP = {
-        'elements': {
+        'elements': [
             # TODO minOccurs="1" maxOccurs="unbounded" of the following:
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria': {'append': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': None},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion': {'append': 'criteria', 'class': 'CriterionType', 'min': 0, 'max': None},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}extend_definition': {'append': 'criteria', 'class': 'ExtendDefinitionType', 'min': 0, 'max': None},
-        },
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'criteria', 'append': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'criterion', 'append': 'criteria', 'class': 'CriterionType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'extend_definition', 'append': 'criteria', 'class': 'ExtendDefinitionType', 'min': 0, 'max': None},
+        ],
         'attributes': {
             'applicability_check': {'type': 'Boolean'},
             'operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},

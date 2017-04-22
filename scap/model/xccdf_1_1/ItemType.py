@@ -23,15 +23,15 @@ logger = logging.getLogger(__name__)
 class ItemType(Extendable):
     MODEL_MAP = {
         # abstract
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}status': {'class': 'StatusType', 'append': 'statuses', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}version': {'class': 'VersionType', 'min': 0, 'max': 1},
-            '{http://checklists.nist.gov/xccdf/1.1}title': {'append': 'titles', 'class': 'TextWithSubType', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}description': {'append': 'descriptions', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
-            '{http://checklists.nist.gov/xccdf/1.1}warning': {'class': 'WarningType', 'min': 0, 'max': None, 'type': 'String', 'append': 'warnings'},
-            '{http://checklists.nist.gov/xccdf/1.1}question': {'append': 'questions', 'class': 'TextType', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}reference': {'append': 'references', 'min': 0, 'max': None, 'class': 'ReferenceType'},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'status', 'class': 'StatusType', 'append': 'statuses', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'title', 'append': 'titles', 'class': 'TextWithSubType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'description', 'append': 'descriptions', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'warning', 'class': 'WarningType', 'min': 0, 'max': None, 'type': 'String', 'append': 'warnings'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'question', 'append': 'questions', 'class': 'TextType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'reference', 'append': 'references', 'min': 0, 'max': None, 'class': 'ReferenceType'},
+        ],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             'abstract': {'type': 'Boolean', 'default': False},

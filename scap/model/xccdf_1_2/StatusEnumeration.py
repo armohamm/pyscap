@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-STATUS_ENUMERATION = {
+STATUS_ENUMERATION = [
     'accepted',
     'deprecated',
     'draft',
     'incomplete',
     'interim',
-}
+]

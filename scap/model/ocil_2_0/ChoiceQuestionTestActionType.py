@@ -21,7 +21,7 @@ import logging
 logger = logging.getLogger(__name__)
 class ChoiceQuestionTestActionType(QuestionTestActionType):
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/ocil/2.0}when_choice': {'append': 'when_choices', 'class': 'ChoiceTestActionConditionType', 'min': 1, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'when_choice', 'append': 'when_choices', 'class': 'ChoiceTestActionConditionType', 'min': 1, 'max': None},
+        ],
     }

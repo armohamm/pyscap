@@ -23,12 +23,12 @@ logger = logging.getLogger(__name__)
 class ActiveDirectory57StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'activedirectory57_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}naming_context': {'class': 'EntityStateNamingContextType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}relative_dn': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}attribute': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}object_class': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}adstype': {'class': 'EntityStateAdstypeType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}value': {'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'naming_context', 'class': 'EntityStateNamingContextType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'relative_dn', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'attribute', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'object_class', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'adstype', 'class': 'EntityStateAdstypeType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'value', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
+        ],
     }

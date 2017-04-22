@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 class ReportRequestContentElement(Model):
     MODEL_MAP = {
         'tag_name': 'content',
-        'elements': {
-            '*': {},
-        },
+        'elements': [
+            {'tag_name': '*'},
+        ],
         'attributes': {
             '*': {},
         }

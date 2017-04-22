@@ -16,7 +16,6 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    '{http://oval.mitre.org/XMLSchema/oval-common-5}deprecated_info': {'class': 'DeprecatedInfoElement'},
-    '{http://oval.mitre.org/XMLSchema/oval-common-5}element_mapping': {'class': 'ElementMappingElement'},
-    '{http://oval.mitre.org/XMLSchema/oval-common-5}notes': {'class': 'NotesElement'},
-}
+    {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'deprecated_info', 'class': 'DeprecatedInfoElement'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'element_mapping', 'class': 'ElementMappingElement'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'notes', 'class': 'NotesElement'},}

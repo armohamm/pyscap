@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class ReportRequestsType(Model):
     MODEL_MAP = {
         'tag_name': 'report-requests',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}report-request': {'append': 'report_requests', 'class': 'ReportRequestType', 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1', 'tag_name': 'report-request', 'append': 'report_requests', 'class': 'ReportRequestType', 'max': None},
+        ],
     }

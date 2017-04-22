@@ -23,10 +23,9 @@ logger = logging.getLogger(__name__)
 class XNLElement(Model):
     MODEL_MAP = {
         'tag_name': 'xNL',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}NameDetails': {'append': 'name_details', 'class': 'NameDetailsType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'NameDetails', 'append': 'name_details', 'class': 'NameDetailsType'},'*': {},
+        ],
         'attributes': {
             'Version': {},
             '*': {},

@@ -22,13 +22,13 @@ import logging
 logger = logging.getLogger(__name__)
 class DefinitionType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://www.w3.org/2000/09/xmldsig#}Signature': {'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}metadata': {'class': 'MetadataType'},
-            '{http://oval.mitre.org/XMLSchema/oval-common-5}notes': {'class': 'NotesType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}notes': {'class': 'NotesType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}criteria': {'class': 'CriteriaType', 'min': 0, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'metadata', 'class': 'MetadataType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': 1},
+        ],
         'attributes': {
             'id': {'type': 'oval_common_5.DefinitionIDPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},

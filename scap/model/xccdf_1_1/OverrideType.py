@@ -23,11 +23,11 @@ from scap.model.xccdf_1_1.ResultEnumeration import RESULT_ENUMERATION
 logger = logging.getLogger(__name__)
 class OverrideType(Decimal):
     MODEL_MAP = {
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}old-result': {'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
-            '{http://checklists.nist.gov/xccdf/1.1}new-result': {'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
-            '{http://checklists.nist.gov/xccdf/1.1}remark': {'class': 'TextType', 'min': 1, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'old-result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'new-result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'remark', 'class': 'TextType', 'min': 1, 'max': 1},
+        ],
         'attributes': {
             'time': {'type': 'DateTime', 'required': True},
             'authority': {'type': 'String', 'required': True},

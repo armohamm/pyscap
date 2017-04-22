@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class RelationshipsContainerType(Model):
     # abstract
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/reporting-core/1.1}relationships': {'class': 'RelationshipsType'},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/reporting-core/1.1', 'tag_name': 'relationships', 'class': 'RelationshipsType'},
+        ],
     }

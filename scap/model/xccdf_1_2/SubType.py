@@ -25,7 +25,7 @@ class SubType(IDRefType):
         'attributes': {
             'use': {'enum': SUB_USE_ENUMERATION, 'default': 'value'},
         },
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.2}sub': {'class': 'SubType', 'append': 'subs'},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'sub', 'class': 'SubType', 'append': 'subs'},
+        ],
     }

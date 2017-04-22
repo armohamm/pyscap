@@ -22,9 +22,9 @@ logger = logging.getLogger(__name__)
 class DnsCacheStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'dnscache_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}domain_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}ttl': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}ip_address': {'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'domain_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'ttl', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'ip_address', 'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
+        ],
     }

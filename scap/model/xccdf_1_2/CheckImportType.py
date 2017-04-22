@@ -25,7 +25,7 @@ class CheckImportType(Model):
             'import-name': {'type': 'String', 'required': True},
             'import-xpath': {'type': 'String'}
         },
-        'elements': {
-            '*': {'min': 0},
-        },
+        'elements': [
+            {'tag_name': '*', 'min': 0},
+        ],
     }

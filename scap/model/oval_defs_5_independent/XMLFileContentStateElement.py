@@ -22,12 +22,12 @@ logger = logging.getLogger(__name__)
 class XMLFileContentStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'xmlfilecontent_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}path': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filename': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}xpath': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}value_of': {'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}windows_view': {'class': 'EntityStateWindowsViewType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'filepath', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'path', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'filename', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'xpath', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'value_of', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'windows_view', 'class': 'EntityStateWindowsViewType', 'min': 0},
+        ],
     }

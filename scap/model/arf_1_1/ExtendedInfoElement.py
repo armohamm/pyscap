@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 class ExtendedInfoElement(Model):
     MODEL_MAP = {
         'tag_name': 'extended-info',
-        'elements': {
-            '*': {},
-        },
+        'elements': [
+            {'tag_name': '*'},
+        ],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             '*': {},

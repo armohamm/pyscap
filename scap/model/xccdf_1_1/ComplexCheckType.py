@@ -23,11 +23,11 @@ from scap.model.xccdf_1_1.CheckOperatorEnumeration import CHECK_OPERATOR_ENUMERA
 logger = logging.getLogger(__name__)
 class ComplexCheckType(Model):
     MODEL_MAP = {
-        'elements': {
+        'elements': [
             # TODO: ensure checks has at least 1
-            '{http://checklists.nist.gov/xccdf/1.1}check': {'class': 'CheckType', 'min': 0, 'max': None, 'append': 'checks'},
-            '{http://checklists.nist.gov/xccdf/1.1}complex-check': {'class': 'ComplexCheckType', 'min': 0, 'max': None, 'append': 'checks'},
-        },
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'append': 'checks'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': None, 'append': 'checks'},
+        ],
         'attributes': {
             'operator': {'enum': CHECK_OPERATOR_ENUMERATION, 'required': True},
             'negate': {'type': 'Boolean', 'default': False},

@@ -22,10 +22,10 @@ logger = logging.getLogger(__name__)
 class VariablesType(Model):
     MODEL_MAP = {
         'tag_name' : 'variables',
-        'elements': {
+        'elements': [
             # TODO: minOccurs="1" maxOccurs="unbounded"
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}external_variable': {'map': 'variables', 'class': 'ExternalVariableElement', 'min': 0, 'max': None},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}constant_variable': {'map': 'variables', 'class': 'ConstantVariableElement', 'min': 0, 'max': None},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}local_variable': {'map': 'variables', 'class': 'LocalVariableElement', 'min': 0, 'max': None},
-        },
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'external_variable', 'map': 'variables', 'class': 'ExternalVariableElement', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'constant_variable', 'map': 'variables', 'class': 'ConstantVariableElement', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'local_variable', 'map': 'variables', 'class': 'LocalVariableElement', 'min': 0, 'max': None},
+        ],
     }

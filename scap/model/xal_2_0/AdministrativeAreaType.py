@@ -23,15 +23,15 @@ logger = logging.getLogger(__name__)
 class AdministrativeAreaType(Model):
     MODEL_MAP = {
         'tag_name': 'AdministrativeArea',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AdministrativeAreaName': {'append': 'administrative_areas', 'class': 'AdministrativeAreaNameType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}SubAdministrativeArea': {'in': 'sub_administrative_area', 'class': 'SubAdministrativeAreaNameType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Locality': {'in': 'locality', 'class': 'LocalityType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostOffice': {'in': 'post_office', 'class': 'PostOfficeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalCode': {'in': 'postal_code', 'class': 'PostalCodeType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AdministrativeAreaName', 'append': 'administrative_areas', 'class': 'AdministrativeAreaNameType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'SubAdministrativeArea', 'in': 'sub_administrative_area', 'class': 'SubAdministrativeAreaNameType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Locality', 'in': 'locality', 'class': 'LocalityType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostOffice', 'in': 'post_office', 'class': 'PostOfficeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
+            {'tag_name': '*'},
+        ],
         'attributes': {
             'Type': {},
             'UsageType': {},

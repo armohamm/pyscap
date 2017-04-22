@@ -23,15 +23,15 @@ logger = logging.getLogger(__name__)
 class CmdletObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'cmdlet_object',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'oval_defs_5.SetElement', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}module_name': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True, 'min': 1, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}module_id': {'class': 'EntityObjectGUIDType', 'nillable': True, 'min': 1, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}module_version': {'class': 'EntityObjectVersionType', 'nillable': True, 'min': 1, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}verb': {'class': 'EntityObjectCmdletVerbType', 'nillable': True, 'min': 1, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}noun': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True, 'min': 1, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}parameters': {'class': 'oval_defs_5.EntityObjectRecordType', 'nillable': True},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}select': {'class': 'oval_defs_5.EntityObjectRecordType', 'nillable': True},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'module_name', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True, 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'module_id', 'class': 'EntityObjectGUIDType', 'nillable': True, 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'module_version', 'class': 'EntityObjectVersionType', 'nillable': True, 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'verb', 'class': 'EntityObjectCmdletVerbType', 'nillable': True, 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'noun', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True, 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'parameters', 'class': 'oval_defs_5.EntityObjectRecordType', 'nillable': True},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'select', 'class': 'oval_defs_5.EntityObjectRecordType', 'nillable': True},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
+        ],
     }

@@ -22,9 +22,9 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class ReferenceType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://purl.org/dc/elements/1.1/}*': {'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 0},
+        ],
         'attributes': {
             'href': {'type': 'AnyURI'},
             'override': {'type': 'Boolean'},

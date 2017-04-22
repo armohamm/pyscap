@@ -22,12 +22,12 @@ logger = logging.getLogger(__name__)
 class LDAP57ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'ldap57_object',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'SetElement'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}behaviors': {'class': 'LdapBehaviors', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}suffix': {'class': 'oval_defs_5.EntityObjectStringType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}relative_dn': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}attribute': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'FilterElement', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'behaviors', 'class': 'LdapBehaviors', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'suffix', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'relative_dn', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'attribute', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
+        ],
     }

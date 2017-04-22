@@ -23,15 +23,15 @@ logger = logging.getLogger(__name__)
 class CountryType(Model):
     MODEL_MAP = {
         'tag_name': 'Country',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}CountryNameCode': {'append': 'country_codes', 'class': 'CountryNameCodeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}CountryName': {'append': 'countries', 'class': 'CountryNameType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AdministrativeArea': {'in': 'administrative_area', 'class': 'AdministrativeAreaType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Locality': {'in': 'locality', 'class': 'LocalityType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Thoroughfare': {'in': 'thoroughfare', 'class': 'ThoroughfareType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'CountryNameCode', 'append': 'country_codes', 'class': 'CountryNameCodeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'CountryName', 'append': 'countries', 'class': 'CountryNameType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AdministrativeArea', 'in': 'administrative_area', 'class': 'AdministrativeAreaType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Locality', 'in': 'locality', 'class': 'LocalityType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Thoroughfare', 'in': 'thoroughfare', 'class': 'ThoroughfareType'},
+            {'tag_name': '*'},
+        ],
         'attributes': {
             '*': {},
         }

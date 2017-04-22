@@ -23,19 +23,19 @@ logger = logging.getLogger(__name__)
 class PostalServiceElementsType(Model):
     MODEL_MAP = {
         'tag_name': 'PostalServiceElements',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressIdentifier': {'append': 'address_identifiers', 'class': 'AddressIdentifierType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}EndorsementLineCode': {'class': 'EndorsementLineCodeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}KeyLineCode': {'class': 'KeyLineCodeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Barcode': {'class': 'BarcodeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}SortingCode': {'class': 'SortingCodeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLatitude': {'class': 'AddressLatitudeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLatitudeDirection': {'class': 'AddressLatitudeDirectionType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLongitude': {'class': 'AddressLongitudeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLongitudeDirection': {'class': 'AddressLongitudeDirectionType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}SupplementaryPostalServiceData': {'class': 'SupplementaryPostalServiceDataType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressIdentifier', 'append': 'address_identifiers', 'class': 'AddressIdentifierType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'EndorsementLineCode', 'class': 'EndorsementLineCodeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'KeyLineCode', 'class': 'KeyLineCodeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Barcode', 'class': 'BarcodeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'SortingCode', 'class': 'SortingCodeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLatitude', 'class': 'AddressLatitudeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLatitudeDirection', 'class': 'AddressLatitudeDirectionType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLongitude', 'class': 'AddressLongitudeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLongitudeDirection', 'class': 'AddressLongitudeDirectionType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'SupplementaryPostalServiceData', 'class': 'SupplementaryPostalServiceDataType'},
+            {'tag_name': '*'},
+        ],
         'attributes': {
             'Type': {},
             '*': {},

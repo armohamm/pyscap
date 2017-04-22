@@ -22,8 +22,8 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class MetadataType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://purl.org/dc/elements/1.1/}*': {'min': 1, 'max': None},
-            '{http://checklists.nist.gov/sccf/0.1}*': {'min': 1, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 1, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/sccf/0.1', 'tag_name': '*', 'min': 1, 'max': None},
+        ],
     }

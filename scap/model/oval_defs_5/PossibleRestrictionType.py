@@ -22,9 +22,9 @@ import logging
 logger = logging.getLogger(__name__)
 class PossibleRestrictionType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}restriction': {'append': 'restrictions', 'class': 'RestrictionType', 'min': 1, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'restriction', 'append': 'restrictions', 'class': 'RestrictionType', 'min': 1, 'max': None},
+        ],
         'attributes': {
             'operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
             'hint': {'type': 'String', 'required': True},

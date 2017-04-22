@@ -22,21 +22,20 @@ from scap.model.xccdf_1_1.Extendable import Extendable
 logger = logging.getLogger(__name__)
 class ProfileType(Extendable):
     MODEL_MAP = {
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}status': {'class': 'StatusType', 'append': 'statuses', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}version': {'class': 'VersionType', 'min': 0, 'max': 1},
-            '{http://checklists.nist.gov/xccdf/1.1}title': {'class': 'TextWithSubType', 'append': 'titles', 'min': 1, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}description': {'class': 'HTMLTextWithSubType', 'append': 'descriptions', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}reference': {'class': 'ReferenceType', 'append': 'references', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}platform': {'class': 'UriIdrefType', 'append': 'platforms', 'min': 0, 'max': None},
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'status', 'class': 'StatusType', 'append': 'statuses', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'title', 'class': 'TextWithSubType', 'append': 'titles', 'min': 1, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'description', 'class': 'HTMLTextWithSubType', 'append': 'descriptions', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'reference', 'class': 'ReferenceType', 'append': 'references', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'platform', 'class': 'UriIdrefType', 'append': 'platforms', 'min': 0, 'max': None},
             # choice
-            '{http://checklists.nist.gov/xccdf/1.1}select': {'class': 'ProfileSelectType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}set-value': {'class': 'ProfileSetValueType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}refine-value': {'class': 'ProfileRefineValueType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}refine-rule': {'class': 'ProfileRefineRuleType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
-
-            '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
-        },
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'select', 'class': 'ProfileSelectType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'set-value', 'class': 'ProfileSetValueType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'refine-value', 'class': 'ProfileRefineValueType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'refine-rule', 'class': 'ProfileRefineRuleType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
+        ],
         'attributes': {
             'id': {'required': True, 'type': 'NCName'},
             'prohibitChanges': {'type': 'Boolean', 'default': False},

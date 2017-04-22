@@ -24,12 +24,12 @@ logger = logging.getLogger(__name__)
 class DataStreamElement(Model):
     MODEL_MAP = {
         'tag_name': 'data-stream',
-        'elements': {
-            '{http://scap.nist.gov/schema/scap/source/1.2}dictionaries': { 'class': 'RefListType', 'min': 0 },
-            '{http://scap.nist.gov/schema/scap/source/1.2}checklists': { 'class': 'RefListType', 'min': 0 },
-            '{http://scap.nist.gov/schema/scap/source/1.2}checks': { 'class': 'RefListType' },
-            '{http://scap.nist.gov/schema/scap/source/1.2}extended-components': {'min': 0, 'class': 'RefListType' },
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/scap/source/1.2', 'tag_name': 'dictionaries',  'class': 'RefListType', 'min': 0 },
+            {'xml_namespace': 'http://scap.nist.gov/schema/scap/source/1.2', 'tag_name': 'checklists',  'class': 'RefListType', 'min': 0 },
+            {'xml_namespace': 'http://scap.nist.gov/schema/scap/source/1.2', 'tag_name': 'checks',  'class': 'RefListType' },
+            {'xml_namespace': 'http://scap.nist.gov/schema/scap/source/1.2', 'tag_name': 'extended-components', 'min': 0, 'class': 'RefListType' },
+        ],
         'attributes': {
             'id': {'required': True, 'type': 'DataStreamIDPattern'},
             'use-case': {'required': True, 'enum': USE_CASE_ENUMERATION}, # TODO: spec also allows Token

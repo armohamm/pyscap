@@ -32,8 +32,8 @@ class FixType(Model):
             'system': {'type': 'AnyURI'},
             'platform': {'type': 'AnyURI'},
         },
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.2}sub': {'append': 'subs', 'min': 0, 'max': None, 'class': 'SubType'},
-            '{http://checklists.nist.gov/xccdf/1.2}instance': {'append': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'sub', 'append': 'subs', 'min': 0, 'max': None, 'class': 'SubType'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'instance', 'append': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
+        ],
     }

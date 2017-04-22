@@ -25,7 +25,7 @@ class ProfileSelectType(Model):
             'idref': {'type': 'NCName', 'required': True},
             'selected': {'type': 'Boolean', 'required': True},
         },
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.2}remark': {'class': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'remark', 'class': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+        ],
     }

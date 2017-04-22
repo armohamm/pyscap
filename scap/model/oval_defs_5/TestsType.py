@@ -22,9 +22,9 @@ logger = logging.getLogger(__name__)
 class TestsType(Model):
     MODEL_MAP = {
         'tag_name' : 'tests',
-        'elements': {
+        'elements': [
             #TODO minOccurs="1" maxOccurs="unbounded"
-        },
+        ],
     }
     from scap.model.oval_defs_5_independent import TEST_MAP
     MODEL_MAP['elements'].extend(TEST_MAP)

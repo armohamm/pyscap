@@ -22,9 +22,9 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class HTMLTextType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://www.w3.org/1999/xhtml}*': {'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
+        ],
         'attributes': {
             'override': {'type': 'Boolean', 'default': False, 'min': 0, 'max': None},
         },

@@ -25,9 +25,9 @@ class SelChoicesType(Model):
             'mustMatch': {'type': 'Boolean'},
             'selector': {'type': 'String', 'default': ''},
         },
-        'elements': {
+        'elements': [
             # TODO at least one choice/complex-choice
-            '{http://checklists.nist.gov/xccdf/1.2}choice': {'class': 'scap.model.xs_2001.String', 'append': 'choices', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.2}complex-choice': {'class': 'ComplexValueType', 'min': 0, 'max': 1},
-        },
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'choice', 'class': 'scap.model.xs_2001.String', 'append': 'choices', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'complex-choice', 'class': 'ComplexValueType', 'min': 0, 'max': 1},
+        ],
     }

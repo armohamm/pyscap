@@ -23,10 +23,9 @@ logger = logging.getLogger(__name__)
 class XALType(Model):
     MODEL_MAP = {
         'tag_name': 'xAL',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressDetails': {'append': 'address_details', 'class': 'AddressDetailsType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressDetails', 'append': 'address_details', 'class': 'AddressDetailsType'},'*': {},
+        ],
         'attributes': {
             'Version': {},
             '*': {},

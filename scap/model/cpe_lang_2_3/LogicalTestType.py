@@ -23,10 +23,10 @@ from scap.model.cpe_lang_2_3.OperatorEnumeration import OPERATOR_ENUMERATION
 logger = logging.getLogger(__name__)
 class LogicalTestType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://cpe.mitre.org/language/2.0}logical-test': {'append': 'logical_tests', 'class': 'LogicalTestType', 'min': 0, 'max': None},
-            '{http://cpe.mitre.org/language/2.0}fact-ref': {'append': 'fact_refs', 'class': 'FactRefType', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'logical-test', 'append': 'logical_tests', 'class': 'LogicalTestType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'fact-ref', 'append': 'fact_refs', 'class': 'FactRefType', 'min': 0, 'max': None},
+        ],
         'attributes': {
             'operator': {'enum': OPERATOR_ENUMERATION, 'required': True},
             'negate': {'type': 'Boolean', 'required': True},

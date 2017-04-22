@@ -21,9 +21,9 @@ import logging
 logger = logging.getLogger(__name__)
 class ExtendedComponentElement(Model):
     MODEL_MAP = {
-        'elements': {
-            '*': {}
-        },
+        'elements': [
+            {'tag_name': '*'}
+        ],
         'attributes': {
             'id': {'required': True, 'type': 'ExtendedComponentIDPattern'},
             'timestamp': {'type': 'DateTime', 'required': True}

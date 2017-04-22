@@ -23,16 +23,15 @@ logger = logging.getLogger(__name__)
 class PostBoxType(Model):
     MODEL_MAP = {
         'tag_name': 'PostBox',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostBoxNumber': {'in': 'post_box_number', 'class': 'PostBoxNumberType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostBoxNumberPrefix': {'in': 'post_box_number_prefix', 'class': 'PostBoxNumberPrefixType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostBoxNumberSuffix': {'in': 'post_box_number_suffix', 'class': 'PostBoxNumberSuffixType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostBoxNumberExtension': {'in': 'post_box_number_extension', 'class': 'PostBoxNumberExtensionType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Firm': {'in': 'firm', 'class': 'FirmType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalCode': {'in': 'postal_code', 'class': 'PostalCodeType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBoxNumber', 'in': 'post_box_number', 'class': 'PostBoxNumberType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBoxNumberPrefix', 'in': 'post_box_number_prefix', 'class': 'PostBoxNumberPrefixType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBoxNumberSuffix', 'in': 'post_box_number_suffix', 'class': 'PostBoxNumberSuffixType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBoxNumberExtension', 'in': 'post_box_number_extension', 'class': 'PostBoxNumberExtensionType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Firm', 'in': 'firm', 'class': 'FirmType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},'*': {},
+        ],
         'attributes': {
             'Type': {},
             'Indicator': {},

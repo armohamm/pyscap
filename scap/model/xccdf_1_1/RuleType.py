@@ -31,18 +31,16 @@ from scap.model.xccdf_1_1.ScoringModelEnumeration import SCORING_MODEL_ENUMERATI
 logger = logging.getLogger(__name__)
 class RuleType(SelectableItemType):
     MODEL_MAP = {
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}ident': {'append': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
-            '{http://checklists.nist.gov/xccdf/1.1}impact-metric': {'min': 0, 'max': 1, 'type': 'String'},
-            '{http://checklists.nist.gov/xccdf/1.1}profile-note': {'append': 'profile_notes', 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
-            '{http://checklists.nist.gov/xccdf/1.1}fixtext': {'class': 'FixTextType', 'min': 0, 'max': None, 'append': 'fixtexts'},
-            '{http://checklists.nist.gov/xccdf/1.1}fix': {'class': 'FixType', 'min': 0, 'max': None, 'append': 'fixes'},
-            # choice
-            '{http://checklists.nist.gov/xccdf/1.1}check': {'class': 'CheckType', 'min': 0, 'max': None, 'map': 'checks', 'key': 'selector'},
-            '{http://checklists.nist.gov/xccdf/1.1}complex-check': {'class': 'ComplexCheckType', 'min': 0, 'max': 1},
-
-            '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'ident', 'append': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'impact-metric', 'min': 0, 'max': 1, 'type': 'String'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'profile-note', 'append': 'profile_notes', 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'fixtext', 'class': 'FixTextType', 'min': 0, 'max': None, 'append': 'fixtexts'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'fix', 'class': 'FixType', 'min': 0, 'max': None, 'append': 'fixes'},# choice
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'map': 'checks', 'key': 'selector'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
+        ],
         'attributes': {
             'role': {'enum': ROLE_ENUMERATION, 'default': 'full'},
             'severity': {'enum': SEVERITY_ENUMERATION, 'default': 'unknown'},

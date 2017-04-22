@@ -26,36 +26,32 @@ logger = logging.getLogger(__name__)
 class BenchmarkType(Model):
     MODEL_MAP = {
         'tag_name': 'Benchmark',
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}status': {'append': 'statuses', 'class': 'StatusElement', 'min': 1, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}title': {'append': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}description': {'append': 'descriptions', 'class': 'HTMLTextWithSubType', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}notice': {'map': 'notices', 'class': 'NoticeType', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}front-matter': {'append': 'front_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}rear-matter': {'append': 'rear_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}reference': {'append': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}plain-text': {'append': 'plain_texts', 'class': 'PlainTextType', 'min': 0, 'max': None},
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'status', 'append': 'statuses', 'class': 'StatusElement', 'min': 1, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'title', 'append': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'description', 'append': 'descriptions', 'class': 'HTMLTextWithSubType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'notice', 'map': 'notices', 'class': 'NoticeType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'front-matter', 'append': 'front_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'rear-matter', 'append': 'rear_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'reference', 'append': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'plain-text', 'append': 'plain_texts', 'class': 'PlainTextType', 'min': 0, 'max': None},
             # TODO choice of one of the following
             # CIS Platform schema, compatibility with XCCDF 1.0
-            '{http://www.cisecurity.org/xccdf/platform/0.2.3}platform-definitions': {'class': 'scap.model.xccdf_platform_0_2_3.PlatformDefinitionsType', 'min': 0, 'max': 1},
-            # XCCDF-P 1.0 schema, compatibility with XCCDF 1.1
-            '{http://checklists.nist.gov/xccdf-p/1.1}Platform-Specification': {'class': 'scap.model.xccdf_p_1_1.PlatformSpecificationType', 'min': 0, 'max': 1},
-            # CPE 1.0 schema, compatibility with XCCDF 1.1.3
-            '{http://cpe.mitre.org/XMLSchema/cpe/1.0}cpe-list': {'class': 'scap.model.cpe_1_0.CpeListType', 'min': 0, 'max': 1},
-            # CPE 2.0 language schema, for SCAP 1.0 conformance
-            '{http://cpe.mitre.org/language/2.0}platform-specification': {'class': 'scap.model.cpe_lang_2_3.PlatformSpecificationType', 'min': 0, 'max': 1},
-
-            '{http://checklists.nist.gov/xccdf/1.1}platform': {'class': 'UriIdrefType', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}version': {'class': 'VersionType', 'min': 1, 'max': 1},
-            '{http://checklists.nist.gov/xccdf/1.1}metadata': {'append': 'metadata', 'class': 'MetadataType', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}model': {'append': 'models', 'class': 'ModelType', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}Profile': {'class': 'ProfileType', 'min': 0, 'max': None, 'map': 'profiles'},
-            '{http://checklists.nist.gov/xccdf/1.1}Value': {'class': 'ValueType', 'min': 0, 'max': None, 'map': 'items'},
-            '{http://checklists.nist.gov/xccdf/1.1}Group': {'class': 'GroupType', 'min': 0, 'max': None, 'map': 'items'},
-            '{http://checklists.nist.gov/xccdf/1.1}Rule': {'class': 'RuleType', 'min': 0, 'max': None, 'map': 'items'},
-            '{http://checklists.nist.gov/xccdf/1.1}TestResult': {'class': 'TestResultType', 'min': 0, 'max': None, 'map': 'test_results'},
-            '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
-        },
+            {'xml_namespace': 'http://www.cisecurity.org/xccdf/platform/0.2.3', 'tag_name': 'platform-definitions', 'class': 'scap.model.xccdf_platform_0_2_3.PlatformDefinitionsType', 'min': 0, 'max': 1},# XCCDF-P 1.0 schema, compatibility with XCCDF 1.1
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf-p/1.1', 'tag_name': 'Platform-Specification', 'class': 'scap.model.xccdf_p_1_1.PlatformSpecificationType', 'min': 0, 'max': 1},# CPE 1.0 schema, compatibility with XCCDF 1.1.3
+            {'xml_namespace': 'http://cpe.mitre.org/XMLSchema/cpe/1.0', 'tag_name': 'cpe-list', 'class': 'scap.model.cpe_1_0.CpeListType', 'min': 0, 'max': 1},# CPE 2.0 language schema, for SCAP 1.0 conformance
+            {'xml_namespace': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'platform-specification', 'class': 'scap.model.cpe_lang_2_3.PlatformSpecificationType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'platform', 'class': 'UriIdrefType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'version', 'class': 'VersionType', 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'metadata', 'append': 'metadata', 'class': 'MetadataType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'model', 'append': 'models', 'class': 'ModelType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'Profile', 'class': 'ProfileType', 'min': 0, 'max': None, 'map': 'profiles'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'Value', 'class': 'ValueType', 'min': 0, 'max': None, 'map': 'items'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'Group', 'class': 'GroupType', 'min': 0, 'max': None, 'map': 'items'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'Rule', 'class': 'RuleType', 'min': 0, 'max': None, 'map': 'items'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'TestResult', 'class': 'TestResultType', 'min': 0, 'max': None, 'map': 'test_results'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
+        ],
         'attributes': {
             'id': {'required': True, 'type': 'NCName'},
             'Id': {'type': 'ID'},

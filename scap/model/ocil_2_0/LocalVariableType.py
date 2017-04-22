@@ -21,9 +21,9 @@ import logging
 logger = logging.getLogger(__name__)
 class LocalVariableType(VariableType):
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/ocil/2.0}set': {'class': 'SetType', 'min': 0, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'set', 'class': 'SetType', 'min': 0, 'max': 1},
+        ],
         'attributes': {
             'question_ref': {'type': 'QuestionIDPattern', 'required': True},
         }

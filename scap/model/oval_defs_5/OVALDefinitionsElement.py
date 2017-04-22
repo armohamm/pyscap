@@ -22,16 +22,15 @@ logger = logging.getLogger(__name__)
 class OVALDefinitionsElement(Model):
     MODEL_MAP = {
         'tag_name' : 'oval_definitions',
-        'elements': {
+        'elements': [
             # TODO one of the following exists
-            '{http://oval.mitre.org/XMLSchema/oval-common-5}generator': {'class': 'GeneratorType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}generator': {'class': 'GeneratorType', 'min': 0},
-
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}definitions': {'class': 'DefinitionsType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}tests': {'class': 'TestsType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}objects': {'class': 'ObjectsType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}states': {'class': 'StatesType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}variables': {'class': 'VariablesType', 'min': 0, 'max': 1},
-            '{http://www.w3.org/2000/09/xmldsig#}Signature': {'min': 0, 'max': 1},
-        },
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'generator', 'class': 'GeneratorType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'generator', 'class': 'GeneratorType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'definitions', 'class': 'DefinitionsType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'tests', 'class': 'TestsType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'objects', 'class': 'ObjectsType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'states', 'class': 'StatesType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'variables', 'class': 'VariablesType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
+        ],
     }

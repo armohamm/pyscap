@@ -23,12 +23,12 @@ logger = logging.getLogger(__name__)
 class DepartmentType(Model):
     MODEL_MAP = {
         'tag_name': 'Department',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}DepartmentName': {'append': 'department_names', 'class': 'DepartmentNameType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}MailStop': {'in': 'mail_stop', 'class': 'MailStopType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalCode': {'in': 'postal_code', 'class': 'PostalCodeType'},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'DepartmentName', 'append': 'department_names', 'class': 'DepartmentNameType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'MailStop', 'in': 'mail_stop', 'class': 'MailStopType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
+        ],
         'attributes': {
             'Type': {},
             '*': {},

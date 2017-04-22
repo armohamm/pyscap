@@ -23,11 +23,11 @@ logger = logging.getLogger(__name__)
 class OrganisationNameDetailsElement(Model):
     MODEL_MAP = {
         'tag_name': 'OrganisationNameDetails',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}NameLine': {'append': 'name_lines', 'class': 'NameLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}OrganisationName': {'append': 'organisation_name', 'class': 'OrganisationNameElement'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}OrganisationType': {'append': 'organisation_type', 'class': 'OrganisationTypeElement'},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'NameLine', 'append': 'name_lines', 'class': 'NameLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'OrganisationName', 'append': 'organisation_name', 'class': 'OrganisationNameElement'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'OrganisationType', 'append': 'organisation_type', 'class': 'OrganisationTypeElement'},
+        ],
         'attributes': {
             'Type': {},
             'NameDetailsKeyRef': {}, # from grKeyRefs

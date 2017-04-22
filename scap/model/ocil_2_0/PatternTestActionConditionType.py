@@ -22,7 +22,7 @@ import logging
 logger = logging.getLogger(__name__)
 class PatternTestActionConditionType(TestActionConditionType):
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/ocil/2.0}pattern': {'append': 'patterns', 'class': 'PatternType', 'min': 1, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'pattern', 'append': 'patterns', 'class': 'PatternType', 'min': 1, 'max': None},
+        ],
     }

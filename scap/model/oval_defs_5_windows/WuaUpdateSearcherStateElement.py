@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class WuaUpdateSearcherStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'wuaupdatesearcher_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}search_criteria': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}update_id': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'search_criteria', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'update_id', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+        ],
     }

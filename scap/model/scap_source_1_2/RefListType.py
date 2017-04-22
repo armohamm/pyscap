@@ -23,9 +23,9 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class RefListType(Model, collections.abc.MutableMapping):
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/scap/source/1.2}component-ref': {'map': 'component_refs', 'class': 'ComponentRefElement'},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/scap/source/1.2', 'tag_name': 'component-ref', 'map': 'component_refs', 'class': 'ComponentRefElement'},
+        ],
     }
 
     def __delitem__(self, key):

@@ -22,9 +22,9 @@ logger = logging.getLogger(__name__)
 class DocumentType(Model):
     MODEL_MAP = {
         'tag_name': 'document',
-        'elements': {
-            '{http://scap.nist.gov/schema/ocil/2.0}title': {'type': 'NormalizedString', 'min': 1, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}description': {'append': 'descriptions', 'type': 'NormalizedString', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/ocil/2.0}notice': {'append': 'notices', 'type': 'String', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'title', 'type': 'NormalizedString', 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'description', 'append': 'descriptions', 'type': 'NormalizedString', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'notice', 'append': 'notices', 'type': 'String', 'min': 0, 'max': None},
+        ],
     }

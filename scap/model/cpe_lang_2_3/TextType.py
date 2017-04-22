@@ -23,6 +23,6 @@ logger = logging.getLogger(__name__)
 class TextType(String):
     MODEL_MAP = {
         'attributes': {
-            '{http://www.w3.org/XML/1998/namespace}lang': {'type': 'scap.model.xml.LangType'},
+            {'xml_namespace': 'http://www.w3.org/XML/1998/namespace', 'tag_name': 'lang', 'type': 'scap.model.xml.LangType'},
         },
     }

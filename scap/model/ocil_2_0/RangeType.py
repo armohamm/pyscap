@@ -21,8 +21,8 @@ import logging
 logger = logging.getLogger(__name__)
 class RangeType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/ocil/2.0}min': {'class': 'RangeValueType', 'min': 0, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}max': {'class': 'RangeValueType', 'min': 0, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'min', 'class': 'RangeValueType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'max', 'class': 'RangeValueType', 'min': 0, 'max': 1},
+        ],
     }

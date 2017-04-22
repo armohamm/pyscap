@@ -23,12 +23,11 @@ logger = logging.getLogger(__name__)
 class NameDetailsElement(NameDetailsType):
     MODEL_MAP = {
         'tag_name': 'NameDetails',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}AddresseeIndicator': {'in': 'adressee_indicator', 'class': 'AddresseeIndicatorElement'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}Function': {'in': 'function', 'class': 'FunctionElement'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}DependencyName': {'in': 'dependency_name', 'class': 'DependencyNameElement'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'AddresseeIndicator', 'in': 'adressee_indicator', 'class': 'AddresseeIndicatorElement'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'Function', 'in': 'function', 'class': 'FunctionElement'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'DependencyName', 'in': 'dependency_name', 'class': 'DependencyNameElement'},'*': {},
+        ],
         'attributes': {
             'NameDetailsKey': {},
         },

@@ -21,7 +21,7 @@ import logging
 logger = logging.getLogger(__name__)
 class DCStatusType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://purl.org/dc/elements/1.1/}*': {'min': 1, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 1, 'max': None},
+        ],
     }

@@ -22,10 +22,10 @@ import logging
 logger = logging.getLogger(__name__)
 class AffectedType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}platform': {'append': 'platforms', 'type': 'String', 'min': 0, 'max': None},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}product': {'append': 'products', 'type': 'String', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'platform', 'append': 'platforms', 'type': 'String', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'product', 'append': 'products', 'type': 'String', 'min': 0, 'max': None},
+        ],
         'attributes': {
             'family': {'enum': FAMILY_ENUMERATION, 'required': True},
         }

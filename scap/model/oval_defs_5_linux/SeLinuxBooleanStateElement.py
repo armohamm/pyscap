@@ -22,9 +22,9 @@ logger = logging.getLogger(__name__)
 class SeLinuxBooleanStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'selinuxboolean_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}current_status': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}pending_status': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'current_status', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'pending_status', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+        ],
     }

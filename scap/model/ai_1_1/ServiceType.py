@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 class ServiceType(ITAssetType):
     MODEL_MAP = {
         'tag_name': 'service',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}host': {'class': 'HostType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}port': {'append': 'ports', 'class': 'ServicePortType', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}port-range': {'append': 'port_ranges', 'class': 'PortRangeType', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}protocol': {'class': 'ProtocolType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'host', 'class': 'HostType', 'min': 0},
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'port', 'append': 'ports', 'class': 'ServicePortType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'port-range', 'append': 'port_ranges', 'class': 'PortRangeType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'protocol', 'class': 'ProtocolType', 'min': 0},
+        ],
     }

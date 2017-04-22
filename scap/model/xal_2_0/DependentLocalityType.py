@@ -23,20 +23,19 @@ logger = logging.getLogger(__name__)
 class DependentLocalityType(Model):
     MODEL_MAP = {
         'tag_name': 'DependentLocality',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}DependentLocalityName': {'append': 'address_lines', 'class': 'LocalityNameType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}DependentLocalityNumber': {'append': 'address_lines', 'class': 'DependentLocalityNumberType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostBox': {'in': 'post_box', 'class': 'PostBoxType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}LargeMailUser': {'in': 'large_mail_user', 'class': 'LargeMailUserType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostOffice': {'in': 'post_office', 'class': 'PostOfficeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalRoute': {'in': 'post_route', 'class': 'PostalRouteType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Thoroughfare': {'in': 'thoroughfare', 'class': 'ThoroughfareType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Premise': {'in': 'premise', 'class': 'PremiseType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}DependentLocality': {'in': 'premise', 'class': 'DependentLocalityType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalCode': {'in': 'postal_code', 'class': 'PostalCodeType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'DependentLocalityName', 'append': 'address_lines', 'class': 'LocalityNameType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'DependentLocalityNumber', 'append': 'address_lines', 'class': 'DependentLocalityNumberType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'LargeMailUser', 'in': 'large_mail_user', 'class': 'LargeMailUserType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostOffice', 'in': 'post_office', 'class': 'PostOfficeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalRoute', 'in': 'post_route', 'class': 'PostalRouteType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Thoroughfare', 'in': 'thoroughfare', 'class': 'ThoroughfareType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Premise', 'in': 'premise', 'class': 'PremiseType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'DependentLocality', 'in': 'premise', 'class': 'DependentLocalityType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},'*': {},
+        ],
         'attributes': {
             'Type': {},
             'UsageType': {},

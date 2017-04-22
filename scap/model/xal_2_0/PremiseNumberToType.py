@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 class PremiseNumberRangeToType(Model):
     MODEL_MAP = {
         'tag_name': 'PremiseNumberRangeTo',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PremiseNumberPrefix': {'append': 'premise_number_prefixes', 'class': 'PremiseNumberPrefixType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PremiseNumber': {'append': 'premise_numbers', 'class': 'PremiseNumberType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PremiseNumberSuffix': {'append': 'premise_number_suffixes', 'class': 'PremiseNumberSuffixType'},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PremiseNumberPrefix', 'append': 'premise_number_prefixes', 'class': 'PremiseNumberPrefixType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PremiseNumber', 'append': 'premise_numbers', 'class': 'PremiseNumberType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PremiseNumberSuffix', 'append': 'premise_number_suffixes', 'class': 'PremiseNumberSuffixType'},
+        ],
     }

@@ -16,5 +16,4 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    '{http://scap.nist.gov/schema/ocil/2.0}ocil': {'class': 'OCILElement'},
-}
+    {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'ocil', 'class': 'OCILElement'},}

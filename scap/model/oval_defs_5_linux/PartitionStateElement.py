@@ -22,14 +22,14 @@ logger = logging.getLogger(__name__)
 class PartitionStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'partition_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}mount_point': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}device': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}uuid': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}fs_type': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}mount_options': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}total_space': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}space_used': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}space_left': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'mount_point', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'device', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'uuid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'fs_type', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'mount_options', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'total_space', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'space_used', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'space_left', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+        ],
     }

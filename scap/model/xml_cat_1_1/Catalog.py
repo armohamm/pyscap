@@ -29,10 +29,9 @@ class Catalog(Model, MutableMapping):
             'prefer': {'enum': ['system', 'public']},
             '*': {}
         },
-        'elements': {
-            '{urn:oasis:names:tc:entity:xmlns:xml:catalog}uri': {'map': 'entries', 'key': 'name', 'value': 'uri'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:entity:xmlns:xml:catalog', 'tag_name': 'uri', 'map': 'entries', 'key': 'name', 'value': 'uri'},'*': {},
+        ],
     }
 
 

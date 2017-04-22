@@ -22,8 +22,8 @@ logger = logging.getLogger(__name__)
 class ProcessObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'process_object',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'oval_defs_5.SetElement', 'min': 0, 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}command_line': {'class': 'oval_defs_5.EntityObjectStringType'},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0, 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'command_line', 'class': 'oval_defs_5.EntityObjectStringType'},
+        ],
     }

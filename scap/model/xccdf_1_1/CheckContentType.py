@@ -22,9 +22,9 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class CheckContentType(Model):
     MODEL_MAP = {
-        'elements': {
-            '*': {'min': 0, 'max': None}
-        },
+        'elements': [
+            {'tag_name': '*', 'min': 0, 'max': None},
+        ],
     }
 
     def check(self, host, exports, import_names):

@@ -21,13 +21,13 @@ import logging
 logger = logging.getLogger(__name__)
 class ComponentElement(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.2}Benchmark': { 'class': 'BenchmarkType', 'in': 'model', 'min': 0},
-            '{http://scap.nist.gov/schema/ocil/2.0}ocil': {'class': 'OCILType', 'in': 'model', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}oval_definitions': {'class': 'OVALDefinitionsElement', 'in': 'model', 'min': 0},
-            '{http://cpe.mitre.org/dictionary/2.0}cpe-list': {'in': 'model', 'min': 0},
-            '{http://checklists.nist.gov/xccdf/1.2}Tailoring': {'in': 'model', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'Benchmark',  'class': 'BenchmarkType', 'in': 'model', 'min': 0},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'ocil', 'class': 'OCILType', 'in': 'model', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'oval_definitions', 'class': 'OVALDefinitionsElement', 'in': 'model', 'min': 0},
+            {'xml_namespace': 'http://cpe.mitre.org/dictionary/2.0', 'tag_name': 'cpe-list', 'in': 'model', 'min': 0},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'Tailoring', 'in': 'model', 'min': 0},
+        ],
         'attributes': {
             'id': {'required': True, 'type': 'ComponentIDPattern'},
             'timestamp': {'type': 'DateTime'},

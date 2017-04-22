@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class DefinitionsType(Model):
     MODEL_MAP = {
         'tag_name' : 'definitions',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}definition': {'map': 'definitions', 'class': 'DefinitionElement', 'min': 1, 'max': None},
-        }
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'definition', 'map': 'definitions', 'class': 'DefinitionElement', 'min': 1, 'max': None},
+        ],
     }

@@ -23,15 +23,15 @@ logger = logging.getLogger(__name__)
 class PostOfficeType(Model):
     MODEL_MAP = {
         'tag_name': 'PostOffice',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostOfficeName': {'append': 'post_office_names', 'class': 'PostOfficeNameType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostOfficeNumber': {'in': 'post_office_number', 'class': 'PostOfficeNumberType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalRoute': {'in': 'postal_route', 'class': 'PostalRouteType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostBox': {'in': 'post_box', 'class': 'PostBoxType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalCode': {'in': 'postal_code', 'class': 'PostalCodeType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostOfficeName', 'append': 'post_office_names', 'class': 'PostOfficeNameType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostOfficeNumber', 'in': 'post_office_number', 'class': 'PostOfficeNumberType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalRoute', 'in': 'postal_route', 'class': 'PostalRouteType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
+            {'tag_name': '*'},
+        ],
         'attributes': {
             'Type': {},
             'Indicator': {},

@@ -23,11 +23,11 @@ logger = logging.getLogger(__name__)
 class ThoroughfareNumberRangeType(Model):
     MODEL_MAP = {
         'tag_name': 'ThoroughfareNumberRange',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareNumberFrom': {'in': 'thoroughfare_number_from', 'class': 'ThoroughfareNumberFromType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareNumberTo': {'in': 'thoroughfare_number_to', 'class': 'ThoroughfareNumberToType'},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumberFrom', 'in': 'thoroughfare_number_from', 'class': 'ThoroughfareNumberFromType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumberTo', 'in': 'thoroughfare_number_to', 'class': 'ThoroughfareNumberToType'},
+        ],
         'attributes': {
             'RangeType': {'enum': ['Odd', 'Even']},
             'Indicator': {},

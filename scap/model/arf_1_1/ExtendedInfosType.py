@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class ExtendedInfosType(Model):
     MODEL_MAP = {
         'tag_name': 'extended-infos',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}extended-info': {'append': 'extended_infos', 'class': 'ExtendedInfoElement', 'max': None},
+        'elements':
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1', 'tag_name': 'extended-info', 'append': 'extended_infos', 'class': 'ExtendedInfoElement', 'max': None},
         },
     }

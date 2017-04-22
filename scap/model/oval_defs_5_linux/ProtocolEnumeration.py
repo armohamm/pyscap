@@ -14,7 +14,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
-PROTOCOL_ENUMERATION = {
+PROTOCOL_ENUMERATION = [
     'ETH_P_LOOP',
     'ETH_P_PUP',
     'ETH_P_PUPAT',
@@ -66,4 +66,4 @@ PROTOCOL_ENUMERATION = {
     'ETH_P_HDLC',
     'ETH_P_ARCNET',
     '',
-}
+]

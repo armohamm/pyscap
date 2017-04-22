@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 class AssetElement(Model):
     MODEL_MAP = {
         'tag_name': 'asset',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}asset': {'append': 'assets', 'class': 'AssetType'},
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}remote-resource': {'append': 'remote_resources', 'class': 'RemoteResourceElement'},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'asset', 'append': 'assets', 'class': 'AssetType'},
+            {'tag_name': 'remote-resource', 'append': 'remote_resources', 'class': 'RemoteResourceElement'},
+        ],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             '*': {},

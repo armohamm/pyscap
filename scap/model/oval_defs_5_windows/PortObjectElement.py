@@ -22,11 +22,11 @@ logger = logging.getLogger(__name__)
 class PortObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'port_object',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'oval_defs_5.SetElement', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}local_address': {'class': 'oval_defs_5.EntityObjectIPAddressStringType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}local_port': {'class': 'oval_defs_5.EntityObjectIntType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}protocol': {'class': 'EntityObjectProtocolType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}filter': {'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'local_address', 'class': 'oval_defs_5.EntityObjectIPAddressStringType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'local_port', 'class': 'oval_defs_5.EntityObjectIntType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'protocol', 'class': 'EntityObjectProtocolType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
+        ],
     }

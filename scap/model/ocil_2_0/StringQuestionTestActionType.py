@@ -21,7 +21,7 @@ import logging
 logger = logging.getLogger(__name__)
 class StringQuestionTestActionType(QuestionTestActionType):
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/ocil/2.0}when_pattern': {'append': 'when_ranges', 'class': 'PatternTestActionConditionType', 'min': 1, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'when_pattern', 'append': 'when_ranges', 'class': 'PatternTestActionConditionType', 'min': 1, 'max': None},
+        ],
     }

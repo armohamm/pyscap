@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class WebsiteType(ITAssetType):
     MODEL_MAP = {
         'tag_name': 'website',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}document-root': {'class': 'DocumentRootType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}locale': {'class': 'WebsiteLocaleType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'document-root', 'class': 'DocumentRootType', 'min': 0},
+            {'tag_name': 'locale', 'class': 'WebsiteLocaleType', 'min': 0},
+        ],
     }

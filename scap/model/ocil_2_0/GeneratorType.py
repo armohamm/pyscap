@@ -22,12 +22,12 @@ logger = logging.getLogger(__name__)
 class GeneratorType(Model):
     MODEL_MAP = {
         'tag_name': 'generator',
-        'elements': {
-            '{http://scap.nist.gov/schema/ocil/2.0}product_name': {'type': 'NormalizedString', 'min': 0, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}product_version': {'type': 'NormalizedString', 'min': 0, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}author': {'append': 'authors', 'class': 'UserType', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/ocil/2.0}schema_version': {'type': 'Decimal', 'min': 1, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}timestamp': {'type': 'DateTime', 'min': 1, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}additional_data': {'class': 'ExtensionContainerType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'product_name', 'type': 'NormalizedString', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'product_version', 'type': 'NormalizedString', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'author', 'append': 'authors', 'class': 'UserType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'schema_version', 'type': 'Decimal', 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'timestamp', 'type': 'DateTime', 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'additional_data', 'class': 'ExtensionContainerType', 'min': 0},
+        ],
     }

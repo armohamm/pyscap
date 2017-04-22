@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 class PersonType(AssetType):
     MODEL_MAP = {
         'tag_name': 'person',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}PersonName': {'class': 'PersonNameType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}email-address': {'append': 'email_addresses', 'class': 'EmailAddressType', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}telephone-number': {'append': 'telephone_numbers', 'class': 'TelephoneNumberType', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}birthdate': {'class': 'BirthdateType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'PersonName', 'class': 'PersonNameType', 'min': 0},
+            {'tag_name': 'email-address', 'append': 'email_addresses', 'class': 'EmailAddressType', 'min': 0, 'max': None},
+            {'tag_name': 'telephone-number', 'append': 'telephone_numbers', 'class': 'TelephoneNumberType', 'min': 0, 'max': None},
+            {'tag_name': 'birthdate', 'class': 'BirthdateType', 'min': 0},
+        ],
     }

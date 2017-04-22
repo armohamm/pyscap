@@ -15,15 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_defs_5.TestType import TestType
+from scap.model.oval_defs_5_linux.TestType import TestType
 import logging
 
 logger = logging.getLogger(__name__)
 class DpkgInfoTestType(TestType):
     MODEL_MAP = {
         'tag_name': 'dpkginfo_test',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}object': {'class': 'oval_defs_5.ObjectRefType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}state': {'append': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
-        },
     }

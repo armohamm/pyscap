@@ -22,9 +22,9 @@ logger = logging.getLogger(__name__)
 class RelationshipType(Model):
     MODEL_MAP = {
         'tag_name': 'relationship',
-        'elements': {
-            '{http://scap.nist.gov/schema/reporting-core/1.1}ref': {'append': 'refs', 'class': 'RefElement'},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/reporting-core/1.1', 'tag_name': 'ref', 'append': 'refs', 'class': 'RefElement'},
+        ],
         'attributes': {
             'type': {'type': 'QName', 'required': True},
             'scope': {'enum': ['inclusive', 'exclusive'], 'default': 'inclusive'},

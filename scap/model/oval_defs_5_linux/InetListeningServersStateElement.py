@@ -22,16 +22,16 @@ logger = logging.getLogger(__name__)
 class InetListeningServersStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'inetlisteningservers_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}protocol': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}local_address': {'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}local_port': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}local_full_address': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}program_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}foreign_address': {'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}foreign_port': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}foreign_full_address': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}pid': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}user_id': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'protocol', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'local_address', 'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'local_port', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'local_full_address', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'program_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'foreign_address', 'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'foreign_port', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'foreign_full_address', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'pid', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'user_id', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+        ],
     }

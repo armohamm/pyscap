@@ -33,12 +33,12 @@ class CheckType(Model):
             'selector': {'default': None, 'type': 'String'},
             'multi-check': {'type': 'Boolean', 'default': False},
         },
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.2}check-import': {'class': 'CheckImportType', 'append': 'check_imports', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.2}check-export': {'class': 'CheckExportType', 'append': 'check_exports', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.2}check-content-ref': {'class': 'CheckContentRefType', 'append': 'check_content_refs', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.2}check-content': {'class': 'CheckContentType', 'min': 0, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'check-import', 'class': 'CheckImportType', 'append': 'check_imports', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'check-export', 'class': 'CheckExportType', 'append': 'check_exports', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'check-content-ref', 'class': 'CheckContentRefType', 'append': 'check_content_refs', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'check-content', 'class': 'CheckContentType', 'min': 0, 'max': 1},
+        ],
     }
 
     def __str__(self):

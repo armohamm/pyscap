@@ -24,9 +24,9 @@ class DependencyNameElement(NameDetailsType):
     # combining element & complexType
     MODEL_MAP = {
         'tag_name': 'DependencyName',
-        'elements': {
-            '*': {},
-        },
+        'elements': [
+            {'tag_name': '*'},
+        ],
         'attributes': {
             'DependencyType': {},
             'NameDetailsKeyRef': {}, # from grKeyRefs

@@ -23,24 +23,23 @@ logger = logging.getLogger(__name__)
 class ThoroughfareType(Model):
     MODEL_MAP = {
         'tag_name': 'Thoroughfare',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareNumber': {'in': 'thoroughfare_number', 'class': 'ThoroughfareNumberType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareNumberRange': {'in': 'thoroughfare_number_range', 'class': 'ThoroughfareNumberRangeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareNumberPrefix': {'append': 'thoroughfare_number_prefixes', 'class': 'ThoroughfareNumberPrefixType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareNumberSuffix': {'append': 'thoroughfare_number_suffixes', 'class': 'ThoroughfareNumberSuffixType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfarePreDirection': {'in': 'thoroughfare_pre_direction', 'class': 'ThoroughfarePreDirectionType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareLeadingType': {'in': 'thoroughfare_leading_type', 'class': 'ThoroughfareLeadingTypeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareName': {'append': 'thoroughfare_names', 'class': 'ThoroughfareNameType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareTrailingType': {'in': 'thoroughfare_trailing_type', 'class': 'ThoroughfareTrailingTypeType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfarePostDirection': {'in': 'thoroughfare_post_direction', 'class': 'ThoroughfarePostDirectionType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}DependentThoroughfare': {'in': 'dependent_thoroughfare', 'class': 'DependentThoroughfareType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}DependentLocality': {'in': 'dependent_locality', 'class': 'DependentLocalityType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Premise': {'in': 'premise', 'class': 'PremiseType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Firm': {'in': 'firm', 'class': 'FirmType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalCode': {'in': 'postal_code', 'class': 'PostalCodeType'},
-            '*': {}
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumber', 'in': 'thoroughfare_number', 'class': 'ThoroughfareNumberType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumberRange', 'in': 'thoroughfare_number_range', 'class': 'ThoroughfareNumberRangeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumberPrefix', 'append': 'thoroughfare_number_prefixes', 'class': 'ThoroughfareNumberPrefixType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumberSuffix', 'append': 'thoroughfare_number_suffixes', 'class': 'ThoroughfareNumberSuffixType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfarePreDirection', 'in': 'thoroughfare_pre_direction', 'class': 'ThoroughfarePreDirectionType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareLeadingType', 'in': 'thoroughfare_leading_type', 'class': 'ThoroughfareLeadingTypeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareName', 'append': 'thoroughfare_names', 'class': 'ThoroughfareNameType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareTrailingType', 'in': 'thoroughfare_trailing_type', 'class': 'ThoroughfareTrailingTypeType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfarePostDirection', 'in': 'thoroughfare_post_direction', 'class': 'ThoroughfarePostDirectionType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'DependentThoroughfare', 'in': 'dependent_thoroughfare', 'class': 'DependentThoroughfareType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'DependentLocality', 'in': 'dependent_locality', 'class': 'DependentLocalityType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Premise', 'in': 'premise', 'class': 'PremiseType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Firm', 'in': 'firm', 'class': 'FirmType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},'*': {}
+        ],
         'attributes': {
             'Type': {},
             'DependentThoroughfares': {'enum': ['Yes', 'No']},

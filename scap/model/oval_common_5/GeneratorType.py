@@ -21,11 +21,11 @@ import logging
 logger = logging.getLogger(__name__)
 class GeneratorType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-common-5}product_name': {'type': 'String', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-common-5}product_version': {'type': 'String', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-common-5}schema_version': {'append': 'versions', 'class': 'SchemaVersionType', 'max': None},
-            '{http://oval.mitre.org/XMLSchema/oval-common-5}timestamp': {'type': 'DateTime'},
-            '*': {'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'product_name', 'type': 'String', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'product_version', 'type': 'String', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'schema_version', 'append': 'versions', 'class': 'SchemaVersionType', 'max': None},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'timestamp', 'type': 'DateTime'},
+            {'tag_name': '*', 'max': None},
+        ],
     }

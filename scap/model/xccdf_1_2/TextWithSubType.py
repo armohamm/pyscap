@@ -24,7 +24,7 @@ class TextWithSubType(Model):
         'attributes': {
             'override': {'type': 'Boolean', 'default': False},
         },
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.2}sub': {'class': 'SubType', 'append': 'subs', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'sub', 'class': 'SubType', 'append': 'subs', 'min': 0, 'max': None},
+        ],
     }

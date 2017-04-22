@@ -22,25 +22,24 @@ import logging
 logger = logging.getLogger(__name__)
 class GlobToRegexFunctionType(Model):
     MODEL_MAP = {
-        'elements': {
+        'elements': [
             # from ComponentGroup
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}object_component': {'append': 'components', 'class': 'ObjectComponentType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}variable_component': {'append': 'components', 'class': 'VariableComponentType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}literal_component': {'append': 'components', 'class': 'LiteralComponentType'},
-            # from ComponentGroup/FunctionGroup
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}arithmetic': {'append': 'components', 'class': 'ArithmeticFunctionType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}begin': {'append': 'components', 'class': 'BeginFunctionType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}concat': {'append': 'components', 'class': 'ConcatFunctionType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}count': {'append': 'components', 'class': 'CountFunctionType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}end': {'append': 'components', 'class': 'EndFunctionType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}escape_regex': {'append': 'components', 'class': 'EscapeRegexFunctionType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}split': {'append': 'components', 'class': 'SplitFunctionType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}substring': {'append': 'components', 'class': 'SubstringFunctionType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}time_difference': {'append': 'components', 'class': 'TimeDifferenceFunctionType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}unique': {'append': 'components', 'class': 'UniqueFunctionType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}regex_capture': {'append': 'components', 'class': 'RegexCaptureFunctionType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}glob_to_regex': {'append': 'components', 'class': 'GlobToRegexFunctionType'},
-        },
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'object_component', 'append': 'components', 'class': 'ObjectComponentType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'variable_component', 'append': 'components', 'class': 'VariableComponentType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'literal_component', 'append': 'components', 'class': 'LiteralComponentType'},# from ComponentGroup/FunctionGroup
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'arithmetic', 'append': 'components', 'class': 'ArithmeticFunctionType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'begin', 'append': 'components', 'class': 'BeginFunctionType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'concat', 'append': 'components', 'class': 'ConcatFunctionType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'count', 'append': 'components', 'class': 'CountFunctionType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'end', 'append': 'components', 'class': 'EndFunctionType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'escape_regex', 'append': 'components', 'class': 'EscapeRegexFunctionType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'split', 'append': 'components', 'class': 'SplitFunctionType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'substring', 'append': 'components', 'class': 'SubstringFunctionType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'time_difference', 'append': 'components', 'class': 'TimeDifferenceFunctionType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'unique', 'append': 'components', 'class': 'UniqueFunctionType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'regex_capture', 'append': 'components', 'class': 'RegexCaptureFunctionType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'glob_to_regex', 'append': 'components', 'class': 'GlobToRegexFunctionType'},
+        ],
         'attributes': {
             'glob_noescape': {'type': 'Boolean', 'default': False},
         }

@@ -22,11 +22,11 @@ logger = logging.getLogger(__name__)
 class RegKeyEffectiveRightsObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'regkeyeffectiverights_object',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'oval_defs_5.SetElement', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}behaviors': {'class': 'RegkeyEffectiveRightsBehaviors', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}hive': {'class': 'EntityObjectRegistryHiveType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}key': {'class': 'oval_defs_5.EntityObjectStringType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}trustee_name': {'class': 'oval_defs_5.EntityObjectStringType'},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'behaviors', 'class': 'RegkeyEffectiveRightsBehaviors', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'hive', 'class': 'EntityObjectRegistryHiveType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'key', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'trustee_name', 'class': 'oval_defs_5.EntityObjectStringType'},
+        ],
     }

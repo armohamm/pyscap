@@ -22,8 +22,8 @@ logger = logging.getLogger(__name__)
 class SystemDUnitDependencyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'systemdunitdependency_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}unit': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}dependency': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'unit', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'dependency', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+        ],
     }

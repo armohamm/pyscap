@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 class KnownAsElement(PersonNameType):
     MODEL_MAP = {
         'tag_name': 'KnownAs',
-        'elements': {
-            '*': {},
-        },
+        'elements': [
+            {'tag_name': '*'},
+        ],
         'attributes': {
             'ValidFrom': {},
             'ValidTo': {},

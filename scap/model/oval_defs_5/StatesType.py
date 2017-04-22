@@ -22,9 +22,9 @@ logger = logging.getLogger(__name__)
 class StatesType(Model):
     MODEL_MAP = {
         'tag_name' : 'states',
-        'elements': {
+        'elements': [
             # TODO: minOccurs="1" maxOccurs="unbounded"
-        },
+        ],
     }
     from scap.model.oval_defs_5_independent import STATE_MAP
     MODEL_MAP['elements'].extend(STATE_MAP)

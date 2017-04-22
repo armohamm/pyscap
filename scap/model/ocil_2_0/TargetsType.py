@@ -21,9 +21,9 @@ import logging
 logger = logging.getLogger(__name__)
 class TargetsType(Model):
     MODEL_MAP = {
-        'elements': {
+        'elements': [
             #TODO: at least one of .targets[]
-            '{http://scap.nist.gov/schema/ocil/2.0}user': {'append': 'targets', 'class': 'UserType', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/ocil/2.0}system': {'append': 'targets', 'class': 'SystemTargetType', 'min': 0, 'max': None},
-        },
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'user', 'append': 'targets', 'class': 'UserType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'system', 'append': 'targets', 'class': 'SystemTargetType', 'min': 0, 'max': None},
+        ],
     }

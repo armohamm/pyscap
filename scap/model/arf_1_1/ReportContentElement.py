@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 class ReportContentElement(Model):
     MODEL_MAP = {
         'tag_name': 'content',
-        'elements': {
-            '*': {},
-        },
+        'elements': [
+            {'tag_name': '*'},
+        ],
         'attributes': {
             'data-valid-start-date': {'type': 'Date'},
             'data-valid-end-date': {'type': 'Date'},

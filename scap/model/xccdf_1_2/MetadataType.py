@@ -21,7 +21,7 @@ import logging
 logger = logging.getLogger(__name__)
 class MetadataType(Model):
     MODEL_MAP = {
-        'elements': {
-            '*': {'min': 1, 'max': None},
-        },
+        'elements': [
+            {'tag_name': '*', 'min': 1, 'max': None},
+        ],
     }

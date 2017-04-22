@@ -21,7 +21,7 @@ import logging
 logger = logging.getLogger(__name__)
 class QuestionTextType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/ocil/2.0}sub': {'class': 'SubstitutionTextType', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'sub', 'class': 'SubstitutionTextType', 'min': 0, 'max': None},
+        ],
     }

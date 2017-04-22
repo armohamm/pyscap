@@ -22,11 +22,11 @@ logger = logging.getLogger(__name__)
 class SQL57StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'sql57_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}engine': {'class': 'EntityObjectEngineType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}version': {'class': 'oval_defs_5.EntityObjectStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}connection_string': {'class': 'oval_defs_5.EntityObjectStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}sql': {'class': 'oval_defs_5.EntityObjectStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}result': {'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'engine', 'class': 'EntityObjectEngineType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'version', 'class': 'oval_defs_5.EntityObjectStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'connection_string', 'class': 'oval_defs_5.EntityObjectStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'sql', 'class': 'oval_defs_5.EntityObjectStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'result', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
+        ],
     }

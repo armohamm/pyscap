@@ -23,12 +23,11 @@ logger = logging.getLogger(__name__)
 class PostalRouteType(Model):
     MODEL_MAP = {
         'tag_name': 'PostalRoute',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalRouteName': {'append': 'postal_route_names', 'class': 'PostalRouteNameType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalRouteNumber': {'in': 'postal_route_number', 'class': 'PostalRouteNumberType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalRouteName', 'append': 'postal_route_names', 'class': 'PostalRouteNameType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalRouteNumber', 'in': 'postal_route_number', 'class': 'PostalRouteNumberType'},'*': {},
+        ],
         'attributes': {
             'Type': {},
             '*': {},

@@ -21,7 +21,7 @@ import logging
 logger = logging.getLogger(__name__)
 class ChoiceTestActionConditionType(TestActionConditionType):
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/ocil/2.0}choice_ref': {'append': 'choice_refs', 'type': 'ChoiceIDPattern', 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'choice_ref', 'append': 'choice_refs', 'type': 'ChoiceIDPattern', 'max': None},
+        ],
     }

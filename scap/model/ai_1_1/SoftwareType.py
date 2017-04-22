@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 class SoftwareType(ITAssetType):
     MODEL_MAP = {
         'tag_name': 'software',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}installation-id': {'class': 'InstallationIDType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}cpe': {'class': 'CPEType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}license': {'class': 'LicenseType', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'installation-id', 'class': 'InstallationIDType', 'min': 0},
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'cpe', 'class': 'CPEType', 'min': 0},
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'license', 'class': 'LicenseType', 'min': 0, 'max': None},
+        ],
     }

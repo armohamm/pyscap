@@ -21,9 +21,9 @@ import logging
 logger = logging.getLogger(__name__)
 class DeprecatedInfoType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-common-5}version': {'type': 'SchemaVersionPattern'},
-            '{http://oval.mitre.org/XMLSchema/oval-common-5}reason': {'type': 'String'},
-            '{http://oval.mitre.org/XMLSchema/oval-common-5}comment': {'type': 'String', 'min': 0, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'version', 'type': 'SchemaVersionPattern'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'reason', 'type': 'String'},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'comment', 'type': 'String', 'min': 0, 'max': 1},
+        ],
     }

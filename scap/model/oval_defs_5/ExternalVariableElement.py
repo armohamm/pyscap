@@ -22,9 +22,9 @@ logger = logging.getLogger(__name__)
 class ExternalVariableElement(VariableType):
     MODEL_MAP = {
         'tag_name': 'external_variable',
-        'elements': {
+        'elements': [
             # TODO: minOccurs="0" maxOccurs="unbounded"
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}possible_value': {'append': 'possible_values', 'class': 'PossibleValueType', 'min': 0, 'max': None},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5}possible_restriction': {'append': 'possible_restrictions', 'class': 'PossibleRestrictionType', 'min': 0, 'max': None},
-        },
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'possible_value', 'append': 'possible_values', 'class': 'PossibleValueType', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'possible_restriction', 'append': 'possible_restrictions', 'class': 'PossibleRestrictionType', 'min': 0, 'max': None},
+        ],
     }

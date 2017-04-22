@@ -21,7 +21,7 @@ import logging
 logger = logging.getLogger(__name__)
 class ArtifactRefsType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/ocil/2.0}artifact_ref': {'append': 'artifact_refs', 'class': 'ArtifactRefType', 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'artifact_ref', 'append': 'artifact_refs', 'class': 'ArtifactRefType', 'max': None},
+        ],
     }

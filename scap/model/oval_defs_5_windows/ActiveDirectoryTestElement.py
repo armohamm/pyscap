@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_defs_5.TestType import TestType
+from scap.model.oval_defs_5_windows.TestType import TestType
 import logging
 
 logger = logging.getLogger(__name__)
@@ -23,8 +23,4 @@ logger = logging.getLogger(__name__)
 class ActiveDirectoryTestElement(TestType):
     MODEL_MAP = {
         'tag_name': 'activedirectory_test',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}object': {'class': 'oval_defs_5.ObjectRefType'},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}state': {'append': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
-        },
     }

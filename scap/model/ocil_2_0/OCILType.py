@@ -21,14 +21,14 @@ import logging
 logger = logging.getLogger(__name__)
 class OCILType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/ocil/2.0}generator': {'class': 'GeneratorType', 'min': 1, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}document': {'class': 'DocumentType', 'min': 0, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}questionnaires': {'class': 'QuestionnairesType', 'min': 1, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}test_actions': {'class': 'TestActionsType', 'min': 1, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}questions': {'class': 'QuestionsType', 'min': 1, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}artifacts': {'class': 'ArtifactsType', 'min': 0, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}variables': {'class': 'VariablesType', 'min': 0, 'max': 1},
-            '{http://scap.nist.gov/schema/ocil/2.0}results': {'class': 'ResultsElement', 'min': 0, 'max': 1},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'generator', 'class': 'GeneratorType', 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'document', 'class': 'DocumentType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'questionnaires', 'class': 'QuestionnairesType', 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'test_actions', 'class': 'TestActionsType', 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'questions', 'class': 'QuestionsType', 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'artifacts', 'class': 'ArtifactsType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'variables', 'class': 'VariablesType', 'min': 0, 'max': 1},
+            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'results', 'class': 'ResultsElement', 'min': 0, 'max': 1},
+        ],
     }

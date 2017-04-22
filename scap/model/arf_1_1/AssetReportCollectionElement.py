@@ -23,12 +23,12 @@ logger = logging.getLogger(__name__)
 class AssetReportCollectionElement(RelationshipsContainerType):
     MODEL_MAP = {
         'tag_name': 'asset-report-collection',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}report-requests': {'class': 'ReportRequestsType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}assets': {'class': 'AssetsType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}reports': {'class': 'ReportsType'},
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}extended-infos': {'class': 'ExtendedInfosType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1', 'tag_name': 'report-requests', 'class': 'ReportRequestsType', 'min': 0},
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1', 'tag_name': 'assets', 'class': 'AssetsType', 'min': 0},
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1', 'tag_name': 'reports', 'class': 'ReportsType'},
+            {'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1', 'tag_name': 'extended-infos', 'class': 'ExtendedInfosType', 'min': 0},
+        ],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             '*': {},

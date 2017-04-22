@@ -23,12 +23,11 @@ logger = logging.getLogger(__name__)
 class PostTownType(Model):
     MODEL_MAP = {
         'tag_name': 'PostTown',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostTownName': {'append': 'post_town_names', 'class': 'PostTownType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostTownSuffix': {'in': 'post_town_suffix', 'class': 'PostTownSuffixType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostTownName', 'append': 'post_town_names', 'class': 'PostTownType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostTownSuffix', 'in': 'post_town_suffix', 'class': 'PostTownSuffixType'},'*': {},
+        ],
         'attributes': {
             'Type': {},
             '*': {},

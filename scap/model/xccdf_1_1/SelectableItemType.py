@@ -23,12 +23,12 @@ from scap.model.xccdf_1_1.ItemType import ItemType
 logger = logging.getLogger(__name__)
 class SelectableItemType(ItemType):
     MODEL_MAP = {
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}rationale': {'append': 'rationales', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
-            '{http://checklists.nist.gov/xccdf/1.1}platform': {'append': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableUriIdrefType'},
-            '{http://checklists.nist.gov/xccdf/1.1}requires': {'append': 'requires', 'min': 0, 'max': None, 'class': 'IdrefListType'},
-            '{http://checklists.nist.gov/xccdf/1.1}conflicts': {'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'rationale', 'append': 'rationales', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'platform', 'append': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableUriIdrefType'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'requires', 'append': 'requires', 'min': 0, 'max': None, 'class': 'IdrefListType'},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'conflicts', 'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},
+        ],
         'attributes': {
             'selected': {'type': 'Boolean', 'default': True},
             'weight': {'type': 'WeightType', 'default': 1.0},

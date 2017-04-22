@@ -25,7 +25,7 @@ class ReferenceType(String):
             'href': {'type': 'AnyURI'},
             'override': {'type': 'Boolean'},
         },
-        'elements': {
-            '{http://purl.org/dc/elements/1.1/}*': {'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 0, 'max': None},
+        ],
     }

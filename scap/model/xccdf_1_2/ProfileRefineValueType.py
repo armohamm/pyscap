@@ -22,12 +22,12 @@ import logging
 logger = logging.getLogger(__name__)
 class ProfileRefineValueType(Model):
     MODEL_MAP = {
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'remark', 'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+        ],
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},
             'selector': {'type': 'String'},
             'operator': {'enum': VALUE_OPERATOR_ENUMERATION},
-        },
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.2}remark': {'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
         },
     }

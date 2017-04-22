@@ -22,18 +22,18 @@ logger = logging.getLogger(__name__)
 class SharedResourceAuditedPermissionsStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'sharedresourceauditedpermissions_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}netname': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}trustee_sid': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}standard_delete': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}standard_read_control': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}standard_write_dac': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}standard_write_owner': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}standard_synchronize': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}access_system_security': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}generic_read': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}generic_write': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}generic_execute': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}generic_all': {'class': 'EntityStateAuditType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'netname', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'trustee_sid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'standard_delete', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'standard_read_control', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'standard_write_dac', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'standard_write_owner', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'standard_synchronize', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'access_system_security', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'generic_read', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'generic_write', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'generic_execute', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'generic_all', 'class': 'EntityStateAuditType', 'min': 0},
+        ],
     }

@@ -23,9 +23,9 @@ from scap.model.xccdf_1_1.ValueOperatorEnumeration import VALUE_OPERATOR_ENUMERA
 logger = logging.getLogger(__name__)
 class ProfileRefineValueType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}remark': {'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'remark', 'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+        ],
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},
             'selector': {'type': 'String'},

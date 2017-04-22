@@ -22,18 +22,18 @@ logger = logging.getLogger(__name__)
 class ServiceStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'service_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}service_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}display_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}description': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}service_type': {'class': 'EntityStateServiceTypeType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}start_type': {'class': 'EntityStateServiceStartTypeType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}current_state': {'class': 'EntityStateServiceCurrentStateType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}controls_accepted': {'class': 'EntityStateServiceControlsAcceptedType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}start_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}path': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}pid': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}service_flag': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}dependencies': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'service_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'display_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'description', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'service_type', 'class': 'EntityStateServiceTypeType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'start_type', 'class': 'EntityStateServiceStartTypeType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'current_state', 'class': 'EntityStateServiceCurrentStateType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'controls_accepted', 'class': 'EntityStateServiceControlsAcceptedType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'start_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'path', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'pid', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'service_flag', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'dependencies', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+        ],
     }

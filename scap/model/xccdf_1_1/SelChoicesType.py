@@ -22,10 +22,10 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class SelChoicesType(Model):
     MODEL_MAP = {
-        'elements': {
+        'elements': [
             # TODO at least one choice/complex-choice
-            '{http://checklists.nist.gov/xccdf/1.1}choice': {'type': 'String', 'append': 'choices', 'min': 1, 'max': None},
-        },
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'choice', 'type': 'String', 'append': 'choices', 'min': 1, 'max': None},
+        ],
         'attributes': {
             'mustMatch': {'type': 'Boolean'},
             'selector': {'type': 'String', 'default': ''},

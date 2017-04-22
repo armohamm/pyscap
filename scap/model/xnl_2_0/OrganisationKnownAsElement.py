@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 class OrganisationKnownAsElement(OrganisationNameDetailsType):
     MODEL_MAP = {
         'tag_name': 'OrganisationNameDetails',
-        'elements': {
-            '*': {},
-        },
+        'elements': [
+            {'tag_name': '*'},
+        ],
         'attributes': {
             'ValidFrom': {},
             'ValidTo': {},

@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 class PersonNameElement(PersonNameType):
     MODEL_MAP = {
         'tag_name': 'PersonName',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}FormerName': {'append': 'former_names', 'class': 'FormerNameElement'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}KnownAs': {'append': 'known_ases', 'class': 'KnownAsElement'},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'FormerName', 'append': 'former_names', 'class': 'FormerNameElement'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'KnownAs', 'append': 'known_ases', 'class': 'KnownAsElement'},
+        ],
         'attributes': {
             'Type': {},
             'Code': {},

@@ -23,12 +23,12 @@ logger = logging.getLogger(__name__)
 class ThoroughfareNumberToType(Model):
     MODEL_MAP = {
         'tag_name': 'ThoroughfareNumberTo',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareNumberPrefix': {'append': 'thoroughfare_number_prefixes', 'class': 'ThoroughfareNumberPrefixType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareNumber': {'append': 'thoroughfare_numbers', 'class': 'ThoroughfareNumberType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}ThoroughfareNumberSuffix': {'append': 'thoroughfare_number_suffixes', 'class': 'ThoroughfareNumberSuffixType'},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumberPrefix', 'append': 'thoroughfare_number_prefixes', 'class': 'ThoroughfareNumberPrefixType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumber', 'append': 'thoroughfare_numbers', 'class': 'ThoroughfareNumberType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumberSuffix', 'append': 'thoroughfare_number_suffixes', 'class': 'ThoroughfareNumberSuffixType'},
+        ],
         'attributes': {
             'Code': {}, # from grPostal
             '*': {},

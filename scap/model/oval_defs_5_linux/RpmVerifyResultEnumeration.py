@@ -14,9 +14,9 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
-RPM_VERIFY_RESULT_ENUMERATION = {
+RPM_VERIFY_RESULT_ENUMERATION = [
     'pass',
     'fail',
     'not performed',
     '',
-}
+]

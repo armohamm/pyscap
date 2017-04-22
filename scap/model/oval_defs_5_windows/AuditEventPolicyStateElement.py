@@ -23,15 +23,15 @@ logger = logging.getLogger(__name__)
 class AuditEventPolicyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'auditeventpolicy_state',
-        'elements': {
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}account_logon': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}account_management': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}detailed_tracking': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}directory_service_access': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}logon': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}object_access': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}policy_change': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}privilege_use': {'class': 'EntityStateAuditType', 'min': 0},
-            '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}system': {'class': 'EntityStateAuditType', 'min': 0},
-        },
+        'elements': [
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'account_logon', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'account_management', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'detailed_tracking', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'directory_service_access', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'logon', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'object_access', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'policy_change', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'privilege_use', 'class': 'EntityStateAuditType', 'min': 0},
+            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'system', 'class': 'EntityStateAuditType', 'min': 0},
+        ],
     }

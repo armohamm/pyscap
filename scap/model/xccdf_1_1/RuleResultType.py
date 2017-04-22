@@ -25,15 +25,15 @@ from scap.model.xccdf_1_1.SeverityEnumeration import SEVERITY_ENUMERATION
 logger = logging.getLogger(__name__)
 class RuleResultType(Model):
     MODEL_MAP = {
-        'elements': {
-            '{http://checklists.nist.gov/xccdf/1.1}result': {'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
-            '{http://checklists.nist.gov/xccdf/1.1}override': {'class': 'OverrideType', 'append': 'overrides', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}ident': {'class': 'IdentType', 'append': 'idents', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}message': {'class': 'MessageType', 'append': 'messages', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}instance': {'class': 'InstanceResultType', 'append': 'instances', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}fix': {'class': 'FixType', 'append': 'fixes', 'min': 0, 'max': None},
-            '{http://checklists.nist.gov/xccdf/1.1}check': {'class': 'CheckType', 'append': 'checks', 'min': 0, 'max': None},
-        },
+        'elements': [
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'override', 'class': 'OverrideType', 'append': 'overrides', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'ident', 'class': 'IdentType', 'append': 'idents', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'message', 'class': 'MessageType', 'append': 'messages', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'instance', 'class': 'InstanceResultType', 'append': 'instances', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'fix', 'class': 'FixType', 'append': 'fixes', 'min': 0, 'max': None},
+            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'check', 'class': 'CheckType', 'append': 'checks', 'min': 0, 'max': None},
+        ],
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},
             'role': {'enum': ROLE_ENUMERATION},

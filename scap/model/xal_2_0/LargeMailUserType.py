@@ -23,17 +23,17 @@ logger = logging.getLogger(__name__)
 class LargeMailUserType(Model):
     MODEL_MAP = {
         'tag_name': 'LargeMailUser',
-        'elements': {
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}LargeMailUserName': {'append': 'large_mail_user_names', 'class': 'LargeMailUserNameType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}LargeMailUserIdentifier': {'in': 'large_mail_user_identifier', 'class': 'LargeMailUserIdentifierType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}BuildingName': {'append': 'building_names', 'class': 'BuildingNameType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Department': {'in': 'department', 'class': 'DepartmentType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostBox': {'in': 'post_box', 'class': 'PostBoxType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Thoroughfare': {'in': 'thoroughfare', 'class': 'ThoroughfareType'},
-            '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalCode': {'in': 'postal_code', 'class': 'PostalCodeType'},
-            '*': {},
-        },
+        'elements': [
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'LargeMailUserName', 'append': 'large_mail_user_names', 'class': 'LargeMailUserNameType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'LargeMailUserIdentifier', 'in': 'large_mail_user_identifier', 'class': 'LargeMailUserIdentifierType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'BuildingName', 'append': 'building_names', 'class': 'BuildingNameType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Department', 'in': 'department', 'class': 'DepartmentType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Thoroughfare', 'in': 'thoroughfare', 'class': 'ThoroughfareType'},
+            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
+            {'tag_name': '*'},
+        ],
         'attributes': {
             'Type': {},
             '*': {},
