@@ -16,4 +16,5 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'Benchmark', 'class': 'BenchmarkType'},}
+    '{http://checklists.nist.gov/xccdf/1.1}Benchmark': 'BenchmarkType',
+}

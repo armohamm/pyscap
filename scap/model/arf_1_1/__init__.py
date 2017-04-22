@@ -16,5 +16,5 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    'asset-report-collection': 'AssetReportCollectionElement',
+    '{http://scap.nist.gov/schema/asset-identification/1.1}asset-report-collection': 'AssetReportCollectionElement',
 }

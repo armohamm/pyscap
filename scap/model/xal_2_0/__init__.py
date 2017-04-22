@@ -15,6 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 TAG_MAP = {
-    {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'xAL', 'class': 'XALType'},
-    {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressDetails', 'class': 'AddressDetailsType'},
+    '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}xAL': 'XALType',
+    '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressDetails': 'AddressDetailsType',
 }
