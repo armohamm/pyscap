@@ -22,7 +22,6 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class PremiseNumberFromType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0',
         'tag_name': 'PremiseNumberFrom',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
@@ -30,5 +29,4 @@ class PremiseNumberFromType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PremiseNumber': {'append': 'premise_numbers', 'class': 'PremiseNumberType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PremiseNumberSuffix': {'append': 'premise_number_suffixes', 'class': 'PremiseNumberSuffixType'},
         },
-        'element_order': [],
     }

@@ -22,16 +22,11 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class ReportRequestType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1',
         'tag_name': 'report-request',
         'elements': {
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}content': {'class': 'ReportRequestContentElement'},
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}remote-resource': {'class': 'RemoteResourceElement'},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}content',
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}remote-resource',
-        ],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             '*': {},

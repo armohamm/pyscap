@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class TestActionRefType(TestActionRefValuePattern):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0',
         'tag_name': 'test_action_ref',
         'attributes': {
             'negate': {'type': 'Boolean', 'default': False},

@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class FileEffectiveRightsObjectElement(ObjectType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'fileeffectiverights_object',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'oval_defs_5.SetElement', 'min': 0},
@@ -30,5 +29,4 @@ class FileEffectiveRightsObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}filename': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}trustee_name': {'class': 'oval_defs_5.EntityObjectStringType'},
         },
-        'element_order': []
     }

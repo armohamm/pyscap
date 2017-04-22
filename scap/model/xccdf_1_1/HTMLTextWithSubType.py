@@ -22,12 +22,11 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class HTMLTextWithSubType(Model):
     MODEL_MAP = {
-        'attributes': {
-            'override': {'type': 'Boolean', 'default': False},
-        },
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}sub': {'class': 'IdrefType', 'append': 'subs', 'min': 0, 'max': None},
             '{http://www.w3.org/1999/xhtml}*': {'min': 0, 'max': None},
         },
-        'element_order': [],
+        'attributes': {
+            'override': {'type': 'Boolean', 'default': False},
+        },
     }

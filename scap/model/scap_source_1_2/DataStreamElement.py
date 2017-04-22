@@ -23,7 +23,6 @@ import logging
 logger = logging.getLogger(__name__)
 class DataStreamElement(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/scap/source/1.2',
         'tag_name': 'data-stream',
         'elements': {
             '{http://scap.nist.gov/schema/scap/source/1.2}dictionaries': { 'class': 'RefListType', 'min': 0 },
@@ -37,5 +36,4 @@ class DataStreamElement(Model):
             'scap-version': {'required': True, 'enum': SCAP_VERSION_ENUMERATION}, # TODO: spec also allows Token
             'timestamp': {'required': True, 'type': 'DateTime'},
         },
-        'element_order': [],
     }

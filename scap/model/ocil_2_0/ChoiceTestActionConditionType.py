@@ -24,7 +24,4 @@ class ChoiceTestActionConditionType(TestActionConditionType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}choice_ref': {'append': 'choice_refs', 'type': 'ChoiceIDPattern', 'max': None},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/ocil/2.0}choice_ref',
-        ],
     }

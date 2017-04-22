@@ -29,5 +29,4 @@ class ComponentRefElement(Model):
             '{http://www.w3.org/1999/xlink}type': {'enum': ['simple']},
             '{http://www.w3.org/1999/xlink}href': {'type': 'String', 'required': True},
         },
-        'element_order': [],
     }

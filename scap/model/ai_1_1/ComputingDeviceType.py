@@ -22,23 +22,14 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class ComputingDeviceType(ITAssetType):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'computing-device',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}distinguished-name': {'class': 'DistinguishedNameType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}cpe': {'append': 'cpes', 'class': 'CPEType', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}connections': {'class': 'ConnectionsType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}fqdn': {'class': 'FQDNType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}hostname': {'class': 'ComputingDeviceHostnameType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}motherboard-guid': {'class': 'MotherboardGUIDType', 'min': 0},
-        },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-identification/1.1}distinguished-name',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}cpe',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}connections',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}fqdn',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}hostname',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}motherboard-guid',
+        'elements': [
+            {'tag_name': 'distinguished-name', 'class': 'DistinguishedNameType', 'min': 0},
+            {'tag_name': 'cpe', 'append': 'cpes', 'class': 'CPEType', 'min': 0, 'max': None},
+            {'tag_name': 'connections', 'class': 'ConnectionsType', 'min': 0},
+            {'tag_name': 'fqdn', 'class': 'FQDNType', 'min': 0},
+            {'tag_name': 'hostname', 'class': 'ComputingDeviceHostnameType', 'min': 0},
+            {'tag_name': 'motherboard-guid', 'class': 'MotherboardGUIDType', 'min': 0},
         ],
     }
     #TODO: cpes as fs_string

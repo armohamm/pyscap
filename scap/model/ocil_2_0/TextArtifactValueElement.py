@@ -21,6 +21,5 @@ import logging
 logger = logging.getLogger(__name__)
 class TextArtifactValueElement(TextArtifactValueType):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0',
         'tag_name': 'text_artifact_value',
     }

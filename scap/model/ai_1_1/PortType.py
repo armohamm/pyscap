@@ -24,6 +24,5 @@ class PortType(Integer):
     # <xs:minInclusive value="0"/>
     # <xs:maxInclusive value="65535"/>
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'port',
     }

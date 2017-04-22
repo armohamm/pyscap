@@ -22,7 +22,6 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class AddressDetailsType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0',
         'tag_name': 'AddressDetails',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalServiceElements': {'class': 'PostalServiceElementsType'},
@@ -33,7 +32,6 @@ class AddressDetailsType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Locality': {'class': 'LocalityType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}Thoroughfare': {'class': 'ThoroughfareType'},
         },
-        'element_order': [],
         'attributes': {
             'AddressType': {},
             'CurrentStatus': {},

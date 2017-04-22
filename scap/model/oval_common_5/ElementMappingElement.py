@@ -21,6 +21,5 @@ import logging
 logger = logging.getLogger(__name__)
 class ElementMappingElement(ElementMapType):
     MODEL_MAP = {
-        'xml_schema': 'http://oval.mitre.org/XMLSchema/oval-common-5',
         'tag_name' : 'element_mapping'
     }

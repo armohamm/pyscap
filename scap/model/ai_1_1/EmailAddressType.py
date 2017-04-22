@@ -19,7 +19,6 @@ from scap.model.xs_2001.Token import Token
 
 class EmailAddressType(Token):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'email-address',
         'attributes': {
             'source': {'type': 'Source'},

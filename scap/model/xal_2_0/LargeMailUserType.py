@@ -22,7 +22,6 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class LargeMailUserType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0',
         'tag_name': 'LargeMailUser',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
@@ -35,7 +34,6 @@ class LargeMailUserType(Model):
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PostalCode': {'in': 'postal_code', 'class': 'PostalCodeType'},
             '*': {},
         },
-        'element_order': [],
         'attributes': {
             'Type': {},
             '*': {},

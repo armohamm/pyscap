@@ -28,7 +28,6 @@ class CriteriaType(Model):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}criterion': {'append': 'criteria', 'class': 'CriterionType', 'min': 0, 'max': None},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}extend_definition': {'append': 'criteria', 'class': 'ExtendDefinitionType', 'min': 0, 'max': None},
         },
-        'element_order': [],
         'attributes': {
             'applicability_check': {'type': 'Boolean'},
             'operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},

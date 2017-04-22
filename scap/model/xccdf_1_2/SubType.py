@@ -28,5 +28,4 @@ class SubType(IDRefType):
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.2}sub': {'class': 'SubType', 'append': 'subs'},
         },
-        'element_order': [],
     }

@@ -24,5 +24,4 @@ class NumericQuestionResultType(QuestionResultType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}answer': {'type': 'Decimal', 'max': 1},
         },
-		'element_order': [],
     }

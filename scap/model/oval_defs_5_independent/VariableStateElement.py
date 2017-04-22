@@ -21,11 +21,9 @@ import logging
 logger = logging.getLogger(__name__)
 class VariableStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent',
         'tag_name': 'variable_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}var_ref': {'class': 'EntityStateVariableRefType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}value': {'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
         },
-        'element_order': []
     }

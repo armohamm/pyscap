@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class IfListenersStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux',
         'tag_name': 'iflisteners_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}interface_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
@@ -31,5 +30,4 @@ class IfListenersStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}pid': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}user_id': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
         },
-        'element_order': []
     }

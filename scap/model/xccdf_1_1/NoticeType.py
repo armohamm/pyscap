@@ -22,11 +22,10 @@ from scap.model.xs_2001.String import String
 logger = logging.getLogger(__name__)
 class NoticeType(String):
     MODEL_MAP = {
-        'attributes': {
-            'id': {'required': True, 'type': 'NCName'},
-        },
         'elements': {
             '{http://www.w3.org/1999/xhtml}*': {'min': 0, 'max': None},
         },
-        'element_order': [],
+        'attributes': {
+            'id': {'required': True, 'type': 'NCName'},
+        },
     }

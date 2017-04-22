@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class PasswordPolicyStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'passwordpolicy_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}max_passwd_age': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
@@ -31,5 +30,4 @@ class PasswordPolicyStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}password_complexity': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}reversible_encryption': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
         },
-        'element_order': [],
     }

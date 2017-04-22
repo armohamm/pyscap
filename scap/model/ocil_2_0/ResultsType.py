@@ -29,7 +29,6 @@ class ResultsType(Model):
             '{http://scap.nist.gov/schema/ocil/2.0}artifact_results': {'class': 'ArtifactResultsType', 'min': 0, 'max': 1},
             '{http://scap.nist.gov/schema/ocil/2.0}targets': {'class': 'TargetsType', 'min': 0, 'max': 1},
         },
-		'element_order': [],
         'attributes': {
             'start_time': {'type': 'DateTime'},
             'end_time': {'type': 'DateTime'},

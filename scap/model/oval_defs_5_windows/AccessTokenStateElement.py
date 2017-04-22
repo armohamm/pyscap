@@ -22,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 class AccessTokenStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'accesstoken_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}security_principle': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
@@ -73,5 +72,4 @@ class AccessTokenStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}sedenyservicelogonright': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}setrustedcredmanaccessnameright': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
         },
-        'element_order': []
     }

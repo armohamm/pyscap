@@ -22,12 +22,8 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class DatabaseType(ITAssetType):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'database',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}instance-name': {'class': 'InstanceNameType', 'min': 0},
-        },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-identification/1.1}instance-name',
+        'elements': [
+            {'tag_name': 'instance-name', 'class': 'InstanceNameType', 'min': 0},
         ],
     }

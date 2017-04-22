@@ -24,5 +24,4 @@ class MetadataType(Model):
         'elements': {
             '*': {'min': 1, 'max': None},
         },
-        'element_order': [],
     }

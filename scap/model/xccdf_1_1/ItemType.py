@@ -32,7 +32,6 @@ class ItemType(Extendable):
             '{http://checklists.nist.gov/xccdf/1.1}question': {'append': 'questions', 'class': 'TextType', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}reference': {'append': 'references', 'min': 0, 'max': None, 'class': 'ReferenceType'},
         },
-        'element_order': [],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             'abstract': {'type': 'Boolean', 'default': False},

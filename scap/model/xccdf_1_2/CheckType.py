@@ -39,7 +39,6 @@ class CheckType(Model):
             '{http://checklists.nist.gov/xccdf/1.2}check-content-ref': {'class': 'CheckContentRefType', 'append': 'check_content_refs', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.2}check-content': {'class': 'CheckContentType', 'min': 0, 'max': 1},
         },
-        'element_order': [],
     }
 
     def __str__(self):

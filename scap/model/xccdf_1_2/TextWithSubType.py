@@ -27,5 +27,4 @@ class TextWithSubType(Model):
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.2}sub': {'class': 'SubType', 'append': 'subs', 'min': 0, 'max': None},
         },
-        'element_order': [],
     }

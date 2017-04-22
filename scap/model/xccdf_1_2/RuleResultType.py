@@ -32,7 +32,6 @@ class RuleResultType(Model):
             'version': {'type': 'String'},
             'weight': {'type': 'Weight'},
         },
-        'element_order': [],
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.2}result': {'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
             '{http://checklists.nist.gov/xccdf/1.2}override': {'class': 'OverrideType', 'append': 'overrides', 'min': 0, 'max': None},

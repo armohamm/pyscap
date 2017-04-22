@@ -21,10 +21,8 @@ import logging
 logger = logging.getLogger(__name__)
 class ConstantVariableElement(Variable):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5',
         'tag_name': 'constant_variable',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}value': {'append': 'values', 'class': 'ValueType', 'min': 1, 'max': None},
         },
-        'element_order': [],
     }

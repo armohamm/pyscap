@@ -24,5 +24,4 @@ class QuestionnaireResultsType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}questionnaire_result': {'append': 'questionnaire_results', 'class': 'QuestionnaireResultType', 'min': 1, 'max': None},
         },
-		'element_order': []
     }

@@ -24,7 +24,6 @@ class QuestionnaireResultType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}artifact_results': {'class': 'ArtifactResultsType', 'min': 0, 'max': 1},
         },
-		'element_order': [],
         'attributes': {
             'questionnaire_ref': {'type': 'QuestionnaireIDPattern', 'required': True},
             'result': {'class': 'ResultType', 'required': True},

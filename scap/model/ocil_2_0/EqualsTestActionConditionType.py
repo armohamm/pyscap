@@ -24,9 +24,6 @@ class EqualsTestActionConditionType(TestActionConditionType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}value': {'append': 'values', 'type': 'Decimal', 'min': 1, 'max': None},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/ocil/2.0}value',
-        ],
         'attributes': {
             'var_ref': {'type': 'VariableIDPattern'},
         },

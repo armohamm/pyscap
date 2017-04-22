@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class InterfaceStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'interface_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
@@ -33,5 +32,4 @@ class InterfaceStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}netmask': {'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}addr_type': {'class': 'EntityStateAddrTypeType', 'min': 0},
         },
-        'element_order': []
     }

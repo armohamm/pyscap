@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class LocalVariableElement(VariableType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5',
         'tag_name': 'local_variable',
         'elements': {
             # from ComponentGroup
@@ -42,5 +41,4 @@ class LocalVariableElement(VariableType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}regex_capture': {'append': 'components', 'class': 'RegexCaptureFunctionType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}glob_to_regex': {'append': 'components', 'class': 'GlobToRegexFunctionType'},
         },
-        'element_order': [],
     }

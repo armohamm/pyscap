@@ -21,11 +21,9 @@ import logging
 logger = logging.getLogger(__name__)
 class EnvironmentVariableObjectElement(ObjectType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent',
         'tag_name': 'environmentvariable_object',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'SetElement'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}name': {'class': 'oval_defs_5.EntityObjectStringType'},
         },
-		'element_order': []
     }

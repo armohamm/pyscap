@@ -24,7 +24,6 @@ class TelephoneNumberType(Token):
     # collapsed element telephone-number into telephone-number-type
     # <xs:pattern value="(([2-9][0-8]\d-[2-9]\d{2}-[0-9]{4})|(\+([0-9] ?){6,14}[0-9]))"/>
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'telephone-number',
         'attributes': {
             'source': {'class': 'Source'},

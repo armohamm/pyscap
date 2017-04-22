@@ -21,12 +21,10 @@ import logging
 logger = logging.getLogger(__name__)
 class EnvironmentVariable58StateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent',
         'tag_name': 'environmentvariable58_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}pid': {'class': 'oval_defs_5.EntityObjectIntType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}name': {'class': 'oval_defs_5.EntityObjectStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}value': {'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
         },
-		'element_order': []
     }

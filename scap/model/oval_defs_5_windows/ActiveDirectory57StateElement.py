@@ -22,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 class ActiveDirectory57StateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'activedirectory57_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}naming_context': {'class': 'EntityStateNamingContextType', 'min': 0},
@@ -32,5 +31,4 @@ class ActiveDirectory57StateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}adstype': {'class': 'EntityStateAdstypeType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}value': {'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
         },
-        'element_order': []
     }

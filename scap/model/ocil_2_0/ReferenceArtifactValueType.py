@@ -24,7 +24,6 @@ class ReferenceArtifactValueType(ArtifactValueType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}reference': {'class': 'ReferenceType'},
         },
-		'element_order': [],
         'attributes': {
             'id': {'type': 'ArtifactIDPattern', 'required': True},
             'persistent': {'type': 'Boolean', 'default': True},

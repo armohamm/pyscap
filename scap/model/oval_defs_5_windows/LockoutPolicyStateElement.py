@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class LockoutPolicyStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'lockoutpolicy_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}force_logoff': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
@@ -29,5 +28,4 @@ class LockoutPolicyStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}lockout_observation_window': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}lockout_threshold': {'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
         },
-        'element_order': []
     }

@@ -22,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 class CmdletStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'cmdlet_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}module_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
@@ -34,5 +33,4 @@ class CmdletStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}select': {'class': 'oval_defs_5.EntityStateRecordType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}value': {'class': 'oval_defs_5.EntityStateRecordType', 'min': 0, 'max': 1},
         },
-        'element_order': []
     }

@@ -22,17 +22,11 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class LocationsType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'locations',
-        'elements': {
+        'elements': [
             # TODO: min locations is 1
-            '{http://scap.nist.gov/schema/asset-identification/1.1}location-address': {'append': 'locations', 'class': 'LocationAddressType', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}location-point': {'append': 'locations', 'class': 'LocationPointType', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}location-region': {'append': 'locations', 'class': 'LocationRegionType', 'min': 0, 'max': None},
-        },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-identification/1.1}location-address',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}location-point',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}location-region',
+            {'tag_name': 'location-address', 'append': 'locations', 'class': 'LocationAddressType', 'min': 0, 'max': None},
+            {'tag_name': 'location-point', 'append': 'locations', 'class': 'LocationPointType', 'min': 0, 'max': None},
+            {'tag_name': 'location-region', 'append': 'locations', 'class': 'LocationRegionType', 'min': 0, 'max': None},
         ],
     }

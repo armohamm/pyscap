@@ -22,14 +22,12 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class OrganisationNameDetailsElement(Model):
     MODEL_MAP = {
-        'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0',
         'tag_name': 'OrganisationNameDetails',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}NameLine': {'append': 'name_lines', 'class': 'NameLineType'},
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}OrganisationName': {'append': 'organisation_name', 'class': 'OrganisationNameElement'},
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}OrganisationType': {'append': 'organisation_type', 'class': 'OrganisationTypeElement'},
         },
-        'element_order': [],
         'attributes': {
             'Type': {},
             'NameDetailsKeyRef': {}, # from grKeyRefs

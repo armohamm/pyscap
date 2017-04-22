@@ -22,20 +22,12 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class NetworkInterfaceType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'connection',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-address': {'class': 'IPAddressType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}mac-address': {'class': 'MACAddressType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}url': {'append': 'urls', 'class': 'URLType', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}subnet-mask': {'class': 'IPAddressType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}default-route': {'class': 'IPAddressType', 'min': 0},
-        },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-address',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}mac-address',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}url',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}subnet-mask',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}default-route',
+        'elements': [
+            {'tag_name': 'ip-address', 'class': 'IPAddressType', 'min': 0},
+            {'tag_name': 'mac-address', 'class': 'MACAddressType', 'min': 0},
+            {'tag_name': 'url', 'append': 'urls', 'class': 'URLType', 'min': 0, 'max': None},
+            {'tag_name': 'subnet-mask', 'class': 'IPAddressType', 'min': 0},
+            {'tag_name': 'default-route', 'class': 'IPAddressType', 'min': 0},
         ],
     }

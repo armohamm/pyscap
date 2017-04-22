@@ -24,5 +24,4 @@ class StringQuestionResultType(QuestionResultType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}answer': {'type': 'String', 'max': 1},
         },
-		'element_order': [],
     }

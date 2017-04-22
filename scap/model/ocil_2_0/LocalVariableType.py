@@ -24,9 +24,6 @@ class LocalVariableType(VariableType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}set': {'class': 'SetType', 'min': 0, 'max': 1},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/ocil/2.0}set',
-        ],
         'attributes': {
             'question_ref': {'type': 'QuestionIDPattern', 'required': True},
         }

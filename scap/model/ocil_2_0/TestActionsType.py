@@ -28,5 +28,4 @@ class TestActionsType(Model):
             '{http://scap.nist.gov/schema/ocil/2.0}numeric_question_test_action': {'append': 'test_actions', 'class': 'NumericQuestionTestActionElement', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}string_question_test_action': {'append': 'test_actions', 'class': 'StringQuestionTestActionElement', 'min': 0, 'max': None},
         },
-        'element_order': []
     }

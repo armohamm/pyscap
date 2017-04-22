@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class EpochElement(EntityStateAnySimpleType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux',
         'tag_name': 'epoch',
         'attributes': {
             'datatype': {'enum': ['string', 'int'], 'default': 'string'},

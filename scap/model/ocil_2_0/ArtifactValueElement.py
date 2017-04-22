@@ -22,6 +22,5 @@ logger = logging.getLogger(__name__)
 class ArtifactValueElement(ArtifactValueType):
     # abstract
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0',
         'tag_name': 'artifact_value',
     }

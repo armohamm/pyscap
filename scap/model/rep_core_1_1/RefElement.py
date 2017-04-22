@@ -21,6 +21,5 @@ import logging
 logger = logging.getLogger(__name__)
 class RefElement(NCName):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/reporting-core/1.1',
         'tag_name': 'ref',
     }

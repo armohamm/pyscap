@@ -21,6 +21,5 @@ import logging
 logger = logging.getLogger(__name__)
 class DefinitionElement(DefinitionType):
     MODEL_MAP = {
-        'xml_schema': 'http://oval.mitre.org/XMLSchema/oval-definitions-5',
         'tag_name' : 'definition',
     }

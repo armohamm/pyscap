@@ -22,7 +22,6 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class NameDetailsElement(NameDetailsType):
     MODEL_MAP = {
-        'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0',
         'tag_name': 'NameDetails',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}AddresseeIndicator': {'in': 'adressee_indicator', 'class': 'AddresseeIndicatorElement'},
@@ -33,5 +32,4 @@ class NameDetailsElement(NameDetailsType):
         'attributes': {
             'NameDetailsKey': {},
         },
-        'element_order': [],
     }

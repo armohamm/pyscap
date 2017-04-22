@@ -21,11 +21,9 @@ import logging
 logger = logging.getLogger(__name__)
 class SharedResourceEffectiveRightsTestElement(TestType):
     MODEL_MAP = {
-        'xml_schema': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'sharedresourceeffectiverights_test',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}object': {'class': 'oval_defs_5.ObjectRefType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}state': {'append': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
         },
-        'element_order': []
     }

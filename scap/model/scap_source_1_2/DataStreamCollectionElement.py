@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class DataStreamCollectionElement(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/scap/source/1.2',
         'tag_name': 'data-stream-collection',
         'elements': {
             '{http://scap.nist.gov/schema/scap/source/1.2}data-stream': {'max': None, 'class': 'DataStreamElement', 'map': 'data_streams'},
@@ -33,5 +32,4 @@ class DataStreamCollectionElement(Model):
             'id': {'required': True, 'type': 'DataStreamCollectionIDPattern'},
             'schematron-version':{'type': 'Token', 'required': True},
         },
-        'element_order': [],
     }

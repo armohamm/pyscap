@@ -21,10 +21,8 @@ import logging
 logger = logging.getLogger(__name__)
 class ExtendedInformationType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'extended-information',
-        'elements': {
-            '*': {},
-        },
-        'element_order': ['*'],
+        'elements': [
+            {'tag_name': '*'},
+        ],
     }

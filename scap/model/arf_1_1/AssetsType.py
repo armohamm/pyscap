@@ -22,12 +22,8 @@ import logging
 logger = logging.getLogger(__name__)
 class AssetsType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1',
         'tag_name': 'assets',
         'elements': {
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}asset': {'append': 'assets', 'class': 'AssetElement', 'max': None},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}asset',
-        ],
     }

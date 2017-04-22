@@ -21,10 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class ComponentElement(Model):
     MODEL_MAP = {
-        'attributes': {
-            'id': {'required': True, 'type': 'ComponentIDPattern'},
-            'timestamp': {'type': 'DateTime'},
-        },
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.2}Benchmark': { 'class': 'BenchmarkType', 'in': 'model', 'min': 0},
             '{http://scap.nist.gov/schema/ocil/2.0}ocil': {'class': 'OCILType', 'in': 'model', 'min': 0},
@@ -32,5 +28,8 @@ class ComponentElement(Model):
             '{http://cpe.mitre.org/dictionary/2.0}cpe-list': {'in': 'model', 'min': 0},
             '{http://checklists.nist.gov/xccdf/1.2}Tailoring': {'in': 'model', 'min': 0},
         },
-        'element_order': [],
+        'attributes': {
+            'id': {'required': True, 'type': 'ComponentIDPattern'},
+            'timestamp': {'type': 'DateTime'},
+        },
     }

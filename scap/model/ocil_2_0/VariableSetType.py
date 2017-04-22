@@ -28,5 +28,4 @@ class VariableSetType(Model):
             '{http://scap.nist.gov/schema/ocil/2.0}when_range': {'append': 'expressions', 'class': 'WhenRangeElement', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}when_boolean': {'append': 'expressions', 'class': 'WhenBooleanElement', 'min': 0, 'max': None},
         },
-        'element_order': []
     }

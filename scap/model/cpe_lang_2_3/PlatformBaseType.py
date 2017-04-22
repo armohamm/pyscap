@@ -27,9 +27,4 @@ class PlatformBaseType(Model):
             '{http://cpe.mitre.org/language/2.0}remark': {'append': 'remarks', 'class': 'TextType', 'min': 0, 'max': None},
             '{http://cpe.mitre.org/language/2.0}logical-test': {'class': 'LogicalTestType', 'min': 1, 'max': 1},
         },
-        'element_order': [
-            '{http://cpe.mitre.org/language/2.0}title',
-            '{http://cpe.mitre.org/language/2.0}remark',
-            '{http://cpe.mitre.org/language/2.0}logical-test',
-        ],
     }

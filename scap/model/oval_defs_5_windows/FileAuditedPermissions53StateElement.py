@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class FileAuditedPermissions53StateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'fileauditedpermissions53_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}filepath': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
@@ -49,5 +48,4 @@ class FileAuditedPermissions53StateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}file_write_attributes': {'class': 'EntityStateAuditType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}windows_view': {'class': 'EntityStateWindowsViewType', 'min': 0},
         },
-        'element_order': []
     }

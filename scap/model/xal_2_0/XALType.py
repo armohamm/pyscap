@@ -22,7 +22,6 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class XALType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0',
         'tag_name': 'xAL',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressDetails': {'append': 'address_details', 'class': 'AddressDetailsType'},
@@ -32,5 +31,4 @@ class XALType(Model):
             'Version': {},
             '*': {},
         },
-        'element_order': [],
     }

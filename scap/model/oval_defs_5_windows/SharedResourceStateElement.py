@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class SharedResourceStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'sharedresource_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}netname': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
@@ -38,5 +37,4 @@ class SharedResourceStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}access_perm_permission': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}access_all_permission': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
         },
-        'element_order': []
     }

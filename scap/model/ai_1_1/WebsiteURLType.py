@@ -19,7 +19,6 @@ from scap.model.xs_2001.AnyURI import AnyURI
 
 class WebsiteURLType(AnyURI):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'website-url',
         'attributes': {
             'source': {'type': 'Source'},

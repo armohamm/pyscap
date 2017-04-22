@@ -22,12 +22,10 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class ExtendedInfoElement(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1',
         'tag_name': 'extended-info',
         'elements': {
             '*': {},
         },
-        'element_order': ['*'],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             '*': {},

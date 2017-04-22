@@ -24,7 +24,4 @@ class ArtifactResultsType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}artifact_result': {'append': 'artifact_results', 'class': 'ArtifactResultType', 'min': 1, 'max': None},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/ocil/2.0}artifact_result',
-        ],
     }

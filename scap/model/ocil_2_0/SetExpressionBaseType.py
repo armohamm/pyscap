@@ -25,5 +25,4 @@ class SetExpressionBaseType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}value': {'class': 'SetExpressionValueType'},
         },
-		'element_order': [],
     }

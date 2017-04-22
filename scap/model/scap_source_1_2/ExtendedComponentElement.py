@@ -21,12 +21,11 @@ import logging
 logger = logging.getLogger(__name__)
 class ExtendedComponentElement(Model):
     MODEL_MAP = {
+        'elements': {
+            '*': {}
+        },
         'attributes': {
             'id': {'required': True, 'type': 'ExtendedComponentIDPattern'},
             'timestamp': {'type': 'DateTime', 'required': True}
         },
-        'elements': {
-            '*': {}
-        },
-        'element_order': [],
     }

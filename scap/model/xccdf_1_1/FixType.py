@@ -28,7 +28,6 @@ class FixType(Model):
             '{http://checklists.nist.gov/xccdf/1.1}sub': {'append': 'subs', 'min': 0, 'max': None, 'class': 'IdrefType'},
             '{http://checklists.nist.gov/xccdf/1.1}instance': {'append': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
         },
-        'element_order': [],
         'attributes': {
             'id': {'type': 'NCName'},
             'reboot': {'type': 'Boolean'},

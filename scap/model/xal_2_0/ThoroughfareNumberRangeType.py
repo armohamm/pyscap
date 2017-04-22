@@ -22,7 +22,6 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class ThoroughfareNumberRangeType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0',
         'tag_name': 'ThoroughfareNumberRange',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}AddressLine': {'append': 'address_lines', 'class': 'AddressLineType'},
@@ -39,5 +38,4 @@ class ThoroughfareNumberRangeType(Model):
             'Code': {}, # from grPostal
             '*': {},
         },
-        'element_order': [],
     }

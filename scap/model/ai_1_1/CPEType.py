@@ -25,7 +25,6 @@ class CPEType(String):
     #(CPE 2.2 URI or CPE 2.3 Formatted String)
     # TODO: <xs:union memberTypes="cpe-name:cpe22Type cpe-name:cpe23Type"/>
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'cpe',
         'attributes': {
             'source': {'class': 'Source'},

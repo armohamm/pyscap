@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class VolumeStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'volume_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}rootpath': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
@@ -51,5 +50,4 @@ class VolumeStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}file_supports_open_by_file_id': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}file_supports_usn_journal': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
         },
-        'element_order': [],
     }

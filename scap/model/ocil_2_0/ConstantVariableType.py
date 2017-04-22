@@ -24,7 +24,4 @@ class ConstantVariableType(VariableType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}value': {'type': 'String', 'min': 1, 'max': 1},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/ocil/2.0}value',
-        ],
     }

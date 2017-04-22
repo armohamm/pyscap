@@ -22,7 +22,6 @@ import logging
 logger = logging.getLogger(__name__)
 class AssetReportCollectionElement(RelationshipsContainerType):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1',
         'tag_name': 'asset-report-collection',
         'elements': {
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}report-requests': {'class': 'ReportRequestsType', 'min': 0},
@@ -30,12 +29,6 @@ class AssetReportCollectionElement(RelationshipsContainerType):
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}reports': {'class': 'ReportsType'},
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}extended-infos': {'class': 'ExtendedInfosType', 'min': 0},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}report-requests',
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}assets',
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}reports',
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}extended-infos',
-        ],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             '*': {},

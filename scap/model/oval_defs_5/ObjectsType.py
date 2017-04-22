@@ -21,18 +21,14 @@ import logging
 logger = logging.getLogger(__name__)
 class ObjectsType(Model):
     MODEL_MAP = {
-        'xml_schema': 'http://oval.mitre.org/XMLSchema/oval-definitions-5',
         'tag_name' : 'objects',
         'elements': {
             # TODO minOccurs="1" maxOccurs="unbounded"
         },
-        'element_order': [],
     }
     from scap.model.oval_defs_5_independent import OBJECT_MAP
-    MODEL_MAP['elements'].update(OBJECT_MAP)
+    MODEL_MAP['elements'].extend(OBJECT_MAP)
     from scap.model.oval_defs_5_linux import OBJECT_MAP
-    MODEL_MAP['elements'].update(OBJECT_MAP)
+    MODEL_MAP['elements'].extend(OBJECT_MAP)
     from scap.model.oval_defs_5_windows import OBJECT_MAP
-    MODEL_MAP['elements'].update(OBJECT_MAP)
-
-    # TODO element_order
+    MODEL_MAP['elements'].extend(OBJECT_MAP)

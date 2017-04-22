@@ -22,12 +22,11 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class ProfileNoteType(Model):
     MODEL_MAP = {
-        'attributes': {
-            'tag': {'type': 'NCName', 'required': True},
-        },
-        'element_order': [],
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}sub': {'class': 'IdrefType', 'append': 'subs', 'min': 0, 'max': None},
             '{http://www.w3.org/1999/xhtml}*': {'min': 0, 'max': None},
+        },
+        'attributes': {
+            'tag': {'type': 'NCName', 'required': True},
         },
     }

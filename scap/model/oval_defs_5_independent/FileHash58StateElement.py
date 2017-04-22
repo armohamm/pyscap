@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class FileHash58StateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent',
         'tag_name': 'filehash58_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filepath': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
@@ -31,5 +30,4 @@ class FileHash58StateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}hash': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}windows_view': {'class': 'EntityStateWindowsViewType', 'min': 0},
         },
-		'element_order': []
     }

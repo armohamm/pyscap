@@ -22,7 +22,6 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class IPAddressIPv4Type(IPv4Type):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'ip-v4',
         'attributes': {
             'source': {'type': 'Source'},

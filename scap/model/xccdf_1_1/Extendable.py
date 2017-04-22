@@ -188,22 +188,19 @@ class Extendable(Model):
                 attr_name = attr_name.replace('-', '_')
             self.resolve_property(extended, attr_name)
 
-        for tag in self.model_map['element_order']:
-            xml_namespace, tag_name = Model.parse_tag(tag)
-            if tag.endswith('*'):
+        for element_def in self.model_map['elements']:
+            if element_def['tag_name'].endswith('*'):
                 continue
 
-            tag_map = self.model_map['elements'][tag]
-
-            if 'append' in tag_map:
-                self.resolve_property(extended, tag_map['append'])
+            if 'append' in element_def:
+                self.resolve_property(extended, element_def['append'])
             elif 'map' in tag_map:
-                self.resolve_property(extended, tag_map['map'])
+                self.resolve_property(extended, element_def['map'])
             else:
-                if 'in' in tag_map:
-                    name = tag_map['in']
+                if 'in' in element_def:
+                    name = element_def['in']
                 else:
-                    name = tag_name.replace('-', '_')
+                    name = element_def['tag_name'].replace('-', '_')
             self.resolve_property(extended, name)
 
         # (6) remove the extends property.

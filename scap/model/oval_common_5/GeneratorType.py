@@ -28,5 +28,4 @@ class GeneratorType(Model):
             '{http://oval.mitre.org/XMLSchema/oval-common-5}timestamp': {'type': 'DateTime'},
             '*': {'max': None},
         },
-		'element_order': []
     }

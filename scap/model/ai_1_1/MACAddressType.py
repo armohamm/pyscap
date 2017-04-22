@@ -24,7 +24,6 @@ class MACAddressType(Token):
     # <xs:pattern value="([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}"/>
     # collapsed mac-address element & mac-address-type
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'mac-address',
         'attributes': {
             'source': {'type': 'Source'},

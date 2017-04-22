@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class SeLinuxSecurityContextStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux',
         'tag_name': 'selinuxsecuritycontext_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}filepath': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
@@ -40,5 +39,4 @@ class SeLinuxSecurityContextStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}rawhigh_sensitivity': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}rawhigh_category': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
         },
-        'element_order': []
     }

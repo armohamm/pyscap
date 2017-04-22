@@ -21,12 +21,10 @@ import logging
 logger = logging.getLogger(__name__)
 class GroupSidStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'group_sid_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}group_sid': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}user_sid': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}subgroup_sid': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
         },
-        'element_order': []
     }

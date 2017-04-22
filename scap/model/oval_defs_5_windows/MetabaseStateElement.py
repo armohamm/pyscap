@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class MetabaseStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'metabase_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}key': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
@@ -31,5 +30,4 @@ class MetabaseStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}data_type': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}data': {'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0},
         },
-        'element_order': []
     }

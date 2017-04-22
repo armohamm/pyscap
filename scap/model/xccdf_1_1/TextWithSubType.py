@@ -28,5 +28,4 @@ class TextWithSubType(Model):
         'elements': {
             '{http://checklists.nist.gov/xccdf/1.1}sub': {'class': 'IdrefType', 'append': 'subs', 'min': 0, 'max': None},
         },
-        'element_order': [],
     }

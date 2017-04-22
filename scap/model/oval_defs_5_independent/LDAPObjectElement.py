@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class LDAPObjectElement(ObjectType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent',
         'tag_name': 'ldap_object',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}behaviors': {'class': 'LdapBehaviors', 'min': 0, 'max': 1},
@@ -29,5 +28,4 @@ class LDAPObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}relative_dn': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}attribute': {'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
         },
-        'element_order': []
     }

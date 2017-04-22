@@ -39,7 +39,6 @@ class ValueType(ItemType):
             '{http://checklists.nist.gov/xccdf/1.1}source': {'class': 'UriRefType', 'append': 'sources', 'min': 0, 'max': None},
             '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
-        'element_order': [],
         'attributes': {
             'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'string'},
             'operator': {'enum': VALUE_OPERATOR_ENUMERATION, 'default': 'equals'},

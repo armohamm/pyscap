@@ -23,6 +23,5 @@ logger = logging.getLogger(__name__)
 class AssetElement(Model):
     MODEL_MAP = {
         # abstract
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'asset',
     }

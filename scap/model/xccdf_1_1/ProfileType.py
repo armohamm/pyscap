@@ -37,7 +37,6 @@ class ProfileType(Extendable):
 
             '{http://checklists.nist.gov/xccdf/1.1}signature': {'class': 'SignatureType', 'min': 0, 'max': 1},
         },
-        'element_order': [],
         'attributes': {
             'id': {'required': True, 'type': 'NCName'},
             'prohibitChanges': {'type': 'Boolean', 'default': False},

@@ -21,12 +21,10 @@ import logging
 logger = logging.getLogger(__name__)
 class Wmi57StateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'wmi57_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}namespace': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}wql': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}result': {'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
         },
-        'element_order': [],
     }

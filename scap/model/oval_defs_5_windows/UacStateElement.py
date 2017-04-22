@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class UacStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'uac_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}admin_approval_mode': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
@@ -34,5 +33,4 @@ class UacStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}secure_desktop': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}virtualize_write_failures': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
         },
-        'element_order': []
     }

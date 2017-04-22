@@ -26,5 +26,4 @@ class MetadataType(Model):
             '{http://purl.org/dc/elements/1.1/}*': {'min': 1, 'max': None},
             '{http://checklists.nist.gov/sccf/0.1}*': {'min': 1, 'max': None},
         },
-        'element_order': [],
     }

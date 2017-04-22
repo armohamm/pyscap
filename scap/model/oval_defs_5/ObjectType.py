@@ -31,5 +31,4 @@ class ObjectType(Model):
             'comment': {'type': 'oval_common_5.NonEmptyString', 'required': True},
             'deprecated': {'type': 'Boolean', 'default': False},
         },
-        'element_order': [],
     }

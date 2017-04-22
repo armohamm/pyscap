@@ -22,10 +22,8 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class CircuitType(ITAssetType):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'circuit',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}circuit-name': { 'class': 'CircuitNameType', 'min': 0},
-        },
-        'element_order': ['{http://scap.nist.gov/schema/asset-identification/1.1}circuit-name'],
+        'elements': [
+            {'tag_name': 'circuit-name',  'class': 'CircuitNameType', 'min': 0},
+        ],
     }

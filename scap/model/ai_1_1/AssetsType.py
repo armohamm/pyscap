@@ -23,8 +23,7 @@ logger = logging.getLogger(__name__)
 class AssetsType(RelationshipsContainerType):
     # abstract
     MODEL_MAP = {
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}asset': {'append': 'assets', 'class': 'AssetsAssetElement'},
-        },
-        'element_order': ['{http://scap.nist.gov/schema/asset-identification/1.1}asset'],
+        'elements': [
+            {'tag_name': 'asset', 'append': 'assets', 'class': 'AssetsAssetElement'},
+        ],
     }

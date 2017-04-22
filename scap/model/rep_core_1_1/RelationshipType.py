@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class RelationshipType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/reporting-core/1.1',
         'tag_name': 'relationship',
         'elements': {
             '{http://scap.nist.gov/schema/reporting-core/1.1}ref': {'append': 'refs', 'class': 'RefElement'},
@@ -32,5 +31,4 @@ class RelationshipType(Model):
             'subject': {'type': 'NCName', 'required': True},
             '*': {},
         },
-        'element_order': [],
     }

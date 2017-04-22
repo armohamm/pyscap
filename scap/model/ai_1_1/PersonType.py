@@ -22,7 +22,6 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class PersonType(AssetType):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'person',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}PersonName': {'class': 'PersonNameType', 'min': 0},
@@ -30,10 +29,4 @@ class PersonType(AssetType):
             '{http://scap.nist.gov/schema/asset-identification/1.1}telephone-number': {'append': 'telephone_numbers', 'class': 'TelephoneNumberType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/asset-identification/1.1}birthdate': {'class': 'BirthdateType', 'min': 0},
         },
-        'element_order': [
-            '{urn:oasis:names:tc:ciq:xsdschema:xNL:2.0}PersonName',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}email-address',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}telephone-number',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}birthdate',
-        ],
     }

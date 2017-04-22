@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class Process58StateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'process58_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}command_line': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
@@ -35,5 +34,4 @@ class Process58StateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}primary_window_text': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
         },
-        'element_order': []
     }

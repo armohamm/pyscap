@@ -28,5 +28,4 @@ class MetadataType(Model):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}description': {'type': 'String'},
             '*': {},
         },
-        'element_order': [],
     }

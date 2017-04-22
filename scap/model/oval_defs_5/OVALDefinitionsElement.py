@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class OVALDefinitionsElement(Model):
     MODEL_MAP = {
-        'xml_schema': 'http://oval.mitre.org/XMLSchema/oval-definitions-5',
         'tag_name' : 'oval_definitions',
         'elements': {
             # TODO one of the following exists
@@ -35,5 +34,4 @@ class OVALDefinitionsElement(Model):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}variables': {'class': 'VariablesType', 'min': 0, 'max': 1},
             '{http://www.w3.org/2000/09/xmldsig#}Signature': {'min': 0, 'max': 1},
         },
-        'element_order': [],
     }

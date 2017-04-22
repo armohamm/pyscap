@@ -21,16 +21,11 @@ import logging
 logger = logging.getLogger(__name__)
 class ReportType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1',
         'tag_name': 'report',
         'elements': {
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}content': {'class': 'ReportContentElement'},
             '{http://scap.nist.gov/schema/asset-reporting-format/1.1}remote-resource': {'class': 'RemoteResourceElement'},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}content',
-            '{http://scap.nist.gov/schema/asset-reporting-format/1.1}remote-resource',
-        ],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},
             '*': {},

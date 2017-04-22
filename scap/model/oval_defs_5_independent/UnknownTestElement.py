@@ -21,6 +21,5 @@ import logging
 logger = logging.getLogger(__name__)
 class UnknownTestElement(TestType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent',
         'tag_name': 'unknown_test',
     }

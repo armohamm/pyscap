@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class ServiceEffectiveRightsStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'serviceeffectiverights_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}service_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
@@ -43,5 +42,4 @@ class ServiceEffectiveRightsStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}service_interrogate': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}service_user_defined': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
         },
-        'element_order': []
     }

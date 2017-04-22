@@ -26,7 +26,6 @@ class StateType(Model):
             '{http://www.w3.org/2000/09/xmldsig#}Signature': {'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-common-5}notes': {'class': 'NotesType', 'min': 0, 'max': 1},
         },
-        'element_order': [],
         'attributes': {
             'id': {'type': 'oval_common_5.StateIDPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},

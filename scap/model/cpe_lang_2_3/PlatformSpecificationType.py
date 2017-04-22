@@ -25,7 +25,4 @@ class PlatformSpecificationType(Model):
         'elements': {
             '{http://cpe.mitre.org/language/2.0}platform': {'append': 'platforms', 'class': 'PlatformType', 'min': 1, 'max': None},
         },
-        'element_order': [
-            '{http://cpe.mitre.org/language/2.0}platform',
-        ]
     }

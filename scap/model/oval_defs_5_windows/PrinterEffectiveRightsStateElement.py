@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class PrinterEffectiveRightsStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'printereffectiverights_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}printer_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
@@ -41,5 +40,4 @@ class PrinterEffectiveRightsStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}job_access_administer': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}job_access_read': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
         },
-        'element_order': []
     }

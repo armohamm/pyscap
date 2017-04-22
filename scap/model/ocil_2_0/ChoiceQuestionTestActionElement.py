@@ -21,6 +21,5 @@ import logging
 logger = logging.getLogger(__name__)
 class ChoiceQuestionTestActionElement(ChoiceQuestionTestActionType):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0',
         'tag_name': 'choice_question_test_action',
     }

@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class DpkgInfoStateEvrElement(EntityStateAnySimpleType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux',
         'tag_name': 'evr',
         'attributes': {
             'datatype': {'enum': ['evr_string', 'debian_evr_string'], 'required': True},

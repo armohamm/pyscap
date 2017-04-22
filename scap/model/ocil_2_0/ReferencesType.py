@@ -24,5 +24,4 @@ class ReferencesType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}reference': {'append': 'references', 'class': 'ReferenceType', 'min': 1, 'max': None},
         },
-		'element_order': []
     }

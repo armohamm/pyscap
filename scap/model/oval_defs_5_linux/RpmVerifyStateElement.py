@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class RpmVerifyStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux',
         'tag_name': 'rpmverify_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
@@ -41,5 +40,4 @@ class RpmVerifyStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}license_file': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#linux}readme_file': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0, 'max': 1},
         },
-        'element_order': []
     }

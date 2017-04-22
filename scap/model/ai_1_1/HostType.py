@@ -22,14 +22,9 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class HostType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'host',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}fqdn': {'class': 'FQDNType'},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-address': {'class': 'IPAddressType'},
-        },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-identification/1.1}fqdn',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-address',
-        ]
+        'elements': [
+            {'tag_name': 'fqdn', 'class': 'FQDNType'},
+            {'tag_name': 'ip-address', 'class': 'IPAddressType'},
+        ],
     }

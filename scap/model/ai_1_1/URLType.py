@@ -23,7 +23,6 @@ logger = logging.getLogger(__name__)
 class URLType(AnyURI):
     # collapsed mac-address element & mac-address-type
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'url',
         'attributes': {
             'source': {'type': 'Source'},

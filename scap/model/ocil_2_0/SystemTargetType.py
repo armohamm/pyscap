@@ -26,5 +26,4 @@ class SystemTargetType(NamedItemBaseType):
             '{http://scap.nist.gov/schema/ocil/2.0}ipaddress': {'append': 'ipaddresses', 'type': 'String', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}description': {'class': 'TextType', 'min': 0, 'max': 1},
         },
-        'element_order': []
     }

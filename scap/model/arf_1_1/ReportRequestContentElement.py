@@ -22,14 +22,10 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class ReportRequestContentElement(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1',
         'tag_name': 'content',
         'elements': {
             '*': {},
         },
-        'element_order': [
-            '*',
-        ],
         'attributes': {
             '*': {},
         }

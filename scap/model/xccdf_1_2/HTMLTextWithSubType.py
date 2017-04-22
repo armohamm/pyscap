@@ -28,5 +28,4 @@ class HTMLTextWithSubType(Model):
             '{http://checklists.nist.gov/xccdf/1.2}sub': {'class': 'SubType', 'append': 'subs', 'min': 0, 'max': None},
             '{http://www.w3.org/1999/xhtml}*': {'min': 0, 'max': None},
         },
-        'element_order': [],
     }

@@ -24,7 +24,4 @@ class ArtifactRefsType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}artifact_ref': {'append': 'artifact_refs', 'class': 'ArtifactRefType', 'max': None},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/ocil/2.0}artifact_ref',
-        ]
     }

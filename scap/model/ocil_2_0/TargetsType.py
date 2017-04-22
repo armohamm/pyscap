@@ -26,5 +26,4 @@ class TargetsType(Model):
             '{http://scap.nist.gov/schema/ocil/2.0}user': {'append': 'targets', 'class': 'UserType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}system': {'append': 'targets', 'class': 'SystemTargetType', 'min': 0, 'max': None},
         },
-        'element_order': []
     }

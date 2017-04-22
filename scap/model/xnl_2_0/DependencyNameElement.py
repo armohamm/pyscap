@@ -23,7 +23,6 @@ logger = logging.getLogger(__name__)
 class DependencyNameElement(NameDetailsType):
     # combining element & complexType
     MODEL_MAP = {
-        'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0',
         'tag_name': 'DependencyName',
         'elements': {
             '*': {},
@@ -32,5 +31,4 @@ class DependencyNameElement(NameDetailsType):
             'DependencyType': {},
             'NameDetailsKeyRef': {}, # from grKeyRefs
         },
-        'element_order': [],
     }

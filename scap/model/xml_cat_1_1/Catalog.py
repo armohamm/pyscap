@@ -23,7 +23,6 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class Catalog(Model, MutableMapping):
     MODEL_MAP = {
-        'xml_namespace': 'urn:oasis:names:tc:entity:xmlns:xml:catalog',
         'tag_name': 'catalog',
         'attributes': {
             'id': {'type': 'ID'},
@@ -34,7 +33,6 @@ class Catalog(Model, MutableMapping):
             '{urn:oasis:names:tc:entity:xmlns:xml:catalog}uri': {'map': 'entries', 'key': 'name', 'value': 'uri'},
             '*': {},
         },
-        'element_order': [],
     }
 
 

@@ -22,7 +22,6 @@ logger = logging.getLogger(__name__)
 
 class AuditEventPolicyStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'auditeventpolicy_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}account_logon': {'class': 'EntityStateAuditType', 'min': 0},
@@ -35,5 +34,4 @@ class AuditEventPolicyStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}privilege_use': {'class': 'EntityStateAuditType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}system': {'class': 'EntityStateAuditType', 'min': 0},
         },
-        'element_order': [],
     }

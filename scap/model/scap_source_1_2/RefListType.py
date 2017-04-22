@@ -26,7 +26,6 @@ class RefListType(Model, collections.abc.MutableMapping):
         'elements': {
             '{http://scap.nist.gov/schema/scap/source/1.2}component-ref': {'map': 'component_refs', 'class': 'ComponentRefElement'},
         },
-        'element_order': [],
     }
 
     def __delitem__(self, key):

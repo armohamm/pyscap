@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class ServiceStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'service_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}service_name': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
@@ -37,5 +36,4 @@ class ServiceStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}service_flag': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}dependencies': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
         },
-        'element_order': []
     }

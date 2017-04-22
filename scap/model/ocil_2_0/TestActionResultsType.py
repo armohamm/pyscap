@@ -24,5 +24,4 @@ class TestActionResultsType(Model):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}test_action_result': {'append': 'test_action_results', 'class': 'TestActionResultType', 'min': 1, 'max': None},
         },
-		'element_order': []
     }

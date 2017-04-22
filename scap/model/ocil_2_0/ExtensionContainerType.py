@@ -24,5 +24,4 @@ class ExtensionContainerType(Model):
         'elements': {
             '*': {'append': 'additional_data', 'min': 1, 'max': None},
         },
-        'element_order': ['*']
     }

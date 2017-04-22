@@ -23,14 +23,9 @@ logger = logging.getLogger(__name__)
 class IPAddressType(Model):
     # collapsed ip-address element into ip-address-type
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'ip-address',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-v4': {'class': 'IPAddressIPv4Type', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-v6': {'class': 'IPAddressIPv6Type', 'min': 0},
-        },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-v4',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}ip-v6',
+        'elements': [
+            {'tag_name': 'ip-v4', 'class': 'IPAddressIPv4Type', 'min': 0},
+            {'tag_name': 'ip-v6', 'class': 'IPAddressIPv6Type', 'min': 0},
         ],
     }

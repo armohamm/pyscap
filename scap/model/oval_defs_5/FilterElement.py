@@ -22,7 +22,6 @@ import logging
 logger = logging.getLogger(__name__)
 class FilterElement(StateIDPattern):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5',
         'tag_name': 'filter',
         'attributes': {
             'action': {'enum': FILTER_ACTION_ENUMERATION, 'default': 'exclude'},

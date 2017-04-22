@@ -24,5 +24,4 @@ class TextArtifactValueType(EmbeddedArtifactValueType):
         'elements': {
             '{http://scap.nist.gov/schema/ocil/2.0}data': {'type': 'String'},
         },
-		'element_order': [],
     }

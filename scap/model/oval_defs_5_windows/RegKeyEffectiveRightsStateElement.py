@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class RegKeyEffectiveRightsStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'regkeyeffectiverights_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}hive': {'class': 'EntityStateRegistryHiveType', 'min': 0},
@@ -48,5 +47,4 @@ class RegKeyEffectiveRightsStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}key_wow64_res': {'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}windows_view': {'class': 'EntityStateWindowsViewType', 'min': 0},
         },
-        'element_order': []
     }

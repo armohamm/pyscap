@@ -31,5 +31,4 @@ class OCILType(Model):
             '{http://scap.nist.gov/schema/ocil/2.0}variables': {'class': 'VariablesType', 'min': 0, 'max': 1},
             '{http://scap.nist.gov/schema/ocil/2.0}results': {'class': 'ResultsElement', 'min': 0, 'max': 1},
         },
-		'element_order': []
     }

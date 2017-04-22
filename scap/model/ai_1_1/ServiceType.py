@@ -22,7 +22,6 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class ServiceType(ITAssetType):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'service',
         'elements': {
             '{http://scap.nist.gov/schema/asset-identification/1.1}host': {'class': 'HostType', 'min': 0},
@@ -30,10 +29,4 @@ class ServiceType(ITAssetType):
             '{http://scap.nist.gov/schema/asset-identification/1.1}port-range': {'append': 'port_ranges', 'class': 'PortRangeType', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/asset-identification/1.1}protocol': {'class': 'ProtocolType', 'min': 0},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-identification/1.1}host',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}port',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}port-range',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}protocol',
-        ]
     }

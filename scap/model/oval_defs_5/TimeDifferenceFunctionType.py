@@ -46,5 +46,4 @@ class TimeDifferenceFunctionType(Model):
             'format_1': {'enum': DATE_TIME_FORMAT_ENUMERATION, 'default': 'year_month_day'},
             'format_2': {'enum': DATE_TIME_FORMAT_ENUMERATION, 'default': 'year_month_day'},
         },
-        'element_order': [],
     }

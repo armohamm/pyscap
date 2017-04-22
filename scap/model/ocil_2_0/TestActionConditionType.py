@@ -28,5 +28,4 @@ class TestActionConditionType(Model):
 
             '{http://scap.nist.gov/schema/ocil/2.0}artifact_refs': {'class': 'ArtifactRefsType', 'min': 0, 'max': 1},
         },
-        'element_order': []
     }

@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class TextFileContentObjectElement(ObjectType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent',
         'tag_name': 'textfilecontent_object',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5}set': {'class': 'SetElement'},
@@ -30,5 +29,4 @@ class TextFileContentObjectElement(ObjectType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}filename': {'class': 'oval_defs_5.EntityObjectStringType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}line': {'class': 'oval_defs_5.EntityObjectStringType'},
         },
-        'element_order': []
     }

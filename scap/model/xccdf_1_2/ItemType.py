@@ -41,5 +41,4 @@ class ItemType(Model):
             '{http://checklists.nist.gov/xccdf/1.2}reference': {'append': 'references', 'min': 0, 'max': None, 'class': 'ReferenceType'},
             '{http://checklists.nist.gov/xccdf/1.2}metadata': {'append': 'metadata', 'min': 0, 'max': None, 'class': 'MetadataType'},
         },
-        'element_order': [],
     }

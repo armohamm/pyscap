@@ -22,7 +22,6 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class PremiseNumberRangeType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0',
         'tag_name': 'PremiseNumberRange',
         'elements': {
             '{urn:oasis:names:tc:ciq:xsdschema:xAL:2.0}PremiseNumberRangeFrom': {'in': 'premise_number_from', 'class': 'PremiseNumberRangeFromType'},
@@ -36,5 +35,4 @@ class PremiseNumberRangeType(Model):
             'IndicatorOccurrence': {'enum': ['Before', 'After']},
             'NumberRangeOccurrence': {'enum': ['BeforeName', 'AfterName', 'BeforeType', 'AfterType']},
         },
-        'element_order': [],
     }

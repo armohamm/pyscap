@@ -22,12 +22,8 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class ConnectionsType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'connections',
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}connection': {'append': 'connections', 'class': 'NetworkInterfaceType', 'max': None},
-        },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-identification/1.1}connection',
+        'elements': [
+            {'tag_name': 'connection', 'append': 'connections', 'class': 'NetworkInterfaceType', 'max': None},
         ],
     }

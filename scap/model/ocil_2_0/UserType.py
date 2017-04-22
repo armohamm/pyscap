@@ -26,5 +26,4 @@ class UserType(NamedItemBaseType):
             '{http://scap.nist.gov/schema/ocil/2.0}position': {'append': 'positions', 'type': 'NormalizedString', 'min': 0, 'max': None},
             '{http://scap.nist.gov/schema/ocil/2.0}email': {'append': 'emails', 'type': 'Token', 'min': 0, 'max': None},
         },
-		'element_order': [],
     }

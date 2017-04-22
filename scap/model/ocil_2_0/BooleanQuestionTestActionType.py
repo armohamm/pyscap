@@ -25,8 +25,4 @@ class BooleanQuestionTestActionType(QuestionTestActionType):
             '{http://scap.nist.gov/schema/ocil/2.0}when_true': {'class': 'TestActionConditionType', 'min': 1, 'max': 1},
             '{http://scap.nist.gov/schema/ocil/2.0}when_false': {'class': 'TestActionConditionType', 'min': 1, 'max': 1},
         },
-        'element_order': [
-            '{http://scap.nist.gov/schema/ocil/2.0}when_true',
-            '{http://scap.nist.gov/schema/ocil/2.0}when_false',
-        ],
     }

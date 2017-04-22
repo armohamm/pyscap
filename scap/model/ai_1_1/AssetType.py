@@ -22,21 +22,14 @@ import xml.etree.ElementTree as ET
 logger = logging.getLogger(__name__)
 class AssetType(Model):
     MODEL_MAP = {
-        'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1',
         'tag_name': 'asset',
+        'elements': [
+            {'tag_name': 'synthetic-id', 'class': 'SyntheticIDType', 'append': 'synthetic_ids', 'min': 0, 'max': None},
+            {'tag_name': 'locations', 'class': 'LocationsType', 'min': 0},
+            {'tag_name': 'extended-information', 'class': 'ExtendedInformationType', 'min': 0},
+            {'tag_name': '*'},
+        ],
         'attributes': {
             'timestamp': {'type': 'Timestamp'}
         },
-        'elements': {
-            '{http://scap.nist.gov/schema/asset-identification/1.1}synthetic-id': {'class': 'SyntheticIDType', 'append': 'synthetic_ids', 'min': 0, 'max': None},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}locations': {'class': 'LocationsType', 'min': 0},
-            '{http://scap.nist.gov/schema/asset-identification/1.1}extended-information': {'class': 'ExtendedInformationType', 'min': 0},
-            '*': {},
-        },
-        'element_order': [
-            '{http://scap.nist.gov/schema/asset-identification/1.1}synthetic-id',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}locations',
-            '{http://scap.nist.gov/schema/asset-identification/1.1}extended-information',
-            '*',
-        ],
     }

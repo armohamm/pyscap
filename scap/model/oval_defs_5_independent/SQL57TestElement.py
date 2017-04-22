@@ -21,11 +21,9 @@ import logging
 logger = logging.getLogger(__name__)
 class SQL57TestElement(TestType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent',
         'tag_name': 'sql57_test',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}object': {'class': 'oval_defs_5.ObjectRefType'},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#independent}state': {'append': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
         },
-        'element_order': []
     }

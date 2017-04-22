@@ -21,7 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class PortStateElement(StateType):
     MODEL_MAP = {
-        'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows',
         'tag_name': 'port_state',
         'elements': {
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}local_address': {'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0},
@@ -31,5 +30,4 @@ class PortStateElement(StateType):
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}foreign_address': {'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
             '{http://oval.mitre.org/XMLSchema/oval-definitions-5#windows}foreign_port': {'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
         },
-        'element_order': []
     }
