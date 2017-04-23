@@ -31,7 +31,7 @@ class Catalog(Model, MutableMapping):
         },
         'elements': [
             {'xml_namespace': 'urn:oasis:names:tc:entity:xmlns:xml:catalog', 'tag_name': 'uri', 'map': 'entries', 'key': 'name', 'value': 'uri'},
-            {'tag_name': '*'},
+            {'tag_name': '*', 'min': 0},
         ],
     }
 
