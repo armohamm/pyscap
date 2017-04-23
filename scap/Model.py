@@ -75,7 +75,7 @@ class Model(object):
             # look up from __init__ file
             pkg_mod = importlib.import_module('scap.model.' + model_namespace)
             try:
-                module_name = pkg_mod.TAG_MAP[child_el.tag]['class']
+                module_name = pkg_mod.TAG_MAP[child_el.tag]
             except AttributeError:
                 logger.critical(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + child_el.tag)
                 sys.exit()
@@ -97,7 +97,7 @@ class Model(object):
                     # look up from __init__ file
                     pkg_mod = importlib.import_module('scap.model.' + model_namespace)
                     try:
-                        module_name = pkg_mod.TAG_MAP[child_el.tag]['class']
+                        module_name = pkg_mod.TAG_MAP[child_el.tag]
                     except AttributeError:
                         logger.critical(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + child_el.tag)
                         sys.exit()
@@ -237,6 +237,7 @@ class Model(object):
         self.model_map = Model._get_model_map(self.__class__)
         if tag_name is not None:
             self.tag_name = tag_name
+        self.tag_counts = {}
 
         # must have namespace for concrete classes
         if 'xml_namespace' not in self.model_map or self.model_map['xml_namespace'] is None:
@@ -362,11 +363,7 @@ class Model(object):
                 logger.critical('Unknown element in ' + el.tag + ': ' + sub_el.tag)
                 sys.exit()
 
-            if sub_el.tag not in sub_el_counts:
-                sub_el_counts[sub_el.tag] = 1
-            else:
-                sub_el_counts[sub_el.tag] += 1
-
+        # check the element restrictions
         for element_def in self.model_map['elements']:
             min_ = 1
             if 'map' in element_def or 'append' in element_def:
@@ -382,13 +379,13 @@ class Model(object):
 
             if min_ == 0:
                 pass
-            elif tag not in sub_el_counts or sub_el_counts[tag] < min_:
-                logger.critical(self.__class__.__name__ + ' must have at least ' + str(min_) + ' ' + tag + ' elements')
+            elif element_def['tag_name'] not in self.tag_counts or self.tag_counts[element_def['tag_name']] < min_:
+                logger.critical(self.__class__.__name__ + ' must have at least ' + str(min_) + ' ' + element_def['tag_name'] + ' elements')
                 sys.exit()
 
             if max_ is None:
                 pass
-            elif element_def['tag_name'] in sub_el_counts and sub_el_counts[element_def['tag_name']] > max_:
+            elif element_def['tag_name'] in self.tag_counts and self.tag_counts[element_def['tag_name']] > max_:
                 logger.critical(self.__class__.__name__ + ' must have at most ' + str(max_) + ' ' + element_def['tag_name'] + ' elements')
                 sys.exit()
 
@@ -615,6 +612,12 @@ class Model(object):
             else:
                 logger.debug(str(self) + ' could not parse ' + tag + ' element')
                 return False
+
+            if element_def['tag_name'] not in self.tag_counts:
+                self.tag_counts[element_def['tag_name']] = 1
+            else:
+                self.tag_counts[element_def['tag_name']] += 1
+
             return True
 
         return False
