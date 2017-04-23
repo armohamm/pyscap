@@ -33,6 +33,10 @@ XML_SPACE_ENUMERATION = [
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+class UnsupportedNamespaceException(Exception):
+    pass
+
 class Model(object):
     MODEL_MAP = {
         'attributes': {
@@ -57,8 +61,7 @@ class Model(object):
             return None, tag
 
         if xml_namespace not in NAMESPACES:
-            logger.critical('Unsupported namespace: ' + xml_namespace + ', tag name: ' + tag_name)
-            sys.exit()
+            raise UnsupportedNamespaceException('Unsupported namespace: ' + xml_namespace + ', tag name: ' + tag_name)
 
         return xml_namespace, tag_name
 
