@@ -38,18 +38,19 @@ def test_parsed():
     assert cat1.entries['name3'] == 'uri3'
     assert 'name4' not in cat1.entries
 
-def test_to_dict():
-    d = cat1.to_dict()
-    assert 'name1' in d
-    assert 'name2' in d
-    assert 'name2' in d
-    assert d['name1'] == 'uri1'
-    assert d['name2'] == 'uri2'
-    assert d['name3'] == 'uri3'
-    assert 'name4' not in d
+def test_dict():
+    assert 'name1' in cat1
+    assert 'name2' in cat1
+    assert 'name2' in cat1
+    assert cat1['name1'] == 'uri1'
+    assert cat1['name2'] == 'uri2'
+    assert cat1['name3'] == 'uri3'
+    assert 'name4' not in cat1
 
 cat2 = Catalog()
-cat2.from_dict({'n1': 'u1', 'n2': 'u2'})
+cat2['n1'] = 'u1'
+cat2['n2'] = 'u2'
+
 def test_to_xml():
     xml = ET.tostring(cat2.to_xml())
     print(xml)
