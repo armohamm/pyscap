@@ -16,7 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import pytest
-from scap.model.cpe_2_3.CPE import CPE
+from scap.model.cpe_matching_2_3.CPE import CPE
 
 class TestCPE:
     def test_from_uri(self):
