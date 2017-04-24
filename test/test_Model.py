@@ -42,7 +42,7 @@ def test_xmlns_to_namespace():
 def test_map_tag_to_module_name():
     assert Model.map_tag_to_module_name('xml_cat_1_1', '{urn:oasis:names:tc:entity:xmlns:xml:catalog}catalog') == 'Catalog'
 
-def test_load_root_class():
+def test_load_root_model():
     from scap.model.xml_cat_1_1.Catalog import Catalog
 
     cat1 = Model.load(None, ET.fromstring('''<cat:catalog xmlns:cat="urn:oasis:names:tc:entity:xmlns:xml:catalog">
@@ -54,7 +54,7 @@ def test_load_root_class():
     assert isinstance(cat1, Catalog)
     assert 'name1' in cat1.entries
 
-def test_load_enclosed_class():
+def test_load_enclosed_model():
     from scap.model.xccdf_1_1.BenchmarkType import BenchmarkType
     benchmark = BenchmarkType()
 
