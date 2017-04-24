@@ -24,7 +24,7 @@ class ReportRequestType(Model):
     MODEL_MAP = {
         'tag_name': 'report-request',
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1', 'tag_name': 'content', 'class': 'ReportRequestContentElement'},
+            {'tag_name': 'content', 'class': 'ReportRequestContentElement'},
             {'tag_name': 'remote-resource', 'class': 'RemoteResourceElement'},
         ],
         'attributes': {

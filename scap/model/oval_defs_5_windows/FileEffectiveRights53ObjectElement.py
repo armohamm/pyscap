@@ -24,11 +24,11 @@ class FileEffectiveRights53ObjectElement(ObjectType):
         'tag_name': 'fileeffectiverights53_object',
         'elements': [
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'behaviors', 'class': 'FileEffectiveRights53Behaviors', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'filepath', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'trustee_sid', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'behaviors', 'class': 'FileEffectiveRights53Behaviors', 'min': 0},
+            {'tag_name': 'filepath', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
+            {'tag_name': 'trustee_sid', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

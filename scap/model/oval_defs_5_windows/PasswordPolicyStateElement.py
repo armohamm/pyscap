@@ -23,11 +23,11 @@ class PasswordPolicyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'passwordpolicy_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'max_passwd_age', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'min_passwd_age', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'min_passwd_len', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'password_hist_len', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'password_complexity', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'reversible_encryption', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'max_passwd_age', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'min_passwd_age', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'min_passwd_len', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'password_hist_len', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'password_complexity', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'reversible_encryption', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
         ],
     }

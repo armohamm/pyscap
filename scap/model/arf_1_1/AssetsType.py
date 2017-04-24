@@ -24,6 +24,6 @@ class AssetsType(Model):
     MODEL_MAP = {
         'tag_name': 'assets',
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/asset-reporting-format/1.1', 'tag_name': 'asset', 'append': 'assets', 'class': 'AssetElement', 'max': None},
+            {'tag_name': 'asset', 'append': 'assets', 'class': 'AssetElement', 'max': None},
         ]
     }

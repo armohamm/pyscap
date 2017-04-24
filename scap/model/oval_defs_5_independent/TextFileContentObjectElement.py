@@ -24,9 +24,9 @@ class TextFileContentObjectElement(ObjectType):
         'tag_name': 'textfilecontent_object',
         'elements': [
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'line', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
+            {'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'line', 'class': 'oval_defs_5.EntityObjectStringType'},
         ],
     }

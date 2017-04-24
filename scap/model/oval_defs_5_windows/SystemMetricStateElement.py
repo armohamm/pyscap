@@ -23,7 +23,7 @@ class SystemMetricStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'systemmetric_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'index', 'class': 'EntityStateSystemMetricIndexType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'value', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'index', 'class': 'EntityStateSystemMetricIndexType', 'min': 0},
+            {'tag_name': 'value', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
         ],
     }

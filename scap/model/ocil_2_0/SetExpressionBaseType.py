@@ -23,6 +23,6 @@ class SetExpressionBaseType(Model):
     MODEL_MAP = {
         # abstract
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'value', 'class': 'SetExpressionValueType'},
+            {'tag_name': 'value', 'class': 'SetExpressionValueType'},
         ],
     }

@@ -24,8 +24,8 @@ class SystemDUnitPropertyObjectElement(ObjectType):
         'tag_name': 'systemdunitproperty_object',
         'elements': [
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'unit', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'property', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'unit', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'property', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
     }

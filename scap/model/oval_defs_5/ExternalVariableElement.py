@@ -24,7 +24,7 @@ class ExternalVariableElement(VariableType):
         'tag_name': 'external_variable',
         'elements': [
             # TODO: minOccurs="0" maxOccurs="unbounded"
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'possible_value', 'append': 'possible_values', 'class': 'PossibleValueType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'possible_restriction', 'append': 'possible_restrictions', 'class': 'PossibleRestrictionType', 'min': 0, 'max': None},
+            {'tag_name': 'possible_value', 'append': 'possible_values', 'class': 'PossibleValueType', 'min': 0, 'max': None},
+            {'tag_name': 'possible_restriction', 'append': 'possible_restrictions', 'class': 'PossibleRestrictionType', 'min': 0, 'max': None},
         ],
     }

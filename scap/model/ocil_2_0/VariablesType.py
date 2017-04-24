@@ -23,8 +23,8 @@ class VariablesType(Model):
     MODEL_MAP = {
         'elements': [
             #TODO: at least one *_variable
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'constant_variable', 'append': 'variables', 'class': 'ConstantVariableElement', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'local_variable', 'append': 'variables', 'class': 'LocalVariableElement', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'external_variable', 'append': 'variables', 'class': 'ExternalVariableElement', 'min': 0, 'max': None},
+            {'tag_name': 'constant_variable', 'append': 'variables', 'class': 'ConstantVariableElement', 'min': 0, 'max': None},
+            {'tag_name': 'local_variable', 'append': 'variables', 'class': 'LocalVariableElement', 'min': 0, 'max': None},
+            {'tag_name': 'external_variable', 'append': 'variables', 'class': 'ExternalVariableElement', 'min': 0, 'max': None},
         ],
     }

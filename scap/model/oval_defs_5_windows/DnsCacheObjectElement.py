@@ -24,7 +24,7 @@ class DnsCacheObjectElement(ObjectType):
         'tag_name': 'dnscache_object',
         'elements': [
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'domain_name', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'domain_name', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

@@ -24,9 +24,9 @@ class PortObjectElement(ObjectType):
         'tag_name': 'port_object',
         'elements': [
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'local_address', 'class': 'oval_defs_5.EntityObjectIPAddressStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'local_port', 'class': 'oval_defs_5.EntityObjectIntType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'protocol', 'class': 'EntityObjectProtocolType'},
+            {'tag_name': 'local_address', 'class': 'oval_defs_5.EntityObjectIPAddressStringType'},
+            {'tag_name': 'local_port', 'class': 'oval_defs_5.EntityObjectIntType'},
+            {'tag_name': 'protocol', 'class': 'EntityObjectProtocolType'},
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

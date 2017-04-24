@@ -24,7 +24,7 @@ class AuditEventPolicySubcategoriesTestElement(TestType):
     MODEL_MAP = {
         'tag_name': 'auditeventpolicysubcategories_test',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'object', 'class': 'oval_defs_5.ObjectRefType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'state', 'append': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
+            {'tag_name': 'object', 'class': 'oval_defs_5.ObjectRefType'},
+            {'tag_name': 'state', 'append': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
         ],
     }

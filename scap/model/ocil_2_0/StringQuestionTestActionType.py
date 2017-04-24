@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class StringQuestionTestActionType(QuestionTestActionType):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'when_pattern', 'append': 'when_ranges', 'class': 'PatternTestActionConditionType', 'min': 1, 'max': None},
+            {'tag_name': 'when_pattern', 'append': 'when_ranges', 'class': 'PatternTestActionConditionType', 'min': 1, 'max': None},
         ],
     }

@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 class CompoundTestActionType(ItemBaseType):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'title', 'class': 'TextType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'description', 'class': 'TextType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'references', 'class': 'ReferencesType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'actions', 'class': 'OperationType', 'min': 1, 'max': 1},
+            {'tag_name': 'title', 'class': 'TextType', 'min': 0, 'max': 1},
+            {'tag_name': 'description', 'class': 'TextType', 'min': 0, 'max': 1},
+            {'tag_name': 'references', 'class': 'ReferencesType', 'min': 0, 'max': 1},
+            {'tag_name': 'actions', 'class': 'OperationType', 'min': 1, 'max': 1},
         ],
     }

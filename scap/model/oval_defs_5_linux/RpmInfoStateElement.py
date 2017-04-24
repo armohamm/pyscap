@@ -23,14 +23,14 @@ class RpmInfoStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'rpminfo_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'arch', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'epoch', 'class': 'EpochElement', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'release', 'class': 'ReleaseElement', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'version', 'class': 'VersionElement', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'evr', 'class': 'oval_defs_5.EntityStateEVRStringType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'signature_keyid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'extended_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'filepath', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'arch', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'epoch', 'class': 'EpochElement', 'min': 0, 'max': 1},
+            {'tag_name': 'release', 'class': 'ReleaseElement', 'min': 0, 'max': 1},
+            {'tag_name': 'version', 'class': 'VersionElement', 'min': 0, 'max': 1},
+            {'tag_name': 'evr', 'class': 'oval_defs_5.EntityStateEVRStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'signature_keyid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'extended_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'filepath', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
         ],
     }

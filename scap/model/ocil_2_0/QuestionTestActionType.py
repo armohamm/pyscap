@@ -24,11 +24,11 @@ class QuestionTestActionType(ItemBaseType):
     MODEL_MAP = {
         # abstract
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'title', 'class': 'TextType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'when_unknown', 'class': 'TestActionConditionType', 'min': 0},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'when_not_tested', 'class': 'TestActionConditionType', 'min': 0},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'when_not_applicable', 'class': 'TestActionConditionType', 'min': 0},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'when_error', 'class': 'TestActionConditionType', 'min': 0},
+            {'tag_name': 'title', 'class': 'TextType', 'min': 0, 'max': 1},
+            {'tag_name': 'when_unknown', 'class': 'TestActionConditionType', 'min': 0},
+            {'tag_name': 'when_not_tested', 'class': 'TestActionConditionType', 'min': 0},
+            {'tag_name': 'when_not_applicable', 'class': 'TestActionConditionType', 'min': 0},
+            {'tag_name': 'when_error', 'class': 'TestActionConditionType', 'min': 0},
         ],
         'attributes': {
             'question_ref': {'type': 'QuestionIDPattern', 'required': True},

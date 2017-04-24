@@ -25,9 +25,9 @@ class SetElement(Model):
         'tag_name': 'set',
         'elements': [
             # TODO: either set element or object_reference (+ optional filter)
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement', 'min': 0, 'max': 2},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'object_reference', 'append': 'object_references', 'type': 'oval_common_5.ObjectIDPattern', 'min': 0, 'max': 2},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'set', 'class': 'SetElement', 'min': 0, 'max': 2},
+            {'tag_name': 'object_reference', 'append': 'object_references', 'type': 'oval_common_5.ObjectIDPattern', 'min': 0, 'max': 2},
+            {'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
         'attributes': {
             'set_operator': {'enum': SET_OPERATOR_ENUMERATION, 'default': 'UNION'},

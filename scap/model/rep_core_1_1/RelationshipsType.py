@@ -24,6 +24,6 @@ class RelationshipsType(Model):
     MODEL_MAP = {
         'tag_name': 'relationships',
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/reporting-core/1.1', 'tag_name': 'relationship', 'append': 'relationships', 'class': 'RelationshipType'},
+            {'tag_name': 'relationship', 'append': 'relationships', 'class': 'RelationshipType'},
         ],
     }

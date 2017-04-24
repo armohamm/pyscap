@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class ReferenceArtifactValueType(ArtifactValueType):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'reference', 'class': 'ReferenceType'},
+            {'tag_name': 'reference', 'class': 'ReferenceType'},
         ],
         'attributes': {
             'id': {'type': 'ArtifactIDPattern', 'required': True},

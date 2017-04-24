@@ -24,10 +24,10 @@ class SQL57ObjectElement(ObjectType):
         'tag_name': 'sql57_object',
         'elements': [
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'engine', 'class': 'EntityObjectEngineType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'version', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'connection_string', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'sql', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'engine', 'class': 'EntityObjectEngineType'},
+            {'tag_name': 'version', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'connection_string', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'sql', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement'},
         ],
     }

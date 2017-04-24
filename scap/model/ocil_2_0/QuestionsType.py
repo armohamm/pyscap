@@ -23,10 +23,10 @@ class QuestionsType(Model):
     MODEL_MAP = {
         'elements': [
             #TODO: at least one of the following *_question elements
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'boolean_question', 'append': 'questions', 'class': 'BooleanQuestionElement', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'choice_question', 'append': 'questions', 'class': 'ChoiceQuestionElement', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'numeric_question', 'append': 'questions', 'class': 'NumericQuestionElement', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'string_question', 'append': 'questions', 'class': 'StringQuestionElement', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'choice_group', 'append': 'questions', 'class': 'ChoiceGroupType', 'min': 0, 'max': None},
+            {'tag_name': 'boolean_question', 'append': 'questions', 'class': 'BooleanQuestionElement', 'min': 0, 'max': None},
+            {'tag_name': 'choice_question', 'append': 'questions', 'class': 'ChoiceQuestionElement', 'min': 0, 'max': None},
+            {'tag_name': 'numeric_question', 'append': 'questions', 'class': 'NumericQuestionElement', 'min': 0, 'max': None},
+            {'tag_name': 'string_question', 'append': 'questions', 'class': 'StringQuestionElement', 'min': 0, 'max': None},
+            {'tag_name': 'choice_group', 'append': 'questions', 'class': 'ChoiceGroupType', 'min': 0, 'max': None},
         ],
     }

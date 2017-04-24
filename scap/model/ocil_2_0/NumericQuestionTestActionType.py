@@ -23,7 +23,7 @@ class NumericQuestionTestActionType(QuestionTestActionType):
     MODEL_MAP = {
         'elements': [
             #TODO: must be at least one; when_equals first
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'when_equals', 'append': 'when_equals', 'class': 'EqualsTestActionConditionType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'when_range', 'append': 'when_ranges', 'class': 'RangeTestActionConditionType', 'min': 0, 'max': None},
+            {'tag_name': 'when_equals', 'append': 'when_equals', 'class': 'EqualsTestActionConditionType', 'min': 0, 'max': None},
+            {'tag_name': 'when_range', 'append': 'when_ranges', 'class': 'RangeTestActionConditionType', 'min': 0, 'max': None},
         ],
     }

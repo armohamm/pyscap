@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class PlatformBaseType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'title', 'append': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'remark', 'append': 'remarks', 'class': 'TextType', 'min': 0, 'max': None'},
-            {'xml_namespace': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'logical-test', 'class': 'LogicalTestType', 'min': 1, 'max': 1},
+            {'tag_name': 'title', 'append': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
+            {'tag_name': 'remark', 'append': 'remarks', 'class': 'TextType', 'min': 0, 'max': None'},
+            {'tag_name': 'logical-test', 'class': 'LogicalTestType', 'min': 1, 'max': 1},
         ],
     }

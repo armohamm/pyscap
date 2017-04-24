@@ -23,9 +23,9 @@ class QuestionResultsType(Model):
     MODEL_MAP = {
         'elements': [
             # TODO: at least one of *_question_result
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'boolean_question_result', 'append': 'question_results', 'class': 'BooleanQuestionResultType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'choice_question_result', 'append': 'question_results', 'class': 'ChoiceQuestionResultType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'numeric_question_result', 'append': 'question_results', 'class': 'NumericQuestionResultType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'string_question_result', 'append': 'question_results', 'class': 'StringQuestionResultType', 'min': 0, 'max': None},
+            {'tag_name': 'boolean_question_result', 'append': 'question_results', 'class': 'BooleanQuestionResultType', 'min': 0, 'max': None},
+            {'tag_name': 'choice_question_result', 'append': 'question_results', 'class': 'ChoiceQuestionResultType', 'min': 0, 'max': None},
+            {'tag_name': 'numeric_question_result', 'append': 'question_results', 'class': 'NumericQuestionResultType', 'min': 0, 'max': None},
+            {'tag_name': 'string_question_result', 'append': 'question_results', 'class': 'StringQuestionResultType', 'min': 0, 'max': None},
         ],
     }

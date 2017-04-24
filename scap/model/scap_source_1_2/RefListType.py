@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class RefListType(Model, collections.abc.MutableMapping):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/scap/source/1.2', 'tag_name': 'component-ref', 'map': 'component_refs', 'class': 'ComponentRefElement'},
+            {'tag_name': 'component-ref', 'map': 'component_refs', 'class': 'ComponentRefElement'},
         ],
     }
 

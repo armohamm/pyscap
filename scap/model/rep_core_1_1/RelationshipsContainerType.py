@@ -24,6 +24,6 @@ class RelationshipsContainerType(Model):
     # abstract
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/reporting-core/1.1', 'tag_name': 'relationships', 'class': 'RelationshipsType'},
+            {'tag_name': 'relationships', 'class': 'RelationshipsType'},
         ],
     }

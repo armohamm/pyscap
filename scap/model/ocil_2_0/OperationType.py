@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class OperationType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'test_action_ref', 'append': 'test_action_refs', 'class': 'TestActionRefType', 'min': 1, 'max': None},
+            {'tag_name': 'test_action_ref', 'append': 'test_action_refs', 'class': 'TestActionRefType', 'min': 1, 'max': None},
         ],
         'attributes': {
             'operation': {'enum': ['AND', 'OR'], 'default': 'AND'},

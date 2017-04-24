@@ -23,8 +23,8 @@ class GroupSidStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'group_sid_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'group_sid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'user_sid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'subgroup_sid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'group_sid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'user_sid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'subgroup_sid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
         ],
     }

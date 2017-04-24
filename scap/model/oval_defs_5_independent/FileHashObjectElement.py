@@ -24,9 +24,9 @@ class FileHashObjectElement(ObjectType):
         'tag_name': 'filehash_object',
         'elements': [
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'behaviors', 'class': 'FileBehaviors'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'filepath', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'behaviors', 'class': 'FileBehaviors'},
+            {'tag_name': 'filepath', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType'},
         ],
     }

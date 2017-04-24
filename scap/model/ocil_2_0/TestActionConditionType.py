@@ -23,8 +23,8 @@ class TestActionConditionType(Model):
     MODEL_MAP = {
         'elements': [
             # TODO: at least one result or test_action_ref
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'result', 'class': 'ResultType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'test_action_ref', 'class': 'TestActionRefType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'artifact_refs', 'class': 'ArtifactRefsType', 'min': 0, 'max': 1},
+            {'tag_name': 'result', 'class': 'ResultType', 'min': 0, 'max': 1},
+            {'tag_name': 'test_action_ref', 'class': 'TestActionRefType', 'min': 0, 'max': 1},
+            {'tag_name': 'artifact_refs', 'class': 'ArtifactRefsType', 'min': 0, 'max': 1},
         ],
     }

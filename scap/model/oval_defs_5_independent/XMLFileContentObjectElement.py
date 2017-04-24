@@ -24,11 +24,11 @@ class XMLFileContentObjectElement(ObjectType):
         'tag_name': 'xmlfilecontent_state',
         'elements': [
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'filepath', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'xpath', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
+            {'tag_name': 'filepath', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'xpath', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
     }

@@ -23,6 +23,6 @@ class FamilyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'family_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'family', 'class': 'EntityStateFamilyType', 'min': 0, 'max': 1},
+            {'tag_name': 'family', 'class': 'EntityStateFamilyType', 'min': 0, 'max': 1},
         ],
     }

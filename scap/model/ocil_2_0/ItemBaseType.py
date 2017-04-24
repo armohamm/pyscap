@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class ItemBaseType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'notes', 'append': 'notes', 'type': 'String', 'min': 0, 'max': None},
+            {'tag_name': 'notes', 'append': 'notes', 'type': 'String', 'min': 0, 'max': None},
         ],
         'attributes': {
             'revision': {'type': 'NonNegativeInteger', 'default': 0},

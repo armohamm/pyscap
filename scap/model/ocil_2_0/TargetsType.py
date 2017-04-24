@@ -23,7 +23,7 @@ class TargetsType(Model):
     MODEL_MAP = {
         'elements': [
             #TODO: at least one of .targets[]
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'user', 'append': 'targets', 'class': 'UserType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'system', 'append': 'targets', 'class': 'SystemTargetType', 'min': 0, 'max': None},
+            {'tag_name': 'user', 'append': 'targets', 'class': 'UserType', 'min': 0, 'max': None},
+            {'tag_name': 'system', 'append': 'targets', 'class': 'SystemTargetType', 'min': 0, 'max': None},
         ],
     }

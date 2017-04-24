@@ -24,8 +24,8 @@ class MetabaseObjectElement(ObjectType):
         'tag_name': 'metabase_object',
         'elements': [
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'key', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'id', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
+            {'tag_name': 'key', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'id', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

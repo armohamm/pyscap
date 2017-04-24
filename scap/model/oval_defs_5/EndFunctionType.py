@@ -24,21 +24,21 @@ class EndFunctionType(Model):
     MODEL_MAP = {
         'elements': [
             # from ComponentGroup
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'object_component', 'append': 'components', 'class': 'ObjectComponentType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'variable_component', 'append': 'components', 'class': 'VariableComponentType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'literal_component', 'append': 'components', 'class': 'LiteralComponentType'},# from ComponentGroup/FunctionGroup
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'arithmetic', 'append': 'components', 'class': 'ArithmeticFunctionType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'begin', 'append': 'components', 'class': 'BeginFunctionType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'concat', 'append': 'components', 'class': 'ConcatFunctionType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'count', 'append': 'components', 'class': 'CountFunctionType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'end', 'append': 'components', 'class': 'EndFunctionType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'escape_regex', 'append': 'components', 'class': 'EscapeRegexFunctionType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'split', 'append': 'components', 'class': 'SplitFunctionType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'substring', 'append': 'components', 'class': 'SubstringFunctionType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'time_difference', 'append': 'components', 'class': 'TimeDifferenceFunctionType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'unique', 'append': 'components', 'class': 'UniqueFunctionType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'regex_capture', 'append': 'components', 'class': 'RegexCaptureFunctionType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'glob_to_regex', 'append': 'components', 'class': 'GlobToRegexFunctionType'},
+            {'tag_name': 'object_component', 'append': 'components', 'class': 'ObjectComponentType'},
+            {'tag_name': 'variable_component', 'append': 'components', 'class': 'VariableComponentType'},
+            {'tag_name': 'literal_component', 'append': 'components', 'class': 'LiteralComponentType'},# from ComponentGroup/FunctionGroup
+            {'tag_name': 'arithmetic', 'append': 'components', 'class': 'ArithmeticFunctionType'},
+            {'tag_name': 'begin', 'append': 'components', 'class': 'BeginFunctionType'},
+            {'tag_name': 'concat', 'append': 'components', 'class': 'ConcatFunctionType'},
+            {'tag_name': 'count', 'append': 'components', 'class': 'CountFunctionType'},
+            {'tag_name': 'end', 'append': 'components', 'class': 'EndFunctionType'},
+            {'tag_name': 'escape_regex', 'append': 'components', 'class': 'EscapeRegexFunctionType'},
+            {'tag_name': 'split', 'append': 'components', 'class': 'SplitFunctionType'},
+            {'tag_name': 'substring', 'append': 'components', 'class': 'SubstringFunctionType'},
+            {'tag_name': 'time_difference', 'append': 'components', 'class': 'TimeDifferenceFunctionType'},
+            {'tag_name': 'unique', 'append': 'components', 'class': 'UniqueFunctionType'},
+            {'tag_name': 'regex_capture', 'append': 'components', 'class': 'RegexCaptureFunctionType'},
+            {'tag_name': 'glob_to_regex', 'append': 'components', 'class': 'GlobToRegexFunctionType'},
         ],
         'attributes': {
             'character': {'type': 'String', 'required': True},

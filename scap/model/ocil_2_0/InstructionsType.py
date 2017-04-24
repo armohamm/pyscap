@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class InstructionsType(object):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'title', 'class': 'TextType', 'min': 1, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'step', 'append': 'steps', 'class': 'StepType', 'min': 1, 'max': None},
+            {'tag_name': 'title', 'class': 'TextType', 'min': 1, 'max': 1},
+            {'tag_name': 'step', 'append': 'steps', 'class': 'StepType', 'min': 1, 'max': None},
         ],
     }

@@ -23,9 +23,9 @@ class LockoutPolicyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'lockoutpolicy_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'force_logoff', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'lockout_duration', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'lockout_observation_window', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'lockout_threshold', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'force_logoff', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'lockout_duration', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'lockout_observation_window', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'lockout_threshold', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
         ],
     }

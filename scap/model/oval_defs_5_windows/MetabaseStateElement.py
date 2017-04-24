@@ -23,11 +23,11 @@ class MetabaseStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'metabase_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'key', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'id', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'user_type', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'data_type', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'data', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0},
+            {'tag_name': 'key', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'id', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'user_type', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'data_type', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'data', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0},
         ],
     }

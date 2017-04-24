@@ -22,10 +22,10 @@ logger = logging.getLogger(__name__)
 class MetadataType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'title', 'type': 'String'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'affected', 'append': 'affecteds', 'class': 'AffectedType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'reference', 'append': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'description', 'type': 'String'},
+            {'tag_name': 'title', 'type': 'String'},
+            {'tag_name': 'affected', 'append': 'affecteds', 'class': 'AffectedType', 'min': 0, 'max': None},
+            {'tag_name': 'reference', 'append': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
+            {'tag_name': 'description', 'type': 'String'},
             {'tag_name': '*'},
         ],
     }

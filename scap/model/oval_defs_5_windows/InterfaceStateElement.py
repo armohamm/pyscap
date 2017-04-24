@@ -23,13 +23,13 @@ class InterfaceStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'interface_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'index', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'type', 'class': 'EntityStateInterfaceTypeType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'hardware_addr', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'inet_addr', 'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'broadcast_addr', 'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'netmask', 'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'addr_type', 'class': 'EntityStateAddrTypeType', 'min': 0},
+            {'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'index', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'type', 'class': 'EntityStateInterfaceTypeType', 'min': 0},
+            {'tag_name': 'hardware_addr', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'inet_addr', 'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0},
+            {'tag_name': 'broadcast_addr', 'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0},
+            {'tag_name': 'netmask', 'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0},
+            {'tag_name': 'addr_type', 'class': 'EntityStateAddrTypeType', 'min': 0},
         ],
     }

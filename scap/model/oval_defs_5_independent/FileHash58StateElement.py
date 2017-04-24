@@ -23,11 +23,11 @@ class FileHash58StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'filehash58_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'filepath', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'path', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'filename', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'hash_type', 'class': 'EntityStateHashTypeType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'hash', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'windows_view', 'class': 'EntityStateWindowsViewType', 'min': 0},
+            {'tag_name': 'filepath', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'path', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'filename', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'hash_type', 'class': 'EntityStateHashTypeType', 'min': 0, 'max': 1},
+            {'tag_name': 'hash', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'windows_view', 'class': 'EntityStateWindowsViewType', 'min': 0},
         ],
     }

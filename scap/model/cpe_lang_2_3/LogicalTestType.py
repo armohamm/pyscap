@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class LogicalTestType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'logical-test', 'append': 'logical_tests', 'class': 'LogicalTestType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'fact-ref', 'append': 'fact_refs', 'class': 'FactRefType', 'min': 0, 'max': None},
+            {'tag_name': 'logical-test', 'append': 'logical_tests', 'class': 'LogicalTestType', 'min': 0, 'max': None},
+            {'tag_name': 'fact-ref', 'append': 'fact_refs', 'class': 'FactRefType', 'min': 0, 'max': None},
         ],
         'attributes': {
             'operator': {'enum': OPERATOR_ENUMERATION, 'required': True},

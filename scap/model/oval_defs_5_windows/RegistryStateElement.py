@@ -24,12 +24,12 @@ class RegistryStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'registry_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'hive', 'class': 'EntityStateRegistryHiveType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'key', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'last_write_time', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'type', 'class': 'EntityStateRegistryTypeType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'value', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'windows_view', 'class': 'EntityStateWindowsViewType', 'min': 0},
+            {'tag_name': 'hive', 'class': 'EntityStateRegistryHiveType', 'min': 0},
+            {'tag_name': 'key', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'last_write_time', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'type', 'class': 'EntityStateRegistryTypeType', 'min': 0},
+            {'tag_name': 'value', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0},
+            {'tag_name': 'windows_view', 'class': 'EntityStateWindowsViewType', 'min': 0},
         ],
     }

@@ -24,13 +24,13 @@ class CmdletStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'cmdlet_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'module_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'module_id', 'class': 'EntityStateGUIDType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'module_version', 'class': 'oval_defs_5.EntityStateVersionType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'verb', 'class': 'EntityStateCmdletVerbType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'noun', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'parameters', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'select', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'value', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0, 'max': 1},
+            {'tag_name': 'module_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'module_id', 'class': 'EntityStateGUIDType', 'min': 0, 'max': 1},
+            {'tag_name': 'module_version', 'class': 'oval_defs_5.EntityStateVersionType', 'min': 0, 'max': 1},
+            {'tag_name': 'verb', 'class': 'EntityStateCmdletVerbType', 'min': 0, 'max': 1},
+            {'tag_name': 'noun', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'parameters', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0, 'max': 1},
+            {'tag_name': 'select', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0, 'max': 1},
+            {'tag_name': 'value', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0, 'max': 1},
         ],
     }

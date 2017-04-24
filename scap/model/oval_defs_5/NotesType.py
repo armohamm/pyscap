@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class NotesType(scap.model.oval_common_5.NotesType.NotesType):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'note', 'append': 'notes', 'type': 'String', 'min': 0, 'max': None},
+            {'tag_name': 'note', 'append': 'notes', 'type': 'String', 'min': 0, 'max': None},
         ],
     }

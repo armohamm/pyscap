@@ -23,6 +23,6 @@ class ConstantVariableElement(Variable):
     MODEL_MAP = {
         'tag_name': 'constant_variable',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'value', 'append': 'values', 'class': 'ValueType', 'min': 1, 'max': None},
+            {'tag_name': 'value', 'append': 'values', 'class': 'ValueType', 'min': 1, 'max': None},
         ],
     }

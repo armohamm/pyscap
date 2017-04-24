@@ -23,7 +23,7 @@ class VariableStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'variable_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'var_ref', 'class': 'EntityStateVariableRefType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'value', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
+            {'tag_name': 'var_ref', 'class': 'EntityStateVariableRefType', 'min': 0, 'max': 1},
+            {'tag_name': 'value', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
         ],
     }

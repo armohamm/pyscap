@@ -23,7 +23,7 @@ class VariableType(ItemBaseType):
     # abstract
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'description', 'class': 'TextType', 'min': 0, 'max': 1},
+            {'tag_name': 'description', 'class': 'TextType', 'min': 0, 'max': 1},
         ],
         'attributes': {
             'id': {'type': 'VariableIDPattern', 'required': True},

@@ -23,11 +23,11 @@ class LDAP57StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'ldap57_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'suffix', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'relative_dn', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'attribute', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'object_class', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'ldaptype', 'class': 'EntityStateLdaptypeType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': 'value', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
+            {'tag_name': 'suffix', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'relative_dn', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'attribute', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'object_class', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'ldaptype', 'class': 'EntityStateLdaptypeType', 'min': 0},
+            {'tag_name': 'value', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
         ],
     }

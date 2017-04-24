@@ -23,14 +23,14 @@ class UacStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'uac_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'admin_approval_mode', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'elevation_prompt_admin', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'elevation_prompt_standard', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'detect_installations', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'elevate_signed_executables', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'elevate_uiaccess', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'run_admins_aam', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'secure_desktop', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'virtualize_write_failures', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'admin_approval_mode', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'elevation_prompt_admin', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'elevation_prompt_standard', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'detect_installations', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'elevate_signed_executables', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'elevate_uiaccess', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'run_admins_aam', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'secure_desktop', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'virtualize_write_failures', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
         ],
     }

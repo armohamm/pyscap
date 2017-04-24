@@ -22,12 +22,12 @@ logger = logging.getLogger(__name__)
 class ResultsType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'title', 'class': 'TextType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'questionnaire_results', 'class': 'QuestionnaireResultsType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'test_action_results', 'class': 'TestActionResultsType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'question_results', 'class': 'QuestionResultsType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'artifact_results', 'class': 'ArtifactResultsType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'targets', 'class': 'TargetsType', 'min': 0, 'max': 1},
+            {'tag_name': 'title', 'class': 'TextType', 'min': 0, 'max': 1},
+            {'tag_name': 'questionnaire_results', 'class': 'QuestionnaireResultsType', 'min': 0, 'max': 1},
+            {'tag_name': 'test_action_results', 'class': 'TestActionResultsType', 'min': 0, 'max': 1},
+            {'tag_name': 'question_results', 'class': 'QuestionResultsType', 'min': 0, 'max': 1},
+            {'tag_name': 'artifact_results', 'class': 'ArtifactResultsType', 'min': 0, 'max': 1},
+            {'tag_name': 'targets', 'class': 'TargetsType', 'min': 0, 'max': 1},
         ],
         'attributes': {
             'start_time': {'type': 'DateTime'},

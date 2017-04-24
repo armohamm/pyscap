@@ -23,8 +23,8 @@ class SeLinuxBooleanStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'selinuxboolean_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'current_status', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': 'pending_status', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'current_status', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'pending_status', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
         ],
     }

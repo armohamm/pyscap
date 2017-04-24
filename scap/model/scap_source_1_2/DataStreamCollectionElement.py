@@ -23,9 +23,9 @@ class DataStreamCollectionElement(Model):
     MODEL_MAP = {
         'tag_name': 'data-stream-collection',
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/scap/source/1.2', 'tag_name': 'data-stream', 'max': None, 'class': 'DataStreamElement', 'map': 'data_streams'},
-            {'xml_namespace': 'http://scap.nist.gov/schema/scap/source/1.2', 'tag_name': 'component', 'max': None, 'class': 'ComponentElement', 'map': 'components' },
-            {'xml_namespace': 'http://scap.nist.gov/schema/scap/source/1.2', 'tag_name': 'extended-component', 'max': None, 'min': 0, 'class': 'ExtendedComponentElement', 'map': 'components' },
+            {'tag_name': 'data-stream', 'max': None, 'class': 'DataStreamElement', 'map': 'data_streams'},
+            {'tag_name': 'component', 'max': None, 'class': 'ComponentElement', 'map': 'components' },
+            {'tag_name': 'extended-component', 'max': None, 'min': 0, 'class': 'ExtendedComponentElement', 'map': 'components' },
             {'xml_namespace': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'max': None, 'min': 0},
         ],
         'attributes': {

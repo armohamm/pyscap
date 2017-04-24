@@ -23,8 +23,8 @@ class Wmi57StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'wmi57_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'namespace', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'wql', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'result', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
+            {'tag_name': 'namespace', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'wql', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'result', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
         ],
     }

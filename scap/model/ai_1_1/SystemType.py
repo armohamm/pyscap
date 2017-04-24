@@ -24,7 +24,7 @@ class SystemType(ITAssetType):
     MODEL_MAP = {
         'tag_name': 'system',
         'elements': [
-            {'xml_namespace': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'system-name', 'append': 'system_names', 'class': 'SystemNameType', 'min': 0, 'max': None},
+            {'tag_name': 'system-name', 'append': 'system_names', 'class': 'SystemNameType', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'VersionType', 'min': 0},
         ],
     }

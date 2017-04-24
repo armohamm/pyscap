@@ -23,11 +23,11 @@ class ProcessStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'process_state',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'command_line', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'pid', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'ppid', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'priority', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'image_path', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': 'current_dir', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'command_line', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'pid', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'ppid', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'priority', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'image_path', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'current_dir', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
         ],
     }
