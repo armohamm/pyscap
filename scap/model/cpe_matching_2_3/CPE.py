@@ -19,6 +19,10 @@ import re, logging
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+class CpeParseException(Exception):
+    pass
+
 class CPE(object):
     class Value(object):
         def __init__(self, wfn = None, uri = None, fs = None):
@@ -99,9 +103,12 @@ class CPE(object):
             '*': '\\*',
             '?': '\\?',
         }
-        WFN_UNQUOTE_MAP = {v: k for k, v in list(WFN_QUOTE_MAP.items())}
-        WFN_UNQUOTE_MAP['\\\\'] = '\\'
         WFN_QUOTE_MAP[' '] = '_'
+
+        # reverse it for unquoting
+        WFN_UNQUOTE_MAP = {v: k for k, v in WFN_QUOTE_MAP.items()}
+        del WFN_UNQUOTE_MAP['_']
+        WFN_UNQUOTE_MAP['\\\\'] = '\\'
 
         def to_wfn(self):
             # special values
@@ -112,7 +119,7 @@ class CPE(object):
 
             # replace special chars
             value = self.middle
-            for k,v in list(self.WFN_QUOTE_MAP.items()):
+            for k,v in self.WFN_QUOTE_MAP.items():
                 value = value.replace(k, v)
 
             # attach the wildcards
@@ -155,7 +162,7 @@ class CPE(object):
                 value = value[:-1]
 
             # convert escaped chars
-            for k,v in list(self.WFN_UNQUOTE_MAP.items()):
+            for k,v in self.WFN_UNQUOTE_MAP.items():
                 value = value.replace(k,v)
 
             self.middle = value
@@ -191,10 +198,12 @@ class CPE(object):
             '|': '%7c',
             '}': '%7d',
             '~': '%7e',
-            '%': '%25',
+            #'%': '%25',
+            ' ': '_',
         }
+
         URI_UNQUOTE_MAP = {v: k for k, v in list(URI_QUOTE_MAP.items())}
-        URI_QUOTE_MAP[' '] = '_'
+        del URI_UNQUOTE_MAP['_']
 
         def to_uri(self):
             # special values
@@ -205,8 +214,11 @@ class CPE(object):
 
             # replace special chars
             value = self.middle
+            # have to do % first
+            value = value.replace('%', '%25')
             for k,v in list(self.URI_QUOTE_MAP.items()):
                 value = value.replace(k, v)
+
 
             # attach the wildcards
             if self.any_before:
@@ -250,7 +262,7 @@ class CPE(object):
                 if value[i] == '%':
                     quoted = value[i:i+3]
                     if quoted not in self.URI_UNQUOTE_MAP:
-                        raise RuntimeError('Unable to unquote sequence ' + quoted)
+                        raise CpeParseException('Unable to unquote sequence ' + quoted)
                     value = value.replace(quoted, self.URI_UNQUOTE_MAP[quoted])
                     i += 3
                 else:
@@ -344,7 +356,7 @@ class CPE(object):
                 value = value[:-1]
 
             # convert escaped chars
-            for k,v in list(self.FS_UNQUOTE_MAP.items()):
+            for k,v in self.FS_UNQUOTE_MAP.items():
                 value = value.replace(k, v)
 
             self.middle = value
@@ -472,7 +484,7 @@ class CPE(object):
             elif s.startswith('cpe:/'):
                 self.from_uri_string(s)
             else:
-                raise RuntimeError('Could not parse CPE from ' + s)
+                raise CpeParseException('Could not parse CPE from ' + s)
         else:
             for key in kwargs:
                 if key in self.INDEX:
@@ -482,52 +494,52 @@ class CPE(object):
 
     def is_value_any(self, name):
         if name not in CPE.INDEX:
-            raise RuntimeError('Invalid component name: ' + name)
+            raise CpeParseException('Invalid component name: ' + name)
         return self.values[name].ANY
 
     def is_value_na(self, name):
         if name not in CPE.INDEX:
-            raise RuntimeError('Invalid component name: ' + name)
+            raise CpeParseException('Invalid component name: ' + name)
         return self.values[name].NA
 
     def value_starts_with_any(self, name):
         if name not in CPE.INDEX:
-            raise RuntimeError('Invalid component name: ' + name)
+            raise CpeParseException('Invalid component name: ' + name)
         return self.values[name].any_before
 
     def value_starts_with_singles(self, name):
         if name not in CPE.INDEX:
-            raise RuntimeError('Invalid component name: ' + name)
+            raise CpeParseException('Invalid component name: ' + name)
         return self.values[name].singles_before > 0
 
     def get_singles_before_value(self, name):
         if name not in CPE.INDEX:
-            raise RuntimeError('Invalid component name: ' + name)
+            raise CpeParseException('Invalid component name: ' + name)
         return self.values[name].singles_before
 
     def get_value_middle(self, name):
         if name not in CPE.INDEX:
-            raise RuntimeError('Invalid component name: ' + name)
+            raise CpeParseException('Invalid component name: ' + name)
         return self.values[name].middle
 
     def value_ends_with_any(self, name):
         if name not in CPE.INDEX:
-            raise RuntimeError('Invalid component name: ' + name)
+            raise CpeParseException('Invalid component name: ' + name)
         return self.values[name].any_after
 
     def value_ends_with_singles(self, name):
         if name not in CPE.INDEX:
-            raise RuntimeError('Invalid component name: ' + name)
+            raise CpeParseException('Invalid component name: ' + name)
         return self.values[name].singles_after > 0
 
     def get_singles_after_value(self, name):
         if name not in CPE.INDEX:
-            raise RuntimeError('Invalid component name: ' + name)
+            raise CpeParseException('Invalid component name: ' + name)
         return self.values[name].singles_after
 
     def set_value(self, name, value):
         if name not in CPE.INDEX:
-            raise RuntimeError('Invalid component name: ' + name)
+            raise CpeParseException('Invalid component name: ' + name)
         self.values[name].set(value.lower())
 
     ####### WFN #######
@@ -549,7 +561,7 @@ class CPE(object):
             elif s[i] == '=':
                 # name finished
                 if name not in CPE.INDEX:
-                    raise RuntimeError('Invalid component name: ' + name)
+                    raise CpeParseException('Invalid component name: ' + name)
                 in_name = False
             elif in_name:
                 name += s[i]
@@ -600,7 +612,7 @@ class CPE(object):
             if c == '\\':
                 if i == len(s) - 1:
                     # can't have \ as last char
-                    raise RuntimeError('Invalid URI CPE string: ' + s)
+                    raise CpeParseException('Invalid URI CPE string: ' + s)
                 value += '\\' + s[i + 1]
                 i += 2
             elif c == ':':
@@ -689,7 +701,7 @@ class CPE(object):
         for i in range(len(s)):
             if s[i] == ':':
                 if i == 0:
-                    raise RuntimeError('CPE FS cannot start with a :')
+                    raise CpeParseException('CPE FS cannot start with a :')
 
                 if s[i - 1] == '\\':
                     comp += '\\:'
@@ -702,7 +714,7 @@ class CPE(object):
         self.values[CPE.FS_INDEX[j]].from_fs(comp)
 
         if j + 1 != 11:
-            raise RuntimeError('Invalid CPE FS: ' + s)
+            raise CpeParseException('Invalid CPE FS: ' + s)
 
     def to_fs_string(self):
         comps = []
@@ -720,6 +732,7 @@ class CPE(object):
     class Relation(object):
         def __init__(self, name):
             self.name = name
+
     EQUAL = Relation('EQUAL')
     SUPERSET = Relation('SUPERSET')
     SUBSET = Relation('SUBSET')

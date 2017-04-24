@@ -16,7 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import pytest
-from scap.model.cpe_matching_2_3.CPE import CPE
+from scap.model.cpe_matching_2_3.CPE import CPE, CpeParseException
 
 class TestCPE:
     def test_from_uri(self):
@@ -274,7 +274,7 @@ class TestCPE:
             'cpe:/a:foo:bar:12.%02.1234',
         ]
         for s in errors:
-            with pytest.raises(RuntimeError):
+            with pytest.raises(CpeParseException):
                 CPE.from_string(s).to_uri_string()
 
     def test_from_wfn_to_fs(self):
@@ -314,7 +314,7 @@ class TestCPE:
         errors = [
             'cpe:2.3:a:hp:insight_diagnostics:7.4.*.1570:*:*:*:*:*:*',
         ]
-        with pytest.raises(RuntimeError):
+        with pytest.raises(CpeParseException):
             for s in errors:
                 CPE.from_string(s)
 
