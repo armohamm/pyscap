@@ -26,13 +26,13 @@ logger = logging.getLogger(__name__)
 class RuleResultType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'override', 'class': 'OverrideType', 'append': 'overrides', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'ident', 'class': 'IdentType', 'append': 'idents', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'message', 'class': 'MessageType', 'append': 'messages', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'instance', 'class': 'InstanceResultType', 'append': 'instances', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'fix', 'class': 'FixType', 'append': 'fixes', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'check', 'class': 'CheckType', 'append': 'checks', 'min': 0, 'max': None},
+            {'tag_name': 'result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
+            {'tag_name': 'override', 'class': 'OverrideType', 'append': 'overrides', 'min': 0, 'max': None},
+            {'tag_name': 'ident', 'class': 'IdentType', 'append': 'idents', 'min': 0, 'max': None},
+            {'tag_name': 'message', 'class': 'MessageType', 'append': 'messages', 'min': 0, 'max': None},
+            {'tag_name': 'instance', 'class': 'InstanceResultType', 'append': 'instances', 'min': 0, 'max': None},
+            {'tag_name': 'fix', 'class': 'FixType', 'append': 'fixes', 'min': 0, 'max': None},
+            {'tag_name': 'check', 'class': 'CheckType', 'append': 'checks', 'min': 0, 'max': None},
         ],
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},

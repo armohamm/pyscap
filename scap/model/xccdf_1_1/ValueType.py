@@ -29,14 +29,14 @@ class ValueType(ItemType):
             # TODO: at least one value
             # TODO: since order matters in xml (and for values) we might need a list vs. dict here
 
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'value', 'class': 'SelStringType', 'map': 'values', 'key': 'selector', 'min': 1, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'default', 'class': 'SelStringType', 'map': 'defaults', 'key': 'selector', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'match', 'class': 'SelStringType', 'map': 'matches', 'key': 'selector', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'lower-bound', 'class': 'SelNumType', 'map': 'lower_bounds', 'key': 'selector', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'upper-bound', 'class': 'SelNumType', 'map': 'upper_bounds', 'key': 'selector', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'choices', 'class': 'SelChoicesType', 'map': 'choice_selections', 'key': 'selector', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'source', 'class': 'UriRefType', 'append': 'sources', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
+            {'tag_name': 'value', 'class': 'SelStringType', 'map': 'values', 'key': 'selector', 'min': 1, 'max': None},
+            {'tag_name': 'default', 'class': 'SelStringType', 'map': 'defaults', 'key': 'selector', 'min': 0, 'max': None},
+            {'tag_name': 'match', 'class': 'SelStringType', 'map': 'matches', 'key': 'selector', 'min': 0, 'max': None},
+            {'tag_name': 'lower-bound', 'class': 'SelNumType', 'map': 'lower_bounds', 'key': 'selector', 'min': 0, 'max': None},
+            {'tag_name': 'upper-bound', 'class': 'SelNumType', 'map': 'upper_bounds', 'key': 'selector', 'min': 0, 'max': None},
+            {'tag_name': 'choices', 'class': 'SelChoicesType', 'map': 'choice_selections', 'key': 'selector', 'min': 0, 'max': None},
+            {'tag_name': 'source', 'class': 'UriRefType', 'append': 'sources', 'min': 0, 'max': None},
+            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
         ],
         'attributes': {
             'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'string'},

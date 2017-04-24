@@ -32,14 +32,14 @@ logger = logging.getLogger(__name__)
 class RuleType(SelectableItemType):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'ident', 'append': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'impact-metric', 'min': 0, 'max': 1, 'type': 'String'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'profile-note', 'append': 'profile_notes', 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'fixtext', 'class': 'FixTextType', 'min': 0, 'max': None, 'append': 'fixtexts'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'fix', 'class': 'FixType', 'min': 0, 'max': None, 'append': 'fixes'},# choice
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'map': 'checks', 'key': 'selector'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
+            {'tag_name': 'ident', 'append': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
+            {'tag_name': 'impact-metric', 'min': 0, 'max': 1, 'type': 'String'},
+            {'tag_name': 'profile-note', 'append': 'profile_notes', 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
+            {'tag_name': 'fixtext', 'class': 'FixTextType', 'min': 0, 'max': None, 'append': 'fixtexts'},
+            {'tag_name': 'fix', 'class': 'FixType', 'min': 0, 'max': None, 'append': 'fixes'},# choice
+            {'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'map': 'checks', 'key': 'selector'},
+            {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': 1},
+            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
         ],
         'attributes': {
             'role': {'enum': ROLE_ENUMERATION, 'default': 'full'},

@@ -24,13 +24,13 @@ class ItemType(Extendable):
     MODEL_MAP = {
         # abstract
         'elements': [
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'status', 'class': 'StatusType', 'append': 'statuses', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'title', 'append': 'titles', 'class': 'TextWithSubType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'description', 'append': 'descriptions', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'warning', 'class': 'WarningType', 'min': 0, 'max': None, 'type': 'String', 'append': 'warnings'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'question', 'append': 'questions', 'class': 'TextType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'reference', 'append': 'references', 'min': 0, 'max': None, 'class': 'ReferenceType'},
+            {'tag_name': 'status', 'class': 'StatusType', 'append': 'statuses', 'min': 0, 'max': None},
+            {'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
+            {'tag_name': 'title', 'append': 'titles', 'class': 'TextWithSubType', 'min': 0, 'max': None},
+            {'tag_name': 'description', 'append': 'descriptions', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
+            {'tag_name': 'warning', 'class': 'WarningType', 'min': 0, 'max': None, 'type': 'String', 'append': 'warnings'},
+            {'tag_name': 'question', 'append': 'questions', 'class': 'TextType', 'min': 0, 'max': None},
+            {'tag_name': 'reference', 'append': 'references', 'min': 0, 'max': None, 'class': 'ReferenceType'},
         ],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},

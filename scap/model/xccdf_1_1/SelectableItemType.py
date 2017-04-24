@@ -24,10 +24,10 @@ logger = logging.getLogger(__name__)
 class SelectableItemType(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'rationale', 'append': 'rationales', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'platform', 'append': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableUriIdrefType'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'requires', 'append': 'requires', 'min': 0, 'max': None, 'class': 'IdrefListType'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'conflicts', 'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},
+            {'tag_name': 'rationale', 'append': 'rationales', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
+            {'tag_name': 'platform', 'append': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableUriIdrefType'},
+            {'tag_name': 'requires', 'append': 'requires', 'min': 0, 'max': None, 'class': 'IdrefListType'},
+            {'tag_name': 'conflicts', 'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},
         ],
         'attributes': {
             'selected': {'type': 'Boolean', 'default': True},

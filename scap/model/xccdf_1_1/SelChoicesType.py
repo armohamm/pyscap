@@ -24,7 +24,7 @@ class SelChoicesType(Model):
     MODEL_MAP = {
         'elements': [
             # TODO at least one choice/complex-choice
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'choice', 'type': 'String', 'append': 'choices', 'min': 1, 'max': None},
+            {'tag_name': 'choice', 'type': 'String', 'append': 'choices', 'min': 1, 'max': None},
         ],
         'attributes': {
             'mustMatch': {'type': 'Boolean'},

@@ -25,8 +25,8 @@ logger = logging.getLogger(__name__)
 class FixType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'sub', 'append': 'subs', 'min': 0, 'max': None, 'class': 'IdrefType'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'instance', 'append': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
+            {'tag_name': 'sub', 'append': 'subs', 'min': 0, 'max': None, 'class': 'IdrefType'},
+            {'tag_name': 'instance', 'append': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
         ],
         'attributes': {
             'id': {'type': 'NCName'},

@@ -24,7 +24,7 @@ class ModelType(Model):
     MODEL_MAP = {
         'tag_name': 'model',
         'elements': [
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.1', 'tag_name': 'param', 'class': 'ParamType', 'map': 'params', 'key': 'name', 'min': 0, 'max': None},
+            {'tag_name': 'param', 'class': 'ParamType', 'map': 'params', 'key': 'name', 'min': 0, 'max': None},
         ],
         'attributes': {
             'system': {'type': 'AnyURI', 'required': True},
