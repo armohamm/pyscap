@@ -24,13 +24,13 @@ class PostBoxType(Model):
     MODEL_MAP = {
         'tag_name': 'PostBox',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBoxNumber', 'in': 'post_box_number', 'class': 'PostBoxNumberType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBoxNumberPrefix', 'in': 'post_box_number_prefix', 'class': 'PostBoxNumberPrefixType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBoxNumberSuffix', 'in': 'post_box_number_suffix', 'class': 'PostBoxNumberSuffixType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBoxNumberExtension', 'in': 'post_box_number_extension', 'class': 'PostBoxNumberExtensionType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Firm', 'in': 'firm', 'class': 'FirmType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},'*': {},
+            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'PostBoxNumber', 'in': 'post_box_number', 'class': 'PostBoxNumberType'},
+            {'tag_name': 'PostBoxNumberPrefix', 'in': 'post_box_number_prefix', 'class': 'PostBoxNumberPrefixType'},
+            {'tag_name': 'PostBoxNumberSuffix', 'in': 'post_box_number_suffix', 'class': 'PostBoxNumberSuffixType'},
+            {'tag_name': 'PostBoxNumberExtension', 'in': 'post_box_number_extension', 'class': 'PostBoxNumberExtensionType'},
+            {'tag_name': 'Firm', 'in': 'firm', 'class': 'FirmType'},
+            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},'*': {},
         ],
         'attributes': {
             'Type': {},

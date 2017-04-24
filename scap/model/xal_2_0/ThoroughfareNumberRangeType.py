@@ -24,9 +24,9 @@ class ThoroughfareNumberRangeType(Model):
     MODEL_MAP = {
         'tag_name': 'ThoroughfareNumberRange',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumberFrom', 'in': 'thoroughfare_number_from', 'class': 'ThoroughfareNumberFromType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumberTo', 'in': 'thoroughfare_number_to', 'class': 'ThoroughfareNumberToType'},
+            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'ThoroughfareNumberFrom', 'in': 'thoroughfare_number_from', 'class': 'ThoroughfareNumberFromType'},
+            {'tag_name': 'ThoroughfareNumberTo', 'in': 'thoroughfare_number_to', 'class': 'ThoroughfareNumberToType'},
         ],
         'attributes': {
             'RangeType': {'enum': ['Odd', 'Even']},

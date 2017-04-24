@@ -24,13 +24,13 @@ class AddressDetailsType(Model):
     MODEL_MAP = {
         'tag_name': 'AddressDetails',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalServiceElements', 'class': 'PostalServiceElementsType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Address', 'class': 'AddressType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLines', 'class': 'AddressLinesType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Country', 'class': 'CountryType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AdministrativeArea', 'class': 'AdministrativeAreaType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Locality', 'class': 'LocalityType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Thoroughfare', 'class': 'ThoroughfareType'},
+            {'tag_name': 'PostalServiceElements', 'class': 'PostalServiceElementsType'},
+            {'tag_name': 'Address', 'class': 'AddressType'},
+            {'tag_name': 'AddressLines', 'class': 'AddressLinesType'},
+            {'tag_name': 'Country', 'class': 'CountryType'},
+            {'tag_name': 'AdministrativeArea', 'class': 'AdministrativeAreaType'},
+            {'tag_name': 'Locality', 'class': 'LocalityType'},
+            {'tag_name': 'Thoroughfare', 'class': 'ThoroughfareType'},
         ],
         'attributes': {
             'AddressType': {},

@@ -24,14 +24,14 @@ class LargeMailUserType(Model):
     MODEL_MAP = {
         'tag_name': 'LargeMailUser',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'LargeMailUserName', 'append': 'large_mail_user_names', 'class': 'LargeMailUserNameType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'LargeMailUserIdentifier', 'in': 'large_mail_user_identifier', 'class': 'LargeMailUserIdentifierType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'BuildingName', 'append': 'building_names', 'class': 'BuildingNameType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Department', 'in': 'department', 'class': 'DepartmentType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Thoroughfare', 'in': 'thoroughfare', 'class': 'ThoroughfareType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
+            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'LargeMailUserName', 'append': 'large_mail_user_names', 'class': 'LargeMailUserNameType'},
+            {'tag_name': 'LargeMailUserIdentifier', 'in': 'large_mail_user_identifier', 'class': 'LargeMailUserIdentifierType'},
+            {'tag_name': 'BuildingName', 'append': 'building_names', 'class': 'BuildingNameType'},
+            {'tag_name': 'Department', 'in': 'department', 'class': 'DepartmentType'},
+            {'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
+            {'tag_name': 'Thoroughfare', 'in': 'thoroughfare', 'class': 'ThoroughfareType'},
+            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
             {'tag_name': '*'},
         ],
         'attributes': {

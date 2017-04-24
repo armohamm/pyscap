@@ -24,10 +24,10 @@ class ThoroughfareNumberToType(Model):
     MODEL_MAP = {
         'tag_name': 'ThoroughfareNumberTo',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumberPrefix', 'append': 'thoroughfare_number_prefixes', 'class': 'ThoroughfareNumberPrefixType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumber', 'append': 'thoroughfare_numbers', 'class': 'ThoroughfareNumberType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareNumberSuffix', 'append': 'thoroughfare_number_suffixes', 'class': 'ThoroughfareNumberSuffixType'},
+            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'ThoroughfareNumberPrefix', 'append': 'thoroughfare_number_prefixes', 'class': 'ThoroughfareNumberPrefixType'},
+            {'tag_name': 'ThoroughfareNumber', 'append': 'thoroughfare_numbers', 'class': 'ThoroughfareNumberType'},
+            {'tag_name': 'ThoroughfareNumberSuffix', 'append': 'thoroughfare_number_suffixes', 'class': 'ThoroughfareNumberSuffixType'},
         ],
         'attributes': {
             'Code': {}, # from grPostal

@@ -24,10 +24,10 @@ class DepartmentType(Model):
     MODEL_MAP = {
         'tag_name': 'Department',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'DepartmentName', 'append': 'department_names', 'class': 'DepartmentNameType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'MailStop', 'in': 'mail_stop', 'class': 'MailStopType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
+            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'DepartmentName', 'append': 'department_names', 'class': 'DepartmentNameType'},
+            {'tag_name': 'MailStop', 'in': 'mail_stop', 'class': 'MailStopType'},
+            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
         ],
         'attributes': {
             'Type': {},

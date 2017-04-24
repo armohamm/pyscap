@@ -24,12 +24,12 @@ class PostOfficeType(Model):
     MODEL_MAP = {
         'tag_name': 'PostOffice',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostOfficeName', 'append': 'post_office_names', 'class': 'PostOfficeNameType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostOfficeNumber', 'in': 'post_office_number', 'class': 'PostOfficeNumberType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalRoute', 'in': 'postal_route', 'class': 'PostalRouteType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
+            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'PostOfficeName', 'append': 'post_office_names', 'class': 'PostOfficeNameType'},
+            {'tag_name': 'PostOfficeNumber', 'in': 'post_office_number', 'class': 'PostOfficeNumberType'},
+            {'tag_name': 'PostalRoute', 'in': 'postal_route', 'class': 'PostalRouteType'},
+            {'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
+            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
             {'tag_name': '*'},
         ],
         'attributes': {

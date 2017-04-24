@@ -24,8 +24,8 @@ class PremiseNumberRangeType(Model):
     MODEL_MAP = {
         'tag_name': 'PremiseNumberRange',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PremiseNumberRangeFrom', 'in': 'premise_number_from', 'class': 'PremiseNumberRangeFromType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PremiseNumberRangeTo', 'in': 'premise_number_to', 'class': 'PremiseNumberRangeToType'},
+            {'tag_name': 'PremiseNumberRangeFrom', 'in': 'premise_number_from', 'class': 'PremiseNumberRangeFromType'},
+            {'tag_name': 'PremiseNumberRangeTo', 'in': 'premise_number_to', 'class': 'PremiseNumberRangeToType'},
         ],
         'attributes': {
             'RangeType': {},

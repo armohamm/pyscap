@@ -24,7 +24,7 @@ class XALType(Model):
     MODEL_MAP = {
         'tag_name': 'xAL',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressDetails', 'append': 'address_details', 'class': 'AddressDetailsType'},'*': {},
+            {'tag_name': 'AddressDetails', 'append': 'address_details', 'class': 'AddressDetailsType'},'*': {},
         ],
         'attributes': {
             'Version': {},

@@ -24,9 +24,9 @@ class PostalRouteType(Model):
     MODEL_MAP = {
         'tag_name': 'PostalRoute',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalRouteName', 'append': 'postal_route_names', 'class': 'PostalRouteNameType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalRouteNumber', 'in': 'postal_route_number', 'class': 'PostalRouteNumberType'},'*': {},
+            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'PostalRouteName', 'append': 'postal_route_names', 'class': 'PostalRouteNameType'},
+            {'tag_name': 'PostalRouteNumber', 'in': 'postal_route_number', 'class': 'PostalRouteNumberType'},'*': {},
         ],
         'attributes': {
             'Type': {},

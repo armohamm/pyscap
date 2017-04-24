@@ -24,12 +24,12 @@ class AdministrativeAreaType(Model):
     MODEL_MAP = {
         'tag_name': 'AdministrativeArea',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AdministrativeAreaName', 'append': 'administrative_areas', 'class': 'AdministrativeAreaNameType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'SubAdministrativeArea', 'in': 'sub_administrative_area', 'class': 'SubAdministrativeAreaNameType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'Locality', 'in': 'locality', 'class': 'LocalityType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostOffice', 'in': 'post_office', 'class': 'PostOfficeType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
+            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'AdministrativeAreaName', 'append': 'administrative_areas', 'class': 'AdministrativeAreaNameType'},
+            {'tag_name': 'SubAdministrativeArea', 'in': 'sub_administrative_area', 'class': 'SubAdministrativeAreaNameType'},
+            {'tag_name': 'Locality', 'in': 'locality', 'class': 'LocalityType'},
+            {'tag_name': 'PostOffice', 'in': 'post_office', 'class': 'PostOfficeType'},
+            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
             {'tag_name': '*'},
         ],
         'attributes': {

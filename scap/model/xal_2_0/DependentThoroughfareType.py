@@ -24,12 +24,12 @@ class DependentThoroughfareType(Model):
     MODEL_MAP = {
         'tag_name': 'DependentThoroughfare',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfarePreDirection', 'in': 'thoroughfare_pre_direction', 'class': 'ThoroughfarePreDirectionType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareLeadingType', 'in': 'thoroughfare_leading_type', 'class': 'ThoroughfareLeadingTypeType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareName', 'append': 'thoroughfare_names', 'class': 'ThoroughfareNameType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfareTrailingType', 'in': 'thoroughfare_trailing_type', 'class': 'ThoroughfareTrailingTypeType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'ThoroughfarePostDirection', 'in': 'thoroughfare_post_direction', 'class': 'ThoroughfarePostDirectionType'},
+            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'ThoroughfarePreDirection', 'in': 'thoroughfare_pre_direction', 'class': 'ThoroughfarePreDirectionType'},
+            {'tag_name': 'ThoroughfareLeadingType', 'in': 'thoroughfare_leading_type', 'class': 'ThoroughfareLeadingTypeType'},
+            {'tag_name': 'ThoroughfareName', 'append': 'thoroughfare_names', 'class': 'ThoroughfareNameType'},
+            {'tag_name': 'ThoroughfareTrailingType', 'in': 'thoroughfare_trailing_type', 'class': 'ThoroughfareTrailingTypeType'},
+            {'tag_name': 'ThoroughfarePostDirection', 'in': 'thoroughfare_post_direction', 'class': 'ThoroughfarePostDirectionType'},
             {'tag_name': '*'},
         ],
         'attributes': {
