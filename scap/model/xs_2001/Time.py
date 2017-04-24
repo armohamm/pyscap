@@ -26,11 +26,16 @@ class Time(Simple):
         m = re.match(r'((-?\d\d):(\d\d):(\d\d)(\.(\s+))?((([-+])(\d\d):(\d\d))|Z)?', value)
         if m:
             hour, minute, second = m.group(1, 2, 3)
+            hour, minute, second = int(hour), int(minute), int(second)
             if m.group(4) is not None and m.group(5) is not None:
-                microsecond = m.group(5)
+                microsecond = int(m.group(5))
             else:
                 microsecond = 0
-            if m.group(6) is not None and m.group(6) == 'Z':
+
+            if m.group(6) is None:
+                # naive
+                return datetime.time(hour, minute, second, microsecond)
+            elif m.group(6) == 'Z':
                 tz = datetime.timezone.utc
             else:
                 if m.group(7) is not None:
@@ -42,7 +47,7 @@ class Time(Simple):
                 else:
                     tz = datetime.timezone.utc
 
-        return datetime.datetime(year, month, day, hour, minute, second, microsecond, tz)
+        return datetime.time(hour, minute, second, microsecond, tz)
 
     def produce_value(self, value):
         return value.strftime('%H:%M:%S.%f%z')

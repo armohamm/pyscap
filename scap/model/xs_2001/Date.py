@@ -27,7 +27,11 @@ class Date(Simple):
         m = re.match(r'(-?\d\d\d\d)-(\d\d)-(\d\d)((([-+])(\d\d):(\d\d))|Z)?', value)
         if m:
             year, month, day = m.group(1, 2, 3)
-            if m.group(4) is not None and m.group(4) == 'Z':
+            year, month, day = int(year), int(month), int(day)
+            if m.group(4) is None:
+                # naive date
+                return datetime.date(int(year), int(month), int(day))
+            elif m.group(4) == 'Z':
                 tz = datetime.timezone.utc
             else:
                 if m.group(5) is not None:
@@ -39,7 +43,7 @@ class Date(Simple):
                 else:
                     tz = datetime.timezone.utc
 
-        return datetime.datetime(int(year), int(month), int(day), 0, 0, 0, 0, tz)
+        return datetime.datetime(year, month, day, 0, 0, 0, 0, tz)
 
     def produce_value(self, value):
         return value.strftime('%Y-%m-%d%z')

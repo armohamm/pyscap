@@ -27,11 +27,16 @@ class DateTime(Simple):
         m = re.match(r'(-?\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d)(\.(\s+))?((([-+])(\d\d):(\d\d))|Z)?', value)
         if m:
             year, month, day, hour, minute, second = m.group(1, 2, 3, 4, 5, 6)
+            year, month, day, hour, minute, second = int(year), int(month), int(day), int(hour), int(minute), int(second)
             if m.group(7) is not None and m.group(8) is not None:
-                microsecond = m.group(8)
+                microsecond = int(m.group(8))
             else:
                 microsecond = 0
-            if m.group(9) is not None and m.group(9) == 'Z':
+
+            if m.group(9) is None:
+                # naive
+                return datetime.datetime(year, month, day, hour, minute, second, microsecond)
+            elif m.group(9) == 'Z':
                 tz = datetime.timezone.utc
             else:
                 if m.group(10) is not None:
