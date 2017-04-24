@@ -319,10 +319,18 @@ class Model(object):
                     logger.debug('Initializing ' + name + ' to None')
                     setattr(self, name, None)
 
-    def get_namespace(self):
-        model_namespace = self.__module__.split('.')
-        model_namespace = model_namespace[2]
-        return model_namespace
+    def __str__(self):
+        s = self.__class__.__name__
+        if hasattr(self, 'id') and self.id is not None:
+            s += ' ' + self.id
+        elif hasattr(self, 'Id') and self.Id is not None:
+            s += ' ' + self.Id
+        elif hasattr(self, 'name') and self.name is not None:
+            s += ' ' + self.name
+        else:
+            s += ' ' + str(id(self))
+
+        return s
 
     def __setattr__(self, name, value):
         object.__setattr__(self, name, value)
@@ -332,8 +340,10 @@ class Model(object):
                 Model.index[self.__class__.__name__] = {}
             Model.index[self.__class__.__name__][value] = self
 
-    def accept(self, visitor):
-        visitor.visit(self)
+    def get_namespace(self):
+        model_namespace = self.__module__.split('.')
+        model_namespace = model_namespace[2]
+        return model_namespace
 
     def get_tag_name(self):
         if hasattr(self, 'tag_name'):
@@ -347,14 +357,17 @@ class Model(object):
             raise NotImplementedError('Subclass ' + self.__class__.__name__ + ' does not define namespace')
         return self.model_map['xml_namespace']
 
-    def get_tag(self):
-        return '{' + self.get_xml_namespace() + '}' + self.get_tag_name()
+    def is_reference(self, ref):
+        if hasattr(self, 'id') and self.id == ref:
+            return True
+        return False
 
-    def get_text(self):
-        return self.text
+    def find_reference(self, ref):
+        for _class in Model.index:
+            if ref in Model.index[_class]:
+                return Model.index[_class][ref]
 
-    def get_tail(self):
-        return self.tail
+        return None
 
     def from_xml(self, parent, el):
         self.parent = parent
@@ -374,13 +387,13 @@ class Model(object):
                 sys.exit()
 
         for name, value in list(el.items()):
-            if not self.parse_attribute(name, value):
+            if not self._parse_attribute(name, value):
                 logger.critical('Unknown attrib in ' + el.tag + ': ' + name + ' = ' + value)
                 sys.exit()
 
         sub_el_counts = {}
         for sub_el in el:
-            if not self.parse_element(sub_el):
+            if not self._parse_element(sub_el):
                 logger.debug('Elements: ' + str(self.model_map['elements']))
                 logger.critical('Unknown element in ' + el.tag + ': ' + sub_el.tag)
                 sys.exit()
@@ -439,7 +452,7 @@ class Model(object):
         class_ = self._load_type_class(type_)
         return class_().produce_value(value)
 
-    def parse_attribute(self, name, value):
+    def _parse_attribute(self, name, value):
         xml_namespace, attr_name = Model.parse_tag(name)
 
         if xml_namespace is None:
@@ -474,7 +487,7 @@ class Model(object):
             return True
         return False
 
-    def parse_element(self, el):
+    def _parse_element(self, el):
         xml_namespace, tag_name = Model.parse_tag(el.tag)
 
         if xml_namespace is None:
@@ -648,36 +661,23 @@ class Model(object):
 
         return False
 
-    def __str__(self):
-        s = self.__class__.__name__
-        if hasattr(self, 'id') and self.id is not None:
-            s += ' ' + self.id
-        elif hasattr(self, 'Id') and self.Id is not None:
-            s += ' ' + self.Id
-        elif hasattr(self, 'name') and self.name is not None:
-            s += ' ' + self.name
-        else:
-            s += ' ' + str(id(self))
-
-        return s
-
     def to_xml(self):
         logger.debug(str(self) + ' to xml')
-        el = ET.Element(self.get_tag())
+        el = ET.Element('{' + self.get_xml_namespace() + '}' + self.get_tag_name())
         if self.text is not None:
             el.text = str(self.text)
 
         for name in self.model_map['attributes']:
-            value = self.produce_attribute(name, el)
+            value = self._produce_attribute(name, el)
 
         for element_def in self.model_map['elements']:
-            el.extend(self.produce_sub_elements(element_def))
+            el.extend(self._produce_elements(element_def))
 
         if self.tail is not None:
             el.tail = str(self.tail)
         return el
 
-    def produce_attribute(self, name, el):
+    def _produce_attribute(self, name, el):
         if name.endswith('*'):
             return
 
@@ -716,9 +716,9 @@ class Model(object):
 
         if 'class' in attr_map:
             if not isinstance(value, Model):
-                raise ValueError(str(self) + ' Need a subclass of Model to set attribute ' + attr_name + ' on ' + self.get_tag() + '; got ' + str(value))
+                raise ValueError(str(self) + ' Need a subclass of Model to set attribute ' + attr_name + ' on {' + self.get_xml_namespace() + '}' + self.get_tag_name() + '; got ' + str(value))
 
-            logger.debug(str(self) + 'Setting attribute ' + attr_name + ' on ' + self.get_tag() + ' to ' + value.__class__.__name__ + ' value ' + value.to_string())
+            logger.debug(str(self) + 'Setting attribute ' + attr_name + ' on {' + self.get_xml_namespace() + '}' + self.get_tag_name() + ' to ' + value.__class__.__name__ + ' value ' + value.to_string())
             el.set(attr_name, value.to_string())
 
         elif 'type' in attr_map:
@@ -743,7 +743,7 @@ class Model(object):
         else:
             raise ValueError(str(self) + ' Unable to produce attribute ' + attr_name + '; no class, type or enum definition')
 
-    def produce_sub_elements(self, element_def):
+    def _produce_elements(self, element_def):
         sub_els = []
 
         if element_def['tag_name'].endswith('*'):
@@ -837,7 +837,7 @@ class Model(object):
                         xml_namespace = element_def['xml_namespace']
                     else:
                         xml_namespace = self.model_map['xml_namespace']
-                        
+
                     el = ET.Element('{' + xml_namespace + '}' + element_def['tag_name'])
                     el.set(key_name, k)
 
@@ -848,7 +848,9 @@ class Model(object):
                         el.text = v
                     sub_els.append(el)
 
-        elif 'class' in element_def or 'type' in element_def or 'enum' in element_def:
+        elif 'class' in element_def \
+        or 'type' in element_def \
+        or 'enum' in element_def:
             if 'in' in element_def:
                 name = element_def['in']
             else:
@@ -867,15 +869,3 @@ class Model(object):
                 raise ValueError(str(self) + ' Unknown class to add to sub elements: ' + value.__class__.__name__)
 
         return sub_els
-
-    def is_reference(self, ref):
-        if hasattr(self, 'id') and self.id == ref:
-            return True
-        return False
-
-    def find_reference(self, ref):
-        for _class in Model.index:
-            if ref in Model.index[_class]:
-                return Model.index[_class][ref]
-
-        return None
