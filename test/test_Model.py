@@ -17,49 +17,51 @@
 
 import pytest, logging
 from scap.Model import Model, UnsupportedNamespaceException
+import xml.etree.ElementTree as ET
 
 logging.basicConfig(level=logging.DEBUG)
 
-def test_parse_tag_supported():
+def test_parse_tag():
     assert Model.parse_tag('{http://www.w3.org/XML/1998/namespace}test') == ('http://www.w3.org/XML/1998/namespace', 'test')
     assert Model.parse_tag('test') == (None, 'test')
 
-def test_parse_tag_unsupported():
     with pytest.raises(UnsupportedNamespaceException):
         Model.parse_tag('{http://www.w3.org/XML/1998}test')
 
-def test_load_root_classes():
-    # 'http://scap.nist.gov/schema/asset-identification/1.1': 'ai_1_1',
-    # 'http://scap.nist.gov/schema/asset-reporting-format/1.1': 'arf_1_1',
-    # 'http://scap.nist.gov/specifications/arf/vocabulary/relationships/1.0': 'arf_rel_1_0',
-    # 'http://cpe.mitre.org/XMLSchema/cpe/1.0': 'cpe_1_0',
-    # 'http://cpe.mitre.org/dictionary/2.0': 'cpe_dict_2_3',
-    # 'http://cpe.mitre.org/language/2.0': 'cpe_lang_2_3',
-    # 'http://cpe.mitre.org/naming/2.0': 'cpe_naming_2_3',
-    # 'http://purl.org/dc/elements/1.1/': 'dc_elements_1_1',
-    # 'http://scap.nist.gov/schema/xml-dsig/1.0': 'tmsad_1_0',
-    # 'http://scap.nist.gov/schema/ocil/2.0': 'ocil_2_0',
-    # 'http://scap.nist.gov/schema/ocil/2': 'ocil_2_0',
-    # 'http://oval.mitre.org/XMLSchema/oval-common-5': 'oval_common_5',
-    # 'http://oval.mitre.org/XMLSchema/oval-definitions-5': 'oval_defs_5',
-    # 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent': 'oval_defs_5_independent',
-    # 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux': 'oval_defs_5_linux',
-    # 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows': 'oval_defs_5_windows',
-    # 'http://oval.mitre.org/XMLSchema/oval-results-5': 'oval_results_5',
-    # 'http://scap.nist.gov/schema/scap/source/1.2': 'scap_source_1_2',
-    # 'http://scap.nist.gov/schema/reporting-core/1.1': 'rep_core_1_1',
-    # 'http://scap.nist.gov/schema/vulnerability/0.4': 'vuln_0_4',
-    # 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0': 'xal_2_0',
-    # 'http://checklists.nist.gov/xccdf/1.1': 'xccdf_1_1',
-    # 'http://checklists.nist.gov/xccdf/1.2': 'xccdf_1_2',
-    # 'http://checklists.nist.gov/xccdf-p/1.1': 'xccdf_p_1_1',
-    # 'http://www.cisecurity.org/xccdf/platform/0.2.3': 'xccdf_p_0_2_3',
-    # 'http://www.w3.org/1999/xhtml': 'xhtml_1999',
-    # 'http://www.w3.org/1999/xlink': 'xlink_1999',
-    # 'http://www.w3.org/XML/1998/namespace': 'xml',
-    # 'urn:oasis:names:tc:entity:xmlns:xml:catalog': 'xml_cat_1_1',
-    # 'http://www.w3.org/2000/09/xmldsig#': 'xmldsig_2000_09',
-    # 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0': 'xnl_2_0',
-    # 'http://www.w3.org/2001/XMLSchema': 'xs_2001',
-    # 'http://www.w3.org/2001/XMLSchema-instance': 'xs_instance_2001',
-    pass
+def test_get_namespace():
+    from scap.model.xml_cat_1_1.Catalog import Catalog
+    m = Catalog()
+    assert m.get_namespace() == 'xml_cat_1_1'
+
+def test_namespace_to_xmlns():
+    assert Model.namespace_to_xmlns('xml_cat_1_1') == 'urn:oasis:names:tc:entity:xmlns:xml:catalog'
+
+def test_xmlns_to_namespace():
+    assert Model.xmlns_to_namespace('urn:oasis:names:tc:entity:xmlns:xml:catalog') == 'xml_cat_1_1'
+
+def test_map_tag_to_module_name():
+    assert Model.map_tag_to_module_name('xml_cat_1_1', '{urn:oasis:names:tc:entity:xmlns:xml:catalog}catalog') == 'Catalog'
+
+def test_load_root_class():
+    from scap.model.xml_cat_1_1.Catalog import Catalog
+
+    cat1 = Model.load(None, ET.fromstring('''<cat:catalog xmlns:cat="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+        <cat:uri name="name1" uri="uri1"/>
+        <cat:uri name="name2" uri="uri2"/>
+        <cat:uri name="name3" uri="uri3"/>
+    </cat:catalog>'''))
+
+    assert isinstance(cat1, Catalog)
+    assert 'name1' in cat1.entries
+
+def test_load_enclosed_class():
+    from scap.model.xccdf_1_1.BenchmarkType import BenchmarkType
+    benchmark = BenchmarkType()
+
+    status = Model.load(benchmark, ET.fromstring('<xccdf:status xmlns:xccdf="http://checklists.nist.gov/xccdf/1.1" date="2010-01-21"/>'))
+
+    from scap.model.xccdf_1_1.StatusElement import StatusElement
+    assert isinstance(status, StatusElement)
+
+    import datetime
+    assert status.date == datetime.date(2010, 1, 21)

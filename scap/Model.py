@@ -18,9 +18,10 @@
 import logging
 import importlib
 import sys
+import os.path
 import xml.etree.ElementTree as ET
 
-from scap.model import NAMESPACES
+from scap.model import NAMESPACES, NAMESPACES_reverse
 
 XML_SPACE_ENUMERATION = [
     'default',
@@ -37,6 +38,9 @@ logger.setLevel(logging.INFO)
 class UnsupportedNamespaceException(Exception):
     pass
 
+class TagMappingException(Exception):
+    pass
+
 class Model(object):
     MODEL_MAP = {
         'attributes': {
@@ -47,8 +51,6 @@ class Model(object):
             '{http://www.w3.org/2001/XMLSchema-instance}schemaLocation': {'type': 'AnyURI', 'in': '_xsi_schemaLocation'},
         },
     }
-
-    NAMESPACES_reverse = None
 
     maps = {}
     index = {}
@@ -67,19 +69,8 @@ class Model(object):
         return xml_namespace, tag_name
 
     @staticmethod
-    def get_namespace(model):
-        if not isinstance(model, Model):
-            raise ValueError('Argument to get_namespace should be subclass of Model')
-
-        model_namespace = model.__module__.__name__.split('.')
-        model_namespace = model_namespace[2]
-        return model_namespace
-
-    @staticmethod
     def namespace_to_xmlns(namespace):
-        if NAMESPACES_reverse is None:
-            NAMESPACES_reverse = {v: k for k, v in NAMESPACES.items()}
-
+        logger.debug('Looking for xml namespace for model namespace ' + namespace)
         if namespace not in NAMESPACES_reverse:
             raise UnsupportedNamespaceException('Namespace ' + namespace + ' is not in supported namespaces')
 
@@ -87,76 +78,76 @@ class Model(object):
 
     @staticmethod
     def xmlns_to_namespace(xmlns):
+        logger.debug('Looking for model namespace for xml namespace ' + xmlns)
         if xmlns not in NAMESPACES:
             raise UnsupportedNamespaceException('XML namespace ' + xmlns + ' is not in supported namespaces')
 
         return NAMESPACES[xmlns]
 
     @staticmethod
+    def map_tag_to_module_name(model_namespace, tag):
+        pkg_mod = importlib.import_module('scap.model.' + model_namespace)
+        try:
+            module_name = pkg_mod.TAG_MAP[tag]
+        except AttributeError:
+            logger.critical(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + tag)
+            raise TagMappingException(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + tag)
+        except KeyError:
+            logger.critical(pkg_mod.__name__ + ' does not define mapping for ' + tag + ' tag')
+            raise TagMappingException(pkg_mod.__name__ + ' does not define mapping for ' + tag + ' tag')
+
+        return module_name
+
+    @staticmethod
     def load(parent, child_el):
         xml_namespace, tag_name = Model.parse_tag(child_el.tag)
 
-        if xml_namespace is None and parent is not None:
-            # inherit the parent's namespace
-            model_namespace = Model.get_namespace(parent)
-        elif xml_namespace not in NAMESPACES:
-            raise UnsupportedNamespaceException('Unsupported namespace: ' + xml_namespace + ', tag name: ' + child_el.tag)
-        else:
-            model_namespace = NAMESPACES[xml_namespace]
-
         # try to load the tag's module
         if parent is None:
-            # look up from __init__ file
-            pkg_mod = importlib.import_module('scap.model.' + model_namespace)
-            try:
-                module_name = pkg_mod.TAG_MAP[child_el.tag]
-            except AttributeError:
-                logger.critical(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + child_el.tag)
-                sys.exit()
-            except KeyError:
-                logger.critical(pkg_mod.__name__ + ' does not define mapping for ' + child_el.tag + ' tag')
-                sys.exit()
+            if xml_namespace is None:
+                raise UnsupportedNamespaceException('Unable to determine namespace without fully qualified tag (' + child_el.tag + ') and parent model')
+
+            if xml_namespace not in NAMESPACES:
+                raise UnsupportedNamespaceException('Unsupported namespace: ' + xml_namespace + ', tag name: ' + child_el.tag)
+
+            model_namespace = NAMESPACES[xml_namespace]
+            module_name = Model.map_tag_to_module_name(model_namespace, child_el.tag)
         else:
+            if xml_namespace is None:
+                model_namespace = parent.get_namespace()
+            else:
+                model_namespace = NAMESPACES[xml_namespace]
+
             mmap = Model._get_model_map(parent.__class__)
-            ns_any = '{' + xml_namespace + '}*'
 
             logger.debug('Checking ' + parent.__class__.__name__ + ' for tag ' + child_el.tag)
+            ns_any = '{' + xml_namespace + '}*'
             module_name = None
             for name in [child_el.tag, tag_name, ns_any, '*']:
-                if name not in mmap['elements']:
+                if name not in mmap['element_lookup']:
                     continue
 
                 logger.debug(child_el.tag + ' matched ' + name + ' mapping in ' + parent.__class__.__name__)
                 if name.endswith('*'):
-                    # look up from __init__ file
-                    pkg_mod = importlib.import_module('scap.model.' + model_namespace)
-                    try:
-                        module_name = pkg_mod.TAG_MAP[child_el.tag]
-                    except AttributeError:
-                        logger.critical(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + child_el.tag)
-                        sys.exit()
-                    except KeyError:
-                        logger.critical(pkg_mod.__name__ + ' does not define mapping for ' + child_el.tag + ' tag')
-                        sys.exit()
+                    module_name = Model.map_tag_to_module_name(model_namespace, child_el.tag)
                     break
-                elif 'class' in mmap['elements'][name]:
-                    module_name = mmap['elements'][child_el.tag]['class']
+                elif 'class' in mmap['element_lookup'][name]:
+                    module_name = mmap['element_lookup'][name]['class']
                     break
 
             if module_name is None:
                 logger.debug('Did not match any of ' + str([child_el.tag, tag_name, ns_any, '*']))
                 logger.critical(parent.__class__.__name__ + ' does not define mapping for ' + child_el.tag + ' tag')
-                sys.exit()
+                raise TagMappingException(parent.__class__.__name__ + ' does not define mapping for ' + child_el.tag + ' tag')
 
-        if '.' in module_name:
-            model_module = 'scap.model.' + module_name
-            module_name = module_name.partition('.')[2]
-        else:
+        # qualify module name if needed
+        if '.' not in module_name:
             model_module = 'scap.model.' + model_namespace + '.' + module_name
+        else:
+            model_module = module_name
 
         if model_module not in sys.modules:
             logger.debug('Loading module ' + model_module)
-
             mod = importlib.import_module(model_module)
         else:
             mod = sys.modules[model_module]
@@ -227,11 +218,9 @@ class Model(object):
 
             if xml_namespace is None:
                 # try to auto detect from module name
-                NAMESPACES_reverse = {v: k for k, v in NAMESPACES.items()}
                 module_parts = model_class.__module__.split('.')
-                if module_parts[0] == 'scap' and module_parts[1] == 'model' and module_parts[2] in NAMESPACES_reverse:
-                    logger.debug('Found xml namespace ' + NAMESPACES_reverse[module_parts[2]] + ' for model namespace ' + module_parts[2])
-                    xml_namespace = NAMESPACES_reverse[module_parts[2]]
+                if module_parts[0] == 'scap' and module_parts[1] == 'model':
+                    xml_namespace = Model.namespace_to_xmlns(module_parts[2])
 
             el_lookup = {}
             for element_def in el_map:
@@ -252,7 +241,12 @@ class Model(object):
 
     @staticmethod
     def find_content(uri):
-        # TODO locate content & load it, returning the root Model
+        # locate content & load it, returning the root Model
+        if os.path.isfile(uri):
+            try:
+                return Model.load(None, ET.parse(uri).getroot())
+            except:
+                return None
         return None
 
     def __init__(self, value=None, tag_name=None):
@@ -325,6 +319,11 @@ class Model(object):
                     logger.debug('Initializing ' + name + ' to None')
                     setattr(self, name, None)
 
+    def get_namespace(self):
+        model_namespace = self.__module__.split('.')
+        model_namespace = model_namespace[2]
+        return model_namespace
+
     def __setattr__(self, name, value):
         object.__setattr__(self, name, value)
 
@@ -382,7 +381,7 @@ class Model(object):
         sub_el_counts = {}
         for sub_el in el:
             if not self.parse_element(sub_el):
-                print(str(self.model_map['elements']))
+                logger.debug('Elements: ' + str(self.model_map['elements']))
                 logger.critical('Unknown element in ' + el.tag + ': ' + sub_el.tag)
                 sys.exit()
 
@@ -425,7 +424,7 @@ class Model(object):
             try:
                 mod = importlib.import_module('scap.model.xs_2001.' + type_)
             except ImportError:
-                model_namespace = Model.get_namespace(self)
+                model_namespace = self.get_namespace()
                 try:
                     mod = importlib.import_module('scap.model.' + model_namespace + '.' + type_)
                 except ImportError:
