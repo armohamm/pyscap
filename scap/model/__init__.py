@@ -50,3 +50,4 @@ NAMESPACES = {
     'http://www.w3.org/2001/XMLSchema': 'xs_2001',
     'http://www.w3.org/2001/XMLSchema-instance': 'xs_instance_2001',
 }
+NAMESPACES_reverse = {v: k for k, v in NAMESPACES.items()}
