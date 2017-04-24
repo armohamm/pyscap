@@ -833,7 +833,12 @@ class Model(object):
                     inst.id = k
                     sub_els.append(inst.to_xml())
                 else:
-                    el = ET.Element('{' + element_def['xml_namespace'] + '}' + element_def['tag_name'])
+                    if 'xml_namespace' in element_def:
+                        xml_namespace = element_def['xml_namespace']
+                    else:
+                        xml_namespace = self.model_map['xml_namespace']
+                        
+                    el = ET.Element('{' + xml_namespace + '}' + element_def['tag_name'])
                     el.set(key_name, k)
 
                     if 'value' in element_def:
