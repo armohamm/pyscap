@@ -24,7 +24,7 @@ class OrganisationNameDetailsElement(OrganisationNameDetailsType):
     MODEL_MAP = {
         'tag_name': 'OrganisationNameDetails',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'OrganisationFormerName', 'append': 'organisation_former_names', 'class': 'OrganisationFormerNameElement'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'OrganisationKnownAs', 'append': 'organisation_known_as', 'class': 'OrganisationKnownAsElement'},
+            {'tag_name': 'OrganisationFormerName', 'append': 'organisation_former_names', 'class': 'OrganisationFormerNameElement'},
+            {'tag_name': 'OrganisationKnownAs', 'append': 'organisation_known_as', 'class': 'OrganisationKnownAsElement'},
         ],
     }

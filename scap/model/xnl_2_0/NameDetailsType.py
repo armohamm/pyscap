@@ -24,10 +24,10 @@ class NameDetailsType(Model):
     MODEL_MAP = {
         'tag_name': 'NameDetails',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'NameLine', 'append': 'name_lines', 'class': 'NameLineType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'PersonName', 'in': 'person_name', 'class': 'PersonNameElement'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'JointPersonName', 'in': 'joint_person_name', 'class': 'JointPersonNameElement'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'OrganisationNameDetails', 'in': 'organisation_name_details', 'class': 'OrganisationNameDetailsElement'},
+            {'tag_name': 'NameLine', 'append': 'name_lines', 'class': 'NameLineType'},
+            {'tag_name': 'PersonName', 'in': 'person_name', 'class': 'PersonNameElement'},
+            {'tag_name': 'JointPersonName', 'in': 'joint_person_name', 'class': 'JointPersonNameElement'},
+            {'tag_name': 'OrganisationNameDetails', 'in': 'organisation_name_details', 'class': 'OrganisationNameDetailsElement'},
         ],
         'attributes': {
             'PartyType': {},

@@ -24,8 +24,8 @@ class JointPersonNameElement(Model):
     MODEL_MAP = {
         'tag_name': 'JointPersonName',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'NameLine', 'append': 'name_lines', 'class': 'NameLineType'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'PersonName', 'append': 'person_names', 'class': 'PersonNameElement'},
+            {'tag_name': 'NameLine', 'append': 'name_lines', 'class': 'NameLineType'},
+            {'tag_name': 'PersonName', 'append': 'person_names', 'class': 'PersonNameElement'},
             {'tag_name': '*'},
         ],
         'attributes': {

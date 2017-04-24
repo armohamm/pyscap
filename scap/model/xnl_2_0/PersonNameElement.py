@@ -24,8 +24,8 @@ class PersonNameElement(PersonNameType):
     MODEL_MAP = {
         'tag_name': 'PersonName',
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'FormerName', 'append': 'former_names', 'class': 'FormerNameElement'},
-            {'xml_namespace': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'KnownAs', 'append': 'known_ases', 'class': 'KnownAsElement'},
+            {'tag_name': 'FormerName', 'append': 'former_names', 'class': 'FormerNameElement'},
+            {'tag_name': 'KnownAs', 'append': 'known_ases', 'class': 'KnownAsElement'},
         ],
         'attributes': {
             'Type': {},
