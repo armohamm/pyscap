@@ -173,7 +173,7 @@ elif args['benchmark']:
         logger.debug('Loading content file: ' + uri)
         with open(uri, mode='r', encoding='utf_8') as f:
             content = ET.parse(f).getroot()
-            model = Model.load(None, content, uri)
+            model = Model.load(None, content)
 
     for host in hosts:
         host.connect()

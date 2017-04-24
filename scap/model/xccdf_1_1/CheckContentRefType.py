@@ -31,7 +31,7 @@ class CheckContentRefType(Model):
     def check(self, host, exports, import_names):
         content = Model.find_content(self.href)
         if content is None:
-            raise ValueError(self.href + ' was not loaded by a --content argument')
+            raise ValueError(self.href + ' was not loaded')
 
         # find the named content
         if self.name is not None:

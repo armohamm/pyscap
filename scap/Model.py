@@ -48,8 +48,9 @@ class Model(object):
         },
     }
 
+    NAMESPACES_reverse = None
+
     maps = {}
-    content_cache = {}
     index = {}
 
     @staticmethod
@@ -66,12 +67,42 @@ class Model(object):
         return xml_namespace, tag_name
 
     @staticmethod
-    def load(parent, child_el, uri=None):
+    def get_namespace(model):
+        if not isinstance(model, Model):
+            raise ValueError('Argument to get_namespace should be subclass of Model')
+
+        model_namespace = model.__module__.__name__.split('.')
+        model_namespace = model_namespace[2]
+        return model_namespace
+
+    @staticmethod
+    def namespace_to_xmlns(namespace):
+        if NAMESPACES_reverse is None:
+            NAMESPACES_reverse = {v: k for k, v in NAMESPACES.items()}
+
+        if namespace not in NAMESPACES_reverse:
+            raise UnsupportedNamespaceException('Namespace ' + namespace + ' is not in supported namespaces')
+
+        return NAMESPACES_reverse[namespace]
+
+    @staticmethod
+    def xmlns_to_namespace(xmlns):
+        if xmlns not in NAMESPACES:
+            raise UnsupportedNamespaceException('XML namespace ' + xmlns + ' is not in supported namespaces')
+
+        return NAMESPACES[xmlns]
+
+    @staticmethod
+    def load(parent, child_el):
         xml_namespace, tag_name = Model.parse_tag(child_el.tag)
 
-        if xml_namespace not in NAMESPACES:
-            raise NotImplementedError('Namespace ' + xml_namespace + ' is not supported')
-        model_namespace = NAMESPACES[xml_namespace]
+        if xml_namespace is None and parent is not None:
+            # inherit the parent's namespace
+            model_namespace = Model.get_namespace(parent)
+        elif xml_namespace not in NAMESPACES:
+            raise UnsupportedNamespaceException('Unsupported namespace: ' + xml_namespace + ', tag name: ' + child_el.tag)
+        else:
+            model_namespace = NAMESPACES[xml_namespace]
 
         # try to load the tag's module
         if parent is None:
@@ -134,9 +165,6 @@ class Model(object):
         class_ = getattr(mod, module_name)
         inst = class_()
         inst.from_xml(parent, child_el)
-
-        if parent is None:
-            Model.content_cache[uri] = inst
 
         return inst
 
@@ -224,10 +252,8 @@ class Model(object):
 
     @staticmethod
     def find_content(uri):
-        if uri in Model.content_cache:
-            return Model.content_cache[uri]
-        else:
-            return None
+        # TODO locate content & load it, returning the root Model
+        return None
 
     def __init__(self, value=None, tag_name=None):
         self.parent = None
@@ -322,12 +348,6 @@ class Model(object):
             raise NotImplementedError('Subclass ' + self.__class__.__name__ + ' does not define namespace')
         return self.model_map['xml_namespace']
 
-    def get_model_namespace(self):
-        xml_namespace = self.get_xml_namespace()
-        if xml_namespace not in NAMESPACES:
-            raise NotImplementedError('Namespace ' + xml_namespace + ' is not supported')
-        return NAMESPACES[xml_namespace]
-
     def get_tag(self):
         return '{' + self.get_xml_namespace() + '}' + self.get_tag_name()
 
@@ -405,7 +425,7 @@ class Model(object):
             try:
                 mod = importlib.import_module('scap.model.xs_2001.' + type_)
             except ImportError:
-                model_namespace = self.get_model_namespace()
+                model_namespace = Model.get_namespace(self)
                 try:
                     mod = importlib.import_module('scap.model.' + model_namespace + '.' + type_)
                 except ImportError:
@@ -846,5 +866,4 @@ class Model(object):
             if ref in Model.index[_class]:
                 return Model.index[_class][ref]
 
-        # last ditch attempt, try the content_cache
-        return Model.find_content(ref)
+        return None
