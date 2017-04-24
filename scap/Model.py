@@ -523,7 +523,8 @@ class Model(object):
                 logger.debug(str(self) + ' parsing ' + tag + ' elements into ' + element_def['append'])
                 lst = getattr(self, element_def['append'])
 
-                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
+                and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
@@ -553,7 +554,8 @@ class Model(object):
                     if key is None:
                         raise ValueError('Unable to determine key name for map ' + element_def['map'] + ' in ' + self.__class__.__name__)
 
-                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
+                and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
@@ -580,7 +582,8 @@ class Model(object):
 
             elif 'class' in element_def:
                 logger.debug(str(self) + ' parsing ' + tag + ' elements as ' + element_def['class'])
-                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
+                and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
@@ -600,7 +603,8 @@ class Model(object):
 
             elif 'type' in element_def:
                 logger.debug(str(self) + ' parsing ' + tag + ' elements as ' + element_def['type'])
-                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
+                and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
@@ -720,7 +724,8 @@ class Model(object):
 
         elif 'type' in attr_map:
             # TODO nillable
-            # if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+            # if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
+            # and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
             #     # check if we can accept nil
             #     if 'nillable' in element_def and element_def['nillable']:
             #         value = None
@@ -799,16 +804,16 @@ class Model(object):
                     el.text = i
                     sub_els.append(el)
         elif 'map' in element_def:
-            dic = getattr(self, element_def['map'])
+            dict_ = getattr(self, element_def['map'])
             logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from map ' + element_def['map'])
 
             # check minimum tag count
-            if 'min' in element_def and element_def['min'] > len(dic):
+            if 'min' in element_def and element_def['min'] > len(dict_):
                 logger.critical(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements')
                 sys.exit()
 
             # check maximum tag count
-            if 'max' in element_def and element_def['max'] is not None and element_def['max'] <= len(dic):
+            if 'max' in element_def and element_def['max'] is not None and element_def['max'] <= len(dict_):
                 logger.critical(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements')
                 sys.exit()
 
@@ -817,7 +822,10 @@ class Model(object):
             else:
                 key_name = 'id'
 
-            for k,v in list(dic.items()):
+            dict_keys = list(dict_.keys())
+            dict_keys.sort()
+            for k in dict_keys:
+                v = dict_[k]
                 if 'class' in element_def:
                     sub_els.append(v.to_xml())
                 elif 'type' in element_def:
@@ -831,7 +839,7 @@ class Model(object):
 
                     if 'value' in element_def:
                         value_name = element_def['value']
-                        el.set(element_def, v)
+                        el.set(value_name, v)
                     else:
                         el.text = v
                     sub_els.append(el)

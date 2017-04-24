@@ -52,4 +52,4 @@ class Catalog(Model, MutableMapping):
         return len(self.entries)
 
     def __iter__(self):
-        return iter(self.entries.keys())
+        return iter(self.entries.keys().sort())

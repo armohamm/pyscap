@@ -54,4 +54,4 @@ cat2['n2'] = 'u2'
 def test_to_xml():
     xml = ET.tostring(cat2.to_xml())
     print(xml)
-    assert xml == '''<cat:catalog xmlns:cat="urn:oasis:names:tc:entity:xmlns:xml:catalog"><cat:uri name="n1" uri="u1" /><cat:uri name="n2" uri="u2" /></cat:catalog>'''
+    assert xml == b'<cat:catalog xmlns:cat="urn:oasis:names:tc:entity:xmlns:xml:catalog"><cat:uri name="n1" uri="u1" /><cat:uri name="n2" uri="u2" /></cat:catalog>'
