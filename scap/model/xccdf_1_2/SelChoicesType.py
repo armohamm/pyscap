@@ -27,7 +27,7 @@ class SelChoicesType(Model):
         },
         'elements': [
             # TODO at least one choice/complex-choice
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'choice', 'class': 'scap.model.xs_2001.String', 'append': 'choices', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'complex-choice', 'class': 'ComplexValueType', 'min': 0, 'max': 1},
+            {'tag_name': 'choice', 'class': 'scap.model.xs_2001.String', 'append': 'choices', 'min': 0, 'max': None},
+            {'tag_name': 'complex-choice', 'class': 'ComplexValueType', 'min': 0, 'max': 1},
         ],
     }

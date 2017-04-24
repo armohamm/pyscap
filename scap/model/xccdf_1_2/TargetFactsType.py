@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class TargetFactsType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'fact', 'class': 'FactType', 'append': 'facts', 'min': 0, 'max': None},
+            {'tag_name': 'fact', 'class': 'FactType', 'append': 'facts', 'min': 0, 'max': None},
         ],
     }

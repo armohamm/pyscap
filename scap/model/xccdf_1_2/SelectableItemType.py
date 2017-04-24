@@ -26,10 +26,10 @@ class SelectableItemType(ItemType):
             'weight': {'type': 'Weight', 'default': 1.0},
         },
         'elements': [
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'rationale', 'append': 'rationales', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'platform', 'append': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableCPE2IDRefType'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'requires', 'append': 'requires', 'min': 0, 'max': None, 'class': 'IDRefListType'},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'conflicts', 'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IDRefType'},
+            {'tag_name': 'rationale', 'append': 'rationales', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
+            {'tag_name': 'platform', 'append': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableCPE2IDRefType'},
+            {'tag_name': 'requires', 'append': 'requires', 'min': 0, 'max': None, 'class': 'IDRefListType'},
+            {'tag_name': 'conflicts', 'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IDRefType'},
         ],
     }
     # abstract

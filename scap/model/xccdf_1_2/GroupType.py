@@ -26,9 +26,9 @@ class GroupType(SelectableItemType):
             'id': {'required': True, 'type': 'GroupIDPattern'},
         },
         'elements': [
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'Value', 'class': 'ValueType', 'map': 'values', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'Group', 'class': 'GroupType', 'map': 'groups', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'Rule', 'class': 'RuleType', 'map': 'rules', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
+            {'tag_name': 'Value', 'class': 'ValueType', 'map': 'values', 'min': 0, 'max': None},
+            {'tag_name': 'Group', 'class': 'GroupType', 'map': 'groups', 'min': 0, 'max': None},
+            {'tag_name': 'Rule', 'class': 'RuleType', 'map': 'rules', 'min': 0, 'max': None},
+            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
         ],
     }

@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class HTMLTextWithSubType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'sub', 'class': 'SubType', 'append': 'subs', 'min': 0, 'max': None},
+            {'tag_name': 'sub', 'class': 'SubType', 'append': 'subs', 'min': 0, 'max': None},
             {'xml_namespace': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
         ],
         'attributes': {

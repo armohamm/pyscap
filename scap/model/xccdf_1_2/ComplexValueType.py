@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class ComplexValueType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'item', 'class': 'String', 'append': 'items', 'min': 0, 'max': None},
+            {'tag_name': 'item', 'class': 'String', 'append': 'items', 'min': 0, 'max': None},
         ],
     }
