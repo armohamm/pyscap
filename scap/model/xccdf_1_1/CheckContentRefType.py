@@ -35,7 +35,7 @@ class CheckContentRefType(Model):
 
         # find the named content
         if self.name is not None:
-            content = content.find_reference(self.name)
+            content = Model.find_reference(self.name)
 
             if content is None:
                 raise ValueError('Unable to locate ' + self.name + ' in ' + self.href)

@@ -31,7 +31,7 @@ class CheckExportType(Model):
     def map(self, benchmark):
         # go through parents till we find value referenced by
         # check_export.value_id
-        v = self.find_reference(self.value_id)
+        v = Model.find_reference(self.value_id)
         if v is None:
             raise ValueError('Could not find Value ' + self.value_id)
 

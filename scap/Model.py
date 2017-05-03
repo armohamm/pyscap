@@ -249,6 +249,18 @@ class Model(object):
                 return None
         return None
 
+    @staticmethod
+    def find_reference(ref, _class = None):
+        if _class is None:
+            for _class in Model.index:
+                if ref in Model.index[_class]:
+                    return Model.index[_class][ref]
+        else:
+            if ref in Model.index[_class]:
+                return Model.index[_class][ref]
+
+        return None
+
     def __init__(self, value=None, tag_name=None):
         self.parent = None
         self.sub_references = {}
@@ -356,13 +368,6 @@ class Model(object):
         if 'xml_namespace' not in self.model_map or self.model_map['xml_namespace'] is None:
             raise NotImplementedError('Subclass ' + self.__class__.__name__ + ' does not define namespace')
         return self.model_map['xml_namespace']
-
-    def find_reference(self, ref):
-        for _class in Model.index:
-            if ref in Model.index[_class]:
-                return Model.index[_class][ref]
-
-        return None
 
     def from_xml(self, parent, el):
         self.parent = parent
