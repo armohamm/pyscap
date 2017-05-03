@@ -61,9 +61,6 @@ class BenchmarkType(Model):
         },
     }
 
-    def __str__(self):
-        return self.__class__.__name__ + ' # ' + self.id
-
     def noticing(self):
         ### Loading.Noticing
 
