@@ -322,13 +322,13 @@ class Model(object):
     def __str__(self):
         s = self.__class__.__name__
         if hasattr(self, 'id') and self.id is not None:
-            s += ' ' + self.id
+            s += ' id: ' + self.id
         elif hasattr(self, 'Id') and self.Id is not None:
-            s += ' ' + self.Id
+            s += ' Id: ' + self.Id
         elif hasattr(self, 'name') and self.name is not None:
-            s += ' ' + self.name
+            s += ' name: ' + self.name
         else:
-            s += ' ' + str(id(self))
+            s += ' # ' + str(id(self))
 
         return s
 
@@ -356,11 +356,6 @@ class Model(object):
         if 'xml_namespace' not in self.model_map or self.model_map['xml_namespace'] is None:
             raise NotImplementedError('Subclass ' + self.__class__.__name__ + ' does not define namespace')
         return self.model_map['xml_namespace']
-
-    def is_reference(self, ref):
-        if hasattr(self, 'id') and self.id == ref:
-            return True
-        return False
 
     def find_reference(self, ref):
         for _class in Model.index:
