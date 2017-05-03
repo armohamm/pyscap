@@ -21,12 +21,6 @@ import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
 class Simple(Model):
-    def __init__(self, value=None, tag_name=None):
-        super(Simple, self).__init__(value=value, tag_name=tag_name)
-
-        if value is not None:
-            self.text = value
-
     def parse_value(self, value):
         return value
 
