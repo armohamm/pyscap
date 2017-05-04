@@ -116,9 +116,41 @@ else:
 args = vars(arg_parser.parse_args())
 for arg in args:
     logger.debug('Argument: ' + arg + ' = ' + str(args[arg]))
-# configure ElementTree
-for k,v in list(NAMESPACES.items()):
-    ET.register_namespace(v, k)
+
+# register Model namespaces
+Model.register_namespace('ai_1_1', 'http://scap.nist.gov/schema/asset-identification/1.1')
+Model.register_namespace('arf_1_1', 'http://scap.nist.gov/schema/asset-reporting-format/1.1')
+Model.register_namespace('arf_rel_1_0', 'http://scap.nist.gov/specifications/arf/vocabulary/relationships/1.0')
+Model.register_namespace('cpe_1_0', 'http://cpe.mitre.org/XMLSchema/cpe/1.0')
+Model.register_namespace('cpe_dict_2_3', 'http://cpe.mitre.org/dictionary/2.0')
+Model.register_namespace('cpe_lang_2_3', 'http://cpe.mitre.org/language/2.0')
+Model.register_namespace('cpe_naming_2_3', 'http://cpe.mitre.org/naming/2.0')
+Model.register_namespace('dc_elements_1_1', 'http://purl.org/dc/elements/1.1/')
+Model.register_namespace('tmsad_1_0', 'http://scap.nist.gov/schema/xml-dsig/1.0')
+Model.register_namespace('ocil_2_0', 'http://scap.nist.gov/schema/ocil/2.0')
+Model.register_namespace('ocil_2_0', 'http://scap.nist.gov/schema/ocil/2')
+Model.register_namespace('oval_common_5', 'http://oval.mitre.org/XMLSchema/oval-common-5')
+Model.register_namespace('oval_defs_5', 'http://oval.mitre.org/XMLSchema/oval-definitions-5')
+Model.register_namespace('oval_defs_5_independent', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent')
+Model.register_namespace('oval_defs_5_linux', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux')
+Model.register_namespace('oval_defs_5_windows', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows')
+Model.register_namespace('oval_results_5', 'http://oval.mitre.org/XMLSchema/oval-results-5')
+Model.register_namespace('scap_source_1_2', 'http://scap.nist.gov/schema/scap/source/1.2')
+Model.register_namespace('rep_core_1_1', 'http://scap.nist.gov/schema/reporting-core/1.1')
+Model.register_namespace('vuln_0_4', 'http://scap.nist.gov/schema/vulnerability/0.4')
+Model.register_namespace('xal_2_0', 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0')
+Model.register_namespace('xccdf_1_1', 'http://checklists.nist.gov/xccdf/1.1')
+Model.register_namespace('xccdf_1_2', 'http://checklists.nist.gov/xccdf/1.2')
+Model.register_namespace('xccdf_p_1_1', 'http://checklists.nist.gov/xccdf-p/1.1')
+Model.register_namespace('xccdf_p_0_2_3', 'http://www.cisecurity.org/xccdf/platform/0.2.3')
+Model.register_namespace('xhtml_1999', 'http://www.w3.org/1999/xhtml')
+Model.register_namespace('xlink_1999', 'http://www.w3.org/1999/xlink')
+Model.register_namespace('xml', 'http://www.w3.org/XML/1998/namespace')
+Model.register_namespace('xml_cat_1_1', 'urn:oasis:names:tc:entity:xmlns:xml:catalog')
+Model.register_namespace('xmldsig_2000_09', 'http://www.w3.org/2000/09/xmldsig#')
+Model.register_namespace('xnl_2_0', 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0')
+Model.register_namespace('xs_2001', 'http://www.w3.org/2001/XMLSchema')
+Model.register_namespace('xs_instance_2001', 'http://www.w3.org/2001/XMLSchema-instance')
 
 # expand the hosts
 if args['collect'] or args['benchmark'] or args['list_hosts']:

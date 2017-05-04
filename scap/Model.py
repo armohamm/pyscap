@@ -21,8 +21,6 @@ import sys
 import os.path
 import xml.etree.ElementTree as ET
 
-from scap.model import NAMESPACES, NAMESPACES_reverse
-
 XML_SPACE_ENUMERATION = [
     'default',
     # The value "default" signals that applications' default white-space
@@ -35,7 +33,7 @@ XML_SPACE_ENUMERATION = [
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-class UnsupportedNamespaceException(Exception):
+class UnregisteredNamespaceException(Exception):
     pass
 
 class TagMappingException(Exception):
@@ -54,6 +52,24 @@ class Model(object):
 
     maps = {}
     index = {}
+    __xmlns_to_namespace = {}
+    __namespace_to_xmlns = {}
+
+    @staticmethod
+    def register_namespace(namespace, xmlns):
+        Model.__xmlns_to_namespace[xmlns] = namespace
+        Model.__namespace_to_xmlns[namespace] = xmlns
+        ET.register_namespace(namespace, xmlns)
+
+    @staticmethod
+    def unregister_namespace(namespace):
+        try:
+            xmlns = Model.__namespace_to_xmlns[namespace]
+        except KeyError:
+            raise UnregisteredNamespaceException('Unregistered namespace: ' + namespace)
+
+        del Model.__namespace_to_xmlns[namespace]
+        del Model.__xmlns_to_namespace[xmlns]
 
     @staticmethod
     def parse_tag(tag):
@@ -63,26 +79,26 @@ class Model(object):
         else:
             return None, tag
 
-        if xml_namespace not in NAMESPACES:
-            raise UnsupportedNamespaceException('Unsupported namespace: ' + xml_namespace + ', tag name: ' + tag_name)
+        if xml_namespace not in Model.__xmlns_to_namespace:
+            raise UnregisteredNamespaceException('Unregistered namespace: ' + xml_namespace + ', tag name: ' + tag_name)
 
         return xml_namespace, tag_name
 
     @staticmethod
     def namespace_to_xmlns(namespace):
         logger.debug('Looking for xml namespace for model namespace ' + namespace)
-        if namespace not in NAMESPACES_reverse:
-            raise UnsupportedNamespaceException('Namespace ' + namespace + ' is not in supported namespaces')
+        if namespace not in Model.__namespace_to_xmlns:
+            raise UnregisteredNamespaceException('Namespace ' + namespace + ' is not in supported namespaces')
 
-        return NAMESPACES_reverse[namespace]
+        return Model.__namespace_to_xmlns[namespace]
 
     @staticmethod
     def xmlns_to_namespace(xmlns):
         logger.debug('Looking for model namespace for xml namespace ' + xmlns)
-        if xmlns not in NAMESPACES:
-            raise UnsupportedNamespaceException('XML namespace ' + xmlns + ' is not in supported namespaces')
+        if xmlns not in Model.__xmlns_to_namespace:
+            raise UnregisteredNamespaceException('XML namespace ' + xmlns + ' is not in supported namespaces')
 
-        return NAMESPACES[xmlns]
+        return Model.__xmlns_to_namespace[xmlns]
 
     @staticmethod
     def map_tag_to_module_name(model_namespace, tag):
@@ -105,18 +121,18 @@ class Model(object):
         # try to load the tag's module
         if parent is None:
             if xml_namespace is None:
-                raise UnsupportedNamespaceException('Unable to determine namespace without fully qualified tag (' + child_el.tag + ') and parent model')
+                raise UnregisteredNamespaceException('Unable to determine namespace without fully qualified tag (' + child_el.tag + ') and parent model')
 
-            if xml_namespace not in NAMESPACES:
-                raise UnsupportedNamespaceException('Unsupported namespace: ' + xml_namespace + ', tag name: ' + child_el.tag)
+            if xml_namespace not in Model.__xmlns_to_namespace:
+                raise UnregisteredNamespaceException('Unregistered namespace: ' + xml_namespace + ', tag name: ' + child_el.tag)
 
-            model_namespace = NAMESPACES[xml_namespace]
+            model_namespace = Model.__xmlns_to_namespace[xml_namespace]
             module_name = Model.map_tag_to_module_name(model_namespace, child_el.tag)
         else:
             if xml_namespace is None:
                 model_namespace = parent.get_namespace()
             else:
-                model_namespace = NAMESPACES[xml_namespace]
+                model_namespace = Model.__xmlns_to_namespace[xml_namespace]
 
             mmap = Model._get_model_map(parent.__class__)
 
@@ -278,7 +294,7 @@ class Model(object):
         if 'xml_namespace' not in self.model_map or self.model_map['xml_namespace'] is None:
             raise ValueError('No xml_namespace defined for ' + self.__class__.__name__ + ' & could not detect')
 
-        if self.model_map['xml_namespace'] not in NAMESPACES:
+        if self.model_map['xml_namespace'] not in Model.__xmlns_to_namespace:
             raise ValueError('Unknown namespace: ' + self.model_map['xml_namespace'])
 
         # initialize attribute values
