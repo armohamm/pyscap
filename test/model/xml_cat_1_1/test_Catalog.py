@@ -21,13 +21,13 @@ from scap.model.xml_cat_1_1.Catalog import Catalog
 import xml.etree.ElementTree as ET
 
 logging.basicConfig(level=logging.DEBUG)
-ET.register_namespace('cat', 'urn:oasis:names:tc:entity:xmlns:xml:catalog')
+Model.register_namespace('xml_cat_1_1', 'urn:oasis:names:tc:entity:xmlns:xml:catalog')
 
-cat1 = Model.load(None, ET.fromstring('''<cat:catalog xmlns:cat="urn:oasis:names:tc:entity:xmlns:xml:catalog">
-    <cat:uri name="name1" uri="uri1"/>
-    <cat:uri name="name2" uri="uri2"/>
-    <cat:uri name="name3" uri="uri3"/>
-</cat:catalog>'''))
+cat1 = Model.load(None, ET.fromstring('''<xml_cat_1_1:catalog xmlns:xml_cat_1_1="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <xml_cat_1_1:uri name="name1" uri="uri1"/>
+    <xml_cat_1_1:uri name="name2" uri="uri2"/>
+    <xml_cat_1_1:uri name="name3" uri="uri3"/>
+</xml_cat_1_1:catalog>'''))
 
 def test_parsed():
     assert 'name1' in cat1.entries
@@ -54,4 +54,4 @@ cat2['n2'] = 'u2'
 def test_to_xml():
     xml = ET.tostring(cat2.to_xml())
     print(xml)
-    assert xml == b'<cat:catalog xmlns:cat="urn:oasis:names:tc:entity:xmlns:xml:catalog"><cat:uri name="n1" uri="u1" /><cat:uri name="n2" uri="u2" /></cat:catalog>'
+    assert xml == b'<xml_cat_1_1:catalog xmlns:xml_cat_1_1="urn:oasis:names:tc:entity:xmlns:xml:catalog"><xml_cat_1_1:uri name="n1" uri="u1" /><xml_cat_1_1:uri name="n2" uri="u2" /></xml_cat_1_1:catalog>'

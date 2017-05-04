@@ -52,8 +52,16 @@ class Model(object):
 
     maps = {}
     index = {}
-    __xmlns_to_namespace = {}
-    __namespace_to_xmlns = {}
+    __xmlns_to_namespace = {
+        'http://www.w3.org/XML/1998/namespace': 'xml',
+        'http://www.w3.org/2001/XMLSchema': 'xs',
+        'http://www.w3.org/2001/XMLSchema-instance': 'xsi',
+    }
+    __namespace_to_xmlns = {
+        'xml': 'http://www.w3.org/XML/1998/namespace',
+        'xs': 'http://www.w3.org/2001/XMLSchema',
+        'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+    }
 
     @staticmethod
     def register_namespace(namespace, xmlns):
@@ -451,13 +459,13 @@ class Model(object):
                 raise NotImplementedError('Type value scap.model.' + type_ + ' was not found')
         else:
             try:
-                mod = importlib.import_module('scap.model.xs_2001.' + type_)
+                mod = importlib.import_module('scap.model.xs.' + type_)
             except ImportError:
                 model_namespace = self.get_namespace()
                 try:
                     mod = importlib.import_module('scap.model.' + model_namespace + '.' + type_)
                 except ImportError:
-                    raise NotImplementedError('Type value ' + type_ + ' not defined in scap.model.xs_2001 or local namespace (scap.model.' + model_namespace + ')')
+                    raise NotImplementedError('Type value ' + type_ + ' not defined in scap.model.xs or local namespace (scap.model.' + model_namespace + ')')
         return getattr(mod, type_)
 
     def _parse_value_as_type(self, value, type_):

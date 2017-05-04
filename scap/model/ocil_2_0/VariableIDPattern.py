@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs_2001.Token import Token
+from scap.model.xs.Token import Token
 
 class VariableIDPattern(Token):
     #  <xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:variable:[1-9][0-9]*"/>

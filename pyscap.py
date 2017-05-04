@@ -145,12 +145,9 @@ Model.register_namespace('xccdf_p_1_1', 'http://checklists.nist.gov/xccdf-p/1.1'
 Model.register_namespace('xccdf_p_0_2_3', 'http://www.cisecurity.org/xccdf/platform/0.2.3')
 Model.register_namespace('xhtml_1999', 'http://www.w3.org/1999/xhtml')
 Model.register_namespace('xlink_1999', 'http://www.w3.org/1999/xlink')
-Model.register_namespace('xml', 'http://www.w3.org/XML/1998/namespace')
 Model.register_namespace('xml_cat_1_1', 'urn:oasis:names:tc:entity:xmlns:xml:catalog')
 Model.register_namespace('xmldsig_2000_09', 'http://www.w3.org/2000/09/xmldsig#')
 Model.register_namespace('xnl_2_0', 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0')
-Model.register_namespace('xs_2001', 'http://www.w3.org/2001/XMLSchema')
-Model.register_namespace('xs_instance_2001', 'http://www.w3.org/2001/XMLSchema-instance')
 
 # expand the hosts
 if args['collect'] or args['benchmark'] or args['list_hosts']:

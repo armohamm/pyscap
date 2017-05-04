@@ -16,7 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 from scap.model.ai_1_1.LocationType import LocationType
-from scap.model.xs_2001.NormalizedString import NormalizedString
+from scap.model.xs.NormalizedString import NormalizedString
 import logging
 import xml.etree.ElementTree as ET
 

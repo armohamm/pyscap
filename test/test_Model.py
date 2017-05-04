@@ -23,14 +23,13 @@ import importlib
 import sys
 
 import scap.model
-from scap.Model import Model, UnsupportedNamespaceException
+from scap.Model import Model, UnregisteredNamespaceException
 
 test_pkg = types.ModuleType('scap.model.test')
 test_pkg.__package__ = scap.model
 test_pkg.__path__ = scap.model.__path__
 test_pkg.__path__ += 'test'
-scap.model.NAMESPACES['http://jaymes.biz/test'] = 'test'
-scap.model.NAMESPACES_reverse['test'] = 'http://jaymes.biz/test'
+Model.register_namespace('test', 'http://jaymes.biz/test')
 sys.modules['scap.model.test'] = test_pkg
 test_pkg.TAG_MAP = {
     '{http://jaymes.biz/test}RootFixture': 'RootFixture',
@@ -79,10 +78,10 @@ sys.modules['scap.model.test.AttributeFixture.AttributeFixture'] = AttributeFixt
 logging.basicConfig(level=logging.DEBUG)
 
 def test_parse_tag():
-    assert Model.parse_tag('{http://www.w3.org/XML/1998/namespace}test') == ('http://www.w3.org/XML/1998/namespace', 'test')
+    assert Model.parse_tag('{http://jaymes.biz/test}test') == ('http://jaymes.biz/test', 'test')
     assert Model.parse_tag('test') == (None, 'test')
 
-    with pytest.raises(UnsupportedNamespaceException):
+    with pytest.raises(UnregisteredNamespaceException):
         Model.parse_tag('{http://www.w3.org/XML/1998}test')
 
 def test_get_namespace():

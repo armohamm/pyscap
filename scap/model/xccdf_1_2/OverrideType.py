@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs_2001.Decimal import Decimal
+from scap.model.xs.Decimal import Decimal
 from scap.model.xccdf_1_2.ResultEnumeration import RESULT_ENUMERATION
 import logging
 

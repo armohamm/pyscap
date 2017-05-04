@@ -27,7 +27,7 @@ from scap.model.xccdf_1_1.ProfileSetValueType import ProfileSetValueType
 from scap.model.xccdf_1_1.IdrefType import IdrefType
 from scap.model.xccdf_1_1.ScoreType import ScoreType
 
-from scap.model.xs_2001.String import String
+from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
 class ProfileReporter(Reporter):

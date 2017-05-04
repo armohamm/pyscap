@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.xs_2001.String import String
+from scap.model.xs.String import String
 from scap.model.xccdf_1_1.MessageSeverityEnumeration import MESSAGE_SEVERITY_ENUMERATION
 
 logger = logging.getLogger(__name__)
