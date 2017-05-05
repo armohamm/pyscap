@@ -15,13 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
-    '{http://jaymes.biz/test}RootFixture': 'RootFixture',
-    '{http://jaymes.biz/test}AttributeFixture': 'AttributeFixture',
-    '{http://jaymes.biz/test}wildcard_element': 'EnclosedFixture',
-    '{http://jaymes.biz/test}WildcardElementNotInFixture': 'WildcardElementNotInFixture',
-    '{http://jaymes.biz/test}WildcardElementInFixture': 'WildcardElementInFixture',
-    '{http://jaymes.biz/test}AppendElementFixture': 'AppendElementFixture',
-    '{http://jaymes.biz/test}MapElementFixture': 'MapElementFixture',
-    '{http://jaymes.biz/test}InitFixture': 'InitFixture',
-}
+from scap.Model import Model
+
+class InitFixture(Model):
+    MODEL_MAP = {
+        'attributes': {
+            'attr': {},
+            'in_attr': {'in': 'test_attr'},
+            'dash-attr': {},
+            'default_attr': {'default': 'Default'},
+        },
+        'elements': [
+            {'tag_name': 'append',  'append': 'append'},
+            {'tag_name': 'map',     'map': 'map'},
+            {'tag_name': 'in_test', 'in': 'test_in'},
+            {'tag_name': 'dash-test'},
+            {'tag_name': '{http://jaymes.biz/test2}*', 'in': 'test2_elements'},
+            {'tag_name': '*'},
+        ]
+    }

@@ -22,7 +22,7 @@ import types
 import importlib
 import sys
 
-from scap.Model import Model, UnregisteredNamespaceException
+from scap.Model import Model, UnregisteredNamespaceException, TagMappingException
 
 from scap.model.test.RootFixture import RootFixture
 from scap.model.test.EnclosedFixture import EnclosedFixture
@@ -32,12 +32,23 @@ from scap.model.test.WildcardElementInFixture import WildcardElementInFixture
 from scap.model.test.AppendElementFixture import AppendElementFixture
 from scap.model.test.MapElementFixture import MapElementFixture
 from scap.model.test.MappableElementFixture import MappableElementFixture
+from scap.model.test.InitFixture import InitFixture
 
 from scap.model.test2.EnclosedFixture import EnclosedFixture as EnclosedFixture2
 
 logging.basicConfig(level=logging.DEBUG)
 Model.register_namespace('scap.model.test', 'http://jaymes.biz/test')
 Model.register_namespace('scap.model.test2', 'http://jaymes.biz/test2')
+
+def test_namespace_registration():
+    Model.register_namespace('scap.model.derp', 'http://jaymes.biz/derp')
+
+    Model.xmlns_to_package('http://jaymes.biz/derp') == 'scap.model.derp'
+
+    Model.unregister_namespace('scap.model.derp')
+
+    with pytest.raises(UnregisteredNamespaceException):
+        Model.xmlns_to_package('http://jaymes.biz/derp')
 
 def test_parse_tag():
     assert Model.parse_tag('{http://jaymes.biz/test}test') == ('http://jaymes.biz/test', 'test')
@@ -50,23 +61,51 @@ def test_package_to_xmlns():
     assert Model.package_to_xmlns('scap.model.test') == 'http://jaymes.biz/test'
     assert Model.package_to_xmlns('scap.model.test2') == 'http://jaymes.biz/test2'
 
+    with pytest.raises(UnregisteredNamespaceException):
+        Model.package_to_xmlns('scap.model.derp')
+
 def test_xmlns_to_package():
     assert Model.xmlns_to_package('http://jaymes.biz/test') == 'scap.model.test'
     assert Model.xmlns_to_package('http://jaymes.biz/test2') == 'scap.model.test2'
 
+    with pytest.raises(UnregisteredNamespaceException):
+        Model.xmlns_to_package('http://jaymes.biz/derp')
+
 def test_map_tag_to_module_name():
     assert Model.map_tag_to_module_name('scap.model.test', '{http://jaymes.biz/test}RootFixture') == 'RootFixture'
 
+    with pytest.raises(ImportError):
+        Model.map_tag_to_module_name('scap.model.derp', '{http://jaymes.biz/test}Derp')
+
+    # TODO test missing TAG_MAP
+
+    with pytest.raises(TagMappingException):
+        Model.map_tag_to_module_name('scap.model.test', '{http://jaymes.biz/test}Derp')
+
 def test_load_root_model():
     root = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test" />'))
-
     assert isinstance(root, RootFixture)
+
+    with pytest.raises(UnregisteredNamespaceException):
+        Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/derp" />'))
+
+    with pytest.raises(TagMappingException):
+        Model.load(None, ET.fromstring('<test:Derp xmlns:test="http://jaymes.biz/test" />'))
 
 def test_load_enclosed_model():
     root = RootFixture()
-    enc = Model.load(root, ET.fromstring('<test:EnclosedFixture xmlns:test="http://jaymes.biz/test" />'))
+    el = Model.load(root, ET.fromstring('<test:EnclosedFixture xmlns:test="http://jaymes.biz/test" />'))
+    assert isinstance(el, EnclosedFixture)
 
-    assert isinstance(enc, EnclosedFixture)
+    el = Model.load(root, ET.fromstring('<EnclosedFixture />'))
+    assert isinstance(el, EnclosedFixture)
+
+    with pytest.raises(UnregisteredNamespaceException):
+        Model.load(root, ET.fromstring('<test:EnclosedFixture xmlns:test="http://jaymes.biz/derp" />'))
+    with pytest.raises(UnregisteredNamespaceException):
+        Model.load(None, ET.fromstring('<EnclosedFixture />'))
+    with pytest.raises(TagMappingException):
+        Model.load(root, ET.fromstring('<Derp />'))
 
 def test_load_attribute_in():
     attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" in_attribute="test" />'))
@@ -318,6 +357,46 @@ def test_init_value():
 def test_init_tag_name():
     root = RootFixture(tag_name='test')
     assert root.to_xml().tag == '{http://jaymes.biz/test}test'
+
+def test_init():
+    init = InitFixture()
+
+    assert isinstance(init, InitFixture)
+    assert hasattr(init, 'attr')
+    assert init.attr is None
+
+    assert not hasattr(init, 'in_attr')
+    assert hasattr(init, 'test_attr')
+    assert init.test_attr is None
+
+    assert hasattr(init, 'dash_attr')
+    assert init.dash_attr is None
+
+    assert hasattr(init, 'default_attr')
+    assert init.default_attr == 'Default'
+
+    assert hasattr(init, 'append')
+    assert isinstance(init.append, list)
+    assert len(init.append) == 0
+
+    assert hasattr(init, 'map')
+    assert isinstance(init.map, dict)
+    assert len(init.map.keys()) == 0
+
+    assert not hasattr(init, 'in_test')
+    assert hasattr(init, 'test_in')
+    assert init.test_in is None
+
+    assert hasattr(init, 'dash_test')
+    assert init.dash_test is None
+
+    assert hasattr(init, 'test2_elements')
+    assert isinstance(init.test2_elements, list)
+    assert len(init.test2_elements) == 0
+
+    assert hasattr(init, '_elements')
+    assert isinstance(init._elements, list)
+    assert len(init._elements) == 0
 
 def test_str_id_func():
     root = RootFixture()

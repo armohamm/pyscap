@@ -130,16 +130,13 @@ class Model(object):
     @staticmethod
     def map_tag_to_module_name(model_package, tag):
         pkg_mod = importlib.import_module(model_package)
-        try:
-            module_name = pkg_mod.TAG_MAP[tag]
-        except AttributeError:
-            logger.critical(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + tag)
+
+        if not hasattr(pkg_mod, 'TAG_MAP'):
             raise TagMappingException(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + tag)
-        except KeyError:
-            logger.critical(pkg_mod.__name__ + ' does not define mapping for ' + tag + ' tag')
+        if tag not in pkg_mod.TAG_MAP:
             raise TagMappingException(pkg_mod.__name__ + ' does not define mapping for ' + tag + ' tag')
 
-        return module_name
+        return pkg_mod.TAG_MAP[tag]
 
     @staticmethod
     def load(parent, child_el):
