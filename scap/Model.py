@@ -845,11 +845,6 @@ class Model(object):
                 v = dict_[k]
                 if 'class' in element_def:
                     sub_els.append(v.to_xml())
-                elif 'type' in element_def:
-                    class_ = self._load_type_class(element_def['type'])
-                    inst = class_(value=v, tag_name=element_def['tag_name'])
-                    inst.id = k
-                    sub_els.append(inst.to_xml())
                 else:
                     if 'xmlns' in element_def:
                         xmlns = element_def['xmlns']
@@ -861,7 +856,7 @@ class Model(object):
 
                     if 'value_attr' in element_def:
                         value_name = element_def['value_attr']
-                        el.set(value_name, v)
+                        el.set(value_name, self._produce_value_as_type(v, element_def['type']))
                     else:
                         el.text = v
                     sub_els.append(el)
