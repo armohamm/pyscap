@@ -21,4 +21,5 @@ TAG_MAP = {
     '{http://jaymes.biz/test}wildcard_element': 'EnclosedFixture',
     '{http://jaymes.biz/test}WildcardElementNotInFixture': 'WildcardElementNotInFixture',
     '{http://jaymes.biz/test}WildcardElementInFixture': 'WildcardElementInFixture',
+    '{http://jaymes.biz/test}AppendElementFixture': 'AppendElementFixture',
 }

@@ -451,10 +451,10 @@ class Model(object):
 
             # check that we have the min & max of those elements
             if min_ != 0 and (tag not in self.tag_counts or self.tag_counts[tag] < min_):
-                raise MinimumElementException(self.__class__.__name__ + ' must have at least ' + str(min_) + ' ' + tag + ' elements; ' + str(self.tag_counts[tag]) + ' found')
+                raise MinimumElementException(self.__class__.__name__ + ' must have at least ' + str(min_) + ' ' + tag + ' elements')
 
             if max_ is not None and tag in self.tag_counts and self.tag_counts[tag] > max_:
-                raise MaximumElementException(self.__class__.__name__ + ' must have at most ' + str(max_) + ' ' + tag + ' elements; ' + str(self.tag_counts[tag]) + ' found')
+                raise MaximumElementException(self.__class__.__name__ + ' must have at most ' + str(max_) + ' ' + tag + ' elements')
 
         self.text = el.text
 

@@ -23,11 +23,14 @@ import importlib
 import sys
 
 from scap.Model import Model, UnregisteredNamespaceException
+
 from scap.model.test.RootFixture import RootFixture
 from scap.model.test.EnclosedFixture import EnclosedFixture
 from scap.model.test.AttributeFixture import AttributeFixture
 from scap.model.test.WildcardElementNotInFixture import WildcardElementNotInFixture
 from scap.model.test.WildcardElementInFixture import WildcardElementInFixture
+from scap.model.test.AppendElementFixture import AppendElementFixture
+
 from scap.model.test2.EnclosedFixture import EnclosedFixture as EnclosedFixture2
 
 logging.basicConfig(level=logging.DEBUG)
@@ -63,39 +66,31 @@ def test_load_enclosed_model():
 
     assert isinstance(enc, EnclosedFixture)
 
-def test_init_value():
-    root = RootFixture(value='test')
-    assert root.text == 'test'
-
-def test_init_tag_name():
-    root = RootFixture(tag_name='test')
-    assert root.to_xml().tag == '{http://jaymes.biz/test}test'
-
-def test_init_attribute_in():
+def test_load_attribute_in():
     attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" in_attribute="test" />'))
     assert isinstance(attr, AttributeFixture)
     assert hasattr(attr, 'in_test')
     assert attr.in_test == 'test'
 
-def test_init_attribute_dash():
+def test_load_attribute_dash():
     attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" dash-attribute="test" />'))
     assert isinstance(attr, AttributeFixture)
     assert hasattr(attr, 'dash_attribute')
     assert attr.dash_attribute == 'test'
 
-def test_init_attribute_default():
+def test_load_attribute_default():
     attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" />'))
     assert isinstance(attr, AttributeFixture)
     assert hasattr(attr, 'default_attribute')
     assert attr.default_attribute == 'test'
 
-def test_init_attribute_no_default():
+def test_load_attribute_no_default():
     attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" />'))
     assert isinstance(attr, AttributeFixture)
     assert hasattr(attr, 'in_test')
     assert attr.in_test is None
 
-def test_init_element_wildcard_not_in():
+def test_load_element_wildcard_not_in():
     el = Model.load(None, ET.fromstring('''
         <test:WildcardElementNotInFixture xmlns:test2="http://jaymes.biz/test2" xmlns:test="http://jaymes.biz/test">
         <test:wildcard_element>test1</test:wildcard_element>
@@ -111,13 +106,14 @@ def test_init_element_wildcard_not_in():
     assert el._elements[0].text == 'test1'
     assert el._elements[1].text == 'test2'
 
-def test_init_element_wildcard_in():
+def test_load_element_wildcard_in():
     el = Model.load(None, ET.fromstring('''
         <test:WildcardElementInFixture xmlns:test2="http://jaymes.biz/test2" xmlns:test="http://jaymes.biz/test">
         <test:wildcard_element>test1</test:wildcard_element>
         <test2:wildcard_element>test2</test2:wildcard_element>
         </test:WildcardElementInFixture>
         '''))
+
     assert isinstance(el, WildcardElementInFixture)
 
     assert hasattr(el, 'test_elements')
@@ -134,25 +130,76 @@ def test_init_element_wildcard_in():
     assert isinstance(el.elements[0], EnclosedFixture2)
     assert el.elements[0].text == 'test2'
 
-def test_init_element_xmlns_wildcard():
-    # TODO in
-    # TODO not in
-    # TODO initialized []
-    pass
+def test_load_element_append_nil():
+    el = Model.load(None, ET.fromstring('''
+        <test:AppendElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <test:append_nil xsi:nil="true" />
+        <test:append_nil>test2</test:append_nil>
+        </test:AppendElementFixture>
+        '''))
 
-def test_init_element_append():
-    # TODO initialized
-    pass
+    assert isinstance(el, AppendElementFixture)
 
-def test_init_element_map():
+    assert hasattr(el, 'append_nil')
+    assert isinstance(el.append_nil, list)
+    assert len(el.append_nil) == 2
+
+    assert el.append_nil[0] is None
+
+    assert isinstance(el.append_nil[1], EnclosedFixture)
+    assert el.append_nil[1].text == 'test2'
+
+def test_load_element_append_type():
+    el = Model.load(None, ET.fromstring('''
+        <test:AppendElementFixture xmlns:test="http://jaymes.biz/test">
+        <test:append_type>1.1</test:append_type>
+        <test:append_type>1.2</test:append_type>
+        </test:AppendElementFixture>
+        '''))
+
+    assert isinstance(el, AppendElementFixture)
+
+    assert hasattr(el, 'append_type')
+    assert isinstance(el.append_type, list)
+    assert len(el.append_type) == 2
+
+    assert isinstance(el.append_type[0], float)
+    assert el.append_type[0] == 1.1
+
+    assert isinstance(el.append_type[1], float)
+    assert el.append_type[1] == 1.2
+
+def test_load_element_append_class():
+    el = Model.load(None, ET.fromstring('''
+        <test:AppendElementFixture xmlns:test="http://jaymes.biz/test">
+        <test:append_class>test1</test:append_class>
+        <test:append_class>test2</test:append_class>
+        </test:AppendElementFixture>
+        '''))
+
+    assert isinstance(el, AppendElementFixture)
+
+    assert hasattr(el, 'append_class')
+    assert isinstance(el.append_class, list)
+    assert len(el.append_class) == 2
+
+    assert isinstance(el.append_class[0], EnclosedFixture)
+    assert el.append_class[0].text == 'test1'
+
+    assert isinstance(el.append_class[1], EnclosedFixture)
+    assert el.append_class[1].text == 'test2'
+
+def test_load_element_map():
     # TODO initialized {}
     pass
 
-def test_init_element_wildcard():
-    # TODO in
-    # TODO not in
-    # TODO initialized None
-    pass
+def test_init_value():
+    root = RootFixture(value='test')
+    assert root.text == 'test'
+
+def test_init_tag_name():
+    root = RootFixture(tag_name='test')
+    assert root.to_xml().tag == '{http://jaymes.biz/test}test'
 
 def test_str_id_func():
     root = RootFixture()

@@ -17,10 +17,11 @@
 
 from scap.Model import Model
 
-class ElementInFixture(Model):
+class AppendElementFixture(Model):
     MODEL_MAP = {
         'elements': [
-            {'xmlns': 'http://jaymes.biz/test', 'tag_name': '*', 'in': 'xmlns_elements'},
-            {'tag_name': '*', 'in': 'elements'},
+            {'tag_name': 'append_nil', 'append': 'append_nil', 'nillable': True, 'class': 'EnclosedFixture', 'min': 0},
+            {'tag_name': 'append_type', 'append': 'append_type', 'type': 'Decimal', 'min': 0},
+            {'tag_name': 'append_class', 'append': 'append_class', 'class': 'EnclosedFixture', 'min': 0},
         ],
     }
