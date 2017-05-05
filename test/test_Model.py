@@ -22,17 +22,21 @@ import types
 import importlib
 import sys
 
-from scap.Model import Model, UnregisteredNamespaceException, TagMappingException
+from scap.Model import Model, UnregisteredNamespaceException, \
+    TagMappingException, RequiredAttributeException, MinimumElementException, \
+    MaximumElementException
 
 from scap.model.test.RootFixture import RootFixture
 from scap.model.test.EnclosedFixture import EnclosedFixture
 from scap.model.test.AttributeFixture import AttributeFixture
+from scap.model.test.RequiredAttributeFixture import RequiredAttributeFixture
 from scap.model.test.WildcardElementNotInFixture import WildcardElementNotInFixture
 from scap.model.test.WildcardElementInFixture import WildcardElementInFixture
 from scap.model.test.AppendElementFixture import AppendElementFixture
 from scap.model.test.MapElementFixture import MapElementFixture
 from scap.model.test.MappableElementFixture import MappableElementFixture
 from scap.model.test.InitFixture import InitFixture
+from scap.model.test.MinMaxElementFixture import MinMaxElementFixture
 
 from scap.model.test2.EnclosedFixture import EnclosedFixture as EnclosedFixture2
 
@@ -107,6 +111,15 @@ def test_load_enclosed_model():
     with pytest.raises(TagMappingException):
         Model.load(root, ET.fromstring('<Derp />'))
 
+def test_load_attribute_required():
+    attr = Model.load(None, ET.fromstring('<test:RequiredAttributeFixture xmlns:test="http://jaymes.biz/test" required_attribute="test" />'))
+    assert isinstance(attr, RequiredAttributeFixture)
+    assert hasattr(attr, 'required_attribute')
+    assert attr.required_attribute == 'test'
+
+    with pytest.raises(RequiredAttributeException):
+        attr = Model.load(None, ET.fromstring('<test:RequiredAttributeFixture xmlns:test="http://jaymes.biz/test" />'))
+
 def test_load_attribute_in():
     attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" in_attribute="test" />'))
     assert isinstance(attr, AttributeFixture)
@@ -130,6 +143,52 @@ def test_load_attribute_no_default():
     assert isinstance(attr, AttributeFixture)
     assert hasattr(attr, 'in_test')
     assert attr.in_test is None
+
+def test_load_element_min():
+    el = Model.load(None, ET.fromstring('''
+        <test:MinMaxElementFixture xmlns:test="http://jaymes.biz/test">
+        <test:min>test1</test:min>
+        <test:min>test2</test:min>
+        <test:min>test3</test:min>
+        <test:max>test4</test:max>
+        <test:max>test5</test:max>
+        </test:MinMaxElementFixture>
+        '''))
+    assert isinstance(el, MinMaxElementFixture)
+
+    assert hasattr(el, 'min')
+    assert isinstance(el.min, list)
+    assert len(el.min) == 3
+    assert el.min[0].text == 'test1'
+    assert el.min[1].text == 'test2'
+    assert el.min[2].text == 'test3'
+
+    assert hasattr(el, 'max')
+    assert isinstance(el.max, list)
+    assert len(el.max) == 2
+    assert el.max[0].text == 'test4'
+    assert el.max[1].text == 'test5'
+
+    with pytest.raises(MinimumElementException):
+        el = Model.load(None, ET.fromstring('''
+            <test:MinMaxElementFixture xmlns:test="http://jaymes.biz/test">
+            <test:min>test1</test:min>
+            <test:max>test4</test:max>
+            <test:max>test5</test:max>
+            </test:MinMaxElementFixture>
+            '''))
+
+    with pytest.raises(MaximumElementException):
+        el = Model.load(None, ET.fromstring('''
+            <test:MinMaxElementFixture xmlns:test="http://jaymes.biz/test">
+            <test:min>test1</test:min>
+            <test:min>test2</test:min>
+            <test:min>test3</test:min>
+            <test:max>test4</test:max>
+            <test:max>test5</test:max>
+            <test:max>test6</test:max>
+            </test:MinMaxElementFixture>
+            '''))
 
 def test_load_element_wildcard_not_in():
     el = Model.load(None, ET.fromstring('''
@@ -358,7 +417,7 @@ def test_init_tag_name():
     root = RootFixture(tag_name='test')
     assert root.to_xml().tag == '{http://jaymes.biz/test}test'
 
-def test_init():
+def test_initialization():
     init = InitFixture()
 
     assert isinstance(init, InitFixture)
@@ -398,6 +457,10 @@ def test_init():
     assert isinstance(init._elements, list)
     assert len(init._elements) == 0
 
+def test_get_package():
+    root = RootFixture()
+    assert root.get_package() == 'scap.model.test'
+
 def test_str_id_func():
     root = RootFixture()
     assert str(root) == ('RootFixture # ' + str(id(root)))
@@ -417,9 +480,13 @@ def test_str_name():
     root.name = 'test'
     assert str(root) == ('RootFixture name: test')
 
-def test_get_package():
+def test_references():
     root = RootFixture()
-    assert root.get_package() == 'scap.model.test'
+    root.id = 'reftest1'
+    assert Model.find_reference('reftest1') == root
+    assert Model.find_reference('reftest1', 'RootFixture') == root
+
+    assert Model.find_reference('test1', 'Derp') is None
 
 def test_get_tag_name_implicit():
     root = RootFixture()
@@ -430,7 +497,8 @@ def test_get_tag_name_explicit():
     root.tag_name = 'test'
     assert root.get_tag_name() == 'test'
 
-def test_find_reference():
+def test_get_xmlns():
     root = RootFixture()
-    root.id = 'test'
-    assert root.id == Model.find_reference('test').id
+    assert root.get_xmlns() == 'http://jaymes.biz/test'
+
+# NOTE: from_xml is tested via Model.load

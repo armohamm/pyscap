@@ -295,6 +295,8 @@ class Model(object):
                 if ref in Model.__model_index[_class]:
                     return Model.__model_index[_class][ref]
         else:
+            if _class not in Model.__model_index:
+                return None
             if ref in Model.__model_index[_class]:
                 return Model.__model_index[_class][ref]
 
@@ -417,8 +419,7 @@ class Model(object):
             and self.model_map['attributes'][attrib]['required'] \
             and attrib not in el.keys() \
             and 'default' not in self.model_map['attributes'][attrib]:
-                logger.critical(el.tag + ' must define ' + attrib + ' attribute')
-                sys.exit()
+                raise RequiredAttributeException(el.tag + ' must define ' + attrib + ' attribute')
 
         for name, value in list(el.items()):
             self._parse_attribute(name, value)
@@ -525,7 +526,7 @@ class Model(object):
             ns_any = '{' + xmlns + '}*'
             fq_tag = el.tag
 
-        for tag in [fq_tag, ns_any, '*']:
+        for tag in [fq_tag, tag_name, ns_any, '*']:
             # check both namespace + tag_name and just tag_name
             if tag not in self.model_map['element_lookup']:
                 continue
@@ -689,7 +690,7 @@ class Model(object):
 
             return
 
-        raise UnknownElementException('Unknown ' + str(self) + ' sub-element ' + el.tag)
+        raise UnknownElementException('Unknown ' + str(self) + ' sub-element ' + el.tag + ' does not match ' + str([fq_tag, tag_name, ns_any, '*']))
 
     def to_xml(self):
         logger.debug(str(self) + ' to xml')
