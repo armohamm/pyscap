@@ -581,37 +581,41 @@ class Model(object):
                 logger.debug(str(self) + ' parsing ' + tag + ' elements into ' + element_def['map'])
                 dic = getattr(self, element_def['map'])
 
+                # TODO: implement key_element as well
                 if 'key' in element_def:
-                    try:
-                        key = el.get(element_def['key'])
-                    except KeyError:
+                    if element_def['key'] not in el.keys():
                         key = None
-                # TODO: implement keyElement as well
+                    else:
+                        key = el.get(element_def['key'])
                 else:
-                    key = el.get('id')
-                    if key is None:
-                        raise ValueError('Unable to determine key name for map ' + element_def['map'] + ' in ' + self.__class__.__name__)
+                    if 'id' not in el.keys():
+                        key = None
+                    else:
+                        key = el.get('id')
 
+                # TODO: implement value_element? as well
                 if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
                 and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
                     # check if we can accept nil
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
                     else:
-                        raise ValueError(el.tag + ' is nil, but not expecting nil value')
-                elif 'value' in element_def:
-                    try:
-                        if 'type' in element_def:
-                            value = self._parse_value_as_type(value, element_def['type'])
-                        else:
-                            value = el.get(element_def['value'])
-                    except KeyError:
-                        value = None
-                # TODO: implement valueElement? as well
+                        raise ValueError(el.tag + ' is nil, but not allowing nil value')
+                elif 'value_attr' in element_def:
+                    # try parsing from an attribute
+                    if element_def['value_attr'] not in el.keys():
+                        raise ValueError('Could not parse value from ' + el.tag + ' attribute ' + element_def['value_attr'])
+
+                    if 'type' not in element_def:
+                        raise ValueError('Could not parse value from ' + el.tag + ' attribute ' + element_def['value_attr'] + ' without explicit type')
+
+                    value = self._parse_value_as_type(el.get(element_def['value_attr']), element_def['type'])
                 else:
+                    # try parsing from the tag itself, just mapping with the key
                     if 'type' in element_def:
                         value = self._parse_value_as_type(el.text, element_def['type'])
                     else:
+                        # needs 'class' in element_def
                         value = Model.load(self, el)
                         value.tag_name = tag_name
 
@@ -855,8 +859,8 @@ class Model(object):
                     el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
                     el.set(key_name, k)
 
-                    if 'value' in element_def:
-                        value_name = element_def['value']
+                    if 'value_attr' in element_def:
+                        value_name = element_def['value_attr']
                         el.set(value_name, v)
                     else:
                         el.text = v

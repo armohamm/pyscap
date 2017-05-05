@@ -30,6 +30,8 @@ from scap.model.test.AttributeFixture import AttributeFixture
 from scap.model.test.WildcardElementNotInFixture import WildcardElementNotInFixture
 from scap.model.test.WildcardElementInFixture import WildcardElementInFixture
 from scap.model.test.AppendElementFixture import AppendElementFixture
+from scap.model.test.MapElementFixture import MapElementFixture
+from scap.model.test.MappableElementFixture import MappableElementFixture
 
 from scap.model.test2.EnclosedFixture import EnclosedFixture as EnclosedFixture2
 
@@ -189,9 +191,125 @@ def test_load_element_append_class():
     assert isinstance(el.append_class[1], EnclosedFixture)
     assert el.append_class[1].text == 'test2'
 
-def test_load_element_map():
-    # TODO initialized {}
-    pass
+def test_load_element_map_key_explicit():
+    el = Model.load(None, ET.fromstring('''
+        <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <test:map_explicit_key key="test1">test1</test:map_explicit_key>
+        <test:map_explicit_key key="test2">test2</test:map_explicit_key>
+        </test:MapElementFixture>
+        '''))
+
+    assert isinstance(el, MapElementFixture)
+
+    assert hasattr(el, 'map_explicit_key')
+    assert len(el.map_explicit_key) == 2
+
+    assert 'test1' in el.map_explicit_key
+    assert el.map_explicit_key['test1'] == 'test1'
+
+    assert 'test2' in el.map_explicit_key
+    assert el.map_explicit_key['test2'] == 'test2'
+
+def test_load_element_map_key_implicit():
+    el = Model.load(None, ET.fromstring('''
+        <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <test:map_implicit_key id="test1">test1</test:map_implicit_key>
+        <test:map_implicit_key id="test2">test2</test:map_implicit_key>
+        </test:MapElementFixture>
+        '''))
+
+    assert isinstance(el, MapElementFixture)
+
+    assert hasattr(el, 'map_implicit_key')
+    assert len(el.map_implicit_key) == 2
+
+    assert 'test1' in el.map_implicit_key
+    assert el.map_implicit_key['test1'] == 'test1'
+
+    assert 'test2' in el.map_implicit_key
+    assert el.map_implicit_key['test2'] == 'test2'
+
+def test_load_element_map_value_nil():
+    el = Model.load(None, ET.fromstring('''
+        <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <test:map_value_nil id="test1" xsi:nil="true"/>
+        <test:map_value_nil id="test2">test2</test:map_value_nil>
+        </test:MapElementFixture>
+        '''))
+
+    assert isinstance(el, MapElementFixture)
+
+    assert hasattr(el, 'map_value_nil')
+    assert len(el.map_value_nil) == 2
+
+    assert 'test1' in el.map_value_nil
+    assert el.map_value_nil['test1'] == None
+
+    assert 'test2' in el.map_value_nil
+    assert el.map_value_nil['test2'] == 'test2'
+
+def test_load_element_map_value_attr():
+    el = Model.load(None, ET.fromstring('''
+        <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <test:map_value_attr id="test1" value="test1"/>
+        <test:map_value_attr id="test2" value="test2"/>
+        </test:MapElementFixture>
+        '''))
+
+    assert isinstance(el, MapElementFixture)
+
+    assert hasattr(el, 'map_value_attr')
+    assert len(el.map_value_attr) == 2
+
+    assert 'test1' in el.map_value_attr
+    assert el.map_value_attr['test1'] == 'test1'
+
+    assert 'test2' in el.map_value_attr
+    assert el.map_value_attr['test2'] == 'test2'
+
+def test_load_element_map_value_type():
+    el = Model.load(None, ET.fromstring('''
+        <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <test:map_value_type id="test1">test1</test:map_value_type>
+        <test:map_value_type id="test2">test2</test:map_value_type>
+        </test:MapElementFixture>
+        '''))
+
+    assert isinstance(el, MapElementFixture)
+
+    assert hasattr(el, 'map_value_type')
+    assert len(el.map_value_type) == 2
+
+    assert 'test1' in el.map_value_type
+    assert el.map_value_type['test1'] == 'test1'
+
+    assert 'test2' in el.map_value_type
+    assert el.map_value_type['test2'] == 'test2'
+
+def test_load_element_map_value_class():
+    el = Model.load(None, ET.fromstring('''
+        <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <test:map_value_class id="test1" tag="blue">text1</test:map_value_class>
+        <test:map_value_class id="test2" tag="red">text2</test:map_value_class>
+        </test:MapElementFixture>
+        '''))
+
+    assert isinstance(el, MapElementFixture)
+
+    assert hasattr(el, 'map_value_class')
+    assert len(el.map_value_class) == 2
+
+    assert 'test1' in el.map_value_class
+    assert isinstance(el.map_value_class['test1'], MappableElementFixture)
+    assert el.map_value_class['test1'].id == 'test1'
+    assert el.map_value_class['test1'].tag == 'blue'
+    assert el.map_value_class['test1'].text == 'text1'
+
+    assert 'test2' in el.map_value_class
+    assert isinstance(el.map_value_class['test2'], MappableElementFixture)
+    assert el.map_value_class['test2'].id == 'test2'
+    assert el.map_value_class['test2'].tag == 'red'
+    assert el.map_value_class['test2'].text == 'text2'
 
 def test_init_value():
     root = RootFixture(value='test')
