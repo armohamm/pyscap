@@ -154,16 +154,19 @@ class Model(object):
             module_name = Model.map_tag_to_module_name(model_package, child_el.tag)
         else:
             if xmlns is None:
-                model_package = self.get_package()
+                model_package = parent.get_package()
+                ns_any = '{' + parent.get_xmlns() + '}*'
+                fq_tag = '{' + parent.get_xmlns() + '}' + tag_name
             else:
                 model_package = Model.xmlns_to_package(xmlns)
+                ns_any = '{' + xmlns + '}*'
+                fq_tag = child_el.tag
 
             mmap = Model._get_model_map(parent.__class__)
 
             logger.debug('Checking ' + parent.__class__.__name__ + ' for tag ' + child_el.tag)
-            ns_any = '{' + xmlns + '}*'
             module_name = None
-            for name in [child_el.tag, tag_name, ns_any, '*']:
+            for name in [fq_tag, tag_name, ns_any, '*']:
                 if name not in mmap['element_lookup']:
                     continue
 
@@ -176,8 +179,7 @@ class Model(object):
                     break
 
             if module_name is None:
-                logger.debug('Did not match any of ' + str([child_el.tag, tag_name, ns_any, '*']))
-                raise TagMappingException(parent.__class__.__name__ + ' does not define mapping for ' + child_el.tag + ' tag')
+                raise TagMappingException(parent.__class__.__name__ + ' does not define mapping for ' + child_el.tag + ' tag; does not match any of ' + str([fq_tag, tag_name, ns_any, '*']))
 
         # qualify module name if needed
         if '.' not in module_name:
@@ -520,11 +522,13 @@ class Model(object):
         xmlns, tag_name = Model.parse_tag(el.tag)
 
         if xmlns is None:
-            ns_any = '{' + self.model_map['xmlns'] + '}*'
+            ns_any = '{' + self.get_xmlns() + '}*'
+            fq_tag = '{' + self.get_xmlns() + '}' + tag_name
         else:
             ns_any = '{' + xmlns + '}*'
+            fq_tag = el.tag
 
-        for tag in [el.tag, ns_any, '*']:
+        for tag in [fq_tag, ns_any, '*']:
             # check both namespace + tag_name and just tag_name
             if tag not in self.model_map['element_lookup']:
                 continue
