@@ -23,10 +23,10 @@ class NtUserObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'ntuser_object',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
             {'tag_name': 'behaviors', 'class': 'NTUserBehaviors', 'min': 0},
             {'tag_name': 'key', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'name', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

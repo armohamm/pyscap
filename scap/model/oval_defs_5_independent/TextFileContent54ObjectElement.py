@@ -23,13 +23,13 @@ class TextFileContent54ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'textfilecontent54_object',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
             {'tag_name': 'behaviors', 'class': 'Textfilecontent54Behaviors', 'min': 0, 'max': 1},
             {'tag_name': 'filepath', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'pattern', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'instance', 'class': 'oval_defs_5.EntityObjectIntType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
     }

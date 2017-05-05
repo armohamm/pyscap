@@ -24,13 +24,13 @@ class OVALDefinitionsElement(Model):
         'tag_name' : 'oval_definitions',
         'elements': [
             # TODO one of the following exists
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'generator', 'class': 'GeneratorType', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'generator', 'class': 'GeneratorType', 'min': 0},
             {'tag_name': 'generator', 'class': 'GeneratorType', 'min': 0},
             {'tag_name': 'definitions', 'class': 'DefinitionsType', 'min': 0, 'max': 1},
             {'tag_name': 'tests', 'class': 'TestsType', 'min': 0, 'max': 1},
             {'tag_name': 'objects', 'class': 'ObjectsType', 'min': 0, 'max': 1},
             {'tag_name': 'states', 'class': 'StatesType', 'min': 0, 'max': 1},
             {'tag_name': 'variables', 'class': 'VariablesType', 'min': 0, 'max': 1},
-            {'xml_namespace': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
+            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
         ],
     }

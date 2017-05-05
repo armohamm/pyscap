@@ -184,7 +184,7 @@ class Extendable(Model):
             if 'in' in attr_map:
                 attr_name = attr_map['in']
             else:
-                xml_namespace, attr_name = Model.parse_tag(name)
+                xmlns, attr_name = Model.parse_tag(name)
                 attr_name = attr_name.replace('-', '_')
             self.resolve_property(extended, attr_name)
 

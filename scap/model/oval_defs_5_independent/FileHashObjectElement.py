@@ -23,7 +23,7 @@ class FileHashObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'filehash_object',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
             {'tag_name': 'behaviors', 'class': 'FileBehaviors'},
             {'tag_name': 'filepath', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},

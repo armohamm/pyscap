@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class ReferenceType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 0},
+            {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 0},
         ],
         'attributes': {
             'href': {'type': 'AnyURI'},

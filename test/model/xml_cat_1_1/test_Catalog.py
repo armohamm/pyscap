@@ -21,7 +21,7 @@ from scap.model.xml_cat_1_1.Catalog import Catalog
 import xml.etree.ElementTree as ET
 
 logging.basicConfig(level=logging.DEBUG)
-Model.register_namespace('xml_cat_1_1', 'urn:oasis:names:tc:entity:xmlns:xml:catalog')
+Model.register_namespace('scap.model.xml_cat_1_1', 'urn:oasis:names:tc:entity:xmlns:xml:catalog')
 
 cat1 = Model.load(None, ET.fromstring('''<xml_cat_1_1:catalog xmlns:xml_cat_1_1="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <xml_cat_1_1:uri name="name1" uri="uri1"/>

@@ -23,7 +23,7 @@ class BenchmarkType(Model):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'status', 'append': 'statuses', 'class': 'StatusType', 'min': 1, 'max': None},
-            {'xml_namespace': 'http://purl.org/dc/elements/1.1/', 'tag_name': 'dc-status', 'append': 'dc_statuses', 'class': 'DCStatusType', 'min': 0, 'max': None},
+            {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': 'dc-status', 'append': 'dc_statuses', 'class': 'DCStatusType', 'min': 0, 'max': None},
             {'tag_name': 'title', 'append': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
             {'tag_name': 'description', 'append': 'descriptions', 'class': 'HTMLTextWithSubType', 'min': 0, 'max': None},
             {'tag_name': 'notice', 'map': 'notices', 'class': 'NoticeType', 'min': 0, 'max': None},
@@ -31,7 +31,7 @@ class BenchmarkType(Model):
             {'tag_name': 'rear-matter', 'append': 'rear_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
             {'tag_name': 'reference', 'append': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
             {'tag_name': 'plain-text', 'append': 'plain_texts', 'class': 'PlainTextType', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'platform-specification', 'class': 'scap.model.cpe_lang_2_3.PlatformSpecificationType', 'min': 0, 'max': 1},
+            {'xmlns': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'platform-specification', 'class': 'scap.model.cpe_lang_2_3.PlatformSpecificationType', 'min': 0, 'max': 1},
             {'tag_name': 'platform', 'class': 'CPE2IDRefType', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'VersionType', 'min': 1, 'max': 1},
             {'tag_name': 'metadata', 'append': 'metadata', 'class': 'MetadataType', 'min': 0, 'max': None},

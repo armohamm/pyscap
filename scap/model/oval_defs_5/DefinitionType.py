@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 class DefinitionType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
+            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
             {'tag_name': 'metadata', 'class': 'MetadataType'},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
             {'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
             {'tag_name': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': 1},
         ],

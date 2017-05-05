@@ -26,7 +26,7 @@ class DataStreamCollectionElement(Model):
             {'tag_name': 'data-stream', 'max': None, 'class': 'DataStreamElement', 'map': 'data_streams'},
             {'tag_name': 'component', 'max': None, 'class': 'ComponentElement', 'map': 'components' },
             {'tag_name': 'extended-component', 'max': None, 'min': 0, 'class': 'ExtendedComponentElement', 'map': 'components' },
-            {'xml_namespace': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'max': None, 'min': 0},
+            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'max': None, 'min': 0},
         ],
         'attributes': {
             'id': {'required': True, 'type': 'DataStreamCollectionIDPattern'},

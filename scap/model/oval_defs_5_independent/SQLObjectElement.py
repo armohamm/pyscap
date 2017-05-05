@@ -23,7 +23,7 @@ class SQLObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'sql_object',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
             {'tag_name': 'engine', 'class': 'EntityObjectEngineType'},
             {'tag_name': 'version', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'connection_string', 'class': 'oval_defs_5.EntityObjectStringType'},

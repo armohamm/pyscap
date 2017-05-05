@@ -24,7 +24,7 @@ class CmdletObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'cmdlet_object',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
             {'tag_name': 'module_name', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True, 'min': 1, 'max': 1},
             {'tag_name': 'module_id', 'class': 'EntityObjectGUIDType', 'nillable': True, 'min': 1, 'max': 1},
             {'tag_name': 'module_version', 'class': 'EntityObjectVersionType', 'nillable': True, 'min': 1, 'max': 1},
@@ -32,6 +32,6 @@ class CmdletObjectElement(ObjectType):
             {'tag_name': 'noun', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True, 'min': 1, 'max': 1},
             {'tag_name': 'parameters', 'class': 'oval_defs_5.EntityObjectRecordType', 'nillable': True},
             {'tag_name': 'select', 'class': 'oval_defs_5.EntityObjectRecordType', 'nillable': True},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

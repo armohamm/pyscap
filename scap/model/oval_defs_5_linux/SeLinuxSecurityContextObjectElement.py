@@ -23,12 +23,12 @@ class SeLinuxSecurityContextObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'selinuxsecuritycontext_object',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
             {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0},
             {'tag_name': 'filepath', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             {'tag_name': 'pid', 'class': 'oval_defs_5.EntityObjectIntType', 'nillable': True},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
     }

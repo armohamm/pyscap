@@ -23,7 +23,7 @@ class EnvironmentVariableObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'environmentvariable_object',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
             {'tag_name': 'name', 'class': 'oval_defs_5.EntityObjectStringType'},
         ],
     }

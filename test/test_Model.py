@@ -22,60 +22,17 @@ import types
 import importlib
 import sys
 
-import scap.model
 from scap.Model import Model, UnregisteredNamespaceException
-
-test_pkg = types.ModuleType('scap.model.test')
-test_pkg.__package__ = scap.model
-test_pkg.__path__ = scap.model.__path__
-test_pkg.__path__ += 'test'
-Model.register_namespace('test', 'http://jaymes.biz/test')
-Model.register_namespace('test2', 'http://jaymes.biz/test2')
-sys.modules['scap.model.test'] = test_pkg
-test_pkg.TAG_MAP = {
-    '{http://jaymes.biz/test}RootFixture': 'RootFixture',
-    '{http://jaymes.biz/test}AttributeFixture': 'AttributeFixture',
-}
-
-test_mod = types.ModuleType('scap.model.test.RootFixture')
-test_mod.__package__ = test_pkg
-sys.modules['scap.model.test.RootFixture'] = test_mod
-RootFixture = types.new_class('RootFixture', (Model,))
-test_mod.RootFixture = RootFixture
-RootFixture.__module__ = test_mod.__name__
-RootFixture.MODEL_MAP = {
-    'tag_name': 'RootFixture',
-    'elements': [
-        {'tag_name': 'EnclosedFixture', 'class': 'EnclosedFixture', 'min': 0},
-    ],
-}
-sys.modules['scap.model.test.RootFixture.RootFixture'] = RootFixture
-
-test_mod = types.ModuleType('scap.model.test.EnclosedFixture')
-test_mod.__package__ = test_pkg
-sys.modules['scap.model.test.EnclosedFixture'] = test_mod
-EnclosedFixture = types.new_class('EnclosedFixture', (Model,))
-test_mod.EnclosedFixture = EnclosedFixture
-EnclosedFixture.__module__ = test_mod.__name__
-EnclosedFixture.MODEL_MAP = { }
-sys.modules['scap.model.test.EnclosedFixture.EnclosedFixture'] = EnclosedFixture
-
-test_mod = types.ModuleType('scap.model.test.AttributeFixture')
-test_mod.__package__ = test_pkg
-sys.modules['scap.model.test.AttributeFixture'] = test_mod
-AttributeFixture = types.new_class('AttributeFixture', (Model,))
-test_mod.AttributeFixture = AttributeFixture
-AttributeFixture.__module__ = test_mod.__name__
-AttributeFixture.MODEL_MAP = {
-    'attributes': {
-        'in_attribute': {'in': 'in_test'},
-        'dash-attribute': {},
-        'default_attribute': {'default': 'test'},
-    },
-}
-sys.modules['scap.model.test.AttributeFixture.AttributeFixture'] = AttributeFixture
+from scap.model.test.RootFixture import RootFixture
+from scap.model.test.EnclosedFixture import EnclosedFixture
+from scap.model.test.AttributeFixture import AttributeFixture
+from scap.model.test.WildcardElementNotInFixture import WildcardElementNotInFixture
+from scap.model.test.WildcardElementInFixture import WildcardElementInFixture
+from scap.model.test2.EnclosedFixture import EnclosedFixture as EnclosedFixture2
 
 logging.basicConfig(level=logging.DEBUG)
+Model.register_namespace('scap.model.test', 'http://jaymes.biz/test')
+Model.register_namespace('scap.model.test2', 'http://jaymes.biz/test2')
 
 def test_parse_tag():
     assert Model.parse_tag('{http://jaymes.biz/test}test') == ('http://jaymes.biz/test', 'test')
@@ -84,18 +41,16 @@ def test_parse_tag():
     with pytest.raises(UnregisteredNamespaceException):
         Model.parse_tag('{http://www.w3.org/XML/1998}test')
 
-def test_get_namespace():
-    f = RootFixture()
-    assert f.get_namespace() == 'test'
+def test_package_to_xmlns():
+    assert Model.package_to_xmlns('scap.model.test') == 'http://jaymes.biz/test'
+    assert Model.package_to_xmlns('scap.model.test2') == 'http://jaymes.biz/test2'
 
-def test_namespace_to_xmlns():
-    assert Model.namespace_to_xmlns('test') == 'http://jaymes.biz/test'
-
-def test_xmlns_to_namespace():
-    assert Model.xmlns_to_namespace('http://jaymes.biz/test') == 'test'
+def test_xmlns_to_package():
+    assert Model.xmlns_to_package('http://jaymes.biz/test') == 'scap.model.test'
+    assert Model.xmlns_to_package('http://jaymes.biz/test2') == 'scap.model.test2'
 
 def test_map_tag_to_module_name():
-    assert Model.map_tag_to_module_name('test', '{http://jaymes.biz/test}RootFixture') == 'RootFixture'
+    assert Model.map_tag_to_module_name('scap.model.test', '{http://jaymes.biz/test}RootFixture') == 'RootFixture'
 
 def test_load_root_model():
     root = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test" />'))
@@ -118,69 +73,66 @@ def test_init_tag_name():
 
 def test_init_attribute_in():
     attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" in_attribute="test" />'))
+    assert isinstance(attr, AttributeFixture)
     assert hasattr(attr, 'in_test')
     assert attr.in_test == 'test'
 
 def test_init_attribute_dash():
     attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" dash-attribute="test" />'))
+    assert isinstance(attr, AttributeFixture)
     assert hasattr(attr, 'dash_attribute')
     assert attr.dash_attribute == 'test'
 
 def test_init_attribute_default():
     attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" />'))
+    assert isinstance(attr, AttributeFixture)
     assert hasattr(attr, 'default_attribute')
     assert attr.default_attribute == 'test'
 
 def test_init_attribute_no_default():
     attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" />'))
+    assert isinstance(attr, AttributeFixture)
     assert hasattr(attr, 'in_test')
     assert attr.in_test is None
 
-test_mod = types.ModuleType('scap.model.test.WildcardElementNotInFixture')
-test_mod.__package__ = test_pkg
-sys.modules['scap.model.test.WildcardElementNotInFixture'] = test_mod
-WildcardElementNotInFixture = types.new_class('WildcardElementNotInFixture', (Model,))
-test_mod.WildcardElementNotInFixture = WildcardElementNotInFixture
-WildcardElementNotInFixture.__module__ = test_mod.__name__
-WildcardElementNotInFixture.MODEL_MAP = {
-    'elements': [
-        {'xml_namespace': 'http://jaymes.biz/test', 'tag_name': '*'},
-        {'tag_name': '*'},
-    ],
-}
-sys.modules['scap.model.test.WildcardElementNotInFixture.WildcardElementNotInFixture'] = WildcardElementNotInFixture
-
 def test_init_element_wildcard_not_in():
-    # TODO not in
-    el = Model.load(None, ET.fromstring('<test:ElementFixture xmlns:test2="http://jaymes.biz/test2" xmlns:test="http://jaymes.biz/test"><test:wildcard_element/>test1</test:wildcard_element><test2:wildcard_element/>test2</test2:wildcard_element></test:ElementFixture>'))
+    el = Model.load(None, ET.fromstring('''
+        <test:WildcardElementNotInFixture xmlns:test2="http://jaymes.biz/test2" xmlns:test="http://jaymes.biz/test">
+        <test:wildcard_element>test1</test:wildcard_element>
+        <test2:wildcard_element>test2</test2:wildcard_element>
+        </test:WildcardElementNotInFixture>
+        '''))
+    assert isinstance(el, WildcardElementNotInFixture)
     assert hasattr(el, '_elements')
     assert isinstance(el._elements, list)
     assert len(el._elements) == 2
+    assert isinstance(el._elements[0], EnclosedFixture)
+    assert isinstance(el._elements[1], EnclosedFixture2)
     assert el._elements[0].text == 'test1'
     assert el._elements[1].text == 'test2'
 
-test_mod = types.ModuleType('scap.model.test.ElementInFixture')
-test_mod.__package__ = test_pkg
-sys.modules['scap.model.test.ElementInFixture'] = test_mod
-ElementInFixture = types.new_class('ElementInFixture', (Model,))
-test_mod.ElementInFixture = ElementInFixture
-ElementInFixture.__module__ = test_mod.__name__
-ElementInFixture.MODEL_MAP = {
-    'elements': [
-        {'xml_namespace': 'http://jaymes.biz/test', 'tag_name': '*', 'in': 'xmlns_elements'},
-        {'tag_name': '*', 'in': 'elements'},
-    ],
-}
-sys.modules['scap.model.test.ElementInFixture.ElementInFixture'] = ElementInFixture
-
 def test_init_element_wildcard_in():
-    # TODO not in
-    el = Model.load(None, ET.fromstring('<test:ElementFixture xmlns:test2="http://jaymes.biz/test2" xmlns:test="http://jaymes.biz/test"><test:wildcard_element/>test</test:wildcard_element><test2:wildcard_element/>test</test2:wildcard_element></test:ElementFixture>'))
-    assert hasattr(el, '')
-    # TODO in
-    el = Model.load(None, ET.fromstring('<test:ElementInFixture xmlns:test="http://jaymes.biz/test"><test:wildcard_element>test</test:wildcard_element></test:ElementInFixture>'))
-    # TODO initialized []
-    pass
+    el = Model.load(None, ET.fromstring('''
+        <test:WildcardElementInFixture xmlns:test2="http://jaymes.biz/test2" xmlns:test="http://jaymes.biz/test">
+        <test:wildcard_element>test1</test:wildcard_element>
+        <test2:wildcard_element>test2</test2:wildcard_element>
+        </test:WildcardElementInFixture>
+        '''))
+    assert isinstance(el, WildcardElementInFixture)
+
+    assert hasattr(el, 'test_elements')
+    assert isinstance(el.test_elements, list)
+    assert len(el.test_elements) == 1
+
+    assert hasattr(el, 'elements')
+    assert isinstance(el.elements, list)
+    assert len(el.elements) == 1
+
+    assert isinstance(el.test_elements[0], EnclosedFixture)
+    assert el.test_elements[0].text == 'test1'
+
+    assert isinstance(el.elements[0], EnclosedFixture2)
+    assert el.elements[0].text == 'test2'
 
 def test_init_element_xmlns_wildcard():
     # TODO in
@@ -188,23 +140,6 @@ def test_init_element_xmlns_wildcard():
     # TODO initialized []
     pass
 
-test_mod = types.ModuleType('scap.model.test.WildcardElementNotInFixture')
-test_mod.__package__ = test_pkg
-sys.modules['scap.model.test.WildcardElementNotInFixture'] = test_mod
-WildcardElementNotInFixture = types.new_class('WildcardElementNotInFixture', (Model,))
-test_mod.WildcardElementNotInFixture = WildcardElementNotInFixture
-WildcardElementNotInFixture.__module__ = test_mod.__name__
-WildcardElementNotInFixture.MODEL_MAP = {
-    'elements': [
-        {'tag_name': 'append_test', 'append': 'append_tests', 'class': 'EnclosedFixture'},
-        {'tag_name': 'map_test', 'map': 'map_tests', 'class': 'EnclosedFixture'},
-        {'tag_name': 'dash-test', 'class': 'EnclosedFixture'},
-        {'tag_name': 'test', 'class': 'EnclosedFixture'},
-        {'xml_namespace': 'http://jaymes.biz/test', 'tag_name': '*'},
-        {'tag_name': '*'},
-    ],
-}
-sys.modules['scap.model.test.ElementFixture.ElementFixture'] = ElementFixture
 def test_init_element_append():
     # TODO initialized
     pass
@@ -238,9 +173,9 @@ def test_str_name():
     root.name = 'test'
     assert str(root) == ('RootFixture name: test')
 
-def test_get_namespace():
+def test_get_package():
     root = RootFixture()
-    assert root.get_namespace() == 'test'
+    assert root.get_package() == 'scap.model.test'
 
 def test_get_tag_name_implicit():
     root = RootFixture()

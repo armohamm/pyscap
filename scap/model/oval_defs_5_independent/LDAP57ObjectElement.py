@@ -23,11 +23,11 @@ class LDAP57ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'ldap57_object',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
             {'tag_name': 'behaviors', 'class': 'LdapBehaviors', 'min': 0, 'max': 1},
             {'tag_name': 'suffix', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'relative_dn', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
             {'tag_name': 'attribute', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
     }

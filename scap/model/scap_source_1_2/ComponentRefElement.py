@@ -22,11 +22,11 @@ logger = logging.getLogger(__name__)
 class ComponentRefElement(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'urn:oasis:names:tc:entity:xmlns:xml:catalog', 'tag_name': 'catalog', 'class': 'Catalog', 'min': 0},
+            {'xmlns': 'urn:oasis:names:tc:entity:xmlns:xml:catalog', 'tag_name': 'catalog', 'class': 'Catalog', 'min': 0},
         ],
         'attributes': {
             'id': {'required': True, 'type': 'ComponentRefIDPattern'},
-            {'xml_namespace': 'http://www.w3.org/1999/xlink', 'tag_name': 'type', 'enum': ['simple']},
-            {'xml_namespace': 'http://www.w3.org/1999/xlink', 'tag_name': 'href', 'type': 'String', 'required': True},
+            {'xmlns': 'http://www.w3.org/1999/xlink', 'tag_name': 'type', 'enum': ['simple']},
+            {'xmlns': 'http://www.w3.org/1999/xlink', 'tag_name': 'href', 'type': 'String', 'required': True},
         },
     }

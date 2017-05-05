@@ -25,6 +25,6 @@ class NoticeType(String):
             'id': {'required': True, 'type': 'NCName'},
         },
         'elements': [
-            {'xml_namespace': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
+            {'xmlns': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
         ],
     }

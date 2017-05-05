@@ -39,6 +39,24 @@ class UnregisteredNamespaceException(Exception):
 class TagMappingException(Exception):
     pass
 
+class MinimumElementException(Exception):
+    pass
+
+class MaximumElementException(Exception):
+    pass
+
+class RequiredAttributeException(Exception):
+    pass
+
+class UnknownAttributeException(Exception):
+    pass
+
+class UnknownElementException(Exception):
+    pass
+
+class EnumerationException(Exception):
+    pass
+
 class Model(object):
     MODEL_MAP = {
         'attributes': {
@@ -50,67 +68,68 @@ class Model(object):
         },
     }
 
-    maps = {}
-    index = {}
-    __xmlns_to_namespace = {
-        'http://www.w3.org/XML/1998/namespace': 'xml',
-        'http://www.w3.org/2001/XMLSchema': 'xs',
-        'http://www.w3.org/2001/XMLSchema-instance': 'xsi',
+    __model_mappings = {}
+    __model_index = {}
+    __xmlns_to_package = {
+        'http://www.w3.org/XML/1998/namespace': 'scap.model.xml',
+        'http://www.w3.org/2001/XMLSchema': 'scap.model.xs',
+        'http://www.w3.org/2001/XMLSchema-instance': 'scap.model.xsi',
     }
-    __namespace_to_xmlns = {
-        'xml': 'http://www.w3.org/XML/1998/namespace',
-        'xs': 'http://www.w3.org/2001/XMLSchema',
-        'xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+    __package_to_xmlns = {
+        'scap.model.xml': 'http://www.w3.org/XML/1998/namespace',
+        'scap.model.xs': 'http://www.w3.org/2001/XMLSchema',
+        'scap.model.xsi': 'http://www.w3.org/2001/XMLSchema-instance',
     }
 
     @staticmethod
-    def register_namespace(namespace, xmlns):
-        Model.__xmlns_to_namespace[xmlns] = namespace
-        Model.__namespace_to_xmlns[namespace] = xmlns
-        ET.register_namespace(namespace, xmlns)
+    def register_namespace(model_package, xmlns):
+        Model.__xmlns_to_package[xmlns] = model_package
+        Model.__package_to_xmlns[model_package] = xmlns
+        # TODO need to make sure model_package.split('.')[-1] is unique
+        ET.register_namespace(model_package.split('.')[-1], xmlns)
 
     @staticmethod
-    def unregister_namespace(namespace):
+    def unregister_namespace(model_package):
         try:
-            xmlns = Model.__namespace_to_xmlns[namespace]
+            xmlns = Model.__package_to_xmlns[model_package]
         except KeyError:
-            raise UnregisteredNamespaceException('Unregistered namespace: ' + namespace)
+            raise UnregisteredNamespaceException('Unregistered namespace: ' + model_package)
 
-        del Model.__namespace_to_xmlns[namespace]
-        del Model.__xmlns_to_namespace[xmlns]
+        del Model.__package_to_xmlns[model_package]
+        del Model.__xmlns_to_package[xmlns]
 
     @staticmethod
     def parse_tag(tag):
         # parse tag
         if tag.startswith('{'):
-            xml_namespace, tag_name = tag[1:].split('}')
+            xmlns, tag_name = tag[1:].split('}')
         else:
             return None, tag
 
-        if xml_namespace not in Model.__xmlns_to_namespace:
-            raise UnregisteredNamespaceException('Unregistered namespace: ' + xml_namespace + ', tag name: ' + tag_name)
+        if xmlns not in Model.__xmlns_to_package:
+            raise UnregisteredNamespaceException('Unregistered namespace: ' + xmlns + ', tag name: ' + tag_name)
 
-        return xml_namespace, tag_name
-
-    @staticmethod
-    def namespace_to_xmlns(namespace):
-        logger.debug('Looking for xml namespace for model namespace ' + namespace)
-        if namespace not in Model.__namespace_to_xmlns:
-            raise UnregisteredNamespaceException('Namespace ' + namespace + ' is not in supported namespaces')
-
-        return Model.__namespace_to_xmlns[namespace]
+        return xmlns, tag_name
 
     @staticmethod
-    def xmlns_to_namespace(xmlns):
-        logger.debug('Looking for model namespace for xml namespace ' + xmlns)
-        if xmlns not in Model.__xmlns_to_namespace:
-            raise UnregisteredNamespaceException('XML namespace ' + xmlns + ' is not in supported namespaces')
+    def package_to_xmlns(model_package):
+        logger.debug('Looking for xml namespace for model package ' + model_package)
+        if model_package not in Model.__package_to_xmlns:
+            raise UnregisteredNamespaceException('Namespace ' + model_package + ' is not in registered namespaces')
 
-        return Model.__xmlns_to_namespace[xmlns]
+        return Model.__package_to_xmlns[model_package]
 
     @staticmethod
-    def map_tag_to_module_name(model_namespace, tag):
-        pkg_mod = importlib.import_module('scap.model.' + model_namespace)
+    def xmlns_to_package(xmlns):
+        logger.debug('Looking for model package for xml namespace ' + xmlns)
+        if xmlns not in Model.__xmlns_to_package:
+            raise UnregisteredNamespaceException('XML namespace ' + xmlns + ' is not in registered namespaces')
+
+        return Model.__xmlns_to_package[xmlns]
+
+    @staticmethod
+    def map_tag_to_module_name(model_package, tag):
+        pkg_mod = importlib.import_module(model_package)
         try:
             module_name = pkg_mod.TAG_MAP[tag]
         except AttributeError:
@@ -124,28 +143,25 @@ class Model(object):
 
     @staticmethod
     def load(parent, child_el):
-        xml_namespace, tag_name = Model.parse_tag(child_el.tag)
+        xmlns, tag_name = Model.parse_tag(child_el.tag)
 
         # try to load the tag's module
         if parent is None:
-            if xml_namespace is None:
+            if xmlns is None:
                 raise UnregisteredNamespaceException('Unable to determine namespace without fully qualified tag (' + child_el.tag + ') and parent model')
 
-            if xml_namespace not in Model.__xmlns_to_namespace:
-                raise UnregisteredNamespaceException('Unregistered namespace: ' + xml_namespace + ', tag name: ' + child_el.tag)
-
-            model_namespace = Model.__xmlns_to_namespace[xml_namespace]
-            module_name = Model.map_tag_to_module_name(model_namespace, child_el.tag)
+            model_package = Model.xmlns_to_package(xmlns)
+            module_name = Model.map_tag_to_module_name(model_package, child_el.tag)
         else:
-            if xml_namespace is None:
-                model_namespace = parent.get_namespace()
+            if xmlns is None:
+                model_package = self.get_package()
             else:
-                model_namespace = Model.__xmlns_to_namespace[xml_namespace]
+                model_package = Model.xmlns_to_package(xmlns)
 
             mmap = Model._get_model_map(parent.__class__)
 
             logger.debug('Checking ' + parent.__class__.__name__ + ' for tag ' + child_el.tag)
-            ns_any = '{' + xml_namespace + '}*'
+            ns_any = '{' + xmlns + '}*'
             module_name = None
             for name in [child_el.tag, tag_name, ns_any, '*']:
                 if name not in mmap['element_lookup']:
@@ -153,7 +169,7 @@ class Model(object):
 
                 logger.debug(child_el.tag + ' matched ' + name + ' mapping in ' + parent.__class__.__name__)
                 if name.endswith('*'):
-                    module_name = Model.map_tag_to_module_name(model_namespace, child_el.tag)
+                    module_name = Model.map_tag_to_module_name(model_package, child_el.tag)
                     break
                 elif 'class' in mmap['element_lookup'][name]:
                     module_name = mmap['element_lookup'][name]['class']
@@ -161,12 +177,11 @@ class Model(object):
 
             if module_name is None:
                 logger.debug('Did not match any of ' + str([child_el.tag, tag_name, ns_any, '*']))
-                logger.critical(parent.__class__.__name__ + ' does not define mapping for ' + child_el.tag + ' tag')
                 raise TagMappingException(parent.__class__.__name__ + ' does not define mapping for ' + child_el.tag + ' tag')
 
         # qualify module name if needed
         if '.' not in module_name:
-            model_module = 'scap.model.' + model_namespace + '.' + module_name
+            model_module = model_package + '.' + module_name
         else:
             model_module = module_name
 
@@ -186,11 +201,11 @@ class Model(object):
     @staticmethod
     def _get_model_map(model_class):
         fq_model_class_name = model_class.__module__ + '.' + model_class.__name__
-        if fq_model_class_name not in Model.maps:
+        if fq_model_class_name not in Model.__model_mappings:
             at_map = {}
             el_map = {}
             el_order = []
-            xml_namespace = None
+            xmlns = None
             tag_name = None
             for class_ in model_class.__mro__:
                 if class_ == object:
@@ -210,10 +225,10 @@ class Model(object):
 
                 # overwrite the super class' ns & tag with what we've already loaded
                 try:
-                    if xml_namespace is None:
-                        xml_namespace = class_.MODEL_MAP['xml_namespace']
+                    if xmlns is None:
+                        xmlns = class_.MODEL_MAP['xmlns']
                 except KeyError:
-                    #logger.debug('Class ' + fq_class_name + ' does not have MODEL_MAP[xml_namespace] defined')
+                    #logger.debug('Class ' + fq_class_name + ' does not have MODEL_MAP[xmlns] defined')
                     pass
                 try:
                     if tag_name is None:
@@ -240,28 +255,29 @@ class Model(object):
                     #logger.debug('Class ' + fq_class_name + ' does not have MODEL_MAP[elements] defined')
                     pass
 
-            if xml_namespace is None:
+            if xmlns is None:
                 # try to auto detect from module name
-                module_parts = model_class.__module__.split('.')
-                if module_parts[0] == 'scap' and module_parts[1] == 'model':
-                    xml_namespace = Model.namespace_to_xmlns(module_parts[2])
+                xmlns = Model.package_to_xmlns(model_class.__module__.rpartition('.')[0])
 
             el_lookup = {}
             for element_def in el_map:
-                if 'xml_namespace' in element_def:
-                    el_lookup['{' + element_def['xml_namespace'] + '}' + element_def['tag_name']] = element_def
+                if 'xmlns' not in element_def and element_def['tag_name'] == '*':
+                    el_lookup['*'] = element_def
+                elif 'xmlns' in element_def:
+                    el_lookup['{' + element_def['xmlns'] + '}' + element_def['tag_name']] = element_def
                 else:
-                    # try using element's xml_namespace
-                    el_lookup['{' + xml_namespace + '}' + element_def['tag_name']] = element_def
+                    # try using element's xmlns
+                    el_lookup['{' + xmlns + '}' + element_def['tag_name']] = element_def
 
-            Model.maps[fq_model_class_name] = {
-                'xml_namespace': xml_namespace,
+            Model.__model_mappings[fq_model_class_name] = {
+                'xmlns': xmlns,
                 'tag_name': tag_name,
                 'attributes': at_map,
                 'elements': el_map,
                 'element_lookup': el_lookup,
             }
-        return Model.maps[fq_model_class_name]
+
+        return Model.__model_mappings[fq_model_class_name]
 
     @staticmethod
     def find_content(uri):
@@ -276,12 +292,12 @@ class Model(object):
     @staticmethod
     def find_reference(ref, _class = None):
         if _class is None:
-            for _class in Model.index:
-                if ref in Model.index[_class]:
-                    return Model.index[_class][ref]
+            for _class in Model.__model_index:
+                if ref in Model.__model_index[_class]:
+                    return Model.__model_index[_class][ref]
         else:
-            if ref in Model.index[_class]:
-                return Model.index[_class][ref]
+            if ref in Model.__model_index[_class]:
+                return Model.__model_index[_class][ref]
 
         return None
 
@@ -299,11 +315,8 @@ class Model(object):
         self.tag_counts = {}
 
         # must have namespace for concrete classes
-        if 'xml_namespace' not in self.model_map or self.model_map['xml_namespace'] is None:
-            raise ValueError('No xml_namespace defined for ' + self.__class__.__name__ + ' & could not detect')
-
-        if self.model_map['xml_namespace'] not in Model.__xmlns_to_namespace:
-            raise ValueError('Unknown namespace: ' + self.model_map['xml_namespace'])
+        if 'xmlns' not in self.model_map or self.model_map['xmlns'] is None:
+            raise ValueError('No xmlns defined for ' + self.__class__.__name__ + ' & could not detect')
 
         # initialize attribute values
         for name in self.model_map['attributes']:
@@ -311,7 +324,7 @@ class Model(object):
             if 'in' in attr_map:
                 attr_name = attr_map['in']
             else:
-                xml_namespace, attr_name = Model.parse_tag(name)
+                xmlns, attr_name = Model.parse_tag(name)
                 attr_name = attr_name.replace('-', '_')
 
             if 'default' in attr_map:
@@ -355,6 +368,9 @@ class Model(object):
                     logger.debug('Initializing ' + name + ' to None')
                     setattr(self, name, None)
 
+    def get_package(self):
+        return self.__module__.rpartition('.')[0]
+
     def __str__(self):
         s = self.__class__.__name__
         if hasattr(self, 'id') and self.id is not None:
@@ -372,14 +388,9 @@ class Model(object):
         object.__setattr__(self, name, value)
 
         if name == 'id':
-            if self.__class__.__name__ not in Model.index:
-                Model.index[self.__class__.__name__] = {}
-            Model.index[self.__class__.__name__][value] = self
-
-    def get_namespace(self):
-        model_namespace = self.__module__.split('.')
-        model_namespace = model_namespace[2]
-        return model_namespace
+            if self.__class__.__name__ not in Model.__model_index:
+                Model.__model_index[self.__class__.__name__] = {}
+            Model.__model_index[self.__class__.__name__][value] = self
 
     def get_tag_name(self):
         if hasattr(self, 'tag_name'):
@@ -388,10 +399,10 @@ class Model(object):
             raise NotImplementedError('Subclass ' + self.__class__.__name__ + ' does not define tag_name')
         return self.model_map['tag_name']
 
-    def get_xml_namespace(self):
-        if 'xml_namespace' not in self.model_map or self.model_map['xml_namespace'] is None:
+    def get_xmlns(self):
+        if 'xmlns' not in self.model_map or self.model_map['xmlns'] is None:
             raise NotImplementedError('Subclass ' + self.__class__.__name__ + ' does not define namespace')
-        return self.model_map['xml_namespace']
+        return self.model_map['xmlns']
 
     def from_xml(self, parent, el):
         self.parent = parent
@@ -399,7 +410,7 @@ class Model(object):
         logger.debug('Parsing ' + el.tag + ' element into ' + self.__class__.__module__ + '.' + self.__class__.__name__ + ' class')
 
         # save the tag_name
-        xml_namespace, tag_name = Model.parse_tag(el.tag)
+        xmlns, tag_name = Model.parse_tag(el.tag)
 
         # check that required attributes are defined
         for attrib in self.model_map['attributes']:
@@ -411,19 +422,20 @@ class Model(object):
                 sys.exit()
 
         for name, value in list(el.items()):
-            if not self._parse_attribute(name, value):
-                logger.critical('Unknown attrib in ' + el.tag + ': ' + name + ' = ' + value)
-                sys.exit()
+            self._parse_attribute(name, value)
 
-        sub_el_counts = {}
         for sub_el in el:
-            if not self._parse_element(sub_el):
-                logger.debug('Elements: ' + str(self.model_map['elements']))
-                logger.critical('Unknown element in ' + el.tag + ': ' + sub_el.tag)
-                sys.exit()
+            self._parse_element(sub_el)
 
         # check the element restrictions
         for element_def in self.model_map['elements']:
+            if 'xmlns' not in element_def and element_def['tag_name'] == '*':
+                tag = '*'
+            elif 'xmlns' in element_def:
+                tag = '{' + element_def['xmlns'] + '}' + element_def['tag_name']
+            else:
+                tag = '{' + self.get_xmlns() + '}' + element_def['tag_name']
+
             min_ = 1
             if 'map' in element_def or 'append' in element_def:
                 # maps and appends default to no max
@@ -431,41 +443,35 @@ class Model(object):
             else:
                 max_ = 1
 
+            # if there's an explicit min/max definition, use that
             if 'min' in element_def:
                 min_ = element_def['min']
             if 'max' in element_def:
                 max_ = element_def['max']
 
-            if min_ == 0:
-                pass
-            elif element_def['tag_name'] not in self.tag_counts or self.tag_counts[element_def['tag_name']] < min_:
-                logger.critical(self.__class__.__name__ + ' must have at least ' + str(min_) + ' ' + element_def['tag_name'] + ' elements')
-                sys.exit()
+            # check that we have the min & max of those elements
+            if min_ != 0 and (tag not in self.tag_counts or self.tag_counts[tag] < min_):
+                raise MinimumElementException(self.__class__.__name__ + ' must have at least ' + str(min_) + ' ' + tag + ' elements; ' + str(self.tag_counts[tag]) + ' found')
 
-            if max_ is None:
-                pass
-            elif element_def['tag_name'] in self.tag_counts and self.tag_counts[element_def['tag_name']] > max_:
-                logger.critical(self.__class__.__name__ + ' must have at most ' + str(max_) + ' ' + element_def['tag_name'] + ' elements')
-                sys.exit()
+            if max_ is not None and tag in self.tag_counts and self.tag_counts[tag] > max_:
+                raise MaximumElementException(self.__class__.__name__ + ' must have at most ' + str(max_) + ' ' + tag + ' elements; ' + str(self.tag_counts[tag]) + ' found')
 
         self.text = el.text
 
     def _load_type_class(self, type_):
         if '.' in type_:
             try:
-                mod = importlib.import_module('scap.model.' + type_)
-                type_ = type_.partition('.')[2]
+                mod = importlib.import_module(type_)
             except ImportError:
-                raise NotImplementedError('Type value scap.model.' + type_ + ' was not found')
+                raise NotImplementedError('Type class ' + type_ + ' was not found')
         else:
             try:
                 mod = importlib.import_module('scap.model.xs.' + type_)
             except ImportError:
-                model_namespace = self.get_namespace()
                 try:
-                    mod = importlib.import_module('scap.model.' + model_namespace + '.' + type_)
+                    mod = importlib.import_module(self.get_package() + '.' + type_)
                 except ImportError:
-                    raise NotImplementedError('Type value ' + type_ + ' not defined in scap.model.xs or local namespace (scap.model.' + model_namespace + ')')
+                    raise NotImplementedError('Type class ' + type_ + ' not defined in scap.model.xs or local package (' + self.get_package() + ')')
         return getattr(mod, type_)
 
     def _parse_value_as_type(self, value, type_):
@@ -477,12 +483,12 @@ class Model(object):
         return class_().produce_value(value)
 
     def _parse_attribute(self, name, value):
-        xml_namespace, attr_name = Model.parse_tag(name)
+        xmlns, attr_name = Model.parse_tag(name)
 
-        if xml_namespace is None:
-            ns_any = '{' + self.model_map['xml_namespace'] + '}*'
+        if xmlns is None:
+            ns_any = '{' + self.model_map['xmlns'] + '}*'
         else:
-            ns_any = '{' + xml_namespace + '}*'
+            ns_any = '{' + xmlns + '}*'
 
         for name in [name, attr_name, ns_any, '*']:
             if name not in self.model_map['attributes']:
@@ -490,11 +496,8 @@ class Model(object):
 
             attr_map = self.model_map['attributes'][name]
 
-            if 'notImplemented' in attr_map and attr_map['notImplemented']:
-                raise NotImplementedError(name + ' attribute support is not implemented')
-
             if 'enum' in attr_map and value not in attr_map['enum']:
-                raise ValueError(name + ' attribute must be one of ' + str(attr_map['enum']) + ': ' + str(value))
+                raise EnumerationException(name + ' attribute must be one of ' + str(attr_map['enum']) + ': ' + str(value))
 
             # convert value
             if 'type' in attr_map:
@@ -508,27 +511,26 @@ class Model(object):
                 name = attr_name.replace('-', '_')
                 setattr(self, name, value)
                 logger.debug('Set attribute ' + name + ' = ' + str(value))
-            return True
-        return False
+            return
+
+        # if we didn't find a match for the attribute, raise
+        raise UnknownAttributeException('Unknown ' + str(self) + ' attribute ' + name + ' = ' + value)
 
     def _parse_element(self, el):
-        xml_namespace, tag_name = Model.parse_tag(el.tag)
+        xmlns, tag_name = Model.parse_tag(el.tag)
 
-        if xml_namespace is None:
-            ns_any = '{' + self.model_map['xml_namespace'] + '}*'
+        if xmlns is None:
+            ns_any = '{' + self.model_map['xmlns'] + '}*'
         else:
-            ns_any = '{' + xml_namespace + '}*'
+            ns_any = '{' + xmlns + '}*'
 
-        for tag in [el.tag, tag_name, ns_any, '*']:
+        for tag in [el.tag, ns_any, '*']:
             # check both namespace + tag_name and just tag_name
             if tag not in self.model_map['element_lookup']:
                 continue
 
             logger.debug('Tag ' + el.tag + ' matched ' + tag)
             element_def = self.model_map['element_lookup'][tag]
-
-            if 'notImplemented' in element_def and element_def['notImplemented']:
-                raise NotImplementedError(tag + ' element support is not implemented')
 
             if tag.endswith('*'):
                 logger.debug(str(self) + ' parsing ' + tag + ' elements matching *')
@@ -660,7 +662,7 @@ class Model(object):
             elif 'enum' in element_def:
                 logger.debug(str(self) + ' parsing ' + tag + ' elements from enum ' + element_def['enum'])
                 if el.text not in element_def['enum']:
-                    raise ValueError(tag + ' value must be one of ' + str(element_def['enum']))
+                    raise EnumerationException(tag + ' value must be one of ' + str(element_def['enum']))
 
                 if 'in' in element_def:
                     name = element_def['in']
@@ -673,21 +675,20 @@ class Model(object):
                 logger.debug('Set enum attribute ' + str(name) + ' to ' + str(value) + ' in ' + str(self))
 
             else:
-                logger.debug(str(self) + ' could not parse ' + tag + ' element')
-                return False
+                raise UnknownElementException(str(self) + ' could not parse ' + tag + ' element')
 
-            if element_def['tag_name'] not in self.tag_counts:
-                self.tag_counts[element_def['tag_name']] = 1
+            if tag not in self.tag_counts:
+                self.tag_counts[tag] = 1
             else:
-                self.tag_counts[element_def['tag_name']] += 1
+                self.tag_counts[tag] += 1
 
-            return True
+            return
 
-        return False
+        raise UnknownElementException('Unknown ' + str(self) + ' sub-element ' + el.tag)
 
     def to_xml(self):
         logger.debug(str(self) + ' to xml')
-        el = ET.Element('{' + self.get_xml_namespace() + '}' + self.get_tag_name())
+        el = ET.Element('{' + self.get_xmlns() + '}' + self.get_tag_name())
         if self.text is not None:
             el.text = str(self.text)
 
@@ -708,41 +709,36 @@ class Model(object):
         attr_namespace, attr_name = Model.parse_tag(name)
         attr_map = self.model_map['attributes'][name]
 
-        if 'notImplemented' in attr_map and attr_map['notImplemented']:
-            raise NotImplementedError(str(self) + '.' + name + ' attribute support is not implemented')
-
         if 'in' in attr_map:
             attr_name = attr_map['in']
         else:
             attr_name = attr_name.replace('-', '_')
 
-        try:
-            value = getattr(self, attr_name)
-        except AttributeError:
+        if not hasattr(self, attr_name):
             if 'required' in attr_map and attr_map['required']:
-                logger.critical(str(self) + ' must assign required attribute ' + attr_name)
-                sys.exit()
+                raise RequiredAttributeException(str(self) + ' must assign required attribute ' + attr_name)
             else:
                 logger.debug('Skipping attribute ' + attr_name)
                 return
+        else:
+            value = getattr(self, attr_name)
 
         if value is None:
             if 'required' in attr_map and attr_map['required']:
-                logger.critical(str(self) + ' must assign required attribute ' + attr_name)
-                sys.exit()
+                raise RequiredAttributeException(str(self) + ' must assign required attribute ' + attr_name)
             else:
                 logger.debug(str(self) + ' Skipping attribute ' + attr_name)
                 return
 
-        # if model's xml_namespace doesn't match attribute's, then we need to include it
-        if attr_namespace is not None and self.get_xml_namespace() != attr_namespace:
+        # if model's xmlns doesn't match attribute's, then we need to include it
+        if attr_namespace is not None and self.get_xmlns() != attr_namespace:
             attr_name = name
 
         if 'class' in attr_map:
             if not isinstance(value, Model):
-                raise ValueError(str(self) + ' Need a subclass of Model to set attribute ' + attr_name + ' on {' + self.get_xml_namespace() + '}' + self.get_tag_name() + '; got ' + str(value))
+                raise ValueError(str(self) + ' Need a subclass of Model to set attribute ' + attr_name + ' on {' + self.get_xmlns() + '}' + self.get_tag_name() + '; got ' + str(value))
 
-            logger.debug(str(self) + 'Setting attribute ' + attr_name + ' on {' + self.get_xml_namespace() + '}' + self.get_tag_name() + ' to ' + value.__class__.__name__ + ' value ' + value.to_string())
+            logger.debug(str(self) + 'Setting attribute ' + attr_name + ' on {' + self.get_xmlns() + '}' + self.get_tag_name() + ' to ' + value.__class__.__name__ + ' value ' + value.to_string())
             el.set(attr_name, value.to_string())
 
         elif 'type' in attr_map:
@@ -761,11 +757,11 @@ class Model(object):
 
         elif 'enum' in attr_map:
             if value not in attr_map['enum']:
-                raise ValueError(str(self) + '.' + name + ' attribute must be one of ' + str(attr_map['enum']) + ': ' + str(value))
+                raise EnumerationException(str(self) + '.' + name + ' attribute must be one of ' + str(attr_map['enum']) + ': ' + str(value))
             el.set(attr_name, value)
 
         else:
-            raise ValueError(str(self) + ' Unable to produce attribute ' + attr_name + '; no class, type or enum definition')
+            raise UnknownAttributeException(str(self) + ' Unable to produce attribute ' + attr_name + '; no class, type or enum definition')
 
     def _produce_elements(self, element_def):
         sub_els = []
@@ -781,13 +777,11 @@ class Model(object):
 
             # check minimum tag count
             if 'min' in element_def and element_def['min'] > len(lst):
-                logger.critical(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements')
-                sys.exit()
+                raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
 
             # check maximum tag count
             if 'max' in element_def and element_def['max'] is not None and element_def['max'] <= len(lst):
-                logger.critical(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements')
-                sys.exit()
+                raise MaximumElementException(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
 
             for i in lst:
                 if isinstance(i, Model):
@@ -806,13 +800,11 @@ class Model(object):
 
             # check minimum tag count
             if 'min' in element_def and element_def['min'] > len(lst):
-                logger.critical(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements')
-                sys.exit()
+                raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
 
             # check maximum tag count
             if 'max' in element_def and element_def['max'] is not None and element_def['max'] <= len(lst):
-                logger.critical(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements')
-                sys.exit()
+                raise MaximumElementException(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
 
             for i in lst:
                 if 'class' in element_def or 'type' in element_def:
@@ -832,13 +824,11 @@ class Model(object):
 
             # check minimum tag count
             if 'min' in element_def and element_def['min'] > len(dict_):
-                logger.critical(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements')
-                sys.exit()
+                raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(dict_)) + ' found')
 
             # check maximum tag count
             if 'max' in element_def and element_def['max'] is not None and element_def['max'] <= len(dict_):
-                logger.critical(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements')
-                sys.exit()
+                raise MaximumElementException(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(dict_)) + ' found')
 
             if 'key' in element_def:
                 key_name = element_def['key']
@@ -857,12 +847,12 @@ class Model(object):
                     inst.id = k
                     sub_els.append(inst.to_xml())
                 else:
-                    if 'xml_namespace' in element_def:
-                        xml_namespace = element_def['xml_namespace']
+                    if 'xmlns' in element_def:
+                        xmlns = element_def['xmlns']
                     else:
-                        xml_namespace = self.model_map['xml_namespace']
+                        xmlns = self.model_map['xmlns']
 
-                    el = ET.Element('{' + xml_namespace + '}' + element_def['tag_name'])
+                    el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
                     el.set(key_name, k)
 
                     if 'value' in element_def:
@@ -890,6 +880,6 @@ class Model(object):
             elif isinstance(value, ET.Element):
                 sub_els.append(value)
             else:
-                raise ValueError(str(self) + ' Unknown class to add to sub elements: ' + value.__class__.__name__)
+                raise UnknownElementException(str(self) + ' Unknown class to add to sub elements: ' + value.__class__.__name__)
 
         return sub_els

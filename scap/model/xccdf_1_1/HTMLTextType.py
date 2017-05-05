@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class HTMLTextType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xml_namespace': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
+            {'xmlns': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
         ],
         'attributes': {
             'override': {'type': 'Boolean', 'default': False, 'min': 0, 'max': None},

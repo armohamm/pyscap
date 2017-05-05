@@ -23,7 +23,7 @@ class FileEffectiveRightsObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'fileeffectiverights_object',
         'elements': [
-            {'xml_namespace': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
             {'tag_name': 'behaviors', 'class': 'FileEffectiveRightsBehaviors', 'min': 0},
             {'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},

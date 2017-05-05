@@ -24,8 +24,8 @@ class RemoteResourceElement(Model):
     MODEL_MAP = {
         'tag_name': 'remote-resource',
         'attributes': {
-            {'xml_namespace': 'http://www.w3.org/1999/xlink', 'tag_name': 'type', 'required': True, 'enum': ['simple']},
-            {'xml_namespace': 'http://www.w3.org/1999/xlink', 'tag_name': 'href', 'required': True, 'type': 'AnyURI'},
+            {'xmlns': 'http://www.w3.org/1999/xlink', 'tag_name': 'type', 'required': True, 'enum': ['simple']},
+            {'xmlns': 'http://www.w3.org/1999/xlink', 'tag_name': 'href', 'required': True, 'type': 'AnyURI'},
 '*': {},
         }
     }

@@ -24,7 +24,7 @@ class ProfileNoteType(Model):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'sub', 'class': 'IdrefType', 'append': 'subs', 'min': 0, 'max': None},
-            {'xml_namespace': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
+            {'xmlns': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
         ],
         'attributes': {
             'tag': {'type': 'NCName', 'required': True},

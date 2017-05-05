@@ -42,7 +42,7 @@ class ProfileType(Model):
             'prohibitChanges': {'type': 'Boolean', 'default': False},
             'abstract': {'type': 'Boolean', 'default': False},
             'note-tag': {'type': 'NCName'},
-            'extends': {'notImplemented': True, 'type': 'NCName'},
+            'extends': {'type': 'NCName'},
             'Id': {'type': 'ID'},
         },
     }
