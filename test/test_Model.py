@@ -589,3 +589,14 @@ def test_to_xml_append_nil():
     assert b'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' in xml
     assert b'<test:append_nil xsi:nil="true" />' in xml
     assert b'<test:append_nil>test</test:append_nil>' in xml
+
+def test_to_xml_append_type():
+    el = AppendElementFixture()
+    el.append_type.append(1.1)
+    el.append_type.append(1.2)
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:AppendElementFixture')
+    assert b'xmlns:test="http://jaymes.biz/test"' in xml
+    assert b'<test:append_type>1.1</test:append_type>' in xml
+    assert b'<test:append_type>1.2</test:append_type>' in xml

@@ -760,6 +760,10 @@ class Model(object):
 
     def _produce_elements(self, element_def):
         sub_els = []
+        if 'xmlns' in element_def:
+            xmlns = element_def['xmlns']
+        else:
+            xmlns = self.get_xmlns()
 
         if element_def['tag_name'].endswith('*'):
             if 'in' in element_def:
@@ -803,28 +807,21 @@ class Model(object):
 
             for i in lst:
                 if i is None:
-                    if 'xmlns' in element_def:
-                        xmlns = element_def['xmlns']
-                    else:
-                        xmlns = self.get_xmlns()
-
                     el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
                     el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
                     sub_els.append(el)
-                elif 'class' in element_def or 'type' in element_def:
-                    if isinstance(i, Model):
-                        i.tag_name = element_def['tag_name']
-                        sub_els.append(i.to_xml())
-                    elif isinstance(i, ET.Element):
-                        sub_els.append(i)
-                    else:
+                elif 'type' in element_def:
+                    el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
+                    el.text = self._produce_value_as_type(i, element_def['type'])
+                    sub_els.append(el)
+                elif 'class' in element_def:
+                    if not isinstance(i, Model):
                         raise ValueError(str(self) + ' Unknown class of ' + element_def['tag_name'] + ' to add to sub elements: ' + i.__class__.__name__)
+                    i.tag_name = element_def['tag_name']
+                    sub_els.append(i.to_xml())
+                elif isinstance(i, ET.Element):
+                    sub_els.append(i)
                 else:
-                    if 'xmlns' in element_def:
-                        xmlns = element_def['xmlns']
-                    else:
-                        xmlns = self.get_xmlns()
-
                     el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
                     el.text = i
                     sub_els.append(el)
@@ -853,11 +850,6 @@ class Model(object):
                     v.tag_name = element_def['tag_name']
                     sub_els.append(v.to_xml())
                 else:
-                    if 'xmlns' in element_def:
-                        xmlns = element_def['xmlns']
-                    else:
-                        xmlns = self.get_xmlns()
-
                     el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
                     el.set(key_name, k)
 
