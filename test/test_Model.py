@@ -611,3 +611,25 @@ def test_to_xml_append_class():
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'<test:append_class>test1</test:append_class>' in xml
     assert b'<test:append_class>test2</test:append_class>' in xml
+
+def test_to_xml_map_key_explicit():
+    el = MapElementFixture()
+    el.map_explicit_key['test1'] = 'test1'
+    el.map_explicit_key['test2'] = 'test2'
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:MapElementFixture')
+    assert b'xmlns:test="http://jaymes.biz/test"' in xml
+    assert b'<test:map_explicit_key key="test1">test1</test:map_explicit_key>' in xml
+    assert b'<test:map_explicit_key key="test2">test2</test:map_explicit_key>' in xml
+
+def test_to_xml_map_key_implicit():
+    el = MapElementFixture()
+    el.map_implicit_key['test1'] = 'test1'
+    el.map_implicit_key['test2'] = 'test2'
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:MapElementFixture')
+    assert b'xmlns:test="http://jaymes.biz/test"' in xml
+    assert b'<test:map_implicit_key id="test1">test1</test:map_implicit_key>' in xml
+    assert b'<test:map_implicit_key id="test2">test2</test:map_implicit_key>' in xml
