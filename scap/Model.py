@@ -802,16 +802,30 @@ class Model(object):
                 raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
 
             for i in lst:
-                i.tag_name = element_def['tag_name']
-                if 'class' in element_def or 'type' in element_def:
+                if i is None:
+                    if 'xmlns' in element_def:
+                        xmlns = element_def['xmlns']
+                    else:
+                        xmlns = self.get_xmlns()
+
+                    el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
+                    el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
+                    sub_els.append(el)
+                elif 'class' in element_def or 'type' in element_def:
                     if isinstance(i, Model):
+                        i.tag_name = element_def['tag_name']
                         sub_els.append(i.to_xml())
                     elif isinstance(i, ET.Element):
                         sub_els.append(i)
                     else:
                         raise ValueError(str(self) + ' Unknown class of ' + element_def['tag_name'] + ' to add to sub elements: ' + i.__class__.__name__)
                 else:
-                    el = ET.Element(tag)
+                    if 'xmlns' in element_def:
+                        xmlns = element_def['xmlns']
+                    else:
+                        xmlns = self.get_xmlns()
+
+                    el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
                     el.text = i
                     sub_els.append(el)
         elif 'map' in element_def:
@@ -842,7 +856,7 @@ class Model(object):
                     if 'xmlns' in element_def:
                         xmlns = element_def['xmlns']
                     else:
-                        xmlns = self.model_map['xmlns']
+                        xmlns = self.get_xmlns()
 
                     el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
                     el.set(key_name, k)

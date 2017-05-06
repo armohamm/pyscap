@@ -577,3 +577,15 @@ def test_to_xml_wildcard_in():
     assert b'xmlns:test2="http://jaymes.biz/test2"' in xml
     assert b'<test:wildcard_element' in xml
     assert b'<test2:wildcard_element' in xml
+
+def test_to_xml_append_nil():
+    el = AppendElementFixture()
+    el.append_nil.append(None)
+    el.append_nil.append(EnclosedFixture(value='test'))
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:AppendElementFixture')
+    assert b'xmlns:test="http://jaymes.biz/test"' in xml
+    assert b'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' in xml
+    assert b'<test:append_nil xsi:nil="true" />' in xml
+    assert b'<test:append_nil>test</test:append_nil>' in xml
