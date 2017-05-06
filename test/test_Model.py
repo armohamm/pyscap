@@ -509,10 +509,26 @@ def test_to_xml_root_enclosed():
     assert ET.tostring(el.to_xml()) == \
         b'<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnclosedFixture /></test:RootFixture>'
 
-def test_to_xml_attributes():
+def test_to_xml_required_attribute():
     el = RequiredAttributeFixture()
     with pytest.raises(RequiredAttributeException):
         el.to_xml()
     el.required_attribute = 'test'
     assert ET.tostring(el.to_xml()) == \
         b'<test:RequiredAttributeFixture xmlns:test="http://jaymes.biz/test" required_attribute="test" />'
+
+def test_to_xml_attributes():
+    el = AttributeFixture()
+    el.in_test = 'test'
+    el.dash_attribute = 'test'
+    el.default_attribute = 'test'
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:AttributeFixture xmlns:test="http://jaymes.biz/test" ')
+    assert b'dash-attribute="test" ' in xml
+    assert b'default_attribute="test" ' in xml
+    assert b'in_attribute="test" ' in xml
+
+    el.in_test = None
+    xml = ET.tostring(el.to_xml())
+    assert b'in_attribute=' not in xml

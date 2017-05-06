@@ -21,6 +21,6 @@ class RequiredAttributeFixture(Model):
     MODEL_MAP = {
         'tag_name': 'RequiredAttributeFixture',
         'attributes': {
-            'required_attribute': {'required': True, 'type': 'String'},
+            'required_attribute': {'required': True},
         },
     }

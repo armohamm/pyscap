@@ -716,19 +716,20 @@ class Model(object):
         attr_map = self.model_map['attributes'][name]
 
         if 'in' in attr_map:
-            attr_name = attr_map['in']
+            value_name = attr_map['in']
         else:
-            attr_name = attr_name.replace('-', '_')
+            value_name = attr_name.replace('-', '_')
 
-        if not hasattr(self, attr_name):
+        if not hasattr(self, value_name):
             if 'required' in attr_map and attr_map['required']:
                 raise RequiredAttributeException(str(self) + ' must assign required attribute ' + attr_name)
             else:
                 logger.debug('Skipping attribute ' + attr_name)
                 return
         else:
-            value = getattr(self, attr_name)
+            value = getattr(self, value_name)
 
+        # TODO nillable for attrs?
         if value is None:
             if 'required' in attr_map and attr_map['required']:
                 raise RequiredAttributeException(str(self) + ' must assign required attribute ' + attr_name)
@@ -740,22 +741,7 @@ class Model(object):
         if attr_namespace is not None and self.get_xmlns() != attr_namespace:
             attr_name = name
 
-        if 'class' in attr_map:
-            if not isinstance(value, Model):
-                raise ValueError(str(self) + ' Need a subclass of Model to set attribute ' + attr_name + ' on {' + self.get_xmlns() + '}' + self.get_tag_name() + '; got ' + str(value))
-
-            logger.debug(str(self) + 'Setting attribute ' + attr_name + ' on {' + self.get_xmlns() + '}' + self.get_tag_name() + ' to ' + value.__class__.__name__ + ' value ' + value.to_string())
-            el.set(attr_name, value.to_string())
-
-        elif 'type' in attr_map:
-            # TODO nillable
-            # if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
-            # and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
-            #     # check if we can accept nil
-            #     if 'nillable' in element_def and element_def['nillable']:
-            #         value = None
-            #     else:
-            #         raise ValueError(el.tag + ' is nil, but not expecting nil value')
+        if 'type' in attr_map:
             logger.debug(str(self) + ' Producing ' + str(value) + ' as ' + attr_map['type'] + ' type')
             v = self._produce_value_as_type(value, attr_map['type'])
 
@@ -767,7 +753,10 @@ class Model(object):
             el.set(attr_name, value)
 
         else:
-            raise UnknownAttributeException(str(self) + ' Unable to produce attribute ' + attr_name + '; no class, type or enum definition')
+            # otherwise, we default to producing as string
+            logger.debug(str(self) + ' Producing ' + str(value) + ' as String type')
+            v = self._produce_value_as_type(value, 'String')
+            el.set(attr_name, v)
 
     def _produce_elements(self, element_def):
         sub_els = []
