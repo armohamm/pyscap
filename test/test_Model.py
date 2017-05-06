@@ -600,3 +600,14 @@ def test_to_xml_append_type():
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'<test:append_type>1.1</test:append_type>' in xml
     assert b'<test:append_type>1.2</test:append_type>' in xml
+
+def test_to_xml_append_class():
+    el = AppendElementFixture()
+    el.append_class.append(EnclosedFixture(value='test1'))
+    el.append_class.append(EnclosedFixture(value='test2'))
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:AppendElementFixture')
+    assert b'xmlns:test="http://jaymes.biz/test"' in xml
+    assert b'<test:append_class>test1</test:append_class>' in xml
+    assert b'<test:append_class>test2</test:append_class>' in xml
