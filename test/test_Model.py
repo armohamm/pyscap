@@ -502,3 +502,17 @@ def test_get_xmlns():
     assert root.get_xmlns() == 'http://jaymes.biz/test'
 
 # NOTE: from_xml is tested via Model.load
+
+def test_to_xml_root_enclosed():
+    el = RootFixture()
+    el.EnclosedFixture = EnclosedFixture()
+    assert ET.tostring(el.to_xml()) == \
+        b'<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnclosedFixture /></test:RootFixture>'
+
+def test_to_xml_attributes():
+    el = RequiredAttributeFixture()
+    with pytest.raises(RequiredAttributeException):
+        el.to_xml()
+    el.required_attribute = 'test'
+    assert ET.tostring(el.to_xml()) == \
+        b'<test:RequiredAttributeFixture xmlns:test="http://jaymes.biz/test" required_attribute="test" />'

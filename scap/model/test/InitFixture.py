@@ -19,6 +19,7 @@ from scap.Model import Model
 
 class InitFixture(Model):
     MODEL_MAP = {
+        'tag_name': 'InitFixture',
         'attributes': {
             'attr': {},
             'in_attr': {'in': 'test_attr'},

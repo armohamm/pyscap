@@ -19,7 +19,8 @@ from scap.Model import Model
 
 class RequiredAttributeFixture(Model):
     MODEL_MAP = {
+        'tag_name': 'RequiredAttributeFixture',
         'attributes': {
-            'required_attribute': {'required': True},
+            'required_attribute': {'required': True, 'type': 'String'},
         },
     }

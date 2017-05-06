@@ -19,4 +19,5 @@ from scap.Model import Model
 
 class EnclosedFixture(Model):
     MODEL_MAP = {
+        'tag_name': 'EnclosedFixture',
     }

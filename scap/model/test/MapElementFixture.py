@@ -19,6 +19,7 @@ from scap.Model import Model
 
 class MapElementFixture(Model):
     MODEL_MAP = {
+        'tag_name': 'MapElementFixture',
         'elements': [
             {'tag_name': 'map_explicit_key', 'map': 'map_explicit_key', 'key': 'key', 'type': 'String', 'min': 0},
             {'tag_name': 'map_implicit_key', 'map': 'map_implicit_key', 'type': 'String', 'min': 0},

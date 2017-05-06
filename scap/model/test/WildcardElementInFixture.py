@@ -19,6 +19,7 @@ from scap.Model import Model
 
 class WildcardElementInFixture(Model):
     MODEL_MAP = {
+        'tag_name': 'WildcardElementInFixture',
         'elements': [
             {'xmlns': 'http://jaymes.biz/test', 'tag_name': '*', 'in': 'test_elements'},
             {'tag_name': '*', 'in': 'elements'},

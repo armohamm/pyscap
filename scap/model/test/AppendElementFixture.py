@@ -19,6 +19,7 @@ from scap.Model import Model
 
 class AppendElementFixture(Model):
     MODEL_MAP = {
+        'tag_name': 'AppendElementFixture',
         'elements': [
             {'tag_name': 'append_nil', 'append': 'append_nil', 'nillable': True, 'class': 'EnclosedFixture', 'min': 0},
             {'tag_name': 'append_type', 'append': 'append_type', 'type': 'Decimal', 'min': 0},

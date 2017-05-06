@@ -19,6 +19,7 @@ from scap.Model import Model
 
 class AttributeFixture(Model):
     MODEL_MAP = {
+        'tag_name': 'AttributeFixture',
         'attributes': {
             'in_attribute': {'in': 'in_test'},
             'dash-attribute': {},
