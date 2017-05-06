@@ -633,3 +633,15 @@ def test_to_xml_map_key_implicit():
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'<test:map_implicit_key id="test1">test1</test:map_implicit_key>' in xml
     assert b'<test:map_implicit_key id="test2">test2</test:map_implicit_key>' in xml
+
+def test_to_xml_map_value_nil():
+    el = MapElementFixture()
+    el.map_value_nil['test1'] = None
+    el.map_value_nil['test2'] = 'test2'
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:MapElementFixture')
+    assert b'xmlns:test="http://jaymes.biz/test"' in xml
+    assert b'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' in xml
+    assert b'<test:map_value_nil id="test1" xsi:nil="true" />' in xml
+    assert b'<test:map_value_nil id="test2">test2</test:map_value_nil>' in xml
