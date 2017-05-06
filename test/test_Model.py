@@ -645,3 +645,38 @@ def test_to_xml_map_value_nil():
     assert b'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' in xml
     assert b'<test:map_value_nil id="test1" xsi:nil="true" />' in xml
     assert b'<test:map_value_nil id="test2">test2</test:map_value_nil>' in xml
+
+def test_to_xml_map_value_attr():
+    el = MapElementFixture()
+    el.map_value_attr['test1'] = 'test1'
+    el.map_value_attr['test2'] = 'test2'
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:MapElementFixture')
+    assert b'xmlns:test="http://jaymes.biz/test"' in xml
+    assert b'<test:map_value_attr id="test1" value="test1" />' in xml
+    assert b'<test:map_value_attr id="test2" value="test2" />' in xml
+
+def test_to_xml_map_value_type():
+    el = MapElementFixture()
+    el.map_value_type['test1'] = 'test1'
+    el.map_value_type['test2'] = 'test2'
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:MapElementFixture')
+    assert b'xmlns:test="http://jaymes.biz/test"' in xml
+    assert b'<test:map_value_type id="test1">test1</test:map_value_type>' in xml
+    assert b'<test:map_value_type id="test2">test2</test:map_value_type>' in xml
+
+def test_to_xml_map_value_class():
+    el = MapElementFixture()
+    el.map_value_class['test1'] = MappableElementFixture(value='text1')
+    el.map_value_class['test1'].tag = 'blue'
+    el.map_value_class['test2'] = MappableElementFixture(value='text2')
+    el.map_value_class['test2'].tag = 'red'
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:MapElementFixture')
+    assert b'xmlns:test="http://jaymes.biz/test"' in xml
+    assert b'<test:map_value_class id="test1" tag="blue">text1</test:map_value_class>' in xml
+    assert b'<test:map_value_class id="test2" tag="red">text2</test:map_value_class>' in xml

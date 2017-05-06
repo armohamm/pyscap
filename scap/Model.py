@@ -847,12 +847,16 @@ class Model(object):
             for k in dict_keys:
                 v = dict_[k]
                 if v is None:
+                    if 'value_attr' in element_def:
+                        raise ValueError('Cannot use None as a value for value attribute maps')
+
                     el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
                     el.set(key_name, k)
                     el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
                     sub_els.append(el)
                 elif 'class' in element_def:
                     v.tag_name = element_def['tag_name']
+                    setattr(v, key_name, k)
                     sub_els.append(v.to_xml())
                 else:
                     el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
