@@ -775,8 +775,8 @@ class Model(object):
                 raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
 
             # check maximum tag count
-            if 'max' in element_def and element_def['max'] is not None and element_def['max'] <= len(lst):
-                raise MaximumElementException(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+            if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(lst):
+                raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
 
             for i in lst:
                 if isinstance(i, Model):
@@ -798,10 +798,11 @@ class Model(object):
                 raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
 
             # check maximum tag count
-            if 'max' in element_def and element_def['max'] is not None and element_def['max'] <= len(lst):
-                raise MaximumElementException(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+            if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(lst):
+                raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
 
             for i in lst:
+                i.tag_name = element_def['tag_name']
                 if 'class' in element_def or 'type' in element_def:
                     if isinstance(i, Model):
                         sub_els.append(i.to_xml())
@@ -822,8 +823,8 @@ class Model(object):
                 raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(dict_)) + ' found')
 
             # check maximum tag count
-            if 'max' in element_def and element_def['max'] is not None and element_def['max'] <= len(dict_):
-                raise MaximumElementException(str(self) + ' must have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(dict_)) + ' found')
+            if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(dict_):
+                raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(dict_)) + ' found')
 
             if 'key' in element_def:
                 key_name = element_def['key']
@@ -835,6 +836,7 @@ class Model(object):
             for k in dict_keys:
                 v = dict_[k]
                 if 'class' in element_def:
+                    v.tag_name = element_def['tag_name']
                     sub_els.append(v.to_xml())
                 else:
                     if 'xmlns' in element_def:
@@ -866,6 +868,7 @@ class Model(object):
 
             logger.debug(str(self) + ' Setting .' + name + ' to ' + value.__class__.__name__ + '(' + str(value) + ')')
             if isinstance(value, Model):
+                value.tag_name = element_def['tag_name']
                 sub_els.append(value.to_xml())
             elif isinstance(value, ET.Element):
                 sub_els.append(value)

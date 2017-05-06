@@ -524,7 +524,7 @@ def test_to_xml_attributes():
     el.default_attribute = 'test'
 
     xml = ET.tostring(el.to_xml())
-    assert xml.startswith(b'<test:AttributeFixture xmlns:test="http://jaymes.biz/test" ')
+    assert xml.startswith(b'<test:AttributeFixture xmlns:test="http://jaymes.biz/test"')
     assert b'dash-attribute="test" ' in xml
     assert b'default_attribute="test" ' in xml
     assert b'in_attribute="test" ' in xml
@@ -532,3 +532,23 @@ def test_to_xml_attributes():
     el.in_test = None
     xml = ET.tostring(el.to_xml())
     assert b'in_attribute=' not in xml
+
+def test_to_xml_min_max():
+    el = MinMaxElementFixture()
+    for i in range(0, 3):
+        el.min.append(EnclosedFixture())
+    for i in range(0, 2):
+        el.max.append(EnclosedFixture())
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:MinMaxElementFixture xmlns:test="http://jaymes.biz/test"')
+    assert xml.count(b'<test:min') == 3
+    assert xml.count(b'<test:max') == 2
+
+    del el.min[0]
+    with pytest.raises(MinimumElementException):
+        el.to_xml()
+
+    el.min.append(EnclosedFixture())
+    el.max.append(EnclosedFixture())
+    with pytest.raises(MaximumElementException):
+        el.to_xml()
