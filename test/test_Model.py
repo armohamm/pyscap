@@ -539,6 +539,7 @@ def test_to_xml_min_max():
         el.min.append(EnclosedFixture())
     for i in range(0, 2):
         el.max.append(EnclosedFixture())
+
     xml = ET.tostring(el.to_xml())
     assert xml.startswith(b'<test:MinMaxElementFixture xmlns:test="http://jaymes.biz/test"')
     assert xml.count(b'<test:min') == 3
@@ -552,3 +553,27 @@ def test_to_xml_min_max():
     el.max.append(EnclosedFixture())
     with pytest.raises(MaximumElementException):
         el.to_xml()
+
+def test_to_xml_wildcard_not_in():
+    el = WildcardElementNotInFixture()
+    el._elements.append(EnclosedFixture(tag_name='wildcard_element'))
+    el._elements.append(EnclosedFixture2(tag_name='wildcard_element'))
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:WildcardElementNotInFixture')
+    assert b'xmlns:test="http://jaymes.biz/test"' in xml
+    assert b'xmlns:test2="http://jaymes.biz/test2"' in xml
+    assert b'<test:wildcard_element' in xml
+    assert b'<test2:wildcard_element' in xml
+
+def test_to_xml_wildcard_in():
+    el = WildcardElementInFixture()
+    el.test_elements.append(EnclosedFixture(tag_name='wildcard_element'))
+    el.elements.append(EnclosedFixture2(tag_name='wildcard_element'))
+
+    xml = ET.tostring(el.to_xml())
+    assert xml.startswith(b'<test:WildcardElementInFixture')
+    assert b'xmlns:test="http://jaymes.biz/test"' in xml
+    assert b'xmlns:test2="http://jaymes.biz/test2"' in xml
+    assert b'<test:wildcard_element' in xml
+    assert b'<test2:wildcard_element' in xml
