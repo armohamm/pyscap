@@ -1,3 +1,53 @@
-Model
-- lots & lots of tests
-- flesh out xs simple types
+scap
+    - testing base classes
+    collector
+        - tests
+    host
+        - tests?
+    model
+        ai_1_1
+            - tests
+        arf_1_1
+            - tests
+        cpe_lang_2_3
+            - tests
+        cpe_naming_2_3
+            - tests
+        dc_elements_1_1
+            - tests
+        ocil_2_0
+            - tests
+        oval_commons_5
+            - tests
+        oval_defs_5
+            - tests
+        oval_defs_5_independent
+            - tests
+        oval_defs_5_linux
+            - tests
+        oval_defs_5_windows
+            - tests
+        oval_results_5
+            - tests
+        rep_core_1_1
+            - tests
+        scap_source_1_2
+            - tests
+        xal_2_0
+            - tests
+        xccdf_1_1
+            - tests
+        xccdf_1_2
+            - tests
+        xlink_1999
+            - tests
+        xml_cat_1_1
+            - tests
+        xnl_2_0
+            - tests
+        xs
+            - tests
+            - flesh out simple types
+            - might need astropy for time handling. or just leave in string format
+    reporter
+        - tests
