@@ -215,7 +215,7 @@ elif args['benchmark']:
         pretty_xml = xml.dom.minidom.parseString(sio.getvalue()).toprettyxml(indent='  ')
         output.write(pretty_xml.encode(locale.getpreferredencoding()))
     else:
-        report.write(sio.getvalue().encode(locale.getpreferredencoding()))
+        output.write(sio.getvalue().encode(locale.getpreferredencoding()))
 elif args['list_hosts']:
     print('Hosts: ')
     for host in hosts:
