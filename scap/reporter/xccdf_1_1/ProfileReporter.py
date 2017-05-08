@@ -49,14 +49,20 @@ class ProfileReporter(Reporter):
 
         # elements
         t = TextType(tag_name='title')
-        t.value = 'Results for ' + host.hostname + ', profile ' + self.model.id
+        t.text = 'Results for ' + host.hostname + ', profile ' + self.model.id
         test_result.titles.append(t)
 
         # TODO test_result.remarks.append()
 
         # TODO test_result.organizations.append()
 
-        test_result.identity = IdentityType(tag_name='identity')
+        if 'identity' in host.facts:
+            test_result.identity = IdentityType(tag_name='identity')
+            test_result.identity.text = host.facts['identity']['name']
+            if 'authenticated' in host.facts['identity']:
+                test_result.identity.authenticated = str(host.facts['identity']['authenticated'])
+            if 'privileged' in host.facts['identity']:
+                test_result.identity.privileged = str(host.facts['identity']['privileged'])
 
         test_result.profile = IdrefType(tag_name='profile')
         test_result.profile.idref = self.model.id
