@@ -28,12 +28,3 @@ class IdentityType(String):
             'privileged': {'type': 'Boolean', 'required': True},
         }
     }
-
-    def __init__(self, tag_name=None):
-        super(IdentityType, self).__init__(tag_name=tag_name)
-
-        self.value = getpass.getuser()
-
-        # TODO
-        self.authenticated = False
-        self.privileged = False
