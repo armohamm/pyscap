@@ -454,7 +454,7 @@ class Model(object):
                 raise MinimumElementException(self.__class__.__name__ + ' must have at least ' + str(min_) + ' ' + tag + ' elements')
 
             if max_ is not None and tag in self.tag_counts and self.tag_counts[tag] > max_:
-                raise MaximumElementException(self.__class__.__name__ + ' must have at most ' + str(max_) + ' ' + tag + ' elements')
+                raise MaximumElementException(self.__class__.__name__ + ' may have at most ' + str(max_) + ' ' + tag + ' elements')
 
         self.text = el.text
 
