@@ -19,6 +19,13 @@ from scap.Host import Host
 import logging
 
 logger = logging.getLogger(__name__)
+
+class ElevationException(Exception):
+    pass
+
+class AuthenticationException(Exception):
+    pass
+
 class CLIHost(Host):
     def exec_command(self, cmd):
         import inspect
