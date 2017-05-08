@@ -31,10 +31,7 @@ class Simple(Model):
         return self.text is None
 
     def __str__(self):
-        s = super(Simple, self).__str__()
-        if self.text is not None:
-            s = s + ' == ' + str(self.text)
-        return s
+        return str(self.text)
 
     def from_xml(self, parent, sub_el):
         super(Simple, self).from_xml(parent, sub_el)
