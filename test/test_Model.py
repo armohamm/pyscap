@@ -536,9 +536,9 @@ def test_to_xml_attributes():
 def test_to_xml_min_max():
     el = MinMaxElementFixture()
     for i in range(0, 3):
-        el.min.append(EnclosedFixture())
+        el.min.append(EnclosedFixture(tag_name='min'))
     for i in range(0, 2):
-        el.max.append(EnclosedFixture())
+        el.max.append(EnclosedFixture(tag_name='max'))
 
     xml = ET.tostring(el.to_xml())
     assert xml.startswith(b'<test:MinMaxElementFixture xmlns:test="http://jaymes.biz/test"')
@@ -581,7 +581,7 @@ def test_to_xml_wildcard_in():
 def test_to_xml_append_nil():
     el = AppendElementFixture()
     el.append_nil.append(None)
-    el.append_nil.append(EnclosedFixture(value='test'))
+    el.append_nil.append(EnclosedFixture(value='test', tag_name='append_nil'))
 
     xml = ET.tostring(el.to_xml())
     assert xml.startswith(b'<test:AppendElementFixture')
@@ -603,8 +603,8 @@ def test_to_xml_append_type():
 
 def test_to_xml_append_class():
     el = AppendElementFixture()
-    el.append_class.append(EnclosedFixture(value='test1'))
-    el.append_class.append(EnclosedFixture(value='test2'))
+    el.append_class.append(EnclosedFixture(value='test1', tag_name='append_class'))
+    el.append_class.append(EnclosedFixture(value='test2', tag_name='append_class'))
 
     xml = ET.tostring(el.to_xml())
     assert xml.startswith(b'<test:AppendElementFixture')
@@ -670,9 +670,9 @@ def test_to_xml_map_value_type():
 
 def test_to_xml_map_value_class():
     el = MapElementFixture()
-    el.map_value_class['test1'] = MappableElementFixture(value='text1')
+    el.map_value_class['test1'] = MappableElementFixture(value='text1', tag_name='map_value_class')
     el.map_value_class['test1'].tag = 'blue'
-    el.map_value_class['test2'] = MappableElementFixture(value='text2')
+    el.map_value_class['test2'] = MappableElementFixture(value='text2', tag_name='map_value_class')
     el.map_value_class['test2'].tag = 'red'
 
     xml = ET.tostring(el.to_xml())
