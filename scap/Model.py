@@ -437,7 +437,7 @@ class Model(object):
                 tag = '{' + self.get_xmlns() + '}' + element_def['tag_name']
 
             min_ = 1
-            if 'map' in element_def or 'append' in element_def:
+            if 'map' in element_def or 'append' in element_def or element_def['tag_name'] == '*':
                 # maps and appends default to no max
                 max_ = None
             else:
