@@ -38,3 +38,6 @@ class WindowsCollector(CLICollector):
 
         from scap.collector.cli.windows.NetworkServiceCollector import NetworkServiceCollector
         NetworkServiceCollector(self.host, self.args).collect()
+
+        from scap.collector.cli.windows.IdentityCollector import IdentityCollector
+        IdentityCollector(self.host, self.args).collect()

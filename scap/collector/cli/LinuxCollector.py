@@ -38,3 +38,6 @@ class LinuxCollector(CLICollector):
 
         from scap.collector.cli.linux.NetworkServiceCollector import NetworkServiceCollector
         NetworkServiceCollector(self.host, self.args).collect()
+
+        from scap.collector.cli.linux.IdentityCollector import IdentityCollector
+        IdentityCollector(self.host, self.args).collect()
