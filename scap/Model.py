@@ -505,12 +505,12 @@ class Model(object):
                 value = self._parse_value_as_type(value, attr_map['type'])
 
             if 'in' in attr_map:
+                logger.debug('Setting attribute ' + attr_map['in'] + ' = ' + str(value))
                 setattr(self, attr_map['in'], value)
-                logger.debug('Set attribute ' + attr_map['in'] + ' = ' + str(value))
             else:
                 name = attr_name.replace('-', '_')
+                logger.debug('Setting attribute ' + name + ' = ' + str(value))
                 setattr(self, name, value)
-                logger.debug('Set attribute ' + name + ' = ' + str(value))
             return
 
         # if we didn't find a match for the attribute, raise
@@ -724,7 +724,7 @@ class Model(object):
             if 'required' in attr_map and attr_map['required']:
                 raise RequiredAttributeException(str(self) + ' must assign required attribute ' + attr_name)
             else:
-                logger.debug('Skipping attribute ' + attr_name)
+                logger.debug('Skipping undefined attribute ' + attr_name)
                 return
         else:
             value = getattr(self, value_name)
@@ -734,8 +734,12 @@ class Model(object):
             if 'required' in attr_map and attr_map['required']:
                 raise RequiredAttributeException(str(self) + ' must assign required attribute ' + attr_name)
             else:
-                logger.debug(str(self) + ' Skipping attribute ' + attr_name)
+                logger.debug(str(self) + ' Skipping unassigned attribute ' + attr_name)
                 return
+
+        if 'default' in attr_map and value == attr_map['default']:
+            logger.debug('Skipping attribute ' + attr_name + '; remains at default ' + str(attr_map['default']))
+            return
 
         # if model's xmlns doesn't match attribute's, then we need to include it
         if attr_namespace is not None and self.get_xmlns() != attr_namespace:
