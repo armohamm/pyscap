@@ -817,7 +817,6 @@ class Model(object):
                 elif 'class' in element_def:
                     if not isinstance(i, Model):
                         raise ValueError(str(self) + ' Unknown class of ' + element_def['tag_name'] + ' to add to sub elements: ' + i.__class__.__name__)
-                    i.tag_name = element_def['tag_name']
                     sub_els.append(i.to_xml())
                 elif isinstance(i, ET.Element):
                     sub_els.append(i)
@@ -855,7 +854,6 @@ class Model(object):
                     el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
                     sub_els.append(el)
                 elif 'class' in element_def:
-                    v.tag_name = element_def['tag_name']
                     setattr(v, key_name, k)
                     sub_els.append(v.to_xml())
                 else:
@@ -883,7 +881,6 @@ class Model(object):
 
             logger.debug(str(self) + ' Setting .' + name + ' to ' + value.__class__.__name__ + '(' + str(value) + ')')
             if isinstance(value, Model):
-                value.tag_name = element_def['tag_name']
                 sub_els.append(value.to_xml())
             elif isinstance(value, ET.Element):
                 sub_els.append(value)
