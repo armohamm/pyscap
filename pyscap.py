@@ -31,7 +31,6 @@ import xml.etree.ElementTree as ET
 
 from scap.ColorFormatter import ColorFormatter
 from scap.Model import Model
-from scap.model import NAMESPACES
 from scap.Host import Host
 from scap.Inventory import Inventory
 from scap.collector.Checker import Checker
@@ -51,8 +50,11 @@ rootLogger.addHandler(fh)
 # report start time & end time
 logger = logging.getLogger(__name__)
 logger.debug('Start: ' + time.asctime(time.localtime()))
+
+output = None
 def end_func():
-    output.close()
+    if output is not None:
+        output.close()
     logger.debug('End: ' + time.asctime(time.localtime()))
 atexit.register(end_func)
 
@@ -60,6 +62,9 @@ atexit.register(end_func)
 arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument('--version', action='version', version='%(prog)s 1.0')
 arg_parser.add_argument('--verbose', '-v', action='count')
+arg_parser.add_argument('--output', nargs='?', default='-')
+arg_parser.add_argument('--inventory', nargs='+')
+arg_parser.add_argument('--host', nargs='+')
 
 group = arg_parser.add_mutually_exclusive_group()
 group.add_argument('--collect', help='try to connect and collect facts from the host', action='store_true')
@@ -88,27 +93,15 @@ if args[0].verbose:
 # set up the modes
 if args[0].collect:
     logger.info("Collect operation")
-    arg_parser.add_argument('--inventory', nargs='+')
-    arg_parser.add_argument('--host', nargs='+')
 elif args[0].benchmark:
     logger.info("Benchmark operation")
-    arg_parser.add_argument('--inventory', nargs='+')
-    arg_parser.add_argument('--host', nargs='+')
     arg_parser.add_argument('--content', required=True, nargs='+')
     arg_parser.add_argument('--data_stream', nargs=1)
     arg_parser.add_argument('--checklist', nargs=1)
     arg_parser.add_argument('--profile', nargs=1)
-    arg_parser.add_argument('--output', nargs='?', default='-')
     arg_parser.add_argument('--pretty', action='store_true')
 elif args[0].list_hosts:
-    arg_parser.add_argument('--inventory', nargs='+')
-    arg_parser.add_argument('--host', nargs='+')
-# elif args[0].test:
-#     logger.info("Test operation")
-#     arg_parser.add_argument('--host', required=True, nargs='+')
-#     # test argument is already defined
-#     arg_parser.add_argument('--object', required=True, nargs='+')
-#     arg_parser.add_argument('--state', required=True, nargs='+')
+    logger.info("List hosts operation")
 else:
     arg_parser.error('No valid operation was given')
 
@@ -150,24 +143,23 @@ Model.register_namespace('xmldsig_2000_09', 'http://www.w3.org/2000/09/xmldsig#'
 Model.register_namespace('xnl_2_0', 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0')
 
 # expand the hosts
-if args['collect'] or args['benchmark'] or args['list_hosts']:
-    inventory = Inventory()
-    if args['inventory'] is not None:
-        for filename in args['inventory']:
-            try:
-                with open(filename, 'r') as fp:
-                    logger.debug('Loading inventory from ' + filename)
-                    Inventory().readfp(fp)
-            except IOError:
-                logger.error('Could not read from inventory file ' + filename)
+inventory = Inventory()
+if args['inventory'] is not None:
+    for filename in args['inventory']:
+        try:
+            with open(filename, 'r') as fp:
+                logger.debug('Loading inventory from ' + filename)
+                Inventory().readfp(fp)
+        except IOError:
+            logger.error('Could not read from inventory file ' + filename)
 
-    if args['host'] is None or len(args['host']) == 0:
-        arg_parser.error('No host specified (--host)')
+if args['host'] is None or len(args['host']) == 0:
+    arg_parser.error('No host specified (--host)')
 
-    hosts = []
-    for hostname in args['host']:
-        host = Host.load(hostname)
-        hosts.append(host)
+hosts = []
+for hostname in args['host']:
+    host = Host.load(hostname)
+    hosts.append(host)
 
 # open output if it's not stdout
 if args['output'] != '-':
@@ -228,7 +220,5 @@ elif args['list_hosts']:
     print('Hosts: ')
     for host in hosts:
         print(host.hostname)
-elif args['test']:
-    arg_parser.error('Unimplemented')
 else:
     arg_parser.error('No valid operation was given')
