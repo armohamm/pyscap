@@ -25,22 +25,24 @@ class IdentityCollector(WindowsCollector):
         if 'identity' in self.host.facts:
             return
 
-        self.host.facts['identity']['user_name'] = self.host.exec_command('echo %USERNAME%')
+        self.host.facts['identity'] = {}
+
+        self.host.facts['identity']['user_name'] = self.host.exec_command('echo %USERNAME%')[0]
         try:
-            self.host.facts['identity']['user_dns_domain'] = self.host.exec_command('echo %USERDNSDOMAIN%')
+            self.host.facts['identity']['user_dns_domain'] = self.host.exec_command('echo %USERDNSDOMAIN%')[0]
         except:
             pass
         try:
-            self.host.facts['identity']['user_domain'] = self.host.exec_command('echo %USERDOMAIN%')
+            self.host.facts['identity']['user_domain'] = self.host.exec_command('echo %USERDOMAIN%')[0]
         except:
             pass
-        self.host.facts['identity']['computer_name'] = self.host.exec_command('echo %COMPUTERNAME%')
+        self.host.facts['identity']['computer_name'] = self.host.exec_command('echo %COMPUTERNAME%')[0]
 
         self.host.facts['identity']['authenticated'] = True
         self.host.facts['identity']['name'] = self.host.facts['identity']['user_name']
 
-        try:
-            self.host.exec_command('su', elevate=True)
-            self.host.facts['identity']['privileged'] = True
-        except ElevationException:
-            self.host.facts['identity']['privileged'] = False
+        # try:
+        #     self.host.exec_command('su', elevate=True)
+        #     self.host.facts['identity']['privileged'] = True
+        # except ElevationException:
+        self.host.facts['identity']['privileged'] = False

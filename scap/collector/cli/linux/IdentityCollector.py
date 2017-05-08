@@ -26,6 +26,8 @@ class IdentityCollector(LinuxCollector):
         if 'identity' in self.host.facts:
             return
 
+        self.host.facts['identity'] = {}
+
         self.host.facts['identity']['effective_user_name'] = self.host.exec_command('id -un')[0]
         self.host.facts['identity']['effective_user_id'] = self.host.exec_command('id -u')[0]
         self.host.facts['identity']['effective_primary_group_name'] = self.host.exec_command('id -gn')[0]
