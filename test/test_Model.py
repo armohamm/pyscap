@@ -521,17 +521,21 @@ def test_to_xml_attributes():
     el = AttributeFixture()
     el.in_test = 'test'
     el.dash_attribute = 'test'
-    el.default_attribute = 'test'
+    el.default_attribute = 'not default'
 
     xml = ET.tostring(el.to_xml())
     assert xml.startswith(b'<test:AttributeFixture xmlns:test="http://jaymes.biz/test"')
     assert b'dash-attribute="test" ' in xml
-    assert b'default_attribute="test" ' in xml
+    assert b'default_attribute="not default" ' in xml
     assert b'in_attribute="test" ' in xml
 
     el.in_test = None
     xml = ET.tostring(el.to_xml())
     assert b'in_attribute=' not in xml
+
+    el.default_attribute = 'test'
+    xml = ET.tostring(el.to_xml())
+    assert b'default_attribute="test" ' not in xml
 
 def test_to_xml_min_max():
     el = MinMaxElementFixture()
