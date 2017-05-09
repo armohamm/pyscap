@@ -26,7 +26,8 @@ from scap.model.xccdf_1_1.IdentityType import IdentityType
 from scap.model.xccdf_1_1.ProfileSetValueType import ProfileSetValueType
 from scap.model.xccdf_1_1.IdrefType import IdrefType
 from scap.model.xccdf_1_1.ScoreType import ScoreType
-
+from scap.model.xccdf_1_1.FactType import FactType
+from scap.model.xccdf_1_1.TargetFactsType import TargetFactsType
 from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
@@ -67,12 +68,51 @@ class ProfileReporter(Reporter):
 
         test_result.targets.append(String(value=host.hostname, tag_name='target'))
 
+        # target facts
+        test_result.target_facts = TargetFactsType(tag_name='target-facts')
+
+        f = FactType(tag_name='fact')
+        f.name = 'urn:scap:fact:asset:identifier:host_name'
+        f.type = 'string'
+        f.text = host.hostname
+        test_result.target_facts.facts.append(f)
+
+        for fqdn in host.facts['fqdn']:
+            f = FactType(tag_name='fact')
+            f.name = 'urn:scap:fact:asset:identifier:fqdn'
+            f.type = 'string'
+            f.text = fqdn
+            test_result.target_facts.facts.append(f)
+
+        f = FactType(tag_name='fact')
+        f.name = 'urn:scap:fact:asset:identifier:guid'
+        f.type = 'string'
+        f.text = host.facts['unique_id']
+        test_result.target_facts.facts.append(f)
+
+        # TODO 'urn:scap:fact:asset:identifier:active_directory'
+
         for dev, netcon in host.facts['network_connections'].items():
+            if 'mac_address' in netcon:
+                f = FactType(tag_name='fact')
+                f.name = 'urn:scap:fact:asset:identifier:mac'
+                f.type = 'string'
+                f.text = netcon['mac_address']
+                test_result.target_facts.facts.append(f)
             for netadd in netcon['network_addresses']:
                 test_result.target_addresses.append(String(tag_name='target-address', value=netadd['address']))
-
-        # TODO test_result.target_facts =
-        # pass off to TargetFactsType
+                if netadd['type'] == 'ipv4':
+                    f = FactType(tag_name='fact')
+                    f.name = 'urn:scap:fact:asset:identifier:ipv4'
+                    f.type = 'string'
+                    f.text = netadd['address']
+                    test_result.target_facts.facts.append(f)
+                elif netadd['type'] == 'ipv6':
+                    f = FactType(tag_name='fact')
+                    f.name = 'urn:scap:fact:asset:identifier:ipv6'
+                    f.type = 'string'
+                    f.text = netadd['address']
+                    test_result.target_facts.facts.append(f)
 
         # TODO test_result.platforms =
 

@@ -32,7 +32,7 @@ class TestResultType(Model):
             {'tag_name': 'profile', 'class': 'IdrefType', 'min': 0, 'max': 1},
             {'tag_name': 'target', 'append': 'targets', 'type': 'String', 'min': 1, 'max': None},
             {'tag_name': 'target-address', 'append': 'target_addresses', 'type': 'String', 'min': 0, 'max': None},
-            {'tag_name': 'target-facts', 'append': 'target_facts', 'class': 'TargetFactsType', 'min': 0, 'max': None},
+            {'tag_name': 'target-facts', 'class': 'TargetFactsType', 'min': 0, 'max': 1},
             {'tag_name': 'platform', 'append': 'platforms', 'class': 'UriIdrefType', 'min': 0, 'max': None},
             {'tag_name': 'set-value', 'map': 'set_values', 'class': 'ProfileSetValueType', 'key': 'idref', 'min': 0, 'max': None},
             {'tag_name': 'rule-result', 'map': 'rule_results', 'class': 'RuleResultType', 'key': 'idref', 'min': 0, 'max': None},
