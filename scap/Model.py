@@ -216,11 +216,8 @@ class Model(object):
 
                 fq_class_name = class_.__module__ + '.' + class_.__name__
 
-                try:
-                    class_.MODEL_MAP
-                except AttributeError:
-                    logger.critical('Class ' + fq_class_name + ' does not define MODEL_MAP')
-                    sys.exit()
+                if not hasattr(class_, 'MODEL_MAP'):
+                    raise TagMappingException('Class ' + fq_class_name + ' does not define MODEL_MAP')
 
                 # overwrite the super class' ns & tag with what we've already loaded
                 try:
