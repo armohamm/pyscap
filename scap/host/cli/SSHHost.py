@@ -190,8 +190,10 @@ class SSHHost(CLIHost):
 
         chan.close()
 
-        out_lines = [line.strip() for line in str.splitlines(self.out_buf)]
+        out_lines = str.splitlines(self.out_buf)
+        out_lines = [line.strip() for line in out_lines]
         err_lines = [line.strip() for line in str.splitlines(self.err_buf)]
+        err_lines = [line.strip() for line in err_lines]
 
         return (status, out_lines,err_lines)
 

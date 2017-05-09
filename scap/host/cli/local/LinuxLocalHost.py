@@ -107,9 +107,9 @@ class LinuxLocalHost(LocalHost):
         sel.unregister(p.stderr)
         sel.close()
 
-        lines = str.splitlines(out_buf)
+        out_lines = str.splitlines(out_buf)
+        out_lines = [line.strip() for line in out_lines]
         err_lines = str.splitlines(err_buf)
+        err_lines = [line.strip() for line in err_lines]
 
-        if len(err_lines) > 0:
-            raise RuntimeError(str(err_lines))
-        return lines
+        return (p.returncode, out_lines, err_lines)

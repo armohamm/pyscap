@@ -15,15 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.host.cli.LocalHost import LocalHost
 import logging
-import sys
-import os
-import selectors
 import subprocess
 import getpass
-import ctypes
 
+from scap.host.cli.LocalHost import LocalHost
 from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
@@ -38,26 +34,23 @@ class WindowsLocalHost(LocalHost):
         except:
             return False
 
-    def exec_command(self, cmd, elevate=False, encoding='cp437'):
+    def exec_command(self, cmd, encoding='cp437'):
         inventory = Inventory()
 
         logger.debug("Sending command: " + cmd)
-        if elevate:
-            ctypes.windll.shell32.ShellExecuteW(None, "runas", 'cmd', '/c "' + cmd.replace('"', r'\"') + '"', None, 1)
-        else:
-            p = subprocess.run(cmd,
-                stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE,
-                shell=True)
+        p = subprocess.run(cmd,
+            stdout=subprocess.PIPE, stdin=subprocess.PIPE, stderr=subprocess.PIPE,
+            shell=True)
 
         #logger.debug('Got stdout: ' + str(p.stdout))
         #logger.debug('Got stderr: ' + str(p.stderr))
 
-        lines = str.splitlines(p.stdout.replace(b'\r\r', b'\r').decode(encoding))
+        out_lines = str.splitlines(p.stdout.replace(b'\r\r', b'\r').decode(encoding))
+        out_lines = [line.strip() for line in out_lines]
         err_lines = str.splitlines(p.stderr.replace(b'\r\r', b'\r').decode(encoding))
+        err_lines = [line.strip() for line in err_lines]
 
-        #logger.debug('stdout lines: ' + str(lines))
+        #logger.debug('stdout lines: ' + str(out_lines))
         #logger.debug('stderr lines: ' + str(err_lines))
 
-        if len(err_lines) > 0:
-            raise RuntimeError(str(err_lines))
-        return lines
+        return (p.returncode, out_lines, err_lines)
