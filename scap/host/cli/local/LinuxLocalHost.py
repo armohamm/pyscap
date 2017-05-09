@@ -108,8 +108,8 @@ class LinuxLocalHost(LocalHost):
         sel.close()
 
         out_lines = str.splitlines(out_buf)
-        out_lines = [line.strip() for line in out_lines]
+        out_lines = [line.strip('\x0A\x0D') for line in out_lines]
         err_lines = str.splitlines(err_buf)
-        err_lines = [line.strip() for line in err_lines]
+        err_lines = [line.strip('\x0A\x0D') for line in err_lines]
 
         return (p.returncode, out_lines, err_lines)

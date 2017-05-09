@@ -46,9 +46,9 @@ class WindowsLocalHost(LocalHost):
         #logger.debug('Got stderr: ' + str(p.stderr))
 
         out_lines = str.splitlines(p.stdout.replace(b'\r\r', b'\r').decode(encoding))
-        out_lines = [line.strip() for line in out_lines]
+        out_lines = [line.strip('\x0A\x0D') for line in out_lines]
         err_lines = str.splitlines(p.stderr.replace(b'\r\r', b'\r').decode(encoding))
-        err_lines = [line.strip() for line in err_lines]
+        err_lines = [line.strip('\x0A\x0D') for line in err_lines]
 
         #logger.debug('stdout lines: ' + str(out_lines))
         #logger.debug('stderr lines: ' + str(err_lines))
