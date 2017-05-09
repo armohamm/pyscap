@@ -38,14 +38,12 @@ class ProfileReporter(Reporter):
 
         # attributes
         test_result.id = TestResultType.generate_id()
+        test_result.Id = test_result.id
 
         test_result.start_time = profile_facts['start_time']
-
         test_result.end_time = profile_facts['end_time']
 
         test_result.test_system = 'pyscap ' + VERSION
-
-        test_result.Id = test_result.id
 
         # elements
         t = TextType(tag_name='title')
@@ -69,7 +67,9 @@ class ProfileReporter(Reporter):
 
         test_result.targets.append(String(value=host.hostname, tag_name='target'))
 
-        # TODO test_result.target_addresses =
+        for dev, netcon in host.facts['network_connections'].items():
+            for netadd in netcon['network_addresses']:
+                test_result.target_addresses.append(String(tag_name='target-address', value=netadd['address']))
 
         # TODO test_result.target_facts =
         # pass off to TargetFactsType
