@@ -25,7 +25,18 @@ host = Host.load('localhost')
 for col in host.detect_collectors({}):
     col.collect()
 
+def test_collected_identity():
+    assert 'identity' in host.facts
+    assert isinstance(host.facts['identity'], dict)
+    assert 'name' in host.facts['identity']
+    assert isinstance(host.facts['identity']['name'], str)
+    assert 'authenticated' in host.facts['identity']
+    assert isinstance(host.facts['identity']['authenticated'], bool)
+    assert 'privileged' in host.facts['identity']
+    assert isinstance(host.facts['identity']['privileged'], bool)
+
 def test_collected_system_uuid():
+    assert 'unique_id' in host.facts
     unique_id = host.facts['unique_id']
 
     assert isinstance(unique_id, str)
