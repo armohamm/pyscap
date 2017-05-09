@@ -28,5 +28,6 @@ class AuthenticationException(Exception):
 
 class CLIHost(Host):
     def exec_command(self, cmd):
+        ''' should return (status, out_lines, err_lines) '''
         import inspect
         raise NotImplementedError(inspect.stack()[0][3] + '() has not been implemented in subclass: ' + self.__class__.__name__)
