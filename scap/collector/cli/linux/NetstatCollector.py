@@ -27,7 +27,8 @@ class NetstatCollector(LinuxCollector):
             return
 
         self.host.facts['network_services'] = []
-        for line in self.host.exec_command('netstat -ln --ip'):
+        return_code, out_lines, err_lines = self.host.exec_command('netstat -ln --ip')
+        for line in out_lines:
             m = re.match(r'^(tcp|udp)\s+\d+\s+\d+\s+([0-9.]+):([0-9]+)', line)
             if m:
                 # NOTE: using tcp|udp as the protocol is in conflict with the ai standard's

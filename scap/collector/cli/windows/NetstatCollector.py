@@ -29,7 +29,8 @@ class NetstatCollector(WindowsCollector):
         if 'netstat' in self.host.facts:
             return
 
-        self.host.facts['netstat'] = self.host.exec_command('netstat -n -a')
+        return_code, out_lines, err_lines = self.host.exec_command('netstat -n -a')
+        self.host.facts['netstat'] = out_lines
 
         if 'network_services' not in self.host.facts:
             self.host.facts['network_services'] = []

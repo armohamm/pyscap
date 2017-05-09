@@ -21,6 +21,7 @@ import re, logging
 logger = logging.getLogger(__name__)
 class HostnameCollector(WindowsCollector):
     def collect(self):
-        self.host.facts['hostname'] = self.host.exec_command('hostname')[0].strip()
+        return_code, out_lines, err_lines = self.host.exec_command('hostname')
+        self.host.facts['hostname'] = out_lines[0]
 
         logger.debug('Hostname: ' + self.host.facts['hostname'])

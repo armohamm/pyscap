@@ -97,7 +97,8 @@ class RegUninstallCollector(WindowsCollector):
         self.host.facts['registry']['uninstall'] = []
         entry = None
         last_name = None
-        for line in self.host.exec_command('reg query HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall /s', encoding='cp437'):
+        return_code, out_lines, err_lines = self.host.exec_command('reg query HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall /s', encoding='cp437')
+        for line in out_lines:
             # skip blank lines
             if re.match(r'^\s*$', line):
                 continue
@@ -109,7 +110,7 @@ class RegUninstallCollector(WindowsCollector):
                 entry = {'location': line}
                 continue
 
-            m = re.match(r'^\s+(\S+)\s+(\S+)\s*$', line)
+            m = re.match(r'^\s*(\S+)\s+(\S+)\s*$', line)
             if m:
                 name = m.group(1)
                 last_name = name
@@ -121,7 +122,7 @@ class RegUninstallCollector(WindowsCollector):
                 else:
                     logger.debug('Unknown uninstall registry subkey: ' + name)
 
-            m = re.match(r'^\s+(\S+)\s+(\S+)\s+(.+)\s*$', line)
+            m = re.match(r'^\s*(\S+)\s+(\S+)\s+(.+)\s*$', line)
             if m:
                 name = m.group(1)
                 last_name = name

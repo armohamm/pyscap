@@ -22,4 +22,5 @@ import re, logging
 logger = logging.getLogger(__name__)
 class UNameCollector(CLICollector):
     def collect(self):
-        self.host.facts['uname'] = self.host.exec_command('uname -a')[0]
+        return_code, out_lines, err_lines = self.host.exec_command('uname -a')
+        self.host.facts['uname'] = out_lines[0]

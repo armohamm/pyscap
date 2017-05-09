@@ -18,6 +18,7 @@
 import logging
 
 from scap.collector.cli.WindowsCollector import WindowsCollector
+from scap.host.CLIHost import ElevationException
 
 logger = logging.getLogger(__name__)
 class IdentityCollector(WindowsCollector):
@@ -27,22 +28,32 @@ class IdentityCollector(WindowsCollector):
 
         self.host.facts['identity'] = {}
 
-        self.host.facts['identity']['user_name'] = self.host.exec_command('echo %USERNAME%')[0]
-        try:
-            self.host.facts['identity']['user_dns_domain'] = self.host.exec_command('echo %USERDNSDOMAIN%')[0]
-        except:
-            pass
-        try:
-            self.host.facts['identity']['user_domain'] = self.host.exec_command('echo %USERDOMAIN%')[0]
-        except:
-            pass
-        self.host.facts['identity']['computer_name'] = self.host.exec_command('echo %COMPUTERNAME%')[0]
-
+        return_code, out_lines, err_lines = self.host.exec_command('echo %USERNAME%')
+        self.host.facts['identity']['user_name'] = out_lines[0]
+        return_code, out_lines, err_lines = self.host.exec_command('echo %COMPUTERNAME%')
+        self.host.facts['identity']['computer_name'] = out_lines[0]
         self.host.facts['identity']['authenticated'] = True
-        self.host.facts['identity']['name'] = self.host.facts['identity']['user_name']
 
-        # try:
-        #     self.host.exec_command('su', elevate=True)
-        #     self.host.facts['identity']['privileged'] = True
-        # except ElevationException:
-        self.host.facts['identity']['privileged'] = False
+        try:
+            return_code, out_lines, err_lines = self.host.exec_command('echo %USERDNSDOMAIN%')
+            self.host.facts['identity']['user_dns_domain'] = out_lines[0]
+            self.host.facts['identity']['name'] = self.host.facts['identity']['user_name'] + '@' + self.host.facts['identity']['user_dns_domain']
+        except:
+            pass
+
+        try:
+            return_code, out_lines, err_lines = self.host.exec_command('echo %USERDOMAIN%')
+            self.host.facts['identity']['user_domain'] = out_lines[0]
+            self.host.facts['identity']['name'] = self.host.facts['identity']['user_domain'] + '\\' + self.host.facts['identity']['user_name']
+        except:
+            pass
+
+        if 'name' not in self.host.facts['identity']:
+            # must be local account
+            self.host.facts['identity']['name'] = self.host.facts['identity']['computer_name'] + '\\' + self.host.facts['identity']['user_name']
+
+        return_code, out_lines, err_lines = self.host.exec_command('"%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system" >nul 2>&1')
+        if return_code == 0:
+            self.host.facts['identity']['privileged'] = True
+        else:
+            self.host.facts['identity']['privileged'] = False

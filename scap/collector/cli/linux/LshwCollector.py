@@ -29,7 +29,8 @@ class LshwCollector(LinuxCollector):
         try:
             path = [{}]
             indents = [0]
-            for line in self.host.exec_command('lshw', sudo=True):
+            return_code, out_lines, err_lines = self.host.exec_command('lshw', sudo=True)
+            for line in out_lines:
                 m = re.match(r'^([ ]+)\*-(\S+)', line)
                 if m:
                     if 'vendor' in path[-1] and 'product' in path[-1] and path[-1]['vendor'] != '000000000000':

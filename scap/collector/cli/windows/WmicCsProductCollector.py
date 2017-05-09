@@ -38,7 +38,8 @@ class WmicCsProductCollector(WindowsCollector):
 
         self.host.facts['wmic']['csproduct'] = {}
 
-        for line in self.host.exec_command('wmic csproduct list full'):
+        return_code, out_lines, err_lines = self.host.exec_command('wmic csproduct list full')
+        for line in out_lines:
             line = line.strip()
 
             # skip blank lines

@@ -21,5 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class RootFsUuidCollector(LinuxCollector):
     def collect(self):
-        self.host.facts['root_uuid'] = self.host.exec_command("blkid -o value `mount -l | grep 'on / ' | awk '{print $1}'` | head -n1", sudo=True)[0].strip()
+        return_code, out_lines, err_lines = self.host.exec_command("blkid -o value `mount -l | grep 'on / ' | awk '{print $1}'` | head -n1", sudo=True)
+        self.host.facts['root_uuid'] = out_lines[0]
         logger.debug('Root FS UUID: ' + self.host.facts['root_uuid'])

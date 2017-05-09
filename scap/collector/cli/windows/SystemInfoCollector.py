@@ -58,7 +58,8 @@ class SystemInfoCollector(WindowsCollector):
     }
 
     def collect(self):
-        systeminfo = self.host.exec_command('systeminfo')
+        return_code, out_lines, err_lines = self.host.exec_command('systeminfo')
+        systeminfo = out_lines
         #self.host.facts['_systeminfo_lines'] = systeminfo
 
         if 'systeminfo' in self.host.facts:
@@ -96,7 +97,7 @@ class SystemInfoCollector(WindowsCollector):
                     multiline = None
                 elif multiline == 'Network Card(s)':
                     if ip_addresses:
-                        m = re.match(r'^                                 \[[0-9]+\]:\s+(.*)$', line)
+                        m = re.match(r'^\s+\[[0-9]+\]:\s+(.*)$', line)
                         if m:
                             self.host.facts['systeminfo']['network_card'][cur_network_card]['IP address(es)'].append(m.group(1))
                             continue
@@ -104,13 +105,13 @@ class SystemInfoCollector(WindowsCollector):
                             ip_addresses = False
 
                     if cur_network_card is not None:
-                        m = re.match(r'^                                 (IP address\(es\))\s*$', line)
+                        m = re.match(r'^\s+(IP address\(es\))\s*$', line)
                         if m:
                             self.host.facts['systeminfo']['network_card'][cur_network_card][m.group(1)] = []
                             ip_addresses = True
                             continue
 
-                        m = re.match(r'^                                 (.+):\s+(.+)$', line)
+                        m = re.match(r'^\s+(.+):\s+(.+)$', line)
                         if m:
                             self.host.facts['systeminfo']['network_card'][cur_network_card][m.group(1)] = m.group(2)
                             continue

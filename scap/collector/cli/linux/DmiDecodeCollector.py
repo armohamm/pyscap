@@ -24,10 +24,10 @@ import uuid
 logger = logging.getLogger(__name__)
 class DmiDecodeCollector(LinuxCollector):
     def collect(self):
-        lines = self.host.exec_command('dmidecode --type 1', sudo=True)
+        return_code, out_lines, err_lines = self.host.exec_command('dmidecode --type 1', sudo=True)
 
         u = ''
-        for line in lines:
+        for line in out_lines:
             if "UUID" in line:
                 line      = line.replace(" ","")
                 pos       = line.find(":")

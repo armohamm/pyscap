@@ -57,7 +57,8 @@ class WmicPnPEntityCollector(WindowsCollector):
 
         self.host.facts['wmic']['pnp_entity'] = []
         entity = None
-        for line in self.host.exec_command('wmic path Win32_PnPEntity get /format:list'):
+        return_code, out_lines, err_lines = self.host.exec_command('wmic path Win32_PnPEntity get /format:list')
+        for line in out_lines:
             line = line.strip()
 
             # skip blank lines

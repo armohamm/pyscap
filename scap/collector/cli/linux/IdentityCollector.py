@@ -28,27 +28,40 @@ class IdentityCollector(LinuxCollector):
 
         self.host.facts['identity'] = {}
 
-        self.host.facts['identity']['effective_user_name'] = self.host.exec_command('id -un')[0]
-        self.host.facts['identity']['effective_user_id'] = self.host.exec_command('id -u')[0]
-        self.host.facts['identity']['effective_primary_group_name'] = self.host.exec_command('id -gn')[0]
-        self.host.facts['identity']['effective_primary_group_id'] = self.host.exec_command('id -g')[0]
-        self.host.facts['identity']['effective_all_groups'] = self.host.exec_command('id -Gn')[0]
-        self.host.facts['identity']['effective_all_group_ids'] = self.host.exec_command('id -G')[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -un')
+        self.host.facts['identity']['effective_user_name'] = out_lines[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -u')
+        self.host.facts['identity']['effective_user_id'] = out_lines[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -gn')
+        self.host.facts['identity']['effective_primary_group_name'] = out_lines[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -g')
+        self.host.facts['identity']['effective_primary_group_id'] = out_lines[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -Gn')
+        self.host.facts['identity']['effective_all_groups'] = out_lines[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -G')
+        self.host.facts['identity']['effective_all_group_ids'] = out_lines[0]
 
-        self.host.facts['identity']['real_user_name'] = self.host.exec_command('id -run')[0]
-        self.host.facts['identity']['real_user_id'] = self.host.exec_command('id -ru')[0]
-        self.host.facts['identity']['real_primary_group_name'] = self.host.exec_command('id -rgn')[0]
-        self.host.facts['identity']['real_primary_group_id'] = self.host.exec_command('id -rg')[0]
-        self.host.facts['identity']['real_all_groups'] = self.host.exec_command('id -rGn')[0]
-        self.host.facts['identity']['real_all_group_ids'] = self.host.exec_command('id -rG')[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -run')
+        self.host.facts['identity']['real_user_name'] = out_lines[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -ru')
+        self.host.facts['identity']['real_user_id'] = out_lines[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -rgn')
+        self.host.facts['identity']['real_primary_group_name'] = out_lines[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -rg')
+        self.host.facts['identity']['real_primary_group_id'] = out_lines[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -rGn')
+        self.host.facts['identity']['real_all_groups'] = out_lines[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -rG')
+        self.host.facts['identity']['real_all_group_ids'] = out_lines[0]
 
-        self.host.facts['identity']['security_context'] = self.host.exec_command('id -Z')[0]
+        return_code, out_lines, err_lines = self.host.exec_command('id -Z')
+        self.host.facts['identity']['security_context'] = out_lines[0]
 
         self.host.facts['identity']['authenticated'] = True
         self.host.facts['identity']['name'] = self.host.facts['identity']['effective_user_name']
 
-        try:
-            self.host.exec_command('su', sudo=True)
+        return_code, out_lines, err_lines = self.host.exec_command('su', sudo=True)
+        if return_code != 0:
             self.host.facts['identity']['privileged'] = True
-        except ElevationException:
+        else:
             self.host.facts['identity']['privileged'] = False

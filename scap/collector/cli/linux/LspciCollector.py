@@ -25,7 +25,8 @@ class LspciCollector(LinuxCollector):
         # TODO convert to a provider collector
         try:
             cpe = CPE(part='h')
-            for line in self.host.exec_command('lspci -vmm', sudo=True):
+            return_code, out_lines, err_lines = self.host.exec_command('lspci -vmm', sudo=True)
+            for line in out_lines:
                 m = re.match(r'^[^:]+:\s+(.+)$', line)
                 if m:
                     name = m.group(1)

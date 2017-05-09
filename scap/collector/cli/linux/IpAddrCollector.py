@@ -24,7 +24,8 @@ class IpAddrCollector(LinuxCollector):
         if 'network_connections' not in self.host.facts:
             self.host.facts['network_connections'] = {}
 
-        for line in self.host.exec_command('ip addr'):
+        return_code, out_lines, err_lines = self.host.exec_command('ip addr')
+        for line in out_lines:
             # index line
             m = re.match(r'^\d+:\s+([A-Za-z0-9.]+):', line)
             if m:

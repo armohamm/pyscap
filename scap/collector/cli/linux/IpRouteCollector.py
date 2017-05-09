@@ -24,7 +24,8 @@ class IpRouteCollector(LinuxCollector):
         if 'network_connections' not in self.host.facts:
             self.host.facts['network_connections'] = {}
 
-        for line in self.host.exec_command('ip route'):
+        return_code, out_lines, err_lines = self.host.exec_command('ip route')
+        for line in out_lines:
             m = re.match(r'^default via ([0-9.]+) dev\s+([A-Za-z0-9.]+)', line)
             if m:
                 route = m.group(1)

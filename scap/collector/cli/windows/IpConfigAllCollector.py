@@ -51,7 +51,8 @@ class IpConfigAllCollector(WindowsCollector):
         if 'ipconfig_all' in self.host.facts:
             return
 
-        self.host.facts['ipconfig_all'] = self.host.exec_command('ipconfig /all')
+        return_code, out_lines, err_lines = self.host.exec_command('ipconfig /all')
+        self.host.facts['ipconfig_all'] = out_lines
 
         if 'network_connections' not in self.host.facts:
             self.host.facts['network_connections'] = {}
@@ -74,7 +75,7 @@ class IpConfigAllCollector(WindowsCollector):
                     self.host.facts['network_connections'][dev] = {'type': type_}
                 continue
 
-            m = re.match(r'^\s+([^.]+)[. ]+: (.*)$', line)
+            m = re.match(r'^\s*([^.]+)[. ]+: (.*)$', line)
             if m:
                 name = m.group(1).strip()
                 if name in self.VALUE_MAP:
@@ -91,7 +92,7 @@ class IpConfigAllCollector(WindowsCollector):
                     self.host.facts['network_connections'][dev][name] = value
                 continue
 
-            m = re.match(r'^\s+([^:]+)$', line)
+            m = re.match(r'^\s*([^:]+)$', line)
             if m:
                 value = m.group(1)
                 if dev is None:
