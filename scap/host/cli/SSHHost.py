@@ -186,18 +186,14 @@ class SSHHost(CLIHost):
                 self._recv_stderr(chan, sudo)
                 break
 
+        status = chan.recv_exit_status()
+
         chan.close()
 
-        lines = str.splitlines(self.out_buf)
-        for i in range(len(lines)):
-            lines[i] = lines[i].strip()
-        err_lines = str.splitlines(self.err_buf)
-        for i in range(len(err_lines)):
-            err_lines[i] = err_lines[i].strip()
+        out_lines = [line.strip() for line in str.splitlines(self.out_buf)]
+        err_lines = [line.strip() for line in str.splitlines(self.err_buf)]
 
-        if len(err_lines) > 0:
-            raise RuntimeError(str(err_lines))
-        return lines
+        return (status, out_lines,err_lines)
 
     def disconnect(self):
         self.client.close()
