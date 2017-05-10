@@ -35,7 +35,7 @@ class ColorFormatter(logging.Formatter):
         'DEBUG': [FG_BLUE, BOLD],
     }
     def format(self, record):
-        if sys.platform != 'win32' and sys.stdout.isatty():
+        if sys.platform != 'win32' and not sys.stdout.closed and sys.stdout.isatty():
             levelname = record.levelname
             if levelname in self.COLORS:
                 levelname_color = self.COLOR_SEQ % ';'.join(map(str, self.COLORS[levelname])) + levelname + self.RESET_SEQ
