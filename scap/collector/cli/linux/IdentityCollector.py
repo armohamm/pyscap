@@ -55,7 +55,8 @@ class IdentityCollector(LinuxCollector):
         self.host.facts['identity']['real_all_group_ids'] = out_lines[0]
 
         return_code, out_lines, err_lines = self.host.exec_command('id -Z')
-        self.host.facts['identity']['security_context'] = out_lines[0]
+        if len(out_lines) > 0:
+            self.host.facts['identity']['security_context'] = out_lines[0]
 
         self.host.facts['identity']['authenticated'] = True
         self.host.facts['identity']['name'] = self.host.facts['identity']['effective_user_name']
