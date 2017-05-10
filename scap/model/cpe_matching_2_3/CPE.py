@@ -538,6 +538,11 @@ class CPE(object):
             raise CpeParseException('Invalid component name: ' + name)
         return self.values[name].singles_after
 
+    def get_value(self, name):
+        if name not in CPE.INDEX:
+            raise CpeParseException('Invalid component name: ' + name)
+        return self.values[name]
+        
     def set_value(self, name, value):
         if name not in CPE.INDEX:
             raise CpeParseException('Invalid component name: ' + name)
