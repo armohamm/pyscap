@@ -21,12 +21,6 @@ import logging
 logger = logging.getLogger(__name__)
 class ResourceType(Model):
     MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'title', 'append': 'titles', 'class': 'TitleEltType', 'min': 0, 'max': None},
-            {'tag_name': 'resource', 'append': 'resources', 'class': 'ResourceType', 'min': 0, 'max': None},
-            {'tag_name': 'locator', 'append': 'locators', 'class': 'LocatorType', 'min': 0, 'max': None},
-            {'tag_name': 'arc', 'append': 'arcs', 'class': 'ArcType', 'min': 0, 'max': None},
-        ],
         'attributes': {
             '{http://www.w3.org/1999/xlink}type': {'enum': ['resource'], 'required': True},
         },
