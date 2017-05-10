@@ -15,8 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xlink.Model import Model
 import logging
+import requests
+import xml.etree.ElementTree as ET
+
+from scap.model.xlink.Model import Model
 
 logger = logging.getLogger(__name__)
 class Simple(Model):
@@ -25,3 +28,14 @@ class Simple(Model):
             '{http://www.w3.org/1999/xlink}type': {'enum': ['simple']},
         },
     }
+
+    def from_xml(self, parent, el):
+        super(self, Model).from_xml(parent, el)
+
+        try:
+            r = requests.get(self.href, stream=True)
+        except:
+            return
+
+        sub_el = ET.parse(r.raw)
+        self._parse_element(sub_el)
