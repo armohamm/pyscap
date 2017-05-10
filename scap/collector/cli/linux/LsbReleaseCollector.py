@@ -15,37 +15,59 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import re
+import logging
+
 from scap.collector.cli.LinuxCollector import LinuxCollector
 from scap.model.cpe_matching_2_3.CPE import CPE
-import re, logging, pprint
 
 logger = logging.getLogger(__name__)
 class LsbReleaseCollector(LinuxCollector):
-    LSB_RELEASE_DISTRIBUTOR_MAP = {
-        'RedHatEnterpriseServer': 'redhat'
-    }
-
     def collect(self):
-        # TODO convert to a provider collector
         try:
-            cpe = CPE(part='o')
-            return_code, out_lines, err_lines = self.host.exec_command('lsb_release -a', sudo=True)
-            for line in out_lines:
-                m = re.match(r'^[^:]+:\s+(.+)$', line)
-                if m:
-                    name = m.group(1)
-                    value = m.group(2)
-                    if name == 'Distributor ID':
-                        if value in CPECollector.LSB_RELEASE_DISTRIBUTOR_MAP:
-                            cpe.set_value('vendor', LsbReleaseCollector.LSB_RELEASE_DISTRIBUTOR_MAP[value])
-                    elif name == 'Description':
-                        if value.contains('Enterprise Linux Server'):
-                            cpe.set_value('product', 'enterprise_linux')
-                    elif name == 'Release':
-                        cpe.set_value('version', value)
-                else:
-                    if cpe not in self.host.facts['cpe']['os']:
-                        self.host.facts['cpe']['os'].append(cpe)
-                    return
+            return_code, out_lines, err_lines = self.host.exec_command('lsb_release -a')
         except:
-            pass
+            return
+
+        cpe = CPE(part='o')
+        for line in out_lines:
+            m = re.match(r'^([^:]+):\s+(.+)$', line)
+            if m:
+                name = m.group(1)
+                value = m.group(2)
+
+                if name == 'Distributor ID':
+                    if re.match(r'^RedHat', value):
+                        cpe.set_value('vendor', 'redhat')
+                    elif re.match(r'Debian', value):
+                        cpe.set_value('vendor', 'debian')
+                    elif re.match(r'LinuxMint', value):
+                        cpe.set_value('vendor', 'linuxmint')
+                        cpe.set_value('product', 'linux_mint')
+                    elif re.match(r'Arch', value):
+                        cpe.set_value('vendor', 'archlinux')
+                        cpe.set_value('product', 'archlinux')
+                    elif re.match(r'openSUSE project', value):
+                        cpe.set_value('vendor', 'opensuse_project')
+                        cpe.set_value('product', 'opensuse_project')
+                    elif re.match(r'Ubuntu', value):
+                        cpe.set_value('vendor', 'ubuntu')
+                        cpe.set_value('product', 'ubuntu')
+                    elif re.match(r'CentOS', value):
+                        cpe.set_value('vendor', 'centos')
+                        cpe.set_value('product', 'centos')
+
+                elif name == 'Description':
+                    vendor = cpe.get_value('vendor')
+                    if vendor == 'redhat':
+                        if re.match(r'^Enterprise Linux', value):
+                            cpe.set_value('product', 'enterprise_linux')
+
+                elif name == 'Release':
+                    cpe.set_value('version', value)
+
+        if 'cpe' not in self.host.facts:
+            self.host.facts['cpe'] = {'os':[], 'application':[], 'hardware':[]}
+
+        if cpe not in self.host.facts['cpe']['os']:
+            self.host.facts['cpe']['os'].append(cpe)
