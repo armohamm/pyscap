@@ -43,6 +43,8 @@ class CPE(object):
                 self.from_fs(fs)
 
         def __eq__(self, other):
+            if not isinstance(other, CPE.Value):
+                return False
             if self.ANY != other.ANY:
                 return False
             if self.NA != other.NA:
@@ -542,7 +544,7 @@ class CPE(object):
         if name not in CPE.INDEX:
             raise CpeParseException('Invalid component name: ' + name)
         return self.values[name]
-        
+
     def set_value(self, name, value):
         if name not in CPE.INDEX:
             raise CpeParseException('Invalid component name: ' + name)
