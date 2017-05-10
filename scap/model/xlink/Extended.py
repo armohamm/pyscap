@@ -29,7 +29,5 @@ class Extended(Model):
         ],
         'attributes': {
             '{http://www.w3.org/1999/xlink}type': {'enum': ['extended'], 'required': True},
-            '{http://www.w3.org/1999/xlink}role': {'type': 'AnyURI'}, # min length = 1
-            '{http://www.w3.org/1999/xlink}title': {'type': 'String'},
         },
     }
