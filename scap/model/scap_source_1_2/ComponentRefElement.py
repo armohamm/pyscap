@@ -15,18 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
+from scap.model.xlink.XLinkModel import XLinkModel
 import logging
 
 logger = logging.getLogger(__name__)
-class ComponentRefElement(Model):
+class ComponentRefElement(XLinkModel):
     MODEL_MAP = {
         'elements': [
             {'xmlns': 'urn:oasis:names:tc:entity:xmlns:xml:catalog', 'tag_name': 'catalog', 'class': 'Catalog', 'min': 0},
         ],
         'attributes': {
             'id': {'required': True, 'type': 'ComponentRefIDPattern'},
-            '{http://www.w3.org/1999/xlink}type': {'enum': ['simple']},
-            '{http://www.w3.org/1999/xlink}href': {'type': 'String', 'required': True},
         },
     }
