@@ -15,9 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import re
+import logging
+
 from scap.collector.cli.LinuxCollector import LinuxCollector
 from scap.model.cpe_matching_2_3.CPE import CPE
-import re, logging, pprint
 
 logger = logging.getLogger(__name__)
 class CPECollector(LinuxCollector):
@@ -47,7 +49,18 @@ class CPECollector(LinuxCollector):
         UNameCollector(self.host, self.args).collect()
 
         # application
-        # TODO rpm -qa
+        for cpe in self.host.facts['cpe']['os']:
+            if CPE(part='o', vendor='ubuntu').matches(cpe) \
+            or CPE(part='o', vendor='debian').matches(cpe) \
+            or CPE(part='o', vendor='linuxmint').matches(cpe):
+                print('match for deb')
+                from scap.collector.cli.linux.DpkgCollector import DpkgCollector
+                DpkgCollector(self.host, self.args).collect()
+
+            # TODO Red Hat, CentOS: yum, rpm
+            # TODO Fedora: dnf
+            # TODO OpenSUSE: zypper
+            # TODO Arch: pacman
 
         for cpe_part in self.host.facts['cpe']:
             for cpe in self.host.facts['cpe'][cpe_part]:
