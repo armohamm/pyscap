@@ -25,6 +25,7 @@ import getpass
 from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
 class LinuxLocalHost(LocalHost):
     def detect_collectors(self, args):
         from scap.collector.cli.LinuxCollector import LinuxCollector
@@ -61,16 +62,21 @@ class LinuxLocalHost(LocalHost):
         sel.register(p.stdout, selectors.EVENT_READ)
         sel.register(p.stderr, selectors.EVENT_READ)
         while True:
-            for (key, events) in sel.select():
+            ready_list = sel.select(10)
+            if len(ready_list) == 0:
+                # timeout
+                p.stdin.close()
+                break
+            for (key, events) in ready_list:
                 if key.fileobj is p.stdout and events & selectors.EVENT_READ:
                     outs = p.stdout.buffer.read1(1024).decode()
                     if len(outs) > 0:
-                        #logger.debug('Got stdout: ' + outs)
+                        logger.debug('Got stdout: ' + outs)
                         out_buf += outs
                 elif key.fileobj is p.stderr and events & selectors.EVENT_READ:
                     errs = p.stderr.buffer.read1(1024).decode()
                     if len(errs) > 0:
-                        #logger.debug('Got stderr: ' + errs)
+                        logger.debug('Got stderr: ' + errs)
                         err_buf += errs
                     if sudo and err_buf.startswith(sudo_prompt):
                         logger.debug("Sending sudo_password...")
@@ -80,6 +86,7 @@ class LinuxLocalHost(LocalHost):
 
             if p.stdout.closed and p.stderr.closed:
                 p.stdin.close()
+                p.poll()
                 break
 
             if p.poll() is not None:
@@ -89,13 +96,13 @@ class LinuxLocalHost(LocalHost):
         if not p.stdout.closed:
             outs = p.stdout.buffer.read1(1024).decode()
             if len(outs) > 0:
-                #logger.debug('Got stdout: ' + outs)
+                logger.debug('Got extra-loop stdout: ' + outs)
                 out_buf += outs
 
         if not p.stderr.closed:
             errs = p.stderr.buffer.read1(1024).decode()
             if len(errs) > 0:
-                #logger.debug('Got stderr: ' + errs)
+                logger.debug('Got extra-loop stderr: ' + errs)
                 err_buf += errs
             if sudo and err_buf.startswith(sudo_prompt):
                 logger.debug("Sending sudo_password...")
