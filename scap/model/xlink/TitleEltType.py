@@ -15,5 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
-}
+from scap.model.xlink.Model import Model
+import logging
+
+logger = logging.getLogger(__name__)
+class TitleEltType(Model):
+    MODEL_MAP = {
+        'attributes': {
+            '{http://www.w3.org/1999/xlink}type': {'enum': ['title'], 'required': True},
+        },
+    }
