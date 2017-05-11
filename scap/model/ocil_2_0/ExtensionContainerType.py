@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class ExtensionContainerType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': '*', 'append': 'additional_data', 'min': 1, 'max': None},
+            {'tag_name': '*', 'list': 'additional_data', 'min': 1, 'max': None},
         ],
     }

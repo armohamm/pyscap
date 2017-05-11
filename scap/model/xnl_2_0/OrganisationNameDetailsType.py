@@ -24,9 +24,9 @@ class OrganisationNameDetailsElement(Model):
     MODEL_MAP = {
         'tag_name': 'OrganisationNameDetails',
         'elements': [
-            {'tag_name': 'NameLine', 'append': 'name_lines', 'class': 'NameLineType'},
-            {'tag_name': 'OrganisationName', 'append': 'organisation_name', 'class': 'OrganisationNameElement'},
-            {'tag_name': 'OrganisationType', 'append': 'organisation_type', 'class': 'OrganisationTypeElement'},
+            {'tag_name': 'NameLine', 'list': 'name_lines', 'class': 'NameLineType'},
+            {'tag_name': 'OrganisationName', 'list': 'organisation_name', 'class': 'OrganisationNameElement'},
+            {'tag_name': 'OrganisationType', 'list': 'organisation_type', 'class': 'OrganisationTypeElement'},
         ],
         'attributes': {
             'Type': {},

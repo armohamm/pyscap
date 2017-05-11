@@ -24,8 +24,8 @@ class PostalRouteType(Model):
     MODEL_MAP = {
         'tag_name': 'PostalRoute',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'PostalRouteName', 'append': 'postal_route_names', 'class': 'PostalRouteNameType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'PostalRouteName', 'list': 'postal_route_names', 'class': 'PostalRouteNameType'},
             {'tag_name': 'PostalRouteNumber', 'in': 'postal_route_number', 'class': 'PostalRouteNumberType'},'*': {},
         ],
         'attributes': {

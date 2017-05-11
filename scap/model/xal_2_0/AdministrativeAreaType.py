@@ -24,8 +24,8 @@ class AdministrativeAreaType(Model):
     MODEL_MAP = {
         'tag_name': 'AdministrativeArea',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'AdministrativeAreaName', 'append': 'administrative_areas', 'class': 'AdministrativeAreaNameType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'AdministrativeAreaName', 'list': 'administrative_areas', 'class': 'AdministrativeAreaNameType'},
             {'tag_name': 'SubAdministrativeArea', 'in': 'sub_administrative_area', 'class': 'SubAdministrativeAreaNameType'},
             {'tag_name': 'Locality', 'in': 'locality', 'class': 'LocalityType'},
             {'tag_name': 'PostOffice', 'in': 'post_office', 'class': 'PostOfficeType'},

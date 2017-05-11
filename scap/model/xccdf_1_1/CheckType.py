@@ -24,9 +24,9 @@ logger = logging.getLogger(__name__)
 class CheckType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'check-import', 'class': 'CheckImportType', 'append': 'check_imports', 'min': 0, 'max': None},
-            {'tag_name': 'check-export', 'class': 'CheckExportType', 'append': 'check_exports', 'min': 0, 'max': None},
-            {'tag_name': 'check-content-ref', 'class': 'CheckContentRefType', 'append': 'check_content_refs', 'min': 0, 'max': None},
+            {'tag_name': 'check-import', 'class': 'CheckImportType', 'list': 'check_imports', 'min': 0, 'max': None},
+            {'tag_name': 'check-export', 'class': 'CheckExportType', 'list': 'check_exports', 'min': 0, 'max': None},
+            {'tag_name': 'check-content-ref', 'class': 'CheckContentRefType', 'list': 'check_content_refs', 'min': 0, 'max': None},
             {'tag_name': 'check-content', 'class': 'CheckContentType', 'min': 0, 'max': 1},
         ],
         'attributes': {

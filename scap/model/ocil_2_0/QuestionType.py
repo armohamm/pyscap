@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class QuestionType(ItemBaseType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'question_text', 'append': 'question_texts', 'class': 'QuestionTextType', 'min': 1, 'max': None},
+            {'tag_name': 'question_text', 'list': 'question_texts', 'class': 'QuestionTextType', 'min': 1, 'max': None},
             {'tag_name': 'instructions', 'class': 'InstructionsType', 'min': 0, 'max': 1},
         ],
         'attributes': {

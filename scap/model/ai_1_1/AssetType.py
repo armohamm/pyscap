@@ -24,7 +24,7 @@ class AssetType(Model):
     MODEL_MAP = {
         'tag_name': 'asset',
         'elements': [
-            {'tag_name': 'synthetic-id', 'class': 'SyntheticIDType', 'append': 'synthetic_ids', 'min': 0, 'max': None},
+            {'tag_name': 'synthetic-id', 'class': 'SyntheticIDType', 'list': 'synthetic_ids', 'min': 0, 'max': None},
             {'tag_name': 'locations', 'class': 'LocationsType', 'min': 0},
             {'tag_name': 'extended-information', 'class': 'ExtendedInformationType', 'min': 0},
             {'tag_name': '*'},

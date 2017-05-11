@@ -24,8 +24,8 @@ class PostOfficeType(Model):
     MODEL_MAP = {
         'tag_name': 'PostOffice',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'PostOfficeName', 'append': 'post_office_names', 'class': 'PostOfficeNameType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'PostOfficeName', 'list': 'post_office_names', 'class': 'PostOfficeNameType'},
             {'tag_name': 'PostOfficeNumber', 'in': 'post_office_number', 'class': 'PostOfficeNumberType'},
             {'tag_name': 'PostalRoute', 'in': 'postal_route', 'class': 'PostalRouteType'},
             {'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},

@@ -23,8 +23,8 @@ class StepType(object):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'description', 'class': 'TextType', 'min': 0, 'max': 1},
-            {'tag_name': 'reference', 'append': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
-            {'tag_name': 'step', 'append': 'steps', 'class': 'StepType', 'min': 0, 'max': None},
+            {'tag_name': 'reference', 'list': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
+            {'tag_name': 'step', 'list': 'steps', 'class': 'StepType', 'min': 0, 'max': None},
         ],
         'attributes': {
             'is_done': {'type': 'Boolean', 'default': False},

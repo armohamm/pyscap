@@ -24,10 +24,10 @@ class DependentThoroughfareType(Model):
     MODEL_MAP = {
         'tag_name': 'DependentThoroughfare',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
             {'tag_name': 'ThoroughfarePreDirection', 'in': 'thoroughfare_pre_direction', 'class': 'ThoroughfarePreDirectionType'},
             {'tag_name': 'ThoroughfareLeadingType', 'in': 'thoroughfare_leading_type', 'class': 'ThoroughfareLeadingTypeType'},
-            {'tag_name': 'ThoroughfareName', 'append': 'thoroughfare_names', 'class': 'ThoroughfareNameType'},
+            {'tag_name': 'ThoroughfareName', 'list': 'thoroughfare_names', 'class': 'ThoroughfareNameType'},
             {'tag_name': 'ThoroughfareTrailingType', 'in': 'thoroughfare_trailing_type', 'class': 'ThoroughfareTrailingTypeType'},
             {'tag_name': 'ThoroughfarePostDirection', 'in': 'thoroughfare_post_direction', 'class': 'ThoroughfarePostDirectionType'},
             {'tag_name': '*'},

@@ -24,8 +24,8 @@ class DepartmentType(Model):
     MODEL_MAP = {
         'tag_name': 'Department',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'DepartmentName', 'append': 'department_names', 'class': 'DepartmentNameType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'DepartmentName', 'list': 'department_names', 'class': 'DepartmentNameType'},
             {'tag_name': 'MailStop', 'in': 'mail_stop', 'class': 'MailStopType'},
             {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
         ],

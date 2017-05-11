@@ -24,7 +24,7 @@ class ThoroughfareNumberRangeType(Model):
     MODEL_MAP = {
         'tag_name': 'ThoroughfareNumberRange',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
             {'tag_name': 'ThoroughfareNumberFrom', 'in': 'thoroughfare_number_from', 'class': 'ThoroughfareNumberFromType'},
             {'tag_name': 'ThoroughfareNumberTo', 'in': 'thoroughfare_number_to', 'class': 'ThoroughfareNumberToType'},
         ],

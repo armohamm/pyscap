@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class StringQuestionTestActionType(QuestionTestActionType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'when_pattern', 'append': 'when_ranges', 'class': 'PatternTestActionConditionType', 'min': 1, 'max': None},
+            {'tag_name': 'when_pattern', 'list': 'when_ranges', 'class': 'PatternTestActionConditionType', 'min': 1, 'max': None},
         ],
     }

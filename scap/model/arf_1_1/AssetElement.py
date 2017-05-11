@@ -24,8 +24,8 @@ class AssetElement(Model):
     MODEL_MAP = {
         'tag_name': 'asset',
         'elements': [
-            {'xmlns': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'asset', 'append': 'assets', 'class': 'AssetType'},
-            {'tag_name': 'remote-resource', 'append': 'remote_resources', 'class': 'RemoteResourceElement'},
+            {'xmlns': 'http://scap.nist.gov/schema/asset-identification/1.1', 'tag_name': 'asset', 'list': 'assets', 'class': 'AssetType'},
+            {'tag_name': 'remote-resource', 'list': 'remote_resources', 'class': 'RemoteResourceElement'},
         ],
         'attributes': {
             'id': {'type': 'NCName', 'required': True},

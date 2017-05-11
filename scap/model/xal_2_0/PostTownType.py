@@ -24,8 +24,8 @@ class PostTownType(Model):
     MODEL_MAP = {
         'tag_name': 'PostTown',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'PostTownName', 'append': 'post_town_names', 'class': 'PostTownType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'PostTownName', 'list': 'post_town_names', 'class': 'PostTownType'},
             {'tag_name': 'PostTownSuffix', 'in': 'post_town_suffix', 'class': 'PostTownSuffixType'},'*': {},
         ],
         'attributes': {

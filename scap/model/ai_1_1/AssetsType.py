@@ -24,6 +24,6 @@ class AssetsType(RelationshipsContainerType):
     # abstract
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'asset', 'append': 'assets', 'class': 'AssetsAssetElement'},
+            {'tag_name': 'asset', 'list': 'assets', 'class': 'AssetsAssetElement'},
         ],
     }

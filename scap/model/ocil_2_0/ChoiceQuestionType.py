@@ -23,8 +23,8 @@ class ChoiceQuestionType(QuestionType):
     MODEL_MAP = {
         'elements': [
             # TODO: at least one of choice or choice_group_ref
-            {'tag_name': 'choice', 'append': 'choices', 'class': 'ChoiceType', 'min': 0, 'max': None},
-            {'tag_name': 'choice_group_ref', 'append': 'choice_group_refs', 'type': 'ChoiceGroupIDPattern', 'min': 0, 'max': None},
+            {'tag_name': 'choice', 'list': 'choices', 'class': 'ChoiceType', 'min': 0, 'max': None},
+            {'tag_name': 'choice_group_ref', 'list': 'choice_group_refs', 'type': 'ChoiceGroupIDPattern', 'min': 0, 'max': None},
         ],
         'attributes': {
             'default_answer_ref': {'type': 'ChoiceIDPattern'},

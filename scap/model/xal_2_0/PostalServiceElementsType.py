@@ -24,7 +24,7 @@ class PostalServiceElementsType(Model):
     MODEL_MAP = {
         'tag_name': 'PostalServiceElements',
         'elements': [
-            {'tag_name': 'AddressIdentifier', 'append': 'address_identifiers', 'class': 'AddressIdentifierType'},
+            {'tag_name': 'AddressIdentifier', 'list': 'address_identifiers', 'class': 'AddressIdentifierType'},
             {'tag_name': 'EndorsementLineCode', 'class': 'EndorsementLineCodeType'},
             {'tag_name': 'KeyLineCode', 'class': 'KeyLineCodeType'},
             {'tag_name': 'Barcode', 'class': 'BarcodeType'},

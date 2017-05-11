@@ -27,11 +27,11 @@ class TailoringType(Model):
         },
         'elements': [
             {'tag_name': 'benchmark', 'class': 'TailoringBenchmarkReferenceType', 'min': 0, 'max': 1},
-            {'tag_name': 'status', 'class': 'StatusType', 'append': 'statuses', 'min': 0, 'max': None},
-            {'tag_name': 'dc-status', 'class': 'DCStatusType', 'append': 'dc_statuses', 'min': 0, 'max': None},
+            {'tag_name': 'status', 'class': 'StatusType', 'list': 'statuses', 'min': 0, 'max': None},
+            {'tag_name': 'dc-status', 'class': 'DCStatusType', 'list': 'dc_statuses', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'TailoringVersionType', 'min': 1, 'max': 1},
-            {'tag_name': 'metadata', 'class': 'MetadataType', 'append': 'metadata', 'min': 0, 'max': None},
-            {'tag_name': 'Profile', 'class': 'ProfileType', 'append': 'profiles', 'min': 1, 'max': None},
+            {'tag_name': 'metadata', 'class': 'MetadataType', 'list': 'metadata', 'min': 0, 'max': None},
+            {'tag_name': 'Profile', 'class': 'ProfileType', 'list': 'profiles', 'min': 1, 'max': None},
             {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': None},
         ],
     }

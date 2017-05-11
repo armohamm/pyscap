@@ -24,7 +24,7 @@ class NameDetailsType(Model):
     MODEL_MAP = {
         'tag_name': 'NameDetails',
         'elements': [
-            {'tag_name': 'NameLine', 'append': 'name_lines', 'class': 'NameLineType'},
+            {'tag_name': 'NameLine', 'list': 'name_lines', 'class': 'NameLineType'},
             {'tag_name': 'PersonName', 'in': 'person_name', 'class': 'PersonNameElement'},
             {'tag_name': 'JointPersonName', 'in': 'joint_person_name', 'class': 'JointPersonNameElement'},
             {'tag_name': 'OrganisationNameDetails', 'in': 'organisation_name_details', 'class': 'OrganisationNameDetailsElement'},

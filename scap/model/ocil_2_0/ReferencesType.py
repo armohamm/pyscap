@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class ReferencesType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'reference', 'append': 'references', 'class': 'ReferenceType', 'min': 1, 'max': None},
+            {'tag_name': 'reference', 'list': 'references', 'class': 'ReferenceType', 'min': 1, 'max': None},
         ],
     }

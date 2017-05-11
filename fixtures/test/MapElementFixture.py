@@ -21,11 +21,11 @@ class MapElementFixture(Model):
     MODEL_MAP = {
         'tag_name': 'MapElementFixture',
         'elements': [
-            {'tag_name': 'map_explicit_key', 'map': 'map_explicit_key', 'key': 'key', 'type': 'String', 'min': 0},
-            {'tag_name': 'map_implicit_key', 'map': 'map_implicit_key', 'type': 'String', 'min': 0},
-            {'tag_name': 'map_value_nil', 'map': 'map_value_nil', 'nillable': True, 'type': 'String', 'min': 0},
-            {'tag_name': 'map_value_attr', 'map': 'map_value_attr', 'value_attr': 'value', 'type': 'String', 'min': 0},
-            {'tag_name': 'map_value_type', 'map': 'map_value_type', 'type': 'String', 'min': 0},
-            {'tag_name': 'map_value_class', 'map': 'map_value_class', 'class': 'MappableElementFixture', 'min': 0},
+            {'tag_name': 'map_explicit_key', 'dict': 'map_explicit_key', 'key': 'key', 'type': 'String', 'min': 0},
+            {'tag_name': 'map_implicit_key', 'dict': 'map_implicit_key', 'type': 'String', 'min': 0},
+            {'tag_name': 'map_value_nil', 'dict': 'map_value_nil', 'nillable': True, 'type': 'String', 'min': 0},
+            {'tag_name': 'map_value_attr', 'dict': 'map_value_attr', 'value_attr': 'value', 'type': 'String', 'min': 0},
+            {'tag_name': 'map_value_type', 'dict': 'map_value_type', 'type': 'String', 'min': 0},
+            {'tag_name': 'map_value_class', 'dict': 'map_value_class', 'class': 'MappableElementFixture', 'min': 0},
         ],
     }

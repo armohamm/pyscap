@@ -24,9 +24,9 @@ class OrganizationType(AssetType):
     MODEL_MAP = {
         'tag_name': 'organization',
         'elements': [
-            {'xmlns': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'OrganisationNameDetails', 'append': 'organization_name_details', 'class': 'OrganisationNameDetailsType', 'min': 0, 'max': None},
-            {'tag_name': 'email-address', 'append': 'email_addresses', 'class': 'EmailAddressType', 'min': 0, 'max': None},
-            {'tag_name': 'telephone-number', 'append': 'telephone_numbers', 'class': 'TelephoneNumberType', 'min': 0, 'max': None},
-            {'tag_name': 'website-url', 'append': 'website_urls', 'class': 'WebsiteURLType', 'min': 0, 'max': None},
+            {'xmlns': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'OrganisationNameDetails', 'list': 'organization_name_details', 'class': 'OrganisationNameDetailsType', 'min': 0, 'max': None},
+            {'tag_name': 'email-address', 'list': 'email_addresses', 'class': 'EmailAddressType', 'min': 0, 'max': None},
+            {'tag_name': 'telephone-number', 'list': 'telephone_numbers', 'class': 'TelephoneNumberType', 'min': 0, 'max': None},
+            {'tag_name': 'website-url', 'list': 'website_urls', 'class': 'WebsiteURLType', 'min': 0, 'max': None},
         ],
     }

@@ -23,6 +23,6 @@ logger = logging.getLogger(__name__)
 class TargetFactsType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'fact', 'append': 'facts', 'class': 'FactType', 'min': 0, 'max': None},
+            {'tag_name': 'fact', 'list': 'facts', 'class': 'FactType', 'min': 0, 'max': None},
         ],
     }

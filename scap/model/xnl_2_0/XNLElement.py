@@ -24,7 +24,7 @@ class XNLElement(Model):
     MODEL_MAP = {
         'tag_name': 'xNL',
         'elements': [
-            {'tag_name': 'NameDetails', 'append': 'name_details', 'class': 'NameDetailsType'},'*': {},
+            {'tag_name': 'NameDetails', 'list': 'name_details', 'class': 'NameDetailsType'},'*': {},
         ],
         'attributes': {
             'Version': {},

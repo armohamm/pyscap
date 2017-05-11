@@ -23,6 +23,6 @@ class DefinitionsType(Model):
     MODEL_MAP = {
         'tag_name' : 'definitions',
         'elements': [
-            {'tag_name': 'definition', 'map': 'definitions', 'class': 'DefinitionElement', 'min': 1, 'max': None},
+            {'tag_name': 'definition', 'dict': 'definitions', 'class': 'DefinitionElement', 'min': 1, 'max': None},
         ],
     }

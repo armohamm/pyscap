@@ -23,10 +23,10 @@ class QuestionsType(Model):
     MODEL_MAP = {
         'elements': [
             #TODO: at least one of the following *_question elements
-            {'tag_name': 'boolean_question', 'append': 'questions', 'class': 'BooleanQuestionElement', 'min': 0, 'max': None},
-            {'tag_name': 'choice_question', 'append': 'questions', 'class': 'ChoiceQuestionElement', 'min': 0, 'max': None},
-            {'tag_name': 'numeric_question', 'append': 'questions', 'class': 'NumericQuestionElement', 'min': 0, 'max': None},
-            {'tag_name': 'string_question', 'append': 'questions', 'class': 'StringQuestionElement', 'min': 0, 'max': None},
-            {'tag_name': 'choice_group', 'append': 'questions', 'class': 'ChoiceGroupType', 'min': 0, 'max': None},
+            {'tag_name': 'boolean_question', 'list': 'questions', 'class': 'BooleanQuestionElement', 'min': 0, 'max': None},
+            {'tag_name': 'choice_question', 'list': 'questions', 'class': 'ChoiceQuestionElement', 'min': 0, 'max': None},
+            {'tag_name': 'numeric_question', 'list': 'questions', 'class': 'NumericQuestionElement', 'min': 0, 'max': None},
+            {'tag_name': 'string_question', 'list': 'questions', 'class': 'StringQuestionElement', 'min': 0, 'max': None},
+            {'tag_name': 'choice_group', 'list': 'questions', 'class': 'ChoiceGroupType', 'min': 0, 'max': None},
         ],
     }

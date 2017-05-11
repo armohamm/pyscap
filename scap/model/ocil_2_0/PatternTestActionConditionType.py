@@ -23,6 +23,6 @@ logger = logging.getLogger(__name__)
 class PatternTestActionConditionType(TestActionConditionType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'pattern', 'append': 'patterns', 'class': 'PatternType', 'min': 1, 'max': None},
+            {'tag_name': 'pattern', 'list': 'patterns', 'class': 'PatternType', 'min': 1, 'max': None},
         ],
     }

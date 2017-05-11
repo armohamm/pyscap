@@ -26,9 +26,9 @@ class GroupType(SelectableItemType):
             'id': {'required': True, 'type': 'GroupIDPattern'},
         },
         'elements': [
-            {'tag_name': 'Value', 'class': 'ValueType', 'map': 'values', 'min': 0, 'max': None},
-            {'tag_name': 'Group', 'class': 'GroupType', 'map': 'groups', 'min': 0, 'max': None},
-            {'tag_name': 'Rule', 'class': 'RuleType', 'map': 'rules', 'min': 0, 'max': None},
+            {'tag_name': 'Value', 'class': 'ValueType', 'dict': 'values', 'min': 0, 'max': None},
+            {'tag_name': 'Group', 'class': 'GroupType', 'dict': 'groups', 'min': 0, 'max': None},
+            {'tag_name': 'Rule', 'class': 'RuleType', 'dict': 'rules', 'min': 0, 'max': None},
             {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
         ],
     }

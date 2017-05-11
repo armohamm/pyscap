@@ -25,6 +25,6 @@ class ModelType(Model):
             'system': {'required': True, 'type': 'AnyURI'},
         },
         'elements': [
-            {'tag_name': 'param', 'class': 'ParamType', 'map': 'params', 'key': 'name', 'min': 0, 'max': None},
+            {'tag_name': 'param', 'class': 'ParamType', 'dict': 'params', 'key': 'name', 'min': 0, 'max': None},
         ],
     }

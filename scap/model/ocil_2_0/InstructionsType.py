@@ -23,6 +23,6 @@ class InstructionsType(object):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'title', 'class': 'TextType', 'min': 1, 'max': 1},
-            {'tag_name': 'step', 'append': 'steps', 'class': 'StepType', 'min': 1, 'max': None},
+            {'tag_name': 'step', 'list': 'steps', 'class': 'StepType', 'min': 1, 'max': None},
         ],
     }

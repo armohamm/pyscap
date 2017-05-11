@@ -24,6 +24,6 @@ class ConnectionsType(Model):
     MODEL_MAP = {
         'tag_name': 'connections',
         'elements': [
-            {'tag_name': 'connection', 'append': 'connections', 'class': 'NetworkInterfaceType', 'max': None},
+            {'tag_name': 'connection', 'list': 'connections', 'class': 'NetworkInterfaceType', 'max': None},
         ],
     }

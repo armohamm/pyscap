@@ -24,10 +24,10 @@ class ThoroughfareNumberFromType(Model):
     MODEL_MAP = {
         'tag_name': 'ThoroughfareNumberFrom',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'ThoroughfareNumberPrefix', 'append': 'thoroughfare_number_prefixes', 'class': 'ThoroughfareNumberPrefixType'},
-            {'tag_name': 'ThoroughfareNumber', 'append': 'thoroughfare_numbers', 'class': 'ThoroughfareNumberType'},
-            {'tag_name': 'ThoroughfareNumberSuffix', 'append': 'thoroughfare_number_suffixes', 'class': 'ThoroughfareNumberSuffixType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'ThoroughfareNumberPrefix', 'list': 'thoroughfare_number_prefixes', 'class': 'ThoroughfareNumberPrefixType'},
+            {'tag_name': 'ThoroughfareNumber', 'list': 'thoroughfare_numbers', 'class': 'ThoroughfareNumberType'},
+            {'tag_name': 'ThoroughfareNumberSuffix', 'list': 'thoroughfare_number_suffixes', 'class': 'ThoroughfareNumberSuffixType'},
         ],
         'attributes': {
             'Code': {}, # from grPostal

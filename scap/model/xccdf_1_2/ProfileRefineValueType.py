@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class ProfileRefineValueType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'remark', 'type': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+            {'tag_name': 'remark', 'type': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
         ],
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},

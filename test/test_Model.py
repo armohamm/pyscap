@@ -434,13 +434,13 @@ def test_initialization():
     assert hasattr(init, 'default_attr')
     assert init.default_attr == 'Default'
 
-    assert hasattr(init, 'append')
-    assert isinstance(init.append, list)
-    assert len(init.append) == 0
+    assert hasattr(init, 'list_')
+    assert isinstance(init.list_, list)
+    assert len(init.list_) == 0
 
-    assert hasattr(init, 'map')
-    assert isinstance(init.map, dict)
-    assert len(init.map.keys()) == 0
+    assert hasattr(init, 'dict_')
+    assert isinstance(init.dict_, dict)
+    assert len(init.dict_.keys()) == 0
 
     assert not hasattr(init, 'in_test')
     assert hasattr(init, 'test_in')

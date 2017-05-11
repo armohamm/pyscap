@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class ChoiceQuestionTestActionType(QuestionTestActionType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'when_choice', 'append': 'when_choices', 'class': 'ChoiceTestActionConditionType', 'min': 1, 'max': None},
+            {'tag_name': 'when_choice', 'list': 'when_choices', 'class': 'ChoiceTestActionConditionType', 'min': 1, 'max': None},
         ],
     }

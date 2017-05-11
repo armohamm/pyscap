@@ -24,10 +24,10 @@ logger = logging.getLogger(__name__)
 class SelectableItemType(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'rationale', 'append': 'rationales', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
-            {'tag_name': 'platform', 'append': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableUriIdrefType'},
-            {'tag_name': 'requires', 'append': 'requires', 'min': 0, 'max': None, 'class': 'IdrefListType'},
-            {'tag_name': 'conflicts', 'append': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},
+            {'tag_name': 'rationale', 'list': 'rationales', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
+            {'tag_name': 'platform', 'list': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableUriIdrefType'},
+            {'tag_name': 'requires', 'list': 'requires', 'min': 0, 'max': None, 'class': 'IdrefListType'},
+            {'tag_name': 'conflicts', 'list': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},
         ],
         'attributes': {
             'selected': {'type': 'Boolean', 'default': True},

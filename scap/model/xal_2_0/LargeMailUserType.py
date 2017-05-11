@@ -24,10 +24,10 @@ class LargeMailUserType(Model):
     MODEL_MAP = {
         'tag_name': 'LargeMailUser',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'LargeMailUserName', 'append': 'large_mail_user_names', 'class': 'LargeMailUserNameType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'LargeMailUserName', 'list': 'large_mail_user_names', 'class': 'LargeMailUserNameType'},
             {'tag_name': 'LargeMailUserIdentifier', 'in': 'large_mail_user_identifier', 'class': 'LargeMailUserIdentifierType'},
-            {'tag_name': 'BuildingName', 'append': 'building_names', 'class': 'BuildingNameType'},
+            {'tag_name': 'BuildingName', 'list': 'building_names', 'class': 'BuildingNameType'},
             {'tag_name': 'Department', 'in': 'department', 'class': 'DepartmentType'},
             {'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
             {'tag_name': 'Thoroughfare', 'in': 'thoroughfare', 'class': 'ThoroughfareType'},

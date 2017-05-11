@@ -26,7 +26,7 @@ class NetworkInterfaceType(Model):
         'elements': [
             {'tag_name': 'ip-address', 'class': 'IPAddressType', 'min': 0},
             {'tag_name': 'mac-address', 'class': 'MACAddressType', 'min': 0},
-            {'tag_name': 'url', 'append': 'urls', 'class': 'URLType', 'min': 0, 'max': None},
+            {'tag_name': 'url', 'list': 'urls', 'class': 'URLType', 'min': 0, 'max': None},
             {'tag_name': 'subnet-mask', 'class': 'IPAddressType', 'min': 0},
             {'tag_name': 'default-route', 'class': 'IPAddressType', 'min': 0},
         ],

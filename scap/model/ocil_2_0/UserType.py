@@ -22,8 +22,8 @@ logger = logging.getLogger(__name__)
 class UserType(NamedItemBaseType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'organization', 'append': 'organizations', 'type': 'NormalizedString', 'min': 0, 'max': None},
-            {'tag_name': 'position', 'append': 'positions', 'type': 'NormalizedString', 'min': 0, 'max': None},
-            {'tag_name': 'email', 'append': 'emails', 'type': 'Token', 'min': 0, 'max': None},
+            {'tag_name': 'organization', 'list': 'organizations', 'type': 'NormalizedString', 'min': 0, 'max': None},
+            {'tag_name': 'position', 'list': 'positions', 'type': 'NormalizedString', 'min': 0, 'max': None},
+            {'tag_name': 'email', 'list': 'emails', 'type': 'Token', 'min': 0, 'max': None},
         ],
     }

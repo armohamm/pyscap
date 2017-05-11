@@ -24,9 +24,9 @@ class CountryType(Model):
     MODEL_MAP = {
         'tag_name': 'Country',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'CountryNameCode', 'append': 'country_codes', 'class': 'CountryNameCodeType'},
-            {'tag_name': 'CountryName', 'append': 'countries', 'class': 'CountryNameType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'CountryNameCode', 'list': 'country_codes', 'class': 'CountryNameCodeType'},
+            {'tag_name': 'CountryName', 'list': 'countries', 'class': 'CountryNameType'},
             {'tag_name': 'AdministrativeArea', 'in': 'administrative_area', 'class': 'AdministrativeAreaType'},
             {'tag_name': 'Locality', 'in': 'locality', 'class': 'LocalityType'},
             {'tag_name': 'Thoroughfare', 'in': 'thoroughfare', 'class': 'ThoroughfareType'},

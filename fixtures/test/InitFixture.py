@@ -27,8 +27,8 @@ class InitFixture(Model):
             'default_attr': {'default': 'Default'},
         },
         'elements': [
-            {'tag_name': 'append',  'append': 'append'},
-            {'tag_name': 'map',     'map': 'map'},
+            {'tag_name': 'list',    'list': 'list_'},
+            {'tag_name': 'dict',    'dict': 'dict_'},
             {'tag_name': 'in_test', 'in': 'test_in'},
             {'tag_name': 'dash-test'},
             {'tag_name': '{http://jaymes.biz/test2}*', 'in': 'test2_elements'},

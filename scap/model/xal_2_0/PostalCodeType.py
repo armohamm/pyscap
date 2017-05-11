@@ -24,9 +24,9 @@ class PostalCodeType(Model):
     MODEL_MAP = {
         'tag_name': 'PostalCode',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'PostalCodeNumber', 'append': 'postal_code_numbers', 'class': 'PostCodeNumberType'},
-            {'tag_name': 'PostalCodeNumberExtension', 'append': 'postal_code_number_extensions', 'class': 'PostalCodeNumberExtensionType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'PostalCodeNumber', 'list': 'postal_code_numbers', 'class': 'PostCodeNumberType'},
+            {'tag_name': 'PostalCodeNumberExtension', 'list': 'postal_code_number_extensions', 'class': 'PostalCodeNumberExtensionType'},
             {'tag_name': 'PostTown', 'in': 'post_town', 'class': 'PostTownType'},
             {'tag_name': '*'},
         ],

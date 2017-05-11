@@ -24,7 +24,7 @@ class ExternalVariableElement(VariableType):
         'tag_name': 'external_variable',
         'elements': [
             # TODO: minOccurs="0" maxOccurs="unbounded"
-            {'tag_name': 'possible_value', 'append': 'possible_values', 'class': 'PossibleValueType', 'min': 0, 'max': None},
-            {'tag_name': 'possible_restriction', 'append': 'possible_restrictions', 'class': 'PossibleRestrictionType', 'min': 0, 'max': None},
+            {'tag_name': 'possible_value', 'list': 'possible_values', 'class': 'PossibleValueType', 'min': 0, 'max': None},
+            {'tag_name': 'possible_restriction', 'list': 'possible_restrictions', 'class': 'PossibleRestrictionType', 'min': 0, 'max': None},
         ],
     }

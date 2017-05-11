@@ -24,6 +24,6 @@ class RelationshipsType(Model):
     MODEL_MAP = {
         'tag_name': 'relationships',
         'elements': [
-            {'tag_name': 'relationship', 'append': 'relationships', 'class': 'RelationshipType'},
+            {'tag_name': 'relationship', 'list': 'relationships', 'class': 'RelationshipType'},
         ],
     }

@@ -23,7 +23,7 @@ class RelationshipType(Model):
     MODEL_MAP = {
         'tag_name': 'relationship',
         'elements': [
-            {'tag_name': 'ref', 'append': 'refs', 'class': 'RefElement'},
+            {'tag_name': 'ref', 'list': 'refs', 'class': 'RefElement'},
         ],
         'attributes': {
             'type': {'type': 'QName', 'required': True},

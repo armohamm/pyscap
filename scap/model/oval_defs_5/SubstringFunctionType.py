@@ -24,21 +24,21 @@ class SubstringFunctionType(Model):
     MODEL_MAP = {
         'elements': [
             # from ComponentGroup
-            {'tag_name': 'object_component', 'append': 'components', 'class': 'ObjectComponentType'},
-            {'tag_name': 'variable_component', 'append': 'components', 'class': 'VariableComponentType'},
-            {'tag_name': 'literal_component', 'append': 'components', 'class': 'LiteralComponentType'},# from ComponentGroup/FunctionGroup
-            {'tag_name': 'arithmetic', 'append': 'components', 'class': 'ArithmeticFunctionType'},
-            {'tag_name': 'begin', 'append': 'components', 'class': 'BeginFunctionType'},
-            {'tag_name': 'concat', 'append': 'components', 'class': 'ConcatFunctionType'},
-            {'tag_name': 'count', 'append': 'components', 'class': 'CountFunctionType'},
-            {'tag_name': 'end', 'append': 'components', 'class': 'EndFunctionType'},
-            {'tag_name': 'escape_regex', 'append': 'components', 'class': 'EscapeRegexFunctionType'},
-            {'tag_name': 'split', 'append': 'components', 'class': 'SplitFunctionType'},
-            {'tag_name': 'substring', 'append': 'components', 'class': 'SubstringFunctionType'},
-            {'tag_name': 'time_difference', 'append': 'components', 'class': 'TimeDifferenceFunctionType'},
-            {'tag_name': 'unique', 'append': 'components', 'class': 'UniqueFunctionType'},
-            {'tag_name': 'regex_capture', 'append': 'components', 'class': 'RegexCaptureFunctionType'},
-            {'tag_name': 'glob_to_regex', 'append': 'components', 'class': 'GlobToRegexFunctionType'},
+            {'tag_name': 'object_component', 'list': 'components', 'class': 'ObjectComponentType'},
+            {'tag_name': 'variable_component', 'list': 'components', 'class': 'VariableComponentType'},
+            {'tag_name': 'literal_component', 'list': 'components', 'class': 'LiteralComponentType'},# from ComponentGroup/FunctionGroup
+            {'tag_name': 'arithmetic', 'list': 'components', 'class': 'ArithmeticFunctionType'},
+            {'tag_name': 'begin', 'list': 'components', 'class': 'BeginFunctionType'},
+            {'tag_name': 'concat', 'list': 'components', 'class': 'ConcatFunctionType'},
+            {'tag_name': 'count', 'list': 'components', 'class': 'CountFunctionType'},
+            {'tag_name': 'end', 'list': 'components', 'class': 'EndFunctionType'},
+            {'tag_name': 'escape_regex', 'list': 'components', 'class': 'EscapeRegexFunctionType'},
+            {'tag_name': 'split', 'list': 'components', 'class': 'SplitFunctionType'},
+            {'tag_name': 'substring', 'list': 'components', 'class': 'SubstringFunctionType'},
+            {'tag_name': 'time_difference', 'list': 'components', 'class': 'TimeDifferenceFunctionType'},
+            {'tag_name': 'unique', 'list': 'components', 'class': 'UniqueFunctionType'},
+            {'tag_name': 'regex_capture', 'list': 'components', 'class': 'RegexCaptureFunctionType'},
+            {'tag_name': 'glob_to_regex', 'list': 'components', 'class': 'GlobToRegexFunctionType'},
         ],
         'attributes': {
             'substring_start': {'type': 'Int', 'required': True},

@@ -24,14 +24,14 @@ class ThoroughfareType(Model):
     MODEL_MAP = {
         'tag_name': 'Thoroughfare',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
             {'tag_name': 'ThoroughfareNumber', 'in': 'thoroughfare_number', 'class': 'ThoroughfareNumberType'},
             {'tag_name': 'ThoroughfareNumberRange', 'in': 'thoroughfare_number_range', 'class': 'ThoroughfareNumberRangeType'},
-            {'tag_name': 'ThoroughfareNumberPrefix', 'append': 'thoroughfare_number_prefixes', 'class': 'ThoroughfareNumberPrefixType'},
-            {'tag_name': 'ThoroughfareNumberSuffix', 'append': 'thoroughfare_number_suffixes', 'class': 'ThoroughfareNumberSuffixType'},
+            {'tag_name': 'ThoroughfareNumberPrefix', 'list': 'thoroughfare_number_prefixes', 'class': 'ThoroughfareNumberPrefixType'},
+            {'tag_name': 'ThoroughfareNumberSuffix', 'list': 'thoroughfare_number_suffixes', 'class': 'ThoroughfareNumberSuffixType'},
             {'tag_name': 'ThoroughfarePreDirection', 'in': 'thoroughfare_pre_direction', 'class': 'ThoroughfarePreDirectionType'},
             {'tag_name': 'ThoroughfareLeadingType', 'in': 'thoroughfare_leading_type', 'class': 'ThoroughfareLeadingTypeType'},
-            {'tag_name': 'ThoroughfareName', 'append': 'thoroughfare_names', 'class': 'ThoroughfareNameType'},
+            {'tag_name': 'ThoroughfareName', 'list': 'thoroughfare_names', 'class': 'ThoroughfareNameType'},
             {'tag_name': 'ThoroughfareTrailingType', 'in': 'thoroughfare_trailing_type', 'class': 'ThoroughfareTrailingTypeType'},
             {'tag_name': 'ThoroughfarePostDirection', 'in': 'thoroughfare_post_direction', 'class': 'ThoroughfarePostDirectionType'},
             {'tag_name': 'DependentThoroughfare', 'in': 'dependent_thoroughfare', 'class': 'DependentThoroughfareType'},

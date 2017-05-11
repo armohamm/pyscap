@@ -33,7 +33,7 @@ class FixType(Model):
             'platform': {'type': 'AnyURI'},
         },
         'elements': [
-            {'tag_name': 'sub', 'append': 'subs', 'min': 0, 'max': None, 'class': 'SubType'},
-            {'tag_name': 'instance', 'append': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
+            {'tag_name': 'sub', 'list': 'subs', 'min': 0, 'max': None, 'class': 'SubType'},
+            {'tag_name': 'instance', 'list': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
         ],
     }

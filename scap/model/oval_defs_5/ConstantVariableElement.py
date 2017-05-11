@@ -23,6 +23,6 @@ class ConstantVariableElement(Variable):
     MODEL_MAP = {
         'tag_name': 'constant_variable',
         'elements': [
-            {'tag_name': 'value', 'append': 'values', 'class': 'ValueType', 'min': 1, 'max': None},
+            {'tag_name': 'value', 'list': 'values', 'class': 'ValueType', 'min': 1, 'max': None},
         ],
     }

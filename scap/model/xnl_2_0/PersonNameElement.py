@@ -24,8 +24,8 @@ class PersonNameElement(PersonNameType):
     MODEL_MAP = {
         'tag_name': 'PersonName',
         'elements': [
-            {'tag_name': 'FormerName', 'append': 'former_names', 'class': 'FormerNameElement'},
-            {'tag_name': 'KnownAs', 'append': 'known_ases', 'class': 'KnownAsElement'},
+            {'tag_name': 'FormerName', 'list': 'former_names', 'class': 'FormerNameElement'},
+            {'tag_name': 'KnownAs', 'list': 'known_ases', 'class': 'KnownAsElement'},
         ],
         'attributes': {
             'Type': {},

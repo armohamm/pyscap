@@ -24,7 +24,7 @@ class XALType(Model):
     MODEL_MAP = {
         'tag_name': 'xAL',
         'elements': [
-            {'tag_name': 'AddressDetails', 'append': 'address_details', 'class': 'AddressDetailsType'},'*': {},
+            {'tag_name': 'AddressDetails', 'list': 'address_details', 'class': 'AddressDetailsType'},'*': {},
         ],
         'attributes': {
             'Version': {},

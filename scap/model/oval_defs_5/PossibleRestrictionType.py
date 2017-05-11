@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class PossibleRestrictionType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'restriction', 'append': 'restrictions', 'class': 'RestrictionType', 'min': 1, 'max': None},
+            {'tag_name': 'restriction', 'list': 'restrictions', 'class': 'RestrictionType', 'min': 1, 'max': None},
         ],
         'attributes': {
             'operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},

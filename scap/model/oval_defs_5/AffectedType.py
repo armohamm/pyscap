@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class AffectedType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'platform', 'append': 'platforms', 'type': 'String', 'min': 0, 'max': None},
-            {'tag_name': 'product', 'append': 'products', 'type': 'String', 'min': 0, 'max': None},
+            {'tag_name': 'platform', 'list': 'platforms', 'type': 'String', 'min': 0, 'max': None},
+            {'tag_name': 'product', 'list': 'products', 'type': 'String', 'min': 0, 'max': None},
         ],
         'attributes': {
             'family': {'enum': FAMILY_ENUMERATION, 'required': True},

@@ -344,17 +344,17 @@ class Model(object):
                     logger.debug('Initializing ' + name + ' to []')
                     setattr(self, name, [])
 
-            elif 'append' in element_def:
+            elif 'list' in element_def:
                 # initialze the array if it doesn't exist
-                if element_def['append'] not in list(self.__dict__.keys()):
-                    logger.debug('Initializing ' + element_def['append'] + ' to []')
-                    setattr(self, element_def['append'], [])
+                if element_def['list'] not in list(self.__dict__.keys()):
+                    logger.debug('Initializing ' + element_def['list'] + ' to []')
+                    setattr(self, element_def['list'], [])
 
-            elif 'map' in element_def:
+            elif 'dict' in element_def:
                 # initialze the dict if it doesn't exist
-                if element_def['map'] not in list(self.__dict__.keys()):
-                    logger.debug('Initializing ' + element_def['map'] + ' to {}')
-                    setattr(self, element_def['map'], {})
+                if element_def['dict'] not in list(self.__dict__.keys()):
+                    logger.debug('Initializing ' + element_def['dict'] + ' to {}')
+                    setattr(self, element_def['dict'], {})
 
             else:
                 if 'in' in element_def:
@@ -434,8 +434,8 @@ class Model(object):
                 tag = '{' + self.get_xmlns() + '}' + element_def['tag_name']
 
             min_ = 1
-            if 'map' in element_def or 'append' in element_def or element_def['tag_name'] == '*':
-                # maps and appends default to no max
+            if 'dict' in element_def or 'list' in element_def or element_def['tag_name'] == '*':
+                # dicts and lists default to no max
                 max_ = None
             else:
                 max_ = 1
@@ -556,9 +556,9 @@ class Model(object):
                 lst.append(value)
                 logger.debug('Appended ' + str(value) + ' to ' + name)
 
-            elif 'append' in element_def:
-                logger.debug(str(self) + ' parsing ' + tag + ' elements into ' + element_def['append'])
-                lst = getattr(self, element_def['append'])
+            elif 'list' in element_def:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements into ' + element_def['list'])
+                lst = getattr(self, element_def['list'])
 
                 if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
                 and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
@@ -574,11 +574,11 @@ class Model(object):
                     value.tag_name = tag_name
 
                 lst.append(value)
-                logger.debug('Appended ' + str(value) + ' to ' + element_def['append'])
+                logger.debug('Appended ' + str(value) + ' to ' + element_def['list'])
 
-            elif 'map' in element_def:
-                logger.debug(str(self) + ' parsing ' + tag + ' elements into ' + element_def['map'])
-                dic = getattr(self, element_def['map'])
+            elif 'dict' in element_def:
+                logger.debug(str(self) + ' parsing ' + tag + ' elements into ' + element_def['dict'])
+                dic = getattr(self, element_def['dict'])
 
                 # TODO: implement key_element as well
                 if 'key' in element_def:
@@ -619,7 +619,7 @@ class Model(object):
                         value.tag_name = tag_name
 
                 dic[key] = value
-                logger.debug('Mapped ' + str(key) + ' to ' + str(value) + ' in ' + element_def['map'])
+                logger.debug('Mapped ' + str(key) + ' to ' + str(value) + ' in ' + element_def['dict'])
 
             elif 'class' in element_def:
                 logger.debug(str(self) + ' parsing ' + tag + ' elements as ' + element_def['class'])
@@ -792,11 +792,11 @@ class Model(object):
                     el = ET.Element(tag)
                     el.text = i
                     sub_els.append(el)
-        elif 'append' in element_def:
-            name = element_def['append']
+        elif 'list' in element_def:
+            name = element_def['list']
 
             lst = getattr(self, name)
-            logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from append ' + name)
+            logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from list ' + name)
 
             # check minimum tag count
             if 'min' in element_def and element_def['min'] > len(lst):
@@ -825,9 +825,9 @@ class Model(object):
                     el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
                     el.text = i
                     sub_els.append(el)
-        elif 'map' in element_def:
-            dict_ = getattr(self, element_def['map'])
-            logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from map ' + element_def['map'])
+        elif 'dict' in element_def:
+            dict_ = getattr(self, element_def['dict'])
+            logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from dict ' + element_def['dict'])
 
             # check minimum tag count
             if 'min' in element_def and element_def['min'] > len(dict_):

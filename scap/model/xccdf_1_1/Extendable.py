@@ -192,10 +192,10 @@ class Extendable(Model):
             if element_def['tag_name'].endswith('*'):
                 continue
 
-            if 'append' in element_def:
-                self.resolve_property(extended, element_def['append'])
-            elif 'map' in tag_map:
-                self.resolve_property(extended, element_def['map'])
+            if 'list' in element_def:
+                self.resolve_property(extended, element_def['list'])
+            elif 'dict' in tag_map:
+                self.resolve_property(extended, element_def['dict'])
             else:
                 if 'in' in element_def:
                     name = element_def['in']

@@ -23,7 +23,7 @@ class NumericQuestionTestActionType(QuestionTestActionType):
     MODEL_MAP = {
         'elements': [
             #TODO: must be at least one; when_equals first
-            {'tag_name': 'when_equals', 'append': 'when_equals', 'class': 'EqualsTestActionConditionType', 'min': 0, 'max': None},
-            {'tag_name': 'when_range', 'append': 'when_ranges', 'class': 'RangeTestActionConditionType', 'min': 0, 'max': None},
+            {'tag_name': 'when_equals', 'list': 'when_equals', 'class': 'EqualsTestActionConditionType', 'min': 0, 'max': None},
+            {'tag_name': 'when_range', 'list': 'when_ranges', 'class': 'RangeTestActionConditionType', 'min': 0, 'max': None},
         ],
     }

@@ -24,6 +24,6 @@ class ExtendedInfosType(Model):
     MODEL_MAP = {
         'tag_name': 'extended-infos',
         'elements':
-            {'tag_name': 'extended-info', 'append': 'extended_infos', 'class': 'ExtendedInfoElement', 'max': None},
+            {'tag_name': 'extended-info', 'list': 'extended_infos', 'class': 'ExtendedInfoElement', 'max': None},
         },
     }

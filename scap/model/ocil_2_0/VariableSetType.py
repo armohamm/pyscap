@@ -23,9 +23,9 @@ class VariableSetType(Model):
     MODEL_MAP = {
         'elements': [
             #TODO: at least one when_*
-            {'tag_name': 'when_pattern', 'append': 'expressions', 'class': 'WhenPatternElement', 'min': 0, 'max': None},
-            {'tag_name': 'when_choice', 'append': 'expressions', 'class': 'WhenChoiceElement', 'min': 0, 'max': None},
-            {'tag_name': 'when_range', 'append': 'expressions', 'class': 'WhenRangeElement', 'min': 0, 'max': None},
-            {'tag_name': 'when_boolean', 'append': 'expressions', 'class': 'WhenBooleanElement', 'min': 0, 'max': None},
+            {'tag_name': 'when_pattern', 'list': 'expressions', 'class': 'WhenPatternElement', 'min': 0, 'max': None},
+            {'tag_name': 'when_choice', 'list': 'expressions', 'class': 'WhenChoiceElement', 'min': 0, 'max': None},
+            {'tag_name': 'when_range', 'list': 'expressions', 'class': 'WhenRangeElement', 'min': 0, 'max': None},
+            {'tag_name': 'when_boolean', 'list': 'expressions', 'class': 'WhenBooleanElement', 'min': 0, 'max': None},
         ],
     }

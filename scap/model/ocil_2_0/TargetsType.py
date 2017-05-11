@@ -23,7 +23,7 @@ class TargetsType(Model):
     MODEL_MAP = {
         'elements': [
             #TODO: at least one of .targets[]
-            {'tag_name': 'user', 'append': 'targets', 'class': 'UserType', 'min': 0, 'max': None},
-            {'tag_name': 'system', 'append': 'targets', 'class': 'SystemTargetType', 'min': 0, 'max': None},
+            {'tag_name': 'user', 'list': 'targets', 'class': 'UserType', 'min': 0, 'max': None},
+            {'tag_name': 'system', 'list': 'targets', 'class': 'SystemTargetType', 'min': 0, 'max': None},
         ],
     }

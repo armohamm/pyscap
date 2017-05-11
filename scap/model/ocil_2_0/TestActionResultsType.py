@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class TestActionResultsType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'test_action_result', 'append': 'test_action_results', 'class': 'TestActionResultType', 'min': 1, 'max': None},
+            {'tag_name': 'test_action_result', 'list': 'test_action_results', 'class': 'TestActionResultType', 'min': 1, 'max': None},
         ],
     }

@@ -24,7 +24,7 @@ class PostBoxType(Model):
     MODEL_MAP = {
         'tag_name': 'PostBox',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
             {'tag_name': 'PostBoxNumber', 'in': 'post_box_number', 'class': 'PostBoxNumberType'},
             {'tag_name': 'PostBoxNumberPrefix', 'in': 'post_box_number_prefix', 'class': 'PostBoxNumberPrefixType'},
             {'tag_name': 'PostBoxNumberSuffix', 'in': 'post_box_number_suffix', 'class': 'PostBoxNumberSuffixType'},

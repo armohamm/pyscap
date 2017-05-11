@@ -24,17 +24,17 @@ logger = logging.getLogger(__name__)
 class ProfileType(Extendable):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'status', 'class': 'StatusType', 'append': 'statuses', 'min': 0, 'max': None},
+            {'tag_name': 'status', 'class': 'StatusType', 'list': 'statuses', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
-            {'tag_name': 'title', 'class': 'TextWithSubType', 'append': 'titles', 'min': 1, 'max': None},
-            {'tag_name': 'description', 'class': 'HTMLTextWithSubType', 'append': 'descriptions', 'min': 0, 'max': None},
-            {'tag_name': 'reference', 'class': 'ReferenceType', 'append': 'references', 'min': 0, 'max': None},
-            {'tag_name': 'platform', 'class': 'UriIdrefType', 'append': 'platforms', 'min': 0, 'max': None},
+            {'tag_name': 'title', 'class': 'TextWithSubType', 'list': 'titles', 'min': 1, 'max': None},
+            {'tag_name': 'description', 'class': 'HTMLTextWithSubType', 'list': 'descriptions', 'min': 0, 'max': None},
+            {'tag_name': 'reference', 'class': 'ReferenceType', 'list': 'references', 'min': 0, 'max': None},
+            {'tag_name': 'platform', 'class': 'UriIdrefType', 'list': 'platforms', 'min': 0, 'max': None},
             # choice
-            {'tag_name': 'select', 'class': 'ProfileSelectType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'set-value', 'class': 'ProfileSetValueType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'refine-value', 'class': 'ProfileRefineValueType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'refine-rule', 'class': 'ProfileRefineRuleType', 'map': 'settings', 'key': 'idref', 'min': 0, 'max': None},
+            {'tag_name': 'select', 'class': 'ProfileSelectType', 'dict': 'settings', 'key': 'idref', 'min': 0, 'max': None},
+            {'tag_name': 'set-value', 'class': 'ProfileSetValueType', 'dict': 'settings', 'key': 'idref', 'min': 0, 'max': None},
+            {'tag_name': 'refine-value', 'class': 'ProfileRefineValueType', 'dict': 'settings', 'key': 'idref', 'min': 0, 'max': None},
+            {'tag_name': 'refine-rule', 'class': 'ProfileRefineRuleType', 'dict': 'settings', 'key': 'idref', 'min': 0, 'max': None},
             {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
         ],
         'attributes': {

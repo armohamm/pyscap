@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class ProfileSelectType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'remark', 'class': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+            {'tag_name': 'remark', 'class': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
         ],
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},

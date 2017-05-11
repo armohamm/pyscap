@@ -25,8 +25,8 @@ class LocationsType(Model):
         'tag_name': 'locations',
         'elements': [
             # TODO: min locations is 1
-            {'tag_name': 'location-address', 'append': 'locations', 'class': 'LocationAddressType', 'min': 0, 'max': None},
-            {'tag_name': 'location-point', 'append': 'locations', 'class': 'LocationPointType', 'min': 0, 'max': None},
-            {'tag_name': 'location-region', 'append': 'locations', 'class': 'LocationRegionType', 'min': 0, 'max': None},
+            {'tag_name': 'location-address', 'list': 'locations', 'class': 'LocationAddressType', 'min': 0, 'max': None},
+            {'tag_name': 'location-point', 'list': 'locations', 'class': 'LocationPointType', 'min': 0, 'max': None},
+            {'tag_name': 'location-region', 'list': 'locations', 'class': 'LocationRegionType', 'min': 0, 'max': None},
         ],
     }

@@ -27,12 +27,12 @@ class RuleResultType(Model):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
-            {'tag_name': 'override', 'class': 'OverrideType', 'append': 'overrides', 'min': 0, 'max': None},
-            {'tag_name': 'ident', 'class': 'IdentType', 'append': 'idents', 'min': 0, 'max': None},
-            {'tag_name': 'message', 'class': 'MessageType', 'append': 'messages', 'min': 0, 'max': None},
-            {'tag_name': 'instance', 'class': 'InstanceResultType', 'append': 'instances', 'min': 0, 'max': None},
-            {'tag_name': 'fix', 'class': 'FixType', 'append': 'fixes', 'min': 0, 'max': None},
-            {'tag_name': 'check', 'class': 'CheckType', 'append': 'checks', 'min': 0, 'max': None},
+            {'tag_name': 'override', 'class': 'OverrideType', 'list': 'overrides', 'min': 0, 'max': None},
+            {'tag_name': 'ident', 'class': 'IdentType', 'list': 'idents', 'min': 0, 'max': None},
+            {'tag_name': 'message', 'class': 'MessageType', 'list': 'messages', 'min': 0, 'max': None},
+            {'tag_name': 'instance', 'class': 'InstanceResultType', 'list': 'instances', 'min': 0, 'max': None},
+            {'tag_name': 'fix', 'class': 'FixType', 'list': 'fixes', 'min': 0, 'max': None},
+            {'tag_name': 'check', 'class': 'CheckType', 'list': 'checks', 'min': 0, 'max': None},
         ],
         'attributes': {
             'idref': {'type': 'NCName', 'required': True},

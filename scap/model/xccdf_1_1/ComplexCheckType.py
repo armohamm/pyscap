@@ -25,8 +25,8 @@ class ComplexCheckType(Model):
     MODEL_MAP = {
         'elements': [
             # TODO: ensure checks has at least 1
-            {'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'append': 'checks'},
-            {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': None, 'append': 'checks'},
+            {'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'list': 'checks'},
+            {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': None, 'list': 'checks'},
         ],
         'attributes': {
             'operator': {'enum': CHECK_OPERATOR_ENUMERATION, 'required': True},

@@ -26,6 +26,6 @@ class ProfileSelectType(Model):
             'selected': {'type': 'Boolean', 'required': True},
         },
         'elements': [
-            {'tag_name': 'remark', 'class': 'TextType', 'append': 'remarks', 'min': 0, 'max': None},
+            {'tag_name': 'remark', 'class': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
         ],
     }

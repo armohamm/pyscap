@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class QuestionnairesType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'questionnaire', 'append': 'questionnaires', 'class': 'QuestionnaireType', 'min': 1, 'max': None},
+            {'tag_name': 'questionnaire', 'list': 'questionnaires', 'class': 'QuestionnaireType', 'min': 1, 'max': None},
         ],
     }

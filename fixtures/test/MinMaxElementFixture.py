@@ -21,7 +21,7 @@ class MinMaxElementFixture(Model):
     MODEL_MAP = {
         'tag_name': 'MinMaxElementFixture',
         'elements': [
-            {'tag_name': 'min', 'append': 'min', 'min': 3, 'class': 'EnclosedFixture'},
-            {'tag_name': 'max', 'append': 'max', 'min': 0, 'max': 2, 'class': 'EnclosedFixture'},
+            {'tag_name': 'min', 'list': 'min', 'min': 3, 'class': 'EnclosedFixture'},
+            {'tag_name': 'max', 'list': 'max', 'min': 0, 'max': 2, 'class': 'EnclosedFixture'},
         ],
     }

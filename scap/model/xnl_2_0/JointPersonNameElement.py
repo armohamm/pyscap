@@ -24,8 +24,8 @@ class JointPersonNameElement(Model):
     MODEL_MAP = {
         'tag_name': 'JointPersonName',
         'elements': [
-            {'tag_name': 'NameLine', 'append': 'name_lines', 'class': 'NameLineType'},
-            {'tag_name': 'PersonName', 'append': 'person_names', 'class': 'PersonNameElement'},
+            {'tag_name': 'NameLine', 'list': 'name_lines', 'class': 'NameLineType'},
+            {'tag_name': 'PersonName', 'list': 'person_names', 'class': 'PersonNameElement'},
             {'tag_name': '*'},
         ],
         'attributes': {

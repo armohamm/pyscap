@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class RefListType(Model, collections.abc.MutableMapping):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'component-ref', 'map': 'component_refs', 'class': 'ComponentRefElement'},
+            {'tag_name': 'component-ref', 'dict': 'component_refs', 'class': 'ComponentRefElement'},
         ],
     }
 

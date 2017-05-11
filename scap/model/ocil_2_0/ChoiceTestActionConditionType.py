@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class ChoiceTestActionConditionType(TestActionConditionType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'choice_ref', 'append': 'choice_refs', 'type': 'ChoiceIDPattern', 'max': None},
+            {'tag_name': 'choice_ref', 'list': 'choice_refs', 'type': 'ChoiceIDPattern', 'max': None},
         ],
     }

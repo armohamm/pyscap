@@ -23,9 +23,9 @@ class QuestionResultsType(Model):
     MODEL_MAP = {
         'elements': [
             # TODO: at least one of *_question_result
-            {'tag_name': 'boolean_question_result', 'append': 'question_results', 'class': 'BooleanQuestionResultType', 'min': 0, 'max': None},
-            {'tag_name': 'choice_question_result', 'append': 'question_results', 'class': 'ChoiceQuestionResultType', 'min': 0, 'max': None},
-            {'tag_name': 'numeric_question_result', 'append': 'question_results', 'class': 'NumericQuestionResultType', 'min': 0, 'max': None},
-            {'tag_name': 'string_question_result', 'append': 'question_results', 'class': 'StringQuestionResultType', 'min': 0, 'max': None},
+            {'tag_name': 'boolean_question_result', 'list': 'question_results', 'class': 'BooleanQuestionResultType', 'min': 0, 'max': None},
+            {'tag_name': 'choice_question_result', 'list': 'question_results', 'class': 'ChoiceQuestionResultType', 'min': 0, 'max': None},
+            {'tag_name': 'numeric_question_result', 'list': 'question_results', 'class': 'NumericQuestionResultType', 'min': 0, 'max': None},
+            {'tag_name': 'string_question_result', 'list': 'question_results', 'class': 'StringQuestionResultType', 'min': 0, 'max': None},
         ],
     }

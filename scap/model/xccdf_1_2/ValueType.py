@@ -34,16 +34,16 @@ class ValueType(ItemType):
         'elements': [
             # TODO: at least one value
             # TODO: since order matters in xml (and for values) we might need a list vs. dict here
-            {'tag_name': 'value', 'class': 'SelStringType', 'map': 'values', 'key': 'selector', 'min': 0, 'max': None},
-            {'tag_name': 'complex-value', 'class': 'SelComplexValueType', 'map': 'complex_values', 'key': 'selector', 'min': 0, 'max': None},
+            {'tag_name': 'value', 'class': 'SelStringType', 'dict': 'values', 'key': 'selector', 'min': 0, 'max': None},
+            {'tag_name': 'complex-value', 'class': 'SelComplexValueType', 'dict': 'complex_values', 'key': 'selector', 'min': 0, 'max': None},
             # choice of below
-            {'tag_name': 'default', 'class': 'SelStringType', 'min': 0, 'max': None, 'map': 'defaults', 'key': 'selector'},
-            {'tag_name': 'complex-default', 'class': 'SelComplexValueType', 'min': 0, 'max': None, 'map': 'complex_defaults', 'key': 'selector'},
-            {'tag_name': 'match', 'class': 'SelStringType', 'map': 'matches', 'key': 'selector', 'min': 0, 'max': None},
-            {'tag_name': 'lower-bound', 'class': 'SelNumType', 'map': 'lower_bounds', 'key': 'selector', 'min': 0, 'max': None},
-            {'tag_name': 'upper-bound', 'class': 'SelNumType', 'map': 'upper_bounds', 'key': 'selector', 'min': 0, 'max': None},
-            {'tag_name': 'choices', 'class': 'SelChoicesType', 'map': 'choices', 'key': 'selector', 'min': 0, 'max': None},
-            {'tag_name': 'source', 'class': 'URIRefType', 'append': 'sources', 'min': 0, 'max': None},
+            {'tag_name': 'default', 'class': 'SelStringType', 'min': 0, 'max': None, 'dict': 'defaults', 'key': 'selector'},
+            {'tag_name': 'complex-default', 'class': 'SelComplexValueType', 'min': 0, 'max': None, 'dict': 'complex_defaults', 'key': 'selector'},
+            {'tag_name': 'match', 'class': 'SelStringType', 'dict': 'matches', 'key': 'selector', 'min': 0, 'max': None},
+            {'tag_name': 'lower-bound', 'class': 'SelNumType', 'dict': 'lower_bounds', 'key': 'selector', 'min': 0, 'max': None},
+            {'tag_name': 'upper-bound', 'class': 'SelNumType', 'dict': 'upper_bounds', 'key': 'selector', 'min': 0, 'max': None},
+            {'tag_name': 'choices', 'class': 'SelChoicesType', 'dict': 'choices', 'key': 'selector', 'min': 0, 'max': None},
+            {'tag_name': 'source', 'class': 'URIRefType', 'list': 'sources', 'min': 0, 'max': None},
             {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': None},
         ],
     }

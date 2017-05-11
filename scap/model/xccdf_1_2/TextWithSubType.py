@@ -25,6 +25,6 @@ class TextWithSubType(Model):
             'override': {'type': 'Boolean', 'default': False},
         },
         'elements': [
-            {'tag_name': 'sub', 'class': 'SubType', 'append': 'subs', 'min': 0, 'max': None},
+            {'tag_name': 'sub', 'class': 'SubType', 'list': 'subs', 'min': 0, 'max': None},
         ],
     }

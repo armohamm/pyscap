@@ -24,8 +24,8 @@ class VariablesType(Model):
         'tag_name' : 'variables',
         'elements': [
             # TODO: minOccurs="1" maxOccurs="unbounded"
-            {'tag_name': 'external_variable', 'map': 'variables', 'class': 'ExternalVariableElement', 'min': 0, 'max': None},
-            {'tag_name': 'constant_variable', 'map': 'variables', 'class': 'ConstantVariableElement', 'min': 0, 'max': None},
-            {'tag_name': 'local_variable', 'map': 'variables', 'class': 'LocalVariableElement', 'min': 0, 'max': None},
+            {'tag_name': 'external_variable', 'dict': 'variables', 'class': 'ExternalVariableElement', 'min': 0, 'max': None},
+            {'tag_name': 'constant_variable', 'dict': 'variables', 'class': 'ConstantVariableElement', 'min': 0, 'max': None},
+            {'tag_name': 'local_variable', 'dict': 'variables', 'class': 'LocalVariableElement', 'min': 0, 'max': None},
         ],
     }

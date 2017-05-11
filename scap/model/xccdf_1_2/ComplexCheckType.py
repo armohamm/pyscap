@@ -28,7 +28,7 @@ class ComplexCheckType(Model):
         },
         'elements': [
             # TODO: ensure checks has at least 1
-            {'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'append': 'checks'},
-            {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': None, 'append': 'checks'},
+            {'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'list': 'checks'},
+            {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': None, 'list': 'checks'},
         ],
     }

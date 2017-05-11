@@ -24,7 +24,7 @@ class SystemType(ITAssetType):
     MODEL_MAP = {
         'tag_name': 'system',
         'elements': [
-            {'tag_name': 'system-name', 'append': 'system_names', 'class': 'SystemNameType', 'min': 0, 'max': None},
+            {'tag_name': 'system-name', 'list': 'system_names', 'class': 'SystemNameType', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'VersionType', 'min': 0},
         ],
     }

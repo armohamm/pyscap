@@ -32,12 +32,12 @@ logger = logging.getLogger(__name__)
 class RuleType(SelectableItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'ident', 'append': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
+            {'tag_name': 'ident', 'list': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
             {'tag_name': 'impact-metric', 'min': 0, 'max': 1, 'type': 'String'},
-            {'tag_name': 'profile-note', 'append': 'profile_notes', 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
-            {'tag_name': 'fixtext', 'class': 'FixTextType', 'min': 0, 'max': None, 'append': 'fixtexts'},
-            {'tag_name': 'fix', 'class': 'FixType', 'min': 0, 'max': None, 'append': 'fixes'},# choice
-            {'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'map': 'checks', 'key': 'selector'},
+            {'tag_name': 'profile-note', 'list': 'profile_notes', 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
+            {'tag_name': 'fixtext', 'class': 'FixTextType', 'min': 0, 'max': None, 'list': 'fixtexts'},
+            {'tag_name': 'fix', 'class': 'FixType', 'min': 0, 'max': None, 'list': 'fixes'},# choice
+            {'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'dict': 'checks', 'key': 'selector'},
             {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': 1},
             {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
         ],

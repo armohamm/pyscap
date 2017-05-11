@@ -25,8 +25,8 @@ class ServiceType(ITAssetType):
         'tag_name': 'service',
         'elements': [
             {'tag_name': 'host', 'class': 'HostType', 'min': 0},
-            {'tag_name': 'port', 'append': 'ports', 'class': 'ServicePortType', 'min': 0, 'max': None},
-            {'tag_name': 'port-range', 'append': 'port_ranges', 'class': 'PortRangeType', 'min': 0, 'max': None},
+            {'tag_name': 'port', 'list': 'ports', 'class': 'ServicePortType', 'min': 0, 'max': None},
+            {'tag_name': 'port-range', 'list': 'port_ranges', 'class': 'PortRangeType', 'min': 0, 'max': None},
             {'tag_name': 'protocol', 'class': 'ProtocolType', 'min': 0},
         ],
     }

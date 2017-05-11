@@ -23,6 +23,6 @@ logger = logging.getLogger(__name__)
 class RangeTestActionConditionType(TestActionConditionType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'range', 'append': 'ranges', 'class': 'RangeType', 'min': 1, 'max': None},
+            {'tag_name': 'range', 'list': 'ranges', 'class': 'RangeType', 'min': 1, 'max': None},
         ],
     }

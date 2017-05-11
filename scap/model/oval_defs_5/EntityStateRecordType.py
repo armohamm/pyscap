@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class EntityStateRecordType(EntityStateComplexBaseType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'field', 'append': 'fields', 'class': 'EntityStateFieldType', 'min': 0, 'max': None},
+            {'tag_name': 'field', 'list': 'fields', 'class': 'EntityStateFieldType', 'min': 0, 'max': None},
         ],
     }

@@ -24,6 +24,6 @@ class AssetsType(Model):
     MODEL_MAP = {
         'tag_name': 'assets',
         'elements': [
-            {'tag_name': 'asset', 'append': 'assets', 'class': 'AssetElement', 'max': None},
+            {'tag_name': 'asset', 'list': 'assets', 'class': 'AssetElement', 'max': None},
         ]
     }

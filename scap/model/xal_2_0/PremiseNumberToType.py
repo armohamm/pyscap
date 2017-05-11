@@ -24,9 +24,9 @@ class PremiseNumberRangeToType(Model):
     MODEL_MAP = {
         'tag_name': 'PremiseNumberRangeTo',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'PremiseNumberPrefix', 'append': 'premise_number_prefixes', 'class': 'PremiseNumberPrefixType'},
-            {'tag_name': 'PremiseNumber', 'append': 'premise_numbers', 'class': 'PremiseNumberType'},
-            {'tag_name': 'PremiseNumberSuffix', 'append': 'premise_number_suffixes', 'class': 'PremiseNumberSuffixType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'PremiseNumberPrefix', 'list': 'premise_number_prefixes', 'class': 'PremiseNumberPrefixType'},
+            {'tag_name': 'PremiseNumber', 'list': 'premise_numbers', 'class': 'PremiseNumberType'},
+            {'tag_name': 'PremiseNumberSuffix', 'list': 'premise_number_suffixes', 'class': 'PremiseNumberSuffixType'},
         ],
     }

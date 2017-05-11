@@ -24,9 +24,9 @@ class CriteriaType(Model):
     MODEL_MAP = {
         'elements': [
             # TODO minOccurs="1" maxOccurs="unbounded" of the following:
-            {'tag_name': 'criteria', 'append': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': None},
-            {'tag_name': 'criterion', 'append': 'criteria', 'class': 'CriterionType', 'min': 0, 'max': None},
-            {'tag_name': 'extend_definition', 'append': 'criteria', 'class': 'ExtendDefinitionType', 'min': 0, 'max': None},
+            {'tag_name': 'criteria', 'list': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': None},
+            {'tag_name': 'criterion', 'list': 'criteria', 'class': 'CriterionType', 'min': 0, 'max': None},
+            {'tag_name': 'extend_definition', 'list': 'criteria', 'class': 'ExtendDefinitionType', 'min': 0, 'max': None},
         ],
         'attributes': {
             'applicability_check': {'type': 'Boolean'},

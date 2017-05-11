@@ -24,9 +24,9 @@ logger = logging.getLogger(__name__)
 class GroupType(SelectableItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'Value', 'class': 'ValueType', 'map': 'items', 'min': 0, 'max': None},
-            {'tag_name': 'Group', 'class': 'GroupType', 'map': 'items', 'min': 0, 'max': None},
-            {'tag_name': 'Rule', 'class': 'RuleType', 'map': 'items', 'min': 0, 'max': None},
+            {'tag_name': 'Value', 'class': 'ValueType', 'dict': 'items', 'min': 0, 'max': None},
+            {'tag_name': 'Group', 'class': 'GroupType', 'dict': 'items', 'min': 0, 'max': None},
+            {'tag_name': 'Rule', 'class': 'RuleType', 'dict': 'items', 'min': 0, 'max': None},
             {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
         ],
     }
@@ -66,10 +66,10 @@ class GroupType(SelectableItemType):
             if element_def['tag_name'].endswith('*'):
                 continue
 
-            if 'append' in element_def:
-                self.resolve_property(extended, element_def['append'])
-            elif 'map' in element_def:
-                self.resolve_property(extended, element_def['map'])
+            if 'list' in element_def:
+                self.resolve_property(extended, element_def['list'])
+            elif 'dict' in element_def:
+                self.resolve_property(extended, element_def['dict'])
             else:
                 if 'in' in element_def:
                     name = element_def['in']

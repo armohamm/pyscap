@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class ArtifactsType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'artifact', 'append': 'artifacts', 'class': 'ArtifactElement', 'min': 1, 'max': None},
+            {'tag_name': 'artifact', 'list': 'artifacts', 'class': 'ArtifactElement', 'min': 1, 'max': None},
         ],
     }

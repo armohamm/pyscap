@@ -25,7 +25,7 @@ class ComputingDeviceType(ITAssetType):
         'tag_name': 'computing-device',
         'elements': [
             {'tag_name': 'distinguished-name', 'class': 'DistinguishedNameType', 'min': 0},
-            {'tag_name': 'cpe', 'append': 'cpes', 'class': 'CPEType', 'min': 0, 'max': None},
+            {'tag_name': 'cpe', 'list': 'cpes', 'class': 'CPEType', 'min': 0, 'max': None},
             {'tag_name': 'connections', 'class': 'ConnectionsType', 'min': 0},
             {'tag_name': 'fqdn', 'class': 'FQDNType', 'min': 0},
             {'tag_name': 'hostname', 'class': 'ComputingDeviceHostnameType', 'min': 0},

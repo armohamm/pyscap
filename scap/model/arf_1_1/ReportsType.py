@@ -24,6 +24,6 @@ class ReportsType(Model):
     MODEL_MAP = {
         'tag_name': 'reports',
         'elements': [
-            {'tag_name': 'report', 'append': 'reports', 'class': 'ReportType', 'max': None},
+            {'tag_name': 'report', 'list': 'reports', 'class': 'ReportType', 'max': None},
         ],
     }

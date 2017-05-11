@@ -25,6 +25,6 @@ class AuditEventPolicySubcategoriesTestElement(TestType):
         'tag_name': 'auditeventpolicysubcategories_test',
         'elements': [
             {'tag_name': 'object', 'class': 'oval_defs_5.ObjectRefType'},
-            {'tag_name': 'state', 'append': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
+            {'tag_name': 'state', 'list': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
         ],
     }

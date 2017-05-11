@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class LogicalTestType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'logical-test', 'append': 'logical_tests', 'class': 'LogicalTestType', 'min': 0, 'max': None},
-            {'tag_name': 'fact-ref', 'append': 'fact_refs', 'class': 'FactRefType', 'min': 0, 'max': None},
+            {'tag_name': 'logical-test', 'list': 'logical_tests', 'class': 'LogicalTestType', 'min': 0, 'max': None},
+            {'tag_name': 'fact-ref', 'list': 'fact_refs', 'class': 'FactRefType', 'min': 0, 'max': None},
         ],
         'attributes': {
             'operator': {'enum': OPERATOR_ENUMERATION, 'required': True},

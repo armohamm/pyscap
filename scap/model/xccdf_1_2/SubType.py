@@ -26,6 +26,6 @@ class SubType(IDRefType):
             'use': {'enum': SUB_USE_ENUMERATION, 'default': 'value'},
         },
         'elements': [
-            {'tag_name': 'sub', 'class': 'SubType', 'append': 'subs'},
+            {'tag_name': 'sub', 'class': 'SubType', 'list': 'subs'},
         ],
     }

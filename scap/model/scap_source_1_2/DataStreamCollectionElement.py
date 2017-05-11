@@ -23,9 +23,9 @@ class DataStreamCollectionElement(Model):
     MODEL_MAP = {
         'tag_name': 'data-stream-collection',
         'elements': [
-            {'tag_name': 'data-stream', 'max': None, 'class': 'DataStreamElement', 'map': 'data_streams'},
-            {'tag_name': 'component', 'max': None, 'class': 'ComponentElement', 'map': 'components' },
-            {'tag_name': 'extended-component', 'max': None, 'min': 0, 'class': 'ExtendedComponentElement', 'map': 'components' },
+            {'tag_name': 'data-stream', 'max': None, 'class': 'DataStreamElement', 'dict': 'data_streams'},
+            {'tag_name': 'component', 'max': None, 'class': 'ComponentElement', 'dict': 'components' },
+            {'tag_name': 'extended-component', 'max': None, 'min': 0, 'class': 'ExtendedComponentElement', 'dict': 'components' },
             {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'max': None, 'min': 0},
         ],
         'attributes': {

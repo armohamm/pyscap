@@ -23,9 +23,9 @@ class TestActionsType(Model):
     MODEL_MAP = {
         'elements': [
             # TODO: min 1 of test_actions
-            {'tag_name': 'boolean_question_test_action', 'append': 'test_actions', 'class': 'BooleanQuestionTestActionElement', 'min': 0, 'max': None},
-            {'tag_name': 'choice_question_test_action', 'append': 'test_actions', 'class': 'ChoiceQuestionTestActionElement', 'min': 0, 'max': None},
-            {'tag_name': 'numeric_question_test_action', 'append': 'test_actions', 'class': 'NumericQuestionTestActionElement', 'min': 0, 'max': None},
-            {'tag_name': 'string_question_test_action', 'append': 'test_actions', 'class': 'StringQuestionTestActionElement', 'min': 0, 'max': None},
+            {'tag_name': 'boolean_question_test_action', 'list': 'test_actions', 'class': 'BooleanQuestionTestActionElement', 'min': 0, 'max': None},
+            {'tag_name': 'choice_question_test_action', 'list': 'test_actions', 'class': 'ChoiceQuestionTestActionElement', 'min': 0, 'max': None},
+            {'tag_name': 'numeric_question_test_action', 'list': 'test_actions', 'class': 'NumericQuestionTestActionElement', 'min': 0, 'max': None},
+            {'tag_name': 'string_question_test_action', 'list': 'test_actions', 'class': 'StringQuestionTestActionElement', 'min': 0, 'max': None},
         ],
     }

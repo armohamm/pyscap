@@ -24,8 +24,8 @@ class LocalityType(Model):
     MODEL_MAP = {
         'tag_name': 'Locality',
         'elements': [
-            {'tag_name': 'AddressLine', 'append': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'LocalityName', 'append': 'address_lines', 'class': 'LocalityNameType'},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': 'LocalityName', 'list': 'address_lines', 'class': 'LocalityNameType'},
             {'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
             {'tag_name': 'LargeMailUser', 'in': 'large_mail_user', 'class': 'LargeMailUserType'},
             {'tag_name': 'PostOffice', 'in': 'post_office', 'class': 'PostOfficeType'},
