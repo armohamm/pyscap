@@ -23,6 +23,7 @@ import atexit
 from io import StringIO
 import locale
 import logging
+import os
 import pprint
 import sys
 import time
@@ -152,7 +153,14 @@ if args['inventory'] is not None:
                 Inventory().readfp(fp)
         except IOError:
             logger.error('Could not read from inventory file ' + filename)
-
+else:
+    filename = os.path.expanduser('~/.pyscap/inventory.ini')
+    try:
+        with open(filename, 'r') as fp:
+            logger.debug('Loading inventory from ' + filename)
+            Inventory().readfp(fp)
+    except IOError:
+        logger.error('Could not read from inventory file ' + filename)
 if args['host'] is None or len(args['host']) == 0:
     arg_parser.error('No host specified (--host)')
 
