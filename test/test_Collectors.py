@@ -17,6 +17,7 @@
 
 import pytest
 import uuid
+import os
 
 from scap.Host import Host
 from scap.model.cpe_matching_2_3.CPE import CPE
