@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test:RootFixture xmlns:test="http://jaymes.biz/test">
+	<test:EnclosedFixture />
+</test:RootFixture>
