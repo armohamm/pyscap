@@ -15,12 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
+import os
 import pytest
 import uuid
-import os
 
 from scap.Host import Host
 from scap.model.cpe_matching_2_3.CPE import CPE
+from scap.Inventory import Inventory
+
+logger = logging.getLogger(__name__)
 
 filename = os.path.expanduser('~/.pyscap/inventory.ini')
 try:
