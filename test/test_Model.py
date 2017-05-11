@@ -26,23 +26,23 @@ from scap.Model import Model, UnregisteredNamespaceException, \
     TagMappingException, RequiredAttributeException, MinimumElementException, \
     MaximumElementException
 
-from scap.model.test.RootFixture import RootFixture
-from scap.model.test.EnclosedFixture import EnclosedFixture
-from scap.model.test.AttributeFixture import AttributeFixture
-from scap.model.test.RequiredAttributeFixture import RequiredAttributeFixture
-from scap.model.test.WildcardElementNotInFixture import WildcardElementNotInFixture
-from scap.model.test.WildcardElementInFixture import WildcardElementInFixture
-from scap.model.test.AppendElementFixture import AppendElementFixture
-from scap.model.test.MapElementFixture import MapElementFixture
-from scap.model.test.MappableElementFixture import MappableElementFixture
-from scap.model.test.InitFixture import InitFixture
-from scap.model.test.MinMaxElementFixture import MinMaxElementFixture
+from fixtures.test.RootFixture import RootFixture
+from fixtures.test.EnclosedFixture import EnclosedFixture
+from fixtures.test.AttributeFixture import AttributeFixture
+from fixtures.test.RequiredAttributeFixture import RequiredAttributeFixture
+from fixtures.test.WildcardElementNotInFixture import WildcardElementNotInFixture
+from fixtures.test.WildcardElementInFixture import WildcardElementInFixture
+from fixtures.test.AppendElementFixture import AppendElementFixture
+from fixtures.test.MapElementFixture import MapElementFixture
+from fixtures.test.MappableElementFixture import MappableElementFixture
+from fixtures.test.InitFixture import InitFixture
+from fixtures.test.MinMaxElementFixture import MinMaxElementFixture
 
-from scap.model.test2.EnclosedFixture import EnclosedFixture as EnclosedFixture2
+from fixtures.test2.EnclosedFixture import EnclosedFixture as EnclosedFixture2
 
 logging.basicConfig(level=logging.DEBUG)
-Model.register_namespace('scap.model.test', 'http://jaymes.biz/test')
-Model.register_namespace('scap.model.test2', 'http://jaymes.biz/test2')
+Model.register_namespace('fixtures.test', 'http://jaymes.biz/test')
+Model.register_namespace('fixtures.test2', 'http://jaymes.biz/test2')
 
 def test_namespace_registration():
     Model.register_namespace('scap.model.derp', 'http://jaymes.biz/derp')
@@ -62,21 +62,21 @@ def test_parse_tag():
         Model.parse_tag('{http://www.w3.org/XML/1998}test')
 
 def test_package_to_xmlns():
-    assert Model.package_to_xmlns('scap.model.test') == 'http://jaymes.biz/test'
-    assert Model.package_to_xmlns('scap.model.test2') == 'http://jaymes.biz/test2'
+    assert Model.package_to_xmlns('fixtures.test') == 'http://jaymes.biz/test'
+    assert Model.package_to_xmlns('fixtures.test2') == 'http://jaymes.biz/test2'
 
     with pytest.raises(UnregisteredNamespaceException):
         Model.package_to_xmlns('scap.model.derp')
 
 def test_xmlns_to_package():
-    assert Model.xmlns_to_package('http://jaymes.biz/test') == 'scap.model.test'
-    assert Model.xmlns_to_package('http://jaymes.biz/test2') == 'scap.model.test2'
+    assert Model.xmlns_to_package('http://jaymes.biz/test') == 'fixtures.test'
+    assert Model.xmlns_to_package('http://jaymes.biz/test2') == 'fixtures.test2'
 
     with pytest.raises(UnregisteredNamespaceException):
         Model.xmlns_to_package('http://jaymes.biz/derp')
 
 def test_map_tag_to_module_name():
-    assert Model.map_tag_to_module_name('scap.model.test', '{http://jaymes.biz/test}RootFixture') == 'RootFixture'
+    assert Model.map_tag_to_module_name('fixtures.test', '{http://jaymes.biz/test}RootFixture') == 'RootFixture'
 
     with pytest.raises(ImportError):
         Model.map_tag_to_module_name('scap.model.derp', '{http://jaymes.biz/test}Derp')
@@ -84,7 +84,7 @@ def test_map_tag_to_module_name():
     # TODO test missing TAG_MAP
 
     with pytest.raises(TagMappingException):
-        Model.map_tag_to_module_name('scap.model.test', '{http://jaymes.biz/test}Derp')
+        Model.map_tag_to_module_name('fixtures.test', '{http://jaymes.biz/test}Derp')
 
 def test_load_root_model():
     root = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test" />'))
@@ -459,7 +459,7 @@ def test_initialization():
 
 def test_get_package():
     root = RootFixture()
-    assert root.get_package() == 'scap.model.test'
+    assert root.get_package() == 'fixtures.test'
 
 def test_str_id_func():
     root = RootFixture()

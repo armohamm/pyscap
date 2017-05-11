@@ -18,8 +18,8 @@
 import pytest
 import xml.etree.ElementTree as ET
 
-from scap.model.test.RootFixture import RootFixture
-from scap.model.test.EnclosedFixture import EnclosedFixture
+from fixtures.test.RootFixture import RootFixture
+from fixtures.test.EnclosedFixture import EnclosedFixture
 from scap.Model import Model
 from scap.Inventory import Inventory
 #from scap.LocalFileAdapter import LocalFileAdapter
