@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.Model import scapModel
+from scap.Model import Model as scapModel
 
 logger = logging.getLogger(__name__)
 class Model(scapModel):
