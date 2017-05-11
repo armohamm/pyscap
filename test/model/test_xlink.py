@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import logging
 import pytest
 import xml.etree.ElementTree as ET
 
@@ -22,11 +23,9 @@ from fixtures.test.RootFixture import RootFixture
 from fixtures.test.EnclosedFixture import EnclosedFixture
 from scap.Model import Model
 from scap.Inventory import Inventory
-#from scap.LocalFileAdapter import LocalFileAdapter
 
+logging.basicConfig(level=logging.DEBUG)
 Model.register_namespace('scap.model.xlink', 'http://www.w3.org/1999/xlink')
-
-#requests.session().mount('file://', LocalFileAdapter())
 
 def test_simple_local():
     model = Model.load(None, ET.fromstring('<test:XLinkFixture ' +
