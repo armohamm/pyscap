@@ -16,7 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import requests
+import urllib.request
 import xml.etree.ElementTree as ET
 
 from scap.model.xlink.Model import Model
@@ -36,9 +36,8 @@ class Simple(Model):
         super(Model, self).from_xml(parent, el)
 
         try:
-            r = requests.get(self.href, stream=True)
+            with urllib.request.urlopen(self.href) as r:
+                sub_el = ET.parse(r).getroot()
+                self._parse_element(sub_el)
         except:
-            return
-
-        sub_el = ET.parse(r.raw).getroot()
-        self._parse_element(sub_el)
+            logger.warning('Could not retrieve link ' + self.href + ' for ' + str(self))
