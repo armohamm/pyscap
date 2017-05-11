@@ -22,6 +22,9 @@ from scap.model.xlink.Model import Model
 logger = logging.getLogger(__name__)
 class TitleEltType(Model):
     MODEL_MAP = {
+        'elements': [
+            {'tag_name': '*', 'min': 0},
+        ],
         'attributes': {
             '{http://www.w3.org/1999/xlink}type': {'enum': ['title'], 'required': True},
         },

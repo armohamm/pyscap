@@ -24,6 +24,9 @@ from scap.model.xlink.Model import Model
 logger = logging.getLogger(__name__)
 class Simple(Model):
     MODEL_MAP = {
+        'elements': [
+            {'tag_name': '*', 'min': 0},
+        ],
         'attributes': {
             '{http://www.w3.org/1999/xlink}type': {'enum': ['simple']},
         },
@@ -37,5 +40,5 @@ class Simple(Model):
         except:
             return
 
-        sub_el = ET.parse(r.raw)
+        sub_el = ET.parse(r.raw).getroot()
         self._parse_element(sub_el)

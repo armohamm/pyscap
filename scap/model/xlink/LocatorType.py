@@ -24,6 +24,7 @@ class LocatorType(Model):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'title', 'append': 'titles', 'class': 'TitleEltType', 'min': 0, 'max': None},
+            {'tag_name': '*', 'min': 0},
         ],
         'attributes': {
             '{http://www.w3.org/1999/xlink}type': {'enum': ['locator'], 'required': True},

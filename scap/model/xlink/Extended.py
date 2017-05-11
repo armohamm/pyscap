@@ -27,6 +27,7 @@ class Extended(Model):
             {'tag_name': 'resource', 'append': 'resources', 'class': 'ResourceType', 'min': 0, 'max': None},
             {'tag_name': 'locator', 'append': 'locators', 'class': 'LocatorType', 'min': 0, 'max': None},
             {'tag_name': 'arc', 'append': 'arcs', 'class': 'ArcType', 'min': 0, 'max': None},
+            {'tag_name': '*', 'min': 0},
         ],
         'attributes': {
             '{http://www.w3.org/1999/xlink}type': {'enum': ['extended'], 'required': True},
