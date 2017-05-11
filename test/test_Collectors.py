@@ -21,6 +21,14 @@ import uuid
 from scap.Host import Host
 from scap.model.cpe_matching_2_3.CPE import CPE
 
+filename = os.path.expanduser('~/.pyscap/inventory.ini')
+try:
+    with open(filename, 'r') as fp:
+        logger.debug('Loading inventory from ' + filename)
+        Inventory().readfp(fp)
+except IOError:
+    logger.error('Could not read from inventory file ' + filename)
+
 host = Host.load('localhost')
 for col in host.detect_collectors({}):
     col.collect()
