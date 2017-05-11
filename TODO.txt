@@ -39,10 +39,6 @@ scap
             - tests
         xccdf_1_2
             - tests
-        xlink_1999
-            - tests
-        xml_cat_1_1
-            - tests
         xnl_2_0
             - tests
         xs
