@@ -61,8 +61,8 @@ class IdentityCollector(LinuxCollector):
         self.host.facts['identity']['authenticated'] = True
         self.host.facts['identity']['name'] = self.host.facts['identity']['effective_user_name']
 
-        return_code, out_lines, err_lines = self.host.exec_command('su', sudo=True)
-        if return_code != 0:
+        return_code, out_lines, err_lines = self.host.exec_command('whoami', sudo=True)
+        if return_code == 0 and out_lines[0] == 'root':
             self.host.facts['identity']['privileged'] = True
         else:
             self.host.facts['identity']['privileged'] = False
