@@ -26,4 +26,5 @@ TAG_MAP = {
     '{http://jaymes.biz/test}MapElementFixture': 'MapElementFixture',
     '{http://jaymes.biz/test}InitFixture': 'InitFixture',
     '{http://jaymes.biz/test}MinMaxElementFixture': 'MinMaxElementFixture',
+    '{http://jaymes.biz/test}XLinkFixture': 'XLinkFixture',
 }
