@@ -30,7 +30,7 @@ class Simple(Model):
     }
 
     def from_xml(self, parent, el):
-        super(self, Model).from_xml(parent, el)
+        super(Model, self).from_xml(parent, el)
 
         try:
             r = requests.get(self.href, stream=True)
