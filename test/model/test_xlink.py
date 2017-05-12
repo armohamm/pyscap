@@ -16,6 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import pathlib
 import pytest
 import xml.etree.ElementTree as ET
 
@@ -31,7 +32,10 @@ def test_simple_local():
     model = Model.load(None, ET.fromstring('<test:XLinkFixture ' +
         'xmlns:test="http://jaymes.biz/test" ' +
         'xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" ' +
-        'xlink:href="file://' + str(pytest.config.rootdir) + '/test/test.xml" />'))
+        'xlink:href="file:///' + (
+            pathlib.Path(str(pytest.config.rootdir)) /
+            'test' / 'test.xml'
+        ).as_posix() + '" />'))
     assert isinstance(model._elements, list)
     assert len(model._elements) > 0
     assert isinstance(model._elements[0], RootFixture)
