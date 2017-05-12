@@ -15,9 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import getpass
 import logging
 import subprocess
-import getpass
 
 from scap.host.cli.LocalHost import LocalHost
 from scap.Inventory import Inventory
@@ -25,8 +25,8 @@ from scap.Inventory import Inventory
 logger = logging.getLogger(__name__)
 class WindowsLocalHost(LocalHost):
     def detect_collectors(self, args):
-        from scap.collector.cli.WindowsCollector import WindowsCollector
-        return [WindowsCollector(self, args)]
+        from scap.collector.cli.windows.Collector import Collector
+        return [Collector(self, args)]
 
     def is_admin():
         try:

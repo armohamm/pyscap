@@ -15,21 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.host.cli.LocalHost import LocalHost
+import getpass
 import logging
-import sys
 import os
 import selectors
 from subprocess import Popen, PIPE
-import getpass
+import sys
+
+from scap.host.cli.LocalHost import LocalHost
 from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 class LinuxLocalHost(LocalHost):
     def detect_collectors(self, args):
-        from scap.collector.cli.LinuxCollector import LinuxCollector
-        return [LinuxCollector(self, args)]
+        from scap.collector.cli.linux.Collector import Collector
+        return [Collector(self, args)]
 
     def exec_command(self, cmd, sudo=False):
         inventory = Inventory()
