@@ -56,6 +56,12 @@ class ComplexCheckType(Model):
 
         return {
             'result': result,
-            'message': 'Complex check results',
+            'messages': [
+                MessageType(
+                    tag_name='message',
+                    value='Complex check result',
+                    severity='info'
+                ),
+            ],
             'imports': {}
         }

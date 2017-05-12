@@ -19,6 +19,7 @@ import logging
 
 from scap.Model import Model
 from scap.model.xccdf_1_1.CheckSystemEnumeration import CHECK_SYSTEM_ENUMERATION
+from scap.model.xccdf_1_1.MessageType import MessageType
 
 logger = logging.getLogger(__name__)
 class CheckType(Model):
@@ -61,8 +62,14 @@ class CheckType(Model):
         if self.system not in CHECK_SYSTEM_ENUMERATION:
             return {
                 'result': 'error',
-                'message': 'Unknown system ' + self.system,
-                'imports': {}
+                'messages': [
+                    MessageType(
+                        tag_name='message',
+                        value='Unknown system ' + self.system,
+                        severity='error'
+                    ),
+                ],
+                'imports': {},
             }
 
         # This element identifies a value to be retrieved from the checking
@@ -86,7 +93,13 @@ class CheckType(Model):
         # found.
         result = {
             'result': 'notchecked',
-            'message': 'No checks available',
+            'messages': [
+                MessageType(
+                    tag_name='message',
+                    value='No checks available',
+                    severity='error'
+                ),
+            ],
             'imports': {}
         }
         for check_ref in self.check_content_refs:

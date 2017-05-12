@@ -92,4 +92,3 @@ pip-selfcheck.json
 .~lock*
 *.exe
 *.pem
-./*.xml

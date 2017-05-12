@@ -122,7 +122,8 @@ class ProfileReporter(Reporter):
             sv.value = value['value']
             test_result.set_values.append(sv)
 
-        # TODO test_result.rule_results =
+        for rule_id in profile_facts['rule']:
+            test_result.rule_results[rule_id] = profile_facts['rule'][rule_id]
 
         for score in profile_facts['scores']:
             s = ScoreType(tag_name='score', value=score['score'])

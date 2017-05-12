@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import datetime
 import logging
 import os.path
 import shutil
@@ -26,7 +27,13 @@ from scap.model.xccdf_1_1.SelectableItemType import SelectableItemType
 from scap.model.xccdf_1_1.RoleEnumeration import ROLE_ENUMERATION
 from scap.model.xccdf_1_1.SeverityEnumeration import SEVERITY_ENUMERATION
 from scap.model.xccdf_1_1.ScoringModelEnumeration import SCORING_MODEL_ENUMERATION
-
+from scap.model.xccdf_1_1.RuleResultType import RuleResultType
+from scap.model.xccdf_1_1.OverrideType import OverrideType
+from scap.model.xccdf_1_1.IdentType import IdentType
+from scap.model.xccdf_1_1.MessageType import MessageType
+from scap.model.xccdf_1_1.InstanceResultType import InstanceResultType
+from scap.model.xccdf_1_1.FixType import FixType
+from scap.model.xccdf_1_1.CheckType import CheckType
 
 logger = logging.getLogger(__name__)
 class RuleType(SelectableItemType):
@@ -65,8 +72,14 @@ class RuleType(SelectableItemType):
 
         check_result = {
             'result': 'notchecked',
-            'message': 'No applicable checks found',
-            'imports': {}
+            'messages': [
+                MessageType(
+                    tag_name='message',
+                    value='No applicable checks found',
+                    severity='error'
+                ),
+            ],
+            'imports': {},
         }
         if check is None:
             for ext in ['.sh', '.ps1', '.bat']:
@@ -78,6 +91,9 @@ class RuleType(SelectableItemType):
             # call the check
             logger.debug('Running check ' + str(check))
             check_result = check.check(benchmark, host)
+
+        check_result['check'] = check
+        check_result['fix'] = None
 
         logger.debug('Check result: ' + str(check_result))
         return check_result
@@ -102,8 +118,16 @@ class RuleType(SelectableItemType):
             type_, value = sys.exc_info()[0:2]
             check_result = {
                 'result': 'error',
-                'message': 'Exception while checking ' + str(self) + ': ' + str(type_) + ': ' + str(value),
-                'imports': {}
+                'messages': [
+                    MessageType(
+                        tag_name='message',
+                        value='Exception while checking ' + str(self) + ': ' + str(type_) + ': ' + str(value),
+                        severity='error'
+                    ),
+                ],
+                'imports': {},
+                'check': None,
+                'fix': None,
             }
 
         # if it fails and there's a fix available
@@ -119,6 +143,7 @@ class RuleType(SelectableItemType):
                 # if successful, mark as fixed
                 if check_result['result'] == 'pass':
                     check_result['result'] = 'fixed'
+                    check_result['fix'] = fix
                     break
 
         # if no fixes worked/are available, check if we have a script available
@@ -137,9 +162,27 @@ class RuleType(SelectableItemType):
                         check_result['result'] = 'fixed'
                         break
 
+        rule_result = RuleResultType(tag_name='rule-result')
+        rule_result.idref = self.id
+        rule_result.role = self.role
+        rule_result.severity = self.severity
+        rule_result.time = datetime.datetime.utcnow()
+        rule_result.version = self.version
+        rule_result.weight = self.weight
+
+        rule_result.result = check_result['result']
+        # TODO overrides
+        rule_result.idents = self.idents.copy()
+        rule_result.messages = check_result['messages'].copy()
+        # TODO instance
+        if check_result['fix'] is not None:
+            rule_result.fixes.append(check_result['fix'])
+        if check_result['check'] is not None:
+            rule_result.checks.append(check_result['check'])
+
         # result retention
         logger.debug('Rule result: ' + str(check_result))
-        host.facts['checklist'][benchmark.id]['profile'][profile_id]['rule'][self.id] = check_result
+        host.facts['checklist'][benchmark.id]['profile'][profile_id]['rule'][self.id] = rule_result
 
     def score(self, host, benchmark, profile_id, model_system):
         ### Score.Rule
@@ -148,30 +191,34 @@ class RuleType(SelectableItemType):
         # result is ‘pass’, assign the node a score of 100, otherwise assign a
         # score of 0.
 
-        check_result = host.facts['checklist'][benchmark.id]['profile'][profile_id]['rule'][self.id]
-        if check_result['result'] in ['pass', 'fixed']:
+        rule_result = host.facts['checklist'][benchmark.id]['profile'][profile_id]['rule'][self.id]
+        if rule_result.result in ['pass', 'fixed']:
             return {
                 self.id: {
-                    'result': check_result['result'],
+                    'result': rule_result.result,
                     'model': model_system,
                     'score': 100.0,
-                    'weight': self.weight,
+                    'weight': rule_result.weight,
                     'count': 1,
-                    },
+                },
             }
-        elif check_result['result'] in ['error', 'unknown']:
-            return {self.id: {
-                'result': check_result['result'],
-                'model': model_system,
-                'score': 0.0,
-                'weight': self.weight,
-                'count': 1,
-            }}
+        elif rule_result.result in ['error', 'unknown']:
+            return {
+                self.id: {
+                    'result': rule_result.result,
+                    'model': model_system,
+                    'score': 0.0,
+                    'weight': rule_result.weight,
+                    'count': 1,
+                },
+            }
         else:
-            return {self.id: {
-                'result': check_result['result'],
-                'model': model_system,
-                'score': None,
-                'weight': self.weight,
-                'count': 1,
-            }}
+            return {
+                self.id: {
+                    'result': rule_result.result,
+                    'model': model_system,
+                    'score': None,
+                    'weight': rule_result.weight,
+                    'count': 1,
+                },
+            }

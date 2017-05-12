@@ -27,3 +27,9 @@ class MessageType(String):
             'severity': {'enum': MESSAGE_SEVERITY_ENUMERATION, 'required': True},
         }
     }
+
+    def __init__(self, value=None, tag_name=None, severity=None):
+        super(String, self).__init__(value=value, tag_name=tag_name)
+
+        if severity is not None:
+            self.severity = severity
