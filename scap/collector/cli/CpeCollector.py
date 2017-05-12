@@ -16,14 +16,9 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import re
 
-from scap.collector.cli.FQDNCollector import FQDNCollector as Col
+from scap.collector.CliCollector import CliCollector
 
 logger = logging.getLogger(__name__)
-class FQDNCollector(Col):
-    def collect(self):
-        self.host.facts['fqdn'] = []
-
-        from scap.collector.cli.windows.IpConfigAllCollector import IpConfigAllCollector
-        IpConfigAllCollector(self.host, self.args).collect()
+class CpeCollector(CliCollector):
+    pass

@@ -19,11 +19,11 @@ import logging
 import pprint
 import re
 
-from scap.collector.cli.CPECollector import CPECollector as Col
+from scap.collector.cli.CpeCollector import CpeCollector as Col
 from scap.model.cpe_matching_2_3.CPE import CPE
 
 logger = logging.getLogger(__name__)
-class CPECollector(Col):
+class CpeCollector(Col):
     def collect(self):
         self.host.facts['cpe'] = {'os': [], 'application': [], 'hardware': []}
 

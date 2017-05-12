@@ -18,10 +18,10 @@
 import logging
 import re
 
-from scap.collector.cli.FQDNCollector import FQDNCollector as Col
+from scap.collector.cli.FqdnCollector import FqdnCollector as Col
 
 logger = logging.getLogger(__name__)
-class FQDNCollector(Col):
+class FqdnCollector(Col):
     def collect(self):
         self.host.facts['fqdn'] = []
         return_code, out_lines, err_lines = self.host.exec_command('hostname --all-fqdns 2>/dev/null')

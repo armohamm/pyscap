@@ -22,14 +22,14 @@ from scap.collector.CliCollector import CliCollector
 logger = logging.getLogger(__name__)
 class Collector(CliCollector):
     def collect(self):
-        from scap.collector.cli.windows.SystemUUIDCollector import SystemUUIDCollector
-        SystemUUIDCollector(self.host, self.args).collect()
+        from scap.collector.cli.windows.UniqueIdCollector import UniqueIdCollector
+        UniqueIdCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.windows.CPECollector import CPECollector
-        CPECollector(self.host, self.args).collect()
+        from scap.collector.cli.windows.CpeCollector import CpeCollector
+        CpeCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.windows.FQDNCollector import FQDNCollector
-        FQDNCollector(self.host, self.args).collect()
+        from scap.collector.cli.windows.FqdnCollector import FqdnCollector
+        FqdnCollector(self.host, self.args).collect()
 
         from scap.collector.cli.windows.HostnameCollector import HostnameCollector
         HostnameCollector(self.host, self.args).collect()
