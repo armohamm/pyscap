@@ -42,6 +42,8 @@ class IpAddrCollector(Collector):
             m = re.match(r'^\s+link/(ether|loopback) ([:a-f0-9]+)', line)
             if m:
                 mac = m.group(2)
+                if mac == '00:00:00:00:00:00':
+                    continue
                 self.host.facts['network_connections'][dev]['mac_address'] = mac
                 continue
 
