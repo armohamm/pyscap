@@ -22,7 +22,7 @@ from scap.model.xccdf_1_1.FixStrategyEnumeration import FIX_STRATEGY_ENUMERATION
 from scap.model.xccdf_1_1.RatingEnumeration import RATING_ENUMERATION
 
 logger = logging.getLogger(__name__)
-class FixTextType(HTMLTextWithSubType):
+class FixtextType(HTMLTextWithSubType):
     MODEL_MAP = {
         'attributes': {
             'fixref': {'type': 'NCName'},
