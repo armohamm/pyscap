@@ -663,7 +663,7 @@ class Model(object):
                 logger.debug('Set attribute ' + str(name) + ' to ' + str(value) + ' in ' + str(self))
 
             elif 'enum' in element_def:
-                logger.debug(str(self) + ' parsing ' + tag + ' elements from enum ' + element_def['enum'])
+                logger.debug(str(self) + ' parsing ' + tag + ' elements from enum ' + str(element_def['enum']))
                 if el.text not in element_def['enum']:
                     raise EnumerationException(tag + ' value must be one of ' + str(element_def['enum']))
 
