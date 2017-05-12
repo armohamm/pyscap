@@ -26,8 +26,7 @@ class DateTime(Simple):
     def parse_value(self, value):
         m = re.match(r'(-?\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d)(\.(\s+))?((([-+])(\d\d):(\d\d))|Z)?', value)
         if m:
-            year, month, day, hour, minute, second = m.group(1, 2, 3, 4, 5, 6)
-            year, month, day, hour, minute, second = int(year), int(month), int(day), int(hour), int(minute), int(second)
+            year, month, day, hour, minute, second = int(m.group(1)), int(m.group(2)), int(m.group(3)), int(m.group(4)), int(m.group(5)), int(m.group(6))
             if m.group(7) is not None and m.group(8) is not None:
                 microsecond = int(m.group(8))
             else:
@@ -40,7 +39,7 @@ class DateTime(Simple):
                 tz = datetime.timezone.utc
             else:
                 if m.group(10) is not None:
-                    sign, hours, minutes = m.groups(11, 12, 13)
+                    sign, hours, minutes = m.groups(11), int(m.group(12)), int(m.group(13))
                     if sign == '-':
                         tz = datetime.timezone(- datetime.timedelta(hours=hours, minutes=minutes))
                     else:

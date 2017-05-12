@@ -26,8 +26,7 @@ class Date(Simple):
     def parse_value(self, value):
         m = re.match(r'(-?\d\d\d\d)-(\d\d)-(\d\d)((([-+])(\d\d):(\d\d))|Z)?', value)
         if m:
-            year, month, day = m.group(1, 2, 3)
-            year, month, day = int(year), int(month), int(day)
+            year, month, day = int(m.group(1)), int(m.group(2)), int(m.group(3))
             if m.group(4) is None:
                 # naive date
                 return datetime.date(int(year), int(month), int(day))
@@ -35,7 +34,7 @@ class Date(Simple):
                 tz = datetime.timezone.utc
             else:
                 if m.group(5) is not None:
-                    sign, hours, minutes = m.groups(6, 7, 8)
+                    sign, hours, minutes = m.groups(6), int(m.groups(7)), int(m.groups(8))
                     if sign == '-':
                         tz = datetime.timezone(- datetime.timedelta(hours=hours, minutes=minutes))
                     else:
