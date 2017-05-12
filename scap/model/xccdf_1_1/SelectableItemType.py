@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class SelectableItemType(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'rationale', 'list': 'rationales', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
+            {'tag_name': 'rationale', 'list': 'rationales', 'min': 0, 'max': None, 'class': 'HtmlTextWithSubType'},
             {'tag_name': 'platform', 'list': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableUriIdrefType'},
             {'tag_name': 'requires', 'list': 'requires', 'min': 0, 'max': None, 'class': 'IdrefListType'},
             {'tag_name': 'conflicts', 'list': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},

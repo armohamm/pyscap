@@ -27,7 +27,7 @@ class ItemType(Extendable):
             {'tag_name': 'status', 'class': 'StatusType', 'list': 'statuses', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
             {'tag_name': 'title', 'list': 'titles', 'class': 'TextWithSubType', 'min': 0, 'max': None},
-            {'tag_name': 'description', 'list': 'descriptions', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
+            {'tag_name': 'description', 'list': 'descriptions', 'min': 0, 'max': None, 'class': 'HtmlTextWithSubType'},
             {'tag_name': 'warning', 'class': 'WarningType', 'min': 0, 'max': None, 'type': 'String', 'list': 'warnings'},
             {'tag_name': 'question', 'list': 'questions', 'class': 'TextType', 'min': 0, 'max': None},
             {'tag_name': 'reference', 'list': 'references', 'min': 0, 'max': None, 'class': 'ReferenceType'},

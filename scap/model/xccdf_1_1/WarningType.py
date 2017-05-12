@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.xccdf_1_1.HTMLTextWithSubType import HTMLTextWithSubType
+from scap.model.xccdf_1_1.HtmlTextWithSubType import HtmlTextWithSubType
 from scap.model.xccdf_1_1.WarningCategoryEnumeration import WARNING_CATEGORY_ENUMERATION
 
 logger = logging.getLogger(__name__)
-class WarningType(HTMLTextWithSubType):
+class WarningType(HtmlTextWithSubType):
     MODEL_MAP = {
         'attributes': {
             'category': {'enum': WARNING_CATEGORY_ENUMERATION, 'default': 'general'},
