@@ -53,7 +53,6 @@ class CpeCollector(Col):
             if CPE(part='o', vendor='ubuntu').matches(cpe) \
             or CPE(part='o', vendor='debian').matches(cpe) \
             or CPE(part='o', vendor='linuxmint').matches(cpe):
-                print('match for deb')
                 from scap.collector.cli.linux.DpkgCollector import DpkgCollector
                 DpkgCollector(self.host, self.args).collect()
 
