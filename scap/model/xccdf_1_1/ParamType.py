@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.xs.String import String
+from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
 class ParamType(String):
