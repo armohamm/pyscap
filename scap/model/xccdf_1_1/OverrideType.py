@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.xs.Decimal import Decimal
+from scap.Model import Model
 from scap.model.xccdf_1_1.ResultEnumeration import RESULT_ENUMERATION
 
 logger = logging.getLogger(__name__)
-class OverrideType(Decimal):
+class OverrideType(Model):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'old-result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
