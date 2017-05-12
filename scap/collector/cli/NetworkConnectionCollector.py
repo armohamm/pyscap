@@ -16,15 +16,9 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import re
 
-from scap.collector.cli.NetworkServiceCollector import NetworkServiceCollector as Col
+from scap.collector.CliCollector import CliCollector
 
 logger = logging.getLogger(__name__)
-class NetworkServiceCollector(Col):
-    def collect(self):
-        from scap.collector.cli.windows.NetstatCollector import NetstatCollector
-        NetstatCollector(self.host, self.args).collect()
-
-        for netsvc in self.host.facts['network_services']:
-            logger.debug('Service: Address: ' + netsvc['ip_address'] + ' Port: ' + netsvc['port'] + ' Protocol: ' + netsvc['protocol'] + ' Source: ' + netsvc['source'] + ' Timestamp: ' + netsvc['timestamp'])
+class NetworkConnectionCollector(CliCollector):
+    pass

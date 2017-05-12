@@ -15,15 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import re
 import logging
 import pprint
+import re
 
-from scap.collector.cli.WindowsCollector import WindowsCollector
+from scap.collector.cli.CPECollector import CPECollector as Col
 from scap.model.cpe_matching_2_3.CPE import CPE
 
 logger = logging.getLogger(__name__)
-class CPECollector(WindowsCollector):
+class CPECollector(Col):
     def collect(self):
         self.host.facts['cpe'] = {'os': [], 'application': [], 'hardware': []}
 

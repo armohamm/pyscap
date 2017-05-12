@@ -18,15 +18,16 @@
 # Based on https://github.com/MyNameIsMeerkat/GetSysUUID/blob/master/GetSysUUID.py
 # with documentation at http://www.dmtf.org/sites/default/files/standards/documents/DSP0134_2.6.1.pdf
 
-from scap.collector.cli.WindowsCollector import WindowsCollector
-import logging
 import ctypes
 import ctypes.wintypes
+import logging
 import struct
 import uuid
 
+from scap.collector.cli.windows.Collector import Collector
+
 logger = logging.getLogger(__name__)
-class SmbiosLocalCollector(WindowsCollector):
+class SmbiosLocalCollector(Collector):
     # RSMB = ord('R')
     # RSMB = RSMB << 8 | ord("S")
     # RSMB = RSMB << 8 | ord("M")

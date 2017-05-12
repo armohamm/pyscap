@@ -15,13 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.collector.cli.WindowsCollector import WindowsCollector
 import logging
 import re
+
+from scap.collector.cli.windows.Collector import Collector
 from scap.model.cpe_matching_2_3.CPE import CPE
 
 logger = logging.getLogger(__name__)
-class SystemInfoCollector(WindowsCollector):
+class SystemInfoCollector(Collector):
     SECTION_MAP = {
         'Host Name': 'host_name',
         'OS Name': 'os_name',

@@ -16,27 +16,18 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 # Based on https://github.com/MyNameIsMeerkat/GetSysUUID/blob/master/GetSysUUID.py
+# with documentation at http://www.dmtf.org/sites/default/files/standards/documents/DSP0134_2.6.1.pdf
 
+import ctypes
+import ctypes.wintypes
 import logging
+import struct
 import uuid
 
-from scap.collector.cli.linux.Collector import Collector
+from scap.collector.cli.UniqueIdCollector import UniqueIdCollector as Col
 
 logger = logging.getLogger(__name__)
-class DmiDecodeCollector(Collector):
+class UniqueIdCollector(Col):
     def collect(self):
-        return_code, out_lines, err_lines = self.host.exec_command('dmidecode --type 1', sudo=True)
-
-        u = ''
-        for line in out_lines:
-            if "UUID" in line:
-                line      = line.replace(" ","")
-                pos       = line.find(":")
-                u = line[pos+1:].strip()
-
-        if not u:
-            raise RuntimeError('Could not parse system uuid from dmidecode')
-
-        u = uuid.UUID(u)
-        self.host.facts['unique_id'] = u.hex
-        self.host.facts['motherboard_uuid'] = self.host.facts['unique_id']
+        from scap.collector.cli.windows.WmicCsProductCollector import WmicCsProductCollector
+        WmicCsProductCollector(self.host, self.args).collect()

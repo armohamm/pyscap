@@ -15,12 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.collector.cli.LinuxCollector import LinuxCollector
+import logging
+import re
+import pprint
+
+from scap.collector.cli.linux.Collector import Collector
 from scap.model.cpe_matching_2_3.CPE import CPE
-import re, logging, pprint
 
 logger = logging.getLogger(__name__)
-class LspciCollector(LinuxCollector):
+class LspciCollector(Collector):
     def collect(self):
         # TODO convert to a provider collector
         try:

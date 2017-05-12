@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.collector.cli.WindowsCollector import WindowsCollector
+from scap.collector.cli.IdentityCollector import IdentityCollector as Col
 from scap.host.CLIHost import ElevationException
 
 logger = logging.getLogger(__name__)
-class IdentityCollector(WindowsCollector):
+class IdentityCollector(Col):
     def collect(self):
         if 'identity' in self.host.facts:
             return

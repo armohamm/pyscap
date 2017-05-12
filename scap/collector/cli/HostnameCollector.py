@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Collector import Collector
 import logging
-from scap.Inventory import Inventory
+
+from scap.collector.CliCollector import CliCollector
 
 logger = logging.getLogger(__name__)
-class APICollector(Collector):
+class HostnameCollector(CliCollector):
     pass

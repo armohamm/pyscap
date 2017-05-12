@@ -15,12 +15,31 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.collector.CLICollector import CLICollector
+import logging
+import re
+
+from scap.collector.CliCollector import CliCollector
 from scap.model.cpe_matching_2_3.CPE import CPE
-import re, logging
 
 logger = logging.getLogger(__name__)
-class UNameCollector(CLICollector):
+class UNameCollector(CliCollector):
     def collect(self):
         return_code, out_lines, err_lines = self.host.exec_command('uname -a')
         self.host.facts['uname'] = out_lines[0]
+
+        if self.host.facts['uname'].startswith('Linux'):
+            cpe = CPE()
+            cpe.set_value('part', 'o')
+            cpe.set_value('vendor', 'linux')
+            cpe.set_value('product', 'linux_kernel')
+
+            m = re.match(r'^Linux \S+ ([0-9.]+)-(\S+)', self.host.facts['uname'])
+            if m:
+                cpe.set_value('version', m.group(1))
+                cpe.set_value('update', m.group(2))
+
+            if 'cpe' not in self.host.facts:
+                self.host.facts['cpe'] = {'os':[], 'application':[], 'hardware':[]}
+
+            if cpe not in self.host.facts['cpe']['os']:
+                self.host.facts['cpe']['os'].append(cpe)

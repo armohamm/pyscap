@@ -20,25 +20,25 @@ import logging
 from scap.collector.CliCollector import CliCollector
 
 logger = logging.getLogger(__name__)
-class LinuxCollector(CliCollector):
+class Collector(CliCollector):
     def collect(self):
-        from scap.collector.cli.linux.SystemUUIDCollector import SystemUUIDCollector
+        from scap.collector.cli.windows.SystemUUIDCollector import SystemUUIDCollector
         SystemUUIDCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.CPECollector import CPECollector
+        from scap.collector.cli.windows.CPECollector import CPECollector
         CPECollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.HostnameCollector import HostnameCollector
-        HostnameCollector(self.host, self.args).collect()
-
-        from scap.collector.cli.linux.FQDNCollector import FQDNCollector
+        from scap.collector.cli.windows.FQDNCollector import FQDNCollector
         FQDNCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.NetworkConnectionCollector import NetworkConnectionCollector
+        from scap.collector.cli.windows.HostnameCollector import HostnameCollector
+        HostnameCollector(self.host, self.args).collect()
+
+        from scap.collector.cli.windows.NetworkConnectionCollector import NetworkConnectionCollector
         NetworkConnectionCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.NetworkServiceCollector import NetworkServiceCollector
+        from scap.collector.cli.windows.NetworkServiceCollector import NetworkServiceCollector
         NetworkServiceCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.IdentityCollector import IdentityCollector
+        from scap.collector.cli.windows.IdentityCollector import IdentityCollector
         IdentityCollector(self.host, self.args).collect()

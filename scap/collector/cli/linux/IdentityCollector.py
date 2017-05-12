@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.collector.cli.LinuxCollector import LinuxCollector
+from scap.collector.cli.IdentityCollector import IdentityCollector as Col
 from scap.host.CLIHost import ElevationException
 
 logger = logging.getLogger(__name__)
-class IdentityCollector(LinuxCollector):
+class IdentityCollector(Col):
     def collect(self):
         if 'identity' in self.host.facts:
             return

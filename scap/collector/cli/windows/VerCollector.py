@@ -15,11 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.collector.cli.WindowsCollector import WindowsCollector
 import logging
 
+from scap.collector.cli.windows.Collector import Collector
+
 logger = logging.getLogger(__name__)
-class VerCollector(WindowsCollector):
+class VerCollector(Collector):
     def collect(self):
         return_code, out_lines, err_lines = self.host.exec_command('ver')
         ver = out_lines[1]

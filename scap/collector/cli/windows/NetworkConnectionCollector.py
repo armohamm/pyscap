@@ -15,11 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.collector.cli.WindowsCollector import WindowsCollector
-import re, logging
+import logging
+import re
+
+from scap.collector.cli.NetworkConnectionCollector import NetworkConnectionCollector as Col
 
 logger = logging.getLogger(__name__)
-class NetworkConnectionCollector(WindowsCollector):
+class NetworkConnectionCollector(Col):
     def collect(self):
         from scap.collector.cli.windows.IpConfigAllCollector import IpConfigAllCollector
         IpConfigAllCollector(self.host, self.args).collect()

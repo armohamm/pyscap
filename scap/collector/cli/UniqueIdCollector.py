@@ -15,20 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-# Based on https://github.com/MyNameIsMeerkat/GetSysUUID/blob/master/GetSysUUID.py
-
-from scap.collector.cli.LinuxCollector import LinuxCollector
 import logging
 
+from scap.collector.CliCollector import CliCollector
+
 logger = logging.getLogger(__name__)
-class SystemUUIDCollector(LinuxCollector):
-    def collect(self):
-        try:
-            from scap.collector.cli.linux.DmiDecodeCollector import DmiDecodeCollector
-            DmiDecodeCollector(self.host, self.args).collect()
-        except:
-            # fall back to root fs uuid
-            from scap.collector.cli.linux.RootFsUuidCollector import RootFsUuidCollector
-            RootFsUuidCollector(self.host, self.args).collect()
-            self.host.facts['unique_id'] = self.host.facts['root_uuid']
-        logger.debug('System UUID: ' + self.host.facts['unique_id'])
+class UniqueIdCollector(CliCollector):
+    pass

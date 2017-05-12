@@ -15,18 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-# Based on https://github.com/MyNameIsMeerkat/GetSysUUID/blob/master/GetSysUUID.py
-# with documentation at http://www.dmtf.org/sites/default/files/standards/documents/DSP0134_2.6.1.pdf
-
-from scap.collector.cli.WindowsCollector import WindowsCollector
 import logging
-import ctypes
-import ctypes.wintypes
-import struct
-import uuid
+
+from scap.collector.CliCollector import CliCollector
 
 logger = logging.getLogger(__name__)
-class SystemUUIDCollector(WindowsCollector):
-    def collect(self):
-        from scap.collector.cli.windows.WmicCsProductCollector import WmicCsProductCollector
-        WmicCsProductCollector(self.host, self.args).collect()
+class FqdnCollector(CliCollector):
+    pass

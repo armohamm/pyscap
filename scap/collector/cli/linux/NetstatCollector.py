@@ -15,13 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.collector.cli.LinuxCollector import LinuxCollector
-import re
 import logging
+import pprint
 import time
+import re
+
+from scap.collector.cli.linux.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class NetstatCollector(LinuxCollector):
+class NetstatCollector(Collector):
     def collect(self):
         if 'network_services' in self.host.facts:
             return

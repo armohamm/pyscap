@@ -18,25 +18,18 @@
 # Based on https://github.com/MyNameIsMeerkat/GetSysUUID/blob/master/GetSysUUID.py
 
 import logging
-import uuid
 
-from scap.collector.cli.linux.Collector import Collector
+from scap.collector.cli.UniqueIdCollector import UniqueIdCollector as Col
 
 logger = logging.getLogger(__name__)
-class DmiDecodeCollector(Collector):
+class UniqueIdCollector(Col):
     def collect(self):
-        return_code, out_lines, err_lines = self.host.exec_command('dmidecode --type 1', sudo=True)
-
-        u = ''
-        for line in out_lines:
-            if "UUID" in line:
-                line      = line.replace(" ","")
-                pos       = line.find(":")
-                u = line[pos+1:].strip()
-
-        if not u:
-            raise RuntimeError('Could not parse system uuid from dmidecode')
-
-        u = uuid.UUID(u)
-        self.host.facts['unique_id'] = u.hex
-        self.host.facts['motherboard_uuid'] = self.host.facts['unique_id']
+        try:
+            from scap.collector.cli.linux.DmiDecodeCollector import DmiDecodeCollector
+            DmiDecodeCollector(self.host, self.args).collect()
+        except:
+            # fall back to root fs uuid
+            from scap.collector.cli.linux.RootFsUuidCollector import RootFsUuidCollector
+            RootFsUuidCollector(self.host, self.args).collect()
+            self.host.facts['unique_id'] = self.host.facts['root_uuid']
+        logger.debug('System UUID: ' + self.host.facts['unique_id'])

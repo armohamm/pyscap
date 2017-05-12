@@ -18,11 +18,11 @@
 import re
 import logging
 
-from scap.collector.cli.LinuxCollector import LinuxCollector
+from scap.collector.cli.linux.Collector import Collector
 from scap.model.cpe_matching_2_3.CPE import CPE
 
 logger = logging.getLogger(__name__)
-class LsbReleaseCollector(LinuxCollector):
+class LsbReleaseCollector(Collector):
     def collect(self):
         try:
             return_code, out_lines, err_lines = self.host.exec_command('lsb_release -a')

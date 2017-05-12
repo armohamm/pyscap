@@ -15,14 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import re
 import logging
+import re
 
-from scap.collector.cli.LinuxCollector import LinuxCollector
+from scap.collector.cli.linux.Collector import Collector
 from scap.model.cpe_matching_2_3.CPE import CPE
 
 logger = logging.getLogger(__name__)
-class DpkgCollector(LinuxCollector):
+class DpkgCollector(Collector):
     def collect(self):
         return_code, out_lines, err_lines = self.host.exec_command('dpkg --list')
         for line in out_lines:

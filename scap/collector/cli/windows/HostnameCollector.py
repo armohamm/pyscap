@@ -15,11 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.collector.cli.WindowsCollector import WindowsCollector
-import re, logging
+import logging
+import re
+
+from scap.collector.cli.HostnameCollector import HostnameCollector as Col
 
 logger = logging.getLogger(__name__)
-class HostnameCollector(WindowsCollector):
+class HostnameCollector(Col):
     def collect(self):
         return_code, out_lines, err_lines = self.host.exec_command('hostname')
         self.host.facts['hostname'] = out_lines[0]

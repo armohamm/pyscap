@@ -18,6 +18,7 @@
 import importlib
 import logging
 import sys
+
 from scap.Collector import Collector
 import scap.model.xccdf_1_1.BenchmarkType
 
