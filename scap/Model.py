@@ -868,9 +868,7 @@ class Model(object):
                         el.text = v
                     sub_els.append(el)
 
-        elif 'class' in element_def \
-        or 'type' in element_def \
-        or 'enum' in element_def:
+        elif 'class' in element_def:
             if 'in' in element_def:
                 name = element_def['in']
             else:
@@ -887,5 +885,36 @@ class Model(object):
                 sub_els.append(value)
             else:
                 raise UnknownElementException(str(self) + ' Unknown class to add to sub elements: ' + value.__class__.__name__)
+        elif 'type' in element_def:
+            if 'in' in element_def:
+                name = element_def['in']
+            else:
+                name = element_def['tag_name'].replace('-', '_')
 
+            value = getattr(self, name)
+            if value is None:
+                return []
+
+            # create an element
+            el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
+            el.text = self._produce_value_as_type(value, element_def['type'])
+            return [el]
+        elif 'enum' in element_def:
+            if 'in' in element_def:
+                name = element_def['in']
+            else:
+                name = element_def['tag_name'].replace('-', '_')
+
+            value = getattr(self, name)
+            if value is None:
+                return []
+
+            if value not in element_def['enum']:
+                raise EnumerationException(str(self) + ' ' + element_def['tag_name'] + ' is not in enumeration : ' + str(element_def['enum']))
+
+            el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
+            el.text = value
+            return [el]
+        else:
+            raise UnknownElementException(str(self) + ' Unable to produce element definition: ' + str(element_def))
         return sub_els
