@@ -25,8 +25,7 @@ class Time(Simple):
     def parse_value(self, value):
         m = re.match(r'((-?\d\d):(\d\d):(\d\d)(\.(\s+))?((([-+])(\d\d):(\d\d))|Z)?', value)
         if m:
-            hour, minute, second = m.group(1, 2, 3)
-            hour, minute, second = int(hour), int(minute), int(second)
+            hour, minute, second = int(m.group(1)), int(m.group(2)), int(m.group(3))
             if m.group(4) is not None and m.group(5) is not None:
                 microsecond = int(m.group(5))
             else:
@@ -39,7 +38,7 @@ class Time(Simple):
                 tz = datetime.timezone.utc
             else:
                 if m.group(7) is not None:
-                    sign, hours, minutes = m.groups(8, 9, 10)
+                    sign, hours, minutes = m.groups(8), int(m.group(9)), int(m.group(10))
                     if sign == '-':
                         tz = datetime.timezone(- datetime.timedelta(hours=hours, minutes=minutes))
                     else:

@@ -20,7 +20,7 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class HTMLTextWithSubType(Model):
+class HtmlTextWithSubType(Model):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'sub', 'class': 'IdrefType', 'list': 'subs', 'min': 0, 'max': None},

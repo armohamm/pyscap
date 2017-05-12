@@ -16,9 +16,10 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import pytest, logging
+import xml.etree.ElementTree as ET
+
 from scap.Model import Model
 from scap.model.xml_cat_1_1.Catalog import Catalog
-import xml.etree.ElementTree as ET
 
 logging.basicConfig(level=logging.DEBUG)
 Model.register_namespace('scap.model.xml_cat_1_1', 'urn:oasis:names:tc:entity:xmlns:xml:catalog')

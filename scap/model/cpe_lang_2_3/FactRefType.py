@@ -23,6 +23,6 @@ logger = logging.getLogger(__name__)
 class FactRefType(Model):
     MODEL_MAP = {
         'attributes': {
-            'description': {'type': 'NormalizedString'},
+            'name': {'type': 'NormalizedString'},
         },
     }

@@ -15,15 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+from scap.model.xs.NMTokens import NMTokens
 import logging
 
-from scap.model.xccdf_1_1.HtmlTextWithSubType import HtmlTextWithSubType
-from scap.model.xccdf_1_1.WarningCategoryEnumeration import WARNING_CATEGORY_ENUMERATION
-
 logger = logging.getLogger(__name__)
-class WarningType(HtmlTextWithSubType):
+class LinkTypes(NMTokens):
     MODEL_MAP = {
-        'attributes': {
-            'category': {'enum': WARNING_CATEGORY_ENUMERATION, 'default': 'general'},
-        }
     }
