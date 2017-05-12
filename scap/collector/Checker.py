@@ -20,14 +20,14 @@ import logging
 import sys
 
 from scap.Collector import Collector
-import scap.model.xccdf_1_1.BenchmarkType
 
 logger = logging.getLogger(__name__)
 #logger.setLevel(logging.INFO)
 class Checker(Collector):
     @staticmethod
     def load(host, args, model):
-        if isinstance(model, scap.model.xccdf_1_1.BenchmarkType.BenchmarkType):
+        from scap.model.xccdf_1_1.BenchmarkType import BenchmarkType
+        if isinstance(model, BenchmarkType):
             from scap.collector.checker.xccdf_1_1.BenchmarkChecker import BenchmarkChecker
             return BenchmarkChecker(host, args, model)
         else:
