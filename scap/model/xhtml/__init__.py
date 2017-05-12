@@ -28,12 +28,13 @@ ATTRIBUTE_GROUP_coreattrs = {
     'title': {'type': 'Text'},
 }
 
-ATTRIBUTE_GROUP_i18n
+ATTRIBUTE_GROUP_i18n = {
     'lang': {'type': 'LanguageCode'},
     # xml:lang is defined in scap.model.Model
     'dir': {'enum': ['ltr', 'rtl']},
+}
 
-ATTRIBUTE_GROUP_events
+ATTRIBUTE_GROUP_events = {
     'onclick': {'type': 'Script'},
     'ondblclick': {'type': 'Script'},
     'onmousedown': {'type': 'Script'},
@@ -44,12 +45,14 @@ ATTRIBUTE_GROUP_events
     'onkeypress': {'type': 'Script'},
     'onkeydown': {'type': 'Script'},
     'onkeyup': {'type': 'Script'},
+}
 
-ATTRIBUTE_GROUP_focus
+ATTRIBUTE_GROUP_focus = {
     'accesskey': {'type': 'Character'},
     'tabindex': {'type': 'TabIndexNumber'},
     'onfocus': {'type': 'Script'},
     'onblur': {'type': 'Script'},
+}
 
 ATTRIBUTE_GROUP_attrs = {}
 ATTRIBUTE_GROUP_attrs.update(ATTRIBUTE_GROUP_coreattrs)
