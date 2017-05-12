@@ -28,6 +28,7 @@ from scap.model.xccdf_1_1.IdrefType import IdrefType
 from scap.model.xccdf_1_1.ScoreType import ScoreType
 from scap.model.xccdf_1_1.FactType import FactType
 from scap.model.xccdf_1_1.TargetFactsType import TargetFactsType
+from scap.model.xccdf_1_1.UriIdrefType import UriIdrefType
 from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
@@ -114,7 +115,10 @@ class ProfileReporter(Reporter):
                     f.text = netadd['address']
                     test_result.target_facts.facts.append(f)
 
-        # TODO test_result.platforms =
+        for cpe in host.facts['cpe']['os']:
+            ref = UriIdrefType(tag_name='platform')
+            ref.idref = cpe.to_uri_string()
+            test_result.platforms.append(ref)
 
         for value_id, value in profile_facts['value']:
             sv = ProfileSetValueType(tag_name='set-value')
