@@ -35,7 +35,7 @@ class RuleType(SelectableItemType):
             {'tag_name': 'ident', 'list': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
             {'tag_name': 'impact-metric', 'min': 0, 'max': 1, 'type': 'String'},
             {'tag_name': 'profile-note', 'list': 'profile_notes', 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
-            {'tag_name': 'fixtext', 'class': 'FixTextType', 'min': 0, 'max': None, 'list': 'fixtexts'},
+            {'tag_name': 'fixtext', 'class': 'FixtextType', 'min': 0, 'max': None, 'list': 'fixtexts'},
             {'tag_name': 'fix', 'class': 'FixType', 'min': 0, 'max': None, 'list': 'fixes'},# choice
             {'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'dict': 'checks', 'key': 'selector'},
             {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': 1},
