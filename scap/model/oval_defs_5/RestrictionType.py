@@ -15,12 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Simple import Simple
+from scap.model.xs.AnySimpleType import AnySimpleType
 from scap.model.oval_common_5.OperationEnumeration import OPERATION_ENUMERATION
 import logging
 
 logger = logging.getLogger(__name__)
-class RestrictionType(Simple):
+class RestrictionType(AnySimpleType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'restriction', 'list': 'restrictions', 'class': 'RestrictionType', 'min': 1, 'max': None},

@@ -19,7 +19,7 @@ from scap.model.xlink.Simple import Simple
 import logging
 
 logger = logging.getLogger(__name__)
-class ComponentRefElement(Simple):
+class ComponentRefElement(AnySimpleType):
     MODEL_MAP = {
         'elements': [
             {'xmlns': 'urn:oasis:names:tc:entity:xmlns:xml:catalog', 'tag_name': 'catalog', 'class': 'Catalog', 'min': 0},

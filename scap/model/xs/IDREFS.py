@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Simple import Simple
+from scap.model.xs.IDREF import IDREF
 import logging
 
 logger = logging.getLogger(__name__)
-class GregorianDay(Simple):
-    def parse_value(self, value):
-        return int(value)
+class IDREFS(IDREF):
+    # TODO at least one IDREF
+    pass

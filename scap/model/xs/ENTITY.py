@@ -15,30 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
+from scap.model.xs.NCName import NCName
 import logging
-import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
-class Simple(Model):
-    def parse_value(self, value):
-        return value
-
-    def produce_value(self, value):
-        return str(value)
-
-    def is_none(self):
-        return self.text is None
-
-    def __str__(self):
-        return str(self.text)
-
-    def from_xml(self, parent, sub_el):
-        super(Simple, self).from_xml(parent, sub_el)
-
-        if sub_el.text is not None:
-            self.text = self.parse_value(sub_el.text)
-
-    def to_xml(self):
-        self.text = self.produce_value(self.text)
-        return super(Simple, self).to_xml()
+class ENTITY(NCName):
+    pass

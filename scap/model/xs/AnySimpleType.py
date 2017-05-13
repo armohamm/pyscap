@@ -15,10 +15,31 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Simple import Simple
 import logging
+import xml.etree.ElementTree as ET
+
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class GregorianYear(Simple):
+class AnySimpleType(Model):
     def parse_value(self, value):
-        return int(value)
+        return value
+
+    def produce_value(self, value):
+        return str(value)
+
+    def is_none(self):
+        return self.text is None
+
+    def __str__(self):
+        return str(self.text)
+
+    def from_xml(self, parent, sub_el):
+        super(AnySimpleType, self).from_xml(parent, sub_el)
+
+        if sub_el.text is not None:
+            self.text = self.parse_value(sub_el.text)
+
+    def to_xml(self):
+        self.text = self.produce_value(self.text)
+        return super(AnySimpleType, self).to_xml()

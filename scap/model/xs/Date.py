@@ -19,10 +19,10 @@ import datetime
 import logging
 import re
 
-from scap.model.xs.Simple import Simple
+from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
-class Date(Simple):
+class Date(AnySimpleType):
     def parse_value(self, value):
         m = re.match(r'(-?\d\d\d\d)-(\d\d)-(\d\d)((([-+])(\d\d):(\d\d))|Z)?', value)
         if m:

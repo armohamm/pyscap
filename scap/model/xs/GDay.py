@@ -19,5 +19,6 @@ from scap.model.xs.AnySimpleType import AnySimpleType
 import logging
 
 logger = logging.getLogger(__name__)
-class QName(AnySimpleType):
-    pass
+class GDay(AnySimpleType):
+    def parse_value(self, value):
+        return int(value)

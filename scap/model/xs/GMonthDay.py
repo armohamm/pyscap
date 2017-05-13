@@ -19,5 +19,14 @@ from scap.model.xs.AnySimpleType import AnySimpleType
 import logging
 
 logger = logging.getLogger(__name__)
-class QName(AnySimpleType):
-    pass
+class GMonthDay(AnySimpleType):
+    def parse_value(self, value):
+        for sep in ['-', '/', '.', ' ', ',']:
+            if sep in value:
+                month, day = value.split(sep)
+                return (month, day)
+        raise ValueError('Unable to parse MonthDay')
+
+    def produce_value(self, value):
+        month, day = value
+        return str(month) + '-' + str(day)

@@ -20,4 +20,5 @@ import logging
 
 logger = logging.getLogger(__name__)
 class Language(Token):
+    # TODO pattern [a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*
     pass

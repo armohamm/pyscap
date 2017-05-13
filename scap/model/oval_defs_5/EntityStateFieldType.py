@@ -15,14 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Simple import Simple
+from scap.model.xs.AnySimpleType import AnySimpleType
 from scap.model.oval_common_5.DatatypeEnumeration import DATATYPE_ENUMERATION
 from scap.model.oval_common_5.OperationEnumeration import OPERATION_ENUMERATION
 from scap.model.oval_common_5.CheckEnumeration import CHECK_ENUMERATION
 import logging
 
 logger = logging.getLogger(__name__)
-class EntitySimpleBaseType(Simple):
+class EntitySimpleBaseType(AnySimpleType):
     MODEL_MAP = {
         'attributes': {
             'name': {'required': True, 'type': 'String'}, # TODO <xsd:pattern value="[^A-Z]+"/>

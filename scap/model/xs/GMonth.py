@@ -15,18 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Simple import Simple
+from scap.model.xs.AnySimpleType import AnySimpleType
 import logging
 
 logger = logging.getLogger(__name__)
-class GregorianMonthDay(Simple):
+class GMonth(AnySimpleType):
     def parse_value(self, value):
-        for sep in ['-', '/', '.', ' ', ',']:
-            if sep in value:
-                month, day = value.split(sep)
-                return (month, day)
-        raise ValueError('Unable to parse MonthDay')
-
-    def produce_value(self, value):
-        month, day = value
-        return str(month) + '-' + str(day)
+        return int(value)

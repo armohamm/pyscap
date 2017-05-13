@@ -15,9 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.AnySimpleType import AnySimpleType
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
-class QName(AnySimpleType):
+class AnyType(Model):
     pass
