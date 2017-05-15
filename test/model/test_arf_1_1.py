@@ -15,17 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
+import importlib
 import logging
-import xml.etree.ElementTree as ET
+import pkgutil
+import pytest
 
-logger = logging.getLogger(__name__)
-class RemoteResourceElement(Model):
-    MODEL_MAP = {
-        'tag_name': 'remote-resource',
-        'attributes': {
-            '{http://www.w3.org/1999/xlink}type': {'required': True, 'enum': ['simple']},
-            '{http://www.w3.org/1999/xlink}href': {'required': True, 'type': 'AnyURI'},
-            '*': {},
-        }
-    }
+import scap.model.arf_1_1
+
+logging.basicConfig(level=logging.DEBUG)
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.arf_1_1.__path__):
+        importlib.import_module('scap.model.arf_1_1.' + m.name, 'scap.model.arf_1_1')
