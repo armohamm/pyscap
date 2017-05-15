@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_defs_5.Variable import Variable
+from scap.model.oval_defs_5.VariableType import VariableType
 import logging
 
 logger = logging.getLogger(__name__)
-class ConstantVariableElement(Variable):
+class ConstantVariableElement(VariableType):
     MODEL_MAP = {
         'tag_name': 'constant_variable',
         'elements': [

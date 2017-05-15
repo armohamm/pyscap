@@ -23,12 +23,8 @@ class ObjectsType(Model):
     MODEL_MAP = {
         'tag_name' : 'objects',
         'elements': [
-            # TODO minOccurs="1" maxOccurs="unbounded"
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': '*', 'in': '_objects'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': '*', 'in': '_objects'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': '*', 'in': '_objects'},
         ],
     }
-    from scap.model.oval_defs_5_independent import OBJECT_MAP
-    MODEL_MAP['elements'].extend(OBJECT_MAP)
-    from scap.model.oval_defs_5_linux import OBJECT_MAP
-    MODEL_MAP['elements'].extend(OBJECT_MAP)
-    from scap.model.oval_defs_5_windows import OBJECT_MAP
-    MODEL_MAP['elements'].extend(OBJECT_MAP)

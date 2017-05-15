@@ -15,16 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
+import importlib
 import logging
+import pkgutil
+import pytest
 
-logger = logging.getLogger(__name__)
-class TestsType(Model):
-    MODEL_MAP = {
-        'tag_name' : 'tests',
-        'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': '*', 'in': '_tests'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': '*', 'in': '_tests'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': '*', 'in': '_tests'},
-        ],
-    }
+import scap.model.oval_defs_5
+
+logging.basicConfig(level=logging.DEBUG)
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.oval_defs_5.__path__):
+        importlib.import_module('scap.model.oval_defs_5.' + m.name, 'scap.model.oval_defs_5')
