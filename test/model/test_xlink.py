@@ -15,8 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import importlib
 import logging
 import pathlib
+import pkgutil
 import pytest
 import xml.etree.ElementTree as ET
 
@@ -24,9 +26,14 @@ from fixtures.test.RootFixture import RootFixture
 from fixtures.test.EnclosedFixture import EnclosedFixture
 from scap.Model import Model
 from scap.Inventory import Inventory
+import scap.model.xlink
 
 logging.basicConfig(level=logging.DEBUG)
 Model.register_namespace('scap.model.xlink', 'http://www.w3.org/1999/xlink')
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.xlink.__path__):
+        importlib.import_module('scap.model.xlink.' + m.name, 'scap.model.xlink')
 
 def test_simple_local():
     path = (
