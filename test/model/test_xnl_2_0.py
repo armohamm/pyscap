@@ -15,21 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xnl_2_0.NameDetailsType import NameDetailsType
+import importlib
 import logging
-import xml.etree.ElementTree as ET
+import pkgutil
+import pytest
 
-logger = logging.getLogger(__name__)
-class NameDetailsElement(NameDetailsType):
-    MODEL_MAP = {
-        'tag_name': 'NameDetails',
-        'elements': [
-            {'tag_name': 'AddresseeIndicator', 'in': 'adressee_indicator', 'class': 'AddresseeIndicatorElement'},
-            {'tag_name': 'Function', 'in': 'function', 'class': 'FunctionElement'},
-            {'tag_name': 'DependencyName', 'in': 'dependency_name', 'class': 'DependencyNameElement'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'NameDetailsKey': {},
-        },
-    }
+import scap.model.xnl_2_0
+
+logging.basicConfig(level=logging.DEBUG)
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.xnl_2_0.__path__):
+        importlib.import_module('scap.model.xnl_2_0.' + m.name, 'scap.model.xnl_2_0')

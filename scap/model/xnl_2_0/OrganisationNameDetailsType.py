@@ -20,9 +20,8 @@ import logging
 import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
-class OrganisationNameDetailsElement(Model):
+class OrganisationNameDetailsType(Model):
     MODEL_MAP = {
-        'tag_name': 'OrganisationNameDetails',
         'elements': [
             {'tag_name': 'NameLine', 'list': 'name_lines', 'class': 'NameLineType'},
             {'tag_name': 'OrganisationName', 'list': 'organisation_name', 'class': 'OrganisationNameElement'},

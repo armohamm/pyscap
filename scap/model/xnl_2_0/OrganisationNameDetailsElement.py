@@ -24,7 +24,7 @@ class OrganisationNameDetailsElement(OrganisationNameDetailsType):
     MODEL_MAP = {
         'tag_name': 'OrganisationNameDetails',
         'elements': [
-            {'tag_name': 'OrganisationFormerName', 'list''organisation_former_names', 'class': 'OrganisationFormerNameElement'},
-            {'tag_name': 'OrganisationKnownAs', 'list''organisation_known_as', 'class': 'OrganisationKnownAsElement'},
+            {'tag_name': 'OrganisationFormerName', 'list': 'organisation_former_names', 'class': 'OrganisationFormerNameElement'},
+            {'tag_name': 'OrganisationKnownAs', 'list': 'organisation_known_as', 'class': 'OrganisationKnownAsElement'},
         ],
     }
