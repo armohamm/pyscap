@@ -15,14 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_defs_5.TestType import TestType as oval_defs_5_TestType
+import importlib
 import logging
+import pkgutil
+import pytest
 
-logger = logging.getLogger(__name__)
-class TestType(oval_defs_5_TestType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'object', 'class': 'oval_defs_5.ObjectRefType'},
-            {'tag_name': 'state', 'list': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
-        ],
-    }
+import scap.model.oval_defs_5_independent
+
+logging.basicConfig(level=logging.DEBUG)
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.oval_defs_5_independent.__path__):
+        importlib.import_module('scap.model.oval_defs_5_independent.' + m.name, 'scap.model.oval_defs_5_independent')
