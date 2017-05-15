@@ -15,17 +15,24 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import importlib
 import logging
+import pkgutil
 import pytest
 import xml.etree.ElementTree as ET
 
 from scap.Model import Model
+import scap.model.xccdf_1_1
 
 logging.basicConfig(level=logging.DEBUG)
 Model.register_namespace('scap.model.xccdf_1_1', 'http://checklists.nist.gov/xccdf/1.1')
 Model.register_namespace('scap.model.xhtml', 'http://www.w3.org/1999/xhtml')
 Model.register_namespace('scap.model.dc_elements_1_1', 'http://purl.org/dc/elements/1.1/')
 Model.register_namespace('scap.model.cpe_lang_2_3', 'http://cpe.mitre.org/language/2.0')
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.xccdf_1_1.__path__):
+        importlib.import_module('scap.model.xccdf_1_1.' + m.name, 'scap.model.xccdf_1_1')
 
 def test_benchmark():
         model = Model.load(None, ET.fromstring('''<?xml version="1.0" encoding="UTF-8"?>
