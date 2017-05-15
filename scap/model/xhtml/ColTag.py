@@ -18,11 +18,16 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.model.xhtml.InputTypeEnumeration import INPUT_TYPE_ENUMERATION
-from scap.Token import Token
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class InputType(Token):
+class ColTag(Model):
     MODEL_MAP = {
+        'attributes': {
+            'span': {'type': 'NumberType', 'default': 1},
+            'width': {'type': 'MultiLengthType'},
+        },
     }
-    # TODO restrict to INPUT_TYPE_ENUMERATION
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_cellhalign)
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_cellvalign)

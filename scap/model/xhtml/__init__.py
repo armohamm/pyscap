@@ -162,3 +162,78 @@ ELEMENT_GROUP_head_misc = [
     {'tag_name': 'link', 'list': '_elements', 'class': 'LinkTag'},
     {'tag_name': 'object', 'list': '_elements', 'class': 'ObjectTag'},
 ]
+
+INPUT_TYPE_ENUMERATION = [
+    'text',
+    'password',
+    'checkbox',
+    'radio',
+    'submit',
+    'reset',
+    'file',
+    'hidden',
+    'image',
+    'button',
+]
+
+SHAPE_ENUMERATION = [
+    'rect',
+    'circle',
+    'poly',
+    'default',
+]
+
+T_FRAME_ENUMERATION = [
+    'void',
+    'above',
+    'below',
+    'hsides',
+    'lhs',
+    'rhs',
+    'vsides',
+    'box',
+    'border',
+]
+
+T_RULES_ENUMERATION = [
+    'none',
+    'groups',
+    'rows',
+    'cols',
+    'all',
+]
+
+CELL_H_ALIGN_ENUMERATION = [
+    'left',
+    'center',
+    'right',
+    'justify',
+    'char',
+]
+
+ATTRIBUTE_GROUP_cellhalign = {
+    'align': {'enum': CELL_H_ALIGN_ENUMERATION},
+    'char': {'type': 'CharacterType'},
+    'charoff': {'type': 'LengthType'},
+}
+
+CELL_V_ALIGN_ENUMERATION = [
+    'top',
+    'middle',
+    'bottom',
+    'baseline',
+]
+
+ATTRIBUTE_GROUP_cellvalign = {
+    'valign': {'enum': CELL_V_ALIGN_ENUMERATION},
+    'tabindex': {'type': 'TabIndexNumberType'},
+    'onfocus': {'type': 'ScriptType'},
+    'onblur': {'type': 'ScriptType'},
+}
+
+SCOPE_ENUMERATION = [
+    'row',
+    'col',
+    'rowgroup',
+    'colgroup',
+]

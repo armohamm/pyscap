@@ -18,17 +18,13 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.model.xhtml.ButtonContentType import ButtonContentType
+from scap.model.xhtml.InlineType import InlineType
 
 logger = logging.getLogger(__name__)
-class ButtonTag(ButtonContentType):
+class LegendTag(InlineType):
     MODEL_MAP = {
         'attributes': {
-            'name': {'type': 'String'},
-            'value': {'type': 'String'},
-            'type': {'enum': ['button', 'submit', 'reset'], 'default': 'submit'},
-            'disabled': {'enum': ['disabled']},
+            'accesskey': {'type': 'CharacterType'},
         },
     }
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_focus)

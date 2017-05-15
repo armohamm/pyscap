@@ -18,17 +18,18 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.model.xhtml.ButtonContentType import ButtonContentType
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class ButtonTag(ButtonContentType):
+class TRTag(Model):
     MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'th', 'list': '_elements', 'class': 'THTag', 'max': None},
+            {'tag_name': 'td', 'list': '_elements', 'class': 'TDTag', 'max': None},
+        ],
         'attributes': {
-            'name': {'type': 'String'},
-            'value': {'type': 'String'},
-            'type': {'enum': ['button', 'submit', 'reset'], 'default': 'submit'},
-            'disabled': {'enum': ['disabled']},
         },
     }
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_focus)
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_cellhalign)
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_cellvalign)

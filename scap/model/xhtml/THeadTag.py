@@ -15,15 +15,20 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-INPUT_TYPE_ENUMERATION = [
-    'text',
-    'password',
-    'checkbox',
-    'radio',
-    'submit',
-    'reset',
-    'file',
-    'hidden',
-    'image',
-    'button',
-]
+import logging
+
+from scap.model.xhtml import *
+from scap.Model import Model
+
+logger = logging.getLogger(__name__)
+class THeadTag(Model):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'tr', 'type': 'TRTag', 'max': None},
+        ],
+        'attributes': {
+        },
+    }
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_cellhalign)
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_cellvalign)

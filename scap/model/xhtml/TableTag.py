@@ -24,6 +24,23 @@ logger = logging.getLogger(__name__)
 class TableTag(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': '*', 'min': 0},
+            {'tag_name': 'caption', 'type': 'CaptionTag', 'min': 0},
+            {'tag_name': 'col', 'type': 'ColTag', 'min': 0, 'max': None},
+            {'tag_name': 'colgroup', 'type': 'ColGroupTag', 'min': 0, 'max': None},
+            {'tag_name': 'thead', 'type': 'THeadTag', 'min': 0},
+            {'tag_name': 'tfoot', 'type': 'TFootTag', 'min': 0},
+            # choice
+            {'tag_name': 'tbody', 'type': 'TBodyTag', 'min': 0, 'max': None},
+            {'tag_name': 'tr', 'type': 'TRTag', 'min': 0, 'max': None},
         ],
+        'attributes': {
+            'summary': {'type': 'TextType'},
+            'width': {'type': 'LengthType'},
+            'border': {'type': 'PixelsType'},
+            'frame': {'enum': T_FRAME_ENUMERATION},
+            'rules': {'enum': T_RULES_ENUMERATION},
+            'cellspacing': {'type': 'LengthType'},
+            'cellpadding': {'type': 'LengthType'},
+        },
     }
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)

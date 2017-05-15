@@ -19,7 +19,6 @@ import logging
 
 from scap.model.xhtml import *
 from scap.Model import Model
-from scap.model.xhtml.InputTypeEnumeration import INPUT_TYPE_ENUMERATION
 
 logger = logging.getLogger(__name__)
 class InputTag(Model):

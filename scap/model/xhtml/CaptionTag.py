@@ -15,9 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-SHAPE_ENUMERATION = [
-    'rect',
-    'circle',
-    'poly',
-    'default',
-]
+import logging
+
+from scap.model.xhtml import *
+from scap.model.xhtml.InlineType import InlineType
+
+logger = logging.getLogger(__name__)
+class CaptionTag(InlineType):
+    MODEL_MAP = {
+        'attributes': {
+        },
+    }
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)

@@ -18,17 +18,19 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.model.xhtml.ButtonContentType import ButtonContentType
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class ButtonTag(ButtonContentType):
+class ColGroupTag(Model):
     MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'col', 'type': 'ColTag', 'min': 0, 'max': None},
+        ],
         'attributes': {
-            'name': {'type': 'String'},
-            'value': {'type': 'String'},
-            'type': {'enum': ['button', 'submit', 'reset'], 'default': 'submit'},
-            'disabled': {'enum': ['disabled']},
+            'span': {'type': 'NumberType', 'default': 1},
+            'width': {'type': 'MultiLengthType'},
         },
     }
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_focus)
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_cellhalign)
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_cellvalign)
