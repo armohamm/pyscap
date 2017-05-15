@@ -21,7 +21,7 @@ from scap.model.xhtml import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class FormContentType(Model):
+class ButtonContentType(Model):
     MODEL_MAP = {
         'elements': [],
     }

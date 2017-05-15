@@ -23,5 +23,6 @@ from scap.model.xhtml.BlockType import BlockType
 logger = logging.getLogger(__name__)
 class NoScriptTag(BlockType):
     MODEL_MAP = {
+        'attributes': {},
     }
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)

@@ -18,9 +18,9 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.NMTokens import NMTokens
+from scap.model.xs.NMTOKENS import NMTOKENS
 
 logger = logging.getLogger(__name__)
-class LinkTypesType(NMTokens):
+class LinkTypesType(NMTOKENS):
     MODEL_MAP = {
     }

@@ -18,7 +18,7 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.model.xhtml.InlineType import InlineType
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 class H4Tag(Model):

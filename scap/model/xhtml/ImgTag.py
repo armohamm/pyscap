@@ -24,12 +24,12 @@ logger = logging.getLogger(__name__)
 class ImgTag(Model):
     MODEL_MAP = {
         'attributes': {
-            'src': {'type:' 'UriType', 'required': True},
-            'alt': {'type:' 'TextType', 'required': True},
-            'longdesc': {'type:' 'UriType'},
-            'height': {'type:' 'LengthType'},
-            'width': {'type:' 'LengthType'},
-            'usemap': {'type:' 'UriType'},
+            'src': {'type': 'UriType', 'required': True},
+            'alt': {'type': 'TextType', 'required': True},
+            'longdesc': {'type': 'UriType'},
+            'height': {'type': 'LengthType'},
+            'width': {'type': 'LengthType'},
+            'usemap': {'type': 'UriType'},
             'ismap': {'enum': ['ismap']},
         },
     }

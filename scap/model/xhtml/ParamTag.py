@@ -24,10 +24,10 @@ logger = logging.getLogger(__name__)
 class ParamTag(Model):
     MODEL_MAP = {
         'attributes': {
-            'id': {'type:' 'ID'},
-            'name': {'type:' 'String'},
-            'value': {'type:' 'String'},
-            'valuetype': {'enum:' ['data', 'ref', 'object'], 'default': 'data'},
-            'type': {'type:' 'ContentTypeType'},
+            'id': {'type': 'ID'},
+            'name': {'type': 'String'},
+            'value': {'type': 'String'},
+            'valuetype': {'enum': ['data', 'ref', 'object'], 'default': 'data'},
+            'type': {'type': 'ContentTypeType'},
         },
     }

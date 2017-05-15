@@ -23,12 +23,12 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class ScriptTag(Model):
     MODEL_MAP = {
-        'elements': [
+        'attributes': {
             'id': {'type': 'ID'},
             'charset': {'type': 'CharsetType'},
             'type': {'type': 'ContentTypeType', 'required': True},
             'src': {'type': 'UriType'},
             'defer': {'enum': ['defer']},
             '{http://www.w3.org/XML/1998/namespace}space': {'enum': ['preserve']},
-        ],
+        },
     }

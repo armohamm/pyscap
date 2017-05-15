@@ -18,7 +18,7 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.String import String
+from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
 class LanguageCodeType(String):

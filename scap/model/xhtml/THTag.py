@@ -28,8 +28,8 @@ class THTag(FlowType):
             'axis': {'type': 'String'},
             'headers': {'type': 'IDREFS'},
             'scope': {'enum': SCOPE_ENUMERATION},
-            'rowspan': {'type': 'NumberType', 1},
-            'colspan': {'type': 'NumberType', 1},
+            'rowspan': {'type': 'NumberType', 'default': 1},
+            'colspan': {'type': 'NumberType', 'default': 1},
         },
     }
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
