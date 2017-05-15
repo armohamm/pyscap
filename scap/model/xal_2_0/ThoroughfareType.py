@@ -38,7 +38,8 @@ class ThoroughfareType(Model):
             {'tag_name': 'DependentLocality', 'in': 'dependent_locality', 'class': 'DependentLocalityType'},
             {'tag_name': 'Premise', 'in': 'premise', 'class': 'PremiseType'},
             {'tag_name': 'Firm', 'in': 'firm', 'class': 'FirmType'},
-            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},'*': {}
+            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
+            {'tag_name': '*'},
         ],
         'attributes': {
             'Type': {},

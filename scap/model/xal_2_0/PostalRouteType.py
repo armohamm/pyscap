@@ -26,7 +26,8 @@ class PostalRouteType(Model):
         'elements': [
             {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
             {'tag_name': 'PostalRouteName', 'list': 'postal_route_names', 'class': 'PostalRouteNameType'},
-            {'tag_name': 'PostalRouteNumber', 'in': 'postal_route_number', 'class': 'PostalRouteNumberType'},'*': {},
+            {'tag_name': 'PostalRouteNumber', 'in': 'postal_route_number', 'class': 'PostalRouteNumberType'},
+            {'tag_name': '*'},
         ],
         'attributes': {
             'Type': {},

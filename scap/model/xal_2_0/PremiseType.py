@@ -36,7 +36,8 @@ class PremiseType(Model):
             {'tag_name': 'Firm', 'in': 'firm', 'class': 'FirmType'},
             {'tag_name': 'MailStop', 'in': 'mail_stop', 'class': 'MailStopType'},
             {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
-            {'tag_name': 'Premise', 'in': 'premise', 'class': 'PremiseType'},'*': {},
+            {'tag_name': 'Premise', 'in': 'premise', 'class': 'PremiseType'},
+            {'tag_name': '*'},
         ],
         'attributes': {
             'Type': {},

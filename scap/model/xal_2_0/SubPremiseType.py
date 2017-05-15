@@ -34,7 +34,8 @@ class SubPremiseType(Model):
             {'tag_name': 'Firm', 'in': 'firm', 'class': 'FirmType'},
             {'tag_name': 'MailStop', 'in': 'firm', 'class': 'MailStopType'},
             {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
-            {'tag_name': 'SubPremise', 'list': 'sub_premises', 'class': 'SubPremiseType'},'*': {},
+            {'tag_name': 'SubPremise', 'list': 'sub_premises', 'class': 'SubPremiseType'},
+            {'tag_name': '*'},
         ],
         'attributes': {
             'Type': {},

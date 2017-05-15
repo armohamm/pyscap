@@ -30,7 +30,8 @@ class PostBoxType(Model):
             {'tag_name': 'PostBoxNumberSuffix', 'in': 'post_box_number_suffix', 'class': 'PostBoxNumberSuffixType'},
             {'tag_name': 'PostBoxNumberExtension', 'in': 'post_box_number_extension', 'class': 'PostBoxNumberExtensionType'},
             {'tag_name': 'Firm', 'in': 'firm', 'class': 'FirmType'},
-            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},'*': {},
+            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
+            {'tag_name': '*'},
         ],
         'attributes': {
             'Type': {},

@@ -34,7 +34,8 @@ class DependentLocalityType(Model):
             {'tag_name': 'Thoroughfare', 'in': 'thoroughfare', 'class': 'ThoroughfareType'},
             {'tag_name': 'Premise', 'in': 'premise', 'class': 'PremiseType'},
             {'tag_name': 'DependentLocality', 'in': 'premise', 'class': 'DependentLocalityType'},
-            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},'*': {},
+            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
+            {'tag_name': '*'},
         ],
         'attributes': {
             'Type': {},

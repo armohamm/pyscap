@@ -24,6 +24,7 @@ class AddressLinesType(Model):
     MODEL_MAP = {
         'tag_name': 'AddressLines',
         'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},'*': {},
+            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
+            {'tag_name': '*'},
         ],
     }

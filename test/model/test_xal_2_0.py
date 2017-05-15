@@ -15,22 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
+import importlib
 import logging
-import xml.etree.ElementTree as ET
+import pkgutil
+import pytest
 
-logger = logging.getLogger(__name__)
-class PostTownType(Model):
-    MODEL_MAP = {
-        'tag_name': 'PostTown',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'PostTownName', 'list': 'post_town_names', 'class': 'PostTownType'},
-            {'tag_name': 'PostTownSuffix', 'in': 'post_town_suffix', 'class': 'PostTownSuffixType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Type': {},
-            '*': {},
-        }
-    }
+import scap.model.xal_2_0
+
+logging.basicConfig(level=logging.DEBUG)
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.xal_2_0.__path__):
+        importlib.import_module('scap.model.xal_2_0.' + m.name, 'scap.model.xal_2_0')
