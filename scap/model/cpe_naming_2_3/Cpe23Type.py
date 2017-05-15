@@ -20,7 +20,7 @@ import logging
 from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
-class CPE23Type(String):
+class Cpe23Type(String):
     MODEL_MAP = {
     }
 

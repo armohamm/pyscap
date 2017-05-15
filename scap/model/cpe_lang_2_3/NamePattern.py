@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.cpe_naming_2_0.CPE22Type import CPE22Type
-from scap.model.cpe_naming_2_0.CPE23Type import CPE23Type
+from scap.model.cpe_naming_2_3.Cpe22Type import Cpe22Type
+from scap.model.cpe_naming_2_3.Cpe23Type import Cpe23Type
 
 logger = logging.getLogger(__name__)
-class NamePattern(CPE22Type,CPE23Type):
+class NamePattern(Cpe22Type,Cpe23Type):
     MODEL_MAP = {
     }

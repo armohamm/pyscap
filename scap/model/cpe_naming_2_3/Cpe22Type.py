@@ -20,7 +20,7 @@ import logging
 from scap.model.xs.AnyURI import AnyURI
 
 logger = logging.getLogger(__name__)
-class CPE22Type(AnyURI):
+class Cpe22Type(AnyURI):
     MODEL_MAP = {
     }
 

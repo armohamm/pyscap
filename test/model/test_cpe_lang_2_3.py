@@ -15,7 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
-    '{http://cpe.mitre.org/naming/2.0}cpe22Type': 'Cpe22Type',
-    '{http://cpe.mitre.org/naming/2.0}cpe23Type': 'Cpe23Type',
-}
+import importlib
+import logging
+import pkgutil
+import pytest
+
+import scap.model.cpe_lang_2_3
+
+logging.basicConfig(level=logging.DEBUG)
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.cpe_lang_2_3.__path__):
+        importlib.import_module('scap.model.cpe_lang_2_3.' + m.name, 'scap.model.cpe_lang_2_3')
