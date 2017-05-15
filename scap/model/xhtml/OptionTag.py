@@ -21,20 +21,16 @@ from scap.model.xhtml import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class TextAreaTag(Model):
+class OptionTag(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': '*', 'min': 0},
+            {'tag_name': 'option', 'list': '_elements', 'class': 'OptionTag', 'max': None},
         ],
         'attributes': {
-            'name': {'type': 'String'},
-            'rows': {'type': 'NumberType', 'required': True},
-            'cols': {'type': 'NumberType', 'required': True},
+            'selected': {'enum': ['selected']},
             'disabled': {'enum': ['disabled']},
-            'readonly': {'enum': ['readonly']},
-            'onselect': {'type': 'ScriptType'},
-            'onchange': {'type': 'ScriptType'},
+            'label': {'type': 'TextType'},
+            'value': {'type': 'String'},
         },
     }
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_focus)

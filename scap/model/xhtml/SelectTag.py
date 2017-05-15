@@ -24,6 +24,18 @@ logger = logging.getLogger(__name__)
 class SelectTag(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': '*', 'min': 0},
+            {'tag_name': 'optgroup', 'list': '_elements', 'class': 'OptGroupTag', 'max': None},
+            {'tag_name': 'option', 'list': '_elements', 'class': 'OptionTag', 'max': None},
         ],
+        'attributes': {
+            'name': {'type': 'String'},
+            'size': {'type': 'NumberType'},
+            'multiple': {'enum': ['multiple']},
+            'disabled': {'enum': ['disabled']},
+            'tabindex': {'type': 'TabIndexNumberType'},
+            'onfocus': {'type': 'ScriptType'},
+            'onblur': {'type': 'ScriptType'},
+            'onchange': {'type': 'ScriptType'},
+        },
     }
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)

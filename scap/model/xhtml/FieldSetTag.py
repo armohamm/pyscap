@@ -24,6 +24,12 @@ logger = logging.getLogger(__name__)
 class FieldSetTag(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': '*', 'min': 0},
+            {'tag_name': 'legend', 'list': '_elements', 'class': 'LegendTag'},
         ],
+        'attributes': {},
     }
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_block)
+    MODEL_MAP['elements'].append({'tag_name': 'form', 'list': '_elements', 'class': 'FormTag'})
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_inline)
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_misc)
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
