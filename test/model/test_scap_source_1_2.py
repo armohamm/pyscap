@@ -15,16 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xlink.Simple import Simple
+import importlib
 import logging
+import pkgutil
+import pytest
 
-logger = logging.getLogger(__name__)
-class ComponentRefElement(Simple):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'urn:oasis:names:tc:entity:xmlns:xml:catalog', 'tag_name': 'catalog', 'class': 'Catalog', 'min': 0},
-        ],
-        'attributes': {
-            'id': {'required': True, 'type': 'ComponentRefIDPattern'},
-        },
-    }
+import scap.model.scap_source_1_2
+
+logging.basicConfig(level=logging.DEBUG)
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.scap_source_1_2.__path__):
+        importlib.import_module('scap.model.scap_source_1_2.' + m.name, 'scap.model.scap_source_1_2')
