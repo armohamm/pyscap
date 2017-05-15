@@ -15,13 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
+import importlib
 import logging
+import pkgutil
+import pytest
 
-logger = logging.getLogger(__name__)
-class ArtifactRefsType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'artifact_ref', 'list': 'artifact_refs', 'class': 'ArtifactRefType', 'max': None},
-        ],
-    }
+import scap.model.ocil_2_0
+
+logging.basicConfig(level=logging.DEBUG)
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.ocil_2_0.__path__):
+        importlib.import_module('scap.model.ocil_2_0.' + m.name, 'scap.model.ocil_2_0')
