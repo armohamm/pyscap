@@ -21,8 +21,8 @@ import logging
 logger = logging.getLogger(__name__)
 class TestType(oval_defs_5_TestType):
     MODEL_MAP = {
-        'elements': [{
+        'elements': [
             {'tag_name': 'object', 'class': 'oval_defs_5.ObjectRefType'},
             {'tag_name': 'state', 'list': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
-        }],
+        ],
     }

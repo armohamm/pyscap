@@ -15,15 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_defs_5_windows.FileBehaviors import FileBehaviors
+import importlib
 import logging
+import pkgutil
+import pytest
 
-logger = logging.getLogger(__name__)
+import scap.model.oval_defs_5_windows
 
-class FileAuditPermissionsBehaviors(FileBehaviors):
-    MODEL_MAP = {
-        'attributes': {
-            'include_group': {'type': 'Boolean', 'default': True},
-            'resolve_group': {'type': 'Boolean', 'default': False},
-        }
-    }
+logging.basicConfig(level=logging.DEBUG)
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.oval_defs_5_windows.__path__):
+        importlib.import_module('scap.model.oval_defs_5_windows.' + m.name, 'scap.model.oval_defs_5_windows')
