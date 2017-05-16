@@ -42,7 +42,9 @@ class Date(AnySimpleType):
                 else:
                     tz = datetime.timezone.utc
 
-        return datetime.datetime(year, month, day, 0, 0, 0, 0, tz)
+            return datetime.datetime(year, month, day, 0, 0, 0, 0, tz)
+        else:
+            raise ValueError('Unable to parse Date value')
 
     def produce_value(self, value):
         return value.strftime('%Y-%m-%d%z')
