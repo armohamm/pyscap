@@ -21,4 +21,5 @@ import logging
 logger = logging.getLogger(__name__)
 
 class APIHost(Host):
-    raise NotImplementedError(self.__class__.__name__ + ' has not been implemented')
+    def __init__(self):
+        raise NotImplementedError(__name__ + ' has not been implemented')
