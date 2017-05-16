@@ -15,13 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.String import String
+import importlib
 import logging
+import pkgutil
+import pytest
+import xml.etree.ElementTree as ET
 
-logger = logging.getLogger(__name__)
-class TailoringVersionType(String):
-    MODEL_MAP = {
-        'attributes': {
-            'time': {'type': 'DateTime', 'required': True},
-        }
-    }
+from scap.Model import Model
+import scap.model.xccdf_1_2
+
+logging.basicConfig(level=logging.DEBUG)
+
+def test_importable():
+    for m in pkgutil.iter_modules(path=scap.model.xccdf_1_2.__path__):
+        importlib.import_module('scap.model.xccdf_1_2.' + m.name, 'scap.model.xccdf_1_2')
