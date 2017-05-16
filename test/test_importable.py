@@ -16,15 +16,15 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import importlib
-import logging
 import pkgutil
-import pytest
 
-logger = logging.getLogger(__name__)
+import scap
 
-import scap.collector.cli.linux
+def iter_packages(pkg):
+    for m in pkgutil.iter_modules(path=pkg.__path__):
+        mod = importlib.import_module(pkg.__name__ + '.' + m.name, pkg.__name__)
+        if m.ispkg:
+            iter_packages(mod)
 
 def test_importable():
-    pkg = scap.collector.cli.linux
-    for m in pkgutil.iter_modules(path=pkg.__path__):
-        importlib.import_module(pkg.__name__ + '.' + m.name, pkg.__name__)
+    iter_packages(scap)

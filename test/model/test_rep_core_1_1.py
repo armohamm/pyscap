@@ -15,15 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import importlib
 import logging
-import pkgutil
 import pytest
 
-import scap.model.rep_core_1_1
-
 logging.basicConfig(level=logging.DEBUG)
-
-def test_importable():
-    for m in pkgutil.iter_modules(path=scap.model.rep_core_1_1.__path__):
-        importlib.import_module('scap.model.rep_core_1_1.' + m.name, 'scap.model.rep_core_1_1')

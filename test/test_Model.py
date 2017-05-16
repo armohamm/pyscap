@@ -19,7 +19,6 @@ import pytest
 import logging
 import xml.etree.ElementTree as ET
 import types
-import importlib
 import sys
 
 from scap.Model import Model, UnregisteredNamespaceException, \

@@ -15,10 +15,8 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import importlib
 import logging
 import os
-import pkgutil
 import pytest
 import uuid
 
@@ -39,13 +37,6 @@ except IOError:
 host = Host.load('localhost')
 for col in host.detect_collectors({}):
     col.collect()
-
-import scap.collector
-
-def test_importable():
-    pkg = scap.collector
-    for m in pkgutil.iter_modules(path=pkg.__path__):
-        importlib.import_module(pkg.__name__ + '.' + m.name, pkg.__name__)
 
 def test_collected_identity():
     assert 'identity' in host.facts

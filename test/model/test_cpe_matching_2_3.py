@@ -15,19 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import importlib
 import logging
-import pkgutil
 import pytest
 
 import scap.model.cpe_matching_2_3
 from scap.model.cpe_matching_2_3.CPE import CPE, CpeParseException
 
 logging.basicConfig(level=logging.DEBUG)
-
-def test_importable():
-    for m in pkgutil.iter_modules(path=scap.model.cpe_matching_2_3.__path__):
-        importlib.import_module('scap.model.cpe_matching_2_3.' + m.name, 'scap.model.cpe_matching_2_3')
 
 def test_from_uri():
     cpe = CPE.from_string('cpe:/a:microsoft:internet_explorer')

@@ -15,9 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import importlib
 import logging
-import pkgutil
 import pytest
 import xml.etree.ElementTree as ET
 
@@ -33,10 +31,6 @@ cat1 = Model.load(None, ET.fromstring('''<xml_cat_1_1:catalog xmlns:xml_cat_1_1=
     <xml_cat_1_1:uri name="name2" uri="uri2"/>
     <xml_cat_1_1:uri name="name3" uri="uri3"/>
 </xml_cat_1_1:catalog>'''))
-
-def test_importable():
-    for m in pkgutil.iter_modules(path=scap.model.xml_cat_1_1.__path__):
-        importlib.import_module('scap.model.xml_cat_1_1.' + m.name, 'scap.model.xml_cat_1_1')
 
 def test_parsed():
     assert 'name1' in cat1.entries
