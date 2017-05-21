@@ -27,9 +27,6 @@ class AnySimpleType(Model):
     def produce_value(self, value):
         return str(value)
 
-    def is_none(self):
-        return self.text is None
-
     def __str__(self):
         return str(self.text)
 
