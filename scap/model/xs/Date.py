@@ -19,32 +19,14 @@ import datetime
 import logging
 import re
 
+from scap.model.xs.SevenPropertyModel import SevenPropertyModel
 from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
 class Date(AnySimpleType):
     def parse_value(self, value):
         m = re.match(r'(-?\d\d\d\d)-(\d\d)-(\d\d)((([-+])(\d\d):(\d\d))|Z)?', value)
-        if m:
-            year, month, day = int(m.group(1)), int(m.group(2)), int(m.group(3))
-            if m.group(4) is None:
-                # naive date
-                return datetime.date(int(year), int(month), int(day))
-            elif m.group(4) == 'Z':
-                tz = datetime.timezone.utc
-            else:
-                if m.group(5) is not None:
-                    sign, hours, minutes = m.groups(6), int(m.groups(7)), int(m.groups(8))
-                    if sign == '-':
-                        tz = datetime.timezone(- datetime.timedelta(hours=hours, minutes=minutes))
-                    else:
-                        tz = datetime.timezone(datetime.timedelta(hours=hours, minutes=minutes))
-                else:
-                    tz = datetime.timezone.utc
-
-            return datetime.datetime(year, month, day, 0, 0, 0, 0, tz)
-        else:
+        if not m:
             raise ValueError('Unable to parse Date value')
 
-    def produce_value(self, value):
-        return value.strftime('%Y-%m-%d%z')
+        return SevenPropertyModel(year=m[1], month=m[2], day=m[3], timezoneOffset=m[4])

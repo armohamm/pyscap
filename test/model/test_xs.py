@@ -92,29 +92,16 @@ def test_byte_produce():
     assert Byte().produce_value(127) == '127'
 
 def test_date_parse():
-    v = Date().parse_value('2017-05-16Z')
-    assert isinstance(v, datetime.date)
-    assert v.year == 2017
-    assert v.month == 5
-    assert v.day == 16
+    assert Date().parse_value('2017-05-16Z') == SevenPropertyModel(year=2017, month=5, day=16, timezoneOffset=0)
 
 def test_date_produce():
-    v = datetime.date(year=2017, month=5, day=16)
-    assert Date().produce_value(v) == '2017-05-16'
+    assert Date().produce_value(SevenPropertyModel(year=2017, month=5, day=16, timezoneOffset=0)) == '2017-05-16Z'
 
 def test_date_time_parse():
-    v = DateTime().parse_value('2017-05-16T12:00:00Z')
-    assert isinstance(v, datetime.datetime)
-    assert v.year == 2017
-    assert v.month == 5
-    assert v.day == 16
-    assert v.hour == 12
-    assert v.minute == 0
-    assert v.second == 0
+    assert DateTime().parse_value('2017-05-16T12:42:42Z') == SevenPropertyModel(year=2017, month=5, day=16, hour=12, minute=42, second=42, timezoneOffset=0)
 
 def test_date_time_produce():
-    v = datetime.datetime(year=2017, month=5, day=16, hour=12, minute=0, second=0, tzinfo=datetime.timezone.utc)
-    assert DateTime().produce_value(v) == '2017-05-16T12:00:00.000000+0000'
+    assert DateTime().produce_value(SevenPropertyModel(year=2017, month=5, day=16, hour=12, minute=42, second=42, timezoneOffset=0)) == '2017-05-16T12:42:42Z'
 
 def test_decimal_parse():
     assert Decimal().parse_value('1.1') == 1.1
@@ -350,10 +337,10 @@ def test_string_produce():
     assert String().produce_value('255') == '255'
 
 def test_time_parse():
-    assert Time().parse_value('12:00:00') == datetime.time(hour=12, minute=0, second=0)
+    assert Time().parse_value('12:42:42Z') == SevenPropertyModel(hour=12, minute=42, second=42, timezoneOffset=0)
 
 def test_time_produce():
-    assert Time().produce_value(datetime.time(hour=12, minute=0, second=0)) == '12:00:00.000000'
+    assert Time().produce_value(SevenPropertyModel(hour=12, minute=42, second=42, timezoneOffset=0)) == '12:42:42Z'
 
 def test_token_parse():
     assert Token().parse_value('test') == 'test'

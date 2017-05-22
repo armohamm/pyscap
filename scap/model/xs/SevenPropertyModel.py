@@ -179,7 +179,7 @@ class SevenPropertyModel(object):
         elif not isinstance(value, float):
             raise TypeError('second must be a float')
 
-        if value < 0 or value >= 60.0:
+        if value < 0.0 or value >= 60.0:
             raise ValueError('second must be between 0 and 60')
 
         self._second = value
@@ -244,10 +244,34 @@ class SevenPropertyModel(object):
             # gYearMonth
             return "%04d-%02d%s" % (self._year, self._month, self._tz_to_string())
 
+        elif self._year is not None and self._month is not None and self._day is not None \
+        and self._hour is None and self._minute is None and self._second is None:
+            # Date
+            return "%04d-%02d-%02d%s" % (self._year, self._month, self._day, self._tz_to_string())
+
+        elif self._year is None and self._month is None and self._day is None \
+        and self._hour is not None and self._minute is not None and self._second is not None:
+            # Time
+            if self._second - int(self._second) == 0.0:
+                return "%02d:%02d:%02.0f%s" % (self._hour, self._minute, self._second, self._tz_to_string())
+            else:
+                return "%02d:%02d:%02.6f%s" % (self._hour, self._minute, self._second, self._tz_to_string())
+
+        elif self._year is not None and self._month is not None and self._day is not None \
+        and self._hour is not None and self._minute is not None and self._second is not None:
+            # DateTime
+            if self._second - int(self._second) == 0.0:
+                return "%04d-%02d-%02dT%02d:%02d:%02.0f%s" % (self._year, self._month, self._day, self._hour, self._minute, self._second, self._tz_to_string())
+            else:
+                return "%04d-%02d-%02dT%02d:%02d:%02.6f%s" % (self._year, self._month, self._day, self._hour, self._minute, self._second, self._tz_to_string())
+
         else:
             raise NotImplementedError('')
 
     def __eq__(self, other):
+        if not isinstance(other, SevenPropertyModel):
+            return False
+
         if self._year != other._year:
             return False
 
