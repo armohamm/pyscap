@@ -22,6 +22,7 @@ from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
 class List(AnySimpleType):
+    # abstract
     def parse_value(self, value):
         value = super(List, self).parse_value(value)
 

@@ -29,6 +29,33 @@ for m in pkgutil.iter_modules(path=scap.model.xs.__path__):
 
 logging.basicConfig(level=logging.DEBUG)
 
+def test_seven_property_model_init():
+    spm = SevenPropertyModel()
+    for i in (spm.year, spm.month, spm.day, spm.hour, spm.minute, spm.second, spm.timezoneOffset):
+        assert i is None
+
+    spm = SevenPropertyModel(year=2017, month=5, day=22)
+    assert spm.year == 2017
+    assert spm.month == 5
+    assert spm.day == 22
+    for i in (spm.hour, spm.minute, spm.second, spm.timezoneOffset):
+        assert i is None
+
+    spm = SevenPropertyModel(hour=12, minute=42, second=42)
+    assert spm.hour == 12
+    assert spm.minute == 42
+    assert spm.second == 42
+    for i in (spm.year, spm.month, spm.day, spm.timezoneOffset):
+        assert i is None
+
+def test_seven_property_model_eq():
+    assert SevenPropertyModel(hour=12, minute=42, second=42) == SevenPropertyModel(hour=12, minute=42, second=42)
+    assert SevenPropertyModel(year=2017, month=5, day=22, hour=12, minute=42, second=42) == \
+        SevenPropertyModel(year=2017, month=5, day=22, hour=12, minute=42, second=42)
+
+def test_seven_property_model_ne():
+    assert SevenPropertyModel(hour=12, minute=42, second=42) != SevenPropertyModel(hour=13, minute=42, second=42)
+
 # def test_any_simple_type():
 #     pass
 #
@@ -38,8 +65,15 @@ logging.basicConfig(level=logging.DEBUG)
 # def test_any_uri():
 #     pass
 #
-# def test_base64_binary():
-#     pass
+def test_base64_binary_parse():
+    assert Base64Binary().parse_value(b'FPucA9l+') == b'\x14\xfb\x9c\x03\xd9\x7e'
+    assert Base64Binary().parse_value(b'FPucA9k=') == b'\x14\xfb\x9c\x03\xd9'
+    assert Base64Binary().parse_value(b'FPucAw==') == b'\x14\xfb\x9c\x03'
+
+def test_base64_binary_produce():
+    assert Base64Binary().produce_value(b'\x14\xfb\x9c\x03\xd9\x7e') == b'FPucA9l+'
+    assert Base64Binary().produce_value(b'\x14\xfb\x9c\x03\xd9') == b'FPucA9k='
+    assert Base64Binary().produce_value(b'\x14\xfb\x9c\x03') == b'FPucAw=='
 
 def test_boolean_parse():
     assert Boolean().parse_value('1') == True
@@ -105,8 +139,8 @@ def test_entities_parse():
     with pytest.raises(ValueError):
         ENTITIES().parse_value('')
 
-# def test_entities_produce():
-#     pass
+def test_entities_produce():
+    assert ENTITIES().produce_value(('blah0', 'blah1', 'blah2')) == 'blah0 blah1 blah2'
 
 def test_entity_parse():
     assert ENTITY().parse_value('test_id_4') == 'test_id_4'
@@ -118,26 +152,48 @@ def test_float_parse():
     assert Float().parse_value('1.1') == 1.1
 
 def test_float_produce():
-    assert Float().produce_value(1.1).startswith('1.')
+    assert Float().produce_value(1.1) == '1.1'
 
-# def test_g_day():
-#     pass
-#
-# def test_g_month():
-#     pass
-#
-# def test_g_month_day():
-#     pass
-#
-# def test_g_year():
-#     pass
-#
-# def test_g_year_month():
-#     pass
-#
-# def test_hex_binary():
-#     pass
-#
+def test_g_day_parse():
+    assert GDay().parse_value('---22') == SevenPropertyModel(day=22)
+
+def test_g_day_produce():
+    assert GDay().produce_value(SevenPropertyModel(day=22)) == '---22'
+
+def test_g_month_parse():
+    assert GMonth().parse_value('--05') == SevenPropertyModel(month=5)
+
+def test_g_month_produce():
+    assert GMonth().produce_value(SevenPropertyModel(month=5)) == '--05'
+
+def test_g_month_day_parse():
+    assert GMonthDay().parse_value('--05-22') == SevenPropertyModel(month=5, day=22)
+
+def test_g_month_day_produce():
+    assert GMonthDay().produce_value(SevenPropertyModel(month=5, day=22)) == '--05-22'
+
+def test_g_year_parse():
+    assert GYear().parse_value('2017') == SevenPropertyModel(year=2017)
+
+def test_g_year_produce():
+    assert GYear().produce_value(SevenPropertyModel(year=2017)) == '2017'
+
+def test_g_year_month_parse():
+    assert GYearMonth().parse_value('2017-05') == SevenPropertyModel(year=2017, month=5)
+
+def test_g_year_month_produce():
+    assert GYearMonth().produce_value(SevenPropertyModel(year=2017, month=5)) == '2017-05'
+
+def test_hex_binary_parse():
+    assert HexBinary().parse_value(b'14fb9c03d97e') == b'\x14\xfb\x9c\x03\xd9\x7e'
+    assert HexBinary().parse_value(b'14fb9c03d9') == b'\x14\xfb\x9c\x03\xd9'
+    assert HexBinary().parse_value(b'14fb9c03') == b'\x14\xfb\x9c\x03'
+
+def test_hex_binary_produce():
+    assert HexBinary().produce_value(b'\x14\xfb\x9c\x03\xd9\x7e') == b'14fb9c03d97e'
+    assert HexBinary().produce_value(b'\x14\xfb\x9c\x03\xd9') == b'14fb9c03d9'
+    assert HexBinary().produce_value(b'\x14\xfb\x9c\x03') == b'14fb9c03'
+
 def test_id_parse():
     assert ID().parse_value('test_id_4') == 'test_id_4'
 
@@ -158,7 +214,8 @@ def test_idrefs_parse():
 
     assert IDREFS().produce_value(('blah0', 'blah1', 'blah2')) == 'blah0 blah1 blah2'
 
-# TODO test_idrefs_produce
+def test_idrefs_produce():
+    assert IDREFS().produce_value(('blah0', 'blah1', 'blah2')) == 'blah0 blah1 blah2'
 
 def test_int_parse():
     assert Int().parse_value('255') == 255
@@ -173,14 +230,16 @@ def test_integer_produce():
     assert Integer().produce_value(255) == '255'
 
 def test_language_parse():
-    Language().parse_value('en')
-    Language().parse_value('en-US')
-    Language().parse_value('en-gb')
+    assert Language().parse_value('en') == 'en'
+    assert Language().parse_value('en-US') == 'en-US'
+    assert Language().parse_value('en-gb') == 'en-gb'
 
     with pytest.raises(ValueError):
         Language().parse_value('')
 
-# TODO test_language_produce
+def test_language_parse():
+    assert Language().produce_value('en') == 'en'
+    assert Language().produce_value('en-US') == 'en-US'
 
 def test_long_parse():
     assert Long().parse_value('255') == 255
@@ -194,7 +253,8 @@ def test_name_parse():
     with pytest.raises(ValueError):
         Name().parse_value('4test_id_4')
 
-# TODO test_name_produce
+def test_name_produce():
+    assert Name().produce_value('test_id_4') == 'test_id_4'
 
 def test_nc_name_parse():
     assert NCName().parse_value('test_id_4') == 'test_id_4'
@@ -202,7 +262,8 @@ def test_nc_name_parse():
     with pytest.raises(ValueError):
         NCName().parse_value('test:id_4')
 
-# TODO test_nc_name_produce
+def test_nc_name_produce():
+    assert NCName().produce_value('test_id_4') == 'test_id_4'
 
 def test_negative_integer_parse():
     assert NegativeInteger().parse_value('-255') == -255
@@ -219,7 +280,8 @@ def test_nmtoken_parse():
     with pytest.raises(ValueError):
         NMTOKEN().parse_value('\x0dtoken')
 
-# TODO test_nmtoken_produce
+def test_nmtoken_produce():
+    assert NMTOKEN().produce_value('xml:schema') == 'xml:schema'
 
 def test_nm_tokens_parse():
     assert NMTOKENS().parse_value('xml:schema') == ('xml:schema',)
@@ -228,7 +290,9 @@ def test_nm_tokens_parse():
     with pytest.raises(ValueError):
         NMTOKENS().parse_value('\x0dtoken')
 
-# TODO test_nmtokens_produce
+def test_nm_tokens_parse():
+    assert NMTOKENS().produce_value(('xml:schema',)) == 'xml:schema'
+    assert NMTOKENS().produce_value(('xml:schema', 'xml:schema2')) == 'xml:schema xml:schema2'
 
 def test_non_negative_integer_parse():
     assert NonNegativeInteger().parse_value('255') == 255
@@ -288,7 +352,8 @@ def test_string_produce():
 def test_time_parse():
     assert Time().parse_value('12:00:00') == datetime.time(hour=12, minute=0, second=0)
 
-# TODO test_time_produce
+def test_time_produce():
+    assert Time().produce_value(datetime.time(hour=12, minute=0, second=0)) == '12:00:00.000000'
 
 def test_token_parse():
     assert Token().parse_value('test') == 'test'
