@@ -18,22 +18,13 @@
 import logging
 import re
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs.List import List
 from scap.model.xs.IDREF import IDREF
 
 logger = logging.getLogger(__name__)
-class IDREFS(AnySimpleType):
-    def parse_value(self, value):
-        value = super(IDREFS, self).parse_value(value)
+class IDREFS(List):
+    def parse_item(self, item_value):
+        return IDREF().parse_value(item_value)
 
-        if len(value) < 1:
-            raise ValueError('IDREFS must contain at least 1 character')
-
-        r = []
-        for i in re.split(r'\s+', value):
-            r.append(IDREF().parse_value(i))
-
-        return tuple(r)
-
-    def produce_value(self, value):
-        return ' '.join(value)
+    def produce_item(self, item_value):
+        return IDREF().produce_value(item_value)

@@ -20,4 +20,10 @@ import logging
 
 logger = logging.getLogger(__name__)
 class PositiveInteger(NonNegativeInteger):
-    pass
+    def parse_value(self, value):
+        value = super(PositiveInteger, self).parse_value(value)
+
+        if value < 1:
+            raise ValueError('xs:PositiveInteger cannot be < 1')
+
+        return value

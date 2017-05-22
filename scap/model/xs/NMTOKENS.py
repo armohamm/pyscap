@@ -18,22 +18,13 @@
 import logging
 import re
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs.List import List
 from scap.model.xs.NMTOKEN import NMTOKEN
 
 logger = logging.getLogger(__name__)
-class NMTOKENS(AnySimpleType):
-    def parse_value(self, value):
-        value = super(NMTOKENS, self).parse_value(value)
+class NMTOKENS(List):
+    def parse_item(self, item_value):
+        return NMTOKEN().parse_value(item_value)
 
-        if len(value) < 1:
-            raise ValueError('NMTOKENS must contain at least 1 character')
-
-        r = []
-        for i in re.split(r'\s+', value):
-            r.append(NMTOKEN().parse_value(i))
-
-        return tuple(r)
-
-    def produce_value(self, value):
-        return ' '.join(value)
+    def produce_item(self, item_value):
+        return NMTOKEN().produce_value(item_value)

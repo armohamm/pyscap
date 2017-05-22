@@ -20,4 +20,10 @@ import logging
 
 logger = logging.getLogger(__name__)
 class UnsignedByte(UnsignedShort):
-    pass
+    def parse_value(self, value):
+        value = super(UnsignedByte, self).parse_value(value)
+
+        if value > 255:
+            raise ValueError('xs:UnsignedByte cannot be > 255')
+
+        return value

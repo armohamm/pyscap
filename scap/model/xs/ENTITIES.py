@@ -18,22 +18,13 @@
 import logging
 import re
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs.List import List
 from scap.model.xs.ENTITY import ENTITY
 
 logger = logging.getLogger(__name__)
-class ENTITIES(AnySimpleType):
-    def parse_value(self, value):
-        value = super(ENTITIES, self).parse_value(value)
+class ENTITIES(List):
+    def parse_item(self, item_value):
+        return ENTITY().parse_value(item_value)
 
-        if len(value) < 1:
-            raise ValueError('ENTITIES must contain at least 1 character')
-
-        r = []
-        for i in re.split(r'\s+', value):
-            r.append(ENTITY().parse_value(i))
-
-        return tuple(r)
-
-    def produce_value(self, value):
-        return ' '.join(value)
+    def produce_item(self, item_value):
+        return ENTITY().produce_value(item_value)
