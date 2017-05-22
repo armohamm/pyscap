@@ -15,10 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Decimal import Decimal
 import logging
+import re
+
+from scap.model.xs.Decimal import Decimal
 
 logger = logging.getLogger(__name__)
 class Integer(Decimal):
     def parse_value(self, value):
+        p = r'[\-+]?[0-9]+'
+        m = re.fullmatch(p, value)
+        if not m:
+            raise ValueError('xs:integer must match ' + p)
+
         return int(value)

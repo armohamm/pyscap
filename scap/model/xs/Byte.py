@@ -20,4 +20,12 @@ import logging
 
 logger = logging.getLogger(__name__)
 class Byte(Short):
-    pass
+    def parse_value(self, value):
+        value = super(Byte, self).parse_value(value)
+
+        if value < -128:
+            raise ValueError('xs:byte cannot be < -128')
+        if value > 127:
+            raise ValueError('xs:byte cannot be > 127')
+
+        return value

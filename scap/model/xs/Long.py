@@ -20,4 +20,12 @@ import logging
 
 logger = logging.getLogger(__name__)
 class Long(Integer):
-    pass
+    def parse_value(self, value):
+        value = super(Long, self).parse_value(value)
+
+        if value < -9223372036854775808:
+            raise ValueError('xs:negativeInteger cannot be < -9223372036854775808')
+        if value > 9223372036854775807:
+            raise ValueError('xs:negativeInteger cannot be > 9223372036854775807')
+
+        return value

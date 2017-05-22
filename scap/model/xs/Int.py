@@ -20,4 +20,12 @@ import logging
 
 logger = logging.getLogger(__name__)
 class Int(Long):
-    pass
+    def parse_value(self, value):
+        value = super(Int, self).parse_value(value)
+
+        if value > 2147483647:
+            raise ValueError('xs:int cannot be > 2147483647')
+        if value < -2147483648:
+            raise ValueError('xs:int cannot be < -2147483648')
+
+        return value

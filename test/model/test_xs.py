@@ -29,65 +29,63 @@ for m in pkgutil.iter_modules(path=scap.model.xs.__path__):
 
 logging.basicConfig(level=logging.DEBUG)
 
-def test_any_simple_type():
-    pass
+# def test_any_simple_type():
+#     pass
+#
+# def test_any_type():
+#     pass
+#
+# def test_any_uri():
+#     pass
+#
+# def test_base64_binary():
+#     pass
 
-def test_any_type():
-    pass
+def test_boolean_parse():
+    assert Boolean().parse_value('1') == True
+    assert Boolean().parse_value('0') == False
+    assert Boolean().parse_value('true') == True
+    assert Boolean().parse_value('false') == False
 
-def test_any_uri():
-    pass
+def test_boolean_produce():
+    assert Boolean().produce_value(True) == 'True'
+    assert Boolean().produce_value(False) == 'False'
 
-def test_base64_binary():
-    pass
+def test_byte_parse():
+    assert Byte().parse_value('127') == 127
 
-def test_boolean():
-    i = Boolean()
+def test_byte_produce():
+    assert Byte().produce_value(127) == '127'
 
-    v = i.parse_value('1')
-    assert isinstance(v, bool)
-    assert v == True
-    assert i.produce_value(v) == 'True'
-
-    v = i.parse_value('0')
-    assert isinstance(v, bool)
-    assert v == False
-
-    v = i.parse_value('true')
-    assert isinstance(v, bool)
-    assert v == True
-
-    v = i.parse_value('false')
-    assert isinstance(v, bool)
-    assert v == False
-
-def test_byte():
-    i = Byte()
-
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
-
-def test_date():
-    i = Date()
-
-    v = i.parse_value('2017-05-16Z')
+def test_date_parse():
+    v = Date().parse_value('2017-05-16Z')
     assert isinstance(v, datetime.date)
+    assert v.year == 2017
+    assert v.month == 5
+    assert v.day == 16
 
-def test_date_time():
-    i = DateTime()
+def test_date_produce():
+    v = datetime.date(year=2017, month=5, day=16)
+    assert Date().produce_value(v) == '2017-05-16'
 
-    v = i.parse_value('2017-05-16T12:00:00Z')
+def test_date_time_parse():
+    v = DateTime().parse_value('2017-05-16T12:00:00Z')
     assert isinstance(v, datetime.datetime)
+    assert v.year == 2017
+    assert v.month == 5
+    assert v.day == 16
+    assert v.hour == 12
+    assert v.minute == 0
+    assert v.second == 0
+
+def test_date_time_produce():
+    v = datetime.datetime(year=2017, month=5, day=16, hour=12, minute=0, second=0, tzinfo=datetime.timezone.utc)
+    assert DateTime().produce_value(v) == '2017-05-16T12:00:00.000000+0000'
 
 def test_decimal():
-    i = Decimal()
+    assert Decimal().parse_value('1.1') == 1.1
 
-    v = i.parse_value('1.1')
-    assert isinstance(v, float)
-    assert v > 1.0 and v <= 1.1
-    assert i.produce_value(v).startswith('1.')
+    assert Decimal().produce_value(1.1) == '1.1'
 
 def test_double():
     i = Double()
@@ -102,19 +100,21 @@ def test_double():
 #
 #     v = i.parse_value('5 days')
 
-# def test_entities():
-#     pass
-#
-# def test_entity():
-#     pass
+def test_entities():
+    assert ENTITIES().parse_value('blah0 blah1 blah2') == ('blah0', 'blah1', 'blah2')
+
+    with pytest.raises(ValueError):
+        ENTITIES().parse_value('')
+
+def test_entity():
+    assert ENTITY().parse_value('test_id_4') == 'test_id_4'
+
+    assert ENTITY().produce_value('test_id_4') == 'test_id_4'
 
 def test_float():
-    i = Float()
+    assert Float().parse_value('1.1') == 1.1
 
-    v = i.parse_value('1.1')
-    assert isinstance(v, float)
-    assert v > 1.0 and v <= 1.1
-    assert i.produce_value(v).startswith('1.')
+    assert Float().produce_value(1.1).startswith('1.')
 
 def test_g_day():
     pass
@@ -135,38 +135,38 @@ def test_hex_binary():
     pass
 
 def test_id():
-    i = ID()
+    assert ID().parse_value('test_id_4') == 'test_id_4'
 
-    v = i.parse_value('test_id_4')
-    assert isinstance(v, str)
+    assert ID().produce_value('test_id_4') == 'test_id_4'
 
 def test_idref():
-    i = IDREF()
+    assert IDREF().parse_value('test_id_4') == 'test_id_4'
 
-    v = i.parse_value('test_id_4')
-    assert isinstance(v, str)
+    assert IDREF().produce_value('test_id_4') == 'test_id_4'
 
 def test_idrefs():
-    pass
+    assert IDREFS().parse_value('blah0 blah1 blah2') == ('blah0', 'blah1', 'blah2')
+
+    with pytest.raises(ValueError):
+        IDREFS().parse_value('')
+
+    assert IDREFS().produce_value(('blah0', 'blah1', 'blah2')) == 'blah0 blah1 blah2'
 
 def test_int():
-    i = Int()
-
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+    assert Int().parse_value('255') == 255
+    assert Int().produce_value(255) == '255'
 
 def test_integer():
-    i = Integer()
-
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+    assert Integer().parse_value('255') == 255
+    assert Integer().produce_value(255) == '255'
 
 def test_language():
-    pass
+    Language().parse_value('en')
+    Language().parse_value('en-US')
+    Language().parse_value('en-gb')
+
+    with pytest.raises(ValueError):
+        Language().parse_value('')
 
 def test_long():
     i = Long()
@@ -177,89 +177,84 @@ def test_long():
     assert i.produce_value(v) == '255'
 
 def test_name():
-    i = Name()
+    Name().parse_value('test_id_4')
 
-    v = i.parse_value('test_id_4')
-    assert isinstance(v, str)
+    with pytest.raises(ValueError):
+        Name().parse_value('4test_id_4')
 
 def test_nc_name():
-    i = NCName()
+    NCName().parse_value('test_id_4')
 
-    v = i.parse_value('test_id_4')
-    assert isinstance(v, str)
+    with pytest.raises(ValueError):
+        NCName().parse_value('test:id_4')
 
 def test_negative_integer():
-    i = NegativeInteger()
+    assert NegativeInteger().parse_value('-255') == -255
 
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+    assert NegativeInteger().produce_value(-255) == '-255'
 
 def test_nm_token():
-    i = NMTOKEN()
+    assert NMTOKEN().parse_value('xml:schema') == 'xml:schema'
+    assert NMTOKEN().parse_value('2xml:schema') == '2xml:schema'
+    assert NMTOKEN().parse_value('-xml:schema') == '-xml:schema'
+    assert NMTOKEN().parse_value('.xml:schema') == '.xml:schema'
 
-    v = i.parse_value('test_id_4')
-    assert isinstance(v, str)
+    with pytest.raises(ValueError):
+        NMTOKEN().parse_value('\x0dtoken')
 
 def test_nm_tokens():
-    pass
+    assert NMTOKENS().parse_value('xml:schema') == ('xml:schema',)
+    assert NMTOKENS().parse_value('xml:schema xml:schema2') == ('xml:schema', 'xml:schema2')
+
+    with pytest.raises(ValueError):
+        NMTOKENS().parse_value('\x0dtoken')
 
 def test_non_negative_integer():
-    i = NonNegativeInteger()
+    assert NonNegativeInteger().parse_value('255') == 255
 
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+    assert NonNegativeInteger().produce_value(255) == '255'
 
 def test_non_positive_integer():
-    i = NonPositiveInteger()
+    assert NonPositiveInteger().parse_value('-255') == -255
 
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+    assert NonPositiveInteger().produce_value(-255) == '-255'
 
 def test_normalized_string():
-    i = NormalizedString()
+    assert NormalizedString().parse_value('test_id_4') == 'test_id_4'
 
-    v = i.parse_value('test_id_4')
-    assert isinstance(v, str)
+    assert NormalizedString().produce_value('test_id_4') == 'test_id_4'
 
 def test_notation():
-    i = NOTATION()
+    assert NOTATION().parse_value('test_id_4') == 'test_id_4'
 
-    v = i.parse_value('test')
-    assert isinstance(v, str)
+    assert NOTATION().produce_value('test_id_4') == 'test_id_4'
 
 def test_positive_integer():
-    i = PositiveInteger()
+    assert PositiveInteger().parse_value('255') == 255
 
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+    assert PositiveInteger().produce_value(255) == '255'
 
 def test_q_name():
-    i = QName()
+    assert QName().parse_value('test_id_4') == 'test_id_4'
 
-    v = i.parse_value('test')
-    assert isinstance(v, str)
+    assert QName().produce_value('test_id_4') == 'test_id_4'
 
 def test_short():
-    i = Short()
+    assert Short().parse_value('255') == 255
 
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+    assert Short().produce_value(255) == '255'
 
 def test_string():
-    i = String()
+    assert String().parse_value('test') == 'test'
 
-    v = i.parse_value('test')
-    assert isinstance(v, str)
+    with pytest.raises(TypeError):
+        String().parse_value(2)
+    with pytest.raises(TypeError):
+        String().parse_value(2.0)
+    with pytest.raises(TypeError):
+        String().parse_value(String())
+
+    assert String().produce_value('255') == '255'
 
 def test_time():
     i = Time()
