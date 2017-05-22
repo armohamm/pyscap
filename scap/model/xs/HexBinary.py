@@ -15,9 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+import binascii
 import logging
+import re
+
+from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
 class HexBinary(AnySimpleType):
-    pass
+    def parse_value(self, value):
+        value = super(HexBinary, self).parse_value(value)
+
+        m = re.fullmatch(b'([0-9a-fA-F]{2})*', value)
+        if not m:
+            raise ValueError('xs:HexBinary must match ([0-9a-fA-F]{2})*')
+
+        return binascii.a2b_hex(value)
+
+    def produce_value(self, value):
+        return binascii.b2a_hex(value)

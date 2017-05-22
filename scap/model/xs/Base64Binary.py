@@ -15,9 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+import base64
 import logging
+import re
+
+from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
 class Base64Binary(AnySimpleType):
-    pass
+    def parse_value(self, value):
+        value = super(Base64Binary, self).parse_value(value)
+
+        m = re.fullmatch(b'[a-zA-Z0-9+/= ]*', value)
+        if not m:
+            raise ValueError('xs:Base64Binary must match [a-zA-Z0-9+/= ]*')
+
+        return base64.b64decode(value)
+
+    def produce_value(self, value):
+        return base64.b64encode(value)
