@@ -82,69 +82,75 @@ def test_date_time_produce():
     v = datetime.datetime(year=2017, month=5, day=16, hour=12, minute=0, second=0, tzinfo=datetime.timezone.utc)
     assert DateTime().produce_value(v) == '2017-05-16T12:00:00.000000+0000'
 
-def test_decimal():
+def test_decimal_parse():
     assert Decimal().parse_value('1.1') == 1.1
 
+def test_decimal_produce():
     assert Decimal().produce_value(1.1) == '1.1'
 
-def test_double():
-    i = Double()
+def test_double_parse():
+    assert Double().parse_value('1.1') == 1.1
 
-    v = i.parse_value('1.1')
-    assert isinstance(v, float)
-    assert v > 1.0 and v <= 1.1
-    assert i.produce_value(v).startswith('1.')
+def test_double_produce():
+    assert Double().produce_value(1.1) == '1.1'
 
 # def test_duration():
 #     i = Duration()
 #
 #     v = i.parse_value('5 days')
 
-def test_entities():
+def test_entities_parse():
     assert ENTITIES().parse_value('blah0 blah1 blah2') == ('blah0', 'blah1', 'blah2')
 
     with pytest.raises(ValueError):
         ENTITIES().parse_value('')
 
-def test_entity():
+# def test_entities_produce():
+#     pass
+
+def test_entity_parse():
     assert ENTITY().parse_value('test_id_4') == 'test_id_4'
 
+def test_entity_produce():
     assert ENTITY().produce_value('test_id_4') == 'test_id_4'
 
-def test_float():
+def test_float_parse():
     assert Float().parse_value('1.1') == 1.1
 
+def test_float_produce():
     assert Float().produce_value(1.1).startswith('1.')
 
-def test_g_day():
-    pass
-
-def test_g_month():
-    pass
-
-def test_g_month_day():
-    pass
-
-def test_g_year():
-    pass
-
-def test_g_year_month():
-    pass
-
-def test_hex_binary():
-    pass
-
-def test_id():
+# def test_g_day():
+#     pass
+#
+# def test_g_month():
+#     pass
+#
+# def test_g_month_day():
+#     pass
+#
+# def test_g_year():
+#     pass
+#
+# def test_g_year_month():
+#     pass
+#
+# def test_hex_binary():
+#     pass
+#
+def test_id_parse():
     assert ID().parse_value('test_id_4') == 'test_id_4'
 
+def test_id_produce():
     assert ID().produce_value('test_id_4') == 'test_id_4'
 
-def test_idref():
+def test_idref_parse():
     assert IDREF().parse_value('test_id_4') == 'test_id_4'
 
+def test_idref_produce():
     assert IDREF().produce_value('test_id_4') == 'test_id_4'
 
-def test_idrefs():
+def test_idrefs_parse():
     assert IDREFS().parse_value('blah0 blah1 blah2') == ('blah0', 'blah1', 'blah2')
 
     with pytest.raises(ValueError):
@@ -152,15 +158,21 @@ def test_idrefs():
 
     assert IDREFS().produce_value(('blah0', 'blah1', 'blah2')) == 'blah0 blah1 blah2'
 
-def test_int():
+# TODO test_idrefs_produce
+
+def test_int_parse():
     assert Int().parse_value('255') == 255
+
+def test_int_produce():
     assert Int().produce_value(255) == '255'
 
-def test_integer():
+def test_integer_parse():
     assert Integer().parse_value('255') == 255
+
+def test_integer_produce():
     assert Integer().produce_value(255) == '255'
 
-def test_language():
+def test_language_parse():
     Language().parse_value('en')
     Language().parse_value('en-US')
     Language().parse_value('en-gb')
@@ -168,32 +180,37 @@ def test_language():
     with pytest.raises(ValueError):
         Language().parse_value('')
 
-def test_long():
-    i = Long()
+# TODO test_language_produce
 
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+def test_long_parse():
+    assert Long().parse_value('255') == 255
 
-def test_name():
-    Name().parse_value('test_id_4')
+def test_long_produce():
+    assert Long().produce_value(255) == '255'
+
+def test_name_parse():
+    assert Name().parse_value('test_id_4') == 'test_id_4'
 
     with pytest.raises(ValueError):
         Name().parse_value('4test_id_4')
 
-def test_nc_name():
-    NCName().parse_value('test_id_4')
+# TODO test_name_produce
+
+def test_nc_name_parse():
+    assert NCName().parse_value('test_id_4') == 'test_id_4'
 
     with pytest.raises(ValueError):
         NCName().parse_value('test:id_4')
 
-def test_negative_integer():
+# TODO test_nc_name_produce
+
+def test_negative_integer_parse():
     assert NegativeInteger().parse_value('-255') == -255
 
+def test_negative_integer_produce():
     assert NegativeInteger().produce_value(-255) == '-255'
 
-def test_nm_token():
+def test_nmtoken_parse():
     assert NMTOKEN().parse_value('xml:schema') == 'xml:schema'
     assert NMTOKEN().parse_value('2xml:schema') == '2xml:schema'
     assert NMTOKEN().parse_value('-xml:schema') == '-xml:schema'
@@ -202,49 +219,60 @@ def test_nm_token():
     with pytest.raises(ValueError):
         NMTOKEN().parse_value('\x0dtoken')
 
-def test_nm_tokens():
+# TODO test_nmtoken_produce
+
+def test_nm_tokens_parse():
     assert NMTOKENS().parse_value('xml:schema') == ('xml:schema',)
     assert NMTOKENS().parse_value('xml:schema xml:schema2') == ('xml:schema', 'xml:schema2')
 
     with pytest.raises(ValueError):
         NMTOKENS().parse_value('\x0dtoken')
 
-def test_non_negative_integer():
+# TODO test_nmtokens_produce
+
+def test_non_negative_integer_parse():
     assert NonNegativeInteger().parse_value('255') == 255
 
+def test_non_negative_integer_produce():
     assert NonNegativeInteger().produce_value(255) == '255'
 
-def test_non_positive_integer():
+def test_non_positive_integer_parse():
     assert NonPositiveInteger().parse_value('-255') == -255
 
+def test_non_positive_integer_produce():
     assert NonPositiveInteger().produce_value(-255) == '-255'
 
-def test_normalized_string():
+def test_normalized_string_parse():
     assert NormalizedString().parse_value('test_id_4') == 'test_id_4'
 
+def test_normalized_string_produce():
     assert NormalizedString().produce_value('test_id_4') == 'test_id_4'
 
-def test_notation():
+def test_notation_parse():
     assert NOTATION().parse_value('test_id_4') == 'test_id_4'
 
+def test_notation_produce():
     assert NOTATION().produce_value('test_id_4') == 'test_id_4'
 
-def test_positive_integer():
+def test_positive_integer_parse():
     assert PositiveInteger().parse_value('255') == 255
 
+def test_positive_integer_produce():
     assert PositiveInteger().produce_value(255) == '255'
 
-def test_q_name():
+def test_q_name_parse():
     assert QName().parse_value('test_id_4') == 'test_id_4'
 
+def test_q_name_produce():
     assert QName().produce_value('test_id_4') == 'test_id_4'
 
-def test_short():
+def test_short_parse():
     assert Short().parse_value('255') == 255
 
+def test_short_produce():
     assert Short().produce_value(255) == '255'
 
-def test_string():
+def test_string_parse():
     assert String().parse_value('test') == 'test'
 
     with pytest.raises(TypeError):
@@ -254,48 +282,40 @@ def test_string():
     with pytest.raises(TypeError):
         String().parse_value(String())
 
+def test_string_produce():
     assert String().produce_value('255') == '255'
 
-def test_time():
-    i = Time()
+def test_time_parse():
+    assert Time().parse_value('12:00:00') == datetime.time(hour=12, minute=0, second=0)
 
-    v = i.parse_value('12:00:00')
-    assert isinstance(v, datetime.time)
+# TODO test_time_produce
 
-def test_token():
-    i = Token()
+def test_token_parse():
+    assert Token().parse_value('test') == 'test'
 
-    v = i.parse_value('test')
-    assert isinstance(v, str)
+def test_token_produce():
+    assert Token().produce_value('test') == 'test'
 
-def test_unsigned_byte():
-    i = UnsignedByte()
+def test_unsigned_byte_parse():
+    assert UnsignedByte().parse_value('255') == 255
 
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+def test_unsigned_byte_produce():
+    assert UnsignedByte().produce_value(255) == '255'
 
-def test_unsigned_int():
-    i = UnsignedInt()
+def test_unsigned_int_parse():
+    assert UnsignedInt().parse_value('255') == 255
 
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+def test_unsigned_int_produce():
+    assert UnsignedInt().produce_value(255) == '255'
 
-def test_unsigned_long():
-    i = UnsignedLong()
+def test_unsigned_long_parse():
+    assert UnsignedLong().parse_value('255') == 255
 
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+def test_unsigned_long_produce():
+    assert UnsignedLong().produce_value(255) == '255'
 
-def test_unsigned_short():
-    i = UnsignedShort()
+def test_unsigned_short_parse():
+    assert UnsignedShort().parse_value('255') == 255
 
-    v = i.parse_value('255')
-    assert isinstance(v, int)
-    assert v == 255
-    assert i.produce_value(v) == '255'
+def test_unsigned_short_produce():
+    assert UnsignedShort().produce_value(255) == '255'
