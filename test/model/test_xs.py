@@ -56,6 +56,18 @@ def test_seven_property_model_eq():
 def test_seven_property_model_ne():
     assert SevenPropertyModel(hour=12, minute=42, second=42) != SevenPropertyModel(hour=13, minute=42, second=42)
 
+def test_seven_property_model_to_date():
+    assert SevenPropertyModel(year=2017, month=5, day=22).to_date() == datetime.date(year=2017, month=5, day=22)
+    # TODO test timezone offsets
+
+def test_seven_property_model_to_datetime():
+    assert SevenPropertyModel(year=2017, month=5, day=22, hour=12, minute=42, second=42).to_datetime() == datetime.datetime(year=2017, month=5, day=22, hour=12, minute=42, second=42)
+    # TODO test timezone offsets
+
+def test_seven_property_model_to_time():
+    assert SevenPropertyModel(hour=12, minute=42, second=42).to_time() == datetime.time(hour=12, minute=42, second=42)
+    # TODO test timezone offsets
+
 # def test_any_simple_type():
 #     pass
 #

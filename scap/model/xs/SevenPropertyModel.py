@@ -266,7 +266,7 @@ class SevenPropertyModel(object):
                 return "%04d-%02d-%02dT%02d:%02d:%02.6f%s" % (self._year, self._month, self._day, self._hour, self._minute, self._second, self._tz_to_string())
 
         else:
-            raise NotImplementedError('')
+            raise NotImplementedError('Value set ' + str([self._year, self._month, self._day, self._hour, self._minute, self._second]) + ' cannot be converted to a string')
 
     def __eq__(self, other):
         if not isinstance(other, SevenPropertyModel):
@@ -294,3 +294,29 @@ class SevenPropertyModel(object):
             return False
 
         return True
+
+    def to_datetime(self):
+        ms = int((self._second - int(self._second)) * 1000)
+
+        if self._timezoneOffset is None:
+            return dt.datetime(year=self._year, month=self._month, day=self._day, \
+            hour=self._hour, minute=self._minute, second=int(self._second), microsecond=ms)
+        else:
+            tz = dt.timezone(offset=dt.timedelta(minutes=self._timezoneOffset))
+
+            return dt.datetime(year=self._year, month=self._month, day=self._day, \
+            hour=self._hour, minute=self._minute, second=int(self._second), microsecond=ms, tzinfo=tz)
+
+    def to_date(self):
+        # TODO work around date's timezone naiveté
+        return dt.date(year=self._year, month=self._month, day=self._day)
+
+    def to_time(self):
+        ms = int((self._second - int(self._second)) * 1000)
+
+        if self._timezoneOffset is None:
+            return dt.time(hour=self._hour, minute=self._minute, second=int(self._second), microsecond=ms)
+        else:
+            tz = dt.timezone(offset=dt.timedelta(minutes=self._timezoneOffset))
+
+            return dt.time(hour=self._hour, minute=self._minute, second=int(self._second), microsecond=ms, tzinfo=tz)
