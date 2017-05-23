@@ -195,7 +195,7 @@ class SevenPropertyModel(object):
                 value = 0
             elif ':' in value:
                 tz_hour, tz_minute = value.split(':')
-                value = (tz_hour * 60) + tz_minute
+                value = (int(tz_hour) * 60) + int(tz_minute)
             else:
                 value = int(timezoneOffset)
         elif not isinstance(value, int):
@@ -214,9 +214,9 @@ class SevenPropertyModel(object):
         else:
             tz_hour, tz_minute = divmod(self._timezoneOffset, 60)
             if self._timezoneOffset > 0:
-                return '+%02d:%02d' % int(tz_hour), tz_minute
+                return '+%02d:%02d' % (int(tz_hour), tz_minute)
             else:
-                return '-%02d:%02d' % int(tz_hour), tz_minute
+                return '-%02d:%02d' % (int(tz_hour), tz_minute)
 
     def __str__(self):
         if self._year is None and self._month is None and self._day is not None \
