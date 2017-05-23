@@ -23,8 +23,8 @@ from scap.model.xs.AnySimpleType import AnySimpleType
 logger = logging.getLogger(__name__)
 class Duration(AnySimpleType):
     def parse_value(self, value):
-        m = re.match(r'-?P(\d+Y)?(\d+M)?(\d+D)?(T(\d+H)?(\d+M)?(\d+(\.\d+)?S)?)?', value)
-        if not m or not re.match(r'.*[YMDHS].*', value) or not re.match(r'.*[^T]', value):
+        m = re.fullmatch(r'-?P(\d+Y)?(\d+M)?(\d+D)?(T(\d+H)?(\d+M)?(\d+(\.\d+)?S)?)?', value)
+        if not m or not re.fullmatch(r'.*[YMDHS].*', value) or not re.fullmatch(r'.*[^T]', value):
             raise ValueError('Unable to parse xs:Duration value')
 
         if value.startswith('-'):

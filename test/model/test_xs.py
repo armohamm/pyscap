@@ -159,6 +159,38 @@ def test_date_time_parse():
 def test_date_time_produce():
     assert DateTime().produce_value(SevenPropertyModel(year=2017, month=5, day=16, hour=12, minute=42, second=42, timezoneOffset=0)) == '2017-05-16T12:42:42Z'
 
+def test_DayTimeDuration_parse():
+    assert DayTimeDuration().parse_value('P1DT1H1M1.1S') == (0, 90061.1)
+
+    assert DayTimeDuration().parse_value('P1D') == (0, 86400.0)
+    assert DayTimeDuration().parse_value('PT1H') == (0, 3600.0)
+    assert DayTimeDuration().parse_value('PT1M') == (0, 60.0)
+    assert DayTimeDuration().parse_value('PT1S') == (0, 1.0)
+
+    assert DayTimeDuration().parse_value('-P1D') == (0, -86400.0)
+    assert DayTimeDuration().parse_value('-PT1H') == (0, -3600.0)
+    assert DayTimeDuration().parse_value('-PT1M') == (0, -60.0)
+    assert DayTimeDuration().parse_value('-PT1S') == (0, -1.0)
+
+    with pytest.raises(ValueError):
+        DayTimeDuration().parse_value('P1Y1M1DT1H1M1.1S')
+
+def test_DayTimeDuration_produce():
+    assert DayTimeDuration().produce_value((0, 90061.1)) == 'P1DT1H1M1.100000S'
+
+    assert DayTimeDuration().produce_value((0, 86400.0)) == 'P1D'
+    assert DayTimeDuration().produce_value((0, 3600.0)) == 'PT1H'
+    assert DayTimeDuration().produce_value((0, 60.0)) == 'PT1M'
+    assert DayTimeDuration().produce_value((0, 1.0)) == 'PT1S'
+
+    assert DayTimeDuration().produce_value((0, -86400.0)) == '-P1D'
+    assert DayTimeDuration().produce_value((0, -3600.0)) == '-PT1H'
+    assert DayTimeDuration().produce_value((0, -60.0)) == '-PT1M'
+    assert DayTimeDuration().produce_value((0, -1.0)) == '-PT1S'
+
+    with pytest.raises(ValueError):
+        DayTimeDuration().produce_value((1, 1.0))
+
 def test_decimal_parse():
     assert Decimal().parse_value('1.1') == 1.1
 
@@ -173,6 +205,7 @@ def test_double_produce():
 
 def test_duration_parse():
     assert Duration().parse_value('P1Y1M1DT1H1M1.1S') == (13, 90061.1)
+
     assert Duration().parse_value('P1Y') == (12, 0.0)
     assert Duration().parse_value('P1M') == (1, 0.0)
     assert Duration().parse_value('P1D') == (0, 86400.0)
@@ -189,6 +222,7 @@ def test_duration_parse():
 
 def test_duration_produce():
     assert Duration().produce_value((13, 90061.1)) == 'P1Y1M1DT1H1M1.100000S'
+
     assert Duration().produce_value((12, 0.0)) == 'P1Y'
     assert Duration().produce_value((1, 0.0)) == 'P1M'
     assert Duration().produce_value((0, 86400.0)) == 'P1D'
@@ -454,3 +488,27 @@ def test_unsigned_short_parse():
 
 def test_unsigned_short_produce():
     assert UnsignedShort().produce_value(255) == '255'
+
+def test_YearMonthDuration_parse():
+    assert YearMonthDuration().parse_value('P1Y1M') == (13, 0)
+
+    assert YearMonthDuration().parse_value('P1Y') == (12, 0.0)
+    assert YearMonthDuration().parse_value('P1M') == (1, 0.0)
+
+    assert YearMonthDuration().parse_value('-P1Y') == (-12, 0.0)
+    assert YearMonthDuration().parse_value('-P1M') == (-1, 0.0)
+
+    with pytest.raises(ValueError):
+        DayTimeDuration().parse_value('P1Y1M1DT1H1M1.1S')
+
+def test_YearMonthDuration_produce():
+    assert YearMonthDuration().produce_value((13, 0)) == 'P1Y1M'
+
+    assert YearMonthDuration().produce_value((12, 0.0)) == 'P1Y'
+    assert YearMonthDuration().produce_value((1, 0.0)) == 'P1M'
+
+    assert YearMonthDuration().produce_value((-12, 0.0)) == '-P1Y'
+    assert YearMonthDuration().produce_value((-1, 0.0)) == '-P1M'
+
+    with pytest.raises(ValueError):
+        DayTimeDuration().produce_value((1, 1.0))
