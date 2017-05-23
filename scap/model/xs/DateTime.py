@@ -25,7 +25,7 @@ from scap.model.xs.AnySimpleType import AnySimpleType
 logger = logging.getLogger(__name__)
 class DateTime(AnySimpleType):
     def parse_value(self, value):
-        m = re.match(r'(-?\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d(\.\d+)?)((([-+])(\d\d):(\d\d))|Z)?', value)
+        m = re.fullmatch(r'(-?\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d(\.\d+)?)((([-+])(\d\d):(\d\d))|Z)?', value)
         if not m:
             raise ValueError('Unable to parse DateTime value')
         return SevenPropertyModel(year=m[1], month=m[2], day=m[3], hour=m[4], minute=m[5], second=m[6], timezoneOffset=m[8])

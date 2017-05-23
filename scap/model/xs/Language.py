@@ -23,10 +23,8 @@ from scap.model.xs.Token import Token
 logger = logging.getLogger(__name__)
 class Language(Token):
     def parse_value(self, value):
-        value = super(Language, self).parse_value(value)
-
         m = re.fullmatch(r'[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*', value)
         if not m:
             raise ValueError('xs:language must match [a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*')
 
-        return value
+        return super(Language, self).parse_value(value)

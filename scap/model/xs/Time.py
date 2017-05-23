@@ -25,7 +25,7 @@ from scap.model.xs.AnySimpleType import AnySimpleType
 logger = logging.getLogger(__name__)
 class Time(AnySimpleType):
     def parse_value(self, value):
-        m = re.match(r'(-?\d\d):(\d\d):(\d\d(\.\d+)?)((([-+])(\d\d):(\d\d))|Z)?', value)
+        m = re.fullmatch(r'(-?\d\d):(\d\d):(\d\d(\.\d+)?)((([-+])(\d\d):(\d\d))|Z)?', value)
         if not m:
             raise ValueError('Unable to parse Time value')
 
