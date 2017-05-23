@@ -48,6 +48,50 @@ def test_seven_property_model_init():
     for i in (spm.year, spm.month, spm.day, spm.timezoneOffset):
         assert i is None
 
+    spm = SevenPropertyModel(year=2017, month=5, day=22, hour=12, minute=42, second=42)
+    assert spm.year == 2017
+    assert spm.month == 5
+    assert spm.day == 22
+    assert spm.hour == 12
+    assert spm.minute == 42
+    assert spm.second == 42
+    assert spm.timezoneOffset is None
+
+    spm = SevenPropertyModel(year=2017, month=5, day=22, hour=12, minute=42, second=42, timezoneOffset=60)
+    assert spm.year == 2017
+    assert spm.month == 5
+    assert spm.day == 22
+    assert spm.hour == 12
+    assert spm.minute == 42
+    assert spm.second == 42
+    assert spm.timezoneOffset == 60
+
+def test_seven_property_model_init_date():
+    spm = SevenPropertyModel(date=datetime.date(year=2017, month=5, day=22))
+    assert spm.year == 2017
+    assert spm.month == 5
+    assert spm.day == 22
+    for i in (spm.hour, spm.minute, spm.second, spm.timezoneOffset):
+        assert i is None
+
+def test_seven_property_model_init_datetime():
+    spm = SevenPropertyModel(datetime=datetime.datetime(year=2017, month=5, day=22, hour=12, minute=42, second=42))
+    assert spm.year == 2017
+    assert spm.month == 5
+    assert spm.day == 22
+    assert spm.hour == 12
+    assert spm.minute == 42
+    assert spm.second == 42
+    assert spm.timezoneOffset is None
+
+def test_seven_property_model_init_time():
+    spm = SevenPropertyModel(time=datetime.time(hour=12, minute=42, second=42))
+    assert spm.hour == 12
+    assert spm.minute == 42
+    assert spm.second == 42
+    for i in (spm.year, spm.month, spm.day, spm.timezoneOffset):
+        assert i is None
+
 def test_seven_property_model_eq():
     assert SevenPropertyModel(hour=12, minute=42, second=42) == SevenPropertyModel(hour=12, minute=42, second=42)
     assert SevenPropertyModel(year=2017, month=5, day=22, hour=12, minute=42, second=42) == \
