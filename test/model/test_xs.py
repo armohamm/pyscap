@@ -171,10 +171,37 @@ def test_double_parse():
 def test_double_produce():
     assert Double().produce_value(1.1) == '1.1'
 
-# def test_duration():
-#     i = Duration()
-#
-#     v = i.parse_value('5 days')
+def test_duration_parse():
+    assert Duration().parse_value('P1Y1M1DT1H1M1.1S') == (13, 90061.1)
+    assert Duration().parse_value('P1Y') == (12, 0.0)
+    assert Duration().parse_value('P1M') == (1, 0.0)
+    assert Duration().parse_value('P1D') == (0, 86400.0)
+    assert Duration().parse_value('PT1H') == (0, 3600.0)
+    assert Duration().parse_value('PT1M') == (0, 60.0)
+    assert Duration().parse_value('PT1S') == (0, 1.0)
+
+    assert Duration().parse_value('-P1Y') == (-12, 0.0)
+    assert Duration().parse_value('-P1M') == (-1, 0.0)
+    assert Duration().parse_value('-P1D') == (0, -86400.0)
+    assert Duration().parse_value('-PT1H') == (0, -3600.0)
+    assert Duration().parse_value('-PT1M') == (0, -60.0)
+    assert Duration().parse_value('-PT1S') == (0, -1.0)
+
+def test_duration_produce():
+    assert Duration().produce_value((13, 90061.1)) == 'P1Y1M1DT1H1M1.100000S'
+    assert Duration().produce_value((12, 0.0)) == 'P1Y'
+    assert Duration().produce_value((1, 0.0)) == 'P1M'
+    assert Duration().produce_value((0, 86400.0)) == 'P1D'
+    assert Duration().produce_value((0, 3600.0)) == 'PT1H'
+    assert Duration().produce_value((0, 60.0)) == 'PT1M'
+    assert Duration().produce_value((0, 1.0)) == 'PT1S'
+
+    assert Duration().produce_value((-12, 0.0)) == '-P1Y'
+    assert Duration().produce_value((-1, 0.0)) == '-P1M'
+    assert Duration().produce_value((0, -86400.0)) == '-P1D'
+    assert Duration().produce_value((0, -3600.0)) == '-PT1H'
+    assert Duration().produce_value((0, -60.0)) == '-PT1M'
+    assert Duration().produce_value((0, -1.0)) == '-PT1S'
 
 def test_entities_parse():
     assert ENTITIES().parse_value('blah0 blah1 blah2') == ('blah0', 'blah1', 'blah2')
