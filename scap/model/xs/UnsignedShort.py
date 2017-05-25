@@ -20,4 +20,10 @@ import logging
 
 logger = logging.getLogger(__name__)
 class UnsignedShort(UnsignedInt):
-    pass
+    def parse_value(self, value):
+        value = super(UnsignedShort, self).parse_value(value)
+
+        if value > 65535:
+            raise ValueError('xs:UnsignedShort cannot be > 65535')
+
+        return value

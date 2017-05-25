@@ -15,22 +15,23 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import binascii
 import logging
 import re
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs.Duration import Duration
 
 logger = logging.getLogger(__name__)
-class HexBinary(AnySimpleType):
+class YearMonthDuration(Duration):
     def parse_value(self, value):
-        value = super(HexBinary, self).parse_value(value)
+        m = re.fullmatch(r'-?P(\d+Y)?(\d+M)?', value)
+        if not m or not re.fullmatch(r'.*[YM].*', value):
+            raise ValueError('Unable to parse xs:YearMonthDuration value')
 
-        m = re.fullmatch(b'([0-9a-fA-F]{2})*', value)
-        if not m:
-            raise ValueError('xs:HexBinary must match ([0-9a-fA-F]{2})*')
-
-        return binascii.a2b_hex(value)
+        return super(YearMonthDuration, self).parse_value(value)
 
     def produce_value(self, value):
-        return binascii.b2a_hex(value)
+        months, seconds = value
+        if seconds != 0:
+            raise ValueError('xs:YearMonthDuration requires 0 for seconds value')
+
+        return super(YearMonthDuration, self).produce_value(value)

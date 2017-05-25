@@ -15,10 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Token import Token
 import logging
+import re
+
+from scap.model.xs.Token import Token
 
 logger = logging.getLogger(__name__)
 class Language(Token):
-    # TODO pattern [a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*
-    pass
+    def parse_value(self, value):
+        m = re.fullmatch(r'[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*', value)
+        if not m:
+            raise ValueError('xs:language must match [a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*')
+
+        return super(Language, self).parse_value(value)

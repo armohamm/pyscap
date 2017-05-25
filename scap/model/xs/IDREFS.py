@@ -15,10 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.IDREF import IDREF
 import logging
+import re
+
+from scap.model.xs.List import List
+from scap.model.xs.IDREF import IDREF
 
 logger = logging.getLogger(__name__)
-class IDREFS(IDREF):
-    # TODO at least one IDREF
-    pass
+class IDREFS(List):
+    def parse_item(self, item_value):
+        return IDREF().parse_value(item_value)
+
+    def produce_item(self, item_value):
+        return IDREF().produce_value(item_value)

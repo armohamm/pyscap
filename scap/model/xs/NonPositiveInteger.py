@@ -15,9 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Integer import Integer
 import logging
+
+from scap.model.xs.Integer import Integer
 
 logger = logging.getLogger(__name__)
 class NonPositiveInteger(Integer):
-    pass
+    def parse_value(self, value):
+        value = super(NonPositiveInteger, self).parse_value(value)
+        
+        if value > 0:
+            raise ValueError('xs:nonPositiveInteger cannot be > 0')
+
+        return value

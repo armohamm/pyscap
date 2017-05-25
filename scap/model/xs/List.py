@@ -15,22 +15,36 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import binascii
 import logging
 import re
 
 from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
-class HexBinary(AnySimpleType):
+class List(AnySimpleType):
+    # abstract
     def parse_value(self, value):
-        value = super(HexBinary, self).parse_value(value)
+        value = super(List, self).parse_value(value)
 
-        m = re.fullmatch(b'([0-9a-fA-F]{2})*', value)
-        if not m:
-            raise ValueError('xs:HexBinary must match ([0-9a-fA-F]{2})*')
+        if len(value) < 1:
+            raise ValueError('xs:List must contain at least 1 character')
 
-        return binascii.a2b_hex(value)
+        r = []
+        for i in re.split(r'\s+', value):
+            r.append(self.parse_item(i))
+
+        return tuple(r)
 
     def produce_value(self, value):
-        return binascii.b2a_hex(value)
+        r = []
+        for i in value:
+            r.append(self.produce_item(i))
+        return ' '.join(r)
+
+    def parse_item(self, item_value):
+        import inspect
+        raise NotImplementedError(inspect.stack()[0][3] + '() has not been implemented in subclass: ' + self.__class__.__name__)
+
+    def produce_item(self, item_value):
+        import inspect
+        raise NotImplementedError(inspect.stack()[0][3] + '() has not been implemented in subclass: ' + self.__class__.__name__)

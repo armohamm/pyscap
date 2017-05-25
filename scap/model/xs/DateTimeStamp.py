@@ -15,22 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import binascii
-import logging
 import re
+import datetime
+import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs.SevenPropertyModel import SevenPropertyModel
+from scap.model.xs.DateTime import DateTime
 
 logger = logging.getLogger(__name__)
-class HexBinary(AnySimpleType):
+class DateTimeStamp(DateTime):
     def parse_value(self, value):
-        value = super(HexBinary, self).parse_value(value)
-
-        m = re.fullmatch(b'([0-9a-fA-F]{2})*', value)
+        m = re.fullmatch(r'(-?\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d(\.\d+)?)((([-+])(\d\d):(\d\d))|Z)', value)
         if not m:
-            raise ValueError('xs:HexBinary must match ([0-9a-fA-F]{2})*')
-
-        return binascii.a2b_hex(value)
-
-    def produce_value(self, value):
-        return binascii.b2a_hex(value)
+            raise ValueError('Unable to parse DateTimeStamp value')
+        return SevenPropertyModel(year=m[1], month=m[2], day=m[3], hour=m[4], minute=m[5], second=m[6], timezoneOffset=m[8])

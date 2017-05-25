@@ -15,9 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.String import String
 import logging
+import re
+
+from scap.model.xs.List import List
+from scap.model.xs.NMTOKEN import NMTOKEN
 
 logger = logging.getLogger(__name__)
-class NMTOKENS(String):
-    pass
+class NMTOKENS(List):
+    def parse_item(self, item_value):
+        return NMTOKEN().parse_value(item_value)
+
+    def produce_item(self, item_value):
+        return NMTOKEN().produce_value(item_value)

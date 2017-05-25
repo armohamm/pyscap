@@ -20,4 +20,10 @@ import logging
 
 logger = logging.getLogger(__name__)
 class UnsignedLong(NonNegativeInteger):
-    pass
+    def parse_value(self, value):
+        value = super(UnsignedLong, self).parse_value(value)
+
+        if value > 18446744073709551615:
+            raise ValueError('xs:UnsignedLong cannot be > 18446744073709551615')
+
+        return value

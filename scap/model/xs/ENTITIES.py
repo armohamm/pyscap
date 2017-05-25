@@ -15,10 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.ENTITY import ENTITY
 import logging
+import re
+
+from scap.model.xs.List import List
+from scap.model.xs.ENTITY import ENTITY
 
 logger = logging.getLogger(__name__)
-class ENTITIES(ENTITY):
-    # TODO at least one ENTITY
-    pass
+class ENTITIES(List):
+    def parse_item(self, item_value):
+        return ENTITY().parse_value(item_value)
+
+    def produce_item(self, item_value):
+        return ENTITY().produce_value(item_value)

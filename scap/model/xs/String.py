@@ -15,9 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.AnySimpleType import AnySimpleType
 import logging
+
+from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
 class String(AnySimpleType):
-    pass
+    def parse_value(self, value):
+        if not isinstance(value, str):
+            raise TypeError('xs:string requires a str for initialization, got ' + value.__class__.__name__)
+        return value

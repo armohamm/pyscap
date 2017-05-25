@@ -15,10 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.AnySimpleType import AnySimpleType
 import logging
+import re
+
+from scap.model.xs.SevenPropertyModel import SevenPropertyModel
+from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
 class GMonth(AnySimpleType):
     def parse_value(self, value):
-        return int(value)
+        m = re.fullmatch(r'--(0[1-9]|1[0-2])(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?', value)
+        if not m:
+            raise ValueError('xs:GMonth must match --(0[1-9]|1[0-2])(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?')
+
+        return SevenPropertyModel(month=m[1], timezoneOffset=m[2])

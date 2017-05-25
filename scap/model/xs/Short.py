@@ -20,4 +20,12 @@ import logging
 
 logger = logging.getLogger(__name__)
 class Short(Int):
-    pass
+    def parse_value(self, value):
+        value = super(Short, self).parse_value(value)
+
+        if value < -32768:
+            raise ValueError('xs:short cannot be < -32768')
+        if value > 32767:
+            raise ValueError('xs:short cannot be > 32767')
+
+        return value
