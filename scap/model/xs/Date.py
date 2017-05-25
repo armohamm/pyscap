@@ -29,4 +29,8 @@ class Date(AnySimpleType):
         if not m:
             raise ValueError('Unable to parse Date value')
 
+        # fudge for python 3.5 compatibility w/match obj __getitem__
+        m = list(m.groups())
+        m.insert(0, None)
+
         return SevenPropertyModel(year=m[1], month=m[2], day=m[3], timezoneOffset=m[4])

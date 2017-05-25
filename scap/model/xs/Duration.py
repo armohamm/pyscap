@@ -32,6 +32,9 @@ class Duration(AnySimpleType):
         else:
             signed = False
 
+        # fudge for python 3.5 compatibility w/match obj __getitem__
+        m = list(m.groups())
+        m.insert(0, None)
 
         if m[1] is not None:
             years = int(m[1].strip('Y'))

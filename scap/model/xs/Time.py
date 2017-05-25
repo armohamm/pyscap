@@ -29,4 +29,8 @@ class Time(AnySimpleType):
         if not m:
             raise ValueError('Unable to parse Time value')
 
+        # fudge for python 3.5 compatibility w/match obj __getitem__
+        m = list(m.groups())
+        m.insert(0, None)
+
         return SevenPropertyModel(hour=m[1], minute=m[2], second=m[3], timezoneOffset=m[5])

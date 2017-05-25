@@ -28,4 +28,8 @@ class GYear(AnySimpleType):
         if not m:
             raise ValueError('xs:GYear must match -?([1-9][0-9]{3,}|0[0-9]{3})(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?')
 
+        # fudge for python 3.5 compatibility w/match obj __getitem__
+        m = list(m.groups())
+        m.insert(0, None)
+
         return SevenPropertyModel(year=m[1], timezoneOffset=m[2])
