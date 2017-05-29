@@ -15,8 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.ID import ID
 import logging
+
+from scap.model.scap_source_1_2 import *
+from scap.model.xs.ID import ID
 
 logger = logging.getLogger(__name__)
 class ComponentIDPattern(ID):

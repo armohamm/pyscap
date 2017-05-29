@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
-from scap.model.scap_source_1_2.UseCaseEnumeration import USE_CASE_ENUMERATION
-from scap.model.scap_source_1_2.SCAPVersionEnumeration import SCAP_VERSION_ENUMERATION
 import logging
+
+from scap.Model import Model
+from scap.model.scap_source_1_2 import *
 
 logger = logging.getLogger(__name__)
 class DataStreamElement(Model):
