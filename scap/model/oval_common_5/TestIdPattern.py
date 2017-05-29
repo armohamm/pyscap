@@ -21,6 +21,7 @@ from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
 
-class OvalTestIDPattern(String):
+class TestIdPattern(String):
     # <xsd:pattern value="oval:[A-Za-z0-9_\-\.]+:tst:[1-9][0-9]*"/>
-    pass
+    def get_value_pattern(self):
+        return r'oval:[A-Za-z0-9_\-\.]+:tst:[1-9][0-9]*'

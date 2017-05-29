@@ -23,6 +23,6 @@ class RangeValueType(Decimal):
     MODEL_MAP = {
         'attributes': {
             'inclusive': {'type': 'Boolean', 'default': True},
-            'var_ref': {'type': 'VariableIDPattern'},
+            'var_ref': {'type': 'VariableIdPattern'},
         },
     }

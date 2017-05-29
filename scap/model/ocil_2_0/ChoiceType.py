@@ -23,6 +23,6 @@ class ChoiceType(NormalizedString):
     MODEL_MAP = {
         'attributes': {
             'id': {'type': 'ChoiceIDPattern', 'required': True},
-            'var_ref': {'type': 'VariableIDPattern'},
+            'var_ref': {'type': 'VariableIdPattern'},
         },
     }

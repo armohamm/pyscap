@@ -27,7 +27,7 @@ class VariableType(Model):
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'id': {'type': 'oval_common_5.VariableIDPattern', 'required': True},
+            'id': {'type': 'oval_common_5.VariableIdPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},
             'datatype': {'enum': SIMPLE_DATATYPE_ENUMERATION, 'required': True},
             'comment': {'type': 'oval_common_5.NonEmptyString', 'required': True},

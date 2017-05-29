@@ -26,7 +26,7 @@ class VariableType(ItemBaseType):
             {'tag_name': 'description', 'class': 'TextType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'id': {'type': 'VariableIDPattern', 'required': True},
+            'id': {'type': 'VariableIdPattern', 'required': True},
             'datatype': {'enum': ['TEXT', 'NUMERIC'], 'required': True},
         }
     }

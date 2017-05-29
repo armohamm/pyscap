@@ -25,6 +25,6 @@ class EqualsTestActionConditionType(TestActionConditionType):
             {'tag_name': 'value', 'list': 'values', 'type': 'Decimal', 'min': 1, 'max': None},
         ],
         'attributes': {
-            'var_ref': {'type': 'VariableIDPattern'},
+            'var_ref': {'type': 'VariableIdPattern'},
         },
     }

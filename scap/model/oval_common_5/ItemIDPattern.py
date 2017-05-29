@@ -19,5 +19,5 @@ from scap.model.xs.Integer import Integer
 import logging
 
 logger = logging.getLogger(__name__)
-class ItemIDPattern(Integer):
+class ItemIdPattern(Integer):
     pass

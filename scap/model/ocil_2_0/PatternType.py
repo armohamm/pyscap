@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class PatternType(String):
     MODEL_MAP = {
         'attributes': {
-            'var_ref': {'type': 'VariableIDPattern'},
+            'var_ref': {'type': 'VariableIdPattern'},
         },
     }

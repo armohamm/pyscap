@@ -26,7 +26,7 @@ class SetElement(Model):
         'elements': [
             # TODO: either set element or object_reference (+ optional filter)
             {'tag_name': 'set', 'class': 'SetElement', 'min': 0, 'max': 2},
-            {'tag_name': 'object_reference', 'list': 'object_references', 'type': 'oval_common_5.ObjectIDPattern', 'min': 0, 'max': 2},
+            {'tag_name': 'object_reference', 'list': 'object_references', 'type': 'oval_common_5.ObjectIdPattern', 'min': 0, 'max': 2},
             {'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
         'attributes': {
