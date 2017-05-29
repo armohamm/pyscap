@@ -16,7 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 from scap.model.xs.String import String
-from scap.model.oval_common_5.MessageLevelEnumeration import MESSAGE_LEVEL_ENUMERATION
+from scap.model.oval_common_5 import *
 import logging
 
 logger = logging.getLogger(__name__)
