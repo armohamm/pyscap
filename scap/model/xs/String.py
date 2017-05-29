@@ -36,7 +36,7 @@ class String(AnySimpleType):
         if p is not None and not re.fullmatch(p, value):
             raise ValueError(self.__class__.__name__ + ' requires a value matching ' + p)
 
-        e = self.get_value_pattern()
+        e = self.get_value_enum()
         if e is not None and value not in e:
             raise ValueError(self.__class__.__name__ + ' requires a value in ' + str(e))
 
