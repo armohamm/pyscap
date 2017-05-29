@@ -15,8 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.NCName import NCName
 import logging
+
+from scap.model.oval_common_5 import *
+from scap.model.xs.NCName import NCName
 
 logger = logging.getLogger(__name__)
 class ElementMapItemType(NCName):
