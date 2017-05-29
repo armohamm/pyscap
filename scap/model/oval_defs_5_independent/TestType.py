@@ -15,14 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_defs_5.TestType import TestType as oval_defs_5_TestType
 import logging
+
+from scap.model.oval_common_5 import *
+from scap.model.oval_defs_5 import *
+from scap.model.oval_defs_5_independent import *
+from scap.model.oval_defs_5.TestType import TestType as oval_defs_5_TestType
 
 logger = logging.getLogger(__name__)
 class TestType(oval_defs_5_TestType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'object', 'class': 'oval_defs_5.ObjectRefType'},
-            {'tag_name': 'state', 'list': 'states', 'class': 'oval_defs_5.StateRefType', 'min': 0, 'max': None},
+            {'tag_name': 'object', 'class': 'scap.model.oval_defs_5.ObjectRefType'},
+            {'tag_name': 'state', 'list': 'states', 'class': 'scap.model.oval_defs_5.StateRefType', 'min': 0, 'max': None},
         ],
     }

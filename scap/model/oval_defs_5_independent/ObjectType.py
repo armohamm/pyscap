@@ -20,14 +20,10 @@ import logging
 from scap.model.oval_common_5 import *
 from scap.model.oval_defs_5 import *
 from scap.model.oval_defs_5_independent import *
-from scap.model.oval_defs_5_independent.StateType import StateType
+from scap.model.oval_defs_5.ObjectType import ObjectType as oval_defs_5_ObjectType
 
 logger = logging.getLogger(__name__)
-class VariableStateElement(StateType):
+class ObjectType(oval_defs_5_ObjectType):
+    # abstract
     MODEL_MAP = {
-        'tag_name': 'variable_state',
-        'elements': [
-            {'tag_name': 'var_ref', 'class': 'EntityStateVariableRefType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
-        ],
     }

@@ -15,11 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_defs_5.EntityStateStringType import EntityStateStringType
 import logging
+
+from scap.model.oval_common_5 import *
+from scap.model.oval_defs_5 import *
+from scap.model.oval_defs_5_independent import *
+from scap.model.oval_defs_5.EntityStateStringType import EntityStateStringType
 
 logger = logging.getLogger(__name__)
 class EntityStateVariableRefType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO: restrict to <xsd:pattern value="(oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*){0,}"/>
     }
+
+    def get_value_pattern(self):
+        return r'(oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*){0,}'
