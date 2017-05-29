@@ -21,4 +21,5 @@ import logging
 logger = logging.getLogger(__name__)
 class SchemaVersionPattern(String):
     # <xsd:pattern value="[0-9]+\.[0-9]+(\.[0-9]+)?(:[0-9]+\.[0-9]+(\.[0-9]+)?)?"/>
-    pass
+    def get_value_pattern(self):
+        return r'[0-9]+\.[0-9]+(\.[0-9]+)?(:[0-9]+\.[0-9]+(\.[0-9]+)?)?'
