@@ -18,11 +18,6 @@
 from scap.Model import Model
 import logging
 
-SYSTEM_ENUMERATION = [
-    'http://oval.mitre.org/XMLSchema/oval-definitions-5',
-    'http://scap.nist.gov/schema/ocil/2.0',
-    'http://scap.nist.gov/schema/ocil/2',
-]
 logger = logging.getLogger(__name__)
 class CheckType(Model):
     MODEL_MAP = {
@@ -42,12 +37,8 @@ class CheckType(Model):
     }
 
     def __str__(self):
-        if self.system == 'http://oval.mitre.org/XMLSchema/oval-definitions-5':
-            s = 'oval-definitions-5:'
-        elif self.system == 'http://scap.nist.gov/schema/ocil/2.0':
-            s = 'ocil-2.0:'
-        elif self.system == 'http://scap.nist.gov/schema/ocil/2':
-            s = 'ocil-2:'
+        if self.system in CHECK_SYSTEM_ENUMERATION:
+            s = self.system
         else:
             return self.system
 

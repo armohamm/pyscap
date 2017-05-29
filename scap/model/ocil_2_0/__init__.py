@@ -18,3 +18,68 @@
 TAG_MAP = {
     '{http://scap.nist.gov/schema/ocil/2.0}ocil': 'OCILElement',
 }
+
+BOOLEAN_QUESTION_MODEL_ENUMERATION = [
+    'MODEL_YES_NO',
+    'MODEL_TRUE_FALSE',
+]
+
+EXCEPTIONAL_RESULT_ENUMERATION = [
+    'UNKNOWN',
+    'ERROR',
+    'NOT_TESTED',
+    'NOT_APPLICABLE',
+]
+
+OPERATOR_ENUMERATION = [
+    'AND',
+    'OR',
+]
+
+RESULT_ENUMERATION = [
+    'PASS',
+    'FAIL',
+
+    # exceptionals
+    'UNKNOWN',
+    'ERROR',
+    'NOT_TESTED',
+    'NOT_APPLICABLE',
+]
+
+#         || P   | F | E | U | NT | NA ||
+#         ---------------||-----------------------------||------------------||------------------------------------------
+#         || 1+ | 0   | 0   | 0   | 0   | 0+ || Pass
+#         || 0+ | 1+ | 0+ | 0+ | 0+ | 0+ || Fail
+# AND     || 0+ | 0   | 1+ | 0+ | 0+ | 0+ || Error
+#         || 0+ | 0   | 0   | 1+ | 0+ | 0+ || Unknown
+#         || 0+ | 0   | 0   | 0   | 1+ | 0+ || Not Tested
+#         || 0   | 0   | 0   | 0   | 0   | 1+ || Not Applicable
+#         || 0   | 0   | 0   | 0   | 0   | 0   || Not Tested
+
+#TODO operator_AND
+
+#     ---------------||-----------------------------||------------------||------------------------------------------
+#     || 1+ | 0+ | 0+ | 0+ | 0+ | 0+ || Pass
+#     || 0   | 1+ | 0   | 0   | 0   | 0+ || Fail
+# OR  || 0   | 0+ | 1+ | 0+ | 0+ | 0+ || Error
+#     || 0   | 0+ | 0   | 1+ | 0+ | 0+ || Unknown
+#     || 0   | 0+ | 0   | 0   | 1+ | 0+ || Not Tested
+#     || 0   | 0   | 0   | 0   | 0   | 1+ || Not Applicable
+#     || 0   | 0   | 0   | 0   | 0   | 0   || Not Tested
+
+# TODO operator_OR
+
+USER_RESPONSE_ENUMERATION = [
+    'ANSWERED',
+
+    'UNKNOWN',
+    'ERROR',
+    'NOT_TESTED',
+    'NOT_APPLICABLE',
+]
+
+VARIABLE_DATA_ENUMERATION = [
+    'TEXT',
+    'NUMERIC',
+]

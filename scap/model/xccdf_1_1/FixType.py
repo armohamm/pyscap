@@ -39,35 +39,6 @@ class FixType(Model):
         },
     }
 
-    SYSTEM_ENUMERATION = [
-        # 'urn:xccdf:fix:commands',
-        # # This specifies that the content of the fix element is a list of target
-        # # system commands; executed in order, the commands should bring the
-        # # target system into compliance with the Rule.
-        #
-        # 'urn:xccdf:fix:urls',
-        # # This specifies that the content of the fix element is a list of one or
-        # # more URLs. The resources identified by the URLs should be applied to
-        # # bring the system into compliance with the Rule.
-        #
-        # 'urn:xccdf:fix:script:sh', # Bourne shell
-        # 'urn:xccdf:fix:script:csh', # C Shell
-        # 'urn:xccdf:fix:script:perl', # Perl
-        # 'urn:xccdf:fix:script:batch', # Windows batch script
-        # 'urn:xccdf:fix:script:python', # Python and all Python-based scripting languages
-        # 'urn:xccdf:fix:script:vbscript', # Visual Basic Script (VBS)
-        # 'urn:xccdf:fix:script:javascript', # Javascript (ECMAScript, JScript)
-        # 'urn:xccdf:fix:script:tcl', # Tcl and all Tcl-based scripting languages
-        # # A URN of this form specifies that the content of the fix element is a
-        # # script written in the given language. Executing the script should
-        # # bring the target system into compliance with the Rule.
-        #
-        # 'urn:xccdf:fix:patch:microsoft',
-        # 'urn:xccdf:fix:patch:redhat',
-        # # A URN of this form specifies that the content of the fix element is a
-        # # patch identifier, in proprietary format as defined by the vendor.
-    ]
-
     def __str__(self):
         s = 'FixType '
         if self.system is not None:
@@ -83,7 +54,7 @@ class FixType(Model):
     def fix(self, benchmark, host):
         # TODO check platform applies
 
-        if self.system not in self.SYSTEM_ENUMERATION:
+        if self.system not in FIX_SYSTEM_ENUMERATION:
             return False
 
         # TODO confirm, if reboot needed

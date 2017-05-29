@@ -17,3 +17,17 @@
 TAG_MAP = {
     '{http://scap.nist.gov/schema/scap/source/1.2}data-stream-collection': 'DataStreamCollectionElement',
 }
+
+SCAP_VERSION_ENUMERATION = [
+    '1.0',
+    '1.1',
+    '1.2',
+    '1.3',
+]
+
+USE_CASE_ENUMERATION = [
+    'CONFIGURATION',
+    'VULNERABILITY',
+    'INVENTORY',
+    'OTHER',
+]

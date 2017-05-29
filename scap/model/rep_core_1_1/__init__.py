@@ -18,3 +18,8 @@
 TAG_MAP = {
     '{http://scap.nist.gov/schema/reporting-core/1.1}relationships': 'RelationshipsType',
 }
+
+RELATIONSHIP_SCOPE_ENUMERATION = [
+    'inclusive',
+    'exclusive',
+]
