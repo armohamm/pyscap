@@ -15,8 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xccdf_1_2.ComplexValueType import ComplexValueType
 import logging
+
+from scap.model.xccdf_1_2 import *
+from scap.model.xccdf_1_2.ComplexValueType import ComplexValueType
 
 logger = logging.getLogger(__name__)
 class SelComplexValueType(ComplexValueType):

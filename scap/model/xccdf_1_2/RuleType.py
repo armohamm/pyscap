@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xccdf_1_2.SelectableItemType import SelectableItemType
-from scap.model.xccdf_1_2.RoleEnumeration import ROLE_ENUMERATION
-from scap.model.xccdf_1_2.SeverityEnumeration import SEVERITY_ENUMERATION
-from scap.Model import Model
 import logging
+
+from scap.Model import Model
+from scap.model.xccdf_1_2 import *
+from scap.model.xccdf_1_2.SelectableItemType import SelectableItemType
 
 logger = logging.getLogger(__name__)
 class RuleType(SelectableItemType):

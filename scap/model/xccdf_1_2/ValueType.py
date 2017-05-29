@@ -15,11 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xccdf_1_2.ItemType import ItemType
-from scap.model.xccdf_1_2.ValueTypeEnumeration import VALUE_TYPE_ENUMERATION
-from scap.model.xccdf_1_2.ValueOperatorEnumeration import VALUE_OPERATOR_ENUMERATION
-from scap.model.xccdf_1_2.InterfaceHintEnumeration import INTERFACE_HINT_ENUMERATION
 import logging
+
+from scap.model.xccdf_1_2 import *
+from scap.model.xccdf_1_2.ItemType import ItemType
 
 logger = logging.getLogger(__name__)
 class ValueType(ItemType):

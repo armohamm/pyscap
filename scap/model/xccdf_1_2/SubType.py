@@ -15,9 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xccdf_1_2.IDRefType import IDRefType
-from scap.model.xccdf_1_2.SubUseEnumeration import SUB_USE_ENUMERATION
 import logging
+
+from scap.model.xccdf_1_2 import *
+from scap.model.xccdf_1_2.IDRefType import IDRefType
 
 logger = logging.getLogger(__name__)
 class SubType(IDRefType):

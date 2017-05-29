@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xccdf_1_2.HTMLTextWithSubType import HTMLTextWithSubType
-from scap.model.xccdf_1_2.FixStrategyEnumeration import FIX_STRATEGY_ENUMERATION
-from scap.model.xccdf_1_2.RatingEnumeration import RATING_ENUMERATION
 import logging
+
+from scap.model.xccdf_1_2 import *
+from scap.model.xccdf_1_2.HTMLTextWithSubType import HTMLTextWithSubType
 
 logger = logging.getLogger(__name__)
 class FixtextType(HTMLTextWithSubType):
