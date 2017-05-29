@@ -21,7 +21,15 @@ from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
 class String(AnySimpleType):
+    def get_value_pattern(self):
+        return None
+
     def parse_value(self, value):
         if not isinstance(value, str):
             raise TypeError('xs:string requires a str for initialization, got ' + value.__class__.__name__)
+
+        p = self.get_value_pattern()
+        if not re.fullmatch(p, value):
+            raise ValueError(self.__class__.__name__ + ' requires a str matching ' + p)
+
         return value
