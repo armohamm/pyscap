@@ -26,21 +26,6 @@ class CountFunctionType(Model):
     MODEL_MAP = {
         'elements': [
             #TODO <xsd:sequence maxOccurs="unbounded">
-            # from ComponentGroup
-            {'tag_name': 'object_component', 'list': 'components', 'class': 'ObjectComponentType'},
-            {'tag_name': 'variable_component', 'list': 'components', 'class': 'VariableComponentType'},
-            {'tag_name': 'literal_component', 'list': 'components', 'class': 'LiteralComponentType'},# from ComponentGroup/FunctionGroup
-            {'tag_name': 'arithmetic', 'list': 'components', 'class': 'ArithmeticFunctionType'},
-            {'tag_name': 'begin', 'list': 'components', 'class': 'BeginFunctionType'},
-            {'tag_name': 'concat', 'list': 'components', 'class': 'ConcatFunctionType'},
-            {'tag_name': 'count', 'list': 'components', 'class': 'CountFunctionType'},
-            {'tag_name': 'end', 'list': 'components', 'class': 'EndFunctionType'},
-            {'tag_name': 'escape_regex', 'list': 'components', 'class': 'EscapeRegexFunctionType'},
-            {'tag_name': 'split', 'list': 'components', 'class': 'SplitFunctionType'},
-            {'tag_name': 'substring', 'list': 'components', 'class': 'SubstringFunctionType'},
-            {'tag_name': 'time_difference', 'list': 'components', 'class': 'TimeDifferenceFunctionType'},
-            {'tag_name': 'unique', 'list': 'components', 'class': 'UniqueFunctionType'},
-            {'tag_name': 'regex_capture', 'list': 'components', 'class': 'RegexCaptureFunctionType'},
-            {'tag_name': 'glob_to_regex', 'list': 'components', 'class': 'GlobToRegexFunctionType'},
         ],
     }
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_COMPONENT)

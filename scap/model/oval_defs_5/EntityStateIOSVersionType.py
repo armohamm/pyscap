@@ -20,11 +20,11 @@ import logging
 from scap.model.oval_common_5 import *
 from scap.model.oval_defs_5 import *
 from scap.model.oval_defs_5.EntityStateSimpleBaseType import EntityStateSimpleBaseType
+from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
-class EntityStateIOSVersionType(EntityStateSimpleBaseType):
+class EntityStateIOSVersionType(EntityStateSimpleBaseType, String):
     MODEL_MAP = {
-        # TODO <xsd:restriction base="xsd:string"/>
         'attributes': {
             'datatype': {'enum': ['ios_version', 'string'], 'required': True, 'default': 'string'},
         }

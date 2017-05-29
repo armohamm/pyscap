@@ -32,7 +32,7 @@ class DefinitionType(Model):
             {'tag_name': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'id': {'type': 'oval_common_5.DefinitionIdPattern', 'required': True},
+            'id': {'type': 'scap.model.oval_common_5.DefinitionIdPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},
             'class': {'enum': CLASS_ENUMERATION, 'required': True},
             'deprecated': {'type': 'Boolean', 'default': False},

@@ -20,12 +20,12 @@ import logging
 from scap.model.oval_common_5 import *
 from scap.model.oval_defs_5 import *
 from scap.model.oval_defs_5.EntityComplexBaseType import EntityComplexBaseType
+from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
-class EntityStateComplexBaseType(EntityComplexBaseType):
+class EntityStateComplexBaseType(EntityComplexBaseType, String):
     MODEL_MAP = {
         # abstract
-        # TODO <xsd:restriction base="xsd:string"/>
         'attributes': {
             'entity_check': {'enum': CHECK_ENUMERATION, 'default': 'all'},
             'check_existence': {'enum': EXISTENCE_ENUMERATION, 'default': 'at_least_one_exists'},

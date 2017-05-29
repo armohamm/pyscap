@@ -20,11 +20,11 @@ import logging
 from scap.model.oval_common_5 import *
 from scap.model.oval_defs_5 import *
 from scap.model.oval_defs_5.EntitySimpleBaseType import EntitySimpleBaseType
+from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
-class EntityObjectIPAddressType(EntitySimpleBaseType):
+class EntityObjectIPAddressType(EntitySimpleBaseType, String):
     MODEL_MAP = {
-        # TODO <xsd:restriction base="xsd:string"/>
         'attributes': {
             'datatype': {'enum': ['ipv4_address', 'ipv6_address'], 'required': True},
         }

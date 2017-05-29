@@ -20,11 +20,11 @@ import logging
 from scap.model.oval_common_5 import *
 from scap.model.oval_defs_5 import *
 from scap.model.oval_defs_5.EntityStateSimpleBaseType import EntityStateSimpleBaseType
+from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
-class EntityStateAnySimpleType(EntityStateSimpleBaseType):
+class EntityStateAnySimpleType(EntityStateSimpleBaseType, String):
     MODEL_MAP = {
-        # TODO <xsd:restriction base="xsd:string"/>
         'attributes': {
             'datatype': {'enum': SIMPLE_DATATYPE_ENUMERATION, 'default': 'string'},
         }
