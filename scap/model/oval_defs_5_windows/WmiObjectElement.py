@@ -23,8 +23,8 @@ class WmiObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'wmi_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
-            {'tag_name': 'namespace', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'tag_name': 'wql', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_defs_5.SetElement', 'min': 0},
+            {'tag_name': 'namespace', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'wql', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
         ],
     }

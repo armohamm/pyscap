@@ -25,10 +25,10 @@ class ActiveDirectory57StateElement(StateType):
         'tag_name': 'activedirectory57_state',
         'elements': [
             {'tag_name': 'naming_context', 'class': 'EntityStateNamingContextType', 'min': 0},
-            {'tag_name': 'relative_dn', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'attribute', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'object_class', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'relative_dn', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'attribute', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'object_class', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
             {'tag_name': 'adstype', 'class': 'EntityStateAdstypeType', 'min': 0},
-            {'tag_name': 'value', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
+            {'tag_name': 'value', 'class': 'scap.model.oval_defs_5.EntityStateRecordType', 'min': 0},
         ],
     }

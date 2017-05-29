@@ -23,8 +23,8 @@ class DpkgInfoStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'dpkginfo_state',
         'elements': [
-            {'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': None},
-            {'tag_name': 'arch', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': None},
+            {'tag_name': 'name', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': None},
+            {'tag_name': 'arch', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': None},
             {'tag_name': 'epoch', 'class': 'EpochElement', 'min': 0, 'max': None},
             {'tag_name': 'release', 'class': 'ReleaseElement', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'VersionElement', 'min': 0, 'max': None},

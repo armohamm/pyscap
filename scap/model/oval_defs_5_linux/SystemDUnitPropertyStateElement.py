@@ -23,8 +23,8 @@ class SystemDUnitPropertyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'systemdunitproperty_state',
         'elements': [
-            {'tag_name': 'unit', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'property', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
+            {'tag_name': 'unit', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'property', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'value', 'class': 'scap.model.oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
         ],
     }

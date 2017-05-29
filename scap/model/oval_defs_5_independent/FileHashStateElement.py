@@ -27,11 +27,11 @@ class FileHashStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'filehash_state',
         'elements': [
-            {'tag_name': 'filepath', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'path', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'filename', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'md5', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'sha1', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'path', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'filename', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'md5', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'sha1', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
             {'tag_name': 'windows_view', 'class': 'EntityStateWindowsViewType', 'min': 0},
         ],
     }

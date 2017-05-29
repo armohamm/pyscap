@@ -28,6 +28,6 @@ class CriterionType(Model):
             'applicability_check': {'type': 'Boolean'},
             'test_ref': {'type': 'scap.model.oval_common_5.TestIdPattern', 'required': True},
             'negate': {'type': 'Boolean', 'default': False},
-            'comment': {'type': 'oval_common_5.NonEmptyString'},
+            'comment': {'type': 'scap.model.oval_common_5.NonEmptyString'},
         }
     }

@@ -23,11 +23,11 @@ class RegKeyEffectiveRights53ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'regkeyeffectiverights53_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_defs_5.SetElement', 'min': 0},
             {'tag_name': 'behaviors', 'class': 'RegkeyEffectiveRights53Behaviors', 'min': 0},
             {'tag_name': 'hive', 'class': 'EntityObjectRegistryHiveType'},
-            {'tag_name': 'key', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-            {'tag_name': 'trustee_sid', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'key', 'class': 'scap.model.oval_defs_5.EntityObjectStringType', 'nillable': True},
+            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

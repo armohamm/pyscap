@@ -24,9 +24,9 @@ class ActiveDirectoryObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'activedirectory_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_defs_5.SetElement', 'min': 0},
             {'tag_name': 'naming_context', 'class': 'EntityObjectNamingContextType'},
-            {'tag_name': 'relative_dn', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-            {'tag_name': 'attribute', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
+            {'tag_name': 'relative_dn', 'class': 'scap.model.oval_defs_5.EntityObjectStringType', 'nillable': True},
+            {'tag_name': 'attribute', 'class': 'scap.model.oval_defs_5.EntityObjectStringType', 'nillable': True},
         ],
     }

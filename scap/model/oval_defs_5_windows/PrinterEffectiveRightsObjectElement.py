@@ -23,10 +23,10 @@ class PrinterEffectiveRightsObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'printereffectiverights_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_defs_5.SetElement', 'min': 0},
             {'tag_name': 'behaviors', 'class': 'PrinterEffectiveRightsBehaviors', 'min': 0},
-            {'tag_name': 'printer_name', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'tag_name': 'trustee_sid', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'printer_name', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

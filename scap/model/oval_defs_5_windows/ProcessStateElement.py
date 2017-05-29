@@ -23,11 +23,11 @@ class ProcessStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'process_state',
         'elements': [
-            {'tag_name': 'command_line', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'pid', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'tag_name': 'ppid', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
-            {'tag_name': 'priority', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'image_path', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'current_dir', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'command_line', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'pid', 'class': 'scap.model.oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'ppid', 'class': 'scap.model.oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'priority', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'image_path', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'current_dir', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
         ],
     }

@@ -23,8 +23,8 @@ class LicenseStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'license_state',
         'elements': [
-            {'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'name', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
             {'tag_name': 'type', 'class': 'EntityStateRegistryTypeType', 'min': 0},
-            {'tag_name': 'value', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0},
+            {'tag_name': 'value', 'class': 'scap.model.oval_defs_5.EntityStateAnySimpleType', 'min': 0},
         ],
     }

@@ -23,7 +23,7 @@ class SystemDUnitDependencyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'systemdunitdependency_state',
         'elements': [
-            {'tag_name': 'unit', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'dependency', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'unit', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'dependency', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
         ],
     }

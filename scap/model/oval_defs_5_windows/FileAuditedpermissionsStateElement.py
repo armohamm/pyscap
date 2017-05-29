@@ -23,9 +23,9 @@ class FileAuditedpermissionsStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'fileauditedpermissions_state',
         'elements': [
-            {'tag_name': 'path', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'trustee_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'path', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'filename', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
             {'tag_name': 'standard_delete', 'class': 'EntityStateAuditType', 'min': 0},
             {'tag_name': 'standard_read_control', 'class': 'EntityStateAuditType', 'min': 0},
             {'tag_name': 'standard_write_dac', 'class': 'EntityStateAuditType', 'min': 0},

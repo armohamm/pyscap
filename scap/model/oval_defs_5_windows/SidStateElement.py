@@ -23,8 +23,8 @@ class SidStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'sid_state',
         'elements': [
-            {'tag_name': 'trustee_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'trustee_domain', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'trustee_domain', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
         ],
     }

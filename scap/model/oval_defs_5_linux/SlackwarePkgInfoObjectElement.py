@@ -24,7 +24,7 @@ class SlackwarePkgInfoObjectElement(ObjectType):
         'tag_name': 'slackwarepkginfo_object',
         'elements': [
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
-            {'tag_name': 'name', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'name', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
     }

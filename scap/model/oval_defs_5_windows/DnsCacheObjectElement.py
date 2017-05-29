@@ -23,8 +23,8 @@ class DnsCacheObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'dnscache_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
-            {'tag_name': 'domain_name', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_defs_5.SetElement', 'min': 0},
+            {'tag_name': 'domain_name', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

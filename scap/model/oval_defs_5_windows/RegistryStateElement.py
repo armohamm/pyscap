@@ -25,11 +25,11 @@ class RegistryStateElement(StateType):
         'tag_name': 'registry_state',
         'elements': [
             {'tag_name': 'hive', 'class': 'EntityStateRegistryHiveType', 'min': 0},
-            {'tag_name': 'key', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'last_write_time', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'key', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'name', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'last_write_time', 'class': 'scap.model.oval_defs_5.EntityStateIntType', 'min': 0},
             {'tag_name': 'type', 'class': 'EntityStateRegistryTypeType', 'min': 0},
-            {'tag_name': 'value', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0},
+            {'tag_name': 'value', 'class': 'scap.model.oval_defs_5.EntityStateAnySimpleType', 'min': 0},
             {'tag_name': 'windows_view', 'class': 'EntityStateWindowsViewType', 'min': 0},
         ],
     }

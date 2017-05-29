@@ -23,9 +23,9 @@ class UserSid55StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'user_sid55_state',
         'elements': [
-            {'tag_name': 'user_sid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'enabled', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            {'tag_name': 'group_sid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'last_logon', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0},
+            {'tag_name': 'user_sid', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'enabled', 'class': 'scap.model.oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'group_sid', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'last_logon', 'class': 'scap.model.oval_defs_5.EntityStateIntType', 'min': 0},
         ],
     }

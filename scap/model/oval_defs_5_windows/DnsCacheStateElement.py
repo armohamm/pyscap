@@ -23,8 +23,8 @@ class DnsCacheStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'dnscache_state',
         'elements': [
-            {'tag_name': 'domain_name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'ttl', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'ip_address', 'class': 'oval_defs_5.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'domain_name', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'ttl', 'class': 'scap.model.oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+            {'tag_name': 'ip_address', 'class': 'scap.model.oval_defs_5.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
         ],
     }

@@ -23,8 +23,8 @@ class WmiStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'wmi_state',
         'elements': [
-            {'tag_name': 'namespace', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'wql', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'result', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0},
+            {'tag_name': 'namespace', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'wql', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'result', 'class': 'scap.model.oval_defs_5.EntityStateAnySimpleType', 'min': 0},
         ],
     }

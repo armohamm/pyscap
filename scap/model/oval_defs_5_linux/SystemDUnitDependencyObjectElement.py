@@ -24,7 +24,7 @@ class SystemDUnitDependencyObjectElement(ObjectType):
         'tag_name': 'systemdunitdependency_object',
         'elements': [
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
-            {'tag_name': 'unit', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'unit', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
     }

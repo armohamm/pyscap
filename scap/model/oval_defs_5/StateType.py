@@ -29,10 +29,10 @@ class StateType(Model):
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'id': {'type': 'oval_common_5.StateIdPattern', 'required': True},
+            'id': {'type': 'scap.model.oval_common_5.StateIdPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},
             'operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
-            'comment': {'type': 'oval_common_5.NonEmptyString', 'required': True},
+            'comment': {'type': 'scap.model.oval_common_5.NonEmptyString', 'required': True},
             'deprecated': {'type': 'Boolean', 'default': False},
         }
     }

@@ -28,9 +28,9 @@ class SQL57StateElement(StateType):
         'tag_name': 'sql57_state',
         'elements': [
             {'tag_name': 'engine', 'class': 'EntityObjectEngineType', 'min': 0},
-            {'tag_name': 'version', 'class': 'oval_defs_5.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'connection_string', 'class': 'oval_defs_5.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'sql', 'class': 'oval_defs_5.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'result', 'class': 'oval_defs_5.EntityStateRecordType', 'min': 0},
+            {'tag_name': 'version', 'class': 'scap.model.oval_defs_5.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'connection_string', 'class': 'scap.model.oval_defs_5.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'sql', 'class': 'scap.model.oval_defs_5.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'result', 'class': 'scap.model.oval_defs_5.EntityStateRecordType', 'min': 0},
         ],
     }

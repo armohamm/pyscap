@@ -23,10 +23,10 @@ class PortObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'port_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
-            {'tag_name': 'local_address', 'class': 'oval_defs_5.EntityObjectIPAddressStringType'},
-            {'tag_name': 'local_port', 'class': 'oval_defs_5.EntityObjectIntType'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_defs_5.SetElement', 'min': 0},
+            {'tag_name': 'local_address', 'class': 'scap.model.oval_defs_5.EntityObjectIPAddressStringType'},
+            {'tag_name': 'local_port', 'class': 'scap.model.oval_defs_5.EntityObjectIntType'},
             {'tag_name': 'protocol', 'class': 'EntityObjectProtocolType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

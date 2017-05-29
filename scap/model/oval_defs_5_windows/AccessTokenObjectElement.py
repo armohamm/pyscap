@@ -24,9 +24,9 @@ class AccessTokenObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'accesstoken_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_defs_5.SetElement', 'min': 0},
             {'tag_name': 'behaviors', 'class': 'AccesstokenBehaviors', 'min': 0},
-            {'tag_name': 'security_principle', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'security_principle', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

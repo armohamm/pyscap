@@ -24,11 +24,11 @@ class RegistryObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'registry_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0, 'max': 1},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_defs_5.SetElement', 'min': 0, 'max': 1},
             {'tag_name': 'behaviors', 'class': 'RegistryBehaviors', 'min': 0},
             {'tag_name': 'hive', 'class': 'EntityObjectRegistryHiveType'},
-            {'tag_name': 'key', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-            {'tag_name': 'name', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'key', 'class': 'scap.model.oval_defs_5.EntityObjectStringType', 'nillable': True},
+            {'tag_name': 'name', 'class': 'scap.model.oval_defs_5.EntityObjectStringType', 'nillable': True},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

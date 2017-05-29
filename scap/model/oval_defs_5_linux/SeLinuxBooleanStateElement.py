@@ -23,8 +23,8 @@ class SeLinuxBooleanStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'selinuxboolean_state',
         'elements': [
-            {'tag_name': 'name', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0},
-            {'tag_name': 'current_status', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
-            {'tag_name': 'pending_status', 'class': 'oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'name', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0},
+            {'tag_name': 'current_status', 'class': 'scap.model.oval_defs_5.EntityStateBoolType', 'min': 0},
+            {'tag_name': 'pending_status', 'class': 'scap.model.oval_defs_5.EntityStateBoolType', 'min': 0},
         ],
     }

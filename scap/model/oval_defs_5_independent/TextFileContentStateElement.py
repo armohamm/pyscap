@@ -27,10 +27,10 @@ class TextFileContentStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'textfilecontent_state',
         'elements': [
-            {'tag_name': 'path', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'filename', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'line', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'subexpression', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
+            {'tag_name': 'path', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'filename', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'line', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'subexpression', 'class': 'scap.model.oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
             {'tag_name': 'windows_view', 'class': 'EntityStateWindowsViewType', 'min': 0},
         ],
     }

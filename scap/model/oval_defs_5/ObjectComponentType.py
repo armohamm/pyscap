@@ -25,8 +25,8 @@ logger = logging.getLogger(__name__)
 class ObjectComponentType(Model):
     MODEL_MAP = {
         'attributes': {
-            'object_ref': {'type': 'oval_common_5.ObjectIdPattern', 'required': True},
-            'item_field': {'type': 'oval_common_5.NonEmptyString', 'required': True},
-            'record_field': {'type': 'oval_common_5.NonEmptyString'},
+            'object_ref': {'type': 'scap.model.oval_common_5.ObjectIdPattern', 'required': True},
+            'item_field': {'type': 'scap.model.oval_common_5.NonEmptyString', 'required': True},
+            'record_field': {'type': 'scap.model.oval_common_5.NonEmptyString'},
         },
     }

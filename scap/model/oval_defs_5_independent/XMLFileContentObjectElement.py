@@ -29,10 +29,10 @@ class XMLFileContentObjectElement(ObjectType):
         'elements': [
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
             {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'tag_name': 'path', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'tag_name': 'filename', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'tag_name': 'xpath', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'path', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'filename', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'xpath', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
     }

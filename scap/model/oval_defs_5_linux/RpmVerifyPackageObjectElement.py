@@ -25,11 +25,11 @@ class RpmVerifyPackageObjectElement(ObjectType):
         'elements': [
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
             {'tag_name': 'behaviors', 'class': 'RpmVerifyPackageBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'name', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'name', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
             {'tag_name': 'epoch', 'class': 'EpochElement'},
             {'tag_name': 'version', 'class': 'VersionElement'},
             {'tag_name': 'release', 'class': 'ReleaseElement'},
-            {'tag_name': 'arch', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'arch', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
     }

@@ -26,7 +26,7 @@ class ComponentElement(Model):
         'elements': [
             {'xmlns': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'Benchmark',  'class': 'BenchmarkType', 'in': 'model', 'min': 0},
             {'xmlns': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'ocil', 'class': 'OCILType', 'in': 'model', 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'oval_definitions', 'class': 'OVALDefinitionsElement', 'in': 'model', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'scap.model.oval_definitions', 'class': 'OVALDefinitionsElement', 'in': 'model', 'min': 0},
             {'xmlns': 'http://cpe.mitre.org/dictionary/2.0', 'tag_name': 'cpe-list', 'in': 'model', 'min': 0},
             {'xmlns': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'Tailoring', 'in': 'model', 'min': 0},
         ],

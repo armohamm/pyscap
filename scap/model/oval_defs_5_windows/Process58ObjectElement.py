@@ -23,9 +23,9 @@ class Process58ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'process58_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
-            {'tag_name': 'command_line', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'tag_name': 'pid', 'class': 'oval_defs_5.EntityObjectIntType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'oval_defs_5.FilterElement', 'min': 0, 'max': None},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_defs_5.SetElement', 'min': 0},
+            {'tag_name': 'command_line', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'pid', 'class': 'scap.model.oval_defs_5.EntityObjectIntType'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_defs_5.FilterElement', 'min': 0, 'max': None},
         ],
     }

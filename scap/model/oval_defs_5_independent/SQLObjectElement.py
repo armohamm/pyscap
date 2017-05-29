@@ -29,8 +29,8 @@ class SQLObjectElement(ObjectType):
         'elements': [
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
             {'tag_name': 'engine', 'class': 'EntityObjectEngineType'},
-            {'tag_name': 'version', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'tag_name': 'connection_string', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'tag_name': 'sql', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'version', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'connection_string', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'sql', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
         ],
     }

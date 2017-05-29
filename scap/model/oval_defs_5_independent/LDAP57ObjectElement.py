@@ -29,9 +29,9 @@ class LDAP57ObjectElement(ObjectType):
         'elements': [
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
             {'tag_name': 'behaviors', 'class': 'LdapBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'suffix', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'tag_name': 'relative_dn', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
-            {'tag_name': 'attribute', 'class': 'oval_defs_5.EntityObjectStringType', 'nillable': True},
+            {'tag_name': 'suffix', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'relative_dn', 'class': 'scap.model.oval_defs_5.EntityObjectStringType', 'nillable': True},
+            {'tag_name': 'attribute', 'class': 'scap.model.oval_defs_5.EntityObjectStringType', 'nillable': True},
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
     }

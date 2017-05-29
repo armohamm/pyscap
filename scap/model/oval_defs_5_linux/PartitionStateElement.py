@@ -23,13 +23,13 @@ class PartitionStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'partition_state',
         'elements': [
-            {'tag_name': 'mount_point', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'device', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'uuid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'fs_type', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'mount_options', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'total_space', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'space_used', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'space_left', 'class': 'oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+            {'tag_name': 'mount_point', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'device', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'uuid', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'fs_type', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'mount_options', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'total_space', 'class': 'scap.model.oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+            {'tag_name': 'space_used', 'class': 'scap.model.oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
+            {'tag_name': 'space_left', 'class': 'scap.model.oval_defs_5.EntityStateIntType', 'min': 0, 'max': 1},
         ],
     }

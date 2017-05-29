@@ -28,6 +28,6 @@ class VariableStateElement(StateType):
         'tag_name': 'variable_state',
         'elements': [
             {'tag_name': 'var_ref', 'class': 'EntityStateVariableRefType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
+            {'tag_name': 'value', 'class': 'scap.model.oval_defs_5.EntityStateAnySimpleType', 'min': 0, 'max': 1},
         ],
     }

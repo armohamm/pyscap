@@ -24,6 +24,6 @@ class UserRightStateElement(StateType):
         'tag_name': 'userright_state',
         'elements': [
             {'tag_name': 'userright', 'class': 'EntityStateUserRightType', 'min': 0, 'max': 1},
-            {'tag_name': 'trustee_sid', 'class': 'oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_defs_5.EntityStateStringType', 'min': 0, 'max': 1},
         ],
     }

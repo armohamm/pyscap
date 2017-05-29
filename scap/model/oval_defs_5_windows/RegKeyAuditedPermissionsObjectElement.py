@@ -23,10 +23,10 @@ class RegKeyAuditedPermissionsObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'regkeyauditedpermissions_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'oval_defs_5.SetElement', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_defs_5.SetElement', 'min': 0},
             {'tag_name': 'behaviors', 'class': 'RegkeyAuditPermissionsBehaviors', 'min': 0},
             {'tag_name': 'hive', 'class': 'EntityObjectRegistryHiveType'},
-            {'tag_name': 'key', 'class': 'oval_defs_5.EntityObjectStringType'},
-            {'tag_name': 'trustee_name', 'class': 'oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'key', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
+            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
         ],
     }
