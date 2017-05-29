@@ -34,3 +34,18 @@ for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
 Model.register_namespace('scap.model.oval_defs_5_independent', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent')
 
 logging.basicConfig(level=logging.DEBUG)
+
+def test_EntityObjectEngineType_parse():
+    assert EntityObjectEngineType().parse_value('ingres') == 'ingres'
+
+def test_EntityObjectHashTypeType_parse():
+    assert EntityObjectHashTypeType().parse_value('SHA-256') == 'SHA-256'
+
+def test_EntityStateLdaptypeType_parse():
+    assert EntityStateLdaptypeType().parse_value('LDAPTYPE_CERTIFICATE') == 'LDAPTYPE_CERTIFICATE'
+
+def test_EntityStateVariableRefType_parse():
+    assert EntityStateVariableRefType().parse_value('oval:biz.jaymes:var:12345') == 'oval:biz.jaymes:var:12345'
+
+def test_EntityStateWindowsViewType_parse():
+    assert EntityStateWindowsViewType().parse_value('32_bit') == '32_bit'

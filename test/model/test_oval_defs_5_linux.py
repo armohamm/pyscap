@@ -34,3 +34,9 @@ for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
 Model.register_namespace('scap.model.oval_defs_5_linux', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux')
 
 logging.basicConfig(level=logging.DEBUG)
+
+def test_EntityStateProtocolType_parse():
+    assert EntityStateProtocolType().parse_value('ETH_P_802_3') == 'ETH_P_802_3'
+
+def test_EntityStateRpmVerifyResultType_parse():
+    assert EntityStateRpmVerifyResultType().parse_value('not performed') == 'not performed'
