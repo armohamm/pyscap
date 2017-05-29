@@ -15,7 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import importlib
 import logging
 import pytest
+import pkgutil
+
+from scap.Model import Model
+
+# import all the classes in the package
+import scap.model.scap_source_1_2 as pkg
+for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
+    try:
+        mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
+        globals()[m_name] = getattr(mod, m_name)
+    except AttributeError:
+        pass
+
+Model.register_namespace('scap.model.scap_source_1_2', 'http://scap.nist.gov/schema/scap/source/1.2')
 
 logging.basicConfig(level=logging.DEBUG)
