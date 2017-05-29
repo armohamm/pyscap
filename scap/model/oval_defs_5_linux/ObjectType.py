@@ -15,16 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_defs_5_linux.ObjectType import ObjectType
 import logging
 
+from scap.model.oval_common_5 import *
+from scap.model.oval_defs_5 import *
+from scap.model.oval_defs_5_linux import *
+from scap.model.oval_defs_5.ObjectType import ObjectType as oval_defs_5_ObjectType
+
 logger = logging.getLogger(__name__)
-class SystemDUnitDependencyObjectElement(ObjectType):
+class ObjectType(oval_defs_5_ObjectType):
+    # abstract
     MODEL_MAP = {
-        'tag_name': 'systemdunitdependency_object',
-        'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
-            {'tag_name': 'unit', 'class': 'scap.model.oval_defs_5.EntityObjectStringType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
-        ],
     }
