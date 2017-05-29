@@ -30,7 +30,7 @@ class String(AnySimpleType):
             raise TypeError('xs:string requires a str for initialization, got ' + value.__class__.__name__)
 
         p = self.get_value_pattern()
-        if not re.fullmatch(p, value):
+        if p is not None and not re.fullmatch(p, value):
             raise ValueError(self.__class__.__name__ + ' requires a str matching ' + p)
 
         return value
