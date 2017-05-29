@@ -24,7 +24,7 @@ from scap.model.oval_defs_5.EntityStateStringType import EntityStateStringType
 
 logger = logging.getLogger(__name__)
 
-class EntityStateAddrTypeType(EntityStateStringType):
+class EntityStateGUIDType(EntityStateStringType):
     MODEL_MAP = {
     }
 
