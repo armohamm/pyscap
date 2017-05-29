@@ -17,13 +17,15 @@
 
 import logging
 
+from scap.model.oval_common_5 import *
+from scap.model.oval_defs_5 import *
+from scap.model.oval_defs_5_windows import *
 from scap.model.oval_defs_5.EntityStateStringType import EntityStateStringType
 
 logger = logging.getLogger(__name__)
 
 class EntityStateUserRightType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to USER_RIGHT_ENUMERATION
     }
 
     def get_value_enum(self):
