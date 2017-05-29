@@ -23,12 +23,12 @@ from scap.model.oval_defs_5 import *
 from scap.model.oval_defs_5_linux import *
 
 logger = logging.getLogger(__name__)
-class RpmInfoBehaviors(Model):
+class FileBehaviors(Model):
     MODEL_MAP = {
         'attributes': {
             'max_depth': {'type': 'Integer', 'default': -1},
             'recurse': {'enum': ['directories', 'symlinks', 'symlinks and directories'], 'default': 'symlinks and directories'},
-            'recurse': {'enum': ['none', 'up', 'down'], 'default': 'none'},
+            'recurse_direction': {'enum': ['none', 'up', 'down'], 'default': 'none'},
             'recurse_file_system': {'enum': ['all', 'local', 'defined'], 'default': 'all'},
         }
     }
