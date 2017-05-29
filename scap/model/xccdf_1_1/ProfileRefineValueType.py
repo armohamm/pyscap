@@ -18,7 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_1.ValueOperatorEnumeration import VALUE_OPERATOR_ENUMERATION
+from scap.model.xccdf_1_1 import *
 
 logger = logging.getLogger(__name__)
 class ProfileRefineValueType(Model):

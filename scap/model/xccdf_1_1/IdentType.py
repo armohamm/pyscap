@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.xccdf_1_1 import *
 from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)

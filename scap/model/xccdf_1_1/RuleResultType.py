@@ -18,9 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_1.ResultEnumeration import RESULT_ENUMERATION
-from scap.model.xccdf_1_1.RoleEnumeration import ROLE_ENUMERATION
-from scap.model.xccdf_1_1.SeverityEnumeration import SEVERITY_ENUMERATION
+from scap.model.xccdf_1_1 import *
 
 logger = logging.getLogger(__name__)
 class RuleResultType(Model):

@@ -20,6 +20,7 @@ import datetime
 
 from scap.Model import Model
 
+from scap.model.xccdf_1_1 import *
 from scap.model.xccdf_1_1.ModelType import ModelType
 
 logger = logging.getLogger(__name__)

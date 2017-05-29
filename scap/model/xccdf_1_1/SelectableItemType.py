@@ -18,6 +18,7 @@
 import logging
 import re
 
+from scap.model.xccdf_1_1 import *
 from scap.model.xccdf_1_1.ItemType import ItemType
 
 logger = logging.getLogger(__name__)

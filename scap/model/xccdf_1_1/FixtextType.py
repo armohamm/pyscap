@@ -17,9 +17,8 @@
 
 import logging
 
+from scap.model.xccdf_1_1 import *
 from scap.model.xccdf_1_1.HtmlTextWithSubType import HtmlTextWithSubType
-from scap.model.xccdf_1_1.FixStrategyEnumeration import FIX_STRATEGY_ENUMERATION
-from scap.model.xccdf_1_1.RatingEnumeration import RATING_ENUMERATION
 
 logger = logging.getLogger(__name__)
 class FixtextType(HtmlTextWithSubType):

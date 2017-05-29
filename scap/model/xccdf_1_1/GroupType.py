@@ -17,8 +17,9 @@
 
 import logging
 
-from scap.model.xccdf_1_1.SelectableItemType import SelectableItemType
 from scap.Model import Model
+from scap.model.xccdf_1_1 import *
+from scap.model.xccdf_1_1.SelectableItemType import SelectableItemType
 
 logger = logging.getLogger(__name__)
 class GroupType(SelectableItemType):

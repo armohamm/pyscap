@@ -23,17 +23,15 @@ import sys
 
 from scap.Model import Model
 
-from scap.model.xccdf_1_1.SelectableItemType import SelectableItemType
-from scap.model.xccdf_1_1.RoleEnumeration import ROLE_ENUMERATION
-from scap.model.xccdf_1_1.SeverityEnumeration import SEVERITY_ENUMERATION
-from scap.model.xccdf_1_1.ScoringModelEnumeration import SCORING_MODEL_ENUMERATION
-from scap.model.xccdf_1_1.RuleResultType import RuleResultType
-from scap.model.xccdf_1_1.OverrideType import OverrideType
-from scap.model.xccdf_1_1.IdentType import IdentType
-from scap.model.xccdf_1_1.MessageType import MessageType
-from scap.model.xccdf_1_1.InstanceResultType import InstanceResultType
-from scap.model.xccdf_1_1.FixType import FixType
+from scap.model.xccdf_1_1 import *
 from scap.model.xccdf_1_1.CheckType import CheckType
+from scap.model.xccdf_1_1.FixType import FixType
+from scap.model.xccdf_1_1.IdentType import IdentType
+from scap.model.xccdf_1_1.InstanceResultType import InstanceResultType
+from scap.model.xccdf_1_1.MessageType import MessageType
+from scap.model.xccdf_1_1.OverrideType import OverrideType
+from scap.model.xccdf_1_1.RuleResultType import RuleResultType
+from scap.model.xccdf_1_1.SelectableItemType import SelectableItemType
 
 logger = logging.getLogger(__name__)
 class RuleType(SelectableItemType):
