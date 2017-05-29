@@ -15,10 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_defs_5.EntityStateSimpleBaseType import EntityStateSimpleBaseType
 import logging
 
+from scap.model.oval_common_5 import *
+from scap.model.oval_defs_5 import *
+from scap.model.oval_defs_5.EntityStateSimpleBaseType import EntityStateSimpleBaseType
+
 logger = logging.getLogger(__name__)
+
 class EntityStateStringType(EntityStateSimpleBaseType):
     MODEL_MAP = {
         # TODO <xsd:union memberTypes="xsd:boolean oval:EmptyStringType"/>

@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
-from scap.model.oval_common_5.DatatypeEnumeration import DATATYPE_ENUMERATION
-from scap.model.oval_common_5.OperationEnumeration import OPERATION_ENUMERATION
-from scap.model.oval_common_5.CheckEnumeration import CHECK_ENUMERATION
 import logging
+
+from scap.Model import Model
+from scap.model.oval_common_5 import *
+from scap.model.oval_defs_5 import *
 
 logger = logging.getLogger(__name__)
 class EntityComplexBaseType(Model):
