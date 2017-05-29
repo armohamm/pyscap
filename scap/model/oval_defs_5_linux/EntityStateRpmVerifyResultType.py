@@ -25,7 +25,6 @@ from scap.model.oval_defs_5.EntityStateStringType import EntityStateStringType
 logger = logging.getLogger(__name__)
 class EntityStateRpmVerifyResultType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO: ensure value in RPM_VERIFY_RESULT_ENUMERATION
     }
 
     def get_value_enum(self):
