@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityObjectNamingContextType(EntityObjectStringType):
     MODEL_MAP = {
-        #TODO restrict to NAMING_CONTEXT_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return NAMING_CONTEXT_ENUMERATION

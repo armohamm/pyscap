@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStateServiceCurrentStateType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to SERVICE_CURRENT_STATE_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return SERVICE_CURRENT_STATE_ENUMERATION

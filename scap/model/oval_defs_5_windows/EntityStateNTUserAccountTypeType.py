@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStateNTUserAccountTypeType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to NTUSER_ACCOUNT_TYPE_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return NTUSER_ACCOUNT_TYPE_ENUMERATION

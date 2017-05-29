@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStateAdstypeType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to ADSTYPE_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return ADSTYPE_ENUMERATION

@@ -25,3 +25,6 @@ class EntityStateUserRightType(EntityStateStringType):
     MODEL_MAP = {
         #TODO restrict to USER_RIGHT_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return USER_RIGHT_ENUMERATION

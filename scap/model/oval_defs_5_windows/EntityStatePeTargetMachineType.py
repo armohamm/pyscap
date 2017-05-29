@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStatePeTargetMachineType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to PE_TARGET_MACHINE_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return PE_TARGET_MACHINE_ENUMERATION

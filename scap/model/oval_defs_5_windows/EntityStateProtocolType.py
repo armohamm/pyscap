@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStateProtocolType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to PROTOCOL_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return PROTOCOL_ENUMERATION

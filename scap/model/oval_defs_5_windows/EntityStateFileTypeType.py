@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStateFileTypeType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to FILE_TYPE_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return FILE_TYPE_ENUMERATION

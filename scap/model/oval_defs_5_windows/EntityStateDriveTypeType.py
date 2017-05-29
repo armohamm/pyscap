@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStateDriveTypeType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to DRIVE_TYPE_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return DRIVE_TYPE_ENUMERATION

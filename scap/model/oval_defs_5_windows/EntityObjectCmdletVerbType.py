@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityObjectCmdletVerbType(EntityObjectStringType):
     MODEL_MAP = {
-        #TODO restrict to CMDLET_VERB_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return CMDLET_VERB_ENUMERATION

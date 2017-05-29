@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStateRegistryTypeType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to REGISTRY_TYPE_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return REGISTRY_TYPE_ENUMERATION

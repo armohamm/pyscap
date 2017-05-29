@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityObjectSystemMetricIndexType(EntityObjectStringType):
     MODEL_MAP = {
-        #TODO restrict to SYSTEM_METRIC_INDEX_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return SYSTEM_METRIC_INDEX_ENUMERATION

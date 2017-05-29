@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStatePeSubsystemType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to PE_SUBSYSTEM_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return PE_SUBSYSTEM_ENUMERATION

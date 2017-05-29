@@ -24,7 +24,9 @@ from scap.model.oval_defs_5.EntityStateStringType import EntityStateStringType
 
 logger = logging.getLogger(__name__)
 
-class EntityObjectNamingContextType(EntityStateStringType):
+class EntityStateNamingContextType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to NAMING_CONTEXT_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return NAMING_CONTEXT_ENUMERATION

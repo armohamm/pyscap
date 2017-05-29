@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStateWindowsViewType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to WINDOWS_VIEW_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return WINDOWS_VIEW_ENUMERATION

@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStateSharedResourceTypeType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to SHARED_RESOURCE_TYPE_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return SHARED_RESOURCE_TYPE_ENUMERATION

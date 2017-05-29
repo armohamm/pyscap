@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityObjectRegistryHiveType(EntityObjectStringType):
     MODEL_MAP = {
-        #TODO restrict to REGISTRY_HIVE_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return REGISTRY_HIVE_ENUMERATION

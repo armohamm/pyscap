@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStateAddrTypeType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO <xsd:pattern value="(\{[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}){0,}"/>
     }
+
+    def get_value_pattern(self):
+        return r'(\{[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}){0,}'

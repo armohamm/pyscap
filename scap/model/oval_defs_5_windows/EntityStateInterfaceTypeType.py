@@ -28,3 +28,6 @@ class EntityStateInterfaceTypeType(EntityStateStringType):
     MODEL_MAP = {
         #TODO restrict to INTERFACE_TYPE_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return INTERFACE_TYPE_ENUMERATION

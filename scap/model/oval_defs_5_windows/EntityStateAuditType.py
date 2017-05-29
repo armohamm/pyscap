@@ -26,5 +26,7 @@ logger = logging.getLogger(__name__)
 
 class EntityStateAuditType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO restrict to AUDIT_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return AUDIT_ENUMERATION
