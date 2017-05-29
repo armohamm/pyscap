@@ -20,5 +20,4 @@ import logging
 
 logger = logging.getLogger(__name__)
 class EmptyStringType(String):
-    def __init__(self):
-        super(EmptyStringType, self).__init__()
+    pass
