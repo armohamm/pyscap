@@ -18,3 +18,8 @@
 TAG_MAP = {
     '{http://cpe.mitre.org/language/2.0}platform-specification': 'PlatformSpecificationType',
 }
+
+OPERATOR_ENUMERATION = [
+    'AND',
+    'OR',
+]
