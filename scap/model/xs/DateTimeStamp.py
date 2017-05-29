@@ -28,4 +28,9 @@ class DateTimeStamp(DateTime):
         m = re.fullmatch(r'(-?\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d(\.\d+)?)((([-+])(\d\d):(\d\d))|Z)', value)
         if not m:
             raise ValueError('Unable to parse DateTimeStamp value')
+
+        # fudge for python 3.5 compatibility w/match obj __getitem__
+        m = list(m.groups())
+        m.insert(0, None)
+
         return SevenPropertyModel(year=m[1], month=m[2], day=m[3], hour=m[4], minute=m[5], second=m[6], timezoneOffset=m[8])

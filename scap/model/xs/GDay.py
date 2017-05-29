@@ -28,4 +28,8 @@ class GDay(AnySimpleType):
         if not m:
             raise ValueError('xs:GDay must match ---(0[1-9]|[12][0-9]|3[01])(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?')
 
+        # fudge for python 3.5 compatibility w/match obj __getitem__
+        m = list(m.groups())
+        m.insert(0, None)
+
         return SevenPropertyModel(day=m[1], timezoneOffset=m[2])

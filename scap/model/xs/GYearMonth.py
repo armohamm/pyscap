@@ -28,4 +28,8 @@ class GYearMonth(AnySimpleType):
         if not m:
             raise ValueError('xs:GYearMonth must match -?([1-9][0-9]{3,}|0[0-9]{3})-(0[1-9]|1[0-2])(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?')
 
+        # fudge for python 3.5 compatibility w/match obj __getitem__
+        m = list(m.groups())
+        m.insert(0, None)
+
         return SevenPropertyModel(year=m[1], month=m[2], timezoneOffset=m[3])

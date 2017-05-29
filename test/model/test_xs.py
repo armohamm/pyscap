@@ -22,10 +22,13 @@ import pkgutil
 import pytest
 
 # import all the classes in the package
-import scap.model.xs
-for m in pkgutil.iter_modules(path=scap.model.xs.__path__):
-    mod = importlib.import_module(scap.model.xs.__name__ + '.' + m.name, scap.model.xs.__name__)
-    globals()[m.name] = getattr(mod, m.name)
+import scap.model.xs as pkg
+for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
+    try:
+        mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
+        globals()[m_name] = getattr(mod, m_name)
+    except AttributeError:
+        pass
 
 logging.basicConfig(level=logging.DEBUG)
 

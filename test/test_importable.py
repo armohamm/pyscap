@@ -17,13 +17,18 @@
 
 import importlib
 import pkgutil
+import sys
 
 import scap
 
 def iter_packages(pkg):
-    for m in pkgutil.iter_modules(path=pkg.__path__):
-        mod = importlib.import_module(pkg.__name__ + '.' + m.name, pkg.__name__)
-        if m.ispkg:
+    if sys.platform != 'win32' and 'windows' in pkg.__name__.lower():
+        # windows modules frequently fail to import on non-windows
+        return
+
+    for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
+        mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
+        if m_ispkg:
             iter_packages(mod)
 
 def test_importable():
