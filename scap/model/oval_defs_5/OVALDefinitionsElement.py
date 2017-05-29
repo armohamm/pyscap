@@ -24,7 +24,7 @@ from scap.model.oval_defs_5 import *
 logger = logging.getLogger(__name__)
 class OVALDefinitionsElement(Model):
     MODEL_MAP = {
-        'tag_name' : 'scap.model.oval_definitions',
+        'tag_name' : 'oval_definitions',
         'elements': [
             # TODO one of the following exists
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'generator', 'class': 'GeneratorType', 'min': 0},
