@@ -23,4 +23,5 @@ from scap.model.xs.ID import ID
 logger = logging.getLogger(__name__)
 class ComponentRefIDPattern(ID):
     # scap_[^_]+_cref_.+
-    pass
+    def get_value_pattern(self):
+        return r'scap_[^_]+_cref_.+'
