@@ -20,12 +20,24 @@ import logging
 from scap.model.oval_common_5 import *
 from scap.model.oval_defs_5 import *
 from scap.model.oval_defs_5.EntitySimpleBaseType import EntitySimpleBaseType
+from scap.model.xs.Float import Float
 
 logger = logging.getLogger(__name__)
-class EntityObjectFloatType(EntitySimpleBaseType):
+class EntityObjectFloatType(EntitySimpleBaseType, Float):
     MODEL_MAP = {
-        # TODO <xsd:union memberTypes="xsd:float oval:EmptyStringType"/>
         'attributes': {
             'datatype': {'enum': ['float'], 'required': True, 'default': 'float'},
         }
     }
+
+    def parse_value(self, value):
+        if value == '':
+            return ''
+        else:
+            return super(EntityObjectFloatType, self).parse_value(value)
+
+    def produce_value(self, value):
+        if value == '':
+            return ''
+        else:
+            return super(EntityObjectFloatType, self).produce_value(value)

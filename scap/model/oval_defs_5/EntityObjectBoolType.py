@@ -20,12 +20,24 @@ import logging
 from scap.model.oval_common_5 import *
 from scap.model.oval_defs_5 import *
 from scap.model.oval_defs_5.EntitySimpleBaseType import EntitySimpleBaseType
+from scap.model.xs.Boolean import Boolean
 
 logger = logging.getLogger(__name__)
-class EntityObjectBoolType(EntitySimpleBaseType):
+class EntityObjectBoolType(EntitySimpleBaseType, Boolean):
     MODEL_MAP = {
-        # TODO <xsd:union memberTypes="xsd:boolean oval:EmptyStringType"/>
         'attributes': {
             'datatype': {'enum': ['boolean'], 'required': True, 'default': 'boolean'},
         }
     }
+
+    def parse_value(self, value):
+        if value == '':
+            return ''
+        else:
+            return super(EntityObjectBoolType, self).parse_value(value)
+
+    def produce_value(self, value):
+        if value == '':
+            return ''
+        else:
+            return super(EntityObjectBoolType, self).produce_value(value)

@@ -20,12 +20,24 @@ import logging
 from scap.model.oval_common_5 import *
 from scap.model.oval_defs_5 import *
 from scap.model.oval_defs_5.EntityStateSimpleBaseType import EntityStateSimpleBaseType
+from scap.model.xs.HexBinary import HexBinary
 
 logger = logging.getLogger(__name__)
-class EntityStateBinaryType(EntityStateSimpleBaseType):
+class EntityStateBinaryType(EntityStateSimpleBaseType, HexBinary):
     MODEL_MAP = {
-        # TODO <xsd:union memberTypes="xsd:hexBinary oval:EmptyStringType"/>
         'attributes': {
             'datatype': {'enum': ['binary'], 'required': True, 'default': 'binary'},
         }
     }
+
+    def parse_value(self, value):
+        if value == '':
+            return ''
+        else:
+            return super(EntityStateBinaryType, self).parse_value(value)
+
+    def produce_value(self, value):
+        if value == '':
+            return ''
+        else:
+            return super(EntityStateBinaryType, self).produce_value(value)

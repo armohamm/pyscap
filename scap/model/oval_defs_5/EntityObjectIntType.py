@@ -20,12 +20,24 @@ import logging
 from scap.model.oval_common_5 import *
 from scap.model.oval_defs_5 import *
 from scap.model.oval_defs_5.EntitySimpleBaseType import EntitySimpleBaseType
+from scap.model.xs.Integer import Integer
 
 logger = logging.getLogger(__name__)
-class EntityObjectIntType(EntitySimpleBaseType):
+class EntityObjectIntType(EntitySimpleBaseType, Integer):
     MODEL_MAP = {
-        # TODO <xsd:union memberTypes="xsd:integer oval:EmptyStringType"/>
         'attributes': {
             'datatype': {'enum': ['int'], 'required': True, 'default': 'int'},
         }
     }
+
+    def parse_value(self, value):
+        if value == '':
+            return ''
+        else:
+            return super(EntityObjectIntType, self).parse_value(value)
+
+    def produce_value(self, value):
+        if value == '':
+            return ''
+        else:
+            return super(EntityObjectIntType, self).produce_value(value)
