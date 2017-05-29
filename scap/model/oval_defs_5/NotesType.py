@@ -17,12 +17,12 @@
 
 import logging
 
-import scap.model.oval_common_5.NotesType
 from scap.model.oval_common_5 import *
 from scap.model.oval_defs_5 import *
+from scap.model.oval_common_5.NotesType import NotesType as oval_common_5_NotesType
 
 logger = logging.getLogger(__name__)
-class NotesType(scap.model.oval_common_5.NotesType.NotesType):
+class NotesType(oval_common_5_NotesType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'note', 'list': 'notes', 'type': 'String', 'min': 0, 'max': None},
