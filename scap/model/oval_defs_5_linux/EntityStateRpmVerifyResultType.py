@@ -27,3 +27,6 @@ class EntityStateRpmVerifyResultType(EntityStateStringType):
     MODEL_MAP = {
         #TODO: ensure value in RPM_VERIFY_RESULT_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return RPM_VERIFY_RESULT_ENUMERATION

@@ -25,5 +25,7 @@ from scap.model.oval_defs_5.EntityStateStringType import EntityStateStringType
 logger = logging.getLogger(__name__)
 class EntityStateProtocolType(EntityStateStringType):
     MODEL_MAP = {
-        #TODO: ensure value in PROTOCOL_ENUMERATION
     }
+
+    def get_value_enum(self):
+        return PROTOCOL_ENUMERATION
