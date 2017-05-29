@@ -16,6 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import re
 
 from scap.model.xs.AnySimpleType import AnySimpleType
 
