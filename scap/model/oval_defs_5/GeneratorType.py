@@ -17,11 +17,11 @@
 
 import logging
 
-import scap.model.oval_common_5.GeneratorType
+from scap.model.oval_common_5.GeneratorType import GeneratorType as oval_common_5_GeneratorType
 from scap.model.oval_common_5 import *
 from scap.model.oval_defs_5 import *
 
 logger = logging.getLogger(__name__)
-class GeneratorType(scap.model.oval_common_5.GeneratorType.GeneratorType):
+class GeneratorType(oval_common_5_GeneratorType):
     MODEL_MAP = {
     }
