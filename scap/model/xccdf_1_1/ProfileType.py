@@ -73,7 +73,7 @@ class ProfileType(Extendable):
         for setting_idref in self.settings:
             setting = self.settings[setting_idref]
             logger.debug('Looking for ' + setting_idref + ' in ' + str(benchmark))
-            item = Model.find_reference(setting_idref)
+            item = benchmark.find_reference(setting_idref)
             if item is None:
                 raise ValueError('Unable to find idref ' + setting_idref + ' in ' + str(self) + ' setting application')
 
