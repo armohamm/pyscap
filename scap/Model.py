@@ -857,7 +857,13 @@ class Model(object):
                 key_name = 'id'
 
             dict_keys = list(dict_.keys())
-            dict_keys.sort()
+            if None in dict_keys:
+                dict_keys.remove(None)
+                dict_keys.sort()
+                dict_keys.insert(0, None)
+            else:
+                dict_keys.sort()
+
             for k in dict_keys:
                 v = dict_[k]
                 if v is None:
