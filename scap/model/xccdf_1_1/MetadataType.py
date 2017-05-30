@@ -24,7 +24,8 @@ logger = logging.getLogger(__name__)
 class MetadataType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 1, 'max': None},
-            {'xmlns': 'http://checklists.nist.gov/sccf/0.1', 'tag_name': '*', 'min': 1, 'max': None},
+            # TODO at least 1 element must be used
+            {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 0, 'max': None},
+            {'xmlns': 'http://checklists.nist.gov/sccf/0.1', 'tag_name': '*', 'min': 0, 'max': None},
         ],
     }
