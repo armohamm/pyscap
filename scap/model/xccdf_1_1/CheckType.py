@@ -103,7 +103,19 @@ class CheckType(Model):
             'imports': {}
         }
         for check_ref in self.check_content_refs:
-            result = check_ref.check(host, exports, import_names)
+            try:
+                result = check_ref.check(benchmark, host, exports, import_names)
+            except:
+                result['result'] = 'error'
+                result['messages'] = [
+                    MessageType(
+                        tag_name='message',
+                        value='Error using check reference ' + str(check_ref),
+                        severity='error'
+                    )
+                ]
+                break
+
             if result['result'] not in ['error', 'unknown', 'notchecked']:
                 break
             # otherwise, we keep trying check_refs
@@ -113,12 +125,24 @@ class CheckType(Model):
         # inaccessible.
         if result['result'] not in ['error', 'unknown', 'notchecked']:
             # try check content
-            result = self.check_content.check(host)
+            try:
+                result = self.check_content.check(benchmark, host, exports, import_names)
+            except:
+                result['result'] = 'error'
+                result['messages'] = [
+                    MessageType(
+                        tag_name='message',
+                        value='Error using check content ' + str(self.check_content),
+                        severity='error'
+                    )
+                ]
 
         for check_import in self.check_imports:
             if 'imports' not in result \
             or check_import.import_name not in result['imports']:
                 raise ValueError('Expected import not returned by check: ' + check_import.import_name)
+
+        # TODO need to assign imports to import variables
 
         if self.id is not None:
             host.facts['checklist'][benchmark.id]['check'][self.id] = result

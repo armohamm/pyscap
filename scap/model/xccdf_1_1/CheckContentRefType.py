@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.Model import Model
+from scap.Model import Model, ReferenceException
 from scap.model.xccdf_1_1 import *
 
 logger = logging.getLogger(__name__)
@@ -29,17 +29,14 @@ class CheckContentRefType(Model):
         },
     }
 
-    def check(self, host, exports, import_names):
+    def check(self, benchmark, host, exports, import_names):
         content = Model.find_content(self.href)
         if content is None:
-            raise ValueError(self.href + ' was not loaded')
+            raise ReferenceException(self.href + ' was not loaded')
 
         # find the named content
         if self.name is not None:
-            content = Model.find_reference(self.name)
-
-            if content is None:
-                raise ValueError('Unable to locate ' + self.name + ' in ' + self.href)
+            content = content.find_reference(self.name)
 
         # apply content
         return content.check(host, exports, import_names)
