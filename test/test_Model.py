@@ -462,22 +462,22 @@ def test_get_package():
 
 def test_str_id_func():
     root = RootFixture()
-    assert str(root) == ('RootFixture # ' + str(id(root)))
+    assert str(root) == ('fixtures.test.RootFixture.RootFixture # ' + str(id(root)))
 
 def test_str_id():
     root = RootFixture()
     root.id = 'test'
-    assert str(root) == ('RootFixture id: test')
+    assert str(root) == ('fixtures.test.RootFixture.RootFixture id: test')
 
 def test_str_Id():
     root = RootFixture()
     root.Id = 'test'
-    assert str(root) == ('RootFixture Id: test')
+    assert str(root) == ('fixtures.test.RootFixture.RootFixture Id: test')
 
 def test_str_name():
     root = RootFixture()
     root.name = 'test'
-    assert str(root) == ('RootFixture name: test')
+    assert str(root) == ('fixtures.test.RootFixture.RootFixture name: test')
 
 def test_references():
     root = RootFixture()
