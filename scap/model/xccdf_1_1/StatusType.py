@@ -23,4 +23,7 @@ from scap.model.xs.String import String
 logger = logging.getLogger(__name__)
 class StatusType(String):
     MODEL_MAP = {
+        'attributes': {
+            'date': {'type': 'Date'},
+        },
     }
