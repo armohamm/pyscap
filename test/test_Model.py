@@ -23,7 +23,7 @@ import sys
 
 from scap.Model import Model, UnregisteredNamespaceException, \
     TagMappingException, RequiredAttributeException, MinimumElementException, \
-    MaximumElementException
+    MaximumElementException, ReferenceException
 
 from fixtures.test.RootFixture import RootFixture
 from fixtures.test.EnclosedFixture import EnclosedFixture
@@ -481,11 +481,13 @@ def test_str_name():
 
 def test_references():
     root = RootFixture()
-    root.id = 'reftest1'
-    assert Model.find_reference('reftest1') == root
-    assert Model.find_reference('reftest1', 'RootFixture') == root
+    enc = EnclosedFixture()
+    enc.parent = root
+    enc.id = 'reftest1'
+    assert root.find_reference('reftest1') == enc
 
-    assert Model.find_reference('test1', 'Derp') is None
+    with pytest.raises(ReferenceException):
+        root.find_reference('test1')
 
 def test_get_tag_name_implicit():
     root = RootFixture()
