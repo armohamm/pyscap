@@ -33,7 +33,7 @@ class CheckContentType(Model):
         return {'result': 'error', 'messages': [
             MessageType(
                 tag_name='message',
-                value='CheckContentType.check not implemented,
+                value='CheckContentType.check not implemented',
                 severity='error')
             ]
         }
