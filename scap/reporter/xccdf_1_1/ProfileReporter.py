@@ -120,11 +120,11 @@ class ProfileReporter(Reporter):
             ref.idref = cpe.to_uri_string()
             test_result.platforms.append(ref)
 
-        for value_id, value in profile_facts['value']:
+        for value_id in profile_facts['value'].keys():
             sv = ProfileSetValueType(tag_name='set-value')
             sv.type = value_id
-            sv.value = value['value']
-            test_result.set_values.append(sv)
+            sv.value = profile_facts['value'][value_id]['value']
+            test_result.set_values[value_id] = sv
 
         for rule_id in profile_facts['rule']:
             test_result.rule_results[rule_id] = profile_facts['rule'][rule_id]
