@@ -57,6 +57,9 @@ class UnknownElementException(Exception):
 class EnumerationException(Exception):
     pass
 
+class ReferenceException(Exception):
+    pass
+
 class Model(object):
     MODEL_MAP = {
         'attributes': {
@@ -69,7 +72,7 @@ class Model(object):
     }
 
     __model_mappings = {}
-    __model_index = {}
+
     __xmlns_to_package = {
         'http://www.w3.org/XML/1998/namespace': 'scap.model.xml',
         'http://www.w3.org/2001/XMLSchema': 'scap.model.xs',
@@ -282,34 +285,31 @@ class Model(object):
             try:
                 return Model.load(None, ET.parse(uri).getroot())
             except:
-                return None
-        return None
-
-    @staticmethod
-    def find_reference(ref, _class = None):
-        if _class is None:
-            for _class in Model.__model_index:
-                if ref in Model.__model_index[_class]:
-                    return Model.__model_index[_class][ref]
+                raise ReferenceException('Could not find content for: ' + uri)
         else:
-            if _class not in Model.__model_index:
-                return None
-            if ref in Model.__model_index[_class]:
-                return Model.__model_index[_class][ref]
+            raise NotImplementedError('URI loading is not yet implemented')
 
-        return None
+        raise ReferenceException('Could not find content for: ' + uri)
 
     def __init__(self, value=None, tag_name=None):
         self.parent = None
-        self.sub_references = {}
+
+        self._children = []
+
+        self._references = {}
+
         if value is None:
             self.text = None
         else:
             self.text = value
+
         self.tail = None
+
         self.model_map = Model._get_model_map(self.__class__)
+
         if tag_name is not None:
             self.tag_name = tag_name
+
         self.tag_counts = {}
 
         # must have namespace for concrete classes
@@ -370,7 +370,7 @@ class Model(object):
         return self.__module__.rpartition('.')[0]
 
     def __str__(self):
-        s = self.__class__.__name__
+        s = self.__class__.__module__ + '.' + self.__class__.__name__
         if hasattr(self, 'id') and self.id is not None:
             s += ' id: ' + self.id
         elif hasattr(self, 'Id') and self.Id is not None:
@@ -386,9 +386,23 @@ class Model(object):
         object.__setattr__(self, name, value)
 
         if name == 'id':
-            if self.__class__.__name__ not in Model.__model_index:
-                Model.__model_index[self.__class__.__name__] = {}
-            Model.__model_index[self.__class__.__name__][value] = self
+            if self.parent is not None:
+                self.parent._references[value] = self
+        elif name == 'parent':
+            if value is not None:
+                value._children.append(self)
+
+    def find_reference(self, ref):
+        if ref in self._references:
+            return self._references[ref]
+        else:
+            for c in self._children:
+                try:
+                    return c.find_reference(ref)
+                except:
+                    pass
+
+        raise ReferenceException('Could not find reference ' + ref + ' within ' + str(self))
 
     def get_tag_name(self):
         if hasattr(self, 'tag_name'):
@@ -479,15 +493,15 @@ class Model(object):
         class_ = self._load_type_class(type_)
         return class_().produce_value(value)
 
-    def _parse_attribute(self, name, value):
-        xmlns, attr_name = Model.parse_tag(name)
+    def _parse_attribute(self, fq_attr_name, value):
+        xmlns, attr_name = Model.parse_tag(fq_attr_name)
 
         if xmlns is None:
             ns_any = '{' + self.model_map['xmlns'] + '}*'
         else:
             ns_any = '{' + xmlns + '}*'
 
-        for name in [name, attr_name, ns_any, '*']:
+        for name in [fq_attr_name, attr_name, ns_any, '*']:
             if name not in self.model_map['attributes']:
                 continue
 
@@ -511,7 +525,7 @@ class Model(object):
             return
 
         # if we didn't find a match for the attribute, raise
-        raise UnknownAttributeException('Unknown ' + str(self) + ' attribute ' + name + ' = ' + value)
+        raise UnknownAttributeException('Unknown ' + str(self) + ' attribute ' + fq_attr_name + ' = ' + value)
 
     def _parse_element(self, el):
         xmlns, tag_name = Model.parse_tag(el.tag)
