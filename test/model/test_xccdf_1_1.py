@@ -31,4 +31,4 @@ Model.register_namespace('scap.model.cpe_lang_2_3', 'http://cpe.mitre.org/langua
 
 def test_benchmark():
     path = pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xccdf_1_1.xml'
-    model = Model.load(None, ET.parse(path).getroot())
+    model = Model.load(None, ET.parse(str(path)).getroot())
