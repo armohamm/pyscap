@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+from collections import UserList, UserDict
 import logging
 import importlib
 import sys
@@ -60,14 +61,59 @@ class EnumerationException(Exception):
 class ReferenceException(Exception):
     pass
 
-class ModelDict(dict):
-    def to_xml(self, element_def):
+class ModelList(UserList):
+    def __init__(self, model, element_def, *args, **kwargs):
+        super(ModelList, self).__init__(*args, **kwargs)
+        self._model = model
+        self._element_def = element_def
+
+    def __setitem__(self, index, value):
+        # TODO remove former value from self._model._children
+        # TODO add new value to self._model._children
+        super(ModelList, self).__setitem__(index, value)
+
+    def __delitem__(self, index):
+        # TODO remove former value from self._model._children
+        super(ModelList, self).__delitem__(index)
+
+    def insert(self, index, value):
+        # TODO add new value to self._model._children
+        super(ModelList, self).insert(index, value)
+
+    #TODO __contains__, __iter__, __reversed__, index, and count
+    #TODO append, reverse, extend, pop, remove, and __iadd__
+
+class ModelDict(UserDict):
+    def __init__(self, model, element_def, *args, **kwargs):
+        super(ModelDict, self).__init__(*args, **kwargs)
+        self._model = model
+        self._element_def = element_def
+
+    def __setitem__(self, index, value):
+        # TODO remove former value from self._model._children
+        # TODO add new value to self._model._children
         pass
 
-class ModelList(list):
-    def to_xml(self, element_def):
+    def __delitem__():
+        # TODO remove former value from self._model._children
         pass
 
+    #TODO __contains__, keys, items, values, get, __eq__, and __ne__
+    #TODO pop, popitem, clear, update, and setdefault
+
+class ModelChild(object):
+    def __init__(self, model, element_def):
+        self._model = model
+        self._element_def = element_def
+        self._value = None
+
+    def set(self, value):
+        # TODO remove former value from self._model._children
+        # TODO add new value to self._model._children
+        self._value = value
+
+    def get(self):
+        return self._value
 
 class Model(object):
     MODEL_MAP = {
@@ -288,9 +334,7 @@ class Model(object):
         raise ReferenceException('Could not find content for: ' + uri)
 
     def __init__(self, value=None, tag_name=None):
-        self.parent = None
-
-        self._children = []
+        self._parent = None
 
         self._references = {}
 
@@ -301,20 +345,20 @@ class Model(object):
 
         self.tail = None
 
-        self.model_map = Model._get_model_map(self.__class__)
+        self._model_map = Model._get_model_map(self.__class__)
 
         if tag_name is not None:
             self.tag_name = tag_name
 
-        self.tag_counts = {}
+        self._tag_counts = {}
 
         # must have namespace for concrete classes
-        if 'xmlns' not in self.model_map or self.model_map['xmlns'] is None:
+        if 'xmlns' not in self._model_map or self._model_map['xmlns'] is None:
             raise ValueError('No xmlns defined for ' + self.__class__.__name__ + ' & could not detect')
 
         # initialize attribute values
-        for name in self.model_map['attributes']:
-            attr_map = self.model_map['attributes'][name]
+        for name in self._model_map['attributes']:
+            attr_map = self._model_map['attributes'][name]
             if 'in' in attr_map:
                 attr_name = attr_map['in']
             else:
@@ -329,34 +373,30 @@ class Model(object):
                 setattr(self, attr_name, None)
 
         # initialize elements
-        for element_def in self.model_map['elements']:
+        self._children = []
+        self._child_map = {}
+        for element_def in self._model_map['elements']:
             if element_def['tag_name'].endswith('*'):
                 if 'in' in element_def:
                     name = element_def['in']
                 else:
-                    name = '_elements'
+                    raise NotImplementedError('Unable to store wildcard value without explicit "in" set')
 
-                if name not in list(self.__dict__.keys()):
+                if name not in self._child_map:
                     logger.debug('Initializing ' + name + ' to ModelList()')
-                    lst = ModelList()
-                    self._children.append(lst)
-                    setattr(self, name, lst)
+                    self._child_map[name] = ModelList(self, element_def)
 
             elif 'list' in element_def:
                 # initialze the array if it doesn't exist
-                if element_def['list'] not in list(self.__dict__.keys()):
+                if element_def['list'] not in self._child_map:
                     logger.debug('Initializing ' + element_def['list'] + ' to ModelList()')
-                    lst = ModelList()
-                    self._children.append(lst)
-                    setattr(self, element_def['list'], lst)
+                    self._child_map[name] = ModelList(self, element_def)
 
             elif 'dict' in element_def:
                 # initialze the dict if it doesn't exist
-                if element_def['dict'] not in list(self.__dict__.keys()):
+                if element_def['dict'] not in self._child_map:
                     logger.debug('Initializing ' + element_def['dict'] + ' to ModelDict()')
-                    dct = ModelDict()
-                    self._children.append(dct)
-                    setattr(self, element_def['dict'], dct)
+                    self._child_map[name] = ModelDict(self, element_def)
 
             else:
                 if 'in' in element_def:
@@ -364,12 +404,9 @@ class Model(object):
                 else:
                     name = element_def['tag_name'].replace('-', '_')
 
-                if name not in list(self.__dict__.keys()):
+                if name not in self._child_map:
                     logger.debug('Initializing ' + name + ' to None')
-                    setattr(self, name, None)
-
-    def get_package(self):
-        return self.__module__.rpartition('.')[0]
+                    self._child_map[name] = ModelChild(self, element_def)
 
     def __str__(self):
         s = self.__class__.__module__ + '.' + self.__class__.__name__
@@ -388,11 +425,17 @@ class Model(object):
         object.__setattr__(self, name, value)
 
         if name == 'id':
-            if self.parent is not None:
-                self.parent._references[value] = self
+            if self._parent is not None:
+                self._parent._references[value] = self
         elif name == 'parent':
             if value is not None:
                 value._children.append(self)
+
+    def __getattr__(self, name):
+        pass
+
+    def get_package(self):
+        return self.__module__.rpartition('.')[0]
 
     def find_reference(self, ref):
         if ref in self._references:
@@ -409,17 +452,17 @@ class Model(object):
     def get_tag_name(self):
         if hasattr(self, 'tag_name'):
             return self.tag_name
-        if 'tag_name' not in self.model_map or self.model_map['tag_name'] is None:
+        if 'tag_name' not in self._model_map or self._model_map['tag_name'] is None:
             raise NotImplementedError('Subclass ' + self.__class__.__name__ + ' does not define tag_name')
-        return self.model_map['tag_name']
+        return self._model_map['tag_name']
 
     def get_xmlns(self):
-        if 'xmlns' not in self.model_map or self.model_map['xmlns'] is None:
+        if 'xmlns' not in self._model_map or self._model_map['xmlns'] is None:
             raise NotImplementedError('Subclass ' + self.__class__.__name__ + ' does not define namespace')
-        return self.model_map['xmlns']
+        return self._model_map['xmlns']
 
     def from_xml(self, parent, el):
-        self.parent = parent
+        self._parent = parent
 
         logger.debug('Parsing ' + el.tag + ' element into ' + self.__class__.__module__ + '.' + self.__class__.__name__ + ' class')
 
@@ -427,11 +470,11 @@ class Model(object):
         xmlns, tag_name = Model.parse_tag(el.tag)
 
         # check that required attributes are defined
-        for attrib in self.model_map['attributes']:
-            if 'required' in self.model_map['attributes'][attrib] \
-            and self.model_map['attributes'][attrib]['required'] \
+        for attrib in self._model_map['attributes']:
+            if 'required' in self._model_map['attributes'][attrib] \
+            and self._model_map['attributes'][attrib]['required'] \
             and attrib not in el.keys() \
-            and 'default' not in self.model_map['attributes'][attrib]:
+            and 'default' not in self._model_map['attributes'][attrib]:
                 raise RequiredAttributeException(el.tag + ' must define ' + attrib + ' attribute')
 
         for name, value in list(el.items()):
@@ -441,7 +484,7 @@ class Model(object):
             self._parse_element(sub_el)
 
         # check the element restrictions
-        for element_def in self.model_map['elements']:
+        for element_def in self._model_map['elements']:
             if 'xmlns' not in element_def and element_def['tag_name'] == '*':
                 tag = '*'
             elif 'xmlns' in element_def:
@@ -463,10 +506,10 @@ class Model(object):
                 max_ = element_def['max']
 
             # check that we have the min & max of those elements
-            if min_ != 0 and (tag not in self.tag_counts or self.tag_counts[tag] < min_):
+            if min_ != 0 and (tag not in self._tag_counts or self._tag_counts[tag] < min_):
                 raise MinimumElementException(self.__class__.__name__ + ' must have at least ' + str(min_) + ' ' + tag + ' elements')
 
-            if max_ is not None and tag in self.tag_counts and self.tag_counts[tag] > max_:
+            if max_ is not None and tag in self._tag_counts and self._tag_counts[tag] > max_:
                 raise MaximumElementException(self.__class__.__name__ + ' may have at most ' + str(max_) + ' ' + tag + ' elements')
 
         self.text = el.text
@@ -499,15 +542,15 @@ class Model(object):
         xmlns, attr_name = Model.parse_tag(fq_attr_name)
 
         if xmlns is None:
-            ns_any = '{' + self.model_map['xmlns'] + '}*'
+            ns_any = '{' + self._model_map['xmlns'] + '}*'
         else:
             ns_any = '{' + xmlns + '}*'
 
         for name in [fq_attr_name, attr_name, ns_any, '*']:
-            if name not in self.model_map['attributes']:
+            if name not in self._model_map['attributes']:
                 continue
 
-            attr_map = self.model_map['attributes'][name]
+            attr_map = self._model_map['attributes'][name]
 
             if 'enum' in attr_map and value not in attr_map['enum']:
                 raise EnumerationException(name + ' attribute must be one of ' + str(attr_map['enum']) + ': ' + str(value))
@@ -541,11 +584,11 @@ class Model(object):
 
         for tag in [fq_tag, tag_name, ns_any, '*']:
             # check both namespace + tag_name and just tag_name
-            if tag not in self.model_map['element_lookup']:
+            if tag not in self._model_map['element_lookup']:
                 continue
 
             logger.debug('Tag ' + el.tag + ' matched ' + tag)
-            element_def = self.model_map['element_lookup'][tag]
+            element_def = self._model_map['element_lookup'][tag]
 
             if tag.endswith('*'):
                 logger.debug(str(self) + ' parsing ' + tag + ' elements matching *')
@@ -696,10 +739,10 @@ class Model(object):
             else:
                 raise UnknownElementException(str(self) + ' could not parse ' + tag + ' element')
 
-            if tag not in self.tag_counts:
-                self.tag_counts[tag] = 1
+            if tag not in self._tag_counts:
+                self._tag_counts[tag] = 1
             else:
-                self.tag_counts[tag] += 1
+                self._tag_counts[tag] += 1
 
             return
 
@@ -711,12 +754,12 @@ class Model(object):
         if self.text is not None:
             el.text = str(self.text)
 
-        for name in self.model_map['attributes']:
+        for name in self._model_map['attributes']:
             value = self._produce_attribute(name, el)
 
         for child in self._children:
             el.extend(self._produce_child(child))
-        # for element_def in self.model_map['elements']:
+        # for element_def in self._model_map['elements']:
         #     el.extend(self._produce_elements(element_def))
 
         if self.tail is not None:
@@ -728,7 +771,7 @@ class Model(object):
             return
 
         attr_namespace, attr_name = Model.parse_tag(name)
-        attr_map = self.model_map['attributes'][name]
+        attr_map = self._model_map['attributes'][name]
 
         if 'in' in attr_map:
             value_name = attr_map['in']
@@ -953,37 +996,25 @@ class Model(object):
 
         for tag in [fq_tag, tag_name, ns_any, '*']:
             # check both namespace + tag_name and just tag_name
-            if tag not in self.model_map['element_lookup']:
+            if tag not in self._model_map['element_lookup']:
                 continue
 
             logger.debug('Tag ' + fq_tag + ' matched ' + tag)
-            element_def = self.model_map['element_lookup'][tag]
+            element_def = self._model_map['element_lookup'][tag]
 
             if tag.endswith('*'):
                 logger.debug(str(self) + ' producing ' + tag + ' elements matching *')
 
-                if 'in' in element_def:
-                    name = element_def['in']
-                else:
-                    name = '_elements'
+                if 'type' in element_def:
 
-                lst = getattr(self, name)
-
-                return lst.to_xml(element_def)
 
             elif 'list' in element_def:
                 logger.debug(str(self) + ' producing ' + tag + ' elements from ' + element_def['list'])
 
-                lst = getattr(self, element_def['list'])
-
-                return lst.to_xml(element_def)
 
             elif 'dict' in element_def:
                 logger.debug(str(self) + ' producing ' + tag + ' elements from ' + element_def['dict'])
 
-                dic = getattr(self, element_def['dict'])
-
-                return dic.to_xml(element_def)
 
             elif 'class' in element_def:
                 logger.debug(str(self) + ' producing ' + tag + ' elements as ' + element_def['class'])

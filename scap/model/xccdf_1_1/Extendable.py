@@ -179,8 +179,8 @@ class Extendable(Model):
         # (3) prepend the property sequence from the extended Item to the
         # extending Item,
         # (5) remove duplicate properties and apply property overrides, and
-        for name in self.model_map['attributes']:
-            attr_map = self.model_map['attributes'][name]
+        for name in self._model_map['attributes']:
+            attr_map = self._model_map['attributes'][name]
 
             if 'in' in attr_map:
                 attr_name = attr_map['in']
@@ -189,7 +189,7 @@ class Extendable(Model):
                 attr_name = attr_name.replace('-', '_')
             self.resolve_property(extended, attr_name)
 
-        for element_def in self.model_map['elements']:
+        for element_def in self._model_map['elements']:
             if element_def['tag_name'].endswith('*'):
                 continue
 
