@@ -171,7 +171,7 @@ for hostname in args['host']:
 
 # open output if it's not stdout
 if args['output'] != '-':
-    output = open(uri, mode='wb', encoding='unicode')
+    output = open(args['output'], mode='wb')
 else:
     output = sys.stdout.buffer
 
