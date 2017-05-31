@@ -60,6 +60,15 @@ class EnumerationException(Exception):
 class ReferenceException(Exception):
     pass
 
+class ModelDict(dict):
+    def to_xml(self, element_def):
+        pass
+
+class ModelList(list):
+    def to_xml(self, element_def):
+        pass
+
+
 class Model(object):
     MODEL_MAP = {
         'attributes': {
@@ -223,36 +232,23 @@ class Model(object):
                     raise TagMappingException('Class ' + fq_class_name + ' does not define MODEL_MAP')
 
                 # overwrite the super class' ns & tag with what we've already loaded
-                try:
-                    if xmlns is None:
-                        xmlns = class_.MODEL_MAP['xmlns']
-                except KeyError:
-                    #logger.debug('Class ' + fq_class_name + ' does not have MODEL_MAP[xmlns] defined')
-                    pass
-                try:
-                    if tag_name is None:
-                        tag_name = class_.MODEL_MAP['tag_name']
-                except KeyError:
-                    #logger.debug('Class ' + fq_class_name + ' does not have MODEL_MAP[tag_name] defined')
-                    pass
+                if xmlns is None and 'xmlns' in class_.MODEL_MAP:
+                    xmlns = class_.MODEL_MAP['xmlns']
+
+                if tag_name is None and 'tag_name' in class_.MODEL_MAP:
+                    tag_name = class_.MODEL_MAP['tag_name']
 
                 # update the super class' attribute map with subclass
-                try:
+                if 'attributes' in class_.MODEL_MAP:
                     super_atmap = class_.MODEL_MAP['attributes'].copy()
                     super_atmap.update(at_map)
                     at_map = super_atmap
-                except KeyError:
-                    #logger.debug('Class ' + fq_class_name + ' does not have MODEL_MAP[attributes] defined')
-                    pass
 
                 # update the super class' element map with subclass
-                try:
+                if 'elements' in class_.MODEL_MAP:
                     super_elmap = class_.MODEL_MAP['elements'].copy()
                     super_elmap.extend(el_map)
                     el_map = super_elmap
-                except KeyError:
-                    #logger.debug('Class ' + fq_class_name + ' does not have MODEL_MAP[elements] defined')
-                    pass
 
             if xmlns is None:
                 # try to auto detect from module name
@@ -341,20 +337,26 @@ class Model(object):
                     name = '_elements'
 
                 if name not in list(self.__dict__.keys()):
-                    logger.debug('Initializing ' + name + ' to []')
-                    setattr(self, name, [])
+                    logger.debug('Initializing ' + name + ' to ModelList()')
+                    lst = ModelList()
+                    self._children.append(lst)
+                    setattr(self, name, lst)
 
             elif 'list' in element_def:
                 # initialze the array if it doesn't exist
                 if element_def['list'] not in list(self.__dict__.keys()):
-                    logger.debug('Initializing ' + element_def['list'] + ' to []')
-                    setattr(self, element_def['list'], [])
+                    logger.debug('Initializing ' + element_def['list'] + ' to ModelList()')
+                    lst = ModelList()
+                    self._children.append(lst)
+                    setattr(self, element_def['list'], lst)
 
             elif 'dict' in element_def:
                 # initialze the dict if it doesn't exist
                 if element_def['dict'] not in list(self.__dict__.keys()):
-                    logger.debug('Initializing ' + element_def['dict'] + ' to {}')
-                    setattr(self, element_def['dict'], {})
+                    logger.debug('Initializing ' + element_def['dict'] + ' to ModelDict()')
+                    dct = ModelDict()
+                    self._children.append(dct)
+                    setattr(self, element_def['dict'], dct)
 
             else:
                 if 'in' in element_def:
@@ -712,8 +714,10 @@ class Model(object):
         for name in self.model_map['attributes']:
             value = self._produce_attribute(name, el)
 
-        for element_def in self.model_map['elements']:
-            el.extend(self._produce_elements(element_def))
+        for child in self._children:
+            el.extend(self._produce_child(child))
+        # for element_def in self.model_map['elements']:
+        #     el.extend(self._produce_elements(element_def))
 
         if self.tail is not None:
             el.tail = str(self.tail)
@@ -773,168 +777,254 @@ class Model(object):
             v = self._produce_value_as_type(value, 'String')
             el.set(attr_name, v)
 
-    def _produce_elements(self, element_def):
-        sub_els = []
-        if 'xmlns' in element_def:
-            xmlns = element_def['xmlns']
-        else:
-            xmlns = self.get_xmlns()
+    # def _produce_elements(self, element_def):
+    #     sub_els = []
+    #     if 'xmlns' in element_def:
+    #         xmlns = element_def['xmlns']
+    #     else:
+    #         xmlns = self.get_xmlns()
+    #
+    #     if element_def['tag_name'].endswith('*'):
+    #         if 'in' in element_def:
+    #             name = element_def['in']
+    #         else:
+    #             name = '_elements'
+    #
+    #         lst = getattr(self, name)
+    #         logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from wildcard ' + name)
+    #
+    #         # check minimum tag count
+    #         if 'min' in element_def and element_def['min'] > len(lst):
+    #             raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+    #
+    #         # check maximum tag count
+    #         if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(lst):
+    #             raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+    #
+    #         for i in lst:
+    #             if isinstance(i, Model):
+    #                 sub_els.append(i.to_xml())
+    #             elif isinstance(i, ET.Element):
+    #                 sub_els.append(i)
+    #             else:
+    #                 el = ET.Element(tag)
+    #                 el.text = i
+    #                 sub_els.append(el)
+    #     elif 'list' in element_def:
+    #         name = element_def['list']
+    #
+    #         lst = getattr(self, name)
+    #         logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from list ' + name)
+    #
+    #         # check minimum tag count
+    #         if 'min' in element_def and element_def['min'] > len(lst):
+    #             raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+    #
+    #         # check maximum tag count
+    #         if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(lst):
+    #             raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+    #
+    #         for i in lst:
+    #             if i is None:
+    #                 el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
+    #                 el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
+    #                 sub_els.append(el)
+    #             elif 'type' in element_def:
+    #                 el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
+    #                 el.text = self._produce_value_as_type(i, element_def['type'])
+    #                 sub_els.append(el)
+    #             elif 'class' in element_def:
+    #                 if not isinstance(i, Model):
+    #                     raise ValueError(str(self) + ' Unknown class of ' + element_def['tag_name'] + ' to add to sub elements: ' + i.__class__.__name__)
+    #                 sub_els.append(i.to_xml())
+    #             elif isinstance(i, ET.Element):
+    #                 sub_els.append(i)
+    #             else:
+    #                 el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
+    #                 el.text = i
+    #                 sub_els.append(el)
+    #     elif 'dict' in element_def:
+    #         dict_ = getattr(self, element_def['dict'])
+    #         logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from dict ' + element_def['dict'])
+    #
+    #         # check minimum tag count
+    #         if 'min' in element_def and element_def['min'] > len(dict_):
+    #             raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(dict_)) + ' found')
+    #
+    #         # check maximum tag count
+    #         if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(dict_):
+    #             raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(dict_)) + ' found')
+    #
+    #         if 'key' in element_def:
+    #             key_name = element_def['key']
+    #         else:
+    #             key_name = 'id'
+    #
+    #         dict_keys = list(dict_.keys())
+    #         if None in dict_keys:
+    #             dict_keys.remove(None)
+    #             dict_keys.sort()
+    #             dict_keys.insert(0, None)
+    #         else:
+    #             dict_keys.sort()
+    #
+    #         for k in dict_keys:
+    #             v = dict_[k]
+    #             if v is None:
+    #                 if 'value_attr' in element_def:
+    #                     raise ValueError('Cannot use None as a value for value attribute maps')
+    #
+    #                 el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
+    #                 el.set(key_name, k)
+    #                 el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
+    #                 sub_els.append(el)
+    #             elif 'class' in element_def:
+    #                 setattr(v, key_name, k)
+    #                 sub_els.append(v.to_xml())
+    #             else:
+    #                 el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
+    #                 el.set(key_name, k)
+    #
+    #                 if 'value_attr' in element_def:
+    #                     value_name = element_def['value_attr']
+    #                     el.set(value_name, self._produce_value_as_type(v, element_def['type']))
+    #                 else:
+    #                     el.text = v
+    #                 sub_els.append(el)
+    #
+    #     elif 'class' in element_def:
+    #         if 'in' in element_def:
+    #             name = element_def['in']
+    #         else:
+    #             name = element_def['tag_name'].replace('-', '_')
+    #
+    #         value = getattr(self, name)
+    #         if value is None:
+    #             return []
+    #
+    #         logger.debug(str(self) + ' Setting .' + name + ' to ' + value.__class__.__name__ + '(' + str(value) + ')')
+    #         if isinstance(value, Model):
+    #             sub_els.append(value.to_xml())
+    #         elif isinstance(value, ET.Element):
+    #             sub_els.append(value)
+    #         else:
+    #             raise UnknownElementException(str(self) + ' Unknown class to add to sub elements: ' + value.__class__.__name__)
+    #     elif 'type' in element_def:
+    #         if 'in' in element_def:
+    #             name = element_def['in']
+    #         else:
+    #             name = element_def['tag_name'].replace('-', '_')
+    #
+    #         value = getattr(self, name)
+    #         if value is None:
+    #             return []
+    #
+    #         # create an element
+    #         el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
+    #         el.text = self._produce_value_as_type(value, element_def['type'])
+    #         return [el]
+    #     elif 'enum' in element_def:
+    #         if 'in' in element_def:
+    #             name = element_def['in']
+    #         else:
+    #             name = element_def['tag_name'].replace('-', '_')
+    #
+    #         value = getattr(self, name)
+    #         if value is None:
+    #             return []
+    #
+    #         if value not in element_def['enum']:
+    #             raise EnumerationException(str(self) + ' ' + element_def['tag_name'] + ' is not in enumeration : ' + str(element_def['enum']))
+    #
+    #         el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
+    #         el.text = value
+    #         return [el]
+    #     else:
+    #         raise UnknownElementException(str(self) + ' Unable to produce element definition: ' + str(element_def))
+    #     return sub_els
+    #
 
-        if element_def['tag_name'].endswith('*'):
-            if 'in' in element_def:
-                name = element_def['in']
-            else:
-                name = '_elements'
+    def _produce_child(self, child):
+        xmlns = child.get_xmlns()
+        tag_name = child.get_tag_name()
 
-            lst = getattr(self, name)
-            logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from wildcard ' + name)
+        ns_any = '{' + xmlns + '}*'
+        fq_tag = '{' + xmlns + '}' + tag_name
 
-            # check minimum tag count
-            if 'min' in element_def and element_def['min'] > len(lst):
-                raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+        for tag in [fq_tag, tag_name, ns_any, '*']:
+            # check both namespace + tag_name and just tag_name
+            if tag not in self.model_map['element_lookup']:
+                continue
 
-            # check maximum tag count
-            if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(lst):
-                raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+            logger.debug('Tag ' + fq_tag + ' matched ' + tag)
+            element_def = self.model_map['element_lookup'][tag]
 
-            for i in lst:
-                if isinstance(i, Model):
-                    sub_els.append(i.to_xml())
-                elif isinstance(i, ET.Element):
-                    sub_els.append(i)
+            if tag.endswith('*'):
+                logger.debug(str(self) + ' producing ' + tag + ' elements matching *')
+
+                if 'in' in element_def:
+                    name = element_def['in']
                 else:
-                    el = ET.Element(tag)
-                    el.text = i
-                    sub_els.append(el)
-        elif 'list' in element_def:
-            name = element_def['list']
+                    name = '_elements'
 
-            lst = getattr(self, name)
-            logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from list ' + name)
+                lst = getattr(self, name)
 
-            # check minimum tag count
-            if 'min' in element_def and element_def['min'] > len(lst):
-                raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+                return lst.to_xml(element_def)
 
-            # check maximum tag count
-            if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(lst):
-                raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+            elif 'list' in element_def:
+                logger.debug(str(self) + ' producing ' + tag + ' elements from ' + element_def['list'])
 
-            for i in lst:
-                if i is None:
-                    el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
-                    el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
-                    sub_els.append(el)
-                elif 'type' in element_def:
-                    el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
-                    el.text = self._produce_value_as_type(i, element_def['type'])
-                    sub_els.append(el)
-                elif 'class' in element_def:
-                    if not isinstance(i, Model):
-                        raise ValueError(str(self) + ' Unknown class of ' + element_def['tag_name'] + ' to add to sub elements: ' + i.__class__.__name__)
-                    sub_els.append(i.to_xml())
-                elif isinstance(i, ET.Element):
-                    sub_els.append(i)
+                lst = getattr(self, element_def['list'])
+
+                return lst.to_xml(element_def)
+
+            elif 'dict' in element_def:
+                logger.debug(str(self) + ' producing ' + tag + ' elements from ' + element_def['dict'])
+
+                dic = getattr(self, element_def['dict'])
+
+                return dic.to_xml(element_def)
+
+            elif 'class' in element_def:
+                logger.debug(str(self) + ' producing ' + tag + ' elements as ' + element_def['class'])
+
+                if 'in' in element_def:
+                    name = element_def['in']
                 else:
-                    el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
-                    el.text = i
-                    sub_els.append(el)
-        elif 'dict' in element_def:
-            dict_ = getattr(self, element_def['dict'])
-            logger.debug(str(self) + ' Appending ' + element_def['tag_name'] + ' elements from dict ' + element_def['dict'])
+                    name = tag_name.replace('-', '_')
 
-            # check minimum tag count
-            if 'min' in element_def and element_def['min'] > len(dict_):
-                raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(dict_)) + ' found')
+                value = getattr(self, name)
 
-            # check maximum tag count
-            if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(dict_):
-                raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(dict_)) + ' found')
+                return value.to_xml()
 
-            if 'key' in element_def:
-                key_name = element_def['key']
-            else:
-                key_name = 'id'
+            elif 'type' in element_def:
+                logger.debug(str(self) + ' producing ' + tag + ' elements as ' + element_def['type'])
 
-            dict_keys = list(dict_.keys())
-            if None in dict_keys:
-                dict_keys.remove(None)
-                dict_keys.sort()
-                dict_keys.insert(0, None)
-            else:
-                dict_keys.sort()
-
-            for k in dict_keys:
-                v = dict_[k]
-                if v is None:
-                    if 'value_attr' in element_def:
-                        raise ValueError('Cannot use None as a value for value attribute maps')
-
-                    el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
-                    el.set(key_name, k)
-                    el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
-                    sub_els.append(el)
-                elif 'class' in element_def:
-                    setattr(v, key_name, k)
-                    sub_els.append(v.to_xml())
+                if 'in' in element_def:
+                    name = element_def['in']
                 else:
-                    el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
-                    el.set(key_name, k)
+                    name = tag_name.replace('-', '_')
 
-                    if 'value_attr' in element_def:
-                        value_name = element_def['value_attr']
-                        el.set(value_name, self._produce_value_as_type(v, element_def['type']))
-                    else:
-                        el.text = v
-                    sub_els.append(el)
+                value = getattr(self, name)
+                class_ = self._load_type_class(element_def['type'])
 
-        elif 'class' in element_def:
-            if 'in' in element_def:
-                name = element_def['in']
+                return class_(tag_name=fq_tag, value=value).to_xml()
+
+            elif 'enum' in element_def:
+                logger.debug(str(self) + ' producing ' + tag + ' elements from enum ' + str(element_def['enum']))
+                if el.text not in element_def['enum']:
+                    raise EnumerationException(tag + ' value must be one of ' + str(element_def['enum']))
+
+                if 'in' in element_def:
+                    name = element_def['in']
+                else:
+                    name = tag_name.replace('-', '_')
+
+                value = getattr(self, name)
+
+                return String(tag_name=fq_tag, value=value).to_xml()
+
             else:
-                name = element_def['tag_name'].replace('-', '_')
+                raise UnknownElementException(str(self) + ' could not produce ' + tag + ' element')
 
-            value = getattr(self, name)
-            if value is None:
-                return []
-
-            logger.debug(str(self) + ' Setting .' + name + ' to ' + value.__class__.__name__ + '(' + str(value) + ')')
-            if isinstance(value, Model):
-                sub_els.append(value.to_xml())
-            elif isinstance(value, ET.Element):
-                sub_els.append(value)
-            else:
-                raise UnknownElementException(str(self) + ' Unknown class to add to sub elements: ' + value.__class__.__name__)
-        elif 'type' in element_def:
-            if 'in' in element_def:
-                name = element_def['in']
-            else:
-                name = element_def['tag_name'].replace('-', '_')
-
-            value = getattr(self, name)
-            if value is None:
-                return []
-
-            # create an element
-            el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
-            el.text = self._produce_value_as_type(value, element_def['type'])
-            return [el]
-        elif 'enum' in element_def:
-            if 'in' in element_def:
-                name = element_def['in']
-            else:
-                name = element_def['tag_name'].replace('-', '_')
-
-            value = getattr(self, name)
-            if value is None:
-                return []
-
-            if value not in element_def['enum']:
-                raise EnumerationException(str(self) + ' ' + element_def['tag_name'] + ' is not in enumeration : ' + str(element_def['enum']))
-
-            el = ET.Element('{' + xmlns + '}' + element_def['tag_name'])
-            el.text = value
-            return [el]
-        else:
-            raise UnknownElementException(str(self) + ' Unable to produce element definition: ' + str(element_def))
-        return sub_els
+        raise UnknownElementException('Unknown ' + str(self) + ' sub-element ' + fq_tag + ' does not match ' + str([fq_tag, tag_name, ns_any, '*']))

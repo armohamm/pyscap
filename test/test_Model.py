@@ -506,9 +506,9 @@ def test_get_xmlns():
 
 def test_to_xml_root_enclosed():
     el = RootFixture()
-    el.EnclosedFixture = EnclosedFixture()
+    el.enclosed_fixture = EnclosedFixture()
     assert ET.tostring(el.to_xml()) == \
-        b'<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnclosedFixture /></test:RootFixture>'
+        b'<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:enclosed_fixture /></test:RootFixture>'
 
 def test_to_xml_required_attribute():
     el = RequiredAttributeFixture()
