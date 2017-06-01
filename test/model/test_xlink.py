@@ -22,7 +22,7 @@ import xml.etree.ElementTree as ET
 
 from fixtures.test.RootFixture import RootFixture
 from fixtures.test.EnclosedFixture import EnclosedFixture
-from scap.Model import Model
+from scap.Model import Model, ModelList
 from scap.Inventory import Inventory
 import scap.model.xlink
 
@@ -31,8 +31,7 @@ Model.register_namespace('scap.model.xlink', 'http://www.w3.org/1999/xlink')
 
 def test_simple_local():
     path = (
-        pathlib.Path(str(pytest.config.rootdir)) /
-        'test' / 'test.xml'
+        pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'test.xml'
     ).as_posix()
     if not path.startswith('/'):
         path = '/' + path
@@ -40,7 +39,7 @@ def test_simple_local():
         'xmlns:test="http://jaymes.biz/test" ' +
         'xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" ' +
         'xlink:href="file://' + path + '" />'))
-    assert isinstance(model._elements, list)
+    assert isinstance(model._elements, ModelList)
     assert len(model._elements) > 0
     assert isinstance(model._elements[0], RootFixture)
     assert isinstance(model._elements[0].EnclosedFixture, EnclosedFixture)
@@ -50,7 +49,7 @@ def test_simple_remote():
         'xmlns:test="http://jaymes.biz/test" ' +
         'xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" ' +
         'xlink:href="http://jaymes.biz/test.xml" />'))
-    assert isinstance(model._elements, list)
+    assert isinstance(model._elements, ModelList)
     assert len(model._elements) > 0
     assert isinstance(model._elements[0], RootFixture)
     assert isinstance(model._elements[0].EnclosedFixture, EnclosedFixture)

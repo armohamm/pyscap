@@ -19,8 +19,8 @@ from scap.Model import Model
 
 class RootFixture(Model):
     MODEL_MAP = {
-        'tag_name': 'root_fixture',
+        'tag_name': 'RootFixture',
         'elements': [
-            {'tag_name': 'enclosed_fixture', 'class': 'EnclosedFixture', 'min': 0},
+            {'tag_name': 'EnclosedFixture', 'class': 'EnclosedFixture', 'min': 0},
         ],
     }

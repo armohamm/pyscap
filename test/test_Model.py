@@ -103,16 +103,16 @@ def test_load_root_model():
 
 def test_load_enclosed_model():
     root = RootFixture()
-    el = Model.load(root, ET.fromstring('<test:enclosed_fixture xmlns:test="http://jaymes.biz/test" />'))
+    el = Model.load(root, ET.fromstring('<test:EnclosedFixture xmlns:test="http://jaymes.biz/test" />'))
     assert isinstance(el, EnclosedFixture)
 
-    el = Model.load(root, ET.fromstring('<enclosed_fixture />'))
+    el = Model.load(root, ET.fromstring('<EnclosedFixture />'))
     assert isinstance(el, EnclosedFixture)
 
     with pytest.raises(UnregisteredNamespaceException):
-        Model.load(root, ET.fromstring('<test:enclosed_fixture xmlns:test="http://jaymes.biz/derp" />'))
+        Model.load(root, ET.fromstring('<test:EnclosedFixture xmlns:test="http://jaymes.biz/derp" />'))
     with pytest.raises(UnregisteredNamespaceException):
-        Model.load(None, ET.fromstring('<enclosed_fixture />'))
+        Model.load(None, ET.fromstring('<EnclosedFixture />'))
     with pytest.raises(TagMappingException):
         Model.load(root, ET.fromstring('<Derp />'))
 
@@ -497,7 +497,7 @@ def test_references():
 
 def test_tag_name():
     root = RootFixture()
-    assert root.tag_name == 'root_fixture'
+    assert root.tag_name == 'RootFixture'
 
 def test_xmlns():
     root = RootFixture()
@@ -507,9 +507,9 @@ def test_xmlns():
 
 def test_to_xml_root_enclosed():
     el = RootFixture()
-    el.enclosed_fixture = EnclosedFixture()
+    el.EnclosedFixture = EnclosedFixture()
     assert ET.tostring(el.to_xml()) == \
-        b'<test:root_fixture xmlns:test="http://jaymes.biz/test"><test:enclosed_fixture /></test:root_fixture>'
+        b'<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnclosedFixture /></test:RootFixture>'
 
 def test_to_xml_required_attribute():
     el = RequiredAttributeFixture()
