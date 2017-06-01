@@ -16,6 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -40,4 +41,4 @@ class Simple(Model):
                 sub_el = ET.parse(r).getroot()
                 self._parse_element(sub_el)
         except:
-            logger.warning('Could not retrieve link ' + self.href + ' for ' + str(self))
+            logger.warning('Could not retrieve link ' + self.href + ' for ' + str(self) + ': ' + str(sys.exc_info()[1]))
