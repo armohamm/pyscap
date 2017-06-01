@@ -21,9 +21,15 @@ import xml.etree.ElementTree as ET
 import types
 import sys
 
-from scap.Model import Model, UnregisteredNamespaceException, \
-    TagMappingException, RequiredAttributeException, MinimumElementException, \
-    MaximumElementException, ReferenceException
+from scap.Model import Model, \
+    ModelList, \
+    ModelDict, \
+    UnregisteredNamespaceException, \
+    TagMappingException, \
+    RequiredAttributeException, \
+    MinimumElementException, \
+    MaximumElementException, \
+    ReferenceException
 
 from fixtures.test.RootFixture import RootFixture
 from fixtures.test.EnclosedFixture import EnclosedFixture
@@ -97,16 +103,16 @@ def test_load_root_model():
 
 def test_load_enclosed_model():
     root = RootFixture()
-    el = Model.load(root, ET.fromstring('<test:EnclosedFixture xmlns:test="http://jaymes.biz/test" />'))
+    el = Model.load(root, ET.fromstring('<test:enclosed_fixture xmlns:test="http://jaymes.biz/test" />'))
     assert isinstance(el, EnclosedFixture)
 
-    el = Model.load(root, ET.fromstring('<EnclosedFixture />'))
+    el = Model.load(root, ET.fromstring('<enclosed_fixture />'))
     assert isinstance(el, EnclosedFixture)
 
     with pytest.raises(UnregisteredNamespaceException):
-        Model.load(root, ET.fromstring('<test:EnclosedFixture xmlns:test="http://jaymes.biz/derp" />'))
+        Model.load(root, ET.fromstring('<test:enclosed_fixture xmlns:test="http://jaymes.biz/derp" />'))
     with pytest.raises(UnregisteredNamespaceException):
-        Model.load(None, ET.fromstring('<EnclosedFixture />'))
+        Model.load(None, ET.fromstring('<enclosed_fixture />'))
     with pytest.raises(TagMappingException):
         Model.load(root, ET.fromstring('<Derp />'))
 
@@ -156,14 +162,14 @@ def test_load_element_min():
     assert isinstance(el, MinMaxElementFixture)
 
     assert hasattr(el, 'min')
-    assert isinstance(el.min, list)
+    assert isinstance(el.min, ModelList)
     assert len(el.min) == 3
     assert el.min[0].text == 'test1'
     assert el.min[1].text == 'test2'
     assert el.min[2].text == 'test3'
 
     assert hasattr(el, 'max')
-    assert isinstance(el.max, list)
+    assert isinstance(el.max, ModelList)
     assert len(el.max) == 2
     assert el.max[0].text == 'test4'
     assert el.max[1].text == 'test5'
@@ -198,7 +204,7 @@ def test_load_element_wildcard_not_in():
         '''))
     assert isinstance(el, WildcardElementNotInFixture)
     assert hasattr(el, '_elements')
-    assert isinstance(el._elements, list)
+    assert isinstance(el._elements, ModelList)
     assert len(el._elements) == 2
     assert isinstance(el._elements[0], EnclosedFixture)
     assert isinstance(el._elements[1], EnclosedFixture2)
@@ -216,11 +222,11 @@ def test_load_element_wildcard_in():
     assert isinstance(el, WildcardElementInFixture)
 
     assert hasattr(el, 'test_elements')
-    assert isinstance(el.test_elements, list)
+    assert isinstance(el.test_elements, ModelList)
     assert len(el.test_elements) == 1
 
     assert hasattr(el, 'elements')
-    assert isinstance(el.elements, list)
+    assert isinstance(el.elements, ModelList)
     assert len(el.elements) == 1
 
     assert isinstance(el.test_elements[0], EnclosedFixture)
@@ -240,7 +246,7 @@ def test_load_element_append_nil():
     assert isinstance(el, AppendElementFixture)
 
     assert hasattr(el, 'append_nil')
-    assert isinstance(el.append_nil, list)
+    assert isinstance(el.append_nil, ModelList)
     assert len(el.append_nil) == 2
 
     assert el.append_nil[0] is None
@@ -259,7 +265,7 @@ def test_load_element_append_type():
     assert isinstance(el, AppendElementFixture)
 
     assert hasattr(el, 'append_type')
-    assert isinstance(el.append_type, list)
+    assert isinstance(el.append_type, ModelList)
     assert len(el.append_type) == 2
 
     assert isinstance(el.append_type[0], float)
@@ -279,7 +285,7 @@ def test_load_element_append_class():
     assert isinstance(el, AppendElementFixture)
 
     assert hasattr(el, 'append_class')
-    assert isinstance(el.append_class, list)
+    assert isinstance(el.append_class, ModelList)
     assert len(el.append_class) == 2
 
     assert isinstance(el.append_class[0], EnclosedFixture)
@@ -434,11 +440,11 @@ def test_initialization():
     assert init.default_attr == 'Default'
 
     assert hasattr(init, 'list_')
-    assert isinstance(init.list_, list)
+    assert isinstance(init.list_, ModelList)
     assert len(init.list_) == 0
 
     assert hasattr(init, 'dict_')
-    assert isinstance(init.dict_, dict)
+    assert isinstance(init.dict_, ModelDict)
     assert len(init.dict_.keys()) == 0
 
     assert not hasattr(init, 'in_test')
@@ -449,11 +455,11 @@ def test_initialization():
     assert init.dash_test is None
 
     assert hasattr(init, 'test2_elements')
-    assert isinstance(init.test2_elements, list)
+    assert isinstance(init.test2_elements, ModelList)
     assert len(init.test2_elements) == 0
 
     assert hasattr(init, '_elements')
-    assert isinstance(init._elements, list)
+    assert isinstance(init._elements, ModelList)
     assert len(init._elements) == 0
 
 def test_get_package():
@@ -482,25 +488,20 @@ def test_str_name():
 def test_references():
     root = RootFixture()
     enc = EnclosedFixture()
-    enc.parent = root
+    enc._parent = root
     enc.id = 'reftest1'
     assert root.find_reference('reftest1') == enc
 
     with pytest.raises(ReferenceException):
         root.find_reference('test1')
 
-def test_get_tag_name_implicit():
+def test_tag_name():
     root = RootFixture()
-    assert root.get_tag_name() == 'RootFixture'
+    assert root.tag_name == 'root_fixture'
 
-def test_get_tag_name_explicit():
+def test_xmlns():
     root = RootFixture()
-    root.tag_name = 'test'
-    assert root.get_tag_name() == 'test'
-
-def test_get_xmlns():
-    root = RootFixture()
-    assert root.get_xmlns() == 'http://jaymes.biz/test'
+    assert root.xmlns == 'http://jaymes.biz/test'
 
 # NOTE: from_xml is tested via Model.load
 
@@ -508,7 +509,7 @@ def test_to_xml_root_enclosed():
     el = RootFixture()
     el.enclosed_fixture = EnclosedFixture()
     assert ET.tostring(el.to_xml()) == \
-        b'<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:enclosed_fixture /></test:RootFixture>'
+        b'<test:root_fixture xmlns:test="http://jaymes.biz/test"><test:enclosed_fixture /></test:root_fixture>'
 
 def test_to_xml_required_attribute():
     el = RequiredAttributeFixture()
