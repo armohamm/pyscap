@@ -28,7 +28,7 @@ class ProfileType(Model):
             {'tag_name': 'dc-status', 'class': 'DCStatusType', 'list': 'dc_statuses', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
             {'tag_name': 'title', 'class': 'TextWithSubType', 'list': 'titles', 'min': 1, 'max': None},
-            {'tag_name': 'description', 'class': 'HTMLTextWithSubType', 'list': 'descriptions', 'min': 0, 'max': None},
+            {'tag_name': 'description', 'class': 'HtmlTextWithSubType', 'list': 'descriptions', 'min': 0, 'max': None},
             {'tag_name': 'reference', 'class': 'ReferenceType', 'list': 'references', 'min': 0, 'max': None},
             {'tag_name': 'platform', 'class': 'OverrideableCPE2IDRefType', 'list': 'platforms', 'min': 0, 'max': None},
             {'tag_name': 'select', 'class': 'ProfileSelectType', 'dict': 'selects', 'key': 'idref', 'min': 0, 'max': None},

@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xccdf_1_2 import *
-from scap.model.xccdf_1_2.HTMLTextWithSubType import HTMLTextWithSubType
+from scap.model.xccdf_1_2.HtmlTextWithSubType import HtmlTextWithSubType
 
 logger = logging.getLogger(__name__)
-class FixtextType(HTMLTextWithSubType):
+class FixtextType(HtmlTextWithSubType):
     MODEL_MAP = {
         'attributes': {
             'fixref': {'type': 'NCName'},

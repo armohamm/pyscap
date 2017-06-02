@@ -27,7 +27,7 @@ class BenchmarkType(Model):
             {'tag_name': 'status', 'list': 'statuses', 'class': 'StatusType', 'min': 1, 'max': None},
             {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': 'dc-status', 'list': 'dc_statuses', 'class': 'DCStatusType', 'min': 0, 'max': None},
             {'tag_name': 'title', 'list': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
-            {'tag_name': 'description', 'list': 'descriptions', 'class': 'HTMLTextWithSubType', 'min': 0, 'max': None},
+            {'tag_name': 'description', 'list': 'descriptions', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
             {'tag_name': 'notice', 'dict': 'notices', 'class': 'NoticeType', 'min': 0, 'max': None},
             {'tag_name': 'front-matter', 'list': 'front_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
             {'tag_name': 'rear-matter', 'list': 'rear_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},

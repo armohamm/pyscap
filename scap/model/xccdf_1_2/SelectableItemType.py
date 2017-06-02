@@ -28,7 +28,7 @@ class SelectableItemType(ItemType):
             'weight': {'type': 'Weight', 'default': 1.0},
         },
         'elements': [
-            {'tag_name': 'rationale', 'list': 'rationales', 'min': 0, 'max': None, 'class': 'HTMLTextWithSubType'},
+            {'tag_name': 'rationale', 'list': 'rationales', 'min': 0, 'max': None, 'class': 'HtmlTextWithSubType'},
             {'tag_name': 'platform', 'list': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableCPE2IDRefType'},
             {'tag_name': 'requires', 'list': 'requires', 'min': 0, 'max': None, 'class': 'IDRefListType'},
             {'tag_name': 'conflicts', 'list': 'conflicts', 'min': 0, 'max': None, 'class': 'IDRefType'},
