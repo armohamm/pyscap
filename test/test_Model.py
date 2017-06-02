@@ -507,7 +507,7 @@ def test_xmlns():
 
 def test_to_xml_root_enclosed():
     el = RootFixture()
-    el.EnclosedFixture = EnclosedFixture()
+    el.EnclosedFixture = EnclosedFixture(tag_name='EnclosedFixture')
     assert ET.tostring(el.to_xml()) == \
         b'<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnclosedFixture /></test:RootFixture>'
 
@@ -686,3 +686,27 @@ def test_to_xml_map_value_class():
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'<test:map_value_class id="test1" tag="blue">text1</test:map_value_class>' in xml
     assert b'<test:map_value_class id="test2" tag="red">text2</test:map_value_class>' in xml
+
+def test_in_and_out():
+    test_xml = b'<test:InitFixture xmlns:test="http://jaymes.biz/test" xmlns:test2="http://jaymes.biz/test2">' + \
+        b'<test:list id="test1" />' + \
+        b'<test:list id="test2" />' + \
+        b'<test:list id="test3" />' + \
+        b'<test:dict id="test4" />' + \
+        b'<test:dict id="test5" />' + \
+        b'<test:dict id="test6" />' + \
+        b'<test:dict id="test7" />' + \
+        b'<test:dict id="test8" />' + \
+        b'<test:in_test id="test9" />' + \
+        b'<test:dash-test id="test10" />' + \
+        b'<test2:wildcard_element id="test11" />' + \
+        b'<test:wildcard_element id="test12" />' + \
+        b'<test:dict id="test13" />' + \
+        b'<test:list id="test14" />' + \
+        b'</test:InitFixture>'
+    model = Model.load(None, ET.fromstring(test_xml))
+
+    out_xml = ET.tostring(model.to_xml())
+    print(test_xml)
+    print(out_xml)
+    assert out_xml == test_xml

@@ -27,11 +27,11 @@ class InitFixture(Model):
             'default_attr': {'default': 'Default'},
         },
         'elements': [
-            {'tag_name': 'list',    'list': 'list_'},
-            {'tag_name': 'dict',    'dict': 'dict_'},
-            {'tag_name': 'in_test', 'in': 'test_in'},
-            {'tag_name': 'dash-test'},
-            {'tag_name': '{http://jaymes.biz/test2}*', 'in': 'test2_elements'},
+            {'tag_name': 'list',    'list': 'list_', 'class': 'EnclosedFixture'},
+            {'tag_name': 'dict',    'dict': 'dict_', 'class': 'EnclosedFixture'},
+            {'tag_name': 'in_test', 'in': 'test_in', 'class': 'EnclosedFixture'},
+            {'tag_name': 'dash-test', 'class': 'EnclosedFixture'},
+            {'xmlns': 'http://jaymes.biz/test2', 'tag_name': '*', 'in': 'test2_elements'},
             {'tag_name': '*'},
         ]
     }
