@@ -17,17 +17,13 @@
 
 import logging
 
-from scap.model.oval_common_5 import *
-from scap.Model import Model
+from scap.model.oval_5 import *
+from scap.model.oval_5.SchemaVersionPattern import SchemaVersionPattern
 
 logger = logging.getLogger(__name__)
-class GeneratorType(Model):
+class SchemaVersionType(SchemaVersionPattern):
     MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'product_name', 'type': 'String', 'min': 0, 'max': 1},
-            {'tag_name': 'product_version', 'type': 'String', 'min': 0, 'max': 1},
-            {'tag_name': 'schema_version', 'list': 'versions', 'class': 'SchemaVersionType', 'max': None},
-            {'tag_name': 'timestamp', 'type': 'DateTime'},
-            {'tag_name': '*', 'max': None},
-        ],
+        'attributes': {
+            'platform': {'type': 'AnyURI'},
+        }
     }

@@ -18,7 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_common_5 import *
+from scap.model.oval_5 import *
 from scap.model.oval_def_5 import *
 
 logger = logging.getLogger(__name__)
@@ -26,8 +26,8 @@ class CriterionType(Model):
     MODEL_MAP = {
         'attributes': {
             'applicability_check': {'type': 'Boolean'},
-            'test_ref': {'type': 'scap.model.oval_common_5.TestIdPattern', 'required': True},
+            'test_ref': {'type': 'scap.model.oval_5.TestIdPattern', 'required': True},
             'negate': {'type': 'Boolean', 'default': False},
-            'comment': {'type': 'scap.model.oval_common_5.NonEmptyString'},
+            'comment': {'type': 'scap.model.oval_5.NonEmptyString'},
         }
     }

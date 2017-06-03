@@ -18,7 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_common_5 import *
+from scap.model.oval_5 import *
 from scap.model.oval_def_5 import *
 
 logger = logging.getLogger(__name__)
@@ -28,7 +28,7 @@ class SetElement(Model):
         'elements': [
             # TODO: either set element or object_reference (+ optional filter)
             {'tag_name': 'set', 'class': 'SetElement', 'min': 0, 'max': 2},
-            {'tag_name': 'object_reference', 'list': 'object_references', 'type': 'scap.model.oval_common_5.ObjectIdPattern', 'min': 0, 'max': 2},
+            {'tag_name': 'object_reference', 'list': 'object_references', 'type': 'scap.model.oval_5.ObjectIdPattern', 'min': 0, 'max': 2},
             {'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
         'attributes': {

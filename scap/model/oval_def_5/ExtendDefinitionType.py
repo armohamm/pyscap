@@ -18,7 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_common_5 import *
+from scap.model.oval_5 import *
 from scap.model.oval_def_5 import *
 
 logger = logging.getLogger(__name__)
@@ -26,8 +26,8 @@ class ExtendDefinitionType(Model):
     MODEL_MAP = {
         'attributes': {
             'applicability_check': {'type': 'Boolean'},
-            'definition_ref': {'type': 'scap.model.oval_common_5.DefinitionIdPattern', 'required': True},
+            'definition_ref': {'type': 'scap.model.oval_5.DefinitionIdPattern', 'required': True},
             'negate': {'type': 'Boolean', 'default': False},
-            'comment': {'type': 'scap.model.oval_common_5.NonEmptyString'},
+            'comment': {'type': 'scap.model.oval_5.NonEmptyString'},
         }
     }

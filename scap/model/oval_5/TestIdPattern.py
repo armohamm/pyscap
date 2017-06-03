@@ -17,11 +17,12 @@
 
 import logging
 
-from scap.model.oval_common_5 import *
-from scap.model.oval_common_5.NotesType import NotesType
+from scap.model.oval_5 import *
+from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
-class NotesElement(NotesType):
-    MODEL_MAP = {
-        'tag_name' : 'notes'
-    }
+
+class TestIdPattern(String):
+    # <xsd:pattern value="oval:[A-Za-z0-9_\-\.]+:tst:[1-9][0-9]*"/>
+    def get_value_pattern(self):
+        return r'oval:[A-Za-z0-9_\-\.]+:tst:[1-9][0-9]*'

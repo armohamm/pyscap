@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.oval_common_5 import *
-from scap.model.oval_common_5.DeprecatedInfoType import DeprecatedInfoType
+from scap.model.oval_5 import *
+from scap.model.oval_5.NotesType import NotesType
 
 logger = logging.getLogger(__name__)
-class DeprecatedInfoElement(DeprecatedInfoType):
+class NotesElement(NotesType):
     MODEL_MAP = {
-        'tag_name' : 'deprecated_info'
+        'tag_name' : 'notes'
     }

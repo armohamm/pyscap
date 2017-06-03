@@ -18,7 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_common_5 import *
+from scap.model.oval_5 import *
 from scap.model.oval_def_5 import *
 
 logger = logging.getLogger(__name__)
@@ -29,7 +29,7 @@ class EntityComplexBaseType(Model):
             'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
             'operation': {'enum': OPERATION_ENUMERATION, 'default': 'equals'},
             'mask': {'type': 'Boolean', 'default': False},
-            'var_ref': {'type': 'scap.model.oval_common_5.VariableIdPattern'},
+            'var_ref': {'type': 'scap.model.oval_5.VariableIdPattern'},
             'var_check': {'enum': CHECK_ENUMERATION},
         }
     }

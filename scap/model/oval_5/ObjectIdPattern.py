@@ -17,13 +17,11 @@
 
 import logging
 
-from scap.model.oval_common_5 import *
-from scap.model.xs.NCName import NCName
+from scap.model.oval_5 import *
+from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
-class ElementMapItemType(NCName):
-    MODEL_MAP = {
-        'attributes': {
-            'target_namespace': {'type': 'AnyURI'},
-        }
-    }
+class ObjectIdPattern(String):
+    #<xsd:pattern value="oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*"/>
+    def get_value_pattern(self):
+        return r'oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*'

@@ -18,13 +18,13 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_common_5 import *
+from scap.model.oval_5 import *
 from scap.model.oval_def_5 import *
 
 logger = logging.getLogger(__name__)
 class StateRefType(Model):
     MODEL_MAP = {
         'attributes': {
-            'state_ref': {'type': 'scap.model.oval_common_5.StateIdPattern', 'required': True},
+            'state_ref': {'type': 'scap.model.oval_5.StateIdPattern', 'required': True},
         }
     }

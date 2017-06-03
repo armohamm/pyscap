@@ -18,15 +18,15 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_common_5 import *
+from scap.model.oval_5 import *
 from scap.model.oval_def_5 import *
 
 logger = logging.getLogger(__name__)
 class ObjectComponentType(Model):
     MODEL_MAP = {
         'attributes': {
-            'object_ref': {'type': 'scap.model.oval_common_5.ObjectIdPattern', 'required': True},
-            'item_field': {'type': 'scap.model.oval_common_5.NonEmptyString', 'required': True},
-            'record_field': {'type': 'scap.model.oval_common_5.NonEmptyString'},
+            'object_ref': {'type': 'scap.model.oval_5.ObjectIdPattern', 'required': True},
+            'item_field': {'type': 'scap.model.oval_5.NonEmptyString', 'required': True},
+            'record_field': {'type': 'scap.model.oval_5.NonEmptyString'},
         },
     }

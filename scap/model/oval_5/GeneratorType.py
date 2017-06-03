@@ -15,22 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import importlib
 import logging
-import pytest
-import pkgutil
 
+from scap.model.oval_5 import *
 from scap.Model import Model
 
-# import all the classes in the package
-import scap.model.xccdf_1_2 as pkg
-for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
-    try:
-        mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
-        globals()[m_name] = getattr(mod, m_name)
-    except AttributeError:
-        pass
-
-Model.register_namespace('scap.model.xccdf_1_2', 'http://checklists.nist.gov/xccdf/1.2')
-
-logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+class GeneratorType(Model):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'product_name', 'type': 'String', 'min': 0, 'max': 1},
+            {'tag_name': 'product_version', 'type': 'String', 'min': 0, 'max': 1},
+            {'tag_name': 'schema_version', 'list': 'versions', 'class': 'SchemaVersionType', 'max': None},
+            {'tag_name': 'timestamp', 'type': 'DateTime'},
+            {'tag_name': '*', 'max': None},
+        ],
+    }

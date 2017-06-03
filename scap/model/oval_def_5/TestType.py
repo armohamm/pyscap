@@ -18,7 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_common_5 import *
+from scap.model.oval_5 import *
 from scap.model.oval_def_5 import *
 
 logger = logging.getLogger(__name__)
@@ -30,12 +30,12 @@ class TestType(Model):
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'id': {'type': 'scap.model.oval_common_5.OvalTestIDPattern', 'required': True},
+            'id': {'type': 'scap.model.oval_5.OvalTestIDPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},
             'check_existence': {'enum': EXISTENCE_ENUMERATION, 'default': 'at_least_one_exists'},
             'check': {'enum': CHECK_ENUMERATION, 'required': True},
             'state_operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
-            'comment': {'type': 'scap.model.oval_common_5.NonEmptyString', 'required': True},
+            'comment': {'type': 'scap.model.oval_5.NonEmptyString', 'required': True},
             'deprecated': {'type': 'Boolean', 'default': False},
         },
     }

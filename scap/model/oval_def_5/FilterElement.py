@@ -17,9 +17,9 @@
 
 import logging
 
-from scap.model.oval_common_5 import *
+from scap.model.oval_5 import *
 from scap.model.oval_def_5 import *
-from scap.model.oval_common_5.StateIdPattern import StateIdPattern
+from scap.model.oval_5.StateIdPattern import StateIdPattern
 
 logger = logging.getLogger(__name__)
 class FilterElement(StateIdPattern):

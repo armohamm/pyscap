@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.oval_common_5 import *
+from scap.model.oval_5 import *
 from scap.model.oval_def_5 import *
 from scap.model.oval_def_5_independent import *
 from scap.model.oval_def_5_independent.TestType import TestType

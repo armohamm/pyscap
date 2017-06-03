@@ -17,13 +17,11 @@
 
 import logging
 
-from scap.model.oval_common_5 import *
-from scap.model.oval_common_5.SchemaVersionPattern import SchemaVersionPattern
+from scap.model.oval_5 import *
+from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
-class SchemaVersionType(SchemaVersionPattern):
-    MODEL_MAP = {
-        'attributes': {
-            'platform': {'type': 'AnyURI'},
-        }
-    }
+class StateIdPattern(String):
+    #<xsd:pattern value="oval:[A-Za-z0-9_\-\.]+:ste:[1-9][0-9]*"/>
+    def get_value_pattern(self):
+        return r'oval:[A-Za-z0-9_\-\.]+:ste:[1-9][0-9]*'

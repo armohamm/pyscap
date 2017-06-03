@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.oval_common_5 import *
+from scap.model.oval_5 import *
 from scap.model.oval_def_5 import *
 from scap.model.xs.AnySimpleType import AnySimpleType
 
@@ -29,7 +29,7 @@ class EntitySimpleBaseType(AnySimpleType):
             'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
             'operation': {'enum': OPERATION_ENUMERATION, 'default': 'equals'},
             'mask': {'type': 'Boolean', 'default': False},
-            'var_ref': {'type': 'scap.model.oval_common_5.VariableIdPattern'},
+            'var_ref': {'type': 'scap.model.oval_5.VariableIdPattern'},
             'var_check': {'enum': CHECK_ENUMERATION},
             'entity_check': {'enum': CHECK_ENUMERATION, 'default': 'all'},
         }

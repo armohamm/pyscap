@@ -17,10 +17,13 @@
 
 import logging
 
-from scap.model.oval_common_5 import *
-from scap.model.xs.String import String
+from scap.model.oval_5 import *
+from scap.model.xs.NCName import NCName
 
 logger = logging.getLogger(__name__)
-class NonEmptyString(String):
-    def __init__(self):
-        super(NonEmptyString, self).__init__()
+class ElementMapItemType(NCName):
+    MODEL_MAP = {
+        'attributes': {
+            'target_namespace': {'type': 'AnyURI'},
+        }
+    }

@@ -17,13 +17,9 @@
 
 import logging
 
-from scap.model.oval_common_5 import *
-from scap.Model import Model
+from scap.model.oval_5 import *
+from scap.model.xs.String import String
 
 logger = logging.getLogger(__name__)
-class NotesType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'note', 'list': 'notes', 'type': 'String', 'min': 0, 'max': None},
-        ],
-    }
+class EmptyStringType(String):
+    pass
