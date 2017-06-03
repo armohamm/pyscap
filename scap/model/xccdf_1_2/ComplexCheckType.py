@@ -33,3 +33,34 @@ class ComplexCheckType(Model):
             {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': None, 'list': 'checks'},
         ],
     }
+
+    def check(self, benchmark, host):
+        if len(self.checks) < 1:
+            raise ValueError('No sub-checks with complex-check')
+
+        check_results = []
+        for check in self.checks:
+            check_results += check.check(benchmark, host)
+
+        # apply the operator
+        if self.operator == 'AND':
+            result = AND([x['result'] for x in check_results])
+        elif self.operator == 'OR':
+            result = OR([x['result'] for x in check_results])
+        else:
+            raise ValueError('Unknown check operator: ' + self.operator)
+
+        if self.negate:
+            result = negate(result)
+
+        return {
+            'result': result,
+            'messages': [
+                MessageType(
+                    tag_name='message',
+                    value='Complex check result',
+                    severity='info'
+                ),
+            ],
+            'imports': {}
+        }

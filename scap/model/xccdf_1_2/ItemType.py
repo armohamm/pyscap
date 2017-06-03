@@ -44,3 +44,23 @@ class ItemType(Model):
             {'tag_name': 'metadata', 'list': 'metadata', 'min': 0, 'max': None, 'class': 'MetadataType'},
         ],
     }
+
+    def __str__(self):
+        return self.__class__.__name__ + ' # ' + self.id
+
+    def get_extended(self, benchmark):
+        try:
+            extended = benchmark.item[self.extends]
+        except AttributeError:
+            # If any Item’s extends property identifier does not match the
+            # identifier of a visible Item of the same type, then Loading fails.
+            raise ValueError('Item ' + self.id + ' unable to extend unknown item id: ' + self.extends)
+
+        if self.hidden:
+            raise ValueError('Item ' + self.id + ' unable to extend hidden item id: ' + self.extends)
+
+        return extended
+
+    def process(self, host, benchmark, profile):
+        import inspect
+        raise NotImplementedError(inspect.stack()[0][3] + '() has not been implemented in subclass: ' + self.__class__.__name__)

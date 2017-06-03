@@ -37,3 +37,27 @@ class FixType(Model):
             {'tag_name': 'instance', 'list': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
         ],
     }
+
+    def __str__(self):
+        s = 'FixType '
+        if self.system is not None:
+            s += self.system + ':'
+
+        if self.id is not None:
+            s += self.id + ':'
+
+        if self.platform is not None:
+            s += ' on ' + self.platform
+        return s
+
+    def fix(self, benchmark, host):
+        # TODO check platform applies
+
+        if self.system not in FIX_SYSTEM_ENUMERATION:
+            return False
+
+        # TODO confirm, if reboot needed
+
+        # TODO strategy?
+
+        raise NotImplementedError('fixing is not yet implemented')

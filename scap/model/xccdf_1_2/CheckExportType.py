@@ -28,3 +28,14 @@ class CheckExportType(Model):
             'export-name': {'type': 'String', 'required': True},
         },
     }
+
+    def map(self, benchmark):
+        # go through benchmark till we find value referenced by
+        # check_export.value_id
+        v = benchmark.find_reference(self.value_id)
+        if v is None:
+            raise ValueError('Could not find Value ' + self.value_id)
+
+        # we assume value has been resolved
+
+        return {self.export_name: v.value}

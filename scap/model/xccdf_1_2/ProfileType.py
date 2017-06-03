@@ -48,3 +48,35 @@ class ProfileType(Model):
             'Id': {'type': 'ID'},
         },
     }
+
+    def __str__(self):
+        return self.__class__.__name__ + ' # ' + self.id
+
+    def get_extended(self, benchmark):
+        try:
+            extended = benchmark.profile[self.extends]
+        except AttributeError:
+            # If any Profile’s extends property identifier does not match the
+            # identifier of another Profile in the Benchmark, then Loading
+            # fails.
+            raise ValueError('Profile ' + self.id + ' unable to extend unknown profile id: ' + self.extends)
+
+        return extended
+
+    def apply(self, host, benchmark):
+        ### Benchmark.Profile
+
+        # TODO check that if this group has a platform identified, that the
+        # target system matches
+
+        # If a Profile id was specified, then apply the settings in the Profile
+        # to the Items of the Benchmark
+        for setting_idref in self.settings:
+            setting = self.settings[setting_idref]
+            logger.debug('Looking for ' + setting_idref + ' in ' + str(benchmark))
+            item = benchmark.find_reference(setting_idref)
+            if item is None:
+                raise ValueError('Unable to find idref ' + setting_idref + ' in ' + str(self) + ' setting application')
+
+            logger.debug(str(self) + ' applying ' + setting.__class__.__name__ + ' to ' + str(item))
+            setting.apply(item)

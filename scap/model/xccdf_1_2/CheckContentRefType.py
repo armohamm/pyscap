@@ -28,3 +28,15 @@ class CheckContentRefType(Model):
             'name': {'type': 'String'},
         },
     }
+
+    def check(self, benchmark, host, exports, import_names):
+        content = Model.find_content(self.href)
+        if content is None:
+            raise ReferenceException(self.href + ' was not loaded')
+
+        # find the named content
+        if self.name is not None:
+            content = content.find_reference(self.name)
+
+        # apply content
+        return content.check(host, exports, import_names)

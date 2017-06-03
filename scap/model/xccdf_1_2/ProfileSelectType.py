@@ -31,3 +31,11 @@ class ProfileSelectType(Model):
             {'tag_name': 'remark', 'class': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
         ],
     }
+
+    def apply(self, item):
+        if self.selected:
+            logger.debug('Selecting item ' + str(item))
+            item.selected = True
+        else:
+            logger.debug('Unselecting item ' + str(item))
+            item.selected = False

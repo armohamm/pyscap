@@ -27,3 +27,13 @@ class CheckContentType(Model):
             {'tag_name': '*', 'min': 0, 'max': None}
         ],
     }
+
+    def check(self, benchmark, host, exports, import_names):
+        # TODO apply content
+        return {'result': 'error', 'messages': [
+            MessageType(
+                tag_name='message',
+                value='CheckContentType.check not implemented',
+                severity='error')
+            ]
+        }
