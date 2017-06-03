@@ -1,0 +1,14 @@
+New in Version 5.10.1
+Version 5.10.1 of the Official OVAL Schema is a direct result of feedback from the OVAL Community. This will be an update version change and may require some new development by tools that support earlier versions of the Language. The changes pending to the different schemas are outlined below. "Open" status means the item is under consideration or being worked upon and "Closed" status means that the item has been incorporated and work on it is completed. For full details on a particular item please expand the item by clicking the + icon in the left column.
+
+Tracker items in this version include:
+
+ID	Title	Status	Date Opened	Resolution
+32340	owrite and oexec entity documentation in the macos-def:diskutil_test is incorrect	Closed	2011-10-18	Fixed
+32517	fix win-sc:EntityItemWindowsViewType documentation for the empty string	Closed	2011-11-09	Fixed
+32600	deprecate include_group behavior in win-def:sharedresourceeffectiverights_test and win-def:sharedresourceauditedpermissions_test	Closed	2011-11-23	Fixed
+32678	add the missing extended_name entity to the linux-def:rpmverifypackage_state	Closed	2011-12-12	Fixed
+32680	fix the minOccurs attribute on the entities in the linux-def:rpmverifypackage_object and the linux-def:rpmverifyfile_object	Closed	2011-12-12	Fixed
+32681	update the schema_version entity in the oval:GeneratorType to align with the new three-component version identifier	Closed	2011-12-12	Fixed
+32826	update the foreign_port documentation in the linux-def:inetlisteningservers_test	Closed	2012-01-12	Fixed
+32862	update the version element in the oval:DeprecatedInfoType to align with the three-component version identifier	Closed	2012-01-18	Fixed

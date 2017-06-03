@@ -1,0 +1,57 @@
+New in Version 5.7
+Version 5.7 of the Official OVAL Schema is a direct result of feedback from the OVAL Community. This will be a minor version change and may require some new development by tools that support earlier versions of the Language. The changes pending to the different schemas are outlined below. "Open" status means the item is under consideration or being worked upon, "Closed" status means that the item has been incorporated and work on it is completed, and "Suspended" status means that the item will not be included in this version but may be included in a future version.
+
+Items addressed in this version include:
+
+ID	Title	Status	Date Opened	Resolution
+24544	clarify how the oval-def:escape_regex function works	Closed	2010-01-08	Duplicate
+24570	prepend source identifiers to Schematron pattern ids.	Closed	2010-01-11	Fixed
+24683	var_refs should have a var_check - but it's not required. Change the schematron rule to be a report rather than an assert	Closed	2010-01-21	Fixed
+23826	Change maxOccurs for several xinetd_item entities	Closed	2009-10-14	Fixed
+23828	Add two more values to EntityXinetdTypeStatusType enumeration	Closed	2009-10-14	Fixed
+13725	support statements that return multiple n-tuples in sql, wmi, ldap, and activedirectory tests	Closed	2007-11-27	Fixed
+23663	allow empty values in variables	Closed	2009-09-28	Fixed
+23664	ensure that error handling is not allowing silent failures - substring function documentation and more	Closed	2009-09-28	Fixed
+23695	require family to be unique when multiple affected elements are used in a single definition	Closed	2009-10-01	Fixed
+23994	remove affected_platform Schematron rule from windows definitions schema	Closed	2009-10-31	Fixed
+24106	add test to examine dns cache on windows and unix platforms	Closed	2009-11-10	Fixed
+24327	correct variable id regular expression in independent-system-characteristics-schema	Closed	2009-12-13	Fixed
+24732	align file related behaviors across all schemas	Closed	2010-01-27	Fixed
+24733	deprecate the values 'files', 'files and directories', and 'none' in the sccs_object	Closed	2010-01-27	Fixed
+24868	remove ind-def:filemd5_test, ind-def:filemd5_object, ind-def:filemd5_sate, and ind-sc:filemd5_item	Closed	2010-02-10	Fixed
+24869	remove apache-def:version_test, apache-def:version_object, apache-def:version_state, and apache-sc:version_item	Closed	2010-02-10	Fixed
+25419	add Schematron rules to enforce tests are referencing the correct objects and states	Closed	2010-03-22	Fixed
+25575	remove default element value from sp-def:spantivirussettings_state entities	Closed	2010-03-31	Fixed
+25674	document the handling of datatype aration when a var_ref is used and the datatype is recordnd ope	Closed	2010-04-09	Fixed
+25675	allow field references on the object_component	Closed	2010-04-09	Fixed
+20064	win-def:port_object local_port schematron rule is requiring string when it should be an int	Closed	2009-06-08	Fixed
+23669	Clarify the win-def:registry_object/win-def:name documentation	Closed	2009-09-29	Fixed
+23913	specify how a substring_start value greater than the length of the string should be handled in the oval-def:SubstringFunctionType	Closed	2009-10-21	Fixed
+23914	clarify the oval-def:EscapeRegexFunctionType documentation	Closed	2009-10-21	Fixed
+24136	add a schematron rule to check for behaviors being used with the filepath entity	Closed	2009-11-17	Fixed
+24219	update the oval-sc:ObjectType documentation regarding when no items are found for an object	Closed	2009-11-30	Fixed
+24220	update the oval-sc:ObjectType documentation regarding when no items are found for an object and behaviors are used	Closed	2009-11-30	Fixed
+24535	refer to the xsi:nil attribute in a consistent manner	Closed	2010-01-08	Fixed
+24536	clarify in the documentation that sets are a unique collection of elements	Closed	2010-01-08	Fixed
+24538	clarify the filepath entity documentation for file related tests on unix systems	Closed	2010-01-08	Fixed
+24540	clarify the ind-def:ldap_object, ind-def:ldap_state, and ind-sc:ldap_item suffix entity documentation	Closed	2010-01-08	Fixed
+24541	clarify the ind-def:ldap_object scope behavior documentation	Closed	2010-01-08	Fixed
+24542	deprecate the LDAPTYPE_TIMESTAMP and LDAPTYPE_EMAIL values in the ind-def:EntityStateLdaptypeType and ind-sc:EntityItemLdaptypeType enumerations	Closed	2010-01-08	Fixed
+24543	add the LDAPTYPE_BINARY value to the ind-def:EntityStateLdaptypeType and ind-sc:EntityItemLdaptypeType enumerations	Closed	2010-01-08	Fixed
+24545	clarify the documentation for the win-def:file_state/win-def:owner and win-sc:file_item/win-sc:owner entities	Closed	2010-01-08	Fixed
+24546	clarify the win-def:file_state/win-def:ms_checksum and win-sc:file_item/win-sc:ms_checksum entity documentation	Closed	2010-01-08	Fixed
+24547	improve the performance of the schematron rules	Closed	2010-01-08	Fixed
+24548	clarify documentation in the ResultEnumeration to explicitly state how errors should be assigned	Closed	2010-01-08	Fixed
+24687	add an attribute to the filter construct to control its behavior	Closed	2010-01-22	Fixed
+24688	clarify the search scope in the user and group tests	Closed	2010-01-22	Fixed
+24689	add subgroup entity to the win-sc:group_item	Closed	2010-01-22	Fixed
+24690	clarify the tested_item result attribute	Closed	2010-01-22	Fixed
+24786	add windows 7 audit settings to the auditeventpolicysubcategories_state and auditeventpolicysubcategories_item	Closed	2010-02-03	Fixed
+24788	Update the documentation for the user and group tests regarding resolving subgroups	Closed	2010-02-03	Fixed
+24812	document the audit event policy subcategories	Closed	2010-02-04	Fixed
+24813	remove platform specific documentation in the auditeventpolicysubcategories_item	Closed	2010-02-04	Fixed
+24957	add the 'has_extended_acl' entity to the unix-def:file_state and the unix-sc:file_item	Closed	2010-02-16	Fixed
+25294	add support for target_user and make username, userpass, and directory_node nillable in the macos-def:pwpolicy_test	Closed	2010-03-10	Fixed
+25309	update the uid entity documentation in the unix-def:process_state and unix-sc:process_item	Closed	2010-03-11	Fixed
+25574	clarify schema documentation regarding IP addresses	Closed	2010-03-31	Fixed
+24539	clarify which file types are applicable for each file-based test	Closed	2010-01-08	n/a

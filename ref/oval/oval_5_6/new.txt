@@ -1,0 +1,55 @@
+New in Version 5.6
+Version 5.6 of the Official OVAL Schema is a direct result of feedback from the OVAL Community. This will be a minor version change and may require some new development by tools that support earlier versions of the Language. The changes pending to the different schemas are outlined below. "Open" status means the item is under consideration or being worked upon, "Closed" status means that the item has been incorporated and work on it is completed, and "Suspended" status means that the item will not be included in this version but may be included in a future version.
+
+Items addressed in this version include:
+
+ID	Title	Status	Date Opened	Resolution
+12024	file_objects need to support splitting complete file filepath into file name and path	Closed	2007-06-07	Duplicate
+19800	clarify what var_check means when comparing multi-valued values	Closed	2009-05-20	Fixed
+4507	is there a way to allow the pattern match operation on enumerations	Closed	2005-01-20	Fixed
+10881	allow tests to reference multiple states	Closed	2007-02-19	Fixed
+11072	deprecate the SYNCHRONIZE standard access right from the registry tests	Closed	2007-03-10	Fixed
+12789	introduce a choice structure inside of objects	Closed	2007-08-14	Fixed
+18439	clarify the meaning of the datatype attribute related to variables	Closed	2008-12-31	Fixed
+18557	clarify certain file effective rights when dealing with a directory	Closed	2009-01-12	Fixed
+19648	review and add submitted Sharepoint component schema	Closed	2009-05-05	Fixed
+19737	add Schematron rule to prohibit @var_ref on the ind-def:variable_object/ind-def:var_ref element	Closed	2009-05-13	Fixed
+19879	correct evaluation chart for oval-sc:FlagEnumeration - wrong chart was copied into the documentation	Closed	2009-05-27	Fixed
+19916	change required regex library for the pattern match operation from POSIX to PCRE	Closed	2009-05-29	Fixed
+19970	clarify that the supported version of xpath is 1.0 on the ind-def:xmlfilecontent_object	Closed	2009-06-02	Fixed
+20096	correct the Schematron rules on the win-def:wuaupdatesearcher_test	Closed	2009-06-11	Fixed
+20169	clarify how substring capturing should work in the oval-def:RegexCaptureFunctionType	Closed	2009-06-18	Fixed
+20202	clarify documentation on all trustee_name / trustee_sid in the windows defintions schema	Closed	2009-06-22	Fixed
+20278	deprecate the resolve_group behavior on all tests except for the sid_sid_test and the sid_test	Closed	2009-06-30	Fixed
+20280	review and add submitted ind-def:ldap_test	Closed	2009-06-30	Fixed
+20291	review and add win-def:serviceeffectiverights_test to support checking the rights of services on windows	Closed	2009-06-30	Fixed
+20330	clarify that the max_depth and recurse_direction file behaviors apply to the path entity	Closed	2009-07-03	Fixed
+20372	clarify the include_group behavior in the windows definitions schema	Closed	2009-07-08	Fixed
+20373	clarify documentation for the ContentEnumeration in the oval-results-schema	Closed	2009-07-08	Fixed
+20464	value_of element in the ind-sc:xmlfilecontent_item should be unbounded	Closed	2009-07-14	Fixed
+20465	add type entity to the unix-def:interface_state and unix-sc:interface_item	Closed	2009-07-14	Fixed
+20927	add behavior to the win-def:wuaupdatesearcher_test to control inclusion/exclusion of superseded updates	Closed	2009-08-24	Fixed
+20928	add aix-def:interim_fix_test to allow testing of interim and emergency fixes	Closed	2009-08-24	Fixed
+21032	Add behaviors to the textfilecontent54_test to control multiline and case sensitivity matching	Closed	2009-09-01	Fixed
+20685	Modify the win-def:activedirectory_test and ind-def:ldap_test to support data collection for objects that do not have a relative distinguished name component	Closed	2009-07-30	Fixed
+17371	add in missing sid_sid_item to the win-sc schema	Closed	2008-10-01	n/a
+17372	add in missing text entity to the textfilecontent54_state	Closed	2008-10-01	n/a
+17604	clarify arithmetic function documentation related to components with multiple values	Closed	2008-10-22	n/a
+17868	clarify documentation surrounding the entity_check attribute	Closed	2008-11-11	n/a
+17883	change patch_number entity in the ESX patch_test from an int to a string	Closed	2008-11-14	n/a
+18419	clarify that the check attribute only works against matching items	Closed	2008-12-24	n/a
+19261	add schematron rules to verify that tests in UNIX schema only reference correct objects and states	Closed	2009-03-18	n/a
+19616	remove an extra end bracket in auditeventpolicy_state	Closed	2009-04-30	n/a
+19751	schematron rules in UNIX password_state refer to package_state	Closed	2009-05-14	n/a
+19753	add Schematron rule to verify that a var_ref is supplied whenever a var_check is present	Closed	2009-05-14	n/a
+16584	consider allowing a test to reference multiple states	Closed	2008-08-19	n/a
+17437	resolve_group behavior documentation needs to specify that the process is recursive	Closed	2008-10-06	n/a
+19181	add new deprecation policy data to all schema files	Closed	2009-03-11	n/a
+19649	review new patch test submitted for VMware ESX schema	Closed	2009-05-05	n/a
+19661	clarify documentation for the c_time and m_time elements of the unix-sc:file_item	Closed	2009-05-06	n/a
+19739	add keyref to ind-def:variable_object/ind-def:var_ref to ensure that the referenced variable is present	Closed	2009-05-13	n/a
+19523	add new values to the win-def:EntityStateSharedResourceTypeType definition	Closed	2009-04-21	n/a
+19765	deprecate the STYPE_SPECIAL and STYPE_TEMPORARY values in the EntityStateSharedResourceTypeType enumeration	Closed	2009-05-14	n/a
+20885	The Schematron rule enforcing the use of the pattern match operation on the ind-def:textfilecontent_object/ind-def:line entity should be restored	Closed	2009-08-20	n/a
+17255	add support for registry keys that contain both the path and the filename	Closed	2008-09-25	n/a
+

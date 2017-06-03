@@ -1,0 +1,74 @@
+New in Version 5.8
+Version 5.8 of the Official OVAL Schema is a direct result of feedback from the OVAL Community. This will be a minor version change and may require some new development by tools that support earlier versions of the Language. The changes pending to the different schemas are outlined below. "Open" status means the item is under consideration or being worked upon and "Closed" status means that the item has been incorporated and work on it is completed. For full deatils on a particular item please expand the item by clicking the + icon in the left column.
+
+Tracker items in this version include:
+
+ID	Title	Status	Date Opened	Resolution
+25945	add result directive to allow for lighter weight results with ability to track causal information	Closed	2010-05-05	Deferred
+25088	Revise "datatype" attribute declarations and associated Schematron rules	Closed	2010-03-02	Fixed
+25942	add support for "extended attributes" on files.	Closed	2010-05-05	Fixed
+23829	xinetd_item port entity should have integer type	Closed	2009-10-14	Fixed
+25238	process_object needs a pid entity	Closed	2010-03-08	Fixed
+19662	change several unix-sc item entities to be based on ints rather than strings	Closed	2009-05-06	Fixed
+25751	add pid entity to the ind-def:environmentvariable_object	Closed	2010-04-17	Fixed
+25752	add support for additional hash algorithms to the ind-def:filehash_test	Closed	2010-04-17	Fixed
+25790	add new lin-def:if_listeners_test for AF_PACKET family	Closed	2010-04-20	Fixed
+25946	add foreign_port and foreign_address entities to the win-def:port_test	Closed	2010-05-05	Fixed
+25980	add algorithm entity to the unix-def:shadow_state and unix-sc:shadow_item	Closed	2010-05-07	Fixed
+25988	add aix-def:netop_test	Closed	2010-05-10	Fixed
+26092	allow key on win-def:regkeyeffectiverights53_object to be nil	Closed	2010-05-14	Fixed
+26149	allow more than one message on an oval-sc:ItemType	Closed	2010-05-21	Fixed
+26164	minOccurs and maxOccurs in object declarations allow for numerous empty objects	Closed	2010-05-24	Fixed
+26184	add linux-def:rpmverify_test	Closed	2010-05-26	Fixed
+26222	create explicit mapping of tests, objects, states, and items	Closed	2010-05-28	Fixed
+26260	specify encoding on all schema files	Closed	2010-06-02	Fixed
+26340	remove mixed='true' from declaration of entity types	Closed	2010-06-08	Fixed
+26380	add support for ipv4 to ipv6 address comparisons	Closed	2010-06-10	Fixed
+26589	deprecate the apache-def:httpd_test	Closed	2010-06-23	Fixed
+26621	add esx-def:visdkmanagedobject_test	Closed	2010-06-25	Fixed
+26622	document the values in the oval:FamilyEnumeration	Closed	2010-06-25	Fixed
+26637	remove circular schema references between the oval-def and the ind-def schemas	Closed	2010-06-25	Fixed
+26691	align entity names in win-def:process58_test and unix-def:process58_test	Closed	2010-06-29	Fixed
+26700	add capability to tailor OVAL Result directives by OVAL Definition class	Closed	2010-06-29	Fixed
+26702	allow source OVAL Definition documents to be optional in OVAL Results	Closed	2010-06-30	Fixed
+26703	create an OVAL Directives schema to allow a tool to supply a set of directives	Closed	2010-06-30	Fixed
+26731	numerous entities are based on a string type and need to allow any simple type	Closed	2010-07-02	Fixed
+26732	consolidate file behaviors	Closed	2010-07-06	Fixed
+26944	max_depth behaviors defined in the independent-definitions-schema have the wrong default value	Closed	2010-07-20	Fixed
+27025	Missing Privilege under win-def:accestoken_state and win-sc:accestoken_item	Closed	2010-07-23	Fixed
+27214	clarify how the starting directory is considered when doing a recursive file search	Closed	2010-08-06	Fixed
+27411	add support for a hpux-def:ndd_test and sol-def:ndd_test	Closed	2010-08-16	Fixed
+27438	add several entities to the unix-def:process58_test	Closed	2010-08-18	Fixed
+27726	correct inconsistencies across items, object, and state entity names and types	Closed	2010-09-10	Fixed
+19742	change the maxOccurs attribute value in win-sc:sharedresource_item/win-sc:current_uses	Closed	2009-05-13	Fixed
+19743	change the maxOccurs attribute value in win-sc:sharedresource_item/win-sc:max_uses	Closed	2009-05-13	Fixed
+19744	change the win-sc:sharedresource_item/win-sc:shared_type entity type to align with the windows-definitions-schema	Closed	2009-05-13	Fixed
+25271	add support for a windows service test	Closed	2010-03-09	Fixed
+25310	add ruid entity to the unix-def:process_state and the unix-sc:process_item	Closed	2010-03-11	Fixed
+25987	Fix errors in the independent-system-characteristics schema where ind-def is used instead of ind-sc	Closed	2010-05-10	Fixed
+26102	add support for a linux-def:selinux_boolean_test	Closed	2010-05-17	Fixed
+26103	add support for a unix-def:sysctl_test	Closed	2010-05-17	Fixed
+26148	add support for a unix-def:partition_test	Closed	2010-05-21	Fixed
+26239	correct documentation specifying the use of all capital letters for well known trustees	Closed	2010-06-01	Fixed
+26734	add support for an unbounded filter element in all objects	Closed	2010-07-06	Fixed
+26737	add support for a macos-def:plist_test	Closed	2010-07-06	Fixed
+26738	add support for a unix-def:gconf_test	Closed	2010-07-06	Fixed
+26756	change instances of 'sid' to 'SID'.	Closed	2010-07-07	Fixed
+26757	clarify references to ACL	Closed	2010-07-07	Fixed
+26786	bug in the sp-def:sppolicy_object	Closed	2010-07-08	Fixed
+26809	add a drive_type entity to the win-def:volume_state and the win-sc:volume_item	Closed	2010-07-12	Fixed
+27215	change the maxOccurs attribute value in ind-def:ldap_state/ind-def:value entity	Closed	2010-08-06	Fixed
+27331	add support for a macos-def:diskutil_test	Closed	2010-08-12	Fixed
+27332	add support for a linux-def:selinuxsecuritycontext_test	Closed	2010-08-12	Fixed
+27333	add support for a sol-def:packagecheck_test	Closed	2010-08-12	Fixed
+27444	add support for a unix-def:routingtable_test	Closed	2010-08-18	Fixed
+27670	the win-sc:regkeyauditedpermissions_item does not allow for the use of the xsi:nil attribute on the key entity	Closed	2010-09-08	Fixed
+27674	make the pid entity in the linux-def:selinuxsecuritycontext_object nillable	Closed	2010-09-08	Fixed
+27676	the macos-sc:pwpolicy_item does not allow for the use of the xsi:nil attribute on the username, userpass, and directory_node entities	Closed	2010-09-08	Fixed
+27677	the unix-sc:gconf_item does not allow for the use of the xsi:nil attribute on the source entity	Closed	2010-09-08	Fixed
+27678	the linux-sc:selinuxsecuritycontext_item does not allow for the use of the xsi:nil attribute on the filename entity	Closed	2010-09-08	Fixed
+27420	make sure that platform and product names are unique in a definition's metadata	Closed	2010-08-17	Fixed
+23995	add capability to specify test result other than unknown, true or false	Closed	2009-10-31	Rejected
+25958	allow local_port to be a regex in the win-def:port_test	Closed	2010-05-06	Rejected
+26178	deprecate password entity in the unix-def:shadow_test	Closed	2010-05-25	Rejected
+26101	add support for a linux-def:sestatus_test	Closed	2010-05-17	Rejected

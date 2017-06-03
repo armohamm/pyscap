@@ -1,0 +1,27 @@
+New in Version 5.4
+Version 5.4 of the Official OVAL Language is a direct result of feedback from the OVAL Community. This will be a minor version change and hence should not require extensive development by tools that support earlier versions of the Language. Existing content will be forward compatible with the 5.4 schemas. The changes pending to the different schemas are outlined below.
+
+Changes that have been made and are included in Version 5.4 of the OVAL Schema:
+
+updated documentation
+add symlinks to the behavior list for unix file recursion
+enhanced schematron rules
+fixed bug with value entity of activedirectory_state, set maxOccurs = unbounded
+fixed schematron rules for volume_state in windows schema
+fixed bug with windows sid_state where trustee_domain was incorrectly set to unbounded
+added schema for AIX (submitted by Hewlett-Packard)
+added schema for CatOS (submitted by Hewlett-Packard)
+added schema for Vmware ESX (submitted by Hewlett-Packard)
+updated result tables for ExistenceEnumeration in common schema
+fixed schematron error related to 'value' entity of environmentvariable_state (independent-definitions-schema
+updated system characateristics documentation related to datatype
+added a keyref to enforce the existence of an extended definition in full results
+added schematron to validate that the datatype of a var is the same as teh var_ref
+added the smf_test (solaris schema)
+fix the keyref in the variable schema that enforces ids to be unique
+added a supersedence behavior to the HP-UX patch test.
+added a supersedence behavior to the Solaris patch test.
+added a fileset_version datatype related to the version string of HP-UX filesets.
+added the 'case insensitive equals' and 'case insensitive not equal' operations.
+new version of textfilecontent test to add multiline add multi-instance
+added new tests in the Windows schema for users, groups, and sids with the obj based on trustee_sid
