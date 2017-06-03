@@ -24,7 +24,7 @@ from scap.Model import Model
 from scap.Host import Host
 
 # import all the classes in the package
-import scap.model.oval_defs_5_linux as pkg
+import scap.model.oval_def_5_linux as pkg
 for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     try:
         mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
@@ -32,7 +32,7 @@ for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     except AttributeError:
         pass
 
-Model.register_namespace('scap.model.oval_defs_5_linux', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux')
+Model.register_namespace('scap.model.oval_def_5_linux', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux')
 
 logging.basicConfig(level=logging.DEBUG)
 
