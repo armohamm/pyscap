@@ -27,7 +27,7 @@ class InetListeningServersObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'inetlisteningservers_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval.oval_5_11_1.defs.SetElement'},
             {'tag_name': 'protocol', 'class': 'scap.model.oval.oval_5_11_1.defs.EntityObjectStringType'},
             {'tag_name': 'local_address', 'class': 'scap.model.oval.oval_5_11_1.defs.EntityObjectIPAddressStringType'},
             {'tag_name': 'local_port', 'class': 'scap.model.oval.oval_5_11_1.defs.EntityObjectIntType'},

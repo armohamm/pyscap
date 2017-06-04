@@ -27,7 +27,7 @@ class EnvironmentVariable58ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'environmentvariable58_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval.oval_5_11_1.defs.SetElement'},
             {'tag_name': 'pid', 'class': 'scap.model.oval.oval_5_11_1.defs.EntityObjectIntType'},
             {'tag_name': 'name', 'class': 'scap.model.oval.oval_5_11_1.defs.EntityObjectStringType'},
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},

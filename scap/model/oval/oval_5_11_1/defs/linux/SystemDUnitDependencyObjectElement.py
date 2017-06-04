@@ -27,7 +27,7 @@ class SystemDUnitDependencyObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'systemdunitdependency_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval.oval_5_11_1.defs.SetElement'},
             {'tag_name': 'unit', 'class': 'scap.model.oval.oval_5_11_1.defs.EntityObjectStringType'},
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],

@@ -27,7 +27,7 @@ class RpmVerifyPackageObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'rpmverifypackage_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval.oval_5_11_1.defs.SetElement'},
             {'tag_name': 'behaviors', 'class': 'RpmVerifyPackageBehaviors', 'min': 0, 'max': 1},
             {'tag_name': 'name', 'class': 'scap.model.oval.oval_5_11_1.defs.EntityObjectStringType'},
             {'tag_name': 'epoch', 'class': 'EpochElement'},

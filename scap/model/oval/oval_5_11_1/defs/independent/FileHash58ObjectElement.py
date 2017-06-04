@@ -27,7 +27,7 @@ class FileHash58ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'filehash58_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'SetElement'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval.oval_5_11_1.defs.SetElement'},
             {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
             {'tag_name': 'filepath', 'class': 'scap.model.oval.oval_5_11_1.defs.EntityObjectStringType'},
             {'tag_name': 'path', 'class': 'scap.model.oval.oval_5_11_1.defs.EntityObjectStringType'},
