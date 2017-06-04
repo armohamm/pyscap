@@ -123,12 +123,7 @@ Model.register_namespace('scap.model.dc_elements_1_1', 'http://purl.org/dc/eleme
 Model.register_namespace('scap.model.tmsad_1_0', 'http://scap.nist.gov/schema/xml-dsig/1.0')
 Model.register_namespace('scap.model.ocil_2_0', 'http://scap.nist.gov/schema/ocil/2.0')
 Model.register_namespace('scap.model.ocil_2_0', 'http://scap.nist.gov/schema/ocil/2')
-Model.register_namespace('scap.model.oval_5', 'http://oval.mitre.org/XMLSchema/oval-common-5')
-Model.register_namespace('scap.model.oval_def_5', 'http://oval.mitre.org/XMLSchema/oval-definitions-5')
-Model.register_namespace('scap.model.oval_def_5_independent', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent')
-Model.register_namespace('scap.model.oval_def_5_linux', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux')
-Model.register_namespace('scap.model.oval_def_5_windows', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows')
-Model.register_namespace('scap.model.oval_res_5', 'http://oval.mitre.org/XMLSchema/oval-results-5')
+# NOTE: we don't register this namespace till we determine which schema version we're using
 Model.register_namespace('scap.model.scap_source_1_2', 'http://scap.nist.gov/schema/scap/source/1.2')
 Model.register_namespace('scap.model.rep_core_1_1', 'http://scap.nist.gov/schema/reporting-core/1.1')
 Model.register_namespace('scap.model.vuln_0_4', 'http://scap.nist.gov/schema/vulnerability/0.4')
