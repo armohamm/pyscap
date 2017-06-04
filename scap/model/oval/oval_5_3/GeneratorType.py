@@ -24,10 +24,10 @@ logger = logging.getLogger(__name__)
 class GeneratorType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'product_name', 'type': 'String', 'min': 0, 'max': 1},
-            {'tag_name': 'product_version', 'type': 'String', 'min': 0, 'max': 1},
-            {'tag_name': 'schema_version', 'type': 'Decimal', 'min': 1, 'max': 1},
-            {'tag_name': 'timestamp', 'type': 'DateTime', 'min': 1, 'max': 1},
-            {'tag_name': '*', 'max': None},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5','tag_name': 'product_name', 'type': 'String', 'min': 0, 'max': 1},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5','tag_name': 'product_version', 'type': 'String', 'min': 0, 'max': 1},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5','tag_name': 'schema_version', 'type': 'Decimal', 'min': 1, 'max': 1},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5','tag_name': 'timestamp', 'type': 'DateTime', 'min': 1, 'max': 1},
+            {'tag_name': '*', 'min': 0, 'max': None},
         ],
     }

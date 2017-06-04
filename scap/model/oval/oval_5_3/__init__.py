@@ -16,7 +16,6 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-
 }
 
 CHECK_ENUMERATION = [

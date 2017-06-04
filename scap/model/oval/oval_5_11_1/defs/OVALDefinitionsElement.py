@@ -27,7 +27,7 @@ class OVALDefinitionsElement(Model):
         'tag_name' : 'oval_definitions',
         'elements': [
             # TODO one of the following exists
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'generator', 'class': 'GeneratorType', 'min': 0},
+            {'tag_name': 'generator', 'class': 'scap.model.oval.oval_5_3.GeneratorType', 'min': 1, 'max': 1},
             {'tag_name': 'generator', 'class': 'GeneratorType', 'min': 0},
             {'tag_name': 'definitions', 'class': 'DefinitionsType', 'min': 0, 'max': 1},
             {'tag_name': 'tests', 'class': 'TestsType', 'min': 0, 'max': 1},

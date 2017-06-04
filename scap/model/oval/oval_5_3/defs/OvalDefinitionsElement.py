@@ -24,9 +24,10 @@ from scap.model.oval.oval_5_3.defs import *
 logger = logging.getLogger(__name__)
 class OvalDefinitionsElement(Model):
     MODEL_MAP = {
+        'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5',
         'tag_name' : 'oval_definitions',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'generator', 'class': 'GeneratorType', 'min': 0},
+            {'tag_name': 'generator', 'class': 'scap.model.oval.oval_5_3.GeneratorType', 'min': 1, 'max': 1},
             {'tag_name': '_definitions', 'class': 'DefinitionsType', 'min': 0, 'max': 1},
             {'tag_name': '_tests', 'class': 'TestsType', 'min': 0, 'max': 1},
             {'tag_name': '_objects', 'class': 'ObjectsType', 'min': 0, 'max': 1},

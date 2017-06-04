@@ -264,17 +264,6 @@ class Model(object):
         return Model.__xmlns_to_package[xmlns]
 
     @staticmethod
-    def map_tag_to_module_name(model_package, tag):
-        pkg_mod = importlib.import_module(model_package)
-
-        if not hasattr(pkg_mod, 'TAG_MAP'):
-            raise TagMappingException(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + tag)
-        if tag not in pkg_mod.TAG_MAP:
-            raise TagMappingException(pkg_mod.__name__ + ' does not define mapping for ' + tag + ' tag')
-
-        return pkg_mod.TAG_MAP[tag]
-
-    @staticmethod
     def load(parent, child_el):
         xmlns, tag_name = Model.parse_tag(child_el.tag)
 
@@ -284,7 +273,7 @@ class Model(object):
                 raise UnregisteredNamespaceException('Unable to determine namespace without fully qualified tag (' + child_el.tag + ') and parent model')
 
             model_package = Model.xmlns_to_package(xmlns)
-            module_name = Model.map_tag_to_module_name(model_package, child_el.tag)
+            model_package, module_name = Model._map_element_to_module_name(model_package, child_el)
         else:
             if xmlns is None:
                 model_package = parent.get_package()
@@ -305,7 +294,7 @@ class Model(object):
 
                 logger.debug(child_el.tag + ' matched ' + name + ' mapping in ' + parent.__class__.__name__)
                 if name.endswith('*'):
-                    module_name = Model.map_tag_to_module_name(model_package, child_el.tag)
+                    model_package, module_name = Model._map_element_to_module_name(model_package, child_el)
                     break
                 elif 'class' in mmap['element_lookup'][name]:
                     module_name = mmap['element_lookup'][name]['class']
@@ -319,6 +308,7 @@ class Model(object):
             model_module = model_package + '.' + module_name
         else:
             model_module = module_name
+            module_name = module_name.rpartition('.')[2]
 
         if model_module not in sys.modules:
             logger.debug('Loading module ' + model_module)
@@ -332,6 +322,21 @@ class Model(object):
         inst.from_xml(parent, child_el)
 
         return inst
+
+    @staticmethod
+    def _map_element_to_module_name(model_package, el):
+        pkg_mod = importlib.import_module(model_package)
+
+        if hasattr(pkg_mod, 'remap_element_package'):
+            pkg_mod = pkg_mod.remap_element_package(el)
+
+        tag = el.tag
+        if not hasattr(pkg_mod, 'TAG_MAP'):
+            raise TagMappingException(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + tag)
+        if tag not in pkg_mod.TAG_MAP:
+            raise TagMappingException(pkg_mod.__name__ + ' does not define mapping for ' + tag + ' tag')
+
+        return pkg_mod.__name__, pkg_mod.TAG_MAP[tag]
 
     @staticmethod
     def _get_model_map(model_class):
