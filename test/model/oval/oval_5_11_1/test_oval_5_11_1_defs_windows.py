@@ -23,7 +23,7 @@ import pkgutil
 from scap.Model import Model
 
 # import all the classes in the package
-import scap.model.oval.oval_5_11_1.defs_windows as pkg
+import scap.model.oval.oval_5_11_1.defs.windows as pkg
 for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     try:
         mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
@@ -31,7 +31,7 @@ for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     except AttributeError:
         pass
 
-Model.register_namespace('scap.model.oval.oval_5_11_1.defs_windows', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows')
+Model.register_namespace('scap.model.oval.oval_5_11_1.defs.windows', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows')
 
 logging.basicConfig(level=logging.DEBUG)
 

@@ -21,9 +21,10 @@ import pytest
 import pkgutil
 
 from scap.Model import Model
+from scap.Host import Host
 
 # import all the classes in the package
-import scap.model.oval.oval_5_11_1.defs_independent as pkg
+import scap.model.oval.oval_5_11_1.defs.linux as pkg
 for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     try:
         mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
@@ -31,21 +32,14 @@ for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     except AttributeError:
         pass
 
-Model.register_namespace('scap.model.oval.oval_5_11_1.defs_independent', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent')
+Model.register_namespace('scap.model.oval.oval_5_11_1.defs.linux', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux')
 
 logging.basicConfig(level=logging.DEBUG)
 
-def test_EntityObjectEngineType_parse():
-    assert EntityObjectEngineType().parse_value('ingres') == 'ingres'
+host = Host.load('localhost')
 
-def test_EntityObjectHashTypeType_parse():
-    assert EntityObjectHashTypeType().parse_value('SHA-256') == 'SHA-256'
+def test_EntityStateProtocolType_parse():
+    assert EntityStateProtocolType().parse_value('ETH_P_802_3') == 'ETH_P_802_3'
 
-def test_EntityStateLdaptypeType_parse():
-    assert EntityStateLdaptypeType().parse_value('LDAPTYPE_CERTIFICATE') == 'LDAPTYPE_CERTIFICATE'
-
-def test_EntityStateVariableRefType_parse():
-    assert EntityStateVariableRefType().parse_value('oval:biz.jaymes:var:12345') == 'oval:biz.jaymes:var:12345'
-
-def test_EntityStateWindowsViewType_parse():
-    assert EntityStateWindowsViewType().parse_value('32_bit') == '32_bit'
+def test_EntityStateRpmVerifyResultType_parse():
+    assert EntityStateRpmVerifyResultType().parse_value('not performed') == 'not performed'
