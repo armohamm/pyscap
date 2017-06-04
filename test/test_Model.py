@@ -80,17 +80,6 @@ def test_xmlns_to_package():
     with pytest.raises(UnregisteredNamespaceException):
         Model.xmlns_to_package('http://jaymes.biz/derp')
 
-def test_map_tag_to_module_name():
-    assert Model.map_tag_to_module_name('fixtures.test', '{http://jaymes.biz/test}RootFixture') == 'RootFixture'
-
-    with pytest.raises(ImportError):
-        Model.map_tag_to_module_name('scap.model.derp', '{http://jaymes.biz/test}Derp')
-
-    # TODO test missing TAG_MAP
-
-    with pytest.raises(TagMappingException):
-        Model.map_tag_to_module_name('fixtures.test', '{http://jaymes.biz/test}Derp')
-
 def test_load_root_model():
     root = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test" />'))
     assert isinstance(root, RootFixture)

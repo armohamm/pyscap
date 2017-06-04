@@ -327,9 +327,6 @@ class Model(object):
     def _map_element_to_module_name(model_package, el):
         pkg_mod = importlib.import_module(model_package)
 
-        if hasattr(pkg_mod, 'remap_element_package'):
-            pkg_mod = pkg_mod.remap_element_package(el)
-
         tag = el.tag
         if not hasattr(pkg_mod, 'TAG_MAP'):
             raise TagMappingException(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + tag)
