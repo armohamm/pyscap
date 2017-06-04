@@ -27,6 +27,6 @@ class VariableObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'variable_object',
         'elements': [
-            {'tag_name': 'var_ref', 'class': 'EntityObjectVariableRefType', 'min': 1, 'max': 1},
+            {'tag_name': 'var_ref', 'class': 'EntityObjectVariableRefType', 'min': 0, 'max': 1},
         ],
     }

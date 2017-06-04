@@ -28,7 +28,7 @@ class FileHashObjectElement(ObjectType):
         'tag_name': 'filehash_object',
         'elements': [
             {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'path', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 1, 'max': 1},
-            {'tag_name': 'filename', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 1, 'max': 1},
+            {'tag_name': 'path', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'filename', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 0, 'max': 1},
         ],
     }

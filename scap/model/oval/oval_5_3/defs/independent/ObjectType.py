@@ -27,6 +27,6 @@ class ObjectType(defs_ObjectType):
     # abstract
     MODEL_MAP = {
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set'},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'min': 0},
         ]
     }

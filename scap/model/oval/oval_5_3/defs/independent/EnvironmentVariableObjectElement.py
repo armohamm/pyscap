@@ -27,6 +27,6 @@ class EnvironmentVariableObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'environmentvariable_object',
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 1, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 0, 'max': 1},
         ],
     }

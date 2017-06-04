@@ -27,9 +27,9 @@ class SQLObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'sql_object',
         'elements': [
-            {'tag_name': 'engine', 'class': 'EntityObjectEngineType'},
-            {'tag_name': 'version', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType'},
-            {'tag_name': 'connection_string', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType'},
-            {'tag_name': 'sql', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType'},
+            {'tag_name': 'engine', 'class': 'EntityObjectEngineType', 'min': 0, 'max': 1},
+            {'tag_name': 'version', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'connection_string', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'sql', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 0, 'max': 1},
         ],
     }

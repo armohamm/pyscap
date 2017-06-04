@@ -28,8 +28,8 @@ class TextFileContentObjectElement(ObjectType):
         'tag_name': 'textfilecontent_object',
         'elements': [
             {'tag_name': 'behaviors', 'class': 'TextFileContentBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'path', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 1, 'max': 1},
-            {'tag_name': 'filename', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 1, 'max': 1},
-            {'tag_name': 'line', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 1, 'max': 1},
+            {'tag_name': 'path', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'filename', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'line', 'class': 'scap.model.oval.oval_5_3.defs.EntityObjectStringType', 'min': 0, 'max': 1},
         ],
     }
