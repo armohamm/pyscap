@@ -85,22 +85,24 @@ ENGINE_ENUMERATION = [
     '',
 ]
 
-FAMILY_ENUMERATION = [
-    'android',
-    'apple_ios',
-    'asa',
-    'catos',
-    'ios',
-    'iosxe',
-    'junos',
-    'macos',
-    'pixos',
-    'undefined',
-    'unix',
-    'vmware_infrastructure',
-    'windows',
-    '',
+RECURSE_DIRECTION = [
+    'none',
+    'up',
+    'down',
 ]
+
+RECURSE_FILE_SYSTEM = [
+    'all',
+    'local',
+    'defined',
+]
+
+WINDOWS_VIEW = [
+    '32_bit',
+    '64_bit',
+]
+
+from scap.model.oval.oval_5_11_1 import FAMILY_ENUMERATION
 
 HASH_ENUMERATION = [
     'MD5',

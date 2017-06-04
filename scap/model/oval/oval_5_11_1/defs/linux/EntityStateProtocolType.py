@@ -19,7 +19,7 @@ import logging
 
 from scap.model.oval.oval_5_11_1 import *
 from scap.model.oval.oval_5_11_1.defs import *
-from scap.model.oval.oval_5_11_1.defs_linux import *
+from scap.model.oval.oval_5_11_1.defs.linux import *
 from scap.model.oval.oval_5_11_1.defs.EntityStateStringType import EntityStateStringType
 
 logger = logging.getLogger(__name__)

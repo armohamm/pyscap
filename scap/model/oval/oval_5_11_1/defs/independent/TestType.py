@@ -19,7 +19,7 @@ import logging
 
 from scap.model.oval.oval_5_11_1 import *
 from scap.model.oval.oval_5_11_1.defs import *
-from scap.model.oval.oval_5_11_1.defs_independent import *
+from scap.model.oval.oval_5_11_1.defs.independent import *
 from scap.model.oval.oval_5_11_1.defs.TestType import TestType as oval_def_5_TestType
 
 logger = logging.getLogger(__name__)

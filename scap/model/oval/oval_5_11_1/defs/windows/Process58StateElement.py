@@ -19,8 +19,8 @@ import logging
 
 from scap.model.oval.oval_5_11_1 import *
 from scap.model.oval.oval_5_11_1.defs import *
-from scap.model.oval.oval_5_11_1.defs_windows import *
-from scap.model.oval.oval_5_11_1.defs_windows.StateType import StateType
+from scap.model.oval.oval_5_11_1.defs.windows import *
+from scap.model.oval.oval_5_11_1.defs.windows.StateType import StateType
 
 logger = logging.getLogger(__name__)
 class Process58StateElement(StateType):

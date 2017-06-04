@@ -19,8 +19,8 @@ import logging
 
 from scap.model.oval.oval_5_11_1 import *
 from scap.model.oval.oval_5_11_1.defs import *
-from scap.model.oval.oval_5_11_1.defs_independent import *
-from scap.model.oval.oval_5_11_1.defs_independent.ObjectType import ObjectType
+from scap.model.oval.oval_5_11_1.defs.independent import *
+from scap.model.oval.oval_5_11_1.defs.independent.ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
 class TextFileContent54ObjectElement(ObjectType):

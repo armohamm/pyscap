@@ -19,8 +19,8 @@ import logging
 
 from scap.model.oval.oval_5_11_1 import *
 from scap.model.oval.oval_5_11_1.defs import *
-from scap.model.oval.oval_5_11_1.defs_independent import *
-from scap.model.oval.oval_5_11_1.defs_independent.StateType import StateType
+from scap.model.oval.oval_5_11_1.defs.independent import *
+from scap.model.oval.oval_5_11_1.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
 class EnvironmentVariable58StateElement(StateType):

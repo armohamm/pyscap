@@ -19,8 +19,8 @@ import logging
 
 from scap.model.oval.oval_5_11_1 import *
 from scap.model.oval.oval_5_11_1.defs import *
-from scap.model.oval.oval_5_11_1.defs_independent import *
-from scap.model.oval.oval_5_11_1.defs_independent.FileBehaviors import FileBehaviors
+from scap.model.oval.oval_5_11_1.defs.independent import *
+from scap.model.oval.oval_5_11_1.defs.independent.FileBehaviors import FileBehaviors
 
 logger = logging.getLogger(__name__)
 class Textfilecontent54Behaviors(FileBehaviors):
