@@ -28,11 +28,11 @@ class OvalDefinitionsElement(Model):
         'elements': [
             # TODO one of the following exists
             {'tag_name': 'generator', 'class': 'scap.model.oval_5.GeneratorType', 'min': 1, 'max': 1},
-            {'tag_name': '_definitions', 'class': 'DefinitionsType', 'min': 0, 'max': 1},
-            {'tag_name': '_tests', 'class': 'TestsType', 'min': 0, 'max': 1},
-            {'tag_name': '_objects', 'class': 'ObjectsType', 'min': 0, 'max': 1},
-            {'tag_name': '_states', 'class': 'StatesType', 'min': 0, 'max': 1},
-            {'tag_name': '_variables', 'class': 'VariablesType', 'min': 0, 'max': 1},
+            {'tag_name': 'definitions', 'class': 'DefinitionsType', 'in': '_definitions', 'min': 0, 'max': 1},
+            {'tag_name': 'tests', 'class': 'TestsType', 'in': '_tests', 'min': 0, 'max': 1},
+            {'tag_name': 'objects', 'class': 'ObjectsType', 'in': '_objects', 'min': 0, 'max': 1},
+            {'tag_name': 'states', 'class': 'StatesType', 'in': '_states', 'min': 0, 'max': 1},
+            {'tag_name': 'variables', 'class': 'VariablesType', 'in': '_variables', 'min': 0, 'max': 1},
             {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
         ],
     }
