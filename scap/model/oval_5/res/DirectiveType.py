@@ -15,20 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
-    '{http://oval.mitre.org/XMLSchema/oval-results-5}oval_results': 'OvalResultsElement',
-}
+import logging
 
-CONTENT_ENUMERATION = [
-    'thin',
-    'full',
-]
+from scap.Model import Model
+from scap.model.oval_5 import *
+from scap.model.oval_5.res import *
 
-RESULT_ENUMERATION = [
-    'true',
-    'false',
-    'unknown',
-    'error',
-    'not evaluated',
-    'not applicable',
-]
+logger = logging.getLogger(__name__)
+class DirectiveType(Model):
+    MODEL_MAP = {
+        'attributes': {
+            'reported': {'type': 'Boolean', 'required': True},
+            'content': {'enum': CONTENT_ENUMERATION, 'default': 'full'},
+        },
+    }
