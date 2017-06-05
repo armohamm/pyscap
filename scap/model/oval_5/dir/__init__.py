@@ -15,16 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-CONTENT_ENUMERATION = [
-    'thin',
-    'full',
-]
-
-RESULT_ENUMERATION = [
-    'true',
-    'false',
-    'unknown',
-    'error',
-    'not evaluated',
-    'not applicable',
-]
+TAG_MAP = {
+    '{http://oval.mitre.org/XMLSchema/oval-directives-5}oval_directives': 'OvalResultsElement',
+}
