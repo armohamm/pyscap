@@ -15,30 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_5 import DATATYPE_ENUMERATION
+import logging
 
-TAG_MAP = {
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5}oval_system_characteristics': 'OvalSystemCharacteristicsElement',
-}
+from scap.Model import Model
+from scap.model.oval_5 import *
+from scap.model.oval_5.sc import *
 
-FLAG_ENUMERATION = [
-    'error',
-    'complete',
-    'incomplete',
-    'does not exist',
-    'not collected',
-    'not applicable',
-]
-
-STATUS_ENUMERATION = [
-    'error',
-    'exists',
-    'does not exist',
-    'not collected',
-]
-
-ENTITY_ATTRIBUTE_GROUP = {
-    'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
-    'mask': {'type': 'Boolean', 'default': False},
-    'status': {'enum': STATUS_ENUMERATION, 'default': 'exists'},
-}
+logger = logging.getLogger(__name__)
+class CollectedObjectsType(Model):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'object', 'list': 'objects', 'class': 'ObjectType', 'min': 1, 'max': None},
+        ],
+    }
