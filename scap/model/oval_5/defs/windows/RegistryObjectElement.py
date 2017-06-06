@@ -28,11 +28,9 @@ class RegistryObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'registry_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement', 'min': 0, 'max': 1},
             {'tag_name': 'behaviors', 'class': 'RegistryBehaviors', 'min': 0},
-            {'tag_name': 'hive', 'class': 'EntityObjectRegistryHiveType'},
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_5.defs.FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'hive', 'class': 'EntityObjectRegistryHiveType', 'min': 0},
+            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
         ],
     }

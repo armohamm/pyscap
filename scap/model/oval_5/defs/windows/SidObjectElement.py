@@ -27,9 +27,7 @@ class SidObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'sid_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement', 'min': 0},
             {'tag_name': 'behaviors', 'class': 'SidBehaviors', 'min': 0},
-            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_5.defs.FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
         ],
     }

@@ -27,9 +27,7 @@ class SystemDUnitPropertyObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'systemdunitproperty_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement'},
-            {'tag_name': 'unit', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'tag_name': 'property', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'unit', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'property', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
         ],
     }

@@ -26,9 +26,7 @@ logger = logging.getLogger(__name__)
 class ProcessObjectElement(ObjectType):
     MODEL_MAP = {
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set'},
             {'tag_name': 'command', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'min': 0, 'max': None},
         ],
         'attributes': {
         },

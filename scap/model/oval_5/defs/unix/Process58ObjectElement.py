@@ -26,10 +26,8 @@ logger = logging.getLogger(__name__)
 class Process58ObjectElement(ObjectType):
     MODEL_MAP = {
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'min': 0},
             {'tag_name': 'command_line', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
             {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityObjectIntType', 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'min': 0, 'max': None},
         ],
         'attributes': {
         },

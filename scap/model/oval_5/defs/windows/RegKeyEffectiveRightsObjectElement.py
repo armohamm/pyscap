@@ -27,10 +27,9 @@ class RegKeyEffectiveRightsObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'regkeyeffectiverights_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement', 'min': 0},
             {'tag_name': 'behaviors', 'class': 'RegkeyEffectiveRightsBehaviors', 'min': 0},
-            {'tag_name': 'hive', 'class': 'EntityObjectRegistryHiveType'},
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
+            {'tag_name': 'hive', 'class': 'EntityObjectRegistryHiveType', 'min': 0},
+            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
         ],
     }

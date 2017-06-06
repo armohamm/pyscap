@@ -17,18 +17,19 @@
 
 import logging
 
+from scap.Model import Model
 from scap.model.oval_5 import *
 from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.unix import *
-from scap.model.oval_5.defs.unix.ObjectType import ObjectType
+from scap.model.oval_5.defs.windows import *
 
 logger = logging.getLogger(__name__)
-class DnsCacheObjectElement(ObjectType):
+
+class FileBehaviors(Model):
     MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'protocol', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-        ],
         'attributes': {
-        },
+            'max_depth': {'type': 'Integer', 'default': -1},
+            'recurse_direction': {'enum': ['none', 'up', 'down'], 'default': 'none'},
+            'recurse_file_system': {'enum': ['all', 'local', 'defined'], 'default': 'all'},
+            'windows_view': {'enum': ['32_bit', '64_bit'], 'default': '64_bit'},
+        }
     }

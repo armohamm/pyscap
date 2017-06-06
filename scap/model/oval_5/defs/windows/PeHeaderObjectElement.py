@@ -27,11 +27,9 @@ class PeHeaderObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'peheader_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement', 'min': 0},
             {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_5.defs.FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
         ],
     }

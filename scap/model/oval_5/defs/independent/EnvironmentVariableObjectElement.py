@@ -27,7 +27,6 @@ class EnvironmentVariableObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'environmentvariable_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement'},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
         ],
     }

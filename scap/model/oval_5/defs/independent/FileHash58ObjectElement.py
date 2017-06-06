@@ -27,12 +27,10 @@ class FileHash58ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'filehash58_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement'},
             {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'tag_name': 'hash_type', 'class': 'EntityObjectHashTypeType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'hash_type', 'class': 'EntityObjectHashTypeType', 'min': 0},
         ],
     }

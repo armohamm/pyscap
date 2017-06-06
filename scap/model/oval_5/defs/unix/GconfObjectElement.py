@@ -26,10 +26,8 @@ logger = logging.getLogger(__name__)
 class GconfObjectElement(ObjectType):
     MODEL_MAP = {
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'min': 0},
             {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
             {'tag_name': 'source', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'min': 0, 'max': None},
         ],
         'attributes': {
         },

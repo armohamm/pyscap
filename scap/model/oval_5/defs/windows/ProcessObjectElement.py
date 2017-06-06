@@ -27,7 +27,6 @@ class ProcessObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'process_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement', 'min': 0, 'min': 0},
-            {'tag_name': 'command_line', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
+            {'tag_name': 'command_line', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
         ],
     }

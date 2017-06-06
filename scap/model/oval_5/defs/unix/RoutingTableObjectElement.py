@@ -26,9 +26,7 @@ logger = logging.getLogger(__name__)
 class RoutingTableObjectElement(ObjectType):
     MODEL_MAP = {
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'min': 0},
             {'tag_name': 'destination', 'class': 'scap.model.oval_5.defs.EntityObjectIPAddressType', 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'min': 0, 'max': None},
         ],
         'attributes': {
         },

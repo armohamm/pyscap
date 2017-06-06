@@ -26,12 +26,10 @@ logger = logging.getLogger(__name__)
 class FileObjectElement(ObjectType):
     MODEL_MAP = {
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'min': 0},
             {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
             {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
             {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
             {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'min': 0, 'max': None},
         ],
         'attributes': {
         },

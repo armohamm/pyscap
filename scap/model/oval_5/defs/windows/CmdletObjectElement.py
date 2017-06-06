@@ -28,14 +28,12 @@ class CmdletObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'cmdlet_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement', 'min': 0},
-            {'tag_name': 'module_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 1, 'max': 1},
-            {'tag_name': 'module_id', 'class': 'EntityObjectGUIDType', 'nillable': True, 'min': 1, 'max': 1},
-            {'tag_name': 'module_version', 'class': 'EntityObjectVersionType', 'nillable': True, 'min': 1, 'max': 1},
-            {'tag_name': 'verb', 'class': 'EntityObjectCmdletVerbType', 'nillable': True, 'min': 1, 'max': 1},
-            {'tag_name': 'noun', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 1, 'max': 1},
-            {'tag_name': 'parameters', 'class': 'scap.model.oval_5.defs.EntityObjectRecordType', 'nillable': True},
-            {'tag_name': 'select', 'class': 'scap.model.oval_5.defs.EntityObjectRecordType', 'nillable': True},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_5.defs.FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'module_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0, 'max': 1},
+            {'tag_name': 'module_id', 'class': 'EntityObjectGUIDType', 'nillable': True, 'min': 0, 'max': 1},
+            {'tag_name': 'module_version', 'class': 'EntityObjectVersionType', 'nillable': True, 'min': 0, 'max': 1},
+            {'tag_name': 'verb', 'class': 'EntityObjectCmdletVerbType', 'nillable': True, 'min': 0, 'max': 1},
+            {'tag_name': 'noun', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0, 'max': 1},
+            {'tag_name': 'parameters', 'class': 'scap.model.oval_5.defs.EntityObjectRecordType', 'nillable': True, 'min': 0},
+            {'tag_name': 'select', 'class': 'scap.model.oval_5.defs.EntityObjectRecordType', 'nillable': True, 'min': 0},
         ],
     }

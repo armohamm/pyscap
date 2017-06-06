@@ -27,10 +27,8 @@ class SharedResourceAuditedPermissionsObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'sharedresourceauditedpermissions_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement', 'min': 0},
             {'tag_name': 'behaviors', 'class': 'SharedResourceAuditedPermissionsBehaviors', 'min': 0},
-            {'tag_name': 'netname', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'scap.model.oval_5.defs.FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'netname', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
         ],
     }

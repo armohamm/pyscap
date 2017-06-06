@@ -27,8 +27,6 @@ class VariableObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'variable_object',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement'},
-            {'tag_name': 'var_ref', 'class': 'EntityObjectVariableRefType'},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'var_ref', 'class': 'EntityObjectVariableRefType', 'min': 0},
         ],
     }
