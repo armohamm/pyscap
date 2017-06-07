@@ -19,6 +19,7 @@ import importlib
 import logging
 import pytest
 import pkgutil
+import xml.etree.ElementTree as ET
 
 from scap.Model import Model
 from scap.Host import Host
