@@ -29,6 +29,6 @@ class MetadataType(Model):
             {'tag_name': 'affected', 'list': 'affecteds', 'class': 'AffectedType', 'min': 0, 'max': None},
             {'tag_name': 'reference', 'list': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
             {'tag_name': 'description', 'type': 'String'},
-            {'tag_name': '*'},
+            {'tag_name': '*', 'min': 0},
         ],
     }
