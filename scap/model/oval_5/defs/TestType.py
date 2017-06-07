@@ -30,7 +30,7 @@ class TestType(Model):
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'id': {'type': 'scap.model.oval_5.OvalTestIDPattern', 'required': True},
+            'id': {'type': 'scap.model.oval_5.TestIdPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},
             'check_existence': {'enum': EXISTENCE_ENUMERATION, 'default': 'at_least_one_exists'},
             'check': {'enum': CHECK_ENUMERATION, 'required': True},

@@ -28,7 +28,7 @@ class ItemType(Model):
             {'tag_name': 'message', 'list': 'messages', 'class': 'scap.model.oval_5.MessageType', 'min': 0, 'max': 50},
         ],
         'attributes': {
-            'id': {'type': 'scap.model.oval_5.ItemIDPattern', 'required': True},
+            'id': {'type': 'scap.model.oval_5.ItemIdPattern', 'required': True},
             'status': {'enum': STATUS_ENUMERATION, 'default': 'exists'},
         }
     }

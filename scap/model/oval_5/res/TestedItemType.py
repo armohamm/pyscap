@@ -28,7 +28,7 @@ class TestedItemType(Model):
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-system-characteristics-5', 'tag_name': 'message', 'list': 'messages', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'item_id': {'type': 'scap.model.oval_5.ItemIDPattern', 'required': True},
+            'item_id': {'type': 'scap.model.oval_5.ItemIdPattern', 'required': True},
             'result': {'enum': RESULT_ENUMERATION, 'required': True},
         }
     }

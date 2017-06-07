@@ -26,7 +26,7 @@ class ExtendDefinitionType(Model):
     MODEL_MAP = {
         'attributes': {
             'applicability_check': {'type': 'Boolean'},
-            'definition_ref': {'type': 'scap.model.oval_5.DefinitionIDPattern', 'required': True},
+            'definition_ref': {'type': 'scap.model.oval_5.DefinitionIdPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},
             'variable_instance': {'type': 'NonNegativeInteger', 'default': 1},
             'negate': {'type': 'Boolean', 'default': False},
