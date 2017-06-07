@@ -26,8 +26,8 @@ class ObjectsType(Model):
     MODEL_MAP = {
         'tag_name' : 'objects',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': '*', 'in': '_objects', 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': '*', 'in': '_objects', 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': '*', 'in': '_objects', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': '*', 'in': 'objects', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': '*', 'in': 'objects', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': '*', 'in': 'objects', 'min': 0},
         ],
     }

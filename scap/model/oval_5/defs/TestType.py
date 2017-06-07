@@ -35,7 +35,7 @@ class TestType(Model):
             'check_existence': {'enum': EXISTENCE_ENUMERATION, 'default': 'at_least_one_exists'},
             'check': {'enum': CHECK_ENUMERATION, 'required': True},
             'state_operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
-            'comment': {'type': 'scap.model.oval_5.NonEmptyString', 'required': True},
+            'comment': {'type': 'scap.model.oval_5.NonEmptyString'}, # required in the spec
             'deprecated': {'type': 'Boolean', 'default': False},
         },
     }

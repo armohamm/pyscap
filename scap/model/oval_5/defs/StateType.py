@@ -32,7 +32,7 @@ class StateType(Model):
             'id': {'type': 'scap.model.oval_5.StateIdPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},
             'operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
-            'comment': {'type': 'scap.model.oval_5.NonEmptyString', 'required': True},
+            'comment': {'type': 'scap.model.oval_5.NonEmptyString'}, # required in the spec
             'deprecated': {'type': 'Boolean', 'default': False},
         }
     }

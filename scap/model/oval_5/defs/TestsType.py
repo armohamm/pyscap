@@ -26,8 +26,8 @@ class TestsType(Model):
     MODEL_MAP = {
         'tag_name' : 'tests',
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': '*', 'in': '_tests', 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': '*', 'in': '_tests', 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': '*', 'in': '_tests', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': '*', 'in': 'tests', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': '*', 'in': 'tests', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': '*', 'in': 'tests', 'min': 0},
         ],
     }

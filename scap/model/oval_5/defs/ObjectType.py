@@ -33,7 +33,7 @@ class ObjectType(Model):
         'attributes': {
             'id': {'type': 'scap.model.oval_5.ObjectIdPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},
-            'comment': {'type': 'scap.model.oval_5.NonEmptyString', 'required': True},
+            'comment': {'type': 'scap.model.oval_5.NonEmptyString'}, # required in the spec
             'deprecated': {'type': 'Boolean', 'default': False},
         },
     }
