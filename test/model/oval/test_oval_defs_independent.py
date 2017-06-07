@@ -36,6 +36,7 @@ Model.register_namespace('scap.model.oval_5.defs', 'http://oval.mitre.org/XMLSch
 Model.register_namespace('scap.model.oval_5.defs.independent', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent')
 Model.register_namespace('scap.model.oval_5.defs.linux', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux')
 Model.register_namespace('scap.model.oval_5.defs.windows', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows')
+Model.register_namespace('scap.model.oval_5.defs.unix', 'http://oval.mitre.org/XMLSchema/oval-definitions-5#unix')
 
 logging.basicConfig(level=logging.DEBUG)
 
