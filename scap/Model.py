@@ -652,10 +652,13 @@ class Model(object):
 
     def _load_type_class(self, type_):
         if '.' in type_:
+            module_name = type_
+            class_ = type_.rpartition('.')[2]
             try:
                 mod = importlib.import_module(type_)
             except ImportError:
                 raise NotImplementedError('Type class ' + type_ + ' was not found')
+            return getattr(mod, class_)
         else:
             try:
                 mod = importlib.import_module('scap.model.xs.' + type_)
@@ -664,7 +667,7 @@ class Model(object):
                     mod = importlib.import_module(self.get_package() + '.' + type_)
                 except ImportError:
                     raise NotImplementedError('Type class ' + type_ + ' not defined in scap.model.xs or local package (' + self.get_package() + ')')
-        return getattr(mod, type_)
+            return getattr(mod, type_)
 
     def _parse_value_as_type(self, value, type_):
         class_ = self._load_type_class(type_)
