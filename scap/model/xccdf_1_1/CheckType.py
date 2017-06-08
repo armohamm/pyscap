@@ -40,7 +40,6 @@ class CheckType(Model):
     def __str__(self):
         s = self.__class__.__name__ + ' '
 
-
         if self.id is not None:
             s += self.id + ':'
 

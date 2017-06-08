@@ -34,9 +34,11 @@ class CheckContentRefType(Model):
         if content is None:
             raise ReferenceException(self.href + ' was not loaded')
 
+        # TODO check if content is supported
+
         # find the named content
         if self.name is not None:
-            content = content.find_reference(self.name)
+            ref = content.find_reference(self.name)
 
         # apply content
-        return content.check(host, exports, import_names)
+        return ref.check(content, host, exports, import_names)

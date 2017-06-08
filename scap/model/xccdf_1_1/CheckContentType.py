@@ -24,12 +24,15 @@ logger = logging.getLogger(__name__)
 class CheckContentType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': '*', 'min': 0, 'max': None},
+            {'tag_name': '*', 'max': None},
         ],
     }
 
     def check(self, benchmark, host, exports, import_names):
+        # TODO check if content is supported
+
         # TODO apply content
+
         return {'result': 'error', 'messages': [
             MessageType(
                 tag_name='message',
