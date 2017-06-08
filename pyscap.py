@@ -197,18 +197,41 @@ elif args['benchmark']:
     if args['content'] is None or len(args['content']) == 0:
         arg_parser.error('No content specified (--content)')
 
+    from scap.model.xccdf_1_1.BenchmarkType import BenchmarkType as xccdf_1_1_BenchmarkType
+    from scap.model.xccdf_1_2.BenchmarkType import BenchmarkType as xccdf_1_2_BenchmarkType
+    benchmark_model = None
     for uri in args['content']:
         logger.debug('Loading content file: ' + uri)
         with open(uri, mode='r', encoding='utf_8') as f:
             content = ET.parse(f).getroot()
             model = Model.load(None, content)
+            
+            if isinstance(model, xccdf_1_1_BenchmarkType) \
+            or isinstance(model, xccdf_1_2_BenchmarkType):
+                benchmark_model = model
 
     for host in hosts:
         host.connect()
+
         for collector in host.detect_collectors(args):
             collector.collect()
-        chk = Checker.load(host, args, model)
-        chk.collect()
+
+        benchmark_model.noticing()
+
+        benchmark_model.selected_profiles = []
+        if args['profile'] is None or len(args['profile']) == 0:
+            # check them all
+            benchmark_model.selected_profiles.extend(benchmark_model.profiles.keys())
+        else:
+            for profile in args['profile']:
+                if profile not in list(benchmark_model.profiles.keys()):
+                    raise ValueError('Unable to select non-existent profile: ' + profile + ' Available profiles: ' + str(benchmark_model.profiles.keys()))
+                benchmark_model.selected_profiles.append(profile)
+
+        benchmark_model.resolve()
+
+        benchmark_model.process(host)
+
         host.disconnect()
 
     rep = Reporter.load(args, model)
