@@ -17,8 +17,22 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.OpenAttrsType import OpenAttrsType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class RedefineElement(OpenAttrsType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'annotation', 'type': 'AnnotationElement', 'min': 0, 'max': None},
+        ],
+        'attributes': {
+            'schemaLocation': {'type': 'AnyURI', 'required': True},
+            'id': {'type': 'ID'},
+        }
+    }
+    eg = ELEMENT_GROUP_REDEFINABLE.copy()
+    for el in eg:
+        el['min'] = 0
+        el['max'] = None
+    MODEL_MAP['elements'].extend(eg)

@@ -16,9 +16,20 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import re
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.Token import Token
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class SelectorXPath(Token):
+    def get_value_pattern(self):
+        return r'(\.//)?(((child::)?((' \
+        + _i + _c + r'*:)?(' \
+        + _i + _c + r'*|\*)))|\.)(/(((child::)?((' \
+        + _i + _c + r'*:)?(' \
+        + _i + _c + r'*|\*)))|\.))*(\|(\.//)?(((child::)?((' \
+        + _i + _c + r'*:)?(' \
+        + _i + _c + r'*|\*)))|\.)(/(((child::)?((' \
+        + _i + _c + r'*:)?(' \
+        + _i + _c + r'*|\*)))|\.))*)*'

@@ -17,8 +17,17 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class ComplexContentElement(AnnotatedType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'restriction', 'ComplexRestrictionType'},
+            {'tag_name': 'extension', 'ExtensionType'},
+        ],
+        'attributes': {
+            'mixed': {'type': 'Boolean'},
+        }
+    }

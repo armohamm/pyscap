@@ -17,8 +17,16 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.OpenAttrsType import OpenAttrsType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class AnnotatedType(OpenAttrsType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+        ],
+        'attributes': {
+            'id': {'type': 'ID'},
+        },
+    }

@@ -18,8 +18,12 @@
 import datetime
 import importlib
 import logging
+import pathlib
 import pkgutil
 import pytest
+import xml.etree.ElementTree as ET
+
+from scap.Model import Model
 
 # import all the classes in the package
 import scap.model.xs as pkg
@@ -31,6 +35,13 @@ for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
         pass
 
 logging.basicConfig(level=logging.DEBUG)
+
+# NOTE: this namespace is registered by default
+#Model.register_namespace('scap.model.xs', 'http://www.w3.org/2001/XMLSchema')
+
+def test_parse():
+    path = pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xs.xsd'
+    model = Model.load(None, ET.parse(str(path)).getroot())
 
 def test_SevenPropertyModel_init():
     spm = SevenPropertyModel()

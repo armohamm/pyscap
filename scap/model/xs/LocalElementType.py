@@ -16,16 +16,27 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import re
 
 from scap.model.xs import *
-from scap.model.xs.Token import Token
+from scap.model.xs.ElementType import ElementType
 
 logger = logging.getLogger(__name__)
-class Name(Token):
-    def parse_value(self, value):
-        m = re.fullmatch(_i + _c + '*', value)
-        if not m:
-            raise ValueError('xs:Name must match \i\c* ' + value)
-
-        return super(Name, self).parse_value(value)
+class LocalElementType(ElementType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+            {'tag_name': 'simpleType', 'class': 'LocalSimpleTypeType', 'min': 0},
+            {'tag_name': 'complexType', 'class': 'LocalComplexTypeType', 'min': 0},
+        ],
+        'attributes': {
+            'substitutionGroup': {'prohibited': True},
+            'final': {'prohibited': True},
+            'abstract': {'prohibited': True},
+            '*': {},
+        }
+    }
+    eg = ELEMENT_GROUP_IDENTITY_CONSTRAINT.copy()
+    for el in eg:
+        el['min'] = 0
+        el['max'] = None
+    MODEL_MAP['elements'].extend(eg)

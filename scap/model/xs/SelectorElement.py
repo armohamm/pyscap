@@ -17,8 +17,15 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class SelectorElement(AnnotatedType):
+    MODEL_MAP = {
+        'elements': [
+        ],
+        'attributes': {
+            'xpath': {'type': 'SelectorXPath', 'required': True},
+        }
+    }

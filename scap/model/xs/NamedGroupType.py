@@ -16,16 +16,24 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import re
 
 from scap.model.xs import *
-from scap.model.xs.Token import Token
+from scap.model.xs.RealGroupType import RealGroupType
 
 logger = logging.getLogger(__name__)
-class Name(Token):
-    def parse_value(self, value):
-        m = re.fullmatch(_i + _c + '*', value)
-        if not m:
-            raise ValueError('xs:Name must match \i\c* ' + value)
-
-        return super(Name, self).parse_value(value)
+class NamedGroupType(RealGroupType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+            {'tag_name': 'all', 'class': 'NamedGroupAllElement', 'min': 0, 'max': 1},
+            {'tag_name': 'choice', 'class': 'SimpleExplicitGroupType', 'min': 0, 'max': 1},
+            {'tag_name': 'sequence', 'class': 'SimpleExplicitGroupType', 'min': 0, 'max': 1},
+        ],
+        'attributes': {
+            'name': {'type': 'NCName', 'required': True},
+            'ref': {'prohibited': True},
+            'minOccurs': {'prohibited': True},
+            'maxOccurs': {'prohibited': True},
+            '*': {},
+        }
+    }

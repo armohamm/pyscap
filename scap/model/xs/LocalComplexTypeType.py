@@ -17,8 +17,21 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.ComplexTypeType import ComplexTypeType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class LocalComplexTypeType(ComplexTypeType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+        ],
+        'attributes': {
+            'name': {'prohibited': True},
+            'abstract': {'prohibited': True},
+            'final': {'prohibited': True},
+            'block': {'prohibited': True},
+            '*': {},
+        }
+    }
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_COMPLEX_TYPE_MODEL)

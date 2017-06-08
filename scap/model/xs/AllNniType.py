@@ -17,8 +17,17 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.NMTOKEN import NMTOKEN
+from scap.model.xs.NonNegativeInteger import NonNegativeInteger
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class AllNniType(NMTOKEN):
+    MODEL_MAP = {
+    }
+
+    def parse_value(self, value):
+        if value == 'unbounded':
+            return value
+
+        return NonNegativeInteger.parse_value(value)

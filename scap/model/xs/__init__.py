@@ -16,5 +16,74 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    # no parseable elements; all classes should be inherited instead
+    '{http://www.w3.org/2001/XMLSchema}schema': 'SchemaElement',
 }
+
+_i = r'[A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]'
+_c = r'[-.0-9A-Z_a-z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]'
+
+ELEMENT_GROUP_REDEFINABLE = []
+ELEMENT_GROUP_REDEFINABLE.append({'tag_name': 'simpleType', 'class': 'SimpleTypeElement'})
+ELEMENT_GROUP_REDEFINABLE.append({'tag_name': 'complexType', 'class': 'ComplexTypeElement'})
+ELEMENT_GROUP_REDEFINABLE.append({'tag_name': 'group', 'class': 'GroupElement'})
+ELEMENT_GROUP_REDEFINABLE.append({'tag_name': 'attributeGroup', 'class': 'AttributeGroupElement'})
+
+ELEMENT_GROUP_SCHEMA_TOP = []
+ELEMENT_GROUP_SCHEMA_TOP.append(ELEMENT_GROUP_REDEFINABLE)
+ELEMENT_GROUP_SCHEMA_TOP.append({'tag_name': 'element', 'class': 'ElementElement'})
+ELEMENT_GROUP_SCHEMA_TOP.append({'tag_name': 'attribute', 'class': 'AttributeElement'})
+ELEMENT_GROUP_SCHEMA_TOP.append({'tag_name': 'notation', 'class': 'NotationElement'})
+
+ATTRIBUTE_GROUP_OCCURS = {
+    'minOccurs': {'type': 'NonNegativeInteger', 'default': 1},
+    'maxOccurs': {'type': 'AllNniType', 'default': 1},
+}
+
+ATTRIBUTE_GROUP_DEF_REF = {
+    'name': {'type': 'NCName'},
+    'ref': {'type': 'QName'},
+}
+
+ELEMENT_GROUP_TYPE_DEF_PARTICLE = [
+    {'tag_name': 'group', 'class': 'GroupRef'},
+    {'tag_name': 'all', 'class': 'AllElement'},
+    {'tag_name': 'choice', 'class': 'ChoiceElement'},
+    {'tag_name': 'sequence', 'class': 'SequenceElement'},
+]
+
+ELEMENT_GROUP_NESTED_PARTICLE = [
+    {'tag_name': 'element', 'class': 'LocalElement'},
+    {'tag_name': 'group', 'class': 'GroupRef'},
+    {'tag_name': 'choice', 'class': 'ChoiceElement'},
+    {'tag_name': 'sequence', 'class': 'SequenceElement'},
+    {'tag_name': 'any', 'class': 'AnyElement'},
+]
+
+ELEMENT_GROUP_PARTICLE = [
+    {'tag_name': 'element', 'class': 'LocalElement'},
+    {'tag_name': 'group', 'class': 'GroupRef'},
+    {'tag_name': 'all', 'class': 'AllElement'},
+    {'tag_name': 'choice', 'class': 'ChoiceElement'},
+    {'tag_name': 'sequence', 'class': 'SequenceElement'},
+]
+
+ELEMENT_GROUP_ATTR_DECLS = [
+    {'tag_name': 'attribute', 'class': 'AttributeType', 'min': 0, 'max': None},
+    {'tag_name': 'attributeGroup', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
+    {'tag_name': 'anyAttribute', 'class': 'AnyAttributeElement', 'min': 0},
+]
+
+ELEMENT_GROUP_COMPLEX_TYPE_MODEL = [
+    {'tag_name': 'simpleContent', 'class': 'SimpleContentElement', 'min': 0, 'max': None},
+    {'tag_name': 'complexContent', 'class': 'ComplexContentElement', 'min': 0, 'max': None},
+]
+eg = ELEMENT_GROUP_TYPE_DEF_PARTICLE.copy()
+for el in eg:
+    el['min'] = 0
+ELEMENT_GROUP_COMPLEX_TYPE_MODEL.extend(eg)
+ELEMENT_GROUP_COMPLEX_TYPE_MODEL.extend(ELEMENT_GROUP_ATTR_DECLS)
+
+ELEMENT_GROUP_ALL_MODEL = [
+    {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+    {'tag_name': 'element', 'class': 'NarrowMaxMinType', 'min': 0, 'max': None},
+]

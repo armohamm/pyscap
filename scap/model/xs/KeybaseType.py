@@ -17,8 +17,17 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class KeybaseType(AnnotatedType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'selector', 'class': 'SelectorElement'},
+            {'tag_name': 'field', 'class': 'FieldElement', 'min': 1, 'max': None},
+        ],
+        'attributes': {
+            'name': {'type': 'NCName', 'required': True},
+        },
+    }

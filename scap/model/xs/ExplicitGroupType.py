@@ -17,8 +17,23 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.GroupType import GroupType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class ExplicitGroupType(GroupType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+        ],
+        'attributes': {
+            'name': {'type': 'NCName', 'prohibited': True},
+            'ref': {'type': 'QName', 'prohibited': True},
+            '*': {},
+        }
+    }
+    eg = ELEMENT_GROUP_NESTED_PARTICLE
+    for el in eg:
+        el['min'] = 0
+        el['max'] = None
+    MODEL_MAP['elements'].extend(eg)

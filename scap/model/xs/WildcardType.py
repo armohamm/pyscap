@@ -17,8 +17,18 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class WildcardType(AnnotatedType):
+    MODEL_MAP = {
+        'elements': [
+        ],
+        'attributes': {
+            'namespace': {'type': 'NamespaceList', 'default': '##any'},
+            'processContents': {'enum': ['skip', 'lax', 'strict'], 'default': 'strict'},
+            '*': {},
+        }
+    }
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_ALL_MODEL)

@@ -17,8 +17,18 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AllElement import AllElement
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class NamedGroupAllElement(AllElement):
+    MODEL_MAP = {
+        'elements': [
+        ],
+        'attributes': {
+            'minOccurs': {'prohibited': True},
+            'maxOccurs': {'prohibited': True},
+            '*': {},
+        }
+    }
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_ALL_MODEL)

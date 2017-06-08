@@ -17,8 +17,17 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.ExtensionType import ExtensionType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class SimpleExtensionType(ExtensionType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+        ],
+        'attributes': {
+            'base': {'type': 'QName', 'required': True},
+        }
+    }
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_ATTR_DECLS)

@@ -17,8 +17,22 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AttributeType import AttributeType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class TopLevelAttributeType(AttributeType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+            {'tag_name': 'simpleType', 'class': 'LocalSimpleTypeType', 'min': 0},
+        ],
+        'attributes': {
+            'ref': {'prohibited': True},
+            'form': {'prohibited': True},
+            'use': {'prohibited': True},
+            'name': {'type': 'NCName', 'required': True},
+            '*': {},
+        },
+    }
+    # TODO check ref, form, use are not defined

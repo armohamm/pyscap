@@ -17,8 +17,19 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.GroupType import GroupType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class RealGroupType(GroupType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+            {'tag_name': 'all', 'class': 'AllElement', 'min': 0, 'max': 1},
+            {'tag_name': 'choice', 'class': 'ChoiceElement', 'min': 0, 'max': 1},
+            {'tag_name': 'sequence', 'class': 'SequenceElement', 'min': 0, 'max': 1},
+        ],
+        'attributes': {
+            # *
+        }
+    }

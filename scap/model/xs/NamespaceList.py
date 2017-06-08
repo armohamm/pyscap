@@ -16,9 +16,21 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import re
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs.List import List
+from scap.model.xs.Token import Token
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class NamespaceList(Token):
+    def parse_item(self, item_value):
+        if item_value == '##any' or item_value == '##other' \
+        or item_value == '##targetNamespace' or item_value == '##local':
+            return item_value
+        return Token().parse_value(item_value)
+
+    def produce_item(self, item_value):
+        if item_value == '##any' or item_value == '##other' \
+        or item_value == '##targetNamespace' or item_value == '##local':
+            return item_value
+        return Token().produce_value(item_value)

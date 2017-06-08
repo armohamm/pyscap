@@ -17,8 +17,21 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class ImportElement(AnnotatedType):
+    MODEL_MAP = {
+        'elements': [
+        ],
+        'attributes': {
+            'namespace': {'type': 'AnyURI'},
+            'schemaLocation': {'type': 'AnyURI'},
+        }
+    }
+    eg = ELEMENT_GROUP_REDEFINABLE.copy()
+    for el in eg:
+        el['min'] = 0
+        el['max'] = None
+    MODEL_MAP['elements'].extend(eg)

@@ -17,8 +17,20 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class RestrictionType(AnnotatedType):
+    MODEL_MAP = {
+        'elements': [
+        ],
+        'attributes': {
+            'base': {'type': 'QName', 'required': True},
+        }
+    }
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_TYPE_DEF_PARTICLE)
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_SIMPLE_RESTRICTION_MODEL)
+    for el in MODEL_MAP['elements']:
+        el['min'] = 0
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_ATTR_DECLS)

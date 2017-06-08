@@ -17,8 +17,12 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.WildcardType import WildcardType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class AnyElement(WildcardType):
+    MODEL_MAP = {
+        'attributes': {}
+    }
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_OCCURS)

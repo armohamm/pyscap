@@ -17,8 +17,19 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AttributeGroupType import AttributeGroupType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class NamedAttributeGroupType(AttributeGroupType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'annotation', 'type': 'AnnotationElement', 'min': 0},
+        ],
+        'attributes': {
+            'name': {'type': 'NCName', 'required': True},
+            'ref': {'prohibited': True},
+            '*': {},
+        }
+    }
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_ATTR_DECLS)

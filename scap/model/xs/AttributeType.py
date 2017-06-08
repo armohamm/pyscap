@@ -17,8 +17,21 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class AttributeType(AnnotatedType):
+    MODEL_MAP = {
+        'elements': [
+            {'tag_name': 'simpleType', 'class': 'LocalSimpleType', 'min': 0},
+        ],
+        'attributes': {
+            'type': {'type': 'QName'},
+            'use': {'enum': ['prohibited', 'optional', 'required'], 'default': 'optional'},
+            'default': {'type': 'String'},
+            'fixed': {'type': 'String'},
+            'form': {'type': 'FormChoiceType'},
+        },
+    }
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_DEF_REF)

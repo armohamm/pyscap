@@ -17,8 +17,18 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.ExplicitGroupType import ExplicitGroupType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class AllType(ExplicitGroupType):
+    MODEL_MAP = {
+        'elements': [
+        ],
+        'attributes': {
+            'minOccurs': {'enum': ['0', '1'], 'default': '1'},
+            'maxOccurs': {'enum': ['1'], 'default': '1'},
+            '*': {},
+        }
+    }
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_ALL_MODEL)

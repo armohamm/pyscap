@@ -17,8 +17,23 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class GroupType(AnnotatedType):
+    # abstract
+    MODEL_MAP = {
+        'elements': [
+        ],
+        'attributes': {
+        }
+    }
+    eg = ELEMENT_GROUP_PARTICLE.copy()
+    for el in eg:
+        el['min'] = 0
+        el['max'] = None
+    MODEL_MAP['elements'].extend(eg)
+
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_DEF_REF)
+    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_OCCURS)

@@ -18,13 +18,13 @@
 import logging
 import re
 
+from scap.model.xs import *
 from scap.model.xs.Token import Token
 
 logger = logging.getLogger(__name__)
 class NMTOKEN(Token):
     def parse_value(self, value):
-        c = r'[-.0-9:A-Z_a-z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]'
-        m = re.fullmatch(c + '+', value)
+        m = re.fullmatch(_c + '+', value)
         if not m:
             raise ValueError('xs:NMTOKEN must match \c+ ' + value)
 

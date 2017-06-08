@@ -17,8 +17,13 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.Token import Token
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class BlockSetType(Token):
+    MODEL_MAP = {
+    }
+
+    def get_value_enum(self):
+        return ['#all', 'extension', 'restriction', 'substitution']

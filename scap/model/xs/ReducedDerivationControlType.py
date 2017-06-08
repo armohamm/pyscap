@@ -17,8 +17,13 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.DerivationControl import DerivationControl
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class ReducedDerivationControlType(DerivationControl):
+    MODEL_MAP = {
+    }
+
+    def get_value_enum(self):
+        return ['extension', 'restriction']

@@ -17,8 +17,20 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs import *
+from scap.model.xs.AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
-class AnyURI(AnySimpleType):
-    pass
+class ComplexTypeType(AnnotatedType):
+    MODEL_MAP = {
+        'elements': [],
+        'attributes': {
+            'name': {'type': 'NCName'},
+            'mixed': {'type': 'Boolean', 'default': False},
+            'abstract': {'type': 'Boolean', 'default': False},
+            'final': {'type': 'DerivationSetType'},
+            'block': {'type': 'DerivationSetType'},
+        }
+    }
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_COMPLEX_TYPE_MODEL)
+    # TODO .mixed & simpleContent sub-elements are mutulally exclusive

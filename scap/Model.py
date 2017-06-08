@@ -969,6 +969,9 @@ class Model(object):
         if not hasattr(self, value_name):
             if 'required' in attr_map and attr_map['required']:
                 raise RequiredAttributeException(str(self) + ' must assign required attribute ' + attr_name)
+            elif 'prohibited' in attr_map and attr_map['prohibited']:
+                logger.debug('Skipping prohibited attribute ' + attr_name)
+                return
             else:
                 logger.debug('Skipping undefined attribute ' + attr_name)
                 return
