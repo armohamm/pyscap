@@ -20,6 +20,7 @@ import logging
 from scap.Model import Model
 from scap.model.oval_5 import *
 from scap.model.oval_5.defs import *
+from scap.model.oval_5.res.ExtendDefinitionType import ExtendDefinitionType as res_ExtendDefinitionType
 
 logger = logging.getLogger(__name__)
 class ExtendDefinitionType(Model):
@@ -31,3 +32,29 @@ class ExtendDefinitionType(Model):
             'comment': {'type': 'scap.model.oval_5.NonEmptyString'},
         }
     }
+
+    def check(self, content, host, imports, export_names):
+        # set up result
+        res = res_ExtendDefinitionType()
+        res.applicability_check = self.applicability_check
+        res.definition_ref = self.definition_ref
+        res.negate = self.negate
+        res.result = 'not evaluated'
+
+        try:
+            defn = content.find_reference(self.definition_ref)
+            def_res = defn.check(content, host, imports, export_names)
+
+            res.version = def_res.version
+            res.variable_instance = def_res.variable_instance
+            res.result = def_res.result
+
+            if self.negate:
+                if res.result == 'true':
+                    res.result = 'false'
+                elif res.result == 'false':
+                    res.result = 'true'
+        except:
+            res.version = 0
+
+        return res

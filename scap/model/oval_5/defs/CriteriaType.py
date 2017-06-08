@@ -20,12 +20,12 @@ import logging
 from scap.Model import Model
 from scap.model.oval_5 import *
 from scap.model.oval_5.defs import *
+from scap.model.oval_5.res.CriteriaType import CriteriaType as res_CriteriaType
 
 logger = logging.getLogger(__name__)
 class CriteriaType(Model):
     MODEL_MAP = {
         'elements': [
-            # TODO minOccurs="1" maxOccurs="unbounded" of the following:
             {'tag_name': 'criteria', 'list': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': None},
             {'tag_name': 'criterion', 'list': 'criteria', 'class': 'CriterionType', 'min': 0, 'max': None},
             {'tag_name': 'extend_definition', 'list': 'criteria', 'class': 'ExtendDefinitionType', 'min': 0, 'max': None},
@@ -37,3 +37,49 @@ class CriteriaType(Model):
             'comment': {'type': 'scap.model.oval_5.NonEmptyString'},
         }
     }
+
+    # TODO len(criteria) >= 1
+
+    def check(self, content, host, imports, export_names):
+        # set up result
+        res = res_CriteriaType()
+        res.applicability_check = self.applicability_check
+        res.operator = self.operator
+        res.negate = self.negate
+        res.result = 'not evaluated'
+
+        if len(self.criteria) <= 0:
+            raise ValueError('Criteria missing criteria/criterion/extend_definition')
+
+        if len(self.criteria) == 1:
+            res.criteria.append(self.criteria[0].check(content, host, imports, export_names))
+            res.result = res.criteria[0].result
+            return res
+
+        counts = {x: 0 for x in RESULT_ENUMERATION}
+
+        for crit in self.criteria:
+            crit_res = crit.check(content, host, imports, export_names)
+            res.criteria.append(crit_res)
+            counts[crit_res.result] += 1
+
+        t, f, e, u, ne, na = [counts[x] for x in RESULT_ENUMERATION]
+
+        if self.operator == 'AND':
+            res.result = operator_AND(t, f, e, u, ne, na)
+        elif self.operator == 'ONE':
+            res.result = operator_ONE(t, f, e, u, ne, na)
+        elif self.operator == 'OR':
+            res.result = operator_OR(t, f, e, u, ne, na)
+        elif self.operator == 'XOR':
+            res.result = operator_XOR(t, f, e, u, ne, na)
+        else:
+            raise ValueError('Unknown operator: ' + self.operator)
+
+        if self.negate:
+            if res.result == 'true':
+                res.result = 'false'
+            elif res.result == 'false':
+                res.result = 'true'
+
+        return res

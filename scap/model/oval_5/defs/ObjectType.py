@@ -37,3 +37,6 @@ class ObjectType(Model):
             'deprecated': {'type': 'Boolean', 'default': False},
         },
     }
+
+    def resolve(self, content, host, imports, export_names):
+        raise NotImplementedError('resolve is not implemented')

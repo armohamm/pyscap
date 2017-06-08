@@ -20,6 +20,7 @@ import logging
 from scap.Model import Model
 from scap.model.oval_5 import *
 from scap.model.oval_5.defs import *
+from scap.model.oval_5.res.DefinitionType import DefinitionType as res_DefinitionType
 
 logger = logging.getLogger(__name__)
 class DefinitionType(Model):
@@ -33,7 +34,27 @@ class DefinitionType(Model):
         'attributes': {
             'id': {'type': 'scap.model.oval_5.DefinitionIdPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},
-            'class': {'enum': CLASS_ENUMERATION, 'required': True},
+            'class': {'enum': CLASS_ENUMERATION, 'in': 'class_', 'required': True},
             'deprecated': {'type': 'Boolean', 'default': False},
         }
     }
+
+    def check(self, content, host, imports, export_names):
+        # set up result
+        res = res_DefinitionType()
+        res.definition_id = self.id
+        res.version = self.version
+        # TODO res.variable_instance
+        res.class_ = self.class_
+        res.result = 'not evaluated'
+
+        # TODO save to host for result generation
+
+        if self.deprecated:
+            logger.warning('Definition ' + self.id + ' is deprecated, but being used')
+
+        if self.criteria is not None:
+            res.criteria = self.criteria.check(content, host, imports, export_names)
+            res.result = res.criteria.result
+
+        return res

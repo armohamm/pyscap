@@ -20,6 +20,7 @@ import logging
 from scap.Model import Model
 from scap.model.oval_5 import *
 from scap.model.oval_5.defs import *
+from scap.model.oval_5.res.CriterionType import CriterionType as res_CriterionType
 
 logger = logging.getLogger(__name__)
 class CriterionType(Model):
@@ -31,3 +32,29 @@ class CriterionType(Model):
             'comment': {'type': 'scap.model.oval_5.NonEmptyString'},
         }
     }
+
+    def check(self, content, host, imports, export_names):
+        # set up result
+        res = res_CriterionType()
+        res.applicability_check = self.applicability_check
+        res.test_ref = self.test_ref
+        res.negate = self.negate
+        res.result = 'not evaluated'
+
+        try:
+            test = content.find_reference(self.test_ref)
+            test_res = test.check(content, host, imports, export_names)
+
+            res.version = test_res.version
+            res.variable_instance = test_res.variable_instance
+            res.result = test_res.result
+
+            if self.negate:
+                if res.result == 'true':
+                    res.result = 'false'
+                elif res.result == 'false':
+                    res.result = 'true'
+        except:
+            res.version = 0
+
+        return res
