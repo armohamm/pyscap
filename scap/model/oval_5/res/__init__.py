@@ -24,11 +24,4 @@ CONTENT_ENUMERATION = [
     'full',
 ]
 
-RESULT_ENUMERATION = [
-    'true',
-    'false',
-    'unknown',
-    'error',
-    'not evaluated',
-    'not applicable',
-]
+# RESULT_ENUMERATION is defined in scap.model.oval_5
