@@ -49,6 +49,9 @@ class MaximumElementException(Exception):
 class RequiredAttributeException(Exception):
     pass
 
+class ProhibitedAttributeException(Exception):
+    pass
+
 class UnknownAttributeException(Exception):
     pass
 
@@ -605,13 +608,19 @@ class Model(object):
             # copy the parents
             self.xmlns = self._parent.xmlns
 
-        # check that required attributes are defined
         for attrib in self._model_map['attributes']:
+            # check that required attributes are defined
             if 'required' in self._model_map['attributes'][attrib] \
             and self._model_map['attributes'][attrib]['required'] \
             and attrib not in el.keys() \
             and 'default' not in self._model_map['attributes'][attrib]:
                 raise RequiredAttributeException(el.tag + ' must define ' + attrib + ' attribute')
+
+            # check that prohibited attributes are not defined
+            if 'prohibited' in self._model_map['attributes'][attrib] \
+            and self._model_map['attributes'][attrib]['prohibited'] \
+            and attrib in el.keys():
+                raise ProhibitedAttributeException(el.tag + ' must not define ' + attrib + ' attribute')
 
         for name, value in list(el.items()):
             self._parse_attribute(name, value)
@@ -964,6 +973,8 @@ class Model(object):
                 logger.debug('Skipping undefined attribute ' + attr_name)
                 return
         else:
+            if 'prohibited' in attr_map and attr_map['prohibited']:
+                raise ProhibitedAttributeException(str(self) + ' must not assign prohibited attribute ' + attr_name)
             value = getattr(self, value_name)
 
         # TODO nillable for attrs?
