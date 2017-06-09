@@ -32,7 +32,7 @@ XML_SPACE_ENUMERATION = [
 ]
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+#logger.setLevel(logging.INFO)
 
 class UnregisteredNamespaceException(Exception):
     pass
@@ -249,9 +249,6 @@ class Model(object):
             xmlns, tag_name = tag[1:].split('}')
         else:
             return None, tag
-
-        if xmlns not in Model.__xmlns_to_package:
-            raise UnregisteredNamespaceException('Unregistered namespace: ' + xmlns + ', tag name: ' + tag_name)
 
         return xmlns, tag_name
 
@@ -747,6 +744,10 @@ class Model(object):
 
             logger.debug('Tag ' + el.tag + ' matched ' + tag)
             element_def = self._model_map['element_lookup'][tag]
+
+            if 'ignore' in element_def and element_def['ignore'] == True:
+                logger.debug('Ignoring ' + fq_tag + ' element in ' + str(self))
+                return
 
             if tag.endswith('*'):
                 logger.debug(str(self) + ' parsing ' + tag + ' elements matching *')

@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class AppinfoElement(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': '*', 'min': 0, 'max': None},
+            {'tag_name': '*', 'min': 0, 'max': None, 'ignore': True},
         ],
         'attributes': {
             'source': {'type': 'AnyUriType'},
