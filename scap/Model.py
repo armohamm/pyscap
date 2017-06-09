@@ -203,7 +203,10 @@ class Model(object):
             '{http://www.w3.org/XML/1998/namespace}space': {'enum': XML_SPACE_ENUMERATION, 'in': '_xml_space'},
             '{http://www.w3.org/XML/1998/namespace}base': {'type': 'AnyUriType', 'in': '_xml_base'},
             '{http://www.w3.org/XML/1998/namespace}id': {'type': 'ID', 'in': '_xml_id'},
+            '{http://www.w3.org/2001/XMLSchema-instance}type': {'type': 'QNameType', 'in': '_xsi_type'},
+            '{http://www.w3.org/2001/XMLSchema-instance}nil': {'type': 'BooleanType', 'in': '_xsi_nil', 'default': False},
             '{http://www.w3.org/2001/XMLSchema-instance}schemaLocation': {'type': 'AnyUriType', 'in': '_xsi_schemaLocation'},
+            '{http://www.w3.org/2001/XMLSchema-instance}noNamespaceSchemaLocation': {'type': 'AnyUriType', 'in': '_xsi_noNamespaceSchemaLocation'},
         },
     }
 
@@ -503,6 +506,9 @@ class Model(object):
                 if name not in self._child_map:
                     logger.debug('Initializing ' + name + ' to ModelChild()')
                     self._child_map[name] = ModelChild(self, element_def)
+
+    def is_nil(self):
+        return self._xsi_nil
 
     def __str__(self):
         s = self.__class__.__module__ + '.' + self.__class__.__name__
