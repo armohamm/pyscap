@@ -20,6 +20,6 @@ from scap.Model import Model
 class EnclosedFixture(Model):
     MODEL_MAP = {
         'attributes': {
-            'id': {'type': 'ID'},
+            'id': {'type': 'IdType'},
         },
     }

@@ -22,7 +22,7 @@ class AppendElementFixture(Model):
         'tag_name': 'AppendElementFixture',
         'elements': [
             {'tag_name': 'append_nil', 'list': 'append_nil', 'nillable': True, 'class': 'EnclosedFixture', 'min': 0},
-            {'tag_name': 'append_type', 'list': 'append_type', 'type': 'Decimal', 'min': 0},
+            {'tag_name': 'append_type', 'list': 'append_type', 'type': 'DecimalType', 'min': 0},
             {'tag_name': 'append_class', 'list': 'append_class', 'class': 'EnclosedFixture', 'min': 0},
         ],
     }
