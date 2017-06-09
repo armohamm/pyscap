@@ -28,7 +28,7 @@ class ReportRequestType(Model):
             {'tag_name': 'remote-resource', 'class': 'RemoteResourceElement'},
         ],
         'attributes': {
-            'id': {'type': 'NCName', 'required': True},
+            'id': {'type': 'NCNameType', 'required': True},
             '*': {},
         }
     }

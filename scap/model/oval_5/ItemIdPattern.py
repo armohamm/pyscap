@@ -18,8 +18,8 @@
 import logging
 
 from scap.model.oval_5 import *
-from scap.model.xs.Integer import Integer
+from scap.model.xs.IntegerType import IntegerType
 
 logger = logging.getLogger(__name__)
-class ItemIdPattern(Integer):
+class ItemIdPattern(IntegerType):
     pass

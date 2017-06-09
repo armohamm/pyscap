@@ -26,7 +26,7 @@ class WildcardType(AnnotatedType):
         'elements': [
         ],
         'attributes': {
-            'namespace': {'type': 'NamespaceList', 'default': '##any'},
+            'namespace': {'type': 'NamespaceListType', 'default': '##any'},
             'processContents': {'enum': ['skip', 'lax', 'strict'], 'default': 'strict'},
             '*': {},
         }

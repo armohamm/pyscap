@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class NotesType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'note', 'list': 'notes', 'type': 'String', 'min': 0, 'max': None},
+            {'tag_name': 'note', 'list': 'notes', 'type': 'StringType', 'min': 0, 'max': None},
         ],
     }

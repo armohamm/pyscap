@@ -30,13 +30,13 @@ class SchemaElement(OpenAttrsType):
             {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'targetNamespace': {'type': 'AnyURI'},
-            'version': {'type': 'ID'},
+            'targetNamespace': {'type': 'AnyUriType'},
+            'version': {'type': 'TokenType'},
             'finalDefault': {'type': 'FullDerivationSetType', 'default': ''},
-            'blockDefault': {'type': 'BlockSet', 'default': ''},
+            'blockDefault': {'type': 'BlockSetType', 'default': ''},
             'attributeFormDefault': {'type': 'FormChoiceType', 'default': 'unqualified'},
             'elementFormDefault': {'type': 'FormChoiceType', 'default': 'unqualified'},
-            'id': {'type': 'ID'},
+            'id': {'type': 'IdType'},
             # xml:lang
         },
     }

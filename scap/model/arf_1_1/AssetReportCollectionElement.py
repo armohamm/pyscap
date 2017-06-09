@@ -30,7 +30,7 @@ class AssetReportCollectionElement(RelationshipsContainerType):
             {'tag_name': 'extended-infos', 'class': 'ExtendedInfosType', 'min': 0},
         ],
         'attributes': {
-            'id': {'type': 'NCName', 'required': True},
+            'id': {'type': 'NCNameType', 'required': True},
             '*': {},
         }
     }

@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.oval_5 import *
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class SchemaVersionPattern(String):
+class SchemaVersionPattern(StringType):
     # <xsd:pattern value="[0-9]+\.[0-9]+(\.[0-9]+)?(:[0-9]+\.[0-9]+(\.[0-9]+)?)?"/>
     def get_value_pattern(self):
         return r'[0-9]+\.[0-9]+(\.[0-9]+)?(:[0-9]+\.[0-9]+(\.[0-9]+)?)?'

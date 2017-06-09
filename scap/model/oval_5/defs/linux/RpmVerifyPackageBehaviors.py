@@ -26,9 +26,9 @@ logger = logging.getLogger(__name__)
 class RpmVerifyBehaviors(Model):
     MODEL_MAP = {
         'attributes': {
-            'nodeps': {'type': 'Boolean', 'default': False},
-            'nodigest': {'type': 'Boolean', 'default': False},
-            'noscripts': {'type': 'Boolean', 'default': False},
-            'nosignature': {'type': 'Boolean', 'default': False},
+            'nodeps': {'type': 'BooleanType', 'default': False},
+            'nodigest': {'type': 'BooleanType', 'default': False},
+            'noscripts': {'type': 'BooleanType', 'default': False},
+            'nosignature': {'type': 'BooleanType', 'default': False},
         }
     }

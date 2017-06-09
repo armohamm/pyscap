@@ -15,9 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.AnyURI import AnyURI
+from scap.model.xs.AnyUriType import AnyUriType
 
-class WebsiteURLType(AnyURI):
+class WebsiteURLType(AnyUriType):
     MODEL_MAP = {
         'tag_name': 'website-url',
         'attributes': {

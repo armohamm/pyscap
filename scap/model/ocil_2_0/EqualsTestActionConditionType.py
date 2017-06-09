@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class EqualsTestActionConditionType(TestActionConditionType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'value', 'list': 'values', 'type': 'Decimal', 'min': 1, 'max': None},
+            {'tag_name': 'value', 'list': 'values', 'type': 'DecimalType', 'min': 1, 'max': None},
         ],
         'attributes': {
             'var_ref': {'type': 'VariableIdPattern'},

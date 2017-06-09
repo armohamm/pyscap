@@ -25,7 +25,7 @@ class SelectableItemType(ItemType):
     # abstract
     MODEL_MAP = {
         'attributes': {
-            'selected': {'type': 'Boolean', 'default': True},
+            'selected': {'type': 'BooleanType', 'default': True},
             'weight': {'type': 'Weight', 'default': 1.0},
         },
         'elements': [

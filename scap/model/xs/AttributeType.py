@@ -24,13 +24,13 @@ logger = logging.getLogger(__name__)
 class AttributeType(AnnotatedType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'simpleType', 'class': 'LocalSimpleType', 'min': 0},
+            {'tag_name': 'simpleType', 'class': 'LocalSimpleTypeType', 'min': 0},
         ],
         'attributes': {
-            'type': {'type': 'QName'},
+            'type': {'type': 'QNameType'},
             'use': {'enum': ['prohibited', 'optional', 'required'], 'default': 'optional'},
-            'default': {'type': 'String'},
-            'fixed': {'type': 'String'},
+            'default': {'type': 'StringType'},
+            'fixed': {'type': 'StringType'},
             'form': {'type': 'FormChoiceType'},
         },
     }

@@ -26,7 +26,7 @@ class ExtensionType(AnnotatedType):
         'elements': [
         ],
         'attributes': {
-            'base': {'type': 'QName', 'required': True},
+            'base': {'type': 'QNameType', 'required': True},
         }
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_TYPE_DEF_PARTICLE)

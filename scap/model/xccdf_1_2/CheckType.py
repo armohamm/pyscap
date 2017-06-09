@@ -25,10 +25,10 @@ class CheckType(Model):
     MODEL_MAP = {
         'attributes': {
             'system': {'type': 'AnyURI', 'required': True},
-            'negate': {'type': 'Boolean', 'default': False},
-            'id': {'type': 'NCName'},
-            'selector': {'default': None, 'type': 'String'},
-            'multi-check': {'type': 'Boolean', 'default': False},
+            'negate': {'type': 'BooleanType', 'default': False},
+            'id': {'type': 'NCNameType'},
+            'selector': {'default': None, 'type': 'StringType'},
+            'multi-check': {'type': 'BooleanType', 'default': False},
         },
         'elements': [
             {'tag_name': 'check-import', 'class': 'CheckImportType', 'list': 'check_imports', 'min': 0, 'max': None},

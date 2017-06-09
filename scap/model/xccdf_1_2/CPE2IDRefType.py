@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class CPE2IDRefType(Model):
     MODEL_MAP = {
         'attributes': {
-            'idref': {'type': 'String', 'required': True},
+            'idref': {'type': 'StringType', 'required': True},
         }
     }

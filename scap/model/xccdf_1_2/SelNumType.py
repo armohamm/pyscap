@@ -18,12 +18,12 @@
 import logging
 
 from scap.model.xccdf_1_2 import *
-from scap.model.xs.Decimal import Decimal
+from scap.model.xs.DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
-class SelNumType(Decimal):
+class SelNumType(DecimalType):
     MODEL_MAP = {
         'attributes': {
-            'selector': {'type': 'String', 'default': ''},
+            'selector': {'type': 'StringType', 'default': ''},
         }
     }

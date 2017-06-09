@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class BooleanQuestionType(QuestionType):
     MODEL_MAP = {
         'attributes': {
-            'default_answer': {'type': 'Boolean'},
+            'default_answer': {'type': 'BooleanType'},
             'model': {'enum': ['MODEL_YES_NO', 'MODEL_TRUE_FALSE']},
         }
     }

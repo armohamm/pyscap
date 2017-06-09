@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.Token import Token
+from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
-class BlockSetType(Token):
+class BlockSetType(TokenType):
     MODEL_MAP = {
     }
 

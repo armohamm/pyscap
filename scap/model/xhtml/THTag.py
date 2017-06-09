@@ -25,7 +25,7 @@ class THTag(FlowType):
     MODEL_MAP = {
         'attributes': {
             'abbr': {'type': 'TextType'},
-            'axis': {'type': 'String'},
+            'axis': {'type': 'StringType'},
             'headers': {'type': 'IDREFS'},
             'scope': {'enum': SCOPE_ENUMERATION},
             'rowspan': {'type': 'NumberType', 'default': 1},

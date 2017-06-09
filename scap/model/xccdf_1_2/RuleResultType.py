@@ -24,11 +24,11 @@ logger = logging.getLogger(__name__)
 class RuleResultType(Model):
     MODEL_MAP = {
         'attributes': {
-            'idref': {'type': 'NCName', 'required': True},
+            'idref': {'type': 'NCNameType', 'required': True},
             'role': {'enum': ROLE_ENUMERATION},
             'severity': {'enum': SEVERITY_ENUMERATION},
             'time': {'type': 'DateTime'},
-            'version': {'type': 'String'},
+            'version': {'type': 'StringType'},
             'weight': {'type': 'Weight'},
         },
         'elements': [

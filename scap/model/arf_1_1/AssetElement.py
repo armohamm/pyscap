@@ -28,7 +28,7 @@ class AssetElement(Model):
             {'tag_name': 'remote-resource', 'list': 'remote_resources', 'class': 'RemoteResourceElement'},
         ],
         'attributes': {
-            'id': {'type': 'NCName', 'required': True},
+            'id': {'type': 'NCNameType', 'required': True},
             '*': {},
         },
     }

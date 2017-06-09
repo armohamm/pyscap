@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class ProfileSelectType(Model):
     MODEL_MAP = {
         'attributes': {
-            'idref': {'type': 'NCName', 'required': True},
-            'selected': {'type': 'Boolean', 'required': True},
+            'idref': {'type': 'NCNameType', 'required': True},
+            'selected': {'type': 'BooleanType', 'required': True},
         },
         'elements': [
             {'tag_name': 'remark', 'class': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},

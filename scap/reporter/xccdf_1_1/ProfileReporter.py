@@ -29,7 +29,7 @@ from scap.model.xccdf_1_1.ScoreType import ScoreType
 from scap.model.xccdf_1_1.FactType import FactType
 from scap.model.xccdf_1_1.TargetFactsType import TargetFactsType
 from scap.model.xccdf_1_1.UriIdrefType import UriIdrefType
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 class ProfileReporter(Reporter):

@@ -26,6 +26,6 @@ class ReferenceArtifactValueType(ArtifactValueType):
         ],
         'attributes': {
             'id': {'type': 'ArtifactIDPattern', 'required': True},
-            'persistent': {'type': 'Boolean', 'default': True},
+            'persistent': {'type': 'BooleanType', 'default': True},
         }
     }

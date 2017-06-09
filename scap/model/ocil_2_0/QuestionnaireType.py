@@ -24,6 +24,6 @@ class QuestionnaireType(CompoundTestActionType):
         'tag_name': 'questionnaire',
         'attributes': {
             'id': {'type': 'QuestionnaireIDPattern', 'required': True},
-            'child_only': {'type': 'Boolean', 'default': False},
+            'child_only': {'type': 'BooleanType', 'default': False},
         }
     }

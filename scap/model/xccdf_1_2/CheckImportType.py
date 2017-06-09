@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class CheckImportType(Model):
     MODEL_MAP = {
         'attributes': {
-            'import-name': {'type': 'String', 'required': True},
-            'import-xpath': {'type': 'String'}
+            'import-name': {'type': 'StringType', 'required': True},
+            'import-xpath': {'type': 'StringType'}
         },
         'elements': [
             {'tag_name': '*', 'min': 0},

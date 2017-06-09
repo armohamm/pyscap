@@ -27,8 +27,8 @@ class ExplicitGroupType(GroupType):
             {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
         ],
         'attributes': {
-            'name': {'type': 'NCName', 'prohibited': True},
-            'ref': {'type': 'QName', 'prohibited': True},
+            'name': {'type': 'NCNameType', 'prohibited': True},
+            'ref': {'type': 'QNameType', 'prohibited': True},
             '*': {},
         }
     }

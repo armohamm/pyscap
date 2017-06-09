@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xccdf_1_2 import *
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class TailoringVersionType(String):
+class TailoringVersionType(StringType):
     MODEL_MAP = {
         'attributes': {
             'time': {'type': 'DateTime', 'required': True},

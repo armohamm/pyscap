@@ -18,12 +18,12 @@
 import logging
 
 from scap.model.xccdf_1_2 import *
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class ParamType(String):
+class ParamType(StringType):
     MODEL_MAP = {
         'attributes': {
-            'name': {'type': 'NCName', 'required': True},
+            'name': {'type': 'NCNameType', 'required': True},
         }
     }

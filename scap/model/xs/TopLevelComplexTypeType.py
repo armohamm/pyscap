@@ -27,7 +27,7 @@ class TopLevelComplexTypeType(ComplexTypeType):
             {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
         ],
         'attributes': {
-            'name': {'type': 'NCName', 'required': True},
+            'name': {'type': 'NCNameType', 'required': True},
         }
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_COMPLEX_TYPE_MODEL)

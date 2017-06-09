@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 class EntityItemFieldType(AnySimpleType):
     MODEL_MAP = {
         'attributes': {
-            'name': {'type': 'String', 'required': True, 'pattern': '[^A-Z]+'}
+            'name': {'type': 'StringType', 'required': True, 'pattern': '[^A-Z]+'}
         },
     }
     MODEL_MAP['attributes'].update(ENTITY_ATTRIBUTE_GROUP)

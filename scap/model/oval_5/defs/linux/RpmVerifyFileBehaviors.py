@@ -26,17 +26,17 @@ logger = logging.getLogger(__name__)
 class RpmVerifyBehaviors(Model):
     MODEL_MAP = {
         'attributes': {
-            'nolinkto': {'type': 'Boolean', 'default': False},
-            'nomd5': {'type': 'Boolean', 'default': False},
-            'nosize': {'type': 'Boolean', 'default': False},
-            'nouser': {'type': 'Boolean', 'default': False},
-            'nogroup': {'type': 'Boolean', 'default': False},
-            'nomtime': {'type': 'Boolean', 'default': False},
-            'nomode': {'type': 'Boolean', 'default': False},
-            'nordev': {'type': 'Boolean', 'default': False},
-            'noconfigfiles': {'type': 'Boolean', 'default': False},
-            'noghostfiles': {'type': 'Boolean', 'default': False},
-            'nofiledigest': {'type': 'Boolean', 'default': False},
-            'nocaps': {'type': 'Boolean', 'default': False},
+            'nolinkto': {'type': 'BooleanType', 'default': False},
+            'nomd5': {'type': 'BooleanType', 'default': False},
+            'nosize': {'type': 'BooleanType', 'default': False},
+            'nouser': {'type': 'BooleanType', 'default': False},
+            'nogroup': {'type': 'BooleanType', 'default': False},
+            'nomtime': {'type': 'BooleanType', 'default': False},
+            'nomode': {'type': 'BooleanType', 'default': False},
+            'nordev': {'type': 'BooleanType', 'default': False},
+            'noconfigfiles': {'type': 'BooleanType', 'default': False},
+            'noghostfiles': {'type': 'BooleanType', 'default': False},
+            'nofiledigest': {'type': 'BooleanType', 'default': False},
+            'nocaps': {'type': 'BooleanType', 'default': False},
         }
     }

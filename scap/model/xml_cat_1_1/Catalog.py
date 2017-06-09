@@ -30,7 +30,7 @@ class Catalog(Model, MutableMapping):
             '*': {}
         },
         'elements': [
-            {'tag_name': 'uri', 'dict': 'entries', 'key': 'name', 'value_attr': 'uri', 'type': 'String'},
+            {'tag_name': 'uri', 'dict': 'entries', 'key': 'name', 'value_attr': 'uri', 'type': 'StringType'},
             {'tag_name': '*', 'min': 0},
         ],
     }

@@ -15,12 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Token import Token
+from scap.model.xs.TokenType import TokenType
 import logging
 import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
-class TelephoneNumberType(Token):
+class TelephoneNumberType(TokenType):
     # collapsed element telephone-number into telephone-number-type
     # <xs:pattern value="(([2-9][0-8]\d-[2-9]\d{2}-[0-9]{4})|(\+([0-9] ?){6,14}[0-9]))"/>
     MODEL_MAP = {

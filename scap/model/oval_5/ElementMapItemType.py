@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.oval_5 import *
-from scap.model.xs.NCName import NCName
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
-class ElementMapItemType(NCName):
+class ElementMapItemType(NCNameType):
     MODEL_MAP = {
         'attributes': {
             'target_namespace': {'type': 'AnyURI'},

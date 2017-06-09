@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class IncludeElement(AnnotatedType):
     MODEL_MAP = {
         'attributes': {
-            'schemaLocation': {'type': 'AnyURI', 'required': True},
+            'schemaLocation': {'type': 'AnyUriType', 'required': True},
         }
     }

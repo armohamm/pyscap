@@ -39,7 +39,7 @@ class ValueType(ItemType):
         'attributes': {
             'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'string'},
             'operator': {'enum': VALUE_OPERATOR_ENUMERATION, 'default': 'equals'},
-            'interactive': {'type': 'Boolean'},
+            'interactive': {'type': 'BooleanType'},
             'interfaceHint': {'enum': INTERFACE_HINT_ENUMERATION},
         },
     }

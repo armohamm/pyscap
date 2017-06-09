@@ -27,8 +27,8 @@ class ProfileSelectType(Model):
             {'tag_name': 'remark', 'class': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'idref': {'type': 'NCName', 'required': True},
-            'selected': {'type': 'Boolean', 'required': True},
+            'idref': {'type': 'NCNameType', 'required': True},
+            'selected': {'type': 'BooleanType', 'required': True},
         },
     }
 

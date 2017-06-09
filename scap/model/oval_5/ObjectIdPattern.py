@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.oval_5 import *
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class ObjectIdPattern(String):
+class ObjectIdPattern(StringType):
     #<xsd:pattern value="oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*"/>
     def get_value_pattern(self):
         return r'oval:[A-Za-z0-9_\-\.]+:obj:[1-9][0-9]*'

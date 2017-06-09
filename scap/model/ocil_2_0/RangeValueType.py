@@ -15,14 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Decimal import Decimal
+from scap.model.xs.DecimalType import DecimalType
 import logging
 
 logger = logging.getLogger(__name__)
-class RangeValueType(Decimal):
+class RangeValueType(DecimalType):
     MODEL_MAP = {
         'attributes': {
-            'inclusive': {'type': 'Boolean', 'default': True},
+            'inclusive': {'type': 'BooleanType', 'default': True},
             'var_ref': {'type': 'VariableIdPattern'},
         },
     }

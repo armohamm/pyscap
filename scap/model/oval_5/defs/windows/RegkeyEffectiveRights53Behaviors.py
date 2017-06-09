@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 class RegkeyEffectiveRights53Behaviors(RegistryBehaviors):
     MODEL_MAP = {
         'attributes': {
-            'include_group': {'type': 'Boolean', 'default': True},
-            'resolve_group': {'type': 'Boolean', 'default': False},
+            'include_group': {'type': 'BooleanType', 'default': True},
+            'resolve_group': {'type': 'BooleanType', 'default': False},
         }
     }

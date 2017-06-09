@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class Cpe23Type(String):
+class Cpe23Type(StringType):
     MODEL_MAP = {
     }
 

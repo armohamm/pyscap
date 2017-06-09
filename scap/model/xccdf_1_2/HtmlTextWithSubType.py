@@ -28,6 +28,6 @@ class HtmlTextWithSubType(Model):
             {'xmlns': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'override': {'type': 'Boolean', 'default': False},
+            'override': {'type': 'BooleanType', 'default': False},
         },
     }

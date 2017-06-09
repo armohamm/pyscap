@@ -18,9 +18,9 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.model.xs.DateTime import DateTime
+from scap.model.xs.DateTimeType import DateTimeType
 
 logger = logging.getLogger(__name__)
-class DateTimeType(DateTime):
+class DateTimeType(DateTimeType):
     MODEL_MAP = {
     }

@@ -27,8 +27,8 @@ class ProfileRefineValueType(Model):
             {'tag_name': 'remark', 'type': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'idref': {'type': 'NCName', 'required': True},
-            'selector': {'type': 'String'},
+            'idref': {'type': 'NCNameType', 'required': True},
+            'selector': {'type': 'StringType'},
             'operator': {'enum': VALUE_OPERATOR_ENUMERATION},
         },
     }

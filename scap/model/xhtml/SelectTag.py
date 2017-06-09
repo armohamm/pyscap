@@ -28,7 +28,7 @@ class SelectTag(Model):
             {'tag_name': 'option', 'list': '_elements', 'class': 'OptionTag', 'max': None},
         ],
         'attributes': {
-            'name': {'type': 'String'},
+            'name': {'type': 'StringType'},
             'size': {'type': 'NumberType'},
             'multiple': {'enum': ['multiple']},
             'disabled': {'enum': ['disabled']},

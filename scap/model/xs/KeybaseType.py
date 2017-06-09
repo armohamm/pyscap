@@ -28,6 +28,6 @@ class KeybaseType(AnnotatedType):
             {'tag_name': 'field', 'class': 'FieldElement', 'min': 1, 'max': None},
         ],
         'attributes': {
-            'name': {'type': 'NCName', 'required': True},
+            'name': {'type': 'NCNameType', 'required': True},
         },
     }

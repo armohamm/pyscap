@@ -25,8 +25,8 @@ logger = logging.getLogger(__name__)
 class InterfaceType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'interface_name', 'type': 'String'},
-            {'tag_name': 'ip_address', 'type': 'String'},
-            {'tag_name': 'mac_address', 'type': 'String'},
+            {'tag_name': 'interface_name', 'type': 'StringType'},
+            {'tag_name': 'ip_address', 'type': 'StringType'},
+            {'tag_name': 'mac_address', 'type': 'StringType'},
         ],
     }

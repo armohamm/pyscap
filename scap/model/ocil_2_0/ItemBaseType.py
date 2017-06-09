@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class ItemBaseType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'notes', 'list': 'notes', 'type': 'String', 'min': 0, 'max': None},
+            {'tag_name': 'notes', 'list': 'notes', 'type': 'StringType', 'min': 0, 'max': None},
         ],
         'attributes': {
             'revision': {'type': 'NonNegativeInteger', 'default': 0},

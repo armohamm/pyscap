@@ -27,7 +27,7 @@ class SimpleRestrictionType(RestrictionType):
             {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
         ],
         'attributes': {
-            'base': {'type': 'QName', 'required': True},
+            'base': {'type': 'QNameType', 'required': True},
         }
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_SIMPLE_RESTRICTION_MODEL)

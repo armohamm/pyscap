@@ -29,6 +29,6 @@ class LogicalTestType(Model):
         ],
         'attributes': {
             'operator': {'enum': OPERATOR_ENUMERATION, 'required': True},
-            'negate': {'type': 'Boolean', 'required': True},
+            'negate': {'type': 'BooleanType', 'required': True},
         },
     }

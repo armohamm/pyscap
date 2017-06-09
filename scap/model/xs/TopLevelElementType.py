@@ -33,7 +33,7 @@ class TopLevelElementType(ElementType):
             'form': {'prohibited': True},
             'minOccurs': {'prohibited': True},
             'maxOccurs': {'prohibited': True},
-            'name': {'type': 'QName', 'required': True},
+            'name': {'type': 'QNameType', 'required': True},
             '*': {},
         }
     }

@@ -54,10 +54,10 @@ class BenchmarkType(Model):
             {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'id': {'required': True, 'type': 'NCName'},
+            'id': {'required': True, 'type': 'NCNameType'},
             'Id': {'type': 'ID'},
-            'resolved': {'type': 'Boolean', 'default': False},
-            'style': {'type': 'String'},
+            'resolved': {'type': 'BooleanType', 'default': False},
+            'style': {'type': 'StringType'},
             'style-href': {'type': 'AnyURI'},
         },
     }

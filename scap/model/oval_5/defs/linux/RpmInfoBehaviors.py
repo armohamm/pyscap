@@ -26,6 +26,6 @@ logger = logging.getLogger(__name__)
 class RpmInfoBehaviors(Model):
     MODEL_MAP = {
         'attributes': {
-            'filepaths': {'type': 'Boolean', 'default': False},
+            'filepaths': {'type': 'BooleanType', 'default': False},
         }
     }

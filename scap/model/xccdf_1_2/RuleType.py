@@ -28,11 +28,11 @@ class RuleType(SelectableItemType):
             'id': {'required': True, 'type': 'RuleIDPattern'},
             'role': {'enum': ROLE_ENUMERATION, 'default': 'full'},
             'severity': {'enum': SEVERITY_ENUMERATION, 'default': 'unknown'},
-            'multiple': {'type': 'Boolean', 'default': False},
+            'multiple': {'type': 'BooleanType', 'default': False},
         },
         'elements': [
             {'tag_name': 'ident', 'list': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
-            {'tag_name': 'impact-metric', 'min': 0, 'max': 1, 'type': 'String'},
+            {'tag_name': 'impact-metric', 'min': 0, 'max': 1, 'type': 'StringType'},
             {'tag_name': 'profile-note', 'list': 'profile_notes', 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
             {'tag_name': 'fix', 'class': 'FixType', 'min': 0, 'max': None, 'list': 'fixes'},
             {'tag_name': 'fixtext', 'class': 'FixtextType', 'min': 0, 'max': None, 'list': 'fixtexts'},

@@ -25,8 +25,8 @@ class ParamTag(Model):
     MODEL_MAP = {
         'attributes': {
             'id': {'type': 'ID'},
-            'name': {'type': 'String'},
-            'value': {'type': 'String'},
+            'name': {'type': 'StringType'},
+            'value': {'type': 'StringType'},
             'valuetype': {'enum': ['data', 'ref', 'object'], 'default': 'data'},
             'type': {'type': 'ContentTypeType'},
         },

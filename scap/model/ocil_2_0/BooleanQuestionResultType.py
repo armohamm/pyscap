@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class BooleanQuestionResultType(QuestionResultType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'answer', 'type': 'Boolean', 'max': 1},
+            {'tag_name': 'answer', 'type': 'BooleanType', 'max': 1},
         ],
     }

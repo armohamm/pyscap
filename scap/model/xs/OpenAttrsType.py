@@ -18,9 +18,9 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.AnyType import AnyType
+from scap.model.xs.AnyTypeType import AnyTypeType
 
 logger = logging.getLogger(__name__)
-class OpenAttrsType(AnyType):
+class OpenAttrsType(AnyTypeType):
     MODEL_MAP = {
     }

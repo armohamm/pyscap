@@ -24,10 +24,10 @@ logger = logging.getLogger(__name__)
 class NamedAttributeGroupType(AttributeGroupType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'annotation', 'type': 'AnnotationElement', 'min': 0},
+            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
         ],
         'attributes': {
-            'name': {'type': 'NCName', 'required': True},
+            'name': {'type': 'NCNameType', 'required': True},
             'ref': {'prohibited': True},
             '*': {},
         }

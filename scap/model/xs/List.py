@@ -18,10 +18,10 @@
 import logging
 import re
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class List(AnySimpleType):
+class List(StringType):
     # abstract
     def parse_value(self, value):
         value = super(List, self).parse_value(value)

@@ -27,7 +27,7 @@ class TextAreaTag(Model):
             {'tag_name': '*', 'min': 0},
         ],
         'attributes': {
-            'name': {'type': 'String'},
+            'name': {'type': 'StringType'},
             'rows': {'type': 'NumberType', 'required': True},
             'cols': {'type': 'NumberType', 'required': True},
             'disabled': {'enum': ['disabled']},

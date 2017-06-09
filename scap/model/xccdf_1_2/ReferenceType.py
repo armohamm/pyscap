@@ -18,14 +18,14 @@
 import logging
 
 from scap.model.xccdf_1_2 import *
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class ReferenceType(String):
+class ReferenceType(StringType):
     MODEL_MAP = {
         'attributes': {
             'href': {'type': 'AnyURI'},
-            'override': {'type': 'Boolean'},
+            'override': {'type': 'BooleanType'},
         },
         'elements': [
             {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 0, 'max': None},

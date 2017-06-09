@@ -29,12 +29,12 @@ class ElementType(AnnotatedType):
             {'tag_name': 'complexType', 'class': 'LocalComplexTypeType', 'min': 0},
         ],
         'attributes': {
-            'type': {'type': 'QName'},
-            'substitutionGroup': {'type': 'QName'},
-            'default': {'type': 'String'},
-            'fixed': {'type': 'String'},
-            'nillable': {'type': 'Boolean', 'default': False},
-            'abstract': {'type': 'Boolean', 'default': False},
+            'type': {'type': 'QNameType'},
+            'substitutionGroup': {'type': 'QNameType'},
+            'default': {'type': 'StringType'},
+            'fixed': {'type': 'StringType'},
+            'nillable': {'type': 'BooleanType', 'default': False},
+            'abstract': {'type': 'BooleanType', 'default': False},
             'final': {'type': 'DerivationSetType'},
             'block': {'type': 'BlockSetType'},
             'form': {'type': 'FormChoiceType'},
@@ -45,6 +45,6 @@ class ElementType(AnnotatedType):
         el['min'] = 0
         el['max'] = None
     MODEL_MAP['elements'].extend(eg)
-    
+
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_DEF_REF)
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_OCCURS)

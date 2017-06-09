@@ -35,7 +35,7 @@ class DefinitionType(Model):
             'id': {'type': 'scap.model.oval_5.DefinitionIdPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},
             'class': {'enum': CLASS_ENUMERATION, 'in': 'class_', 'required': True},
-            'deprecated': {'type': 'Boolean', 'default': False},
+            'deprecated': {'type': 'BooleanType', 'default': False},
         }
     }
 

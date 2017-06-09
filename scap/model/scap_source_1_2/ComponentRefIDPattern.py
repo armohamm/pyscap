@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.scap_source_1_2 import *
-from scap.model.xs.ID import ID
+from scap.model.xs.IdType import IdType
 
 logger = logging.getLogger(__name__)
-class ComponentRefIDPattern(ID):
+class ComponentRefIDPattern(IdType):
     # scap_[^_]+_cref_.+
     def get_value_pattern(self):
         return r'scap_[^_]+_cref_.+'

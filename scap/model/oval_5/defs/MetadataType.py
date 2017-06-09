@@ -25,10 +25,10 @@ logger = logging.getLogger(__name__)
 class MetadataType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'title', 'type': 'String'},
+            {'tag_name': 'title', 'type': 'StringType'},
             {'tag_name': 'affected', 'list': 'affecteds', 'class': 'AffectedType', 'min': 0, 'max': None},
             {'tag_name': 'reference', 'list': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
-            {'tag_name': 'description', 'type': 'String'},
+            {'tag_name': 'description', 'type': 'StringType'},
             {'tag_name': '*', 'min': 0},
         ],
     }

@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class StringQuestionResultType(QuestionResultType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'answer', 'type': 'String', 'max': 1},
+            {'tag_name': 'answer', 'type': 'StringType', 'max': 1},
         ],
     }

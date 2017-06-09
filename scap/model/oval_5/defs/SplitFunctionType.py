@@ -27,7 +27,7 @@ class SplitFunctionType(Model):
         'elements': [
         ],
         'attributes': {
-            'delimiter': {'type': 'String', 'required': True},
+            'delimiter': {'type': 'StringType', 'required': True},
         }
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_COMPONENT)

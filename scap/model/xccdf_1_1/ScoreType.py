@@ -18,13 +18,13 @@
 import logging
 
 from scap.model.xccdf_1_1 import *
-from scap.model.xs.Decimal import Decimal
+from scap.model.xs.DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
-class ScoreType(Decimal):
+class ScoreType(DecimalType):
     MODEL_MAP = {
         'attributes': {
             'system': {'type': 'AnyURI'},
-            'maximum': {'type': 'Decimal'}
+            'maximum': {'type': 'DecimalType'}
         }
     }

@@ -24,6 +24,6 @@ class ObjectRefType(Model):
     MODEL_MAP = {
         'tag_name': 'object-ref',
         'attributes': {
-            'ref-id': {'type': 'NCName', 'required': True},
+            'ref-id': {'type': 'NCNameType', 'required': True},
         }
     }

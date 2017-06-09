@@ -41,10 +41,10 @@ class ProfileType(Model):
         ],
         'attributes': {
             'id': {'required': True, 'type': 'ProfileIDPattern'},
-            'prohibitChanges': {'type': 'Boolean', 'default': False},
-            'abstract': {'type': 'Boolean', 'default': False},
-            'note-tag': {'type': 'NCName'},
-            'extends': {'type': 'NCName'},
+            'prohibitChanges': {'type': 'BooleanType', 'default': False},
+            'abstract': {'type': 'BooleanType', 'default': False},
+            'note-tag': {'type': 'NCNameType'},
+            'extends': {'type': 'NCNameType'},
             'Id': {'type': 'ID'},
         },
     }

@@ -18,8 +18,8 @@
 import logging
 
 from scap.model.xccdf_1_2 import *
-from scap.model.xs.NCName import NCName
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
-class GroupIDPattern(NCName):
+class GroupIDPattern(NCNameType):
     pass

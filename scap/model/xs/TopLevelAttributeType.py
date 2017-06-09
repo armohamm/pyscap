@@ -31,7 +31,7 @@ class TopLevelAttributeType(AttributeType):
             'ref': {'prohibited': True},
             'form': {'prohibited': True},
             'use': {'prohibited': True},
-            'name': {'type': 'NCName', 'required': True},
+            'name': {'type': 'NCNameType', 'required': True},
             '*': {},
         },
     }

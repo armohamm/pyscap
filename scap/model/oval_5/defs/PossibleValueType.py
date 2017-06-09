@@ -25,6 +25,6 @@ logger = logging.getLogger(__name__)
 class PossibleValueType(AnySimpleType):
     MODEL_MAP = {
         'attributes': {
-            'hint': {'type': 'String', 'required': True},
+            'hint': {'type': 'StringType', 'required': True},
         },
     }

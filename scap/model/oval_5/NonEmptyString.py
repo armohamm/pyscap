@@ -18,9 +18,9 @@
 import logging
 
 from scap.model.oval_5 import *
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class NonEmptyString(String):
+class NonEmptyString(StringType):
     def __init__(self):
         super(NonEmptyString, self).__init__()

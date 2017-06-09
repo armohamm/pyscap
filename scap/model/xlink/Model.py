@@ -27,11 +27,11 @@ class Model(scapModel):
             '{http://www.w3.org/1999/xlink}href': {'type': 'AnyURI'},
             '{http://www.w3.org/1999/xlink}role': {'type': 'AnyURI'}, # min length = 1
             '{http://www.w3.org/1999/xlink}arcrole': {'type': 'AnyURI'}, # min length = 1
-            '{http://www.w3.org/1999/xlink}title': {'type': 'String'},
+            '{http://www.w3.org/1999/xlink}title': {'type': 'StringType'},
             '{http://www.w3.org/1999/xlink}show': {'enum': ['new', 'replace', 'embed', 'other', 'none']},
             '{http://www.w3.org/1999/xlink}actuate': {'enum': ['onLoad', 'onRequest', 'other', 'none']},
-            '{http://www.w3.org/1999/xlink}label': {'type': 'NCName'},
-            '{http://www.w3.org/1999/xlink}from': {'type': 'NCName'},
-            '{http://www.w3.org/1999/xlink}to': {'type': 'NCName'},
+            '{http://www.w3.org/1999/xlink}label': {'type': 'NCNameType'},
+            '{http://www.w3.org/1999/xlink}from': {'type': 'NCNameType'},
+            '{http://www.w3.org/1999/xlink}to': {'type': 'NCNameType'},
         }
     }

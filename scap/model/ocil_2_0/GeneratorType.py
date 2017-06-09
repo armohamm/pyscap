@@ -26,7 +26,7 @@ class GeneratorType(Model):
             {'tag_name': 'product_name', 'type': 'NormalizedString', 'min': 0, 'max': 1},
             {'tag_name': 'product_version', 'type': 'NormalizedString', 'min': 0, 'max': 1},
             {'tag_name': 'author', 'list': 'authors', 'class': 'UserType', 'min': 0, 'max': None},
-            {'tag_name': 'schema_version', 'type': 'Decimal', 'min': 1, 'max': 1},
+            {'tag_name': 'schema_version', 'type': 'DecimalType', 'min': 1, 'max': 1},
             {'tag_name': 'timestamp', 'type': 'DateTime', 'min': 1, 'max': 1},
             {'tag_name': 'additional_data', 'class': 'ExtensionContainerType', 'min': 0},
         ],

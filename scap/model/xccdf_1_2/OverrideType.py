@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xccdf_1_2 import *
-from scap.model.xs.Decimal import Decimal
+from scap.model.xs.DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
-class OverrideType(Decimal):
+class OverrideType(DecimalType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'old-result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
@@ -30,6 +30,6 @@ class OverrideType(Decimal):
         ],
         'attributes': {
             'time': {'type': 'DateTime', 'required': True},
-            'authority': {'type': 'String', 'required': True},
+            'authority': {'type': 'StringType', 'required': True},
         },
     }

@@ -26,7 +26,7 @@ class BeginFunctionType(Model):
     MODEL_MAP = {
         'elements': [],
         'attributes': {
-            'character': {'type': 'String', 'required': True},
+            'character': {'type': 'StringType', 'required': True},
         }
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_COMPONENT)

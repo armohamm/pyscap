@@ -27,9 +27,9 @@ class ProfileRefineRuleType(Model):
             {'tag_name': 'remark', 'type': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'idref': {'type': 'NCName', 'required': True},
+            'idref': {'type': 'NCNameType', 'required': True},
             'weight': {'type': 'Weight'},
-            'selector': {'type': 'String'},
+            'selector': {'type': 'StringType'},
             'severity': {'enum': SEVERITY_ENUMERATION},
             'role': {'enum': ROLE_ENUMERATION},
         },

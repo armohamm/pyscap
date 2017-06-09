@@ -22,8 +22,8 @@ logger = logging.getLogger(__name__)
 class SystemTargetType(NamedItemBaseType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'organization', 'type': 'String', 'min': 0, 'max': 1},
-            {'tag_name': 'ipaddress', 'list': 'ipaddresses', 'type': 'String', 'min': 0, 'max': None},
+            {'tag_name': 'organization', 'type': 'StringType', 'min': 0, 'max': 1},
+            {'tag_name': 'ipaddress', 'list': 'ipaddresses', 'type': 'StringType', 'min': 0, 'max': None},
             {'tag_name': 'description', 'class': 'TextType', 'min': 0, 'max': 1},
         ],
     }

@@ -28,6 +28,6 @@ class ProfileNoteType(Model):
             {'xmlns': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'tag': {'type': 'NCName'},
+            'tag': {'type': 'NCNameType'},
         },
     }

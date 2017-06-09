@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class ConstantVariableType(VariableType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'value', 'type': 'String', 'min': 1, 'max': 1},
+            {'tag_name': 'value', 'type': 'StringType', 'min': 1, 'max': 1},
         ],
     }

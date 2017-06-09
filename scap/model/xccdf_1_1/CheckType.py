@@ -32,8 +32,8 @@ class CheckType(Model):
         ],
         'attributes': {
             'system': {'type': 'AnyURI', 'required': True},
-            'id': {'type': 'NCName'},
-            'selector': {'default': '', 'type': 'String'},
+            'id': {'type': 'NCNameType'},
+            'selector': {'default': '', 'type': 'StringType'},
         },
     }
 

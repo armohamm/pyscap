@@ -34,6 +34,6 @@ STATUS_ENUMERATION = EXISTENCE_RESULT_ENUMERATION
 
 ENTITY_ATTRIBUTE_GROUP = {
     'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
-    'mask': {'type': 'Boolean', 'default': False},
+    'mask': {'type': 'BooleanType', 'default': False},
     'status': {'enum': STATUS_ENUMERATION, 'default': 'exists'},
 }

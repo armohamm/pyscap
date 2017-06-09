@@ -27,6 +27,6 @@ class AnnotatedType(OpenAttrsType):
             {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
         ],
         'attributes': {
-            'id': {'type': 'ID'},
+            'id': {'type': 'IdType'},
         },
     }

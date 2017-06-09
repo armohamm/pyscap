@@ -15,12 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.NormalizedString import NormalizedString
+from scap.model.xs.NormalizedStringType import NormalizedStringType
 import logging
 import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
-class NetworkNameType(NormalizedString):
+class NetworkNameType(NormalizedStringType):
     MODEL_MAP = {
         'tag_name': 'instance-name',
         'attributes': {

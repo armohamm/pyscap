@@ -18,9 +18,9 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class ContentTypesType(String):
+class ContentTypesType(StringType):
     MODEL_MAP = {
     }

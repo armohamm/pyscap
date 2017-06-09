@@ -23,6 +23,6 @@ logger = logging.getLogger(__name__)
 class AssetIdentificationType(AssetsType):
     MODEL_MAP = {
         'attributes': {
-            'asset-ref': {'type': 'NCName', 'required': True},
+            'asset-ref': {'type': 'NCNameType', 'required': True},
         }
     }

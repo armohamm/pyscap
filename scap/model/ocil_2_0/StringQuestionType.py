@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class StringQuestionType(QuestionType):
     MODEL_MAP = {
         'attributes': {
-            'default_answer': {'type': 'String'},
+            'default_answer': {'type': 'StringType'},
         }
     }

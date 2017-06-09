@@ -37,7 +37,7 @@ class AssetsAssetElement(Model):
             {'tag_name': 'website', 'in': 'asset', 'class': 'WebsiteType'},
         ],
         'attributes': {
-            'id': {'type': 'NCName', 'required': True},
+            'id': {'type': 'NCNameType', 'required': True},
             '*': {},
         }
     }

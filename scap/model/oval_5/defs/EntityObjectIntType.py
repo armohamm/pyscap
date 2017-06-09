@@ -20,7 +20,7 @@ import logging
 from scap.model.oval_5 import *
 from scap.model.oval_5.defs import *
 from scap.model.oval_5.defs.EntitySimpleBaseType import EntitySimpleBaseType
-from scap.model.xs.Integer import Integer
+from scap.model.xs.IntegerType import IntegerType
 
 logger = logging.getLogger(__name__)
 class EntityObjectIntType(EntitySimpleBaseType, Integer):

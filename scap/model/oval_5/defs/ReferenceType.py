@@ -25,8 +25,8 @@ logger = logging.getLogger(__name__)
 class ReferenceType(Model):
     MODEL_MAP = {
         'attributes': {
-            'source': {'type': 'String', 'required': True},
-            'ref_id': {'type': 'String', 'required': True},
+            'source': {'type': 'StringType', 'required': True},
+            'ref_id': {'type': 'StringType', 'required': True},
             'ref_url': {'type': 'AnyURI'},
         }
     }

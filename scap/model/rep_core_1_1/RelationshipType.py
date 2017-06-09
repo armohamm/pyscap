@@ -26,9 +26,9 @@ class RelationshipType(Model):
             {'tag_name': 'ref', 'list': 'refs', 'class': 'RefElement'},
         ],
         'attributes': {
-            'type': {'type': 'QName', 'required': True},
+            'type': {'type': 'QNameType', 'required': True},
             'scope': {'enum': ['inclusive', 'exclusive'], 'default': 'inclusive'},
-            'subject': {'type': 'NCName', 'required': True},
+            'subject': {'type': 'NCNameType', 'required': True},
             '*': {},
         },
     }

@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 class PrinterEffectiveRightsBehaviors(Model):
     MODEL_MAP = {
         'attributes': {
-            'include_group': {'type': 'Boolean', 'default': True},
-            'resolve_group': {'type': 'Boolean', 'default': True},
+            'include_group': {'type': 'BooleanType', 'default': True},
+            'resolve_group': {'type': 'BooleanType', 'default': True},
         }
     }

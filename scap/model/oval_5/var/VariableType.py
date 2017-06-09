@@ -31,6 +31,6 @@ class VariableType(Model):
         'attributes': {
             'id': {'type': 'scap.model.oval_5.VariableIdPattern', 'required': True},
             'datatype': {'enum': SIMPLE_DATATYPE_ENUMERATION, 'required': True},
-            'comment': {'type': 'String', 'required': True},
+            'comment': {'type': 'StringType', 'required': True},
         }
     }

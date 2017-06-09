@@ -23,6 +23,6 @@ class ArtifactRefType(Model):
     MODEL_MAP = {
         'attributes': {
             'idref': {'type': 'ArtifactIDPattern',},
-            'required': {'type': 'Boolean', 'default': False},
+            'required': {'type': 'BooleanType', 'default': False},
         }
     }

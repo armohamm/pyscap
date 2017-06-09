@@ -25,11 +25,11 @@ logger = logging.getLogger(__name__)
 class CriterionType(Model):
     MODEL_MAP = {
         'attributes': {
-            'applicability_check': {'type': 'Boolean'},
+            'applicability_check': {'type': 'BooleanType'},
             'test_ref': {'type': 'scap.model.oval_5.TestIdPattern', 'required': True},
             'version': {'type': 'NonNegativeInteger', 'required': True},
             'variable_instance': {'type': 'NonNegativeInteger', 'default': 1},
-            'negate': {'type': 'Boolean', 'default': False},
+            'negate': {'type': 'BooleanType', 'default': False},
             'result': {'enum': RESULT_ENUMERATION, 'required': True},
         }
     }

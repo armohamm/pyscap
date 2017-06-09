@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class InstanceFixType(Model):
     MODEL_MAP = {
         'attributes': {
-            'context': {'type': 'String', 'default': 'undefined'}
+            'context': {'type': 'StringType', 'default': 'undefined'}
         }
     }

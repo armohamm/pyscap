@@ -23,6 +23,6 @@ class TestActionRefType(TestActionRefValuePattern):
     MODEL_MAP = {
         'tag_name': 'test_action_ref',
         'attributes': {
-            'negate': {'type': 'Boolean', 'default': False},
+            'negate': {'type': 'BooleanType', 'default': False},
         },
     }

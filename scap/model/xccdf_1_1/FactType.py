@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 from scap.model.xccdf_1_1 import *
 
 logger = logging.getLogger(__name__)
-class FactType(String):
+class FactType(StringType):
     MODEL_MAP = {
         'attributes': {
             'name': {'type': 'AnyURI', 'required': True},

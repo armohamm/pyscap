@@ -25,7 +25,7 @@ class DeprecatedInfoType(Model):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'version', 'type': 'SchemaVersionPattern'},
-            {'tag_name': 'reason', 'type': 'String'},
-            {'tag_name': 'comment', 'type': 'String', 'min': 0, 'max': 1},
+            {'tag_name': 'reason', 'type': 'StringType'},
+            {'tag_name': 'comment', 'type': 'StringType', 'min': 0, 'max': 1},
         ],
     }

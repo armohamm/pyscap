@@ -25,6 +25,6 @@ class BenchmarkReferenceType(Model):
     MODEL_MAP = {
         'attributes': {
             'href': {'type': 'AnyURI'},
-            'id': {'type': 'NCName'},
+            'id': {'type': 'NCNameType'},
         },
     }

@@ -25,7 +25,7 @@ class ComplexCheckType(Model):
     MODEL_MAP = {
         'attributes': {
             'operator': {'enum': CHECK_OPERATOR_ENUMERATION, 'required': True},
-            'negate': {'type': 'Boolean', 'default': False},
+            'negate': {'type': 'BooleanType', 'default': False},
         },
         'elements': [
             # TODO: ensure checks has at least 1

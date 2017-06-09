@@ -28,8 +28,8 @@ class FixType(Model):
             {'tag_name': 'instance', 'list': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
         ],
         'attributes': {
-            'id': {'type': 'NCName'},
-            'reboot': {'type': 'Boolean'},
+            'id': {'type': 'NCNameType'},
+            'reboot': {'type': 'BooleanType'},
             'strategy': {'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
             'disruption': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
             'complexity': {'enum': RATING_ENUMERATION, 'default': 'unknown'},

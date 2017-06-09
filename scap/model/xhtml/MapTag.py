@@ -27,7 +27,7 @@ class MapTag(Model):
         ],
         'attributes': {
             'id': {'type': 'ID', 'required': True},
-            'class': {'type': 'String'},
+            'class': {'type': 'StringType'},
             'style': {'type': 'StyleSheetType'},
             'title': {'type': 'TextType'},
             'name': {'type': 'NMTOKEN'},

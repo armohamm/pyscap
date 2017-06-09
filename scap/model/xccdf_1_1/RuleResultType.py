@@ -33,11 +33,11 @@ class RuleResultType(Model):
             {'tag_name': 'check', 'list': 'checks', 'class': 'CheckType', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'idref': {'type': 'NCName', 'required': True},
+            'idref': {'type': 'NCNameType', 'required': True},
             'role': {'enum': ROLE_ENUMERATION},
             'severity': {'enum': SEVERITY_ENUMERATION},
             'time': {'type': 'DateTime'},
-            'version': {'type': 'String'},
+            'version': {'type': 'StringType'},
             'weight': {'type': 'WeightType'},
         },
     }

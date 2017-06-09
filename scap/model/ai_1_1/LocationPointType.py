@@ -24,10 +24,10 @@ class LocationPointType(LocationType):
     MODEL_MAP = {
         'tag_name': 'location-point',
         'attributes': {
-            'latitude': {'required': True, 'type': 'Double'},
-            'longitude': {'required': True, 'type': 'Double'},
-            'elevation': {'type': 'Double'},
-            'radius': {'type': 'Double'},
+            'latitude': {'required': True, 'type': 'DoubleType'},
+            'longitude': {'required': True, 'type': 'DoubleType'},
+            'elevation': {'type': 'DoubleType'},
+            'radius': {'type': 'DoubleType'},
             'source': {'type': 'Source'},
             'timestamp': {'type': 'Timestamp'},
             '*': {},

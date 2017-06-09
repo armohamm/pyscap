@@ -26,6 +26,6 @@ class OperationType(Model):
         ],
         'attributes': {
             'operation': {'enum': ['AND', 'OR'], 'default': 'AND'},
-            'negate': {'type': 'Boolean', 'default': False},
+            'negate': {'type': 'BooleanType', 'default': False},
         }
     }

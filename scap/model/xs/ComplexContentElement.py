@@ -24,10 +24,10 @@ logger = logging.getLogger(__name__)
 class ComplexContentElement(AnnotatedType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'restriction', 'ComplexRestrictionType'},
-            {'tag_name': 'extension', 'ExtensionType'},
+            {'tag_name': 'restriction', 'class': 'ComplexRestrictionType', 'min': 0},
+            {'tag_name': 'extension', 'class': 'ExtensionType', 'min': 0},
         ],
         'attributes': {
-            'mixed': {'type': 'Boolean'},
+            'mixed': {'type': 'BooleanType'},
         }
     }

@@ -26,6 +26,6 @@ logger = logging.getLogger(__name__)
 class DefaultDirectivesType(DirectivesType):
     MODEL_MAP = {
         'attributes': {
-            'include_source_definitions': {'type': 'Boolean', 'default': True},
+            'include_source_definitions': {'type': 'BooleanType', 'default': True},
         },
     }

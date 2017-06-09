@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.NMTOKEN import NMTOKEN
+from scap.model.xs.NMTokenType import NMTokenType
 
 logger = logging.getLogger(__name__)
-class DerivationControlType(NMTOKEN):
+class DerivationControlType(NMTokenType):
     MODEL_MAP = {
     }
 

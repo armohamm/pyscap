@@ -199,7 +199,7 @@ class ModelChild(object):
 class Model(object):
     MODEL_MAP = {
         'attributes': {
-            '{http://www.w3.org/XML/1998/namespace}lang': {'type': 'String', 'in': '_xml_lang'},
+            '{http://www.w3.org/XML/1998/namespace}lang': {'type': 'StringType', 'in': '_xml_lang'},
             '{http://www.w3.org/XML/1998/namespace}space': {'enum': XML_SPACE_ENUMERATION, 'in': '_xml_space'},
             '{http://www.w3.org/XML/1998/namespace}base': {'type': 'AnyURI', 'in': '_xml_base'},
             '{http://www.w3.org/XML/1998/namespace}id': {'type': 'ID', 'in': '_xml_id'},
@@ -212,12 +212,14 @@ class Model(object):
     __xmlns_to_package = {
         'http://www.w3.org/XML/1998/namespace': 'scap.model.xml',
         'http://www.w3.org/2001/XMLSchema': 'scap.model.xs',
-        'http://www.w3.org/2001/XMLSchema-instance': 'scap.model.xsi',
+        'http://www.w3.org/2001/XMLSchema-hasFacetAndProperty': 'scap.model.xs.hfp',
+        'http://www.w3.org/2001/XMLSchema-instance': 'scap.model.xs.i',
     }
     __package_to_xmlns = {
         'scap.model.xml': 'http://www.w3.org/XML/1998/namespace',
         'scap.model.xs': 'http://www.w3.org/2001/XMLSchema',
-        'scap.model.xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+        'scap.model.xs.hfp': 'http://www.w3.org/2001/XMLSchema-hasFacetAndProperty',
+        'scap.model.xs.i': 'http://www.w3.org/2001/XMLSchema-instance',
     }
 
     @staticmethod
@@ -357,8 +359,8 @@ class Model(object):
 
                 fq_class_name = class_.__module__ + '.' + class_.__name__
 
-                if not hasattr(class_, 'MODEL_MAP'):
-                    raise TagMappingException('Class ' + fq_class_name + ' does not define MODEL_MAP')
+                if not hasattr(class_, 'MODEL_MAP') or not isinstance(class_.MODEL_MAP, dict):
+                    raise TagMappingException('Class ' + fq_class_name + ' does not define MODEL_MAP dict')
 
                 # overwrite the super class' ns & tag with what we've already loaded
                 if xmlns is None and 'xmlns' in class_.MODEL_MAP:
@@ -385,6 +387,8 @@ class Model(object):
 
             el_lookup = {}
             for element_def in el_map:
+                if not isinstance(element_def, dict):
+                    raise TagMappingException('Class ' + fq_model_class_name + ' has an invalid element definition: ' + str(element_def))
                 if 'xmlns' not in element_def and element_def['tag_name'] == '*':
                     el_lookup['*'] = element_def
                 elif 'xmlns' in element_def:
@@ -1010,7 +1014,7 @@ class Model(object):
         else:
             # otherwise, we default to producing as string
             logger.debug(str(self) + ' Producing ' + str(value) + ' as String type')
-            v = self._produce_value_as_type(value, 'String')
+            v = self._produce_value_as_type(value, 'StringType')
             el.set(attr_name, v)
 
     def _produce_child(self, child_index, el):

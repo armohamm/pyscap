@@ -24,7 +24,7 @@ class LargeMailUserIdentifierType(Model):
     MODEL_MAP = {
         'tag_name': 'LargeMailUserIdentifier',
         'attributes': {
-            'Type': {'type': 'String'},
+            'Type': {'type': 'StringType'},
             'Indicator': {},
             'Code': {}, # from grPostal
             '*': {},

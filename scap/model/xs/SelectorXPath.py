@@ -19,17 +19,17 @@ import logging
 import re
 
 from scap.model.xs import *
-from scap.model.xs.Token import Token
+from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
-class SelectorXPath(Token):
+class SelectorXPath(TokenType):
     def get_value_pattern(self):
         return r'(\.//)?(((child::)?((' \
-        + _i + _c + r'*:)?(' \
-        + _i + _c + r'*|\*)))|\.)(/(((child::)?((' \
-        + _i + _c + r'*:)?(' \
-        + _i + _c + r'*|\*)))|\.))*(\|(\.//)?(((child::)?((' \
-        + _i + _c + r'*:)?(' \
-        + _i + _c + r'*|\*)))|\.)(/(((child::)?((' \
-        + _i + _c + r'*:)?(' \
-        + _i + _c + r'*|\*)))|\.))*)*'
+        + i_ + c_ + r'*:)?(' \
+        + i_ + c_ + r'*|\*)))|\.)(/(((child::)?((' \
+        + i_ + c_ + r'*:)?(' \
+        + i_ + c_ + r'*|\*)))|\.))*(\|(\.//)?(((child::)?((' \
+        + i_ + c_ + r'*:)?(' \
+        + i_ + c_ + r'*|\*)))|\.)(/(((child::)?((' \
+        + i_ + c_ + r'*:)?(' \
+        + i_ + c_ + r'*|\*)))|\.))*)*'

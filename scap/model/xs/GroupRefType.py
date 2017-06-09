@@ -27,7 +27,7 @@ class GroupRefType(RealGroupType):
             {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
         ],
         'attributes': {
-            'ref': {'type': 'QName', 'required': True},
+            'ref': {'type': 'QNameType', 'required': True},
             'name': {'prohibited': True},
             '*': {},
         }

@@ -26,8 +26,8 @@ logger = logging.getLogger(__name__)
 class Textfilecontent54Behaviors(FileBehaviors):
     MODEL_MAP = {
         'attributes': {
-            'ignore_case': {'type': 'Boolean', 'default': False},
-            'multiline': {'type': 'Boolean', 'default': True},
-            'singleline': {'type': 'Boolean', 'default': False},
+            'ignore_case': {'type': 'BooleanType', 'default': False},
+            'multiline': {'type': 'BooleanType', 'default': True},
+            'singleline': {'type': 'BooleanType', 'default': False},
         }
     }

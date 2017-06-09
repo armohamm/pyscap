@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class ProfileSetComplexValueType(ComplexValueType):
     MODEL_MAP = {
         'attributes': {
-            'idref': {'type': 'NCName', 'required': True},
+            'idref': {'type': 'NCNameType', 'required': True},
         }
     }

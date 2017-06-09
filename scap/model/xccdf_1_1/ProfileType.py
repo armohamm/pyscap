@@ -39,11 +39,11 @@ class ProfileType(Extendable):
             {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'id': {'required': True, 'type': 'NCName'},
-            'prohibitChanges': {'type': 'Boolean', 'default': False},
-            'abstract': {'type': 'Boolean', 'default': False},
-            'note-tag': {'type': 'NCName'},
-            'extends': {'type': 'NCName'},
+            'id': {'required': True, 'type': 'NCNameType'},
+            'prohibitChanges': {'type': 'BooleanType', 'default': False},
+            'abstract': {'type': 'BooleanType', 'default': False},
+            'note-tag': {'type': 'NCNameType'},
+            'extends': {'type': 'NCNameType'},
             'Id': {'type': 'ID'},
         },
     }

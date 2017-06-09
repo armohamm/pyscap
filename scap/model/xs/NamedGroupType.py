@@ -30,7 +30,7 @@ class NamedGroupType(RealGroupType):
             {'tag_name': 'sequence', 'class': 'SimpleExplicitGroupType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'name': {'type': 'NCName', 'required': True},
+            'name': {'type': 'NCNameType', 'required': True},
             'ref': {'prohibited': True},
             'minOccurs': {'prohibited': True},
             'maxOccurs': {'prohibited': True},

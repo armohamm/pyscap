@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class ComplexValueType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'item', 'class': 'String', 'list': 'items', 'min': 0, 'max': None},
+            {'tag_name': 'item', 'class': 'StringType', 'list': 'items', 'min': 0, 'max': None},
         ],
     }

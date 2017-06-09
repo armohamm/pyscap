@@ -18,9 +18,9 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.model.xs.AnyURI import AnyURI
+from scap.model.xs.AnyUriType import AnyUriType
 
 logger = logging.getLogger(__name__)
-class UriType(AnyURI):
+class UriType(AnyUriType):
     MODEL_MAP = {
     }

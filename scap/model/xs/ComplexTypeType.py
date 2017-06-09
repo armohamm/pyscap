@@ -25,9 +25,9 @@ class ComplexTypeType(AnnotatedType):
     MODEL_MAP = {
         'elements': [],
         'attributes': {
-            'name': {'type': 'NCName'},
-            'mixed': {'type': 'Boolean', 'default': False},
-            'abstract': {'type': 'Boolean', 'default': False},
+            'name': {'type': 'NCNameType'},
+            'mixed': {'type': 'BooleanType', 'default': False},
+            'abstract': {'type': 'BooleanType', 'default': False},
             'final': {'type': 'DerivationSetType'},
             'block': {'type': 'DerivationSetType'},
         }

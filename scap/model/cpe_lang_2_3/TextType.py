@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.cpe_lang_2_3 import *
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class TextType(String):
+class TextType(StringType):
     MODEL_MAP = {
         'attributes': {
             '{http://www.w3.org/XML/1998/namespace}lang': {'type': 'LangType'},

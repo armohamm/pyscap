@@ -20,7 +20,7 @@ import logging
 from scap.model.oval_5 import *
 from scap.model.oval_5.defs import *
 from scap.model.oval_5.defs.EntitySimpleBaseType import EntitySimpleBaseType
-from scap.model.xs.Boolean import Boolean
+from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
 class EntityObjectBoolType(EntitySimpleBaseType, Boolean):

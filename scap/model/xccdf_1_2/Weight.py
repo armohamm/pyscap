@@ -18,9 +18,9 @@
 import logging
 
 from scap.model.xccdf_1_2 import *
-from scap.model.xs.Decimal import Decimal
+from scap.model.xs.DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
-class Weight(Decimal):
+class Weight(DecimalType):
     MODEL_MAP = {
     }

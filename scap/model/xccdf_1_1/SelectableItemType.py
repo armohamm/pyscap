@@ -31,7 +31,7 @@ class SelectableItemType(ItemType):
             {'tag_name': 'conflicts', 'list': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},
         ],
         'attributes': {
-            'selected': {'type': 'Boolean', 'default': True},
+            'selected': {'type': 'BooleanType', 'default': True},
             'weight': {'type': 'WeightType', 'default': 1.0},
         },
     }

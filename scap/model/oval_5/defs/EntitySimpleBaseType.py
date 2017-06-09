@@ -28,7 +28,7 @@ class EntitySimpleBaseType(AnySimpleType):
         'attributes': {
             'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
             'operation': {'enum': OPERATION_ENUMERATION, 'default': 'equals'},
-            'mask': {'type': 'Boolean', 'default': False},
+            'mask': {'type': 'BooleanType', 'default': False},
             'var_ref': {'type': 'scap.model.oval_5.VariableIdPattern'},
             'var_check': {'enum': CHECK_ENUMERATION},
         }

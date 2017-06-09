@@ -27,7 +27,7 @@ class GlobToRegexFunctionType(Model):
         'elements': [
         ],
         'attributes': {
-            'glob_noescape': {'type': 'Boolean', 'default': False},
+            'glob_noescape': {'type': 'BooleanType', 'default': False},
         }
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_COMPONENT)

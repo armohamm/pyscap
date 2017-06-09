@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class ButtonTag(ButtonContentType):
     MODEL_MAP = {
         'attributes': {
-            'name': {'type': 'String'},
-            'value': {'type': 'String'},
+            'name': {'type': 'StringType'},
+            'value': {'type': 'StringType'},
             'type': {'enum': ['button', 'submit', 'reset'], 'default': 'submit'},
             'disabled': {'enum': ['disabled']},
         },

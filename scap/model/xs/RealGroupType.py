@@ -30,6 +30,6 @@ class RealGroupType(GroupType):
             {'tag_name': 'sequence', 'class': 'SequenceElement', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            # *
+            '*': {}
         }
     }

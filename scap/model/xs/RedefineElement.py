@@ -24,10 +24,10 @@ logger = logging.getLogger(__name__)
 class RedefineElement(OpenAttrsType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'annotation', 'type': 'AnnotationElement', 'min': 0, 'max': None},
+            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'schemaLocation': {'type': 'AnyURI', 'required': True},
+            'schemaLocation': {'type': 'AnyUriType', 'required': True},
             'id': {'type': 'ID'},
         }
     }

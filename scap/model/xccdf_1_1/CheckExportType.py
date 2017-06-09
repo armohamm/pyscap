@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class CheckExportType(Model):
     MODEL_MAP = {
         'attributes': {
-            'value-id': {'type': 'NCName', 'required': True},
-            'export-name': {'type': 'String', 'required': True},
+            'value-id': {'type': 'NCNameType', 'required': True},
+            'export-name': {'type': 'StringType', 'required': True},
         },
     }
 

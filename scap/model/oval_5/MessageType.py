@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.oval_5 import *
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class MessageType(String):
+class MessageType(StringType):
     MODEL_MAP = {
         'attributes': {
             'level': {'enum': MESSAGE_LEVEL_ENUMERATION, 'default': 'info'},

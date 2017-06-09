@@ -25,7 +25,7 @@ class CheckContentRefType(Model):
     MODEL_MAP = {
         'attributes': {
             'href': {'type': 'AnyURI', 'requird': True},
-            'name': {'type': 'String'},
+            'name': {'type': 'StringType'},
         },
     }
 

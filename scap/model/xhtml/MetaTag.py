@@ -25,10 +25,10 @@ class MetaTag(Model):
     MODEL_MAP = {
         'attributes': {
             'id': {'type': 'ID'},
-            'http-equiv': {'type': 'String'},
-            'name': {'type': 'String'},
-            'content': {'type': 'String', 'required': True},
-            'scheme': {'type': 'String'},
+            'http-equiv': {'type': 'StringType'},
+            'name': {'type': 'StringType'},
+            'content': {'type': 'StringType', 'required': True},
+            'scheme': {'type': 'StringType'},
         },
     }
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_i18n)

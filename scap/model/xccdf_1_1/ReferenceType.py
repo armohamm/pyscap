@@ -28,6 +28,6 @@ class ReferenceType(Model):
         ],
         'attributes': {
             'href': {'type': 'AnyURI'},
-            'override': {'type': 'Boolean'},
+            'override': {'type': 'BooleanType'},
         },
     }

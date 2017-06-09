@@ -15,12 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Date import Date
+from scap.model.xs.DateType import DateType
 import logging
 import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
-class BirthdateType(Date):
+class BirthdateType(DateType):
     MODEL_MAP = {
         'tag_name': 'birthdate',
         'attributes': {

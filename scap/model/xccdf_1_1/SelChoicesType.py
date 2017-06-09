@@ -25,10 +25,10 @@ class SelChoicesType(Model):
     MODEL_MAP = {
         'elements': [
             # TODO at least one choice/complex-choice
-            {'tag_name': 'choice', 'type': 'String', 'list': 'choices', 'min': 1, 'max': None},
+            {'tag_name': 'choice', 'type': 'StringType', 'list': 'choices', 'min': 1, 'max': None},
         ],
         'attributes': {
-            'mustMatch': {'type': 'Boolean'},
-            'selector': {'type': 'String', 'default': ''},
+            'mustMatch': {'type': 'BooleanType'},
+            'selector': {'type': 'StringType', 'default': ''},
         },
     }

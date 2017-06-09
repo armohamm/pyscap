@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 class DirectiveType(Model):
     MODEL_MAP = {
         'attributes': {
-            'reported': {'type': 'Boolean', 'required': True},
+            'reported': {'type': 'BooleanType', 'required': True},
             'content': {'enum': CONTENT_ENUMERATION, 'default': 'full'},
         },
     }

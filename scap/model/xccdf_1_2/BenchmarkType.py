@@ -48,8 +48,8 @@ class BenchmarkType(Model):
         'attributes': {
             'id': {'required': True, 'type': 'BenchmarkIDPattern'},
             'Id': {'type': 'ID'},
-            'resolved': {'type': 'Boolean', 'default': False},
-            'style': {'type': 'String'},
+            'resolved': {'type': 'BooleanType', 'default': False},
+            'style': {'type': 'StringType'},
             'style-href': {'type': 'AnyURI'},
         },
     }

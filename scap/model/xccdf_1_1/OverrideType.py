@@ -30,6 +30,6 @@ class OverrideType(Model):
         ],
         'attributes': {
             'time': {'type': 'DateTime', 'required': True},
-            'authority': {'type': 'String', 'required': True},
+            'authority': {'type': 'StringType', 'required': True},
         },
     }

@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class TextArtifactValueType(EmbeddedArtifactValueType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'data', 'type': 'String'},
+            {'tag_name': 'data', 'type': 'StringType'},
         ],
     }

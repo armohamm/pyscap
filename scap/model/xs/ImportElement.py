@@ -26,8 +26,8 @@ class ImportElement(AnnotatedType):
         'elements': [
         ],
         'attributes': {
-            'namespace': {'type': 'AnyURI'},
-            'schemaLocation': {'type': 'AnyURI'},
+            'namespace': {'type': 'AnyUriType'},
+            'schemaLocation': {'type': 'AnyUriType'},
         }
     }
     eg = ELEMENT_GROUP_REDEFINABLE.copy()

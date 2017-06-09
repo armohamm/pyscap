@@ -30,9 +30,9 @@ class CriteriaType(Model):
             {'tag_name': 'extend_definition', 'list': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'applicability_check': {'type': 'Boolean'},
+            'applicability_check': {'type': 'BooleanType'},
             'operator': {'enum': OPERATOR_ENUMERATION, 'required': True},
-            'negate': {'type': 'Boolean', 'default': False},
+            'negate': {'type': 'BooleanType', 'default': False},
             'result': {'enum': RESULT_ENUMERATION, 'required': True},
         }
     }

@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class SelComplexValueType(ComplexValueType):
     MODEL_MAP = {
         'attributes': {
-            'selector': {'type': 'String'}
+            'selector': {'type': 'StringType'}
         }
     }

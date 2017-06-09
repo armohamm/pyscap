@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xccdf_1_1 import *
-from scap.model.xs.Decimal import Decimal
+from scap.model.xs.DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
-class WeightType(Decimal):
+class WeightType(DecimalType):
     MODEL_MAP = {
         # TODO restrictions
         # min inclusive 0.0

@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class MultiLengthType(String):
+class MultiLengthType(StringType):
     MODEL_MAP = {
     }
     # TODO pattern [-+]?(\d+|\d+(\.\d+)?%)|[1-9]?(\d+)?\*

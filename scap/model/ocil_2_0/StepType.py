@@ -27,7 +27,7 @@ class StepType(object):
             {'tag_name': 'step', 'list': 'steps', 'class': 'StepType', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'is_done': {'type': 'Boolean', 'default': False},
-            'is_required': {'type': 'Boolean', 'default': True},
+            'is_done': {'type': 'BooleanType', 'default': False},
+            'is_required': {'type': 'BooleanType', 'default': True},
         }
     }

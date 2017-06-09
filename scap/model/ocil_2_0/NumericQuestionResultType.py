@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class NumericQuestionResultType(QuestionResultType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'answer', 'type': 'Decimal', 'max': 1},
+            {'tag_name': 'answer', 'type': 'DecimalType', 'max': 1},
         ],
     }

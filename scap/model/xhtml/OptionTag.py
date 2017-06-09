@@ -30,7 +30,7 @@ class OptionTag(Model):
             'selected': {'enum': ['selected']},
             'disabled': {'enum': ['disabled']},
             'label': {'type': 'TextType'},
-            'value': {'type': 'String'},
+            'value': {'type': 'StringType'},
         },
     }
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)

@@ -27,7 +27,7 @@ class RegexCaptureFunctionType(Model):
         'elements': [
         ],
         'attributes': {
-            'pattern': {'type': 'String'},
+            'pattern': {'type': 'StringType'},
         }
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_COMPONENT)

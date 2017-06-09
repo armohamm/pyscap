@@ -27,6 +27,6 @@ logger = logging.getLogger(__name__)
 class SharedResourceEffectiveRightsBehaviors(Model):
     MODEL_MAP = {
         'attributes': {
-            'include_group': {'type': 'Boolean', 'default': True},
+            'include_group': {'type': 'BooleanType', 'default': True},
         }
     }

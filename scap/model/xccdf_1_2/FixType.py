@@ -25,7 +25,7 @@ class FixType(Model):
     MODEL_MAP = {
         'attributes': {
             'id': {'type': 'NCNAME'},
-            'reboot': {'type': 'Boolean'},
+            'reboot': {'type': 'BooleanType'},
             'strategy': {'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
             'disruption': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
             'complexity': {'enum': RATING_ENUMERATION, 'default': 'unknown'},

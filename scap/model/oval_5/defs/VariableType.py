@@ -33,6 +33,6 @@ class VariableType(Model):
             'version': {'type': 'NonNegativeInteger', 'required': True},
             'datatype': {'enum': SIMPLE_DATATYPE_ENUMERATION, 'required': True},
             'comment': {'type': 'scap.model.oval_5.NonEmptyString'}, # required in the spec
-            'deprecated': {'type': 'Boolean', 'default': False},
+            'deprecated': {'type': 'BooleanType', 'default': False},
         },
     }

@@ -27,7 +27,7 @@ class ExtendedInfoElement(Model):
             {'tag_name': '*'},
         ],
         'attributes': {
-            'id': {'type': 'NCName', 'required': True},
+            'id': {'type': 'NCNameType', 'required': True},
             '*': {},
         }
     }

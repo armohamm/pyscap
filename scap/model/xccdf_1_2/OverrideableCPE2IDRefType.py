@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class OverrideableCPE2IDRefType(Model):
     MODEL_MAP = {
         'attributes': {
-            'override': {'type': 'Boolean', 'default': False},
+            'override': {'type': 'BooleanType', 'default': False},
         }
     }

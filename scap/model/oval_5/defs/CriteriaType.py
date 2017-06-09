@@ -31,9 +31,9 @@ class CriteriaType(Model):
             {'tag_name': 'extend_definition', 'list': 'criteria', 'class': 'ExtendDefinitionType', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'applicability_check': {'type': 'Boolean'},
+            'applicability_check': {'type': 'BooleanType'},
             'operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
-            'negate': {'type': 'Boolean', 'default': False},
+            'negate': {'type': 'BooleanType', 'default': False},
             'comment': {'type': 'scap.model.oval_5.NonEmptyString'},
         }
     }

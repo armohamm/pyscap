@@ -18,13 +18,13 @@
 import logging
 
 from scap.model.xccdf_1_2 import *
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class InstanceResultType(String):
+class InstanceResultType(StringType):
     MODEL_MAP = {
         'attributes': {
-            'context': {'default': 'undefined', 'type': 'String'},
-            'parentContext': {'type': 'String'},
+            'context': {'default': 'undefined', 'type': 'StringType'},
+            'parentContext': {'type': 'StringType'},
         }
     }

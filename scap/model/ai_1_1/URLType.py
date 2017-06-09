@@ -15,12 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.AnyURI import AnyURI
+from scap.model.xs.AnyUriType import AnyUriType
 import logging
 import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
-class URLType(AnyURI):
+class URLType(AnyUriType):
     # collapsed mac-address element & mac-address-type
     MODEL_MAP = {
         'tag_name': 'url',

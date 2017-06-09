@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class NumericQuestionType(QuestionType):
     MODEL_MAP = {
         'attributes': {
-            'default_answer': {'type': 'Decimal'},
+            'default_answer': {'type': 'DecimalType'},
         }
     }

@@ -20,7 +20,7 @@ import logging
 from scap.model.oval_5 import *
 from scap.model.oval_5.defs import *
 from scap.model.oval_5.defs.EntityStateSimpleBaseType import EntityStateSimpleBaseType
-from scap.model.xs.Float import Float
+from scap.model.xs.FloatType import FloatType
 
 logger = logging.getLogger(__name__)
 class EntityStateFloatType(EntityStateSimpleBaseType, Float):

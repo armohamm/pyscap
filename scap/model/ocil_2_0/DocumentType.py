@@ -25,6 +25,6 @@ class DocumentType(Model):
         'elements': [
             {'tag_name': 'title', 'type': 'NormalizedString', 'min': 1, 'max': 1},
             {'tag_name': 'description', 'list': 'descriptions', 'type': 'NormalizedString', 'min': 0, 'max': None},
-            {'tag_name': 'notice', 'list': 'notices', 'type': 'String', 'min': 0, 'max': None},
+            {'tag_name': 'notice', 'list': 'notices', 'type': 'StringType', 'min': 0, 'max': None},
         ],
     }

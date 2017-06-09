@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class SelChoicesType(Model):
     MODEL_MAP = {
         'attributes': {
-            'mustMatch': {'type': 'Boolean'},
-            'selector': {'type': 'String', 'default': ''},
+            'mustMatch': {'type': 'BooleanType'},
+            'selector': {'type': 'StringType', 'default': ''},
         },
         'elements': [
             # TODO at least one choice/complex-choice

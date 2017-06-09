@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xhtml import *
-from scap.model.xs.Token import Token
+from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
-class ShapeType(Token):
+class ShapeType(TokenType):
     MODEL_MAP = {
     }
     # TODO enum ShapeEnumeration

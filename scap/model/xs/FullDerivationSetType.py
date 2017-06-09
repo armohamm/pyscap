@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.Token import Token
+from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
-class FullDerivationSetType(Token):
+class FullDerivationSetType(TokenType):
     MODEL_MAP = {
     }
     def get_value_enum(self):

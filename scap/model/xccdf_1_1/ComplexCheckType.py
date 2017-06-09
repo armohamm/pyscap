@@ -30,7 +30,7 @@ class ComplexCheckType(Model):
         ],
         'attributes': {
             'operator': {'enum': CHECK_OPERATOR_ENUMERATION, 'required': True},
-            'negate': {'type': 'Boolean', 'default': False},
+            'negate': {'type': 'BooleanType', 'default': False},
         },
     }
 

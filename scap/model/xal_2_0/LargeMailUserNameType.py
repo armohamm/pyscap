@@ -24,8 +24,8 @@ class LargeMailUserNameType(Model):
     MODEL_MAP = {
         'tag_name': 'LargeMailUserName',
         'attributes': {
-            'Type': {'type': 'String'},
-            'Code': {'type': 'String'},
+            'Type': {'type': 'StringType'},
+            'Code': {'type': 'StringType'},
             '*': {},
         }
     }

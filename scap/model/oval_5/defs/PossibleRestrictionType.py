@@ -29,6 +29,6 @@ class PossibleRestrictionType(Model):
         ],
         'attributes': {
             'operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
-            'hint': {'type': 'String', 'required': True},
+            'hint': {'type': 'StringType', 'required': True},
         },
     }

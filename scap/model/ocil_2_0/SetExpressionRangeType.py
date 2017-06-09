@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 class SetExpressionRangeType(SetExpressionBaseType):
     MODEL_MAP = {
         'attributes': {
-            'min': {'type': 'Decimal', 'required': True},
-            'max': {'type': 'Decimal', 'required': True},
+            'min': {'type': 'DecimalType', 'required': True},
+            'max': {'type': 'DecimalType', 'required': True},
         }
     }

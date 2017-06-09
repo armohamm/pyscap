@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.DerivationControl import DerivationControl
+from scap.model.xs.DerivationControlType import DerivationControlType
 
 logger = logging.getLogger(__name__)
-class ReducedDerivationControlType(DerivationControl):
+class ReducedDerivationControlType(DerivationControlType):
     MODEL_MAP = {
     }
 

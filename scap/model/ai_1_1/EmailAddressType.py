@@ -15,9 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.Token import Token
+from scap.model.xs.TokenType import TokenType
 
-class EmailAddressType(Token):
+class EmailAddressType(TokenType):
     MODEL_MAP = {
         'tag_name': 'email-address',
         'attributes': {

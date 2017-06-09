@@ -20,7 +20,7 @@ import logging
 from scap.model.oval_5 import *
 from scap.model.oval_5.defs import *
 from scap.model.oval_5.defs.EntityComplexBaseType import EntityComplexBaseType
-from scap.model.xs.String import String
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 class EntityStateComplexBaseType(EntityComplexBaseType, String):

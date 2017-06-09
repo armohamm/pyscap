@@ -22,6 +22,6 @@ logger = logging.getLogger(__name__)
 class EmbeddedArtifactValueType(ArtifactValueType):
     MODEL_MAP = {
         'attributes': {
-            'mime_type': {'type': 'String', 'required': True},
+            'mime_type': {'type': 'StringType', 'required': True},
         }
     }
