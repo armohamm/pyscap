@@ -38,7 +38,6 @@ from scap.collector.Checker import Checker
 from scap.Reporter import Reporter
 
 rootLogger = logging.getLogger()
-rootLogger.setLevel(logging.DEBUG)
 ch = logging.StreamHandler()
 fh = logging.FileHandler(filename="pyscap.log", mode='w')
 fh_formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
@@ -47,6 +46,8 @@ ch_formatter = ColorFormatter("%(asctime)s - %(name)s - %(levelname)s - %(messag
 ch.setFormatter(ch_formatter)
 rootLogger.addHandler(ch)
 rootLogger.addHandler(fh)
+
+rootLogger.setLevel(logging.DEBUG)
 
 # report start time & end time
 logger = logging.getLogger(__name__)
@@ -205,7 +206,7 @@ elif args['benchmark']:
         with open(uri, mode='r', encoding='utf_8') as f:
             content = ET.parse(f).getroot()
             model = Model.load(None, content)
-            
+
             if isinstance(model, xccdf_1_1_BenchmarkType) \
             or isinstance(model, xccdf_1_2_BenchmarkType):
                 benchmark_model = model
