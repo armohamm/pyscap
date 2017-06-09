@@ -32,6 +32,6 @@ class ArtifactResultType(Model):
         ],
         'attributes': {
             'artifact_ref': {'type': 'ArtifactIDPattern', 'required': True},
-            'timestamp': {'type': 'DateTime', 'required': True},
+            'timestamp': {'type': 'DateTimeType', 'required': True},
         }
     }

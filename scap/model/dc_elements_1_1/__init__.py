@@ -22,7 +22,7 @@ TAG_MAP = {
     '{http://purl.org/dc/elements/1.1/}description': 'Description',
     '{http://purl.org/dc/elements/1.1/}publisher': 'Publisher',
     '{http://purl.org/dc/elements/1.1/}contributor': 'Contributor',
-    '{http://purl.org/dc/elements/1.1/}date': 'Date',
+    '{http://purl.org/dc/elements/1.1/}date': 'DateType',
     '{http://purl.org/dc/elements/1.1/}type': 'Type',
     '{http://purl.org/dc/elements/1.1/}format': 'Format',
     '{http://purl.org/dc/elements/1.1/}identifier': 'Identifier',

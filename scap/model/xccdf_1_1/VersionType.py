@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class VersionType(StringType):
     MODEL_MAP = {
         'attributes': {
-            'time': {'type': 'DateTime'},
-            'update': {'type': 'AnyURI'},
+            'time': {'type': 'DateTimeType'},
+            'update': {'type': 'AnyUriType'},
         }
     }

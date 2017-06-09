@@ -29,7 +29,7 @@ class OverrideType(Model):
             {'tag_name': 'remark', 'class': 'TextType', 'min': 1, 'max': 1},
         ],
         'attributes': {
-            'time': {'type': 'DateTime', 'required': True},
+            'time': {'type': 'DateTimeType', 'required': True},
             'authority': {'type': 'StringType', 'required': True},
         },
     }

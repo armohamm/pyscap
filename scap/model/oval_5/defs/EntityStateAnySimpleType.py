@@ -23,7 +23,7 @@ from scap.model.oval_5.defs.EntityStateSimpleBaseType import EntityStateSimpleBa
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class EntityStateAnySimpleType(EntityStateSimpleBaseType, String):
+class EntityStateAnySimpleType(EntityStateSimpleBaseType, StringType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': SIMPLE_DATATYPE_ENUMERATION, 'default': 'string'},

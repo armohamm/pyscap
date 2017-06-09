@@ -29,8 +29,8 @@ class FixType(Model):
             'strategy': {'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
             'disruption': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
             'complexity': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
-            'system': {'type': 'AnyURI'},
-            'platform': {'type': 'AnyURI'},
+            'system': {'type': 'AnyUriType'},
+            'platform': {'type': 'AnyUriType'},
         },
         'elements': [
             {'tag_name': 'sub', 'list': 'subs', 'min': 0, 'max': None, 'class': 'SubType'},

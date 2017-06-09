@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class FactType(StringType):
     MODEL_MAP = {
         'attributes': {
-            'name': {'type': 'AnyURI', 'required': True},
+            'name': {'type': 'AnyUriType', 'required': True},
             'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'boolean'},
         }
     }

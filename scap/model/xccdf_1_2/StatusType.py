@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class StatusType(StringType):
     MODEL_MAP = {
         'attributes': {
-            'date': {'type': 'Date'},
+            'date': {'type': 'DateType'},
         }
     }

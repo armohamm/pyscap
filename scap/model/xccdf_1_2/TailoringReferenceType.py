@@ -24,9 +24,9 @@ logger = logging.getLogger(__name__)
 class TailoringReferenceType(Model):
     MODEL_MAP = {
         'attributes': {
-            'href': {'type': 'AnyURI', 'required': True},
+            'href': {'type': 'AnyUriType', 'required': True},
             'id': {'type': 'NCNameType', 'required': True},
             'version': {'type': 'StringType', 'required': True},
-            'time': {'type': 'DateTime', 'required': True},
+            'time': {'type': 'DateTimeType', 'required': True},
         }
     }

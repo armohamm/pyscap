@@ -23,7 +23,7 @@ from scap.model.oval_5.defs.EntityStateSimpleBaseType import EntityStateSimpleBa
 from scap.model.xs.FloatType import FloatType
 
 logger = logging.getLogger(__name__)
-class EntityStateFloatType(EntityStateSimpleBaseType, Float):
+class EntityStateFloatType(EntityStateSimpleBaseType, FloatType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['float'], 'required': True, 'default': 'float'},

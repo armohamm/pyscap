@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class IdrefListType(Model):
     MODEL_MAP = {
         'attributes': {
-            'idref': {'type': 'NMTOKENS', 'required': True},
+            'idref': {'type': 'NMTokensType', 'required': True},
         }
     }

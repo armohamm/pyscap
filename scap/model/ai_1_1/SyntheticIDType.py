@@ -24,7 +24,7 @@ class SyntheticIDType(Model):
     MODEL_MAP = {
         'tag_name': 'synthetic-id',
         'attributes': {
-            'resource': {'type': 'AnyURI', 'required': True},
+            'resource': {'type': 'AnyUriType', 'required': True},
             'id': {'type': 'Token', 'required': True},
         }
     }

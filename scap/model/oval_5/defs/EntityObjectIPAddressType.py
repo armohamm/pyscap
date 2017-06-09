@@ -23,7 +23,7 @@ from scap.model.oval_5.defs.EntitySimpleBaseType import EntitySimpleBaseType
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class EntityObjectIPAddressType(EntitySimpleBaseType, String):
+class EntityObjectIPAddressType(EntitySimpleBaseType, StringType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['ipv4_address', 'ipv6_address'], 'required': True},

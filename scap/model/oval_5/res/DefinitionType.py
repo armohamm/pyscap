@@ -30,8 +30,8 @@ class DefinitionType(Model):
         ],
         'attributes': {
             'definition_id': {'type': 'scap.model.oval_5.DefinitionIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeInteger', 'required': True},
-            'variable_instance': {'type': 'NonNegativeInteger', 'default': 1},
+            'version': {'type': 'NonNegativeIntegerType', 'required': True},
+            'variable_instance': {'type': 'NonNegativeIntegerType', 'default': 1},
             'class': {'enum': CLASS_ENUMERATION, 'in': 'class_'},
             'result': {'enum': RESULT_ENUMERATION, 'required': True},
         }

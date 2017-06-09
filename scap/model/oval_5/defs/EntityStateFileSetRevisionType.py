@@ -23,7 +23,7 @@ from scap.model.oval_5.defs.EntityStateSimpleBaseType import EntityStateSimpleBa
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class EntityStateFileSetRevisionType(EntityStateSimpleBaseType, String):
+class EntityStateFileSetRevisionType(EntityStateSimpleBaseType, StringType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['fileset_revision'], 'required': True, 'default': 'fileset_revision'},

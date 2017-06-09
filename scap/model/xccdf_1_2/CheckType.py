@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class CheckType(Model):
     MODEL_MAP = {
         'attributes': {
-            'system': {'type': 'AnyURI', 'required': True},
+            'system': {'type': 'AnyUriType', 'required': True},
             'negate': {'type': 'BooleanType', 'default': False},
             'id': {'type': 'NCNameType'},
             'selector': {'default': None, 'type': 'StringType'},

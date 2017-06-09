@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class UriRefType(StringType):
     MODEL_MAP = {
         'attributes': {
-            'uri': {'type': 'AnyURI', 'required': True},
+            'uri': {'type': 'AnyUriType', 'required': True},
         }
     }

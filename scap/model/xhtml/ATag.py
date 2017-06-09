@@ -26,7 +26,7 @@ class ATag(AContentType):
         'attributes': {
             'charset': {'type': 'CharsetType'},
             'type': {'type': 'ContentTypeType'},
-            'name': {'type': 'NMTOKEN'},
+            'name': {'type': 'NMTokenType'},
             'href': {'type': 'UriType'},
             'hreflang': {'type': 'LanguageCodeType'},
             'rel': {'type': 'LinkTypesType'},

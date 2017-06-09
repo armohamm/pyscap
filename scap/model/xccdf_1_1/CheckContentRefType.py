@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class CheckContentRefType(Model):
     MODEL_MAP = {
         'attributes': {
-            'href': {'type': 'AnyURI', 'required': True},
+            'href': {'type': 'AnyUriType', 'required': True},
             'name': {'type': 'StringType'},
         },
     }

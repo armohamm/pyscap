@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class BenchmarkReferenceType(Model):
     MODEL_MAP = {
         'attributes': {
-            'href': {'type': 'AnyURI'},
+            'href': {'type': 'AnyUriType'},
             'id': {'type': 'NCNameType'},
         },
     }

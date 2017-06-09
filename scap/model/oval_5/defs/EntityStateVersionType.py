@@ -23,7 +23,7 @@ from scap.model.oval_5.defs.EntityStateSimpleBaseType import EntityStateSimpleBa
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class EntityStateVersionType(EntityStateSimpleBaseType, String):
+class EntityStateVersionType(EntityStateSimpleBaseType, StringType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['version'], 'required': True, 'default': 'version'},

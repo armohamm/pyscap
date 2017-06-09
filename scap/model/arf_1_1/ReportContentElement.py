@@ -27,8 +27,8 @@ class ReportContentElement(Model):
             {'tag_name': '*'},
         ],
         'attributes': {
-            'data-valid-start-date': {'type': 'Date'},
-            'data-valid-end-date': {'type': 'Date'},
+            'data-valid-start-date': {'type': 'DateType'},
+            'data-valid-end-date': {'type': 'DateType'},
             '*': {},
         }
     }

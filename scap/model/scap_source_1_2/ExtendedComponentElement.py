@@ -28,6 +28,6 @@ class ExtendedComponentElement(Model):
         ],
         'attributes': {
             'id': {'required': True, 'type': 'ExtendedComponentIDPattern'},
-            'timestamp': {'type': 'DateTime', 'required': True}
+            'timestamp': {'type': 'DateTimeType', 'required': True}
         },
     }

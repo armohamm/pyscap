@@ -201,9 +201,9 @@ class Model(object):
         'attributes': {
             '{http://www.w3.org/XML/1998/namespace}lang': {'type': 'StringType', 'in': '_xml_lang'},
             '{http://www.w3.org/XML/1998/namespace}space': {'enum': XML_SPACE_ENUMERATION, 'in': '_xml_space'},
-            '{http://www.w3.org/XML/1998/namespace}base': {'type': 'AnyURI', 'in': '_xml_base'},
+            '{http://www.w3.org/XML/1998/namespace}base': {'type': 'AnyUriType', 'in': '_xml_base'},
             '{http://www.w3.org/XML/1998/namespace}id': {'type': 'ID', 'in': '_xml_id'},
-            '{http://www.w3.org/2001/XMLSchema-instance}schemaLocation': {'type': 'AnyURI', 'in': '_xsi_schemaLocation'},
+            '{http://www.w3.org/2001/XMLSchema-instance}schemaLocation': {'type': 'AnyUriType', 'in': '_xsi_schemaLocation'},
         },
     }
 

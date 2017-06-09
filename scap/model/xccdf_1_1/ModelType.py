@@ -28,7 +28,7 @@ class ModelType(Model):
             {'tag_name': 'param', 'class': 'ParamType', 'dict': 'params', 'key': 'name', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'system': {'type': 'AnyURI', 'required': True},
+            'system': {'type': 'AnyUriType', 'required': True},
         },
     }
 

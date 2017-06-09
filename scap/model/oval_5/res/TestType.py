@@ -31,8 +31,8 @@ class TestType(Model):
         ],
         'attributes': {
             'test_id': {'type': 'scap.model.oval_5.TestIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeInteger', 'required': True},
-            'variable_instance': {'type': 'NonNegativeInteger', 'default': 1},
+            'version': {'type': 'NonNegativeIntegerType', 'required': True},
+            'variable_instance': {'type': 'NonNegativeIntegerType', 'default': 1},
             'check_existence': {'enum': EXISTENCE_ENUMERATION, 'default': 'at_least_one_exists'},
             'check': {'enum': CHECK_ENUMERATION, 'required': True},
             'state_operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},

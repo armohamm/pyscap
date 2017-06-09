@@ -24,7 +24,7 @@ from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 
-class EntityStateStringType(EntityStateSimpleBaseType, String):
+class EntityStateStringType(EntityStateSimpleBaseType, StringType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['string'], 'required': True, 'default': 'string'},

@@ -24,7 +24,7 @@ from scap.model.oval_5.sc.EntityItemSimpleBaseType import EntityItemSimpleBaseTy
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class EntityItemEvrStringType(EntityItemSimpleBaseType, String):
+class EntityItemEvrStringType(EntityItemSimpleBaseType, StringType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['evr_string'], 'required': True, 'default': 'evr_string'},

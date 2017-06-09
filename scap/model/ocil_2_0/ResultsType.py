@@ -30,7 +30,7 @@ class ResultsType(Model):
             {'tag_name': 'targets', 'class': 'TargetsType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'start_time': {'type': 'DateTime'},
-            'end_time': {'type': 'DateTime'},
+            'start_time': {'type': 'DateTimeType'},
+            'end_time': {'type': 'DateTimeType'},
         }
     }

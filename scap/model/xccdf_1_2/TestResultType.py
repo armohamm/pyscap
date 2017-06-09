@@ -25,8 +25,8 @@ class TestResultType(Model):
     MODEL_MAP = {
         'attributes': {
             'id': {'required': True, 'type': 'TestResultIDPattern'},
-            'start-time': {'type': 'DateTime'},
-            'end-time': {'type': 'DateTime'},
+            'start-time': {'type': 'DateTimeType'},
+            'end-time': {'type': 'DateTimeType'},
             'test-system': {'type': 'StringType'},
             'version': {'type': 'StringType'},
             'Id': {'type': 'ID'},

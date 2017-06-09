@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class PlatformType(PlatformBaseType):
     MODEL_MAP = {
         'attributes': {
-            'id': {'type': 'AnyURI', 'required': True},
+            'id': {'type': 'AnyUriType', 'required': True},
         },
     }

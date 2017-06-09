@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class ModelType(Model):
     MODEL_MAP = {
         'attributes': {
-            'system': {'required': True, 'type': 'AnyURI'},
+            'system': {'required': True, 'type': 'AnyUriType'},
         },
         'elements': [
             {'tag_name': 'param', 'class': 'ParamType', 'dict': 'params', 'key': 'name', 'min': 0, 'max': None},

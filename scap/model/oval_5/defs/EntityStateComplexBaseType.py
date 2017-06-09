@@ -23,7 +23,7 @@ from scap.model.oval_5.defs.EntityComplexBaseType import EntityComplexBaseType
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class EntityStateComplexBaseType(EntityComplexBaseType, String):
+class EntityStateComplexBaseType(EntityComplexBaseType, StringType):
     MODEL_MAP = {
         # abstract
         'attributes': {

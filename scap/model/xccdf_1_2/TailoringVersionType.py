@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class TailoringVersionType(StringType):
     MODEL_MAP = {
         'attributes': {
-            'time': {'type': 'DateTime', 'required': True},
+            'time': {'type': 'DateTimeType', 'required': True},
         }
     }

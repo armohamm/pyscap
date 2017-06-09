@@ -23,7 +23,7 @@ from scap.model.oval_5.defs.EntitySimpleBaseType import EntitySimpleBaseType
 from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
-class EntityObjectBoolType(EntitySimpleBaseType, Boolean):
+class EntityObjectBoolType(EntitySimpleBaseType, BooleanType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['boolean'], 'required': True, 'default': 'boolean'},

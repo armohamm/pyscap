@@ -25,6 +25,6 @@ class ItemBaseType(Model):
             {'tag_name': 'notes', 'list': 'notes', 'type': 'StringType', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'revision': {'type': 'NonNegativeInteger', 'default': 0},
+            'revision': {'type': 'NonNegativeIntegerType', 'default': 0},
         }
     }

@@ -24,7 +24,7 @@ from scap.model.oval_5.sc.EntityItemSimpleBaseType import EntityItemSimpleBaseTy
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class EntityItemDebianEvrStringType(EntityItemSimpleBaseType, String):
+class EntityItemDebianEvrStringType(EntityItemSimpleBaseType, StringType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['debian_evr_string'], 'required': True, 'default': 'debian_evr_string'},

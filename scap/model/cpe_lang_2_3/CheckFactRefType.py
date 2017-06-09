@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class CheckFactRefType(FactRefType):
     MODEL_MAP = {
         'attributes': {
-            'system': {'type': 'AnyURI', 'required': True},
-            'href': {'type': 'AnyURI', 'required': True},
+            'system': {'type': 'AnyUriType', 'required': True},
+            'href': {'type': 'AnyUriType', 'required': True},
             'id-ref': {'type': 'Token', 'required': True},
         },
     }

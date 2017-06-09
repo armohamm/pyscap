@@ -30,7 +30,7 @@ class MapTag(Model):
             'class': {'type': 'StringType'},
             'style': {'type': 'StyleSheetType'},
             'title': {'type': 'TextType'},
-            'name': {'type': 'NMTOKEN'},
+            'name': {'type': 'NMTokenType'},
         },
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_block)

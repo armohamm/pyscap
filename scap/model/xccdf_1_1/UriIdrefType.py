@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class UriIdrefType(Model):
     MODEL_MAP = {
         'attributes': {
-            'idref': {'type': 'AnyURI', 'required': True},
+            'idref': {'type': 'AnyUriType', 'required': True},
         }
     }

@@ -27,7 +27,7 @@ class ReferenceType(Model):
             {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 0},
         ],
         'attributes': {
-            'href': {'type': 'AnyURI'},
+            'href': {'type': 'AnyUriType'},
             'override': {'type': 'BooleanType'},
         },
     }

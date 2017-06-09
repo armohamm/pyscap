@@ -36,7 +36,7 @@ class RuleResultType(Model):
             'idref': {'type': 'NCNameType', 'required': True},
             'role': {'enum': ROLE_ENUMERATION},
             'severity': {'enum': SEVERITY_ENUMERATION},
-            'time': {'type': 'DateTime'},
+            'time': {'type': 'DateTimeType'},
             'version': {'type': 'StringType'},
             'weight': {'type': 'WeightType'},
         },

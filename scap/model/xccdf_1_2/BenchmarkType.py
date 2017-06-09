@@ -50,7 +50,7 @@ class BenchmarkType(Model):
             'Id': {'type': 'ID'},
             'resolved': {'type': 'BooleanType', 'default': False},
             'style': {'type': 'StringType'},
-            'style-href': {'type': 'AnyURI'},
+            'style-href': {'type': 'AnyUriType'},
         },
     }
 

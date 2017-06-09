@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class ReferenceType(StringType):
     MODEL_MAP = {
         'attributes': {
-            'href': {'type': 'AnyURI'},
+            'href': {'type': 'AnyUriType'},
             'override': {'type': 'BooleanType'},
         },
         'elements': [

@@ -23,7 +23,7 @@ from scap.model.oval_5.defs.EntitySimpleBaseType import EntitySimpleBaseType
 from scap.model.xs.HexBinaryType import HexBinaryType
 
 logger = logging.getLogger(__name__)
-class EntityObjectBinaryType(EntitySimpleBaseType, HexBinary):
+class EntityObjectBinaryType(EntitySimpleBaseType, HexBinaryType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['binary'], 'required': True, 'default': 'binary'},

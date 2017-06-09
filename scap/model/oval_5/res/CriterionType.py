@@ -27,8 +27,8 @@ class CriterionType(Model):
         'attributes': {
             'applicability_check': {'type': 'BooleanType'},
             'test_ref': {'type': 'scap.model.oval_5.TestIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeInteger', 'required': True},
-            'variable_instance': {'type': 'NonNegativeInteger', 'default': 1},
+            'version': {'type': 'NonNegativeIntegerType', 'required': True},
+            'variable_instance': {'type': 'NonNegativeIntegerType', 'default': 1},
             'negate': {'type': 'BooleanType', 'default': False},
             'result': {'enum': RESULT_ENUMERATION, 'required': True},
         }

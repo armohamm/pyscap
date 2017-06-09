@@ -27,6 +27,6 @@ class ReferenceType(Model):
         'attributes': {
             'source': {'type': 'StringType', 'required': True},
             'ref_id': {'type': 'StringType', 'required': True},
-            'ref_url': {'type': 'AnyURI'},
+            'ref_url': {'type': 'AnyUriType'},
         }
     }

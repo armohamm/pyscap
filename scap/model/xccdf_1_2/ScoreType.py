@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class ScoreType(DecimalType):
     MODEL_MAP = {
         'attributes': {
-            'system': {'type': 'AnyURI'},
+            'system': {'type': 'AnyUriType'},
             'maximum': {'type': 'DecimalType'}
         }
     }

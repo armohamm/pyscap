@@ -21,7 +21,7 @@ import logging
 import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
-class LocationRegionType(LocationType, NormalizedString):
+class LocationRegionType(LocationType, NormalizedStringType):
     MODEL_MAP = {
         'tag_name': 'location-region',
         'attributes': {

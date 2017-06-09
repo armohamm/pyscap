@@ -38,7 +38,7 @@ class ObjectTag(Model):
             'height': {'type:' 'LengthType'},
             'width': {'type:' 'LengthType'},
             'usemap': {'type:' 'UriType'},
-            'name': {'type:' 'NMTOKEN'},
+            'name': {'type:' 'NMTokenType'},
             'tabindex': {'type:' 'TabIndexNumberType'},
         },
     }

@@ -31,7 +31,7 @@ class CheckType(Model):
             {'tag_name': 'check-content', 'class': 'CheckContentType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'system': {'type': 'AnyURI', 'required': True},
+            'system': {'type': 'AnyUriType', 'required': True},
             'id': {'type': 'NCNameType'},
             'selector': {'default': '', 'type': 'StringType'},
         },

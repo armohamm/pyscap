@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class IdentType(StringType):
     MODEL_MAP = {
         'attributes': {
-            'system': {'type': 'AnyURI', 'required': True},
+            'system': {'type': 'AnyUriType', 'required': True},
         }
     }

@@ -23,7 +23,7 @@ from scap.model.oval_5.defs.EntityStateSimpleBaseType import EntityStateSimpleBa
 from scap.model.xs.IntegerType import IntegerType
 
 logger = logging.getLogger(__name__)
-class EntityStateIntType(EntityStateSimpleBaseType, Integer):
+class EntityStateIntType(EntityStateSimpleBaseType, IntegerType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['int'], 'required': True, 'default': 'int'},

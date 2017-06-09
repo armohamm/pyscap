@@ -24,6 +24,6 @@ logger = logging.getLogger(__name__)
 class ElementMapItemType(NCNameType):
     MODEL_MAP = {
         'attributes': {
-            'target_namespace': {'type': 'AnyURI'},
+            'target_namespace': {'type': 'AnyUriType'},
         }
     }

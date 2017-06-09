@@ -32,6 +32,6 @@ class ComponentElement(Model):
         ],
         'attributes': {
             'id': {'required': True, 'type': 'ComponentIDPattern'},
-            'timestamp': {'type': 'DateTime'},
+            'timestamp': {'type': 'DateTimeType'},
         },
     }

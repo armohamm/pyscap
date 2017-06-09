@@ -25,7 +25,7 @@ class RemoteResourceElement(Model):
         'tag_name': 'remote-resource',
         'attributes': {
             '{http://www.w3.org/1999/xlink}type': {'required': True, 'enum': ['simple']},
-            '{http://www.w3.org/1999/xlink}href': {'required': True, 'type': 'AnyURI'},
+            '{http://www.w3.org/1999/xlink}href': {'required': True, 'type': 'AnyUriType'},
             '*': {},
         }
     }

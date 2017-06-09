@@ -31,8 +31,8 @@ class ObjectType(Model):
         ],
         'attributes': {
             'id': {'type': 'scap.model.oval_5.ObjectIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeInteger', 'required': True},
-            'variable_instance': {'type': 'NonNegativeInteger', 'default': 1},
+            'version': {'type': 'NonNegativeIntegerType', 'required': True},
+            'variable_instance': {'type': 'NonNegativeIntegerType', 'default': 1},
             'comment': {'type': 'StringType'},
             'flag': {'enum': FLAG_ENUMERATION, 'required': True},
         }

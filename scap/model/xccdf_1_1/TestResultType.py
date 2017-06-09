@@ -42,8 +42,8 @@ class TestResultType(Model):
         ],
         'attributes': {
             'id': {'type': 'NCNameType', 'required': True},
-            'start-time': {'type': 'DateTime'},
-            'end-time': {'type': 'DateTime', 'required': True},
+            'start-time': {'type': 'DateTimeType'},
+            'end-time': {'type': 'DateTimeType', 'required': True},
             'test-system': {'type': 'StringType'},
             'version': {'type': 'StringType'},
             'Id': {'type': 'ID'},
