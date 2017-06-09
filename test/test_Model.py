@@ -59,6 +59,12 @@ def test_namespace_registration():
     with pytest.raises(UnregisteredNamespaceException):
         Model.xmlns_to_package('http://jaymes.biz/derp')
 
+def test_is_nil():
+    root = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />'))
+    assert root.is_nil()
+    root = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test" />'))
+    assert not root.is_nil()
+
 def test_parse_tag():
     assert Model.parse_tag('{http://jaymes.biz/test}test') == ('http://jaymes.biz/test', 'test')
     assert Model.parse_tag('test') == (None, 'test')
