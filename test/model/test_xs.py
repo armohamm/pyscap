@@ -135,400 +135,400 @@ def test_SevenPropertyModel_to_time():
 # def test_any_uri():
 #     pass
 #
-def test_Base64Binary_parse():
-    assert Base64Binary().parse_value(b'FPucA9l+') == b'\x14\xfb\x9c\x03\xd9\x7e'
-    assert Base64Binary().parse_value(b'FPucA9k=') == b'\x14\xfb\x9c\x03\xd9'
-    assert Base64Binary().parse_value(b'FPucAw==') == b'\x14\xfb\x9c\x03'
+def test_Base64BinaryType_parse():
+    assert Base64BinaryType().parse_value(b'FPucA9l+') == b'\x14\xfb\x9c\x03\xd9\x7e'
+    assert Base64BinaryType().parse_value(b'FPucA9k=') == b'\x14\xfb\x9c\x03\xd9'
+    assert Base64BinaryType().parse_value(b'FPucAw==') == b'\x14\xfb\x9c\x03'
 
-def test_Base64Binary_produce():
-    assert Base64Binary().produce_value(b'\x14\xfb\x9c\x03\xd9\x7e') == b'FPucA9l+'
-    assert Base64Binary().produce_value(b'\x14\xfb\x9c\x03\xd9') == b'FPucA9k='
-    assert Base64Binary().produce_value(b'\x14\xfb\x9c\x03') == b'FPucAw=='
+def test_Base64BinaryType_produce():
+    assert Base64BinaryType().produce_value(b'\x14\xfb\x9c\x03\xd9\x7e') == b'FPucA9l+'
+    assert Base64BinaryType().produce_value(b'\x14\xfb\x9c\x03\xd9') == b'FPucA9k='
+    assert Base64BinaryType().produce_value(b'\x14\xfb\x9c\x03') == b'FPucAw=='
 
-def test_Boolean_parse():
-    assert Boolean().parse_value('1') == True
-    assert Boolean().parse_value('0') == False
-    assert Boolean().parse_value('true') == True
-    assert Boolean().parse_value('false') == False
+def test_BooleanType_parse():
+    assert BooleanType().parse_value('1') == True
+    assert BooleanType().parse_value('0') == False
+    assert BooleanType().parse_value('true') == True
+    assert BooleanType().parse_value('false') == False
 
-def test_Boolean_produce():
-    assert Boolean().produce_value(True) == 'True'
-    assert Boolean().produce_value(False) == 'False'
+def test_BooleanType_produce():
+    assert BooleanType().produce_value(True) == 'True'
+    assert BooleanType().produce_value(False) == 'False'
 
-def test_Byte_parse():
-    assert Byte().parse_value('127') == 127
+def test_ByteType_parse():
+    assert ByteType().parse_value('127') == 127
 
-def test_Byte_produce():
-    assert Byte().produce_value(127) == '127'
+def test_ByteType_produce():
+    assert ByteType().produce_value(127) == '127'
 
-def test_Date_parse():
-    assert Date().parse_value('2017-05-16Z') == SevenPropertyModel(year=2017, month=5, day=16, timezoneOffset=0)
+def test_DateType_parse():
+    assert DateType().parse_value('2017-05-16Z') == SevenPropertyModel(year=2017, month=5, day=16, timezoneOffset=0)
 
-def test_Date_produce():
-    assert Date().produce_value(SevenPropertyModel(year=2017, month=5, day=16, timezoneOffset=0)) == '2017-05-16Z'
+def test_DateType_produce():
+    assert DateType().produce_value(SevenPropertyModel(year=2017, month=5, day=16, timezoneOffset=0)) == '2017-05-16Z'
 
-def test_DateTime_parse():
-    assert DateTime().parse_value('2017-05-16T12:42:42Z') == SevenPropertyModel(year=2017, month=5, day=16, hour=12, minute=42, second=42, timezoneOffset=0)
+def test_DateTimeType_parse():
+    assert DateTimeType().parse_value('2017-05-16T12:42:42Z') == SevenPropertyModel(year=2017, month=5, day=16, hour=12, minute=42, second=42, timezoneOffset=0)
 
-def test_DateTime_produce():
-    assert DateTime().produce_value(SevenPropertyModel(year=2017, month=5, day=16, hour=12, minute=42, second=42, timezoneOffset=0)) == '2017-05-16T12:42:42Z'
+def test_DateTimeType_produce():
+    assert DateTimeType().produce_value(SevenPropertyModel(year=2017, month=5, day=16, hour=12, minute=42, second=42, timezoneOffset=0)) == '2017-05-16T12:42:42Z'
 
-def test_DateTimeStamp_parse():
-    assert DateTime().parse_value('2017-05-16T12:42:42Z') == SevenPropertyModel(year=2017, month=5, day=16, hour=12, minute=42, second=42, timezoneOffset=0)
+def test_DateTimeStampType_parse():
+    assert DateTimeStampType().parse_value('2017-05-16T12:42:42Z') == SevenPropertyModel(year=2017, month=5, day=16, hour=12, minute=42, second=42, timezoneOffset=0)
 
-def test_DateTimeStamp_produce():
-    assert DateTime().produce_value(SevenPropertyModel(year=2017, month=5, day=16, hour=12, minute=42, second=42, timezoneOffset=0)) == '2017-05-16T12:42:42Z'
+def test_DateTimeStampType_produce():
+    assert DateTimeStampType().produce_value(SevenPropertyModel(year=2017, month=5, day=16, hour=12, minute=42, second=42, timezoneOffset=0)) == '2017-05-16T12:42:42Z'
 
-def test_DayTimeDuration_parse():
-    assert DayTimeDuration().parse_value('P1DT1H1M1.1S') == (0, 90061.1)
+def test_DayTimeDurationType_parse():
+    assert DayTimeDurationType().parse_value('P1DT1H1M1.1S') == (0, 90061.1)
 
-    assert DayTimeDuration().parse_value('P1D') == (0, 86400.0)
-    assert DayTimeDuration().parse_value('PT1H') == (0, 3600.0)
-    assert DayTimeDuration().parse_value('PT1M') == (0, 60.0)
-    assert DayTimeDuration().parse_value('PT1S') == (0, 1.0)
+    assert DayTimeDurationType().parse_value('P1D') == (0, 86400.0)
+    assert DayTimeDurationType().parse_value('PT1H') == (0, 3600.0)
+    assert DayTimeDurationType().parse_value('PT1M') == (0, 60.0)
+    assert DayTimeDurationType().parse_value('PT1S') == (0, 1.0)
 
-    assert DayTimeDuration().parse_value('-P1D') == (0, -86400.0)
-    assert DayTimeDuration().parse_value('-PT1H') == (0, -3600.0)
-    assert DayTimeDuration().parse_value('-PT1M') == (0, -60.0)
-    assert DayTimeDuration().parse_value('-PT1S') == (0, -1.0)
-
-    with pytest.raises(ValueError):
-        DayTimeDuration().parse_value('P1Y1M1DT1H1M1.1S')
-
-def test_DayTimeDuration_produce():
-    assert DayTimeDuration().produce_value((0, 90061.1)) == 'P1DT1H1M1.100000S'
-
-    assert DayTimeDuration().produce_value((0, 86400.0)) == 'P1D'
-    assert DayTimeDuration().produce_value((0, 3600.0)) == 'PT1H'
-    assert DayTimeDuration().produce_value((0, 60.0)) == 'PT1M'
-    assert DayTimeDuration().produce_value((0, 1.0)) == 'PT1S'
-
-    assert DayTimeDuration().produce_value((0, -86400.0)) == '-P1D'
-    assert DayTimeDuration().produce_value((0, -3600.0)) == '-PT1H'
-    assert DayTimeDuration().produce_value((0, -60.0)) == '-PT1M'
-    assert DayTimeDuration().produce_value((0, -1.0)) == '-PT1S'
+    assert DayTimeDurationType().parse_value('-P1D') == (0, -86400.0)
+    assert DayTimeDurationType().parse_value('-PT1H') == (0, -3600.0)
+    assert DayTimeDurationType().parse_value('-PT1M') == (0, -60.0)
+    assert DayTimeDurationType().parse_value('-PT1S') == (0, -1.0)
 
     with pytest.raises(ValueError):
-        DayTimeDuration().produce_value((1, 1.0))
+        DayTimeDurationType().parse_value('P1Y1M1DT1H1M1.1S')
 
-def test_Decimal_parse():
-    assert Decimal().parse_value('1.1') == 1.1
+def test_DayTimeDurationType_produce():
+    assert DayTimeDurationType().produce_value((0, 90061.1)) == 'P1DT1H1M1.100000S'
 
-def test_Decimal_produce():
-    assert Decimal().produce_value(1.1) == '1.1'
+    assert DayTimeDurationType().produce_value((0, 86400.0)) == 'P1D'
+    assert DayTimeDurationType().produce_value((0, 3600.0)) == 'PT1H'
+    assert DayTimeDurationType().produce_value((0, 60.0)) == 'PT1M'
+    assert DayTimeDurationType().produce_value((0, 1.0)) == 'PT1S'
 
-def test_Double_parse():
-    assert Double().parse_value('1.1') == 1.1
-
-def test_Double_produce():
-    assert Double().produce_value(1.1) == '1.1'
-
-def test_Duration_parse():
-    assert Duration().parse_value('P1Y1M1DT1H1M1.1S') == (13, 90061.1)
-
-    assert Duration().parse_value('P1Y') == (12, 0.0)
-    assert Duration().parse_value('P1M') == (1, 0.0)
-    assert Duration().parse_value('P1D') == (0, 86400.0)
-    assert Duration().parse_value('PT1H') == (0, 3600.0)
-    assert Duration().parse_value('PT1M') == (0, 60.0)
-    assert Duration().parse_value('PT1S') == (0, 1.0)
-
-    assert Duration().parse_value('-P1Y') == (-12, 0.0)
-    assert Duration().parse_value('-P1M') == (-1, 0.0)
-    assert Duration().parse_value('-P1D') == (0, -86400.0)
-    assert Duration().parse_value('-PT1H') == (0, -3600.0)
-    assert Duration().parse_value('-PT1M') == (0, -60.0)
-    assert Duration().parse_value('-PT1S') == (0, -1.0)
-
-def test_Duration_produce():
-    assert Duration().produce_value((13, 90061.1)) == 'P1Y1M1DT1H1M1.100000S'
-
-    assert Duration().produce_value((12, 0.0)) == 'P1Y'
-    assert Duration().produce_value((1, 0.0)) == 'P1M'
-    assert Duration().produce_value((0, 86400.0)) == 'P1D'
-    assert Duration().produce_value((0, 3600.0)) == 'PT1H'
-    assert Duration().produce_value((0, 60.0)) == 'PT1M'
-    assert Duration().produce_value((0, 1.0)) == 'PT1S'
-
-    assert Duration().produce_value((-12, 0.0)) == '-P1Y'
-    assert Duration().produce_value((-1, 0.0)) == '-P1M'
-    assert Duration().produce_value((0, -86400.0)) == '-P1D'
-    assert Duration().produce_value((0, -3600.0)) == '-PT1H'
-    assert Duration().produce_value((0, -60.0)) == '-PT1M'
-    assert Duration().produce_value((0, -1.0)) == '-PT1S'
-
-def test_ENTITIES_parse():
-    assert ENTITIES().parse_value('blah0 blah1 blah2') == ('blah0', 'blah1', 'blah2')
+    assert DayTimeDurationType().produce_value((0, -86400.0)) == '-P1D'
+    assert DayTimeDurationType().produce_value((0, -3600.0)) == '-PT1H'
+    assert DayTimeDurationType().produce_value((0, -60.0)) == '-PT1M'
+    assert DayTimeDurationType().produce_value((0, -1.0)) == '-PT1S'
 
     with pytest.raises(ValueError):
-        ENTITIES().parse_value('')
+        DayTimeDurationType().produce_value((1, 1.0))
 
-def test_ENTITIES_produce():
-    assert ENTITIES().produce_value(('blah0', 'blah1', 'blah2')) == 'blah0 blah1 blah2'
+def test_DecimalType_parse():
+    assert DecimalType().parse_value('1.1') == 1.1
 
-def test_ENTITY_parse():
-    assert ENTITY().parse_value('test_id_4') == 'test_id_4'
+def test_DecimalType_produce():
+    assert DecimalType().produce_value(1.1) == '1.1'
 
-def test_ENTITY_produce():
-    assert ENTITY().produce_value('test_id_4') == 'test_id_4'
+def test_DoubleType_parse():
+    assert DoubleType().parse_value('1.1') == 1.1
 
-def test_Float_parse():
-    assert Float().parse_value('1.1') == 1.1
+def test_DoubleType_produce():
+    assert DoubleType().produce_value(1.1) == '1.1'
 
-def test_Float_produce():
-    assert Float().produce_value(1.1) == '1.1'
+def test_DurationType_parse():
+    assert DurationType().parse_value('P1Y1M1DT1H1M1.1S') == (13, 90061.1)
 
-def test_GDay_parse():
-    assert GDay().parse_value('---22') == SevenPropertyModel(day=22)
+    assert DurationType().parse_value('P1Y') == (12, 0.0)
+    assert DurationType().parse_value('P1M') == (1, 0.0)
+    assert DurationType().parse_value('P1D') == (0, 86400.0)
+    assert DurationType().parse_value('PT1H') == (0, 3600.0)
+    assert DurationType().parse_value('PT1M') == (0, 60.0)
+    assert DurationType().parse_value('PT1S') == (0, 1.0)
 
-def test_GDay_produce():
-    assert GDay().produce_value(SevenPropertyModel(day=22)) == '---22'
+    assert DurationType().parse_value('-P1Y') == (-12, 0.0)
+    assert DurationType().parse_value('-P1M') == (-1, 0.0)
+    assert DurationType().parse_value('-P1D') == (0, -86400.0)
+    assert DurationType().parse_value('-PT1H') == (0, -3600.0)
+    assert DurationType().parse_value('-PT1M') == (0, -60.0)
+    assert DurationType().parse_value('-PT1S') == (0, -1.0)
 
-def test_GMonth_parse():
-    assert GMonth().parse_value('--05') == SevenPropertyModel(month=5)
+def test_DurationType_produce():
+    assert DurationType().produce_value((13, 90061.1)) == 'P1Y1M1DT1H1M1.100000S'
 
-def test_GMonth_produce():
-    assert GMonth().produce_value(SevenPropertyModel(month=5)) == '--05'
+    assert DurationType().produce_value((12, 0.0)) == 'P1Y'
+    assert DurationType().produce_value((1, 0.0)) == 'P1M'
+    assert DurationType().produce_value((0, 86400.0)) == 'P1D'
+    assert DurationType().produce_value((0, 3600.0)) == 'PT1H'
+    assert DurationType().produce_value((0, 60.0)) == 'PT1M'
+    assert DurationType().produce_value((0, 1.0)) == 'PT1S'
 
-def test_GMonthDay_day_parse():
-    assert GMonthDay().parse_value('--05-22') == SevenPropertyModel(month=5, day=22)
+    assert DurationType().produce_value((-12, 0.0)) == '-P1Y'
+    assert DurationType().produce_value((-1, 0.0)) == '-P1M'
+    assert DurationType().produce_value((0, -86400.0)) == '-P1D'
+    assert DurationType().produce_value((0, -3600.0)) == '-PT1H'
+    assert DurationType().produce_value((0, -60.0)) == '-PT1M'
+    assert DurationType().produce_value((0, -1.0)) == '-PT1S'
 
-def test_GMonthDay_produce():
-    assert GMonthDay().produce_value(SevenPropertyModel(month=5, day=22)) == '--05-22'
-
-def test_GYear_parse():
-    assert GYear().parse_value('2017') == SevenPropertyModel(year=2017)
-
-def test_GYear_produce():
-    assert GYear().produce_value(SevenPropertyModel(year=2017)) == '2017'
-
-def test_GYearMonth_parse():
-    assert GYearMonth().parse_value('2017-05') == SevenPropertyModel(year=2017, month=5)
-
-def test_GYearMonth_produce():
-    assert GYearMonth().produce_value(SevenPropertyModel(year=2017, month=5)) == '2017-05'
-
-def test_HexBinary_parse():
-    assert HexBinary().parse_value(b'14fb9c03d97e') == b'\x14\xfb\x9c\x03\xd9\x7e'
-    assert HexBinary().parse_value(b'14fb9c03d9') == b'\x14\xfb\x9c\x03\xd9'
-    assert HexBinary().parse_value(b'14fb9c03') == b'\x14\xfb\x9c\x03'
-
-def test_HexBinary_produce():
-    assert HexBinary().produce_value(b'\x14\xfb\x9c\x03\xd9\x7e') == b'14fb9c03d97e'
-    assert HexBinary().produce_value(b'\x14\xfb\x9c\x03\xd9') == b'14fb9c03d9'
-    assert HexBinary().produce_value(b'\x14\xfb\x9c\x03') == b'14fb9c03'
-
-def test_ID_parse():
-    assert ID().parse_value('test_id_4') == 'test_id_4'
-
-def test_ID_produce():
-    assert ID().produce_value('test_id_4') == 'test_id_4'
-
-def test_IDREF_parse():
-    assert IDREF().parse_value('test_id_4') == 'test_id_4'
-
-def test_IDREF_produce():
-    assert IDREF().produce_value('test_id_4') == 'test_id_4'
-
-def test_IDREFS_parse():
-    assert IDREFS().parse_value('blah0 blah1 blah2') == ('blah0', 'blah1', 'blah2')
+def test_EntitiesType_parse():
+    assert EntitiesType().parse_value('blah0 blah1 blah2') == ('blah0', 'blah1', 'blah2')
 
     with pytest.raises(ValueError):
-        IDREFS().parse_value('')
+        EntitiesType().parse_value('')
 
-    assert IDREFS().produce_value(('blah0', 'blah1', 'blah2')) == 'blah0 blah1 blah2'
+def test_EntitiesType_produce():
+    assert EntitiesType().produce_value(('blah0', 'blah1', 'blah2')) == 'blah0 blah1 blah2'
 
-def test_IDREFS_produce():
-    assert IDREFS().produce_value(('blah0', 'blah1', 'blah2')) == 'blah0 blah1 blah2'
+def test_EntityType_parse():
+    assert EntityType().parse_value('test_id_4') == 'test_id_4'
 
-def test_Int_parse():
-    assert Int().parse_value('255') == 255
+def test_EntityType_produce():
+    assert EntityType().produce_value('test_id_4') == 'test_id_4'
 
-def test_Int_produce():
-    assert Int().produce_value(255) == '255'
+def test_FloatType_parse():
+    assert FloatType().parse_value('1.1') == 1.1
 
-def test_Integer_parse():
-    assert Integer().parse_value('255') == 255
+def test_FloatType_produce():
+    assert FloatType().produce_value(1.1) == '1.1'
 
-def test_Integer_produce():
-    assert Integer().produce_value(255) == '255'
+def test_GDayType_parse():
+    assert GDayType().parse_value('---22') == SevenPropertyModel(day=22)
 
-def test_Language_parse():
-    assert Language().parse_value('en') == 'en'
-    assert Language().parse_value('en-US') == 'en-US'
-    assert Language().parse_value('en-gb') == 'en-gb'
+def test_GDayType_produce():
+    assert GDayType().produce_value(SevenPropertyModel(day=22)) == '---22'
 
-    with pytest.raises(ValueError):
-        Language().parse_value('')
+def test_GMonthType_parse():
+    assert GMonthType().parse_value('--05') == SevenPropertyModel(month=5)
 
-def test_Language_parse():
-    assert Language().produce_value('en') == 'en'
-    assert Language().produce_value('en-US') == 'en-US'
+def test_GMonthType_produce():
+    assert GMonthType().produce_value(SevenPropertyModel(month=5)) == '--05'
 
-def test_Long_parse():
-    assert Long().parse_value('255') == 255
+def test_GMonthDayType_day_parse():
+    assert GMonthDayType().parse_value('--05-22') == SevenPropertyModel(month=5, day=22)
 
-def test_Long_produce():
-    assert Long().produce_value(255) == '255'
+def test_GMonthDayType_produce():
+    assert GMonthDayType().produce_value(SevenPropertyModel(month=5, day=22)) == '--05-22'
 
-def test_Name_parse():
-    assert Name().parse_value('test_id_4') == 'test_id_4'
+def test_GYearType_parse():
+    assert GYearType().parse_value('2017') == SevenPropertyModel(year=2017)
 
-    with pytest.raises(ValueError):
-        Name().parse_value('4test_id_4')
+def test_GYearType_produce():
+    assert GYearType().produce_value(SevenPropertyModel(year=2017)) == '2017'
 
-def test_Name_produce():
-    assert Name().produce_value('test_id_4') == 'test_id_4'
+def test_GYearMonthType_parse():
+    assert GYearMonthType().parse_value('2017-05') == SevenPropertyModel(year=2017, month=5)
 
-def test_NCName_parse():
-    assert NCName().parse_value('test_id_4') == 'test_id_4'
+def test_GYearMonthType_produce():
+    assert GYearMonthType().produce_value(SevenPropertyModel(year=2017, month=5)) == '2017-05'
 
-    with pytest.raises(ValueError):
-        NCName().parse_value('test:id_4')
+def test_HexBinaryType_parse():
+    assert HexBinaryType().parse_value(b'14fb9c03d97e') == b'\x14\xfb\x9c\x03\xd9\x7e'
+    assert HexBinaryType().parse_value(b'14fb9c03d9') == b'\x14\xfb\x9c\x03\xd9'
+    assert HexBinaryType().parse_value(b'14fb9c03') == b'\x14\xfb\x9c\x03'
 
-def test_NCName_produce():
-    assert NCName().produce_value('test_id_4') == 'test_id_4'
+def test_HexBinaryType_produce():
+    assert HexBinaryType().produce_value(b'\x14\xfb\x9c\x03\xd9\x7e') == b'14fb9c03d97e'
+    assert HexBinaryType().produce_value(b'\x14\xfb\x9c\x03\xd9') == b'14fb9c03d9'
+    assert HexBinaryType().produce_value(b'\x14\xfb\x9c\x03') == b'14fb9c03'
 
-def test_NegativeInteger_parse():
-    assert NegativeInteger().parse_value('-255') == -255
+def test_IdType_parse():
+    assert IdType().parse_value('test_id_4') == 'test_id_4'
 
-def test_NegativeInteger_produce():
-    assert NegativeInteger().produce_value(-255) == '-255'
+def test_IdType_produce():
+    assert IdType().produce_value('test_id_4') == 'test_id_4'
 
-def test_NMTOKEN_parse():
-    assert NMTOKEN().parse_value('xml:schema') == 'xml:schema'
-    assert NMTOKEN().parse_value('2xml:schema') == '2xml:schema'
-    assert NMTOKEN().parse_value('-xml:schema') == '-xml:schema'
-    assert NMTOKEN().parse_value('.xml:schema') == '.xml:schema'
+def test_IdRefType_parse():
+    assert IdRefType().parse_value('test_id_4') == 'test_id_4'
 
-    with pytest.raises(ValueError):
-        NMTOKEN().parse_value('\x0dtoken')
+def test_IdRefType_produce():
+    assert IdRefType().produce_value('test_id_4') == 'test_id_4'
 
-def test_NMTOKEN_produce():
-    assert NMTOKEN().produce_value('xml:schema') == 'xml:schema'
-
-def test_NMTOKENS_parse():
-    assert NMTOKENS().parse_value('xml:schema') == ('xml:schema',)
-    assert NMTOKENS().parse_value('xml:schema xml:schema2') == ('xml:schema', 'xml:schema2')
+def test_IdRefsType_parse():
+    assert IdRefsType().parse_value('blah0 blah1 blah2') == ('blah0', 'blah1', 'blah2')
 
     with pytest.raises(ValueError):
-        NMTOKENS().parse_value('\x0dtoken')
+        IdRefsType().parse_value('')
 
-def test_NMTOKENS_produce():
-    assert NMTOKENS().produce_value(('xml:schema',)) == 'xml:schema'
-    assert NMTOKENS().produce_value(('xml:schema', 'xml:schema2')) == 'xml:schema xml:schema2'
+    assert IdRefsType().produce_value(('blah0', 'blah1', 'blah2')) == 'blah0 blah1 blah2'
 
-def test_NonNegativeInteger_parse():
-    assert NonNegativeInteger().parse_value('255') == 255
+def test_IdRefsType_produce():
+    assert IdRefsType().produce_value(('blah0', 'blah1', 'blah2')) == 'blah0 blah1 blah2'
 
-def test_NonNegativeInteger_produce():
-    assert NonNegativeInteger().produce_value(255) == '255'
+def test_IntType_parse():
+    assert IntType().parse_value('255') == 255
 
-def test_NonPositiveInteger_parse():
-    assert NonPositiveInteger().parse_value('-255') == -255
+def test_IntType_produce():
+    assert IntType().produce_value(255) == '255'
 
-def test_NonPositiveInteger_produce():
-    assert NonPositiveInteger().produce_value(-255) == '-255'
+def test_IntegerType_parse():
+    assert IntegerType().parse_value('255') == 255
 
-def test_NormalizedString_parse():
-    assert NormalizedString().parse_value('test_id_4') == 'test_id_4'
+def test_IntegerType_produce():
+    assert IntegerType().produce_value(255) == '255'
 
-def test_NormalizedString_produce():
-    assert NormalizedString().produce_value('test_id_4') == 'test_id_4'
+def test_LanguageType_parse():
+    assert LanguageType().parse_value('en') == 'en'
+    assert LanguageType().parse_value('en-US') == 'en-US'
+    assert LanguageType().parse_value('en-gb') == 'en-gb'
 
-def test_NOTATION_parse():
-    assert NOTATION().parse_value('test_id_4') == 'test_id_4'
+    with pytest.raises(ValueError):
+        LanguageType().parse_value('')
 
-def test_NOTATION_produce():
-    assert NOTATION().produce_value('test_id_4') == 'test_id_4'
+def test_LanguageType_parse():
+    assert LanguageType().produce_value('en') == 'en'
+    assert LanguageType().produce_value('en-US') == 'en-US'
 
-def test_PositiveInteger_parse():
-    assert PositiveInteger().parse_value('255') == 255
+def test_LongType_parse():
+    assert LongType().parse_value('255') == 255
 
-def test_PositiveInteger_produce():
-    assert PositiveInteger().produce_value(255) == '255'
+def test_LongType_produce():
+    assert LongType().produce_value(255) == '255'
 
-def test_QName_parse():
-    assert QName().parse_value('test_id_4') == 'test_id_4'
+def test_NameType_parse():
+    assert NameType().parse_value('test_id_4') == 'test_id_4'
 
-def test_QName_produce():
-    assert QName().produce_value('test_id_4') == 'test_id_4'
+    with pytest.raises(ValueError):
+        NameType().parse_value('4test_id_4')
 
-def test_Short_parse():
-    assert Short().parse_value('255') == 255
+def test_NameType_produce():
+    assert NameType().produce_value('test_id_4') == 'test_id_4'
 
-def test_Short_produce():
-    assert Short().produce_value(255) == '255'
+def test_NCNameType_parse():
+    assert NCNameType().parse_value('test_id_4') == 'test_id_4'
 
-def test_String_parse():
-    assert String().parse_value('test') == 'test'
+    with pytest.raises(ValueError):
+        NCNameType().parse_value('test:id_4')
+
+def test_NCNameType_produce():
+    assert NCNameType().produce_value('test_id_4') == 'test_id_4'
+
+def test_NegativeIntegerType_parse():
+    assert NegativeIntegerType().parse_value('-255') == -255
+
+def test_NegativeIntegerType_produce():
+    assert NegativeIntegerType().produce_value(-255) == '-255'
+
+def test_NMTokenType_parse():
+    assert NMTokenType().parse_value('xml_schema') == 'xml_schema'
+    assert NMTokenType().parse_value('2xml_schema') == '2xml_schema'
+    assert NMTokenType().parse_value('-xml_schema') == '-xml_schema'
+    assert NMTokenType().parse_value('.xml_schema') == '.xml_schema'
+
+    with pytest.raises(ValueError):
+        NMTokenType().parse_value('\x0dtoken')
+
+def test_NMTokenType_produce():
+    assert NMTokenType().produce_value('xml_schema') == 'xml_schema'
+
+def test_NMTokensType_parse():
+    assert NMTokensType().parse_value('xml_schema') == ('xml_schema',)
+    assert NMTokensType().parse_value('xml_schema xml_schema2') == ('xml_schema', 'xml_schema2')
+
+    with pytest.raises(ValueError):
+        NMTokensType().parse_value('\x0dtoken')
+
+def test_NMTokensType_produce():
+    assert NMTokensType().produce_value(('xml_schema',)) == 'xml_schema'
+    assert NMTokensType().produce_value(('xml_schema', 'xml_schema2')) == 'xml_schema xml_schema2'
+
+def test_NonNegativeIntegerType_parse():
+    assert NonNegativeIntegerType().parse_value('255') == 255
+
+def test_NonNegativeIntegerType_produce():
+    assert NonNegativeIntegerType().produce_value(255) == '255'
+
+def test_NonPositiveIntegerType_parse():
+    assert NonPositiveIntegerType().parse_value('-255') == -255
+
+def test_NonPositiveIntegerType_produce():
+    assert NonPositiveIntegerType().produce_value(-255) == '-255'
+
+def test_NormalizedStringType_parse():
+    assert NormalizedStringType().parse_value('test_id_4') == 'test_id_4'
+
+def test_NormalizedStringType_produce():
+    assert NormalizedStringType().produce_value('test_id_4') == 'test_id_4'
+
+def test_NotationType_parse():
+    assert NotationType().parse_value('test_id_4') == 'test_id_4'
+
+def test_NotationType_produce():
+    assert NotationType().produce_value('test_id_4') == 'test_id_4'
+
+def test_PositiveIntegerType_parse():
+    assert PositiveIntegerType().parse_value('255') == 255
+
+def test_PositiveIntegerType_produce():
+    assert PositiveIntegerType().produce_value(255) == '255'
+
+def test_QNameType_parse():
+    assert QNameType().parse_value('test_id_4') == 'test_id_4'
+
+def test_QNameType_produce():
+    assert QNameType().produce_value('test_id_4') == 'test_id_4'
+
+def test_ShortType_parse():
+    assert ShortType().parse_value('255') == 255
+
+def test_ShortType_produce():
+    assert ShortType().produce_value(255) == '255'
+
+def test_StringType_parse():
+    assert StringType().parse_value('test') == 'test'
 
     with pytest.raises(TypeError):
-        String().parse_value(2)
+        StringType().parse_value(2)
     with pytest.raises(TypeError):
-        String().parse_value(2.0)
+        StringType().parse_value(2.0)
     with pytest.raises(TypeError):
-        String().parse_value(String())
+        StringType().parse_value(StringType())
 
-def test_String_produce():
-    assert String().produce_value('255') == '255'
+def test_StringType_produce():
+    assert StringType().produce_value('255') == '255'
 
-def test_Time_parse():
-    assert Time().parse_value('12:42:42Z') == SevenPropertyModel(hour=12, minute=42, second=42, timezoneOffset=0)
+def test_TimeType_parse():
+    assert TimeType().parse_value('12:42:42Z') == SevenPropertyModel(hour=12, minute=42, second=42, timezoneOffset=0)
 
-def test_Time_produce():
-    assert Time().produce_value(SevenPropertyModel(hour=12, minute=42, second=42, timezoneOffset=0)) == '12:42:42Z'
+def test_TimeType_produce():
+    assert TimeType().produce_value(SevenPropertyModel(hour=12, minute=42, second=42, timezoneOffset=0)) == '12:42:42Z'
 
-def test_Token_parse():
-    assert Token().parse_value('test') == 'test'
+def test_TokenType_parse():
+    assert TokenType().parse_value('test') == 'test'
 
-def test_Token_produce():
-    assert Token().produce_value('test') == 'test'
+def test_TokenType_produce():
+    assert TokenType().produce_value('test') == 'test'
 
-def test_UnsignedByte_parse():
-    assert UnsignedByte().parse_value('255') == 255
+def test_UnsignedByteType_parse():
+    assert UnsignedByteType().parse_value('255') == 255
 
-def test_UnsignedByte_produce():
-    assert UnsignedByte().produce_value(255) == '255'
+def test_UnsignedByteType_produce():
+    assert UnsignedByteType().produce_value(255) == '255'
 
-def test_UnsignedInt_parse():
-    assert UnsignedInt().parse_value('255') == 255
+def test_UnsignedIntType_parse():
+    assert UnsignedIntType().parse_value('255') == 255
 
-def test_UnsignedInt_produce():
-    assert UnsignedInt().produce_value(255) == '255'
+def test_UnsignedIntType_produce():
+    assert UnsignedIntType().produce_value(255) == '255'
 
-def test_UnsignedLong_parse():
-    assert UnsignedLong().parse_value('255') == 255
+def test_UnsignedLongType_parse():
+    assert UnsignedLongType().parse_value('255') == 255
 
-def test_UnsignedLong_produce():
-    assert UnsignedLong().produce_value(255) == '255'
+def test_UnsignedLongType_produce():
+    assert UnsignedLongType().produce_value(255) == '255'
 
-def test_UnsignedShort_parse():
-    assert UnsignedShort().parse_value('255') == 255
+def test_UnsignedShortType_parse():
+    assert UnsignedShortType().parse_value('255') == 255
 
-def test_UnsignedShort_produce():
-    assert UnsignedShort().produce_value(255) == '255'
+def test_UnsignedShortType_produce():
+    assert UnsignedShortType().produce_value(255) == '255'
 
-def test_YearMonthDuration_parse():
-    assert YearMonthDuration().parse_value('P1Y1M') == (13, 0)
+def test_YearMonthDurationType_parse():
+    assert YearMonthDurationType().parse_value('P1Y1M') == (13, 0)
 
-    assert YearMonthDuration().parse_value('P1Y') == (12, 0.0)
-    assert YearMonthDuration().parse_value('P1M') == (1, 0.0)
+    assert YearMonthDurationType().parse_value('P1Y') == (12, 0.0)
+    assert YearMonthDurationType().parse_value('P1M') == (1, 0.0)
 
-    assert YearMonthDuration().parse_value('-P1Y') == (-12, 0.0)
-    assert YearMonthDuration().parse_value('-P1M') == (-1, 0.0)
+    assert YearMonthDurationType().parse_value('-P1Y') == (-12, 0.0)
+    assert YearMonthDurationType().parse_value('-P1M') == (-1, 0.0)
 
     with pytest.raises(ValueError):
-        DayTimeDuration().parse_value('P1Y1M1DT1H1M1.1S')
+        DayTimeDurationType().parse_value('P1Y1M1DT1H1M1.1S')
 
-def test_YearMonthDuration_produce():
-    assert YearMonthDuration().produce_value((13, 0)) == 'P1Y1M'
+def test_YearMonthDurationType_produce():
+    assert YearMonthDurationType().produce_value((13, 0)) == 'P1Y1M'
 
-    assert YearMonthDuration().produce_value((12, 0.0)) == 'P1Y'
-    assert YearMonthDuration().produce_value((1, 0.0)) == 'P1M'
+    assert YearMonthDurationType().produce_value((12, 0.0)) == 'P1Y'
+    assert YearMonthDurationType().produce_value((1, 0.0)) == 'P1M'
 
-    assert YearMonthDuration().produce_value((-12, 0.0)) == '-P1Y'
-    assert YearMonthDuration().produce_value((-1, 0.0)) == '-P1M'
+    assert YearMonthDurationType().produce_value((-12, 0.0)) == '-P1Y'
+    assert YearMonthDurationType().produce_value((-1, 0.0)) == '-P1M'
 
     with pytest.raises(ValueError):
-        DayTimeDuration().produce_value((1, 1.0))
+        DayTimeDurationType().produce_value((1, 1.0))
