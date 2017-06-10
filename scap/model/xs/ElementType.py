@@ -32,6 +32,8 @@ class ElementType(AnnotatedType):
             {'tag_name': 'keyref', 'class': 'KeyRefElement', 'min': 0, 'max': None},
         ],
         'attributes': {
+            'name': {'type': 'NCNameType'},
+            'ref': {'type': 'QNameType'},
             'type': {'type': 'QNameType'},
             'substitutionGroup': {'type': 'QNameType'},
             'default': {'type': 'StringType'},
@@ -41,9 +43,8 @@ class ElementType(AnnotatedType):
             'final': {'enum': ['#all', 'extension', 'restriction']},
             'block': {'enum': ['#all', 'extension', 'restriction', 'substitution']},
             'form': {'enum': FORM_CHOICE_ENUMERATION},
+            'minOccurs': {'type': 'NonNegativeIntegerType', 'default': 1},
+            'maxOccurs': {'type': 'AllNniType', 'default': 1},
             '*': {},
         }
     }
-
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_DEF_REF)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_OCCURS)

@@ -22,41 +22,6 @@ TAG_MAP = {
 i_ = r'[A-Z_a-z\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u02FF\u0370-\u037D\u037F-\u1FFF\u200C-\u200D\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]'
 c_ = r'[-.0-9A-Z_a-z\u00B7\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u037D\u037F-\u1FFF\u200C-\u200D\u203F\u2040\u2070-\u218F\u2C00-\u2FEF\u3001-\uD7FF\uF900-\uFDCF\uFDF0-\uFFFD]'
 
-ELEMENT_GROUP_REDEFINABLE = [
-    {'tag_name': 'simpleType', 'class': 'SimpleTypeType', 'min': 0, 'max': None},
-    {'tag_name': 'complexType', 'class': 'ComplexTypeType', 'min': 0, 'max': None},
-    {'tag_name': 'group', 'class': 'GroupType', 'min': 0, 'max': None},
-    {'tag_name': 'attributeGroup', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
-]
-
-ATTRIBUTE_GROUP_OCCURS = {
-    'minOccurs': {'type': 'NonNegativeIntegerType', 'default': 1},
-    'maxOccurs': {'type': 'AllNniType', 'default': 1},
-}
-
-ATTRIBUTE_GROUP_DEF_REF = {
-    'name': {'type': 'NCNameType'},
-    'ref': {'type': 'QNameType'},
-}
-
-ELEMENT_GROUP_TYPE_DEF_PARTICLE = [
-    {'tag_name': 'group', 'class': 'GroupType', 'min': 0},
-    {'tag_name': 'all', 'class': 'AllType', 'min': 0},
-    {'tag_name': 'choice', 'class': 'ChoiceElement', 'min': 0},
-    {'tag_name': 'sequence', 'class': 'GroupType', 'min': 0},
-]
-
-ELEMENT_GROUP_ATTR_DECLS = [
-    {'tag_name': 'attribute', 'class': 'AttributeType', 'min': 0, 'max': None},
-    {'tag_name': 'attributeGroup', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
-    {'tag_name': 'anyAttribute', 'class': 'WildcardType', 'min': 0},
-]
-
-ELEMENT_GROUP_ALL_MODEL = [
-    {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
-    {'tag_name': 'element', 'class': 'ElementType', 'min': 0, 'max': None},
-]
-
 FORM_CHOICE_ENUMERATION = [
     'qualified',
     'unqualified',

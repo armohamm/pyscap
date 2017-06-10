@@ -27,6 +27,8 @@ class AttributeType(AnnotatedType):
             {'tag_name': 'simpleType', 'class': 'SimpleTypeType', 'min': 0},
         ],
         'attributes': {
+            'name': {'type': 'NCNameType'},
+            'ref': {'type': 'QNameType'},
             'type': {'type': 'QNameType'},
             'use': {'enum': ['prohibited', 'optional', 'required'], 'default': 'optional'},
             'default': {'type': 'StringType'},
@@ -35,4 +37,3 @@ class AttributeType(AnnotatedType):
             '*': {},
         },
     }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_DEF_REF)

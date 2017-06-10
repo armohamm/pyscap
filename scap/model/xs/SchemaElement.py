@@ -28,6 +28,13 @@ class SchemaElement(AnyTypeType):
             {'tag_name': 'import', 'class': 'ImportElement', 'min': 0, 'max': None},
             {'tag_name': 'redefine', 'class': 'RedefineElement', 'min': 0, 'max': None},
             {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0, 'max': None},
+            {'tag_name': 'simpleType', 'class': 'SimpleTypeType', 'min': 0, 'max': None},
+            {'tag_name': 'complexType', 'class': 'ComplexTypeType', 'min': 0, 'max': None},
+            {'tag_name': 'group', 'class': 'GroupType', 'min': 0, 'max': None},
+            {'tag_name': 'attributeGroup', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
+            {'tag_name': 'element', 'class': 'ElementType', 'min': 0, 'max': None},
+            {'tag_name': 'attribute', 'class': 'AttributeType', 'min': 0, 'max': None},
+            {'tag_name': 'notation', 'class': 'NotationElement', 'min': 0, 'max': None},
         ],
         'attributes': {
             'targetNamespace': {'type': 'AnyUriType'},
@@ -40,7 +47,5 @@ class SchemaElement(AnyTypeType):
             # xml:lang
         },
     }
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_REDEFINABLE)
-    MODEL_MAP['elements'].append({'tag_name': 'element', 'class': 'ElementType', 'min': 0, 'max': None})
-    MODEL_MAP['elements'].append({'tag_name': 'attribute', 'class': 'AttributeType', 'min': 0, 'max': None})
-    MODEL_MAP['elements'].append({'tag_name': 'notation', 'class': 'NotationElement', 'min': 0, 'max': None})
+
+    def stub(self, path):

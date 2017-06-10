@@ -26,6 +26,13 @@ class ComplexTypeType(AnnotatedType):
         'elements': [
             {'tag_name': 'simpleContent', 'class': 'SimpleContentElement', 'min': 0, 'max': None},
             {'tag_name': 'complexContent', 'class': 'ComplexContentElement', 'min': 0, 'max': None},
+            {'tag_name': 'group', 'class': 'GroupType', 'min': 0},
+            {'tag_name': 'all', 'class': 'AllType', 'min': 0},
+            {'tag_name': 'choice', 'class': 'ChoiceElement', 'min': 0},
+            {'tag_name': 'sequence', 'class': 'GroupType', 'min': 0},
+            {'tag_name': 'attribute', 'class': 'AttributeType', 'min': 0, 'max': None},
+            {'tag_name': 'attributeGroup', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
+            {'tag_name': 'anyAttribute', 'class': 'WildcardType', 'min': 0},
         ],
         'attributes': {
             'name': {'type': 'NCNameType'},
@@ -36,6 +43,4 @@ class ComplexTypeType(AnnotatedType):
             '*': {},
         }
     }
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_TYPE_DEF_PARTICLE)
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_ATTR_DECLS)
     # TODO .mixed & simpleContent sub-elements are mutulally exclusive

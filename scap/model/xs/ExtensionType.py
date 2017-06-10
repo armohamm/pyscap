@@ -24,10 +24,15 @@ logger = logging.getLogger(__name__)
 class ExtensionType(AnnotatedType):
     MODEL_MAP = {
         'elements': [
+            {'tag_name': 'group', 'class': 'GroupType', 'min': 0},
+            {'tag_name': 'all', 'class': 'AllType', 'min': 0},
+            {'tag_name': 'choice', 'class': 'ChoiceElement', 'min': 0},
+            {'tag_name': 'sequence', 'class': 'GroupType', 'min': 0},
+            {'tag_name': 'attribute', 'class': 'AttributeType', 'min': 0, 'max': None},
+            {'tag_name': 'attributeGroup', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
+            {'tag_name': 'anyAttribute', 'class': 'WildcardType', 'min': 0},
         ],
         'attributes': {
             'base': {'type': 'QNameType', 'required': True},
         }
     }
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_TYPE_DEF_PARTICLE)
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_ATTR_DECLS)

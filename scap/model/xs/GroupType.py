@@ -32,9 +32,10 @@ class GroupType(AnnotatedType):
             {'tag_name': 'sequence', 'class': 'GroupType', 'min': 0, 'max': None},
         ],
         'attributes': {
+            'name': {'type': 'NCNameType'},
+            'ref': {'type': 'QNameType'},
+            'minOccurs': {'type': 'NonNegativeIntegerType', 'default': 1},
+            'maxOccurs': {'type': 'AllNniType', 'default': 1},
             '*': {},
         }
     }
-
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_DEF_REF)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_OCCURS)
