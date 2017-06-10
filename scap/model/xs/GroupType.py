@@ -27,9 +27,9 @@ class GroupType(AnnotatedType):
             {'tag_name': 'any', 'class': 'AnyElement', 'min': 0, 'max': None},
             {'tag_name': 'element', 'class': 'ElementType', 'min': 0, 'max': None},
             {'tag_name': 'group', 'class': 'GroupType', 'min': 0, 'max': None},
-            {'tag_name': 'all', 'class': 'AllElement', 'min': 0, 'max': None},
+            {'tag_name': 'all', 'class': 'AllType', 'min': 0, 'max': None},
             {'tag_name': 'choice', 'class': 'ChoiceElement', 'min': 0, 'max': None},
-            {'tag_name': 'sequence', 'class': 'SequenceElement', 'min': 0, 'max': None},
+            {'tag_name': 'sequence', 'class': 'GroupType', 'min': 0, 'max': None},
         ],
         'attributes': {
             '*': {},

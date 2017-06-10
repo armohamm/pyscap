@@ -27,8 +27,8 @@ class ElementType(AnnotatedType):
         'elements': [
             {'tag_name': 'simpleType', 'class': 'SimpleTypeType', 'min': 0},
             {'tag_name': 'complexType', 'class': 'ComplexTypeType', 'min': 0},
-            {'tag_name': 'unique', 'class': 'UniqueElement', 'min': 0, 'max': None},
-            {'tag_name': 'key', 'class': 'KeyElement', 'min': 0, 'max': None},
+            {'tag_name': 'unique', 'class': 'KeybaseType', 'min': 0, 'max': None},
+            {'tag_name': 'key', 'class': 'KeybaseType', 'min': 0, 'max': None},
             {'tag_name': 'keyref', 'class': 'KeyRefElement', 'min': 0, 'max': None},
         ],
         'attributes': {

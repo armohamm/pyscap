@@ -41,6 +41,6 @@ class SchemaElement(AnyTypeType):
         },
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_REDEFINABLE)
-    MODEL_MAP['elements'].append({'tag_name': 'element', 'class': 'ElementElement', 'min': 0, 'max': None})
-    MODEL_MAP['elements'].append({'tag_name': 'attribute', 'class': 'AttributeElement', 'min': 0, 'max': None})
+    MODEL_MAP['elements'].append({'tag_name': 'element', 'class': 'ElementType', 'min': 0, 'max': None})
+    MODEL_MAP['elements'].append({'tag_name': 'attribute', 'class': 'AttributeType', 'min': 0, 'max': None})
     MODEL_MAP['elements'].append({'tag_name': 'notation', 'class': 'NotationElement', 'min': 0, 'max': None})
