@@ -23,14 +23,19 @@ from scap.model.xs.AnnotatedType import AnnotatedType
 logger = logging.getLogger(__name__)
 class ComplexTypeType(AnnotatedType):
     MODEL_MAP = {
-        'elements': [],
+        'elements': [
+            {'tag_name': 'simpleContent', 'class': 'SimpleContentElement', 'min': 0, 'max': None},
+            {'tag_name': 'complexContent', 'class': 'ComplexContentElement', 'min': 0, 'max': None},
+        ],
         'attributes': {
             'name': {'type': 'NCNameType'},
             'mixed': {'type': 'BooleanType', 'default': False},
             'abstract': {'type': 'BooleanType', 'default': False},
-            'final': {'type': 'DerivationSetType'},
-            'block': {'type': 'DerivationSetType'},
+            'final': {'enum': ['#all', 'extension', 'restriction']},
+            'block': {'enum': ['#all', 'extension', 'restriction']},
+            '*': {},
         }
     }
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_COMPLEX_TYPE_MODEL)
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_TYPE_DEF_PARTICLE)
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_ATTR_DECLS)
     # TODO .mixed & simpleContent sub-elements are mutulally exclusive

@@ -30,8 +30,4 @@ class ImportElement(AnnotatedType):
             'schemaLocation': {'type': 'AnyUriType'},
         }
     }
-    eg = ELEMENT_GROUP_REDEFINABLE.copy()
-    for el in eg:
-        el['min'] = 0
-        el['max'] = None
-    MODEL_MAP['elements'].extend(eg)
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_REDEFINABLE)

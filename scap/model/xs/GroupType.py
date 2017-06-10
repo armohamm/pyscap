@@ -22,18 +22,19 @@ from scap.model.xs.AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
 class GroupType(AnnotatedType):
-    # abstract
     MODEL_MAP = {
         'elements': [
+            {'tag_name': 'any', 'class': 'AnyElement', 'min': 0, 'max': None},
+            {'tag_name': 'element', 'class': 'ElementType', 'min': 0, 'max': None},
+            {'tag_name': 'group', 'class': 'GroupType', 'min': 0, 'max': None},
+            {'tag_name': 'all', 'class': 'AllElement', 'min': 0, 'max': None},
+            {'tag_name': 'choice', 'class': 'ChoiceElement', 'min': 0, 'max': None},
+            {'tag_name': 'sequence', 'class': 'SequenceElement', 'min': 0, 'max': None},
         ],
         'attributes': {
+            '*': {},
         }
     }
-    eg = ELEMENT_GROUP_PARTICLE.copy()
-    for el in eg:
-        el['min'] = 0
-        el['max'] = None
-    MODEL_MAP['elements'].extend(eg)
 
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_DEF_REF)
     MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_OCCURS)

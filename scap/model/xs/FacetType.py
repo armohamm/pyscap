@@ -26,7 +26,8 @@ class FacetType(AnnotatedType):
         'elements': [
         ],
         'attributes': {
-            'value': {'required': True},
-            'fixed': {'required': True, 'type': 'BooleanType', 'default': False},
+            'value': {'required': True, 'type': 'AnySimpleType'},
+            'fixed': {'type': 'BooleanType', 'default': False},
+            '*': {},
         }
     }

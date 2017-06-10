@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.ExplicitGroupType import ExplicitGroupType
+from scap.model.xs.GroupType import GroupType
 
 logger = logging.getLogger(__name__)
-class AllType(ExplicitGroupType):
+class AllType(GroupType):
     MODEL_MAP = {
         'elements': [
         ],

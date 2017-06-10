@@ -18,9 +18,9 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.TopLevelComplexTypeType import TopLevelComplexTypeType
+from scap.model.xs.ComplexTypeType import ComplexTypeType
 
 logger = logging.getLogger(__name__)
-class ComplexTypeElement(TopLevelComplexTypeType):
+class ComplexTypeElement(ComplexTypeType):
     MODEL_MAP = {
     }

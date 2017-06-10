@@ -24,9 +24,7 @@ logger = logging.getLogger(__name__)
 class KeyElement(KeybaseType):
     MODEL_MAP = {
         'elements': [
-
         ],
         'attributes': {
-
         },
     }

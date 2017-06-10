@@ -26,6 +26,7 @@ class AttributeGroupType(AnnotatedType):
         'elements': [
         ],
         'attributes': {
+            '*': {},
         }
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_ATTR_DECLS)

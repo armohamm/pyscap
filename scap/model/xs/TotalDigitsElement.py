@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.NumFacetType import NumFacetType
+from scap.model.xs.FacetType import FacetType
 
 logger = logging.getLogger(__name__)
-class TotalDigitsElement(NumFacetType):
+class TotalDigitsElement(FacetType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},

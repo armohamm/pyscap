@@ -18,9 +18,9 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.TopLevelElementType import TopLevelElementType
+from scap.model.xs.ElementType import ElementType
 
 logger = logging.getLogger(__name__)
-class ElementElement(TopLevelElementType):
+class ElementElement(ElementType):
     MODEL_MAP = {
     }

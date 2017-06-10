@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class ListElement(AnnotatedType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'simpleType', 'class': 'LocalSimpleTypeType', 'min': 0},
+            {'tag_name': 'simpleType', 'class': 'SimpleTypeType', 'min': 0},
         ],
         'attributes': {
             'itemType': {'type': 'QNameType'},

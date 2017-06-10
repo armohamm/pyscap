@@ -18,9 +18,9 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.NamedGroupType import NamedGroupType
+from scap.model.xs.GroupType import GroupType
 
 logger = logging.getLogger(__name__)
-class GroupElement(NamedGroupType):
+class GroupElement(GroupType):
     MODEL_MAP = {
     }

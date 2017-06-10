@@ -26,9 +26,23 @@ class RestrictionType(AnnotatedType):
         'elements': [
         ],
         'attributes': {
-            'base': {'type': 'QNameType', 'required': True},
+            'base': {'type': 'QNameType'},
         }
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_TYPE_DEF_PARTICLE)
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_SIMPLE_RESTRICTION_MODEL)
+    MODEL_MAP['elements'].append({'tag_name': 'simpleType', 'class': 'SimpleTypeType', 'min': 0})
+    MODEL_MAP['elements'].extend([
+        {'tag_name': 'minExclusive', 'class': 'MinExclusiveElement', 'min': 0, 'max': None},
+        {'tag_name': 'minInclusive', 'class': 'MinInclusiveElement', 'min': 0, 'max': None},
+        {'tag_name': 'maxExclusive', 'class': 'MaxExclusiveElement', 'min': 0, 'max': None},
+        {'tag_name': 'maxInclusive', 'class': 'MaxInclusiveElement', 'min': 0, 'max': None},
+        {'tag_name': 'totalDigits', 'class': 'TotalDigitsElement', 'min': 0, 'max': None},
+        {'tag_name': 'fractionDigits', 'class': 'FractionDigitsElement', 'min': 0, 'max': None},
+        {'tag_name': 'length', 'class': 'LengthElement', 'min': 0, 'max': None},
+        {'tag_name': 'minLength', 'class': 'MinLengthElement', 'min': 0, 'max': None},
+        {'tag_name': 'maxLength', 'class': 'MaxLengthElement', 'min': 0, 'max': None},
+        {'tag_name': 'enumeration', 'class': 'EnumerationElement', 'min': 0, 'max': None},
+        {'tag_name': 'whiteSpace', 'class': 'WhitespaceElement', 'min': 0, 'max': None},
+        {'tag_name': 'pattern', 'class': 'PatternElement', 'min': 0, 'max': None},
+    ])
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_ATTR_DECLS)

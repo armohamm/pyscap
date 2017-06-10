@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.OpenAttrsType import OpenAttrsType
+from scap.model.xs.AnyTypeType import AnyTypeType
 
 logger = logging.getLogger(__name__)
-class SchemaElement(OpenAttrsType):
+class SchemaElement(AnyTypeType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'include', 'class': 'IncludeElement', 'min': 0, 'max': None},
@@ -32,12 +32,15 @@ class SchemaElement(OpenAttrsType):
         'attributes': {
             'targetNamespace': {'type': 'AnyUriType'},
             'version': {'type': 'TokenType'},
-            'finalDefault': {'type': 'FullDerivationSetType', 'default': ''},
-            'blockDefault': {'type': 'BlockSetType', 'default': ''},
-            'attributeFormDefault': {'type': 'FormChoiceType', 'default': 'unqualified'},
-            'elementFormDefault': {'type': 'FormChoiceType', 'default': 'unqualified'},
+            'finalDefault': {'enum': ['#all', 'extension', 'restriction', 'list', 'union']},
+            'blockDefault': {'enum': ['#all', 'extension', 'restriction', 'substitution']},
+            'attributeFormDefault': {'enum': FORM_CHOICE_ENUMERATION, 'default': 'unqualified'},
+            'elementFormDefault': {'enum': FORM_CHOICE_ENUMERATION, 'default': 'unqualified'},
             'id': {'type': 'IdType'},
             # xml:lang
         },
     }
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_SCHEMA_TOP)
+    MODEL_MAP['elements'].extend(ELEMENT_GROUP_REDEFINABLE)
+    MODEL_MAP['elements'].append({'tag_name': 'element', 'class': 'ElementElement', 'min': 0, 'max': None})
+    MODEL_MAP['elements'].append({'tag_name': 'attribute', 'class': 'AttributeElement', 'min': 0, 'max': None})
+    MODEL_MAP['elements'].append({'tag_name': 'notation', 'class': 'NotationElement', 'min': 0, 'max': None})

@@ -24,7 +24,6 @@ logger = logging.getLogger(__name__)
 class KeyRefElement(KeybaseType):
     MODEL_MAP = {
         'elements': [
-
         ],
         'attributes': {
             'refer': {'type': 'QNameType', 'required': True},

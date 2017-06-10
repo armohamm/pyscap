@@ -30,6 +30,4 @@ class ExtensionType(AnnotatedType):
         }
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_TYPE_DEF_PARTICLE)
-    for el in MODEL_MAP['elements']:
-        el['min'] = 0
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_ATTR_DECLS)

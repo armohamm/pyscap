@@ -23,9 +23,14 @@ from scap.model.xs.AnnotatedType import AnnotatedType
 logger = logging.getLogger(__name__)
 class SimpleTypeType(AnnotatedType):
     MODEL_MAP = {
-        'elements': ELEMENT_GROUP_SIMPLE_DERIVATION.copy(),
+        'elements': [
+            {'tag_name': 'restriction', 'class': 'RestrictionType', 'min': 0},
+            {'tag_name': 'list', 'class': 'ListElement', 'min': 0},
+            {'tag_name': 'union', 'class': 'UnionElement', 'min': 0},
+        ],
         'attributes': {
-            'final': {'type': 'SimpleDerivationSetType'},
+            'final': {'enum': ['#all', 'list', 'union', 'restriction']},
             'name': {'type': 'NCNameType'},
+            '*': {},
         }
     }

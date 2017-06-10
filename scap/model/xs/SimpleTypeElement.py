@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.TopLevelSimpleTypeType import TopLevelSimpleTypeType
+from scap.model.xs.SimpleTypeType import SimpleTypeType
 
 logger = logging.getLogger(__name__)
-class SimpleTypeElement(TopLevelSimpleTypeType):
+class SimpleTypeElement(SimpleTypeType):
     MODEL_MAP = {
         'elements': [
         ],
