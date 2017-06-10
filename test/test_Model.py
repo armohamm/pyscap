@@ -69,9 +69,6 @@ def test_parse_tag():
     assert Model.parse_tag('{http://jaymes.biz/test}test') == ('http://jaymes.biz/test', 'test')
     assert Model.parse_tag('test') == (None, 'test')
 
-    with pytest.raises(UnregisteredNamespaceException):
-        Model.parse_tag('{http://www.w3.org/XML/1998}test')
-
 def test_package_to_xmlns():
     assert Model.package_to_xmlns('fixtures.test') == 'http://jaymes.biz/test'
     assert Model.package_to_xmlns('fixtures.test2') == 'http://jaymes.biz/test2'
