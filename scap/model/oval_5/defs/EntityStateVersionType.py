@@ -17,8 +17,6 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
 from scap.model.oval_5.defs.EntityStateSimpleBaseType import EntityStateSimpleBaseType
 from scap.model.xs.StringType import StringType
 

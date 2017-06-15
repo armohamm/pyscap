@@ -18,8 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
+from scap.model.oval_5 import CLASS_ENUMERATION
 from scap.model.oval_5.res.DefinitionType import DefinitionType as res_DefinitionType
 
 logger = logging.getLogger(__name__)

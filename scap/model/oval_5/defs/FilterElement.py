@@ -26,6 +26,6 @@ class FilterElement(StateIdPattern):
     MODEL_MAP = {
         'tag_name': 'filter',
         'attributes': {
-            'action': {'enum': FILTER_ACTION_ENUMERATION, 'default': 'exclude'},
+            'action': {'enum': [ 'exclude', 'include', ], 'default': 'exclude'},
         }
     }

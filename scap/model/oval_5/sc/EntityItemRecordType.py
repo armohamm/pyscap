@@ -18,8 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.sc import *
 from scap.model.oval_5.sc.EntityItemComplexBaseType import EntityItemComplexBaseType
 
 logger = logging.getLogger(__name__)

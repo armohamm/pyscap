@@ -18,8 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.res import *
 from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)

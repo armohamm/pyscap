@@ -15,9 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_5.sc import *
-from scap.model.oval_5.defs.linux import RPM_VERIFY_RESULT_ENUMERATION, PROTOCOL_ENUMERATION
-
 TAG_MAP = {
     '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}dpkginfo_item': 'DpkgInfoItemElement',
     '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}iflisteners_item': 'IfListenersItemElement',

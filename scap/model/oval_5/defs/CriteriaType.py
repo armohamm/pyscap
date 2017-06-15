@@ -18,8 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
+from scap.model.oval_5 import OPERATOR_ENUMERATION
 from scap.model.oval_5.res.CriteriaType import CriteriaType as res_CriteriaType
 
 logger = logging.getLogger(__name__)

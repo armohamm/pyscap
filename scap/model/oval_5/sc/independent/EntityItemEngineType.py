@@ -18,7 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5.sc.independent import *
+from scap.model.oval_5 import DATABASE_ENGINE_ENUMERATION
 from scap.model.oval_5.sc.EntityItemStringType import EntityItemStringType
 
 logger = logging.getLogger(__name__)
@@ -31,28 +31,4 @@ class EntityItemEngineType(EntityItemStringType):
     }
 
     def get_value_enum(self):
-        return [
-            'access',
-            'db2',
-            'cache',
-            'firebird',
-            'firstsql',
-            'foxpro',
-            'informix',
-            'ingres',
-            'interbase',
-            'lightbase',
-            'maxdb',
-            'monetdb',
-            'mimer',
-            'mysql',
-            'oracle',
-            'paradox',
-            'pervasive',
-            'postgre',
-            'sqlbase',
-            'sqlite',
-            'sqlserver',
-            'sybase',
-            '',
-        ]
+        return DATABASE_ENGINE_ENUMERATION

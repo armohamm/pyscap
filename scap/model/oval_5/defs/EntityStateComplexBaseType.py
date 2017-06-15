@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
+from scap.model.oval_5 import CHECK_ENUMERATION
+from scap.model.oval_5 import EXISTENCE_ENUMERATION
 from scap.model.oval_5.defs.EntityComplexBaseType import EntityComplexBaseType
 from scap.model.xs.StringType import StringType
 

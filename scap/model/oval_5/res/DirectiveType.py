@@ -18,14 +18,12 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.res import *
 
 logger = logging.getLogger(__name__)
 class DirectiveType(Model):
     MODEL_MAP = {
         'attributes': {
             'reported': {'type': 'BooleanType', 'required': True},
-            'content': {'enum': CONTENT_ENUMERATION, 'default': 'full'},
+            'content': {'enum': [ 'thin', 'full', ], 'default': 'full'},
         },
     }

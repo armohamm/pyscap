@@ -17,7 +17,6 @@
 
 import logging
 
-from scap.model.oval_5 import *
 from scap.model.oval_5.ElementMapType import ElementMapType
 
 logger = logging.getLogger(__name__)

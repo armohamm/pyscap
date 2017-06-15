@@ -17,9 +17,7 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.independent import *
+from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
 from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
 
 logger = logging.getLogger(__name__)

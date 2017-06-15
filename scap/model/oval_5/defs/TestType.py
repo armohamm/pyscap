@@ -18,8 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
+from scap.model.oval_5 import EXISTENCE_ENUMERATION, CHECK_ENUMERATION, OPERATOR_ENUMERATION, EXISTENCE_RESULT_ENUMERATION
 from scap.model.oval_5.res.TestType import TestType as res_TestType
 
 logger = logging.getLogger(__name__)

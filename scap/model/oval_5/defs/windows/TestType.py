@@ -17,9 +17,6 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.windows import *
 from scap.model.oval_5.defs.TestType import TestType as oval_def_5_TestType
 
 logger = logging.getLogger(__name__)

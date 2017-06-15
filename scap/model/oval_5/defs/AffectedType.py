@@ -18,8 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
+from scap.model.oval_5 import FAMILY_ENUMERATION
 
 logger = logging.getLogger(__name__)
 class AffectedType(Model):

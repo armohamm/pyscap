@@ -17,9 +17,7 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.independent import *
+from scap.model.oval_5 import DATABASE_ENGINE_ENUMERATION
 from scap.model.oval_5.defs.EntityObjectStringType import EntityObjectStringType
 
 logger = logging.getLogger(__name__)
@@ -28,4 +26,4 @@ class EntityObjectEngineType(EntityObjectStringType):
     }
 
     def get_value_enum(self):
-        return ENGINE_ENUMERATION
+        return DATABASE_ENGINE_ENUMERATION

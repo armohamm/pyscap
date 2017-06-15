@@ -18,8 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.sc import *
 from scap.model.oval_5.sc.EntityItemSimpleBaseType import EntityItemSimpleBaseType
 from scap.model.xs.FloatType import FloatType
 

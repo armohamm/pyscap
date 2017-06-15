@@ -18,8 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
+from scap.model.oval_5.defs import ELEMENT_GROUP_COMPONENT
 
 logger = logging.getLogger(__name__)
 class TimeDifferenceFunctionType(Model):
@@ -28,8 +27,8 @@ class TimeDifferenceFunctionType(Model):
             #TODO <xsd:sequence minOccurs="1" maxOccurs="2">
         ],
         'attributes': {
-            'format_1': {'enum': DATE_TIME_FORMAT_ENUMERATION, 'default': 'year_month_day'},
-            'format_2': {'enum': DATE_TIME_FORMAT_ENUMERATION, 'default': 'year_month_day'},
+            'format_1': {'enum': [ 'year_month_day', 'month_day_year', 'day_month_year', 'win_filetime', 'seconds_since_epoch', 'cim_datetime', ], 'default': 'year_month_day'},
+            'format_2': {'enum': [ 'year_month_day', 'month_day_year', 'day_month_year', 'win_filetime', 'seconds_since_epoch', 'cim_datetime', ], 'default': 'year_month_day'},
         },
     }
     MODEL_MAP['elements'].extend(ELEMENT_GROUP_COMPONENT)

@@ -18,8 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.sc import *
+from scap.model.oval_5 import EXISTENCE_RESULT_ENUMERATION
 
 logger = logging.getLogger(__name__)
 class ItemType(Model):
@@ -29,6 +28,6 @@ class ItemType(Model):
         ],
         'attributes': {
             'id': {'type': 'scap.model.oval_5.ItemIdPattern', 'required': True},
-            'status': {'enum': STATUS_ENUMERATION, 'default': 'exists'},
+            'status': {'enum': EXISTENCE_RESULT_ENUMERATION, 'default': 'exists'},
         }
     }

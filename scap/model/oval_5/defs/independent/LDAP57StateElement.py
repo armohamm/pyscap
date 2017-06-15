@@ -17,13 +17,10 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.independent import *
 from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
-class LDAP57StateElement(StateType):
+class Ldap57StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'ldap57_state',
         'elements': [

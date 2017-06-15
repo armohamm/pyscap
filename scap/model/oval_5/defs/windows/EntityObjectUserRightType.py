@@ -17,9 +17,7 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.windows import *
+from scap.model.oval_5 import WINDOWS_USER_RIGHT_ENUMERATION
 from scap.model.oval_5.defs.EntityObjectStringType import EntityObjectStringType
 
 logger = logging.getLogger(__name__)
@@ -29,4 +27,4 @@ class EntityObjectUserRightType(EntityObjectStringType):
     }
 
     def get_value_enum(self):
-        return USER_RIGHT_ENUMERATION
+        return WINDOWS_USER_RIGHT_ENUMERATION

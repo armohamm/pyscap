@@ -18,10 +18,3 @@
 TAG_MAP = {
     '{http://oval.mitre.org/XMLSchema/oval-results-5}oval_results': 'OvalResultsElement',
 }
-
-CONTENT_ENUMERATION = [
-    'thin',
-    'full',
-]
-
-# RESULT_ENUMERATION is defined in scap.model.oval_5

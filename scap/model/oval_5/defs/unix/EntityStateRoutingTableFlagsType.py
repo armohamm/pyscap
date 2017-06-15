@@ -17,9 +17,7 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.unix import *
+from scap.model.oval_5 import UNIX_ROUTING_TABLE_FLAGS_ENUMERATION
 from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
 
 logger = logging.getLogger(__name__)
@@ -31,7 +29,8 @@ class EntityStateRoutingTableFlagsType(EntityStateStringType):
         },
     }
 
-    # TODO restrict to ROUTING_TABLE_FLAGS_ENUMERATION
+    def get_value_enum(self):
+        return UNIX_ROUTING_TABLE_FLAGS_ENUMERATION
 
     # Name                           Linux    Solaris    HPUX    Mac OS    FreeBSD    AIX
     # UP                             U        U          U       U         U          U

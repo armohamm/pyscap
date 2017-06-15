@@ -15,25 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_5 import *
+from scap.model.oval_5 import DATATYPE_ENUMERATION
+from scap.model.oval_5 import EXISTENCE_RESULT_ENUMERATION
 
 TAG_MAP = {
     '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5}oval_system_characteristics': 'OvalSystemCharacteristicsElement',
 }
 
-FLAG_ENUMERATION = [
-    'error',
-    'complete',
-    'incomplete',
-    'does not exist',
-    'not collected',
-    'not applicable',
-]
-
-STATUS_ENUMERATION = EXISTENCE_RESULT_ENUMERATION
-
 ENTITY_ATTRIBUTE_GROUP = {
     'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
     'mask': {'type': 'BooleanType', 'default': False},
-    'status': {'enum': STATUS_ENUMERATION, 'default': 'exists'},
+    'status': {'enum': EXISTENCE_RESULT_ENUMERATION, 'default': 'exists'},
 }

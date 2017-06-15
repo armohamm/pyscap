@@ -17,9 +17,7 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.windows import *
+from scap.model.oval_5 import CMDLET_VERB_ENUMERATION
 from scap.model.oval_5.defs.EntityObjectStringType import EntityObjectStringType
 
 logger = logging.getLogger(__name__)

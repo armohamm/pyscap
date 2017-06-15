@@ -18,8 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.res import *
+from scap.model.oval_5 import CLASS_ENUMERATION
 from scap.model.oval_5.res.DirectivesType import DirectivesType
 
 logger = logging.getLogger(__name__)

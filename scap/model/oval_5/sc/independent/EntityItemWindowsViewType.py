@@ -18,7 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5.sc.independent import *
+from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
 from scap.model.oval_5.sc.EntityItemStringType import EntityItemStringType
 
 logger = logging.getLogger(__name__)
@@ -31,8 +31,4 @@ class EntityItemWindowsViewType(EntityItemStringType):
     }
 
     def get_value_enum(self):
-        return [
-            '32_bit',
-            '64_bit',
-            '',
-        ]
+        return WINDOWS_VIEW_ENUMERATION

@@ -18,7 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5.sc.independent import *
 from scap.model.oval_5.sc.EntityItemStringType import EntityItemStringType
 
 logger = logging.getLogger(__name__)

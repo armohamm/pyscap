@@ -15,8 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.oval_5.sc import *
-
 TAG_MAP = {
     '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}family_item': 'FamilyItemElement',
     '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}filehash_item': 'FileHashItemElement',

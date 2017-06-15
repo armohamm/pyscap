@@ -18,10 +18,8 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.sc import *
+from scap.model.oval_5 import LINUX_PROTOCOL_ENUMERATION
 from scap.model.oval_5.sc.EntityItemSimpleBaseType import EntityItemSimpleBaseType
-from scap.model.oval_5.sc.linux import *
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
@@ -33,4 +31,4 @@ class EntityItemStringType(EntityItemSimpleBaseType, StringType):
     }
 
     def get_value_enum(self):
-        return PROTOCOL_ENUMERATION
+        return LINUX_PROTOCOL_ENUMERATION

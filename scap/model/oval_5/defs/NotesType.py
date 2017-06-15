@@ -17,8 +17,6 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
 from scap.model.oval_5.NotesType import NotesType as oval_5_NotesType
 
 logger = logging.getLogger(__name__)

@@ -18,8 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
 
 logger = logging.getLogger(__name__)
 class ObjectsType(Model):
@@ -29,5 +27,6 @@ class ObjectsType(Model):
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': '*', 'in': 'objects', 'min': 0},
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': '*', 'in': 'objects', 'min': 0},
             {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': '*', 'in': 'objects', 'min': 0},
+            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#unix', 'tag_name': '*', 'in': 'objects', 'min': 0},
         ],
     }

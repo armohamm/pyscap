@@ -17,9 +17,7 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.unix import *
+from scap.model.oval_5 import UNIX_CAPABILITY_ENUMERATION
 from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
 
 logger = logging.getLogger(__name__)
@@ -31,4 +29,5 @@ class EntityStateCapabilityType(EntityStateStringType):
         },
     }
 
-    # TODO restrict to CAPABILITY_ENUMERATION
+    def get_value_enum(self):
+        return UNIX_CAPABILITY_ENUMERATION

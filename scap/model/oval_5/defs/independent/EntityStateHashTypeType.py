@@ -17,9 +17,7 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.independent import *
+from scap.model.oval_5 import HASH_TYPE_ENUMERATION
 from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
 
 logger = logging.getLogger(__name__)
@@ -28,4 +26,4 @@ class EntityStateHashTypeType(EntityStateStringType):
     }
 
     def get_value_enum(self):
-        return HASH_ENUMERATION
+        return HASH_TYPE_ENUMERATION

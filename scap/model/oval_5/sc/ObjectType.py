@@ -18,8 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.sc import *
 
 logger = logging.getLogger(__name__)
 class ObjectType(Model):
@@ -34,6 +32,6 @@ class ObjectType(Model):
             'version': {'type': 'NonNegativeIntegerType', 'required': True},
             'variable_instance': {'type': 'NonNegativeIntegerType', 'default': 1},
             'comment': {'type': 'StringType'},
-            'flag': {'enum': FLAG_ENUMERATION, 'required': True},
+            'flag': {'enum': [ 'error', 'complete', 'incomplete', 'does not exist', 'not collected', 'not applicable', ], 'required': True},
         }
     }

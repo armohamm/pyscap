@@ -17,8 +17,7 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
+from scap.model.oval_5.defs import ELEMENT_GROUP_COMPONENT
 from scap.model.oval_5.defs.VariableType import VariableType
 
 logger = logging.getLogger(__name__)

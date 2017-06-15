@@ -17,9 +17,7 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.unix import *
+from scap.model.oval_5 import XINETD_TYPE_STATUS_ENUMERATION
 from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
 
 logger = logging.getLogger(__name__)
@@ -31,4 +29,5 @@ class EntityStateXinetdTypeStatusType(EntityStateStringType):
         },
     }
 
-    # TODO restrict to XINETD_TYPE_STATUS_ENUMERATION
+    def get_value_enum(self):
+        return XINETD_TYPE_STATUS_ENUMERATION

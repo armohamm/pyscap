@@ -17,9 +17,7 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.defs.linux import *
+from scap.model.oval_5 import LINUX_PROTOCOL_ENUMERATION
 from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
 
 logger = logging.getLogger(__name__)
@@ -28,4 +26,4 @@ class EntityStateProtocolType(EntityStateStringType):
     }
 
     def get_value_enum(self):
-        return PROTOCOL_ENUMERATION
+        return LINUX_PROTOCOL_ENUMERATION

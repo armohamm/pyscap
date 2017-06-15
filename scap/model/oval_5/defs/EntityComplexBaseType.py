@@ -18,8 +18,9 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
+from scap.model.oval_5 import DATATYPE_ENUMERATION
+from scap.model.oval_5 import OPERATION_ENUMERATION
+from scap.model.oval_5 import CHECK_ENUMERATION
 
 logger = logging.getLogger(__name__)
 class EntityComplexBaseType(Model):
