@@ -17,7 +17,6 @@
 
 import logging
 
-from scap.model.cpe_lang_2_3 import *
 from scap.model.cpe_lang_2_3.FactRefType import FactRefType
 
 logger = logging.getLogger(__name__)

@@ -18,7 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.cpe_lang_2_3 import *
 
 logger = logging.getLogger(__name__)
 class PlatformBaseType(Model):

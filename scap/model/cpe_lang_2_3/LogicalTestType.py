@@ -18,7 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.cpe_lang_2_3 import *
 
 logger = logging.getLogger(__name__)
 class LogicalTestType(Model):
@@ -28,7 +27,7 @@ class LogicalTestType(Model):
             {'tag_name': 'fact-ref', 'list': 'fact_refs', 'class': 'FactRefType', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'operator': {'enum': OPERATOR_ENUMERATION, 'required': True},
+            'operator': {'enum': [ 'AND', 'OR', ], 'required': True},
             'negate': {'type': 'BooleanType', 'required': True},
         },
     }
