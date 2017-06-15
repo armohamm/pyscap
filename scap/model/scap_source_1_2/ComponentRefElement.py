@@ -17,7 +17,6 @@
 
 import logging
 
-from scap.model.scap_source_1_2 import *
 from scap.model.xlink.Simple import Simple
 
 logger = logging.getLogger(__name__)

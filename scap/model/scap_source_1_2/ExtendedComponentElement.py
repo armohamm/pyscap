@@ -18,7 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.scap_source_1_2 import *
 
 logger = logging.getLogger(__name__)
 class ExtendedComponentElement(Model):

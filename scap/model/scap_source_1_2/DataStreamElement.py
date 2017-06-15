@@ -18,7 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.scap_source_1_2 import *
+from scap.model.scap_source_1_2 import USE_CASE_ENUMERATION, SCAP_VERSION_ENUMERATION
 
 logger = logging.getLogger(__name__)
 class DataStreamElement(Model):
