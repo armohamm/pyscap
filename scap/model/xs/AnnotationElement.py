@@ -18,16 +18,16 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.OpenAttrsType import OpenAttrsType
+from scap.model.xs.AnyTypeType import AnyTypeType
 
 logger = logging.getLogger(__name__)
-class AnnotationElement(OpenAttrsType):
+class AnnotationElement(AnyTypeType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'appinfo', 'class': 'AppinfoElement', 'min': 0, 'max': None},
             {'tag_name': 'documentation', 'class': 'DocumentationElement', 'min': 0, 'max': None},
         ],
         'attributes': {
-            'id': {'type': 'ID'},
+            'id': {'type': 'IdType'},
         },
     }

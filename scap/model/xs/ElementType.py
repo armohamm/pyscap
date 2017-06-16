@@ -25,26 +25,26 @@ class ElementType(AnnotatedType):
     # abstract
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'simpleType', 'class': 'LocalSimpleTypeType', 'min': 0},
-            {'tag_name': 'complexType', 'class': 'LocalComplexTypeType', 'min': 0},
+            {'tag_name': 'simpleType', 'class': 'SimpleTypeType', 'min': 0},
+            {'tag_name': 'complexType', 'class': 'ComplexTypeType', 'min': 0},
+            {'tag_name': 'unique', 'class': 'KeybaseType', 'min': 0, 'max': None},
+            {'tag_name': 'key', 'class': 'KeybaseType', 'min': 0, 'max': None},
+            {'tag_name': 'keyref', 'class': 'KeyRefElement', 'min': 0, 'max': None},
         ],
         'attributes': {
+            'name': {'type': 'NCNameType'},
+            'ref': {'type': 'QNameType'},
             'type': {'type': 'QNameType'},
             'substitutionGroup': {'type': 'QNameType'},
             'default': {'type': 'StringType'},
             'fixed': {'type': 'StringType'},
             'nillable': {'type': 'BooleanType', 'default': False},
             'abstract': {'type': 'BooleanType', 'default': False},
-            'final': {'type': 'DerivationSetType'},
-            'block': {'type': 'BlockSetType'},
-            'form': {'type': 'FormChoiceType'},
+            'final': {'enum': ['#all', 'extension', 'restriction']},
+            'block': {'enum': ['#all', 'extension', 'restriction', 'substitution']},
+            'form': {'enum': FORM_CHOICE_ENUMERATION},
+            'minOccurs': {'type': 'NonNegativeIntegerType', 'default': 1},
+            'maxOccurs': {'type': 'AllNniType', 'default': 1},
+            '*': {},
         }
     }
-    eg = ELEMENT_GROUP_IDENTITY_CONSTRAINT.copy()
-    for el in eg:
-        el['min'] = 0
-        el['max'] = None
-    MODEL_MAP['elements'].extend(eg)
-
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_DEF_REF)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_OCCURS)

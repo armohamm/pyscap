@@ -27,7 +27,7 @@ class NotationElement(AnnotatedType):
         ],
         'attributes': {
             'name': {'type': 'NCNameType', 'required': True},
-            'public': {'type': 'PublicType'},
+            'public': {'type': 'TokenType'},
             'system': {'type': 'AnyUriType'},
         },
     }

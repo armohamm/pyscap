@@ -23,6 +23,8 @@ from scap.model.xs.WildcardType import WildcardType
 logger = logging.getLogger(__name__)
 class AnyElement(WildcardType):
     MODEL_MAP = {
-        'attributes': {}
+        'attributes': {
+            'minOccurs': {'type': 'NonNegativeIntegerType', 'default': 1},
+            'maxOccurs': {'type': 'AllNniType', 'default': 1},
+        }
     }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_OCCURS)

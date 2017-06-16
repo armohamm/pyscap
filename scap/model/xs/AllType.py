@@ -18,12 +18,14 @@
 import logging
 
 from scap.model.xs import *
-from scap.model.xs.ExplicitGroupType import ExplicitGroupType
+from scap.model.xs.GroupType import GroupType
 
 logger = logging.getLogger(__name__)
-class AllType(ExplicitGroupType):
+class AllType(GroupType):
     MODEL_MAP = {
         'elements': [
+            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+            {'tag_name': 'element', 'class': 'ElementType', 'min': 0, 'max': None},
         ],
         'attributes': {
             'minOccurs': {'enum': ['0', '1'], 'default': '1'},
@@ -31,4 +33,3 @@ class AllType(ExplicitGroupType):
             '*': {},
         }
     }
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_ALL_MODEL)

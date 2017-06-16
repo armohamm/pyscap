@@ -24,9 +24,13 @@ logger = logging.getLogger(__name__)
 class AttributeGroupType(AnnotatedType):
     MODEL_MAP = {
         'elements': [
+            {'tag_name': 'attribute', 'class': 'AttributeType', 'min': 0, 'max': None},
+            {'tag_name': 'attributeGroup', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
+            {'tag_name': 'anyAttribute', 'class': 'WildcardType', 'min': 0},
         ],
         'attributes': {
+            'name': {'type': 'NCNameType'},
+            'ref': {'type': 'QNameType'},
+            '*': {},
         }
     }
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_ATTR_DECLS)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_DEF_REF)

@@ -24,14 +24,13 @@ logger = logging.getLogger(__name__)
 class ImportElement(AnnotatedType):
     MODEL_MAP = {
         'elements': [
+            {'tag_name': 'simpleType', 'class': 'SimpleTypeType', 'min': 0, 'max': None},
+            {'tag_name': 'complexType', 'class': 'ComplexTypeType', 'min': 0, 'max': None},
+            {'tag_name': 'group', 'class': 'GroupType', 'min': 0, 'max': None},
+            {'tag_name': 'attributeGroup', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
         ],
         'attributes': {
             'namespace': {'type': 'AnyUriType'},
             'schemaLocation': {'type': 'AnyUriType'},
         }
     }
-    eg = ELEMENT_GROUP_REDEFINABLE.copy()
-    for el in eg:
-        el['min'] = 0
-        el['max'] = None
-    MODEL_MAP['elements'].extend(eg)
