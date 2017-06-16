@@ -15,8 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.NCNameType import NCNameType
 import logging
+
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
 class RefElement(NCNameType):
