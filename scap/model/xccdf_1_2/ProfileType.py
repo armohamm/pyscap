@@ -18,19 +18,18 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import *
 
 logger = logging.getLogger(__name__)
 class ProfileType(Model):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'status', 'class': 'StatusType', 'list': 'statuses', 'min': 0, 'max': None},
-            {'tag_name': 'dc-status', 'class': 'DCStatusType', 'list': 'dc_statuses', 'min': 0, 'max': None},
+            {'tag_name': 'dc-status', 'class': 'DcStatusType', 'list': 'dc_statuses', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
             {'tag_name': 'title', 'class': 'TextWithSubType', 'list': 'titles', 'min': 1, 'max': None},
             {'tag_name': 'description', 'class': 'HtmlTextWithSubType', 'list': 'descriptions', 'min': 0, 'max': None},
             {'tag_name': 'reference', 'class': 'ReferenceType', 'list': 'references', 'min': 0, 'max': None},
-            {'tag_name': 'platform', 'class': 'OverrideableCPE2IDRefType', 'list': 'platforms', 'min': 0, 'max': None},
+            {'tag_name': 'platform', 'class': 'OverrideableCpe2IdRefType', 'list': 'platforms', 'min': 0, 'max': None},
             {'tag_name': 'select', 'class': 'ProfileSelectType', 'dict': 'selects', 'key': 'idref', 'min': 0, 'max': None},
             {'tag_name': 'set-complex-value', 'class': 'ProfileSetComplexValueType', 'dict': 'set_complex_values', 'key': 'idref', 'min': 0, 'max': None},
             {'tag_name': 'set-value', 'class': 'ProfileSetValueType', 'dict': 'set_values', 'key': 'idref', 'min': 0, 'max': None},
@@ -40,7 +39,7 @@ class ProfileType(Model):
             {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'id': {'required': True, 'type': 'ProfileIDPattern'},
+            'id': {'required': True, 'type': 'ProfileIdPattern'},
             'prohibitChanges': {'type': 'BooleanType', 'default': False},
             'abstract': {'type': 'BooleanType', 'default': False},
             'note-tag': {'type': 'NCNameType'},

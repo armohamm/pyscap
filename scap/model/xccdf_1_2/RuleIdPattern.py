@@ -17,13 +17,8 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.xccdf_1_2 import *
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
-class IDRefType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'idref': {'type': 'NCNameType', 'required': True},
-        }
-    }
+class RuleIdPattern(NCNameType):
+    pass

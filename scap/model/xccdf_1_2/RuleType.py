@@ -18,14 +18,14 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import *
+from scap.model.xccdf_1_2 import ROLE_ENUMERATION, SEVERITY_ENUMERATION
 from scap.model.xccdf_1_2.SelectableItemType import SelectableItemType
 
 logger = logging.getLogger(__name__)
 class RuleType(SelectableItemType):
     MODEL_MAP = {
         'attributes': {
-            'id': {'required': True, 'type': 'RuleIDPattern'},
+            'id': {'required': True, 'type': 'RuleIdPattern'},
             'role': {'enum': ROLE_ENUMERATION, 'default': 'full'},
             'severity': {'enum': SEVERITY_ENUMERATION, 'default': 'unknown'},
             'multiple': {'type': 'BooleanType', 'default': False},

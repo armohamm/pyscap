@@ -18,7 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import *
 
 logger = logging.getLogger(__name__)
 class CheckImportType(Model):

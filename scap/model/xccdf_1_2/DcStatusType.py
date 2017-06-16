@@ -18,12 +18,11 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import *
 
 logger = logging.getLogger(__name__)
-class CPE2IDRefType(Model):
+class DcStatusType(Model):
     MODEL_MAP = {
-        'attributes': {
-            'idref': {'type': 'StringType', 'required': True},
-        }
+        'elements': [
+            {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 1, 'max': None},
+        ],
     }

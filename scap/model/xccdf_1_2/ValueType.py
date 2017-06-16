@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.model.xccdf_1_2 import *
+from scap.model.xccdf_1_2 import VALUE_TYPE_ENUMERATION, VALUE_OPERATOR_ENUMERATION, INTERFACE_HINT_ENUMERATION
 from scap.model.xccdf_1_2.ItemType import ItemType
 
 logger = logging.getLogger(__name__)
 class ValueType(ItemType):
     MODEL_MAP = {
         'attributes': {
-            'id': {'type': 'ValueIDPattern', 'required': True},
+            'id': {'type': 'ValueIdPattern', 'required': True},
             'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'string'},
             'operator': {'enum': VALUE_OPERATOR_ENUMERATION, 'default': 'equals'},
             'interactive': {'type': 'BooleanType'},

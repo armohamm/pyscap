@@ -18,19 +18,18 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import *
 
 logger = logging.getLogger(__name__)
 class TailoringType(Model):
     MODEL_MAP = {
         'attributes': {
-            'id': {'type': 'TailoringIDPattern', 'required': True},
+            'id': {'type': 'TailoringIdPattern', 'required': True},
             'Id': {'type': 'ID'},
         },
         'elements': [
             {'tag_name': 'benchmark', 'class': 'TailoringBenchmarkReferenceType', 'min': 0, 'max': 1},
             {'tag_name': 'status', 'class': 'StatusType', 'list': 'statuses', 'min': 0, 'max': None},
-            {'tag_name': 'dc-status', 'class': 'DCStatusType', 'list': 'dc_statuses', 'min': 0, 'max': None},
+            {'tag_name': 'dc-status', 'class': 'DcStatusType', 'list': 'dc_statuses', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'TailoringVersionType', 'min': 1, 'max': 1},
             {'tag_name': 'metadata', 'class': 'MetadataType', 'list': 'metadata', 'min': 0, 'max': None},
             {'tag_name': 'Profile', 'class': 'ProfileType', 'list': 'profiles', 'min': 1, 'max': None},

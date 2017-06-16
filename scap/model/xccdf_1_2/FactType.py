@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.xccdf_1_2 import *
+from scap.model.xccdf_1_2 import VALUE_TYPE_ENUMERATION
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)

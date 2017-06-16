@@ -17,14 +17,13 @@
 
 import logging
 
-from scap.model.xccdf_1_2 import *
 from scap.model.xccdf_1_2.SelectableItemType import SelectableItemType
 
 logger = logging.getLogger(__name__)
 class GroupType(SelectableItemType):
     MODEL_MAP = {
         'attributes': {
-            'id': {'required': True, 'type': 'GroupIDPattern'},
+            'id': {'required': True, 'type': 'GroupIdPattern'},
         },
         'elements': [
             {'tag_name': 'Value', 'class': 'ValueType', 'dict': 'values', 'min': 0, 'max': None},

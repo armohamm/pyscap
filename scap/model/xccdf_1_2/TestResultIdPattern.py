@@ -17,13 +17,8 @@
 
 import logging
 
-from scap.model.xccdf_1_2 import *
-from scap.model.xs.StringType import StringType
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
-class URIRefType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'uri': {'type': 'AnyUriType', 'required': True},
-        }
-    }
+class TestResultIdPattern(NCNameType):
+    pass

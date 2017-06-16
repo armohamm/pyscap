@@ -17,15 +17,8 @@
 
 import logging
 
-from scap.model.xccdf_1_2 import *
-from scap.model.xs.StringType import StringType
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
-class TargetIDRefType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'system': {'type': 'AnyUriType', 'required': True},
-            'href': {'type': 'StringType', 'required': True},
-            'name': {'type': 'StringType'}
-        },
-    }
+class ProfileIdPattern(NCNameType):
+    pass

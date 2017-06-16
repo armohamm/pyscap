@@ -18,14 +18,13 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import *
 
 logger = logging.getLogger(__name__)
 class BenchmarkType(Model):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'status', 'list': 'statuses', 'class': 'StatusType', 'min': 1, 'max': None},
-            {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': 'dc-status', 'list': 'dc_statuses', 'class': 'DCStatusType', 'min': 0, 'max': None},
+            {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': 'dc-status', 'list': 'dc_statuses', 'class': 'DcStatusType', 'min': 0, 'max': None},
             {'tag_name': 'title', 'list': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
             {'tag_name': 'description', 'list': 'descriptions', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
             {'tag_name': 'notice', 'dict': 'notices', 'class': 'NoticeType', 'min': 0, 'max': None},
@@ -34,7 +33,7 @@ class BenchmarkType(Model):
             {'tag_name': 'reference', 'list': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
             {'tag_name': 'plain-text', 'list': 'plain_texts', 'class': 'PlainTextType', 'min': 0, 'max': None},
             {'xmlns': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'platform-specification', 'class': 'scap.model.cpe_lang_2_3.PlatformSpecificationType', 'min': 0, 'max': 1},
-            {'tag_name': 'platform', 'class': 'CPE2IDRefType', 'min': 0, 'max': None},
+            {'tag_name': 'platform', 'class': 'Cpe2IdRefType', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'VersionType', 'min': 1, 'max': 1},
             {'tag_name': 'metadata', 'list': 'metadata', 'class': 'MetadataType', 'min': 0, 'max': None},
             {'tag_name': 'model', 'list': 'models', 'class': 'ModelType', 'min': 0, 'max': None},
@@ -46,7 +45,7 @@ class BenchmarkType(Model):
             {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
         ],
         'attributes': {
-            'id': {'required': True, 'type': 'BenchmarkIDPattern'},
+            'id': {'required': True, 'type': 'BenchmarkIdPattern'},
             'Id': {'type': 'ID'},
             'resolved': {'type': 'BooleanType', 'default': False},
             'style': {'type': 'StringType'},

@@ -17,13 +17,14 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.xccdf_1_2 import *
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class IDRefListType(Model):
+class TargetIdRefType(StringType):
     MODEL_MAP = {
         'attributes': {
-            'idref': {'type': 'NMTokensType', 'required': True},
-        }
+            'system': {'type': 'AnyUriType', 'required': True},
+            'href': {'type': 'StringType', 'required': True},
+            'name': {'type': 'StringType'}
+        },
     }

@@ -17,13 +17,8 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.xccdf_1_2 import *
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
-class OverrideableCPE2IDRefType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'override': {'type': 'BooleanType', 'default': False},
-        }
-    }
+class ValueIdPattern(NCNameType):
+    pass

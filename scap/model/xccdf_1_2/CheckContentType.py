@@ -18,7 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import *
+from scap.model.xccdf_1_2.MessageType import MessageType
 
 logger = logging.getLogger(__name__)
 class CheckContentType(Model):

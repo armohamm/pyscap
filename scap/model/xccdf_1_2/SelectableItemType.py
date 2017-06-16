@@ -17,7 +17,6 @@
 
 import logging
 
-from scap.model.xccdf_1_2 import *
 from scap.model.xccdf_1_2.ItemType import ItemType
 
 logger = logging.getLogger(__name__)
@@ -30,9 +29,9 @@ class SelectableItemType(ItemType):
         },
         'elements': [
             {'tag_name': 'rationale', 'list': 'rationales', 'min': 0, 'max': None, 'class': 'HtmlTextWithSubType'},
-            {'tag_name': 'platform', 'list': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableCPE2IDRefType'},
+            {'tag_name': 'platform', 'list': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableCpe2IdRefType'},
             {'tag_name': 'requires', 'list': 'requires', 'min': 0, 'max': None, 'class': 'IDRefListType'},
-            {'tag_name': 'conflicts', 'list': 'conflicts', 'min': 0, 'max': None, 'class': 'IDRefType'},
+            {'tag_name': 'conflicts', 'list': 'conflicts', 'min': 0, 'max': None, 'class': 'IdRefType'},
         ],
     }
 

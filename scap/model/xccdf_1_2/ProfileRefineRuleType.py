@@ -18,7 +18,7 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import *
+from scap.model.xccdf_1_2 import SEVERITY_ENUMERATION, ROLE_ENUMERATION
 
 logger = logging.getLogger(__name__)
 class ProfileRefineRuleType(Model):

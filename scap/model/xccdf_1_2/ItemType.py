@@ -18,7 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import *
 
 logger = logging.getLogger(__name__)
 class ItemType(Model):
@@ -34,7 +33,7 @@ class ItemType(Model):
         },
         'elements': [
             {'tag_name': 'status', 'class': 'StatusType', 'list': 'statuses', 'min': 0, 'max': None},
-            {'tag_name': 'dc-status', 'class': 'DCStatusType', 'list': 'dc_statuses', 'min': 0, 'max': None},
+            {'tag_name': 'dc-status', 'class': 'DcStatusType', 'list': 'dc_statuses', 'min': 0, 'max': None},
             {'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
             {'tag_name': 'title', 'list': 'titles', 'class': 'TextWithSubType', 'min': 0, 'max': None},
             {'tag_name': 'description', 'list': 'descriptions', 'min': 0, 'max': None, 'class': 'HtmlTextWithSubType'},

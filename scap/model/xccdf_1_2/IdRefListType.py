@@ -17,9 +17,12 @@
 
 import logging
 
-from scap.model.xccdf_1_2 import *
-from scap.model.xs.NCNameType import NCNameType
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class BenchmarkIDPattern(NCNameType):
-    pass
+class IdRefListType(Model):
+    MODEL_MAP = {
+        'attributes': {
+            'idref': {'type': 'NMTokensType', 'required': True},
+        }
+    }

@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.xccdf_1_2 import *
-from scap.model.xccdf_1_2.IDRefType import IDRefType
+from scap.model.xccdf_1_2 import SUB_USE_ENUMERATION
+from scap.model.xccdf_1_2.IdRefType import IdRefType
 
 logger = logging.getLogger(__name__)
-class SubType(IDRefType):
+class SubType(IdRefType):
     MODEL_MAP = {
         'attributes': {
             'use': {'enum': SUB_USE_ENUMERATION, 'default': 'value'},

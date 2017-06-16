@@ -18,13 +18,12 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import *
 
 logger = logging.getLogger(__name__)
 class TestResultType(Model):
     MODEL_MAP = {
         'attributes': {
-            'id': {'required': True, 'type': 'TestResultIDPattern'},
+            'id': {'required': True, 'type': 'TestResultIdPattern'},
             'start-time': {'type': 'DateTimeType'},
             'end-time': {'type': 'DateTimeType'},
             'test-system': {'type': 'StringType'},
@@ -38,12 +37,12 @@ class TestResultType(Model):
             {'tag_name': 'remark', 'class': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
             {'tag_name': 'organization', 'type': 'StringType', 'list': 'organizations', 'min': 0, 'max': None},
             {'tag_name': 'identity', 'class': 'IdentityType', 'min': 0, 'max': 1},
-            {'tag_name': 'profile', 'class': 'IDRefType', 'min': 0, 'max': 1},
+            {'tag_name': 'profile', 'class': 'IdRefType', 'min': 0, 'max': 1},
             {'tag_name': 'target', 'type': 'StringType', 'list': 'targets', 'min': 1, 'max': None},
             {'tag_name': 'target-address', 'type': 'StringType', 'list': 'target_addresses', 'min': 0, 'max': None},
             {'tag_name': 'target-facts', 'class': 'TargetFactsType', 'list': 'target_facts', 'min': 0, 'max': None},
-            {'tag_name': 'target-id-ref', 'class': 'TargetIDRefType', 'list': 'target_id_refs', 'min': 0, 'max': None},{'tag_name': '*', 'min': 0, 'max': None},
-            {'tag_name': 'platform', 'class': 'CPE2IDRefType', 'list': 'platforms', 'min': 0, 'max': None},
+            {'tag_name': 'target-id-ref', 'class': 'TargetIdRefType', 'list': 'target_id_refs', 'min': 0, 'max': None},{'tag_name': '*', 'min': 0, 'max': None},
+            {'tag_name': 'platform', 'class': 'Cpe2IdRefType', 'list': 'platforms', 'min': 0, 'max': None},
             {'tag_name': 'set-value', 'class': 'ProfileSetValueType', 'dict': 'set_values', 'key': 'idref', 'min': 0, 'max': None},
             {'tag_name': 'set-complex-value', 'class': 'ProfileSetComplexValueType', 'dict': 'set_values', 'key': 'idref', 'min': 0, 'max': None},
             {'tag_name': 'rule-result', 'class': 'RuleResultType', 'dict': 'rule_results', 'key': 'idref', 'min': 0, 'max': None},
