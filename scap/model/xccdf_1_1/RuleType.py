@@ -23,7 +23,7 @@ import sys
 
 from scap.Model import Model
 
-from scap.model.xccdf_1_1 import *
+from scap.model.xccdf_1_1 import ROLE_ENUMERATION, SEVERITY_ENUMERATION
 from scap.model.xccdf_1_1.CheckType import CheckType
 from scap.model.xccdf_1_1.FixType import FixType
 from scap.model.xccdf_1_1.IdentType import IdentType

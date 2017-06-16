@@ -18,7 +18,7 @@
 import logging
 
 from scap.model.xs.StringType import StringType
-from scap.model.xccdf_1_1 import *
+from scap.model.xccdf_1_1 import VALUE_TYPE_ENUMERATION
 
 logger = logging.getLogger(__name__)
 class FactType(StringType):

@@ -18,7 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_1 import *
 from scap.model.xccdf_1_1.MessageType import MessageType
 
 logger = logging.getLogger(__name__)

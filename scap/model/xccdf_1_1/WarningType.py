@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.xccdf_1_1 import *
+from scap.model.xccdf_1_1 import WARNING_CATEGORY_ENUMERATION
 from scap.model.xccdf_1_1.HtmlTextWithSubType import HtmlTextWithSubType
 
 logger = logging.getLogger(__name__)

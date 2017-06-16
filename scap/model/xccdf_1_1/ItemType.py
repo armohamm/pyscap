@@ -17,7 +17,6 @@
 
 import logging
 
-from scap.model.xccdf_1_1 import *
 from scap.model.xccdf_1_1.Extendable import Extendable
 
 logger = logging.getLogger(__name__)

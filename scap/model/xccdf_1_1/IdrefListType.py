@@ -18,7 +18,6 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_1 import *
 
 logger = logging.getLogger(__name__)
 class IdrefListType(Model):
