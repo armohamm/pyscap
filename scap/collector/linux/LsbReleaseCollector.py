@@ -24,6 +24,9 @@ from scap.model.cpe_matching_2_3.CPE import CPE
 logger = logging.getLogger(__name__)
 class LsbReleaseCollector(Collector):
     def collect(self):
+        if 'cpe' not in self.host.facts:
+            self.host.facts['cpe'] = {'os':[], 'application':[], 'hardware':[]}
+
         try:
             return_code, out_lines, err_lines = self.host.exec_command('lsb_release -a')
         except:
@@ -65,9 +68,6 @@ class LsbReleaseCollector(Collector):
 
                 elif name == 'Release':
                     cpe.set_value('version', value)
-
-        if 'cpe' not in self.host.facts:
-            self.host.facts['cpe'] = {'os':[], 'application':[], 'hardware':[]}
 
         if cpe not in self.host.facts['cpe']['os']:
             self.host.facts['cpe']['os'].append(cpe)
