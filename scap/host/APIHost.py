@@ -15,8 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Host import Host
 import logging
+
+from scap.Host import Host
 
 logger = logging.getLogger(__name__)
 
