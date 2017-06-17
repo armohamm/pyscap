@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class WhitespaceElement(FacetType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+            {'tag_name': 'annotation', 'list': 'tags', 'class': 'AnnotationElement', 'min': 0},
         ],
         'attributes': {
             'value': {'required': True, 'enum': ['preserve', 'replace', 'collapse']},

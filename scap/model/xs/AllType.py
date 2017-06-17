@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class AllType(GroupType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
-            {'tag_name': 'element', 'class': 'ElementType', 'min': 0, 'max': None},
+            {'tag_name': 'annotation', 'list': 'tags', 'class': 'AnnotationElement', 'min': 0},
+            {'tag_name': 'element', 'list': 'tags', 'class': 'ElementType', 'min': 0, 'max': None},
         ],
         'attributes': {
             'minOccurs': {'enum': ['0', '1'], 'default': '1'},

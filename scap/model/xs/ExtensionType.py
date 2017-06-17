@@ -24,15 +24,24 @@ logger = logging.getLogger(__name__)
 class ExtensionType(AnnotatedType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'group', 'class': 'GroupType', 'min': 0},
-            {'tag_name': 'all', 'class': 'AllType', 'min': 0},
-            {'tag_name': 'choice', 'class': 'ChoiceElement', 'min': 0},
-            {'tag_name': 'sequence', 'class': 'GroupType', 'min': 0},
-            {'tag_name': 'attribute', 'class': 'AttributeType', 'min': 0, 'max': None},
-            {'tag_name': 'attributeGroup', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
-            {'tag_name': 'anyAttribute', 'class': 'WildcardType', 'min': 0},
+            {'tag_name': 'group', 'list': 'tags', 'class': 'GroupType', 'min': 0},
+            {'tag_name': 'all', 'list': 'tags', 'class': 'AllType', 'min': 0},
+            {'tag_name': 'choice', 'list': 'tags', 'class': 'ChoiceElement', 'min': 0},
+            {'tag_name': 'sequence', 'list': 'tags', 'class': 'GroupType', 'min': 0},
+            {'tag_name': 'attribute', 'list': 'tags', 'class': 'AttributeType', 'min': 0, 'max': None},
+            {'tag_name': 'attributeGroup', 'list': 'tags', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
+            {'tag_name': 'anyAttribute', 'list': 'tags', 'class': 'WildcardType', 'min': 0},
         ],
         'attributes': {
             'base': {'type': 'QNameType', 'required': True},
         }
     }
+
+    def get_defs(self, schema, top_level):
+        logger.debug('Base: ' + self.base)
+        # TODO unable to map xmlns because ET doesn't retain it
+        base_ns, base_name = [self.base.partition(':')[i] for i in [0,2]]
+        top_level.set_super_module(base_ns)
+        top_level.set_super_class(base_name)
+
+        return super(ExtensionType, self).get_defs(schema, top_level)

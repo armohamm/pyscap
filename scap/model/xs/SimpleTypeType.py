@@ -24,9 +24,9 @@ logger = logging.getLogger(__name__)
 class SimpleTypeType(AnnotatedType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'restriction', 'class': 'RestrictionType', 'min': 0},
-            {'tag_name': 'list', 'class': 'ListElement', 'min': 0},
-            {'tag_name': 'union', 'class': 'UnionElement', 'min': 0},
+            {'tag_name': 'restriction', 'list': 'tags', 'class': 'RestrictionType', 'min': 0},
+            {'tag_name': 'list', 'list': 'tags', 'class': 'ListElement', 'min': 0},
+            {'tag_name': 'union', 'list': 'tags', 'class': 'UnionElement', 'min': 0},
         ],
         'attributes': {
             'final': {'enum': ['#all', 'list', 'union', 'restriction']},
@@ -34,3 +34,9 @@ class SimpleTypeType(AnnotatedType):
             '*': {},
         }
     }
+
+    def stub(self, path, schema):
+        class_name = ''.join(cap_first(w) for w in self.name.split('_'))
+        if not class_name.endswith('Type'):
+            class_name = class_name + 'Type'
+        super(SimpleTypeType, self).stub(path, schema, class_name)

@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class KeybaseType(AnnotatedType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'selector', 'class': 'SelectorElement'},
-            {'tag_name': 'field', 'class': 'FieldElement', 'min': 1, 'max': None},
+            {'tag_name': 'selector', 'list': 'tags', 'class': 'SelectorElement'},
+            {'tag_name': 'field', 'list': 'tags', 'class': 'FieldElement', 'min': 1, 'max': None},
         ],
         'attributes': {
             'name': {'type': 'NCNameType', 'required': True},

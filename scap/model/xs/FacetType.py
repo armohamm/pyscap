@@ -31,3 +31,9 @@ class FacetType(AnnotatedType):
             '*': {},
         }
     }
+
+    def get_defs(self, schema, top_level):
+        if self.tag_name == 'enumeration':
+            top_level.append_value_enumeration(self.value)
+
+        return super(FacetType, self).get_defs(schema, top_level)

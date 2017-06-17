@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class SimpleContentElement(AnnotatedType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'restriction', 'class': 'RestrictionType', 'min': 0},
-            {'tag_name': 'extension', 'class': 'ExtensionType', 'min': 0},
+            {'tag_name': 'restriction', 'list': 'tags', 'class': 'RestrictionType', 'min': 0},
+            {'tag_name': 'extension', 'list': 'tags', 'class': 'ExtensionType', 'min': 0},
         ],
     }

@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class AttributeType(AnnotatedType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'simpleType', 'class': 'SimpleTypeType', 'min': 0},
+            {'tag_name': 'simpleType', 'list': 'tags', 'class': 'SimpleTypeType', 'min': 0},
         ],
         'attributes': {
             'name': {'type': 'NCNameType'},

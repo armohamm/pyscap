@@ -24,10 +24,15 @@ logger = logging.getLogger(__name__)
 class PatternElement(FacetType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0},
+            {'tag_name': 'annotation', 'list': 'tags', 'class': 'AnnotationElement', 'min': 0},
         ],
         'attributes': {
             'value': {'type': 'StringType', 'required': True},
             '*': {}
         },
     }
+
+    def get_defs(self, schema, top_level):
+        top_level.set_value_pattern(self.value)
+
+        return super(FacetType, self).get_defs(schema, top_level)

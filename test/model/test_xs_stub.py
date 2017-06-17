@@ -41,3 +41,5 @@ logging.basicConfig(level=logging.DEBUG)
 def test_parse_xsd():
     path = pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xs_stub.xsd'
     model = Model.load(None, ET.parse(str(path)).getroot())
+
+# TODO test stub functions; writes a file

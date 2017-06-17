@@ -19,8 +19,10 @@
 
 import argparse
 import logging
+import os
 import xml.etree.ElementTree as ET
 
+import namespace_registry
 from scap.ColorFormatter import ColorFormatter
 from scap.Model import Model
 from scap.model.xs.SchemaElement import SchemaElement
@@ -46,10 +48,20 @@ if args['content'] is None or len(args['content']) == 0:
 if args['output'] is None or len(args['output']) == 0:
     arg_parser.error('No output specified (--output)')
 
-for uri in args['content']:
-    logger.debug('Loading content file: ' + uri)
-    with open(uri, mode='r', encoding='utf_8') as f:
-        content = ET.parse(f).getroot()
-        model = Model.load(None, content)
-        if not isinstance(model, SchemaElement):
-            arg_parser.error('Invalid content. Expecting xsd (XMLSchema) file')
+content = args['content'][0]
+logger.debug('Loading content file: ' + content)
+with open(content, mode='r', encoding='utf_8') as f:
+    content = ET.parse(f).getroot()
+    model = Model.load(None, content)
+    if not isinstance(model, SchemaElement):
+        arg_parser.error('Invalid content. Expecting xsd (XMLSchema) file')
+
+rootLogger.setLevel(logging.DEBUG)
+
+output = args['output'][0]
+logger.debug('Creating class stubs in path: ' + output)
+
+if not os.path.isdir(output):
+    os.makedirs(output, mode=0o755, exist_ok=True)
+
+model.stub(output)

@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class AnnotationElement(AnyTypeType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'appinfo', 'class': 'AppinfoElement', 'min': 0, 'max': None},
-            {'tag_name': 'documentation', 'class': 'DocumentationElement', 'min': 0, 'max': None},
+            {'tag_name': 'appinfo', 'list': 'tags', 'class': 'AppinfoElement', 'min': 0, 'max': None},
+            {'tag_name': 'documentation', 'list': 'tags', 'class': 'DocumentationElement', 'min': 0, 'max': None},
         ],
         'attributes': {
             'id': {'type': 'IdType'},

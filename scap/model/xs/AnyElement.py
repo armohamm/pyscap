@@ -28,3 +28,13 @@ class AnyElement(WildcardType):
             'maxOccurs': {'type': 'AllNniType', 'default': 1},
         }
     }
+
+    def get_defs(self, schema):
+        model_map = {'elements': [], 'attributes': {}}
+
+        tag = {'tag_name': '*', 'min': 0}
+        if self.namespace != '##any':
+            tag['namespace'] = self.namespace
+        model_map['elements'].append(tag)
+
+        return model_map

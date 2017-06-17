@@ -22,3 +22,11 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 class AnyTypeType(Model):
     MODEL_MAP = {}
+
+    def get_defs(self, schema, top_level):
+        model_map = {'elements': [], 'attributes': {}}
+        for t in self.tags:
+            defs = t.get_defs(schema, top_level)
+            model_map['elements'].extend(defs['elements'])
+            model_map['attributes'].update(defs['attributes'])
+        return model_map

@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class UnionElement(AnnotatedType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'simpleType', 'class': 'SimpleTypeType', 'min': 0, 'max': None},
+            {'tag_name': 'simpleType', 'list': 'tags', 'class': 'SimpleTypeType', 'min': 0, 'max': None},
         ],
         'attributes': {
             'memberTypes': {'type': 'QNameType'},

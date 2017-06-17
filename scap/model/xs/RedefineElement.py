@@ -24,11 +24,11 @@ logger = logging.getLogger(__name__)
 class RedefineElement(AnyTypeType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'annotation', 'class': 'AnnotationElement', 'min': 0, 'max': None},
-            {'tag_name': 'simpleType', 'class': 'SimpleTypeType', 'min': 0, 'max': None},
-            {'tag_name': 'complexType', 'class': 'ComplexTypeType', 'min': 0, 'max': None},
-            {'tag_name': 'group', 'class': 'GroupType', 'min': 0, 'max': None},
-            {'tag_name': 'attributeGroup', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
+            {'tag_name': 'annotation', 'list': 'tags', 'class': 'AnnotationElement', 'min': 0, 'max': None},
+            {'tag_name': 'simpleType', 'list': 'tags', 'class': 'SimpleTypeType', 'min': 0, 'max': None},
+            {'tag_name': 'complexType', 'list': 'tags', 'class': 'ComplexTypeType', 'min': 0, 'max': None},
+            {'tag_name': 'group', 'list': 'tags', 'class': 'GroupType', 'min': 0, 'max': None},
+            {'tag_name': 'attributeGroup', 'list': 'tags', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
         ],
         'attributes': {
             'schemaLocation': {'type': 'AnyUriType', 'required': True},

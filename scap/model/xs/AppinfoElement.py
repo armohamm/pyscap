@@ -31,3 +31,7 @@ class AppinfoElement(Model):
             '*': {},
         },
     }
+
+    def get_defs(self, schema, top_level):
+        model_map = {'elements': [], 'attributes': {}}
+        return model_map

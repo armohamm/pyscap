@@ -24,12 +24,12 @@ logger = logging.getLogger(__name__)
 class GroupType(AnnotatedType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'any', 'class': 'AnyElement', 'min': 0, 'max': None},
-            {'tag_name': 'element', 'class': 'ElementType', 'min': 0, 'max': None},
-            {'tag_name': 'group', 'class': 'GroupType', 'min': 0, 'max': None},
-            {'tag_name': 'all', 'class': 'AllType', 'min': 0, 'max': None},
-            {'tag_name': 'choice', 'class': 'ChoiceElement', 'min': 0, 'max': None},
-            {'tag_name': 'sequence', 'class': 'GroupType', 'min': 0, 'max': None},
+            {'tag_name': 'any', 'list': 'tags', 'class': 'AnyElement', 'min': 0, 'max': None},
+            {'tag_name': 'element', 'list': 'tags', 'class': 'ElementType', 'min': 0, 'max': None},
+            {'tag_name': 'group', 'list': 'tags', 'class': 'GroupType', 'min': 0, 'max': None},
+            {'tag_name': 'all', 'list': 'tags', 'class': 'AllType', 'min': 0, 'max': None},
+            {'tag_name': 'choice', 'list': 'tags', 'class': 'ChoiceElement', 'min': 0, 'max': None},
+            {'tag_name': 'sequence', 'list': 'tags', 'class': 'GroupType', 'min': 0, 'max': None},
         ],
         'attributes': {
             'name': {'type': 'NCNameType'},
