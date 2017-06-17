@@ -15,8 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import logging
 import inspect
+import importlib
+import logging
 import sys
 
 from scap.Inventory import Inventory
@@ -62,7 +63,7 @@ class Host(object):
             else:
                 raise RuntimeError('Host ' + hostname + ' specified an invalid winrm_auth_method option')
         elif connection_type == 'local':
-            if sys.platform.startswith('linux') or sys.platform == 'cygwin':
+            if sys.platform.startswith('linux'):
                 from scap.host.cli.local.LinuxLocalHost import LinuxLocalHost
                 return LinuxLocalHost(hostname)
             elif sys.platform == 'win32':
@@ -90,3 +91,11 @@ class Host(object):
     def detect_collectors(self, args):
         import inspect
         raise NotImplementedError(inspect.stack()[0][3] + '() has not been implemented in subclass: ' + self.__class__.__name__)
+
+    def collect_oval_items(self, obj, content, imports, export_names):
+        collector_module = obj.__module__.replace('ObjectElement', 'Collector').replace('scap.model.oval_5.defs.', 'scap.collector.oval_5.')
+        collector_class = obj.__class__.__name__.replace('ObjectElement', 'Collector')
+        mod = importlib.import_module(collector_module, collector_class)
+        class_ = getattr(mod, collector_class)
+        collector = class_(self, {'object': obj, 'content': content, 'imports': imports, 'export_names': export_names})
+        return collector.collect()
