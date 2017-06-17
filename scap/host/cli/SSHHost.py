@@ -15,17 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.host.CLIHost import CLIHost
+import binascii
+import getpass
+import logging
+import os
 import paramiko.client
 import paramiko.pkey
 from paramiko.ssh_exception import PasswordRequiredException
-import logging
-import sys
-import binascii
-import os
-import getpass
 import socket
+import sys
 
+from scap.host.CLIHost import CLIHost
 from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
