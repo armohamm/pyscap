@@ -35,6 +35,3 @@ class ObjectType(Model):
             'deprecated': {'type': 'BooleanType', 'default': False},
         },
     }
-
-    def collect_items(self, content, host, imports, export_names):
-        raise NotImplementedError('resolve is not implemented')
