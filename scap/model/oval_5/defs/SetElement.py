@@ -25,7 +25,6 @@ class SetElement(Model):
     MODEL_MAP = {
         'tag_name': 'set',
         'elements': [
-            # TODO: either set element or object_reference (+ optional filter)
             {'tag_name': 'set', 'class': 'SetElement', 'min': 0, 'max': 2},
             {'tag_name': 'object_reference', 'list': 'object_references', 'type': 'scap.model.oval_5.ObjectIdPattern', 'min': 0, 'max': 2},
             {'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
