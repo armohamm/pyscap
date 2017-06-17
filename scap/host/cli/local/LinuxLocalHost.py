@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 class LinuxLocalHost(LocalHost):
     def detect_collectors(self, args):
-        from scap.collector.cli.linux.Collector import Collector
+        from scap.collector.linux.Collector import Collector
         return [Collector(self, args)]
 
     def exec_command(self, cmd, sudo=False):

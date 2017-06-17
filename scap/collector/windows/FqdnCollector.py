@@ -21,10 +21,9 @@ import re
 from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class NetworkServiceCollector(Collector):
+class FqdnCollector(Collector):
     def collect(self):
-        from scap.collector.cli.linux.NetstatCollector import NetstatCollector
-        NetstatCollector(self.host, self.args).collect()
+        self.host.facts['fqdn'] = []
 
-        for netsvc in self.host.facts['network_services']:
-            logger.debug('Service: Address: ' + netsvc['ip_address'] + ' Port: ' + netsvc['port'] + ' Protocol: ' + netsvc['protocol'] + ' Source: ' + netsvc['source'] + ' Timestamp: ' + netsvc['timestamp'])
+        from scap.collector.windows.IpConfigAllCollector import IpConfigAllCollector
+        IpConfigAllCollector(self.host, self.args).collect()

@@ -15,19 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-# Based on https://github.com/MyNameIsMeerkat/GetSysUUID/blob/master/GetSysUUID.py
-# with documentation at http://www.dmtf.org/sites/default/files/standards/documents/DSP0134_2.6.1.pdf
-
-import ctypes
-import ctypes.wintypes
 import logging
-import struct
-import uuid
+import re
 
 from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class UniqueIdCollector(Collector):
+class NetworkConnectionCollector(Collector):
     def collect(self):
-        from scap.collector.cli.windows.WmicCsProductCollector import WmicCsProductCollector
-        WmicCsProductCollector(self.host, self.args).collect()
+        from scap.collector.windows.IpConfigAllCollector import IpConfigAllCollector
+        IpConfigAllCollector(self.host, self.args).collect()
+
+        for dev, netcon in self.host.facts['network_connections'].items():
+            logger.debug('Device: ' + dev)
+            if 'mac_address' in netcon:
+                logger.debug('MAC: ' + netcon['mac_address'])
+            if 'default_route' in netcon:
+                logger.debug('Default Route: ' + netcon['default_route'])
+            for netadd in netcon['network_addresses']:
+                logger.debug('Type: ' + netadd['type'] + ' Address: ' + netadd['address'] + ' Mask: ' + netadd['subnet_mask'])

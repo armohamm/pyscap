@@ -14,3 +14,17 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
+
+import logging
+import re
+
+from scap.Collector import Collector
+
+logger = logging.getLogger(__name__)
+class NetworkServiceCollector(Collector):
+    def collect(self):
+        from scap.collector.linux.NetstatCollector import NetstatCollector
+        NetstatCollector(self.host, self.args).collect()
+
+        for netsvc in self.host.facts['network_services']:
+            logger.debug('Service: Address: ' + netsvc['ip_address'] + ' Port: ' + netsvc['port'] + ' Protocol: ' + netsvc['protocol'] + ' Source: ' + netsvc['source'] + ' Timestamp: ' + netsvc['timestamp'])

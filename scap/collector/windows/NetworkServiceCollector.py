@@ -21,16 +21,10 @@ import re
 from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class NetworkConnectionCollector(Collector):
+class NetworkServiceCollector(Collector):
     def collect(self):
-        from scap.collector.cli.windows.IpConfigAllCollector import IpConfigAllCollector
-        IpConfigAllCollector(self.host, self.args).collect()
+        from scap.collector.windows.NetstatCollector import NetstatCollector
+        NetstatCollector(self.host, self.args).collect()
 
-        for dev, netcon in self.host.facts['network_connections'].items():
-            logger.debug('Device: ' + dev)
-            if 'mac_address' in netcon:
-                logger.debug('MAC: ' + netcon['mac_address'])
-            if 'default_route' in netcon:
-                logger.debug('Default Route: ' + netcon['default_route'])
-            for netadd in netcon['network_addresses']:
-                logger.debug('Type: ' + netadd['type'] + ' Address: ' + netadd['address'] + ' Mask: ' + netadd['subnet_mask'])
+        for netsvc in self.host.facts['network_services']:
+            logger.debug('Service: Address: ' + netsvc['ip_address'] + ' Port: ' + netsvc['port'] + ' Protocol: ' + netsvc['protocol'] + ' Source: ' + netsvc['source'] + ' Timestamp: ' + netsvc['timestamp'])

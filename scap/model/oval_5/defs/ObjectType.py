@@ -25,7 +25,7 @@ class ObjectType(Model):
         'elements': [
             {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
             {'tag_name': 'notes', 'class': 'scap.model.oval_5.NotesType', 'min': 0, 'max': 1},
-            {'tag_name': 'set', 'class': 'scap.model.oval_5.defs.SetElement', 'min': 0},
+            {'tag_name': 'set', 'class': 'SetElement', 'min': 0},
             {'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
         'attributes': {
@@ -36,5 +36,5 @@ class ObjectType(Model):
         },
     }
 
-    def resolve(self, content, host, imports, export_names):
+    def collect_items(self, content, host, imports, export_names):
         raise NotImplementedError('resolve is not implemented')

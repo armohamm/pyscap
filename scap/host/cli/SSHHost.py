@@ -60,7 +60,7 @@ class SSHHost(CLIHost):
                 raise RuntimeError('Key for ' + hostname + ' not accepted')
 
     def detect_collectors(self, args):
-        from scap.collector.cli.SSHCollector import SSHCollector
+        from scap.collector.SSHCollector import SSHCollector
         return [SSHCollector(self, args)]
 
     def connect(self):

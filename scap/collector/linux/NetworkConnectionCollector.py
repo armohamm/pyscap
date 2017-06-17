@@ -23,9 +23,9 @@ from scap.Collector import Collector
 logger = logging.getLogger(__name__)
 class NetworkConnectionCollector(Collector):
     def collect(self):
-        from scap.collector.cli.linux.IpAddrCollector import IpAddrCollector
+        from scap.collector.linux.IpAddrCollector import IpAddrCollector
         IpAddrCollector(self.host, self.args).collect()
-        from scap.collector.cli.linux.IpRouteCollector import IpRouteCollector
+        from scap.collector.linux.IpRouteCollector import IpRouteCollector
         IpRouteCollector(self.host, self.args).collect()
 
         for dev, netcon in self.host.facts['network_connections'].items():

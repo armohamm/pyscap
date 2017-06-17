@@ -25,11 +25,11 @@ logger = logging.getLogger(__name__)
 class UniqueIdCollector(Collector):
     def collect(self):
         try:
-            from scap.collector.cli.linux.DmiDecodeCollector import DmiDecodeCollector
+            from scap.collector.linux.DmiDecodeCollector import DmiDecodeCollector
             DmiDecodeCollector(self.host, self.args).collect()
         except:
             # fall back to root fs uuid
-            from scap.collector.cli.linux.RootFsUuidCollector import RootFsUuidCollector
+            from scap.collector.linux.RootFsUuidCollector import RootFsUuidCollector
             RootFsUuidCollector(self.host, self.args).collect()
             self.host.facts['unique_id'] = self.host.facts['root_uuid']
         logger.debug('System UUID: ' + self.host.facts['unique_id'])

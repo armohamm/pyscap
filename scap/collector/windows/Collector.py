@@ -22,23 +22,23 @@ from scap.Collector import Collector as scapCollector
 logger = logging.getLogger(__name__)
 class Collector(scapCollector):
     def collect(self):
-        from scap.collector.cli.linux.UniqueIdCollector import UniqueIdCollector
+        from scap.collector.windows.UniqueIdCollector import UniqueIdCollector
         UniqueIdCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.CpeCollector import CpeCollector
+        from scap.collector.windows.CpeCollector import CpeCollector
         CpeCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.HostnameCollector import HostnameCollector
-        HostnameCollector(self.host, self.args).collect()
-
-        from scap.collector.cli.linux.FqdnCollector import FqdnCollector
+        from scap.collector.windows.FqdnCollector import FqdnCollector
         FqdnCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.NetworkConnectionCollector import NetworkConnectionCollector
+        from scap.collector.windows.HostnameCollector import HostnameCollector
+        HostnameCollector(self.host, self.args).collect()
+
+        from scap.collector.windows.NetworkConnectionCollector import NetworkConnectionCollector
         NetworkConnectionCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.NetworkServiceCollector import NetworkServiceCollector
+        from scap.collector.windows.NetworkServiceCollector import NetworkServiceCollector
         NetworkServiceCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.IdentityCollector import IdentityCollector
+        from scap.collector.windows.IdentityCollector import IdentityCollector
         IdentityCollector(self.host, self.args).collect()

@@ -27,13 +27,13 @@ class CpeCollector(Collector):
         self.host.facts['cpe'] = {'os':[], 'application':[], 'hardware':[]}
 
         # hardware
-        from scap.collector.cli.linux.LshwCollector import LshwCollector
+        from scap.collector.linux.LshwCollector import LshwCollector
         LshwCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.LspciCollector import LspciCollector
+        from scap.collector.linux.LspciCollector import LspciCollector
         LspciCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.linux.LscpuCollector import LscpuCollector
+        from scap.collector.linux.LscpuCollector import LscpuCollector
         LscpuCollector(self.host, self.args).collect()
 
         # TODO hwinfo
@@ -42,10 +42,10 @@ class CpeCollector(Collector):
         # TODO hdparm
 
         # os
-        from scap.collector.cli.linux.LsbReleaseCollector import LsbReleaseCollector
+        from scap.collector.linux.LsbReleaseCollector import LsbReleaseCollector
         LsbReleaseCollector(self.host, self.args).collect()
 
-        from scap.collector.cli.UNameCollector import UNameCollector
+        from scap.collector.UNameCollector import UNameCollector
         UNameCollector(self.host, self.args).collect()
 
         # application
@@ -53,7 +53,7 @@ class CpeCollector(Collector):
             if CPE(part='o', vendor='ubuntu').matches(cpe) \
             or CPE(part='o', vendor='debian').matches(cpe) \
             or CPE(part='o', vendor='linuxmint').matches(cpe):
-                from scap.collector.cli.linux.DpkgCollector import DpkgCollector
+                from scap.collector.linux.DpkgCollector import DpkgCollector
                 DpkgCollector(self.host, self.args).collect()
 
             # TODO Red Hat, CentOS: yum, rpm
