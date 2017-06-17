@@ -18,10 +18,10 @@
 import logging
 import re
 
-from scap.collector.cli.HostnameCollector import HostnameCollector as Col
+from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class HostnameCollector(Col):
+class HostnameCollector(Collector):
     def collect(self):
         return_code, out_lines, err_lines = self.host.exec_command('hostname')
         self.host.facts['hostname'] = out_lines[0]

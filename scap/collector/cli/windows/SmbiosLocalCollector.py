@@ -24,7 +24,7 @@ import logging
 import struct
 import uuid
 
-from scap.collector.cli.windows.Collector import Collector
+from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
 class SmbiosLocalCollector(Collector):

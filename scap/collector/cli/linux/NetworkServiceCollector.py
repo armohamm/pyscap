@@ -18,10 +18,10 @@
 import logging
 import re
 
-from scap.collector.cli.NetworkServiceCollector import NetworkServiceCollector as Col
+from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class NetworkServiceCollector(Col):
+class NetworkServiceCollector(Collector):
     def collect(self):
         from scap.collector.cli.linux.NetstatCollector import NetstatCollector
         NetstatCollector(self.host, self.args).collect()

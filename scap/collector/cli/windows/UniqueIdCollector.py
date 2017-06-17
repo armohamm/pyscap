@@ -24,10 +24,10 @@ import logging
 import struct
 import uuid
 
-from scap.collector.cli.UniqueIdCollector import UniqueIdCollector as Col
+from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class UniqueIdCollector(Col):
+class UniqueIdCollector(Collector):
     def collect(self):
         from scap.collector.cli.windows.WmicCsProductCollector import WmicCsProductCollector
         WmicCsProductCollector(self.host, self.args).collect()

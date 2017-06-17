@@ -18,10 +18,10 @@
 import logging
 import re
 
-from scap.collector.cli.FqdnCollector import FqdnCollector as Col
+from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class FqdnCollector(Col):
+class FqdnCollector(Collector):
     def collect(self):
         self.host.facts['fqdn'] = []
 

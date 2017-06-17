@@ -18,7 +18,7 @@
 import re
 import logging
 
-from scap.collector.cli.linux.Collector import Collector
+from scap.Collector import Collector
 from scap.model.cpe_matching_2_3.CPE import CPE
 
 logger = logging.getLogger(__name__)

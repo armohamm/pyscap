@@ -18,10 +18,10 @@
 import logging
 import re
 
-from scap.collector.cli.NetworkConnectionCollector import NetworkConnectionCollector as Col
+from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class NetworkConnectionCollector(Col):
+class NetworkConnectionCollector(Collector):
     def collect(self):
         from scap.collector.cli.windows.IpConfigAllCollector import IpConfigAllCollector
         IpConfigAllCollector(self.host, self.args).collect()

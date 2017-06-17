@@ -20,7 +20,7 @@
 import logging
 import uuid
 
-from scap.collector.cli.linux.Collector import Collector
+from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
 class DmiDecodeCollector(Collector):

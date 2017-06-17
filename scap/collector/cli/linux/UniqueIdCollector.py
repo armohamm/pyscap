@@ -19,10 +19,10 @@
 
 import logging
 
-from scap.collector.cli.UniqueIdCollector import UniqueIdCollector as Col
+from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class UniqueIdCollector(Col):
+class UniqueIdCollector(Collector):
     def collect(self):
         try:
             from scap.collector.cli.linux.DmiDecodeCollector import DmiDecodeCollector

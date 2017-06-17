@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.collector.CliCollector import CliCollector
+from scap.Collector import Collector as scapCollector
 
 logger = logging.getLogger(__name__)
-class Collector(CliCollector):
+class Collector(scapCollector):
     def collect(self):
         from scap.collector.cli.windows.UniqueIdCollector import UniqueIdCollector
         UniqueIdCollector(self.host, self.args).collect()

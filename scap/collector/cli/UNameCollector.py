@@ -18,11 +18,11 @@
 import logging
 import re
 
-from scap.collector.CliCollector import CliCollector
+from scap.Collector import Collector
 from scap.model.cpe_matching_2_3.CPE import CPE
 
 logger = logging.getLogger(__name__)
-class UNameCollector(CliCollector):
+class UNameCollector(Collector):
     def collect(self):
         return_code, out_lines, err_lines = self.host.exec_command('uname -a')
         self.host.facts['uname'] = out_lines[0]

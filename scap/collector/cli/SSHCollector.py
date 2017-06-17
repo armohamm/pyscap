@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.collector.CliCollector import CliCollector
+from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class SSHCollector(CliCollector):
+class SSHCollector(Collector):
     def collect(self):
         try:
             from scap.collector.cli.UNameCollector import UNameCollector
