@@ -60,7 +60,7 @@ class TestType(Model):
         if self.object is None:
             return res
 
-        items = self.object.collect_items(content, host, imports, export_names)
+        items = host.collect_oval_items(self.object, content, imports, export_names)
 
         # Existence Check Evaluation
         counts = {x: 0 for x in EXISTENCE_RESULT_ENUMERATION}
