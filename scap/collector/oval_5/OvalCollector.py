@@ -17,12 +17,15 @@
 
 import logging
 
-from scap.Collector import Collector as scapCollector
+from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
-class Collector(scapCollector):
+class OvalCollector(Collector):
     def __init__(self, host, args):
-        super(Collector, self).__init__(host, args)
+        super(OvalCollector, self).__init__(host, args)
 
         if 'object' not in self.args:
             raise ValueError('OVAL collector requires an OVAL object as an argument')
+
+        if self.args['object'].deprecated:
+            logger.warning('Deprecated object ' + self.args['object'].id + ' is being referenced')

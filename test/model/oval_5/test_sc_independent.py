@@ -18,6 +18,7 @@
 import importlib
 import logging
 import os
+import pathlib
 import pytest
 import pkgutil
 import sys
@@ -26,6 +27,8 @@ import xml.etree.ElementTree as ET
 from scap.Host import Host
 from scap.Inventory import Inventory
 from scap.Model import Model
+from scap.model.oval_5.defs.EntityObjectStringType import EntityObjectStringType
+from scap.model.oval_5.defs.independent.EntityObjectHashTypeType import EntityObjectHashTypeType
 
 # import all the classes in the package
 import scap.model.oval_5.sc.independent as pkg
@@ -67,7 +70,7 @@ for collector in host.detect_collectors({}):
 @pytest.mark.skipif(sys.platform != 'linux', reason="does not apply")
 def test_family_linux():
     obj = FamilyObjectElement()
-    items = host.collect_oval_items(obj, None, {}, [])
+    items = obj.collect_items(host, None, {}, [])
     assert len(items) == 1
     assert isinstance(items[0], FamilyItemElement)
     assert items[0].family.text == 'linux'
@@ -75,18 +78,33 @@ def test_family_linux():
 @pytest.mark.skipif(sys.platform != 'win32', reason="does not apply")
 def test_family_windows():
     obj = FamilyObjectElement()
-    items = host.collect_oval_items(obj, None, {}, [])
+    items = obj.collect_items(host, None, {}, [])
     assert len(items) == 1
     assert isinstance(items[0], FamilyItemElement)
     assert items[0].family.text == 'windows'
 
-# def test_filehash58():
-#     obj = FileHash58ObjectElement()
-#     obj.
-#     items = host.collect_oval_items(obj, None, {}, [])
-#     assert len(items) == 1
-#     assert isinstance(items[0], FamilyItemElement)
-#
+def test_filehash58():
+    obj = FileHash58ObjectElement()
+    obj.filepath = EntityObjectStringType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
+
+    hashes = {
+        'MD5': '088c92cb4d6c96cc3981678e4355fa4a',
+        'SHA-1': '8d1f3a9fe1fdef59204dbbbe163e1098c49d142b',
+        'SHA-224': '05dfa237b19462f5042625fd6301c03aa31b7ab23ec1ab990fd0aac6',
+        'SHA-256': '2eb5d6d679443b74e168948cba53f689572d7b0fabf4052016cd71241cb31356',
+        'SHA-384': '220d7a9e4035522342bda46f02dc9c0fd2dc20a9ad97cc005ff973f5f56c3461bedaffd506bd363593730102d8bf384c',
+        'SHA-512': '9e50035cb3b290015ce44dbd4152ee3dc506677b98329129c1440144fa1da591e1d77a3522ee780d5390391431ebee4336eb4ddaa1af20adfef07aacf71b65f8',
+    }
+
+    for hash_type in hashes.keys():
+        obj.hash_type = EntityObjectHashTypeType(value=hash_type)
+        items = obj.collect_items(host, None, {}, [])
+        assert len(items) == 1
+        assert isinstance(items[0], FileHash58ItemElement)
+        assert items[0].status == 'exists'
+        assert items[0].hash_type.text == hash_type
+        assert items[0].hash.text == hashes[hash_type]
+
 # def test_filehash():
 #     pass
 #
