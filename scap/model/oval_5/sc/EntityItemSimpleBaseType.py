@@ -18,6 +18,7 @@
 import logging
 
 from scap.Model import Model
+from scap.model.oval_5 import DATATYPE_ENUMERATION, EXISTENCE_RESULT_ENUMERATION
 from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
