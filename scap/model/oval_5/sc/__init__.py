@@ -21,9 +21,3 @@ from scap.model.oval_5 import EXISTENCE_RESULT_ENUMERATION
 TAG_MAP = {
     '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5}oval_system_characteristics': 'OvalSystemCharacteristicsElement',
 }
-
-ENTITY_ATTRIBUTE_GROUP = {
-    'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
-    'mask': {'type': 'BooleanType', 'default': False},
-    'status': {'enum': EXISTENCE_RESULT_ENUMERATION, 'default': 'exists'},
-}
