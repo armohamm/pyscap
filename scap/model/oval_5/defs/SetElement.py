@@ -33,3 +33,70 @@ class SetElement(Model):
             'set_operator': {'enum': SET_OPERATOR_ENUMERATION, 'default': 'UNION'},
         }
     }
+
+    def set_operator_complement(self, item_sets):
+        ''' include only the elements from the first set that are not found in the second. '''
+        items = item_sets[0].copy()
+        for s in range(1, len(item_sets)):
+            new_items = []
+            for i in items:
+                if i not in item_sets[s]:
+                    new_items.append(i)
+            items = new_items
+        return items
+
+    def set_operator_intersection(self, item_sets):
+        ''' include all of the values common to both sets. '''
+        items = item_sets[0].copy()
+        for s in range(1, len(item_sets)):
+            new_items = []
+            for i in items:
+                if i in item_sets[s]:
+                    new_items.append(i)
+            items = new_items
+        return items
+
+    def set_operator_union(self, item_sets):
+        ''' all values found in either of the sets '''
+        items = item_sets[0].copy()
+        for s in range(1, len(item_sets)):
+            for i in item_sets[s]:
+                if i not in items:
+                    items.append(i)
+        return items
+
+    def collect_items(self, host, content, imports, export_names):
+        item_sets = []
+        for s in self.set:
+            item_sets.append(s.collect_items(host, content, imports, export_names))
+
+        # 1. Identify the OVAL Objects that are part of the set by examining
+        # the object_references associated with the set. Each
+        # object_reference will refer to an OVAL Object that describes a
+        # unique set of collected OVAL Items.
+        for o in self.object_references:
+            obj = self.args['content'].find_reference(o)
+            if not isinstance(obj, self.__class__):
+                raise ValueError('Set members must match parent element class: ' + self.__class__.__name__)
+            item_sets.append(obj.collect_items(host, content, imports, export_names))
+
+        # 2. For every defined filter (See Section 5.3.3.4.2 filter), apply
+        # the associated filter to each OVAL Item.
+        for f in self.filters:
+            for i in range(len(item_sets)):
+                item_sets[i] = f.filter_items(item_sets[i])
+
+        # 3. Apply the set operator to all OVAL Items remaining in the set.
+        if self.set_operator == 'COMPLEMENT':
+            items = self.set_operator_complement(item_sets)
+        elif self.set_operator == 'INTERSECTION':
+            items = self.set_operator_intersection(item_sets)
+        elif self.set_operator == 'UNION':
+            items = self.set_operator_union(item_sets)
+        else:
+            raise ValueError('Unknown set_operator: ' + self.set_operator)
+
+        # 4. The resulting OVAL Items will be the unique set of OVAL Items
+        # referenced by the OVAL Object that contains the set.
+
+        return items

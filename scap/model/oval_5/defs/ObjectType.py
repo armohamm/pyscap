@@ -26,7 +26,7 @@ class ObjectType(Model):
             {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
             {'tag_name': 'notes', 'class': 'scap.model.oval_5.NotesType', 'min': 0, 'max': 1},
             {'tag_name': 'set', 'class': 'SetElement', 'min': 0},
-            {'tag_name': 'filter', 'class': 'FilterElement', 'min': 0, 'max': None},
+            {'tag_name': 'filter', 'list': 'filters', 'class': 'FilterElement', 'min': 0, 'max': None},
         ],
         'attributes': {
             'id': {'type': 'scap.model.oval_5.ObjectIdPattern', 'required': True},
@@ -35,3 +35,15 @@ class ObjectType(Model):
             'deprecated': {'type': 'BooleanType', 'default': False},
         },
     }
+
+    def collect_items(self, host, content, imports, export_names):
+        items = []
+        if self.set is not None:
+            items = self.set.collect_items(host, content, imports, export_names)
+        else:
+            items = host.collect_oval_items(self, content, imports, export_names)
+
+        for f in self.filters:
+            items = f.filter_items(items)
+
+        return items
