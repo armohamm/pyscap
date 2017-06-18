@@ -22,6 +22,7 @@ import pkgutil
 import xml.etree.ElementTree as ET
 
 from scap.Model import Model
+from scap.model.oval_5.defs.SetElement import SetElement
 
 # import all the classes in the package
 import scap.model.oval_5 as pkg
@@ -54,3 +55,15 @@ def test_oval_5_3_detected():
     model = Model.load(None, ET.fromstring(test_xml))
     from scap.model.oval_5.defs.OvalDefinitionsElement import OvalDefinitionsElement
     assert isinstance(model, OvalDefinitionsElement)
+
+def test_oval_set_complement():
+    set_ = SetElement()
+    assert set_.set_operator_complement([[1,2,3], [2,4]]) == [1,3]
+
+def test_oval_set_intersection():
+    set_ = SetElement()
+    assert set_.set_operator_intersection([[1,2,3], [2,4]]) == [2]
+
+def test_oval_set_union():
+    set_ = SetElement()
+    assert set_.set_operator_union([[1,2,3], [2,4]]) == [1,2,3,4]
