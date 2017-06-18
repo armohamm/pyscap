@@ -18,11 +18,13 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5.sc import ENTITY_ATTRIBUTE_GROUP
 
 logger = logging.getLogger(__name__)
 class EntityItemComplexBaseType(Model):
     MODEL_MAP = {
-        'attributes': {},
+        'attributes': {
+            'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
+            'mask': {'type': 'BooleanType', 'default': False},
+            'status': {'enum': EXISTENCE_RESULT_ENUMERATION, 'default': 'exists'},
+        },
     }
-    MODEL_MAP['attributes'].update(ENTITY_ATTRIBUTE_GROUP)
