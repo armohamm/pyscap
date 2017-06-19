@@ -39,16 +39,16 @@ class FileHash58Collector(OvalCollector):
         else:
             behaviors = FileBehaviors()
 
-        hash_cmd = {
-            'MD5': 'md5sum',
-            'SHA-1': 'sha1sum',
-            'SHA-224': 'sha224sum',
-            'SHA-256': 'sha256sum',
-            'SHA-384': 'sha384sum',
-            'SHA-512': 'sha512sum',
-        }
         item = FileHash58ItemElement()
         if self.host.facts['oval_family'] == 'linux':
+            hash_cmd = {
+                'MD5': 'md5sum',
+                'SHA-1': 'sha1sum',
+                'SHA-224': 'sha224sum',
+                'SHA-256': 'sha256sum',
+                'SHA-384': 'sha384sum',
+                'SHA-512': 'sha512sum',
+            }
             if obj.filepath is not None:
                 item.filepath = EntityItemStringType(value=obj.filepath.text)
                 qfilepath = obj.filepath.text.replace('"', '\\"')
@@ -92,6 +92,42 @@ class FileHash58Collector(OvalCollector):
                 if obj.filename is None or obj.filename.is_nil():
                     # can't hash a dir
                     item.status = 'not collected'
+        elif self.host.facts['oval_family'] == 'windows':
+            hash_param = {
+                'MD5': 'MD5',
+                'SHA-1': 'SHA1',
+                #'SHA-224': '',
+                'SHA-256': 'SHA256',
+                'SHA-384': 'SHA384',
+                'SHA-512': 'SHA512',
+            }
+            if obj.filepath is not None:
+                item.filepath = EntityItemStringType(value=obj.filepath.text)
+                qfilepath = obj.filepath.text.replace('"', '\\"')
+
+                # check if file exists
+                cmd = 'powershell -Command "' + ('Test-Path -LiteralPath \'' + qfilepath + '\'').replace('"', '\\"') + '"'
+                logger.debug('Checking existence of ' + obj.filepath.text + ': ' + cmd)
+                return_code, out_lines, err_lines = self.host.exec_command(cmd)
+                if out_lines[0] == 'True':
+                    item.status = 'exists'
+                elif out_lines[0] == 'False':
+                    item.status = 'does not exist'
+                else:
+                    logger.warning('Unable to check existence ' + obj.filepath.text + str((return_code, out_lines, err_lines)))
+                    item.status = 'error'
+
+                # get the hash
+                item.hash_type = EntityItemHashTypeType(value=obj.hash_type.text)
+                try:
+                    cmd = 'powershell -Command "' + ('Get-FileHash -LiteralPath \'' + qfilepath + '\' -Algorithm ' + hash_param[obj.hash_type.text]).replace('"', '\\"') + ' | foreach {$_.Hash}"'
+                    logger.debug('Collecting ' + obj.filepath.text + ': ' + cmd)
+                    return_code, out_lines, err_lines = self.host.exec_command(cmd)
+                    item.hash = EntityItemStringType(value=out_lines[0])
+                except (IndexError, KeyError):
+                    logger.warning('Unable to collect ' + obj.filepath.text + str((return_code, out_lines, err_lines)))
+                    item.status = 'not collected'
+
 
         else:
             raise NotImplementedError(self.__class__.__name__ + ' has not been implemented for OVAL family: ' + self.host.facts['oval_family'])
