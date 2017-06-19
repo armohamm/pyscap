@@ -50,6 +50,8 @@ class FileHash58Collector(OvalCollector):
                 'SHA-512': 'sha512sum',
             }
             if obj.filepath is not None:
+                # TODO the max_depth and recurse_direction behaviors are not allowed with a filepath entity
+                # TODO the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a filepath entity
                 item.filepath = EntityItemStringType(value=obj.filepath.text)
                 qfilepath = obj.filepath.text.replace('"', '\\"')
 
@@ -57,13 +59,14 @@ class FileHash58Collector(OvalCollector):
                 cmd = 'if [ -f "' + qfilepath + '" ]; then echo "true"; else echo "false"; fi'
                 logger.debug('Checking existence of ' + obj.filepath.text + ': ' + cmd)
                 return_code, out_lines, err_lines = self.host.exec_command(cmd)
-                if out_lines[0] == 'true':
-                    item.status = 'exists'
-                elif out_lines[0] == 'false':
+                if out_lines[0] == 'false':
                     item.status = 'does not exist'
-                else:
+                    return [item]
+                elif out_lines[0] != 'true':
                     logger.warning('Unable to check existence ' + obj.filepath.text + str((return_code, out_lines, err_lines)))
                     item.status = 'error'
+                    return [item]
+                item.status = 'exists'
 
                 # get the hash
                 item.hash_type = EntityItemHashTypeType(value=obj.hash_type.text)
@@ -75,23 +78,38 @@ class FileHash58Collector(OvalCollector):
                 except (IndexError, KeyError):
                     logger.warning('Unable to collect ' + obj.filepath.text + str((return_code, out_lines, err_lines)))
                     item.status = 'not collected'
+                    return [item]
 
-            elif obj.path is not None:
+            elif obj.path is not None and obj.filename is not None:
                 item.path = EntityItemStringType(value=obj.path.text)
+                item.filename = EntityItemStringType(value=obj.filename.text)
                 qpath = obj.path.text.replace('"', '\\"')
 
                 # check if path exists
+                logger.debug('Checking existence of ' + obj.path.text + ': ' + cmd)
                 return_code, out_lines, err_lines = self.host.exec_command('if [ -d "' + qpath + '"]; then echo "true"; else echo "false"; fi')
-                if out_lines[0] == 'true':
-                    item.status = 'exists'
-                elif out_lines[0] == 'false':
+                if out_lines[0] == 'false':
                     item.status = 'does not exist'
-                else:
+                    return [item]
+                elif out_lines[0] != 'true':
+                    logger.warning('Unable to check existence ' + obj.path.text + str((return_code, out_lines, err_lines)))
                     item.status = 'error'
+                    return [item]
+                item.status = 'exists'
 
-                if obj.filename is None or obj.filename.is_nil():
+                # TODO the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity
+                # TODO the max_depth behavior MUST not be used when a pattern match is used with a path entity
+                # TODO the recurse_direction behavior MUST not be used when a pattern match is used with a path entity
+                # TODO the recurse behavior MUST not be used when a pattern match is used with a path entity
+
+                # TODO filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used
+                if obj.filename.is_nil():
                     # can't hash a dir
                     item.status = 'not collected'
+
+            else:
+                item.status = 'not collected'
+
         elif self.host.facts['oval_family'] == 'windows':
             hash_param = {
                 'MD5': 'MD5',
@@ -102,20 +120,23 @@ class FileHash58Collector(OvalCollector):
                 'SHA-512': 'SHA512',
             }
             if obj.filepath is not None:
+                # TODO the max_depth and recurse_direction behaviors are not allowed with a filepath entity
+                # TODO the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a filepath entity
                 item.filepath = EntityItemStringType(value=obj.filepath.text)
                 qfilepath = obj.filepath.text.replace('"', '\\"')
 
                 # check if file exists
-                cmd = 'powershell -Command "' + ('Test-Path -LiteralPath \'' + qfilepath + '\'').replace('"', '\\"') + '"'
+                cmd = 'powershell -Command "' + ('Test-Path -LiteralPath \'' + qfilepath + '\'').replace('"', '\\"') + '" -PathType Leaf'
                 logger.debug('Checking existence of ' + obj.filepath.text + ': ' + cmd)
                 return_code, out_lines, err_lines = self.host.exec_command(cmd)
-                if out_lines[0] == 'True':
-                    item.status = 'exists'
-                elif out_lines[0] == 'False':
+                if out_lines[0] == 'False':
                     item.status = 'does not exist'
-                else:
+                    return [item]
+                elif out_lines[0] != 'True':
                     logger.warning('Unable to check existence ' + obj.filepath.text + str((return_code, out_lines, err_lines)))
                     item.status = 'error'
+                    return [item]
+                item.status = 'exists'
 
                 # get the hash
                 item.hash_type = EntityItemHashTypeType(value=obj.hash_type.text)
@@ -127,9 +148,42 @@ class FileHash58Collector(OvalCollector):
                 except (IndexError, KeyError):
                     logger.warning('Unable to collect ' + obj.filepath.text + str((return_code, out_lines, err_lines)))
                     item.status = 'not collected'
+                    return [item]
 
+            elif obj.path is not None and obj.filename is not None:
+                item.path = EntityItemStringType(value=obj.path.text)
+                item.filename = EntityItemStringType(value=obj.filename.text)
+                qpath = obj.path.text.replace('"', '\\"')
+                qfilename = obj.filename.text.replace('"', '\\"')
+
+                # check if path exists
+                cmd = 'powershell -Command "' + ('Test-Path -Path \'' + qpath + '\'').replace('"', '\\"') + '" -PathType Container'
+                logger.debug('Checking existence of ' + obj.path.text + ': ' + cmd)
+                return_code, out_lines, err_lines = self.host.exec_command(cmd)
+                if out_lines[0] == 'False':
+                    item.status = 'does not exist'
+                    return [item]
+                elif out_lines[0] != 'True':
+                    logger.warning('Unable to check existence ' + obj.filepath.text + str((return_code, out_lines, err_lines)))
+                    item.status = 'error'
+                    return [item]
+                item.status = 'exists'
+
+                # TODO the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a path entity
+                # TODO the max_depth behavior MUST not be used when a pattern match is used with a path entity
+                # TODO the recurse_direction behavior MUST not be used when a pattern match is used with a path entity
+                # TODO the recurse behavior MUST not be used when a pattern match is used with a path entity
+
+                # TODO filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used
+                if obj.filename.is_nil():
+                    # can't hash a dir
+                    item.status = 'not collected'
+                else:
+                    # TODO
+            else:
+                item.status = 'not collected'
 
         else:
-            raise NotImplementedError(self.__class__.__name__ + ' has not been implemented for OVAL family: ' + self.host.facts['oval_family'])
+            item.status = 'not collected'
 
         return [item]
