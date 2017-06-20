@@ -46,6 +46,11 @@ class FileHash58Collector(OvalCollector):
         if obj.filepath is not None:
             # TODO the max_depth and recurse_direction behaviors are not allowed with a filepath entity
             # TODO the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a filepath entity
+            # TODO datatype, operation, mask, var_ref, var_check
+            if item.filepath.operation != 'equals':
+                item.status = 'not collected'
+                return [item]
+
             item.filepath = EntityItemStringType(value=obj.filepath.text)
             qfilepath = obj.filepath.text.replace('"', '\\"')
 
@@ -88,6 +93,7 @@ class FileHash58Collector(OvalCollector):
             qfilename = obj.filename.text.replace('"', '\\"')
 
             # check if path exists
+            # TODO datatype, operation, mask, var_ref, var_check
             cmd = 'powershell -Command "' \
             + ('Test-Path -Path \'' + qpath + '\'').replace('"', '\\"') \
             + '" -PathType Container'
@@ -108,12 +114,15 @@ class FileHash58Collector(OvalCollector):
             # TODO the recurse behavior MUST not be used when a pattern match is used with a path entity
 
             # TODO filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used
+            # TODO datatype, operation, mask, var_ref, var_check
+            if obj.filename
             if obj.filename.is_nil():
                 # can't hash a dir
                 item.status = 'not collected'
-            else:
-                # TODO
-                pass
+                return [item]
+
+            # TODO
+            item.hash_type = EntityItemHashTypeType(value=obj.hash_type.text)
 
         else:
             item.status = 'not collected'
