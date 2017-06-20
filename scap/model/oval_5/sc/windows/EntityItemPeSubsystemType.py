@@ -28,7 +28,7 @@ class EntityItemPeSubsystemType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'IMAGE_SUBSYSTEM_UNKNOWN',
             'IMAGE_SUBSYSTEM_NATIVE',

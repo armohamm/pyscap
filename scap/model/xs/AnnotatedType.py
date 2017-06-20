@@ -93,7 +93,7 @@ class AnnotatedType(AnyTypeType):
             f.write((' ' * indent) + "}\n\n")
 
             if self._value_enumeration is not None:
-                f.write((' ' * indent) + "def get_value_enumeration(self):\n")
+                f.write((' ' * indent) + "def get_value_enum(self):\n")
                 indent += 4
                 f.write((' ' * indent) + "return [\n")
                 indent += 4

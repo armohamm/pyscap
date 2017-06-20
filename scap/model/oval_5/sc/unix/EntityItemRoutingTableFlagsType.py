@@ -28,7 +28,7 @@ class EntityItemRoutingTableFlagsType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'UP',
             'GATEWAY',

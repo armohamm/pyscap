@@ -28,7 +28,7 @@ class EntityItemInterfaceTypeType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'MIB_IF_TYPE_ETHERNET',
             'MIB_IF_TYPE_FDDI',

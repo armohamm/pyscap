@@ -28,7 +28,7 @@ class EntityItemSharedResourceTypeType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'STYPE_DISKTREE',
             'STYPE_DISKTREE_SPECIAL',

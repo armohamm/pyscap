@@ -28,7 +28,7 @@ class EntityItemSystemMetricIndexType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'SM_ARRANGE',
             'SM_CLEANBOOT',

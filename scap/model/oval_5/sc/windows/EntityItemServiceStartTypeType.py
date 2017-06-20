@@ -28,7 +28,7 @@ class EntityItemServiceStartTypeType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'SERVICE_AUTO_START',
             'SERVICE_BOOT_START',

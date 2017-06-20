@@ -28,7 +28,7 @@ class EntityItemInterfaceType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'ARPHRD_ETHER',
             'ARPHRD_FDDI',

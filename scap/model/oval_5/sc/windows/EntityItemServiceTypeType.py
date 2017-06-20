@@ -28,7 +28,7 @@ class EntityItemServiceTypeType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'SERVICE_FILE_SYSTEM_DRIVER',
             'SERVICE_KERNEL_DRIVER',

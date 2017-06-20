@@ -28,7 +28,7 @@ class EntityItemFileTypeType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'FILE_ATTRIBUTE_DIRECTORY',
             'FILE_TYPE_CHAR',

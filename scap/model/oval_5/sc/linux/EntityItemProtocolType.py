@@ -20,14 +20,10 @@ import logging
 from scap.Model import Model
 from scap.model.oval_5 import LINUX_PROTOCOL_ENUMERATION
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
-from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class EntityItemType(EntityItemType, StringType):
+class EntityItemType(EntityItemType):
     MODEL_MAP = {
-        'attributes': {
-            'datatype': {'enum': ['string'], 'required': True, 'default': 'string'},
-        },
     }
 
     def get_value_enum(self):

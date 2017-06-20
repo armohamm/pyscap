@@ -28,7 +28,7 @@ class EntityItemCapabilityType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'CAP_CHOWN',
             'CAP_DAC_OVERRIDE',

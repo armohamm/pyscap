@@ -28,7 +28,7 @@ class EntityItemWaitStatusType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'wait',
             'nowait',

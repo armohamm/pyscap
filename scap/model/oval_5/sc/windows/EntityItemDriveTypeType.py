@@ -28,7 +28,7 @@ class EntityItemDriveTypeType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'DRIVE_UNKNOWN',
             'DRIVE_NO_ROOT_DIR',

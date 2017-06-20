@@ -28,7 +28,7 @@ class EntityItemRegistryHiveType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'HKEY_CLASSES_ROOT',
             'HKEY_CURRENT_CONFIG',

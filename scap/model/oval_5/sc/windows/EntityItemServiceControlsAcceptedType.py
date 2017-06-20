@@ -28,7 +28,7 @@ class EntityItemServiceControlsAcceptedType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'SERVICE_ACCEPT_NETBINDCHANGE',
             'SERVICE_ACCEPT_PARAMCHANGE',

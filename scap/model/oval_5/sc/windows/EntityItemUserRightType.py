@@ -28,7 +28,7 @@ class EntityItemUserRightType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'SE_ASSIGNPRIMARYTOKEN_NAME',
             'SE_AUDIT_NAME',

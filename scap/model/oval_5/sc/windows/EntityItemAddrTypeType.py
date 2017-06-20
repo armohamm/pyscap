@@ -28,7 +28,7 @@ class EntityItemAddrTypeType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'MIB_IPADDR_DELETED',
             'MIB_IPADDR_DISCONNECTED',

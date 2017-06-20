@@ -28,7 +28,7 @@ class EntityItemWindowsViewType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             '32_bit',
             '64_bit',

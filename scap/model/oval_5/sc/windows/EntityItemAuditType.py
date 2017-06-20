@@ -28,7 +28,7 @@ class EntityItemAuditType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'AUDIT_FAILURE',
             'AUDIT_NONE',

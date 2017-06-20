@@ -28,7 +28,7 @@ class EntityItemPeTargetMachineType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'IMAGE_FILE_MACHINE_UNKNOWN',
             'IMAGE_FILE_MACHINE_ALPHA',

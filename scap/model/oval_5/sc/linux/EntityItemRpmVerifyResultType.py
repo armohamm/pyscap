@@ -24,9 +24,6 @@ from scap.model.oval_5.sc.EntityItemType import EntityItemType
 logger = logging.getLogger(__name__)
 class EntityItemType(EntityItemType):
     MODEL_MAP = {
-        'attributes': {
-            'datatype': {'enum': ['string'], 'required': True, 'default': 'string'},
-        },
     }
 
     def get_value_enum(self):

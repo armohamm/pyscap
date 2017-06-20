@@ -28,7 +28,7 @@ class EntityItemAdsTypeType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'ADSTYPE_INVALID',
             'ADSTYPE_DN_STRING',

@@ -28,7 +28,7 @@ class EntityItemCmdletVerbType(EntityItemType):
         },
     }
 
-    def get_value_enumeration(self):
+    def get_value_enum(self):
         return [
             'Approve',
             'Assert',
