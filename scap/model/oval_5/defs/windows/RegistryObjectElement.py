@@ -27,7 +27,7 @@ class RegistryObjectElement(ObjectType):
         'elements': [
             {'tag_name': 'behaviors', 'class': 'RegistryBehaviors', 'min': 0},
             {'tag_name': 'hive', 'class': 'EntityObjectRegistryHiveType', 'min': 0},
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
+            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
         ],
     }

@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class InetdObjectElement(ObjectType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'protocol', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'protocol', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
         'attributes': {
         },

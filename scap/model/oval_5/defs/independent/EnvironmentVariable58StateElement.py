@@ -24,8 +24,8 @@ class EnvironmentVariable58StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'environmentvariable58_state',
         'elements': [
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityObjectIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'max': 1},
             {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateAnySimpleType', 'min': 0, 'max': 1},
         ],
     }

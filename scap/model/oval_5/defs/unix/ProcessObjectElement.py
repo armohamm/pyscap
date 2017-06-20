@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class ProcessObjectElement(ObjectType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'command', 'class': 'scap.model.oval_5.defs.EntityObjectStringType'},
+            {'tag_name': 'command', 'class': 'scap.model.oval_5.defs.EntityObjectType'},
         ],
         'attributes': {
         },

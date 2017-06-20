@@ -26,7 +26,7 @@ class ActiveDirectoryObjectElement(ObjectType):
         'tag_name': 'activedirectory_object',
         'elements': [
             {'tag_name': 'naming_context', 'class': 'EntityObjectNamingContextType', 'min': 0},
-            {'tag_name': 'relative_dn', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
-            {'tag_name': 'attribute', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
+            {'tag_name': 'relative_dn', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
+            {'tag_name': 'attribute', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
         ],
     }

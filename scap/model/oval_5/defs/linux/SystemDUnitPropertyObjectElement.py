@@ -24,7 +24,7 @@ class SystemDUnitPropertyObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'systemdunitproperty_object',
         'elements': [
-            {'tag_name': 'unit', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'property', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'unit', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'property', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

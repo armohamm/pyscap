@@ -25,7 +25,7 @@ class SharedResourceAuditedPermissionsObjectElement(ObjectType):
         'tag_name': 'sharedresourceauditedpermissions_object',
         'elements': [
             {'tag_name': 'behaviors', 'class': 'SharedResourceAuditedPermissionsBehaviors', 'min': 0},
-            {'tag_name': 'netname', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'netname', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

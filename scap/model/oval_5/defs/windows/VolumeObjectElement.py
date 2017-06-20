@@ -24,6 +24,6 @@ class VolumeObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'volume_object',
         'elements': [
-            {'tag_name': 'rootpath', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'rootpath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

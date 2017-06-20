@@ -26,6 +26,6 @@ class WuaUpdateSearcherObjectElement(ObjectType):
         'tag_name': 'wuaupdatesearcher_object',
         'elements': [
             {'tag_name': 'behaviors', 'class': 'WuaUpdateSearcherBehaviors', 'min': 0},
-            {'tag_name': 'search_criteria', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'search_criteria', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

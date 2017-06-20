@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.oval_5.defs.EntityObjectStringType import EntityObjectStringType
+from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
-class EntityObjectVariableRefType(EntityObjectStringType):
+class EntityObjectVariableRefType(EntityObjectType):
     MODEL_MAP = {
     }
 

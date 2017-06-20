@@ -18,11 +18,11 @@
 import logging
 
 from scap.model.oval_5 import IP_PROTOCOL_ENUMERATION
-from scap.model.oval_5.defs.EntityObjectStringType import EntityObjectStringType
+from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
-class EntityObjectProtocolType(EntityObjectStringType):
+class EntityObjectProtocolType(EntityObjectType):
     MODEL_MAP = {
     }
 

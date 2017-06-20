@@ -25,9 +25,9 @@ class FileEffectiveRights53ObjectElement(ObjectType):
         'tag_name': 'fileeffectiverights53_object',
         'elements': [
             {'tag_name': 'behaviors', 'class': 'FileEffectiveRights53Behaviors', 'min': 0},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
+            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

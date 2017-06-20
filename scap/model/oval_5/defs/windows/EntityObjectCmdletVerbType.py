@@ -18,11 +18,11 @@
 import logging
 
 from scap.model.oval_5 import CMDLET_VERB_ENUMERATION
-from scap.model.oval_5.defs.EntityObjectStringType import EntityObjectStringType
+from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
-class EntityObjectCmdletVerbType(EntityObjectStringType):
+class EntityObjectCmdletVerbType(EntityObjectType):
     MODEL_MAP = {
     }
 

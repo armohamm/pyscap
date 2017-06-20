@@ -25,7 +25,7 @@ class PrinterEffectiveRightsObjectElement(ObjectType):
         'tag_name': 'printereffectiverights_object',
         'elements': [
             {'tag_name': 'behaviors', 'class': 'PrinterEffectiveRightsBehaviors', 'min': 0},
-            {'tag_name': 'printer_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'printer_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

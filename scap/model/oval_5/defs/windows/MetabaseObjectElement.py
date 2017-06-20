@@ -24,7 +24,7 @@ class MetabaseObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'metabase_object',
         'elements': [
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'id', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
+            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'id', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
         ],
     }

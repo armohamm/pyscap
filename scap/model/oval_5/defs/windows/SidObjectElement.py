@@ -25,6 +25,6 @@ class SidObjectElement(ObjectType):
         'tag_name': 'sid_object',
         'elements': [
             {'tag_name': 'behaviors', 'class': 'SidBehaviors', 'min': 0},
-            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

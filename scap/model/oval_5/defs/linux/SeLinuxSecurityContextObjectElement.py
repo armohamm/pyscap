@@ -25,9 +25,9 @@ class SeLinuxSecurityContextObjectElement(ObjectType):
         'tag_name': 'selinuxsecuritycontext_object',
         'elements': [
             {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityObjectIntType', 'nillable': True, 'min': 0},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
+            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
         ],
     }

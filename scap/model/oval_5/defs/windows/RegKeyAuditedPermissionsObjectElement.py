@@ -26,7 +26,7 @@ class RegKeyAuditedPermissionsObjectElement(ObjectType):
         'elements': [
             {'tag_name': 'behaviors', 'class': 'RegkeyAuditPermissionsBehaviors', 'min': 0},
             {'tag_name': 'hive', 'class': 'EntityObjectRegistryHiveType', 'min': 0},
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

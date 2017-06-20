@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class DnsCacheObjectElement(ObjectType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'domain_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'domain_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
         'attributes': {
         },

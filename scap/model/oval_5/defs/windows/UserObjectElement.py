@@ -24,6 +24,6 @@ class UserObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'user_object',
         'elements': [
-            {'tag_name': 'user', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'user', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

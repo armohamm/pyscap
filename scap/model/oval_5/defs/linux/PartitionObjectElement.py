@@ -24,6 +24,6 @@ class PartitionObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'partition_object',
         'elements': [
-            {'tag_name': 'mount_point', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'mount_point', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

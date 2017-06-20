@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class RoutingTableObjectElement(ObjectType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'destination', 'class': 'scap.model.oval_5.defs.EntityObjectIPAddressType', 'min': 0},
+            {'tag_name': 'destination', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
         'attributes': {
         },

@@ -25,8 +25,8 @@ class SQL57ObjectElement(ObjectType):
         'tag_name': 'sql57_object',
         'elements': [
             {'tag_name': 'engine', 'class': 'EntityObjectEngineType', 'min': 0},
-            {'tag_name': 'version', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'connection_string', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'sql', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'version', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'connection_string', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'sql', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

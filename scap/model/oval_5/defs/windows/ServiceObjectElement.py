@@ -24,6 +24,6 @@ class ServiceObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'service_object',
         'elements': [
-            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

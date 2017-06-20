@@ -24,7 +24,7 @@ class Wmi57ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'wmi57_object',
         'elements': [
-            {'tag_name': 'namespace', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'wql', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'namespace', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'wql', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

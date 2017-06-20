@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class GconfObjectElement(ObjectType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'source', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0},
+            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'source', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
         ],
         'attributes': {
         },

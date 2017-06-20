@@ -25,12 +25,12 @@ class CmdletObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'cmdlet_object',
         'elements': [
-            {'tag_name': 'module_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0, 'max': 1},
+            {'tag_name': 'module_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0, 'max': 1},
             {'tag_name': 'module_id', 'class': 'EntityObjectGUIDType', 'nillable': True, 'min': 0, 'max': 1},
-            {'tag_name': 'module_version', 'class': 'EntityObjectVersionType', 'nillable': True, 'min': 0, 'max': 1},
+            {'tag_name': 'module_version', 'class': 'EntityObjectType', 'nillable': True, 'min': 0, 'max': 1},
             {'tag_name': 'verb', 'class': 'EntityObjectCmdletVerbType', 'nillable': True, 'min': 0, 'max': 1},
-            {'tag_name': 'noun', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'nillable': True, 'min': 0, 'max': 1},
-            {'tag_name': 'parameters', 'class': 'scap.model.oval_5.defs.EntityObjectRecordType', 'nillable': True, 'min': 0},
-            {'tag_name': 'select', 'class': 'scap.model.oval_5.defs.EntityObjectRecordType', 'nillable': True, 'min': 0},
+            {'tag_name': 'noun', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0, 'max': 1},
+            {'tag_name': 'parameters', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
+            {'tag_name': 'select', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
         ],
     }

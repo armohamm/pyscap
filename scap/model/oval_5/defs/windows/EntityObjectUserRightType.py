@@ -18,11 +18,11 @@
 import logging
 
 from scap.model.oval_5 import WINDOWS_USER_RIGHT_ENUMERATION
-from scap.model.oval_5.defs.EntityObjectStringType import EntityObjectStringType
+from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
-class EntityObjectUserRightType(EntityObjectStringType):
+class EntityObjectUserRightType(EntityObjectType):
     MODEL_MAP = {
     }
 

@@ -25,11 +25,11 @@ class RpmVerifyFileObjectElement(ObjectType):
         'tag_name': 'rpmverifyfile_object',
         'elements': [
             {'tag_name': 'behaviors', 'class': 'RpmVerifyFileBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'max': 1},
             {'tag_name': 'epoch', 'class': 'EpochElement', 'min': 0, 'max': 1},
             {'tag_name': 'version', 'class': 'VersionElement', 'min': 0, 'max': 1},
             {'tag_name': 'release', 'class': 'ReleaseElement', 'min': 0, 'max': 1},
-            {'tag_name': 'arch', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'arch', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'max': 1},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'max': 1},
         ],
     }

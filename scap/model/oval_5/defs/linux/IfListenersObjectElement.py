@@ -24,6 +24,6 @@ class IfListenersObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'iflisteners_object',
         'elements': [
-            {'tag_name': 'interface_name', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
+            {'tag_name': 'interface_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }

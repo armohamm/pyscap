@@ -24,7 +24,7 @@ class Process58ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'process58_object',
         'elements': [
-            {'tag_name': 'command_line', 'class': 'scap.model.oval_5.defs.EntityObjectStringType', 'min': 0},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityObjectIntType', 'min': 0},
+            {'tag_name': 'command_line', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
         ],
     }
