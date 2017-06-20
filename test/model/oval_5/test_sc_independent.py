@@ -67,12 +67,7 @@ host = Host.load('localhost')
 for collector in host.detect_collectors({}):
     collector.collect()
 
-@pytest.mark.parametrize(
-    'oval_family', [
-        ('linux'),
-        ('windows'),
-    ]
-)
+@pytest.mark.parametrize('oval_family', [('linux'), ('windows')])
 def test_family(oval_family):
     if host.facts['oval_family'] != oval_family:
         pytest.skip('Does not apply to platform')
@@ -82,6 +77,7 @@ def test_family(oval_family):
     assert len(items) == 1
     assert isinstance(items[0], FamilyItemElement)
     assert items[0].family.text == oval_family
+
 
 @pytest.mark.parametrize(
     "oval_family, hash_type,hash_value",
