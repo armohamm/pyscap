@@ -28,6 +28,12 @@ from scap.Inventory import Inventory
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 class LinuxLocalHost(LocalHost):
+    def __init__(self, hostname):
+        super(LinuxLocalHost, self).__init__(hostname)
+
+        # so we short circuit any detection
+        self.facts['oval_family'] = 'linux'
+
     def detect_collectors(self, args):
         from scap.collector.linux.Collector import Collector
         return [Collector(self, args)]

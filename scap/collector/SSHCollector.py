@@ -26,11 +26,13 @@ class SSHCollector(Collector):
             from scap.collector.UNameCollector import UNameCollector
             UNameCollector(self.host, self.args).collect()
             if self.host.facts['uname'].startswith('Linux'):
+                self.host.facts['oval_family'] = 'linux'
                 from scap.collector.LinuxCollector import LinuxCollector
                 LinuxCollector(self.host, self.args).collect()
             # elif uname.startswith('Darwin'):
             #     pass
             elif self.host.facts['uname'].startswith('Windows NT'):
+                self.host.facts['oval_family'] = 'windows'
                 from scap.collector.WindowsCollector import WindowsCollector
                 WindowsCollector(self.host, self.args).collect()
             else:

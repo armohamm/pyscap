@@ -24,6 +24,12 @@ from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
 class WindowsLocalHost(LocalHost):
+    def __init__(self, hostname):
+        super(WindowsLocalHost, self).__init__(hostname)
+
+        # so we short circuit any detection
+        self.facts['oval_family'] = 'windows'
+
     def detect_collectors(self, args):
         from scap.collector.windows.Collector import Collector
         return [Collector(self, args)]
