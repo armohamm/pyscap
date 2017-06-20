@@ -25,7 +25,7 @@ class WuaUpdateSearcherStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'wuaupdatesearcher_state',
         'elements': [
-            {'tag_name': 'search_criteria', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'update_id', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
+            {'tag_name': 'search_criteria', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'update_id', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
         ],
     }

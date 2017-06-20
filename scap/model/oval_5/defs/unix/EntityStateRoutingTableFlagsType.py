@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.oval_5 import UNIX_ROUTING_TABLE_FLAGS_ENUMERATION
-from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class EntityStateRoutingTableFlagsType(EntityStateStringType):
+class EntityStateRoutingTableFlagsType(EntityStateType):
     MODEL_MAP = {
         'elements': [
         ],

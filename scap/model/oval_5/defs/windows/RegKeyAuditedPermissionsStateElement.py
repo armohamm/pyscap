@@ -25,8 +25,8 @@ class RegKeyAuditedPermissionsStateElement(StateType):
         'tag_name': 'regkeyauditedpermissions_state',
         'elements': [
             {'tag_name': 'hive', 'class': 'EntityStateRegistryHiveType', 'min': 0},
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
+            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'standard_delete', 'class': 'EntityStateAuditType', 'min': 0},
             {'tag_name': 'standard_read_control', 'class': 'EntityStateAuditType', 'min': 0},
             {'tag_name': 'standard_write_owner', 'class': 'EntityStateAuditType'},

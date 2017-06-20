@@ -28,6 +28,6 @@ class SQL57StateElement(StateType):
             {'tag_name': 'version', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
             {'tag_name': 'connection_string', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
             {'tag_name': 'sql', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'result', 'class': 'scap.model.oval_5.defs.EntityStateRecordType', 'min': 0},
+            {'tag_name': 'result', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
         ],
     }

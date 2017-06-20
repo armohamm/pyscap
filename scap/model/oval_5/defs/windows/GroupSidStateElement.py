@@ -24,8 +24,8 @@ class GroupSidStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'group_sid_state',
         'elements': [
-            {'tag_name': 'group_sid', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'user_sid', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'subgroup_sid', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
+            {'tag_name': 'group_sid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'user_sid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'subgroup_sid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
         ],
     }

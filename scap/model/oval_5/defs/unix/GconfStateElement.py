@@ -23,14 +23,14 @@ logger = logging.getLogger(__name__)
 class GconfStateElement(StateType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'source', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'source', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
             {'tag_name': 'type', 'class': 'EntityStateGconfTypeType', 'min': 0, 'max': 1},
-            {'tag_name': 'is_writable', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'mod_user', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'mod_time', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'is_default', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateAnySimpleType', 'min': 0, 'max': 1},
+            {'tag_name': 'is_writable', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'mod_user', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'mod_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'is_default', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
         'attributes': {
         },

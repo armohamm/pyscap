@@ -18,11 +18,11 @@
 import logging
 
 from scap.model.oval_5 import WINDOWS_REGISTRY_HIVE_ENUMERATION
-from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-class EntityStateRegistryHiveType(EntityStateStringType):
+class EntityStateRegistryHiveType(EntityStateType):
     MODEL_MAP = {
     }
 

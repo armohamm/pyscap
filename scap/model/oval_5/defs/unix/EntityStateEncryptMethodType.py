@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.oval_5 import UNIX_ENCRYPT_METHOD_ENUMERATION
-from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class EntityStateEncryptMethodType(EntityStateStringType):
+class EntityStateEncryptMethodType(EntityStateType):
     MODEL_MAP = {
         'elements': [
         ],

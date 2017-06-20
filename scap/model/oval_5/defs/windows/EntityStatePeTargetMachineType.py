@@ -18,11 +18,11 @@
 import logging
 
 from scap.model.oval_5 import PE_TARGET_MACHINE_ENUMERATION
-from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-class EntityStatePeTargetMachineType(EntityStateStringType):
+class EntityStatePeTargetMachineType(EntityStateType):
     MODEL_MAP = {
     }
 

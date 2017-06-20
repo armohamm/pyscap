@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class SysctlStateElement(StateType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateAnySimpleType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
         'attributes': {
         },

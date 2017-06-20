@@ -23,16 +23,16 @@ logger = logging.getLogger(__name__)
 class ProcessStateElement(StateType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'command', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'exec_time', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'ppid', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'priority', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'ruid', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'scheduling_class', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'start_time', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'tty', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'user_id', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0, 'max': 1},
+            {'tag_name': 'command', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'exec_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'ppid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'priority', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'ruid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'scheduling_class', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'start_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'tty', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'user_id', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
         'attributes': {
         },

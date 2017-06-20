@@ -24,11 +24,11 @@ class Ldap57StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'ldap57_state',
         'elements': [
-            {'tag_name': 'suffix', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'relative_dn', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'attribute', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'object_class', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
+            {'tag_name': 'suffix', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'relative_dn', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'attribute', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'object_class', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'ldaptype', 'class': 'EntityStateLdaptypeType', 'min': 0},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateRecordType', 'min': 0},
+            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
         ],
     }

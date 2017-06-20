@@ -24,8 +24,8 @@ class RpmVerifyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'rpmverify_state',
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
             {'tag_name': 'size_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
             {'tag_name': 'mode_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
             {'tag_name': 'md5_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
@@ -35,10 +35,10 @@ class RpmVerifyStateElement(StateType):
             {'tag_name': 'group_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
             {'tag_name': 'mtime_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
             {'tag_name': 'capabilities_differ', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
-            {'tag_name': 'configuration_file', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'documentation_file', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'ghost_file', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'license_file', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'readme_file', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
+            {'tag_name': 'configuration_file', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'documentation_file', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'ghost_file', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'license_file', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'readme_file', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
     }

@@ -23,13 +23,13 @@ logger = logging.getLogger(__name__)
 class InterfaceStateElement(StateType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
             {'tag_name': 'type', 'class': 'EntityStateInterfaceType', 'min': 0, 'max': 1},
-            {'tag_name': 'hardware_addr', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'inet_addr', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'broadcast_addr', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'netmask', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'flag', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'hardware_addr', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'inet_addr', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'broadcast_addr', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'netmask', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'flag', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
         'attributes': {
         },

@@ -18,11 +18,11 @@
 import logging
 
 from scap.model.oval_5 import WINDOWS_SERVICE_CURRENT_STATE_ENUMERATION
-from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-class EntityStateServiceCurrentStateType(EntityStateStringType):
+class EntityStateServiceCurrentStateType(EntityStateType):
     MODEL_MAP = {
     }
 

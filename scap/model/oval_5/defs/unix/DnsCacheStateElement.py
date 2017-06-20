@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 class DnsCacheStateElement(StateType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'domain_name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'ttl', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'ip_address', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'domain_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'ttl', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'ip_address', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
         'attributes': {
         },

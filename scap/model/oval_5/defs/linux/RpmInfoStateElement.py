@@ -24,14 +24,14 @@ class RpmInfoStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'rpminfo_state',
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'arch', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'arch', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
             {'tag_name': 'epoch', 'class': 'EpochElement', 'min': 0, 'max': 1},
             {'tag_name': 'release', 'class': 'ReleaseElement', 'min': 0, 'max': 1},
             {'tag_name': 'version', 'class': 'VersionElement', 'min': 0, 'max': 1},
-            {'tag_name': 'evr', 'class': 'scap.model.oval_5.defs.EntityStateEVRStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'signature_keyid', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'extended_name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'evr', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'signature_keyid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'extended_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
     }

@@ -25,6 +25,6 @@ class EnvironmentVariableStateElement(StateType):
         'tag_name': 'environmentvariable_state',
         'elements': [
             {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateAnySimpleType', 'min': 0, 'max': 1},
+            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
     }

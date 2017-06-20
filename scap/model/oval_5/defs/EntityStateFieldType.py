@@ -23,7 +23,7 @@ from scap.model.oval_5 import CHECK_ENUMERATION
 from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
-class EntitySimpleBaseType(AnySimpleType):
+class EntityStateFieldType(AnySimpleType):
     MODEL_MAP = {
         'attributes': {
             'name': {'required': True, 'type': 'StringType'}, # TODO <xsd:pattern value="[^A-Z]+"/>

@@ -25,15 +25,15 @@ logger = logging.getLogger(__name__)
 class ShadowStateElement(StateType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'username', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'password', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'chg_lst', 'class': 'EntityStateStringIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'chg_allow', 'class': 'EntityStateStringIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'chg_req', 'class': 'EntityStateStringIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'exp_warn', 'class': 'EntityStateStringIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'exp_inact', 'class': 'EntityStateStringIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'exp_date', 'class': 'EntityStateStringIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'flag', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'username', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'password', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'chg_lst', 'class': 'EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'chg_allow', 'class': 'EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'chg_req', 'class': 'EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'exp_warn', 'class': 'EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'exp_inact', 'class': 'EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'exp_date', 'class': 'EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'flag', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
             {'tag_name': 'encrypt_method', 'class': 'EntityStateEncryptMethodType', 'min': 0, 'max': 1},
         ],
         'attributes': {

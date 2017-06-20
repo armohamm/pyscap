@@ -25,9 +25,9 @@ class SQLStateElement(StateType):
         'tag_name': 'sql_state',
         'elements': [
             {'tag_name': 'engine', 'class': 'EntityStateEngineType', 'min': 0},
-            {'tag_name': 'version', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'connection_string', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'sql', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'result', 'class': 'scap.model.oval_5.defs.EntityStateAnySimpleType', 'min': 0},
+            {'tag_name': 'version', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'connection_string', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'sql', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'result', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
         ],
     }

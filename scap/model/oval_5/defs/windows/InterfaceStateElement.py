@@ -24,13 +24,13 @@ class InterfaceStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'interface_state',
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'index', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'index', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'type', 'class': 'EntityStateInterfaceTypeType', 'min': 0},
-            {'tag_name': 'hardware_addr', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'inet_addr', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressStringType', 'min': 0},
-            {'tag_name': 'broadcast_addr', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressStringType', 'min': 0},
-            {'tag_name': 'netmask', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressStringType', 'min': 0},
+            {'tag_name': 'hardware_addr', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'inet_addr', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'broadcast_addr', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'netmask', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'addr_type', 'class': 'EntityStateAddrTypeType', 'min': 0},
         ],
     }

@@ -24,8 +24,8 @@ class GroupStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'group_state',
         'elements': [
-            {'tag_name': 'group', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'user', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'subgroup', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
+            {'tag_name': 'group', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'user', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'subgroup', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
         ],
     }

@@ -18,11 +18,11 @@
 import logging
 
 from scap.model.oval_5 import WINDOWS_AUDIT_ENUMERATION
-from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-class EntityStateAuditType(EntityStateStringType):
+class EntityStateAuditType(EntityStateType):
     MODEL_MAP = {
     }
 

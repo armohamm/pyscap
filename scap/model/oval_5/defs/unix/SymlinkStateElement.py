@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class SymlinkStateElement(StateType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'canonical_path', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'canonical_path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
         'attributes': {
         },

@@ -23,14 +23,14 @@ logger = logging.getLogger(__name__)
 class PasswordStateElement(StateType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'username', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'password', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'user_id', 'class': 'EntityStateStringIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'group_id', 'class': 'EntityStateStringIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'gcos', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'home_dir', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'login_shell', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'last_login', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0, 'max': 1},
+            {'tag_name': 'username', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'password', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'user_id', 'class': 'EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'group_id', 'class': 'EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'gcos', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'home_dir', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'login_shell', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'last_login', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
         'attributes': {
         },

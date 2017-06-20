@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 class RunLevelStateElement(StateType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'runlevel', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'start', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'kill', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
+            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'runlevel', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'start', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'kill', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
         'attributes': {
         },

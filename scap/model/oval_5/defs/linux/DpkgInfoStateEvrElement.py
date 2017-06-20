@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.oval_5.defs.EntityStateAnySimpleType import EntityStateAnySimpleType
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class DpkgInfoStateEvrElement(EntityStateAnySimpleType):
+class DpkgInfoStateEvrElement(EntityStateType):
     MODEL_MAP = {
         'tag_name': 'evr',
         'attributes': {

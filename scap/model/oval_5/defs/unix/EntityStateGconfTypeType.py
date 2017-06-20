@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.oval_5 import GCONF_TYPE_ENUMERATION
-from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class EntityStateGconfTypeType(EntityStateStringType):
+class EntityStateGconfTypeType(EntityStateType):
     MODEL_MAP = {
         'elements': [
         ],

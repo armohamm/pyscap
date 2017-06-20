@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 class RoutingTableStateElement(StateType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'destination', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressType', 'min': 0, 'max': 1},
-            {'tag_name': 'gateway', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressType', 'min': 0, 'max': 1},
+            {'tag_name': 'destination', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'gateway', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
             {'tag_name': 'flags', 'class': 'EntityStateRoutingTableFlagsType', 'min': 0, 'max': 1},
-            {'tag_name': 'interface_name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'interface_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
         'attributes': {
         },

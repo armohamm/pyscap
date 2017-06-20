@@ -24,11 +24,11 @@ class IfListenersStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'iflisteners_state',
         'elements': [
-            {'tag_name': 'interface_name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'interface_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
             {'tag_name': 'protocol', 'class': 'EntityStateProtocolType', 'min': 0, 'max': 1},
-            {'tag_name': 'hw_address', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'program_name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'user_id', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0, 'max': 1},
+            {'tag_name': 'hw_address', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'program_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'user_id', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
     }

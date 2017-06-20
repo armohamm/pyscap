@@ -18,10 +18,10 @@
 import logging
 
 from scap.model.oval_5 import UNIX_WAIT_STATUS_ENUMERATION
-from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class EntityStateWaitStatusType(EntityStateStringType):
+class EntityStateWaitStatusType(EntityStateType):
     MODEL_MAP = {
         'elements': [
         ],

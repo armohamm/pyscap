@@ -18,11 +18,11 @@
 import logging
 
 from scap.model.oval_5 import WINDOWS_SYSTEM_METRIC_INDEX_ENUMERATION
-from scap.model.oval_5.defs.EntityStateStringType import EntityStateStringType
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-class EntityStateSystemMetricIndexType(EntityStateStringType):
+class EntityStateSystemMetricIndexType(EntityStateType):
     MODEL_MAP = {
     }
 

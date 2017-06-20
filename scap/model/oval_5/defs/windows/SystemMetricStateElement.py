@@ -25,6 +25,6 @@ class SystemMetricStateElement(StateType):
         'tag_name': 'systemmetric_state',
         'elements': [
             {'tag_name': 'index', 'class': 'EntityStateSystemMetricIndexType', 'min': 0},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0},
+            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
         ],
     }

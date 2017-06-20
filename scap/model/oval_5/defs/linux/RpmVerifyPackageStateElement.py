@@ -24,15 +24,15 @@ class RpmVerifyPackageStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'rpmverifypackage_state',
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
             {'tag_name': 'epoch', 'class': 'EpochElement', 'min': 0, 'max': 1},
             {'tag_name': 'version', 'class': 'VersionElement', 'min': 0, 'max': 1},
             {'tag_name': 'release', 'class': 'ReleaseElement', 'min': 0, 'max': 1},
-            {'tag_name': 'arch', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'extended_name', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'dependency_check_passed', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'digest_check_passed', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'verification_script_successful', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'signature_check_passed', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0, 'max': 1},
+            {'tag_name': 'arch', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'extended_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'dependency_check_passed', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'digest_check_passed', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'verification_script_successful', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'signature_check_passed', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
     }

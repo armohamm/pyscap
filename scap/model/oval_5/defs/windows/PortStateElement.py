@@ -24,11 +24,11 @@ class PortStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'port_state',
         'elements': [
-            {'tag_name': 'local_address', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressStringType', 'min': 0},
-            {'tag_name': 'local_port', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0},
+            {'tag_name': 'local_address', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'local_port', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'protocol', 'class': 'EntityStateProtocolType', 'min': 0},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0},
-            {'tag_name': 'foreign_address', 'class': 'scap.model.oval_5.defs.EntityStateIPAddressStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'foreign_port', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'foreign_address', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+            {'tag_name': 'foreign_port', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
         ],
     }

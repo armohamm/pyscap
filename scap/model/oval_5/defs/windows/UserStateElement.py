@@ -24,9 +24,9 @@ class UserStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'user_state',
         'elements': [
-            {'tag_name': 'user', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'enabled', 'class': 'scap.model.oval_5.defs.EntityStateBoolType', 'min': 0},
-            {'tag_name': 'group', 'class': 'scap.model.oval_5.defs.EntityStateStringType', 'min': 0},
-            {'tag_name': 'last_logon', 'class': 'scap.model.oval_5.defs.EntityStateIntType', 'min': 0},
+            {'tag_name': 'user', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'enabled', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'group', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+            {'tag_name': 'last_logon', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
         ],
     }
