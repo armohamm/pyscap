@@ -65,6 +65,12 @@ class EntityItemType(Model):
             elif self.datatype in DATATYPE_CLASS_MAPPING:
                 self.text = DATATYPE_CLASS_MAPPING[self.datatype].parse_value(sub_el.text)
 
+                # allow StringType-like enums & patterns
+                if hasattr(self, 'get_value_enum') and self.text not in self.get_value_enum():
+                    raise ValueError(self.__class__.__name__ + ' requires a value in ' + str(self.get_value_enum()))
+                if hasattr(self, 'get_value_pattern') and not re.fullmatch(self.get_value_pattern(), self.text):
+                    raise ValueError(self.__class__.__name__ + ' requires a value matching ' + self.get_value_pattern())
+
     def to_xml(self):
         if self.datatype in DATATYPE_CLASS_MAPPING:
             self.text = DATATYPE_CLASS_MAPPING[self.datatype].produce_value(sub_el.text)
