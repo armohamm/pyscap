@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 class UserSidItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'user_sid', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'enabled', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemBoolType'},
-            {'tag_name': 'group_sid', 'max': None, 'list': 'group_sids', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'last_logon', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType'},
+            {'tag_name': 'user_sid', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'enabled', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'group_sid', 'max': None, 'list': 'group_sids', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'last_logon', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
         ],
         'attributes': {
         },

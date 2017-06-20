@@ -24,11 +24,11 @@ logger = logging.getLogger(__name__)
 class XmlFileContentItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': None},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': None},
-            {'tag_name': 'xpath', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': None},
-            {'tag_name': 'value_of', 'class': 'scap.model.oval_5.sc.EntityItemAnySimpleType', 'min': 0, 'max': None},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'path', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
+            {'tag_name': 'filename', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
+            {'tag_name': 'xpath', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
+            {'tag_name': 'value_of', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
             {'tag_name': 'windows_view', 'class': 'EntityItemWindowsViewType', 'min': 0},
         ],
         'attributes': {

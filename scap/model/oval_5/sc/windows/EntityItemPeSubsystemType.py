@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.oval_5.sc.EntityItemStringType import EntityItemStringType
+from scap.model.oval_5.sc.EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
-class EntityItemPeSubsystemType(EntityItemStringType):
+class EntityItemPeSubsystemType(EntityItemType):
     MODEL_MAP = {
         'elements': [
         ],

@@ -23,12 +23,12 @@ logger = logging.getLogger(__name__)
 class UnameItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'machine_class', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'node_name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'os_name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'os_release', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'os_version', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'processor_type', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
+            {'tag_name': 'machine_class', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'node_name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'os_name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'os_release', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'os_version', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'processor_type', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
         ],
         'attributes': {
         },

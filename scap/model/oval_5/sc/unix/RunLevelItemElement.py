@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 class RunLevelItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'service_name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'runlevel', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'start', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemBoolType', 'max': 1},
-            {'tag_name': 'kill', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemBoolType', 'max': 1},
+            {'tag_name': 'service_name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'runlevel', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'start', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'kill', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
         ],
         'attributes': {
         },

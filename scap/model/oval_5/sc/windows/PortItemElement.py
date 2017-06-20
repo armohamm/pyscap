@@ -24,11 +24,11 @@ class PortItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'local_address', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType'},
-            {'tag_name': 'local_port', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType'},
+            {'tag_name': 'local_port', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
             {'tag_name': 'protocol', 'max': 1, 'min': 0, 'class': 'EntityItemProtocolType'},
-            {'tag_name': 'pid', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType'},
+            {'tag_name': 'pid', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
             {'tag_name': 'foreign_address', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType'},
-            {'tag_name': 'foreign_port', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
+            {'tag_name': 'foreign_port', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
         ],
         'attributes': {
         },

@@ -24,9 +24,9 @@ logger = logging.getLogger(__name__)
 class DpkgInfoItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'arch', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'epoch', 'class': 'scap.model.oval_5.sc.EntityItemStringIntType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'arch', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'epoch', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
             {'tag_name': 'release', 'class': 'EntityItemStringVersionType', 'min': 0, 'max': 1},
             {'tag_name': 'version', 'class': 'EntityItemStringVersionType', 'min': 0, 'max': 1},
             {'tag_name': 'evr', 'class': 'EntityItemEvrDebEvrType', 'min': 0, 'max': 1},

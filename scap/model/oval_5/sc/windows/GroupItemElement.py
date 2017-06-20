@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 class GroupItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'group', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'user', 'max': None, 'list': 'users', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'subgroup', 'max': None, 'list': 'subgroups', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
+            {'tag_name': 'group', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'user', 'max': None, 'list': 'users', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'subgroup', 'max': None, 'list': 'subgroups', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
         ],
         'attributes': {
         },

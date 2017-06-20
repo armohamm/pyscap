@@ -24,14 +24,14 @@ logger = logging.getLogger(__name__)
 class TextFileContentItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'pattern', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'instance', 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'line', 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'text', 'class': 'scap.model.oval_5.sc.EntityItemAnySimpleType', 'min': 0, 'max': 1},
-            {'tag_name': 'subexpression', 'class': 'scap.model.oval_5.sc.EntityItemAnySimpleType', 'min': 0, 'max': None},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'path', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
+            {'tag_name': 'filename', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
+            {'tag_name': 'pattern', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'instance', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'line', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'text', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'subexpression', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
             {'tag_name': 'windows_view', 'class': 'EntityItemWindowsViewType', 'min': 0},
         ],
         'attributes': {

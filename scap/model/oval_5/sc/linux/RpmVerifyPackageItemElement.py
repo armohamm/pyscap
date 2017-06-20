@@ -24,16 +24,16 @@ logger = logging.getLogger(__name__)
 class RpmVerifyPackageItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'epoch', 'class': 'scap.model.oval_5.sc.EntityItemStringIntType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'epoch', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
             {'tag_name': 'version', 'class': 'EntityItemStringVersionType', 'min': 0, 'max': 1},
             {'tag_name': 'release', 'class': 'EntityItemStringVersionType', 'min': 0, 'max': 1},
-            {'tag_name': 'arch', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'extended_name', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'dependency_check_passed', 'class': 'scap.model.oval_5.sc.EntityItemBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'digest_check_passed', 'class': 'scap.model.oval_5.sc.EntityItemBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'verification_script_successful', 'class': 'scap.model.oval_5.sc.EntityItemBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'signature_check_passed', 'class': 'scap.model.oval_5.sc.EntityItemBoolType', 'min': 0, 'max': 1},
+            {'tag_name': 'arch', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'extended_name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'dependency_check_passed', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'digest_check_passed', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'verification_script_successful', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'signature_check_passed', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
         ],
     }

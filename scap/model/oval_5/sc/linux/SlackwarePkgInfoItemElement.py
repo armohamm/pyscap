@@ -24,9 +24,9 @@ logger = logging.getLogger(__name__)
 class SlackwarePkgInfoItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'version', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'architecture', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'revision', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'version', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'architecture', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'revision', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
         ],
     }

@@ -24,11 +24,11 @@ class ActiveDirectoryItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'naming_context', 'max': 1, 'min': 0, 'class': 'EntityItemNamingContextType'},
-            {'tag_name': 'relative_dn', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'attribute', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'object_class', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
+            {'tag_name': 'relative_dn', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'attribute', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'object_class', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
             {'tag_name': 'adstype', 'max': 1, 'min': 0, 'class': 'EntityItemAdsTypeType'},
-            {'tag_name': 'value', 'max': None, 'list': 'values', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemAnySimpleType'},
+            {'tag_name': 'value', 'max': None, 'list': 'values', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
         ],
         'attributes': {
         },

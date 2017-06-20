@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class SysctlItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'list': 'values', 'tag_name': 'value', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemAnySimpleType', 'max': None},
+            {'tag_name': 'name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'list': 'values', 'tag_name': 'value', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': None},
         ],
         'attributes': {
         },

@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 class InterfaceItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'index', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType'},
+            {'tag_name': 'name', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'index', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
             {'tag_name': 'type', 'max': 1, 'min': 0, 'class': 'EntityItemInterfaceTypeType'},
-            {'tag_name': 'hardware_addr', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
+            {'tag_name': 'hardware_addr', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
             {'tag_name': 'inet_addr', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType'},
             {'tag_name': 'broadcast_addr', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType'},
             {'tag_name': 'netmask', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType'},

@@ -26,7 +26,7 @@ class RoutingTableItemElement(ItemType):
             {'tag_name': 'destination', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressType', 'max': 1},
             {'tag_name': 'gateway', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressType', 'max': 1},
             {'list': 'flagss', 'tag_name': 'flags', 'min': 0, 'class': 'EntityItemRoutingTableFlagsType', 'max': None},
-            {'tag_name': 'interface_name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
+            {'tag_name': 'interface_name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
         ],
         'attributes': {
         },

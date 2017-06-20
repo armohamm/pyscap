@@ -23,10 +23,10 @@ logger = logging.getLogger(__name__)
 class LockoutPolicyItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'force_logoff', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType'},
-            {'tag_name': 'lockout_duration', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType'},
-            {'tag_name': 'lockout_observation_window', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType'},
-            {'tag_name': 'lockout_threshold', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType'},
+            {'tag_name': 'force_logoff', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'lockout_duration', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'lockout_observation_window', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'lockout_threshold', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
         ],
         'attributes': {
         },

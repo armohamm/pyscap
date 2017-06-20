@@ -23,15 +23,15 @@ logger = logging.getLogger(__name__)
 class UacItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'admin_approval_mode', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemBoolType'},
-            {'tag_name': 'elevation_prompt_admin', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'elevation_prompt_standard', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'detect_installations', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemBoolType'},
-            {'tag_name': 'elevate_signed_executables', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemBoolType'},
-            {'tag_name': 'elevate_uiaccess', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemBoolType'},
-            {'tag_name': 'run_admins_aam', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemBoolType'},
-            {'tag_name': 'secure_desktop', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemBoolType'},
-            {'tag_name': 'virtualize_write_failures', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemBoolType'},
+            {'tag_name': 'admin_approval_mode', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'elevation_prompt_admin', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'elevation_prompt_standard', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'detect_installations', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'elevate_signed_executables', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'elevate_uiaccess', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'run_admins_aam', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'secure_desktop', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'virtualize_write_failures', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
         ],
         'attributes': {
         },

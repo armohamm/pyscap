@@ -23,16 +23,16 @@ logger = logging.getLogger(__name__)
 class ProcessItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'command', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'exec_time', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'pid', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'max': 1},
-            {'tag_name': 'ppid', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'max': 1},
-            {'tag_name': 'priority', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'max': 1},
-            {'tag_name': 'ruid', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'max': 1},
-            {'tag_name': 'scheduling_class', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'start_time', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'tty', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'user_id', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'max': 1},
+            {'tag_name': 'command', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'exec_time', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'pid', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'ppid', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'priority', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'ruid', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'scheduling_class', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'start_time', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'tty', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'user_id', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
         ],
         'attributes': {
         },

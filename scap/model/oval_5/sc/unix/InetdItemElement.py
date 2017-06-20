@@ -23,12 +23,12 @@ logger = logging.getLogger(__name__)
 class InetdItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'protocol', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'service_name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'server_program', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
-            {'tag_name': 'server_arguments', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
+            {'tag_name': 'protocol', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'service_name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'server_program', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+            {'tag_name': 'server_arguments', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
             {'tag_name': 'endpoint_type', 'min': 0, 'class': 'EntityItemEndpointType', 'max': 1},
-            {'tag_name': 'exec_as_user', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
+            {'tag_name': 'exec_as_user', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
             {'tag_name': 'wait_status', 'min': 0, 'class': 'EntityItemWaitStatusType', 'max': 1},
         ],
         'attributes': {

@@ -24,7 +24,7 @@ class SystemMetricItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'index', 'max': 1, 'min': 0, 'class': 'EntityItemSystemMetricIndexType'},
-            {'tag_name': 'value', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType'},
+            {'tag_name': 'value', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
         ],
         'attributes': {
         },

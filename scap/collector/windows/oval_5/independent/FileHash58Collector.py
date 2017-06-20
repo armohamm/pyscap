@@ -19,7 +19,7 @@ import logging
 
 from scap.collector.OvalCollector import OvalCollector
 from scap.model.oval_5.defs.independent.FileBehaviors import FileBehaviors
-from scap.model.oval_5.sc.EntityItemStringType import EntityItemStringType
+from scap.model.oval_5.sc.EntityItemType import EntityItemType
 from scap.model.oval_5.sc.independent.FileHash58ItemElement import FileHash58ItemElement
 from scap.model.oval_5.sc.independent.EntityItemHashTypeType import EntityItemHashTypeType
 
@@ -51,7 +51,7 @@ class FileHash58Collector(OvalCollector):
                 item.status = 'not collected'
                 return [item]
 
-            item.filepath = EntityItemStringType(value=obj.filepath.get_value())
+            item.filepath = EntityItemType(value=obj.filepath.get_value())
             qfilepath = obj.filepath.get_value().replace('"', '\\"')
 
             # check if file exists
@@ -80,15 +80,15 @@ class FileHash58Collector(OvalCollector):
 
                 logger.debug('Collecting ' + obj.filepath.get_value() + ': ' + cmd)
                 return_code, out_lines, err_lines = self.host.exec_command(cmd)
-                item.hash = EntityItemStringType(value=out_lines[0])
+                item.hash = EntityItemType(value=out_lines[0])
             except (IndexError, KeyError):
                 logger.warning('Unable to collect ' + obj.filepath.get_value() + str((return_code, out_lines, err_lines)))
                 item.status = 'not collected'
                 return [item]
 
         elif obj.path is not None and obj.filename is not None:
-            item.path = EntityItemStringType(value=obj.path.get_value())
-            item.filename = EntityItemStringType(value=obj.filename.get_value())
+            item.path = EntityItemType(value=obj.path.get_value())
+            item.filename = EntityItemType(value=obj.filename.get_value())
             qpath = obj.path.get_value().replace('"', '\\"')
             qfilename = obj.filename.get_value().replace('"', '\\"')
 

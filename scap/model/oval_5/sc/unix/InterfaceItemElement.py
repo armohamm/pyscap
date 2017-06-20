@@ -23,13 +23,13 @@ logger = logging.getLogger(__name__)
 class InterfaceItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
+            {'tag_name': 'name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
             {'tag_name': 'type', 'min': 0, 'class': 'EntityItemInterfaceType', 'max': 1},
-            {'tag_name': 'hardware_addr', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': 1},
+            {'tag_name': 'hardware_addr', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
             {'tag_name': 'inet_addr', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType', 'max': 1},
             {'tag_name': 'broadcast_addr', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType', 'max': 1},
             {'tag_name': 'netmask', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType', 'max': 1},
-            {'list': 'flags', 'tag_name': 'flag', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'max': None},
+            {'list': 'flags', 'tag_name': 'flag', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': None},
         ],
         'attributes': {
         },

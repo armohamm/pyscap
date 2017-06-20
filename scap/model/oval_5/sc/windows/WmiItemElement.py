@@ -23,9 +23,9 @@ logger = logging.getLogger(__name__)
 class WmiItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'namespace', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'wql', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'result', 'max': None, 'list': 'results', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemAnySimpleType'},
+            {'tag_name': 'namespace', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'wql', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'result', 'max': None, 'list': 'results', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
         ],
         'attributes': {
         },

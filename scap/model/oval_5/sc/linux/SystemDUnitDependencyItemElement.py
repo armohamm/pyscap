@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class SystemDUnitDependencyItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'unit', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'dependency', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': None},
+            {'tag_name': 'unit', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'dependency', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
         ],
     }

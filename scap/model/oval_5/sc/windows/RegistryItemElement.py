@@ -24,11 +24,11 @@ class RegistryItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'hive', 'max': 1, 'min': 0, 'class': 'EntityItemRegistryHiveType'},
-            {'tag_name': 'key', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'name', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'last_write_time', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIntType'},
+            {'tag_name': 'key', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'name', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'last_write_time', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
             {'tag_name': 'type', 'max': 1, 'min': 0, 'class': 'EntityItemRegistryTypeType'},
-            {'tag_name': 'value', 'max': None, 'list': 'values', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemAnySimpleType'},
+            {'tag_name': 'value', 'max': None, 'list': 'values', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
             {'tag_name': 'windows_view', 'max': 1, 'min': 0, 'class': 'EntityItemWindowsViewType'},
         ],
         'attributes': {

@@ -24,7 +24,7 @@ class UserRightItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'userright', 'max': 1, 'min': 0, 'class': 'EntityItemUserRightType'},
-            {'tag_name': 'trustee_sid', 'max': None, 'list': 'trustee_sids', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
+            {'tag_name': 'trustee_sid', 'max': None, 'list': 'trustee_sids', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
         ],
         'attributes': {
         },

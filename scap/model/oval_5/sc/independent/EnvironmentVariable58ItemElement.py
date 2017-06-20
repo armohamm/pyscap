@@ -24,9 +24,9 @@ logger = logging.getLogger(__name__)
 class EnvironmentVariable58ItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.sc.EntityItemAnySimpleType', 'min': 0, 'max': 1},
+            {'tag_name': 'pid', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'value', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
         ],
         'attributes': {
         }

@@ -18,10 +18,10 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5.sc.EntityItemAnySimpleType import EntityItemAnySimpleType
+from scap.model.oval_5.sc.EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
-class EntityItemStringVersionType(EntityItemAnySimpleType):
+class EntityItemStringVersionType(EntityItemType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['string', 'version'], 'required': True, 'default': 'string'},

@@ -18,10 +18,10 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5.sc.EntityItemAnySimpleType import EntityItemAnySimpleType
+from scap.model.oval_5.sc.EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
-class EntityItemEvrDebEvrType(EntityItemAnySimpleType):
+class EntityItemEvrDebEvrType(EntityItemType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['evr_string', 'debian_evr_string'], 'required': True, 'default': 'debian_evr_string'},

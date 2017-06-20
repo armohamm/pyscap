@@ -24,8 +24,8 @@ logger = logging.getLogger(__name__)
 class SeLinuxBooleanItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'current_status', 'class': 'scap.model.oval_5.sc.EntityItemBoolType', 'min': 0, 'max': 1},
-            {'tag_name': 'pending_status', 'class': 'scap.model.oval_5.sc.EntityItemBoolType', 'min': 0, 'max': 1},
+            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'current_status', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'pending_status', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
         ],
     }

@@ -24,15 +24,15 @@ logger = logging.getLogger(__name__)
 class InetListeningServerItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'protocol', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'protocol', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
             {'tag_name': 'local_address', 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'local_port', 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'local_full_address', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'program_name', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
+            {'tag_name': 'local_port', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'local_full_address', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'program_name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
             {'tag_name': 'foreign_address', 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'foreign_port', 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'foreign_full_address', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'min': 0, 'max': 1},
-            {'tag_name': 'user_id', 'class': 'scap.model.oval_5.sc.EntityItemIntType', 'min': 0, 'max': 1},
+            {'tag_name': 'foreign_port', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'foreign_full_address', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'pid', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'user_id', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
         ],
     }

@@ -19,10 +19,10 @@ import logging
 
 from scap.Model import Model
 from scap.model.oval_5 import RPM_VERIFY_RESULT_ENUMERATION
-from scap.model.oval_5.sc.EntityItemStringType import EntityItemStringType
+from scap.model.oval_5.sc.EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
-class EntityItemStringType(EntityItemStringType):
+class EntityItemType(EntityItemType):
     MODEL_MAP = {
         'attributes': {
             'datatype': {'enum': ['string'], 'required': True, 'default': 'string'},

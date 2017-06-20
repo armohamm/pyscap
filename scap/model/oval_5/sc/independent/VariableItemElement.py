@@ -25,7 +25,7 @@ class VariableItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'var_ref', 'class': 'EntityItemVariableRefType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.sc.EntityItemAnySimpleType', 'min': 0, 'max': None},
+            {'tag_name': 'value', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
         ],
         'attributes': {
         }

@@ -23,8 +23,8 @@ logger = logging.getLogger(__name__)
 class SharedResourceAuditedPermissionsItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'netname', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
-            {'tag_name': 'trustee_sid', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemStringType'},
+            {'tag_name': 'netname', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+            {'tag_name': 'trustee_sid', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
             {'tag_name': 'standard_delete', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},
             {'tag_name': 'standard_read_control', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},
             {'tag_name': 'standard_write_dac', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},

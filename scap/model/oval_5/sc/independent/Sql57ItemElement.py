@@ -25,10 +25,10 @@ class Sql57ItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
             {'tag_name': 'engine', 'class': 'EntityItemEngineType', 'min': 0, 'max': 1},
-            {'tag_name': 'version', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'connection_string', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'sql', 'class': 'scap.model.oval_5.sc.EntityItemStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'result', 'class': 'scap.model.oval_5.sc.EntityItemRecordType', 'min': 0, 'max': None},
+            {'tag_name': 'version', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
+            {'tag_name': 'connection_string', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
+            {'tag_name': 'sql', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+            {'tag_name': 'result', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
         ],
         'attributes': {
         }

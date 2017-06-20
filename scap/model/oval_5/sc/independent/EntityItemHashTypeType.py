@@ -19,10 +19,10 @@ import logging
 
 from scap.Model import Model
 from scap.model.oval_5 import HASH_TYPE_ENUMERATION
-from scap.model.oval_5.sc.EntityItemStringType import EntityItemStringType
+from scap.model.oval_5.sc.EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
-class EntityItemHashTypeType(EntityItemStringType):
+class EntityItemHashTypeType(EntityItemType):
     MODEL_MAP = {
         'elements': [
         ],
