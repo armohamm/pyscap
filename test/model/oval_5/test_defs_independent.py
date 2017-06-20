@@ -42,16 +42,16 @@ Model.register_namespace('scap.model.oval_5.defs.unix', 'http://oval.mitre.org/X
 logging.basicConfig(level=logging.DEBUG)
 
 def test_EntityObjectEngineType_parse():
-    assert EntityObjectEngineType().parse_value('ingres') == 'ingres'
+    assert EntityObjectEngineType(value='ingres').get_value() == 'ingres'
 
 def test_EntityObjectHashTypeType_parse():
-    assert EntityObjectHashTypeType().parse_value('SHA-256') == 'SHA-256'
+    assert EntityObjectHashTypeType(value='SHA-256').get_value() == 'SHA-256'
 
 def test_EntityStateLdaptypeType_parse():
-    assert EntityStateLdaptypeType().parse_value('LDAPTYPE_CERTIFICATE') == 'LDAPTYPE_CERTIFICATE'
+    assert EntityStateLdaptypeType(value='LDAPTYPE_CERTIFICATE').get_value() == 'LDAPTYPE_CERTIFICATE'
 
 def test_EntityStateVariableRefType_parse():
-    assert EntityStateVariableRefType().parse_value('oval:biz.jaymes:var:12345') == 'oval:biz.jaymes:var:12345'
+    assert EntityStateVariableRefType(value='oval:biz.jaymes:var:12345').get_value() == 'oval:biz.jaymes:var:12345'
 
 def test_EntityStateWindowsViewType_parse():
-    assert EntityStateWindowsViewType().parse_value('32_bit') == '32_bit'
+    assert EntityStateWindowsViewType(value='32_bit').get_value() == '32_bit'

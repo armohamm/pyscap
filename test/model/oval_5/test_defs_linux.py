@@ -45,10 +45,10 @@ logging.basicConfig(level=logging.DEBUG)
 host = Host.load('localhost')
 
 def test_EntityStateProtocolType_parse():
-    assert EntityStateProtocolType().parse_value('ETH_P_802_3') == 'ETH_P_802_3'
+    assert EntityStateProtocolType(value='ETH_P_802_3').get_value() == 'ETH_P_802_3'
 
 def test_EntityStateRpmVerifyResultType_parse():
-    assert EntityStateRpmVerifyResultType().parse_value('not performed') == 'not performed'
+    assert EntityStateRpmVerifyResultType(value='not performed').get_value() == 'not performed'
 
 def test_def():
     test_xml = '''<?xml version="1.0" encoding="UTF-8"?>

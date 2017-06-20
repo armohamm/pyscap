@@ -42,91 +42,91 @@ Model.register_namespace('scap.model.oval_5.defs.unix', 'http://oval.mitre.org/X
 logging.basicConfig(level=logging.DEBUG)
 
 def test_EntityObjectCmdletVerbType_parse():
-    assert EntityObjectCmdletVerbType().parse_value('Request') == 'Request'
+    assert EntityObjectCmdletVerbType(value='Request').get_value() == 'Request'
 
 def test_EntityObjectGUIDType_parse():
-    assert EntityObjectGUIDType().parse_value('{12345678-1234-1234-1234-1234567890ab}') == '{12345678-1234-1234-1234-1234567890ab}'
+    assert EntityObjectGUIDType(value='{12345678-1234-1234-1234-1234567890ab}').get_value() == '{12345678-1234-1234-1234-1234567890ab}'
 
 def test_EntityObjectNamingContextType_parse():
-    assert EntityObjectNamingContextType().parse_value('configuration') == 'configuration'
+    assert EntityObjectNamingContextType(value='configuration').get_value() == 'configuration'
 
 def test_EntityObjectProtocolType_parse():
-    assert EntityObjectProtocolType().parse_value('UDP') == 'UDP'
+    assert EntityObjectProtocolType(value='UDP').get_value() == 'UDP'
 
 def test_EntityObjectRegistryHiveType_parse():
-    assert EntityObjectRegistryHiveType().parse_value('HKEY_CURRENT_CONFIG') == 'HKEY_CURRENT_CONFIG'
+    assert EntityObjectRegistryHiveType(value='HKEY_CURRENT_CONFIG').get_value() == 'HKEY_CURRENT_CONFIG'
 
 def test_EntityObjectSystemMetricIndexType_parse():
-    assert EntityObjectSystemMetricIndexType().parse_value('SM_CXDOUBLECLK') == 'SM_CXDOUBLECLK'
+    assert EntityObjectSystemMetricIndexType(value='SM_CXDOUBLECLK').get_value() == 'SM_CXDOUBLECLK'
 
 def test_EntityObjectUserRightType_parse():
-    assert EntityObjectUserRightType().parse_value('SE_LOAD_DRIVER_NAME') == 'SE_LOAD_DRIVER_NAME'
+    assert EntityObjectUserRightType(value='SE_LOAD_DRIVER_NAME').get_value() == 'SE_LOAD_DRIVER_NAME'
 
 def test_EntityStateAddrTypeType_parse():
-    assert EntityStateAddrTypeType().parse_value('MIB_IPADDR_DYNAMIC') == 'MIB_IPADDR_DYNAMIC'
+    assert EntityStateAddrTypeType(value='MIB_IPADDR_DYNAMIC').get_value() == 'MIB_IPADDR_DYNAMIC'
 
 def test_EntityStateAdstypeType_parse():
-    assert EntityStateAdstypeType().parse_value('ADSTYPE_LARGE_INTEGER') == 'ADSTYPE_LARGE_INTEGER'
+    assert EntityStateAdstypeType(value='ADSTYPE_LARGE_INTEGER').get_value() == 'ADSTYPE_LARGE_INTEGER'
 
 def test_EntityStateAuditType_parse():
-    assert EntityStateAuditType().parse_value('AUDIT_NONE') == 'AUDIT_NONE'
+    assert EntityStateAuditType(value='AUDIT_NONE').get_value() == 'AUDIT_NONE'
 
 def test_EntityStateCmdletVerbType_parse():
-    assert EntityStateCmdletVerbType().parse_value('Request') == 'Request'
+    assert EntityStateCmdletVerbType(value='Request').get_value() == 'Request'
 
 def test_EntityStateDriveTypeType_parse():
-    assert EntityStateDriveTypeType().parse_value('DRIVE_CDROM') == 'DRIVE_CDROM'
+    assert EntityStateDriveTypeType(value='DRIVE_CDROM').get_value() == 'DRIVE_CDROM'
 
 def test_EntityStateFileTypeType_parse():
-    assert EntityStateFileTypeType().parse_value('FILE_TYPE_PIPE') == 'FILE_TYPE_PIPE'
+    assert EntityStateFileTypeType(value='FILE_TYPE_PIPE').get_value() == 'FILE_TYPE_PIPE'
 
 def test_EntityStateGUIDType_parse():
-    assert EntityStateGUIDType().parse_value('{12345678-1234-1234-1234-1234567890ab}') == '{12345678-1234-1234-1234-1234567890ab}'
+    assert EntityStateGUIDType(value='{12345678-1234-1234-1234-1234567890ab}').get_value() == '{12345678-1234-1234-1234-1234567890ab}'
 
 def test_EntityStateInterfaceTypeType_parse():
-    assert EntityStateInterfaceTypeType().parse_value('MIB_IF_TYPE_LOOPBACK') == 'MIB_IF_TYPE_LOOPBACK'
+    assert EntityStateInterfaceTypeType(value='MIB_IF_TYPE_LOOPBACK').get_value() == 'MIB_IF_TYPE_LOOPBACK'
 
 def test_EntityStateNamingContextType_parse():
-    assert EntityStateNamingContextType().parse_value('configuration') == 'configuration'
+    assert EntityStateNamingContextType(value='configuration').get_value() == 'configuration'
 
 def test_EntityStateNTUserAccountTypeType_parse():
-    assert EntityStateNTUserAccountTypeType().parse_value('domain') == 'domain'
+    assert EntityStateNTUserAccountTypeType(value='domain').get_value() == 'domain'
 
 def test_EntityStatePeSubsystemType_parse():
-    assert EntityStatePeSubsystemType().parse_value('IMAGE_SUBSYSTEM_POSIX_CUI') == 'IMAGE_SUBSYSTEM_POSIX_CUI'
+    assert EntityStatePeSubsystemType(value='IMAGE_SUBSYSTEM_POSIX_CUI').get_value() == 'IMAGE_SUBSYSTEM_POSIX_CUI'
 
 def test_EntityStatePeTargetMachineType_parse():
-    assert EntityStatePeTargetMachineType().parse_value('IMAGE_FILE_MACHINE_M68K') == 'IMAGE_FILE_MACHINE_M68K'
+    assert EntityStatePeTargetMachineType(value='IMAGE_FILE_MACHINE_M68K').get_value() == 'IMAGE_FILE_MACHINE_M68K'
 
 def test_EntityStateProtocolType_parse():
-    assert EntityStateProtocolType().parse_value('UDP') == 'UDP'
+    assert EntityStateProtocolType(value='UDP').get_value() == 'UDP'
 
 def test_EntityStateRegistryHiveType_parse():
-    assert EntityStateRegistryHiveType().parse_value('HKEY_CURRENT_USER') == 'HKEY_CURRENT_USER'
+    assert EntityStateRegistryHiveType(value='HKEY_CURRENT_USER').get_value() == 'HKEY_CURRENT_USER'
 
 def test_EntityStateRegistryTypeType_parse():
-    assert EntityStateRegistryTypeType().parse_value('reg_multi_sz') == 'reg_multi_sz'
+    assert EntityStateRegistryTypeType(value='reg_multi_sz').get_value() == 'reg_multi_sz'
 
 def test_EntityStateServiceControlsAcceptedType_parse():
-    assert EntityStateServiceControlsAcceptedType().parse_value('SERVICE_ACCEPT_POWEREVENT') == 'SERVICE_ACCEPT_POWEREVENT'
+    assert EntityStateServiceControlsAcceptedType(value='SERVICE_ACCEPT_POWEREVENT').get_value() == 'SERVICE_ACCEPT_POWEREVENT'
 
 def test_EntityStateServiceCurrentStateType_parse():
-    assert EntityStateServiceCurrentStateType().parse_value('SERVICE_RUNNING') == 'SERVICE_RUNNING'
+    assert EntityStateServiceCurrentStateType(value='SERVICE_RUNNING').get_value() == 'SERVICE_RUNNING'
 
 def test_EntityStateServiceStartTypeType_parse():
-    assert EntityStateServiceStartTypeType().parse_value('SERVICE_DEMAND_START') == 'SERVICE_DEMAND_START'
+    assert EntityStateServiceStartTypeType(value='SERVICE_DEMAND_START').get_value() == 'SERVICE_DEMAND_START'
 
 def test_EntityStateServiceTypeType_parse():
-    assert EntityStateServiceTypeType().parse_value('SERVICE_KERNEL_DRIVER') == 'SERVICE_KERNEL_DRIVER'
+    assert EntityStateServiceTypeType(value='SERVICE_KERNEL_DRIVER').get_value() == 'SERVICE_KERNEL_DRIVER'
 
 def test_EntityStateSharedResourceTypeType_parse():
-    assert EntityStateSharedResourceTypeType().parse_value('STYPE_PRINTQ_SPECIAL') == 'STYPE_PRINTQ_SPECIAL'
+    assert EntityStateSharedResourceTypeType(value='STYPE_PRINTQ_SPECIAL').get_value() == 'STYPE_PRINTQ_SPECIAL'
 
 def test_EntityStateSystemMetricIndexType_parse():
-    assert EntityStateSystemMetricIndexType().parse_value('SM_CXCURSOR') == 'SM_CXCURSOR'
+    assert EntityStateSystemMetricIndexType(value='SM_CXCURSOR').get_value() == 'SM_CXCURSOR'
 
 def test_EntityStateUserRightType_parse():
-    assert EntityStateUserRightType().parse_value('SE_CREATE_PAGEFILE_NAME') == 'SE_CREATE_PAGEFILE_NAME'
+    assert EntityStateUserRightType(value='SE_CREATE_PAGEFILE_NAME').get_value() == 'SE_CREATE_PAGEFILE_NAME'
 
 def test_EntityStateWindowsViewType_parse():
-    assert EntityStateWindowsViewType().parse_value('64_bit') == '64_bit'
+    assert EntityStateWindowsViewType(value='64_bit').get_value() == '64_bit'

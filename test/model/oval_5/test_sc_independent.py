@@ -27,7 +27,7 @@ import xml.etree.ElementTree as ET
 from scap.Host import Host
 from scap.Inventory import Inventory
 from scap.Model import Model
-from scap.model.oval_5.defs.EntityObjectStringType import EntityObjectStringType
+from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 from scap.model.oval_5.defs.independent.EntityObjectHashTypeType import EntityObjectHashTypeType
 
 # import all the classes in the package
@@ -101,7 +101,7 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
         pytest.skip('Does not apply to platform')
 
     obj = FileHash58ObjectElement()
-    obj.filepath = EntityObjectStringType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
+    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
     obj.hash_type = EntityObjectHashTypeType(value=hash_type)
 
     items = obj.collect_items(host, None, {}, [])
@@ -117,8 +117,8 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
 #         pytest.skip('Does not apply to platform')
 #
 #     obj = FileHash58ObjectElement()
-#     obj.path = EntityObjectStringType(value=str(pytest.config.rootdir))
-#     obj.filename = EntityObjectStringType(value='test_xlink.xml')
+#     obj.path = EntityObjectType(value=str(pytest.config.rootdir))
+#     obj.filename = EntityObjectType(value='test_xlink.xml')
 #     obj.hash_type = EntityObjectHashTypeType(value=hash_type)
 #
 #     items = obj.collect_items(host, None, {}, [])
