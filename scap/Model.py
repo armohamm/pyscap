@@ -504,6 +504,13 @@ class Model(object):
                     logger.debug('Initializing ' + name + ' to ModelChild()')
                     self._child_map[name] = ModelChild(self, element_def)
 
+    # mostly for overriding
+    def get_value(self):
+        return self.text
+
+    def set_value(self, value):
+        self.text = value
+
     def is_nil(self):
         return self._xsi_nil
 
@@ -665,6 +672,7 @@ class Model(object):
                 raise MaximumElementException(self.__class__.__name__ + ' may have at most ' + str(max_) + ' ' + tag + ' elements')
 
         self.text = el.text
+        self.tail = el.tail
 
     def _load_type_class(self, type_):
         if '.' in type_:
@@ -914,8 +922,12 @@ class Model(object):
     def to_xml(self):
         logger.debug(str(self) + ' to xml')
         el = ET.Element('{' + self.xmlns + '}' + self.tag_name)
+
         if self.text is not None:
             el.text = str(self.text)
+
+        if self.tail is not None:
+            el.tail = str(self.tail)
 
         for name in self._model_map['attributes']:
             value = self._produce_attribute(name, el)
@@ -959,9 +971,6 @@ class Model(object):
 
         for i in range(0, len(self._children_values)):
             self._produce_child(i, el)
-
-        if self.tail is not None:
-            el.tail = str(self.tail)
 
         return el
 

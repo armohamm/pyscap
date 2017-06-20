@@ -46,47 +46,47 @@ class FileHash58Collector(OvalCollector):
         if obj.filepath is not None:
             # TODO the max_depth and recurse_direction behaviors are not allowed with a filepath entity
             # TODO the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a filepath entity
-            item.filepath = EntityItemStringType(value=obj.filepath.text)
-            qfilepath = obj.filepath.text.replace('"', '\\"')
+            item.filepath = EntityItemStringType(value=obj.filepath.get_value())
+            qfilepath = obj.filepath.get_value().replace('"', '\\"')
 
             # check if file exists
             cmd = 'if [ -f "' + qfilepath + '" ]; then echo "true"; else echo "false"; fi'
-            logger.debug('Checking existence of ' + obj.filepath.text + ': ' + cmd)
+            logger.debug('Checking existence of ' + obj.filepath.get_value() + ': ' + cmd)
             return_code, out_lines, err_lines = self.host.exec_command(cmd)
             if out_lines[0] == 'false':
                 item.status = 'does not exist'
                 return [item]
             elif out_lines[0] != 'true':
-                logger.warning('Unable to check existence ' + obj.filepath.text + str((return_code, out_lines, err_lines)))
+                logger.warning('Unable to check existence ' + obj.filepath.get_value() + str((return_code, out_lines, err_lines)))
                 item.status = 'error'
                 return [item]
             item.status = 'exists'
 
             # get the hash
-            item.hash_type = EntityItemHashTypeType(value=obj.hash_type.text)
+            item.hash_type = EntityItemHashTypeType(value=obj.hash_type.get_value())
             try:
-                cmd = hash_cmd[obj.hash_type.text] + ' "' + qfilepath + '" | cut -d" " -f1'
-                logger.debug('Collecting ' + obj.filepath.text + ': ' + cmd)
+                cmd = hash_cmd[obj.hash_type.get_value()] + ' "' + qfilepath + '" | cut -d" " -f1'
+                logger.debug('Collecting ' + obj.filepath.get_value() + ': ' + cmd)
                 return_code, out_lines, err_lines = self.host.exec_command(cmd)
                 item.hash = EntityItemStringType(value=out_lines[0])
             except (IndexError, KeyError):
-                logger.warning('Unable to collect ' + obj.filepath.text + str((return_code, out_lines, err_lines)))
+                logger.warning('Unable to collect ' + obj.filepath.get_value() + str((return_code, out_lines, err_lines)))
                 item.status = 'not collected'
                 return [item]
 
         elif obj.path is not None and obj.filename is not None:
-            item.path = EntityItemStringType(value=obj.path.text)
-            item.filename = EntityItemStringType(value=obj.filename.text)
-            qpath = obj.path.text.replace('"', '\\"')
+            item.path = EntityItemStringType(value=obj.path.get_value())
+            item.filename = EntityItemStringType(value=obj.filename.get_value())
+            qpath = obj.path.get_value().replace('"', '\\"')
 
             # check if path exists
-            logger.debug('Checking existence of ' + obj.path.text + ': ' + cmd)
+            logger.debug('Checking existence of ' + obj.path.get_value() + ': ' + cmd)
             return_code, out_lines, err_lines = self.host.exec_command('if [ -d "' + qpath + '"]; then echo "true"; else echo "false"; fi')
             if out_lines[0] == 'false':
                 item.status = 'does not exist'
                 return [item]
             elif out_lines[0] != 'true':
-                logger.warning('Unable to check existence ' + obj.path.text + str((return_code, out_lines, err_lines)))
+                logger.warning('Unable to check existence ' + obj.path.get_value() + str((return_code, out_lines, err_lines)))
                 item.status = 'error'
                 return [item]
             item.status = 'exists'

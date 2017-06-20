@@ -47,63 +47,63 @@ class FileHash58Collector(OvalCollector):
             # TODO the max_depth and recurse_direction behaviors are not allowed with a filepath entity
             # TODO the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a filepath entity
             # TODO datatype, operation, mask, var_ref, var_check
-            if item.filepath.operation != 'equals':
+            if obj.filepath.operation != 'equals':
                 item.status = 'not collected'
                 return [item]
 
-            item.filepath = EntityItemStringType(value=obj.filepath.text)
-            qfilepath = obj.filepath.text.replace('"', '\\"')
+            item.filepath = EntityItemStringType(value=obj.filepath.get_value())
+            qfilepath = obj.filepath.get_value().replace('"', '\\"')
 
             # check if file exists
             cmd = 'powershell -Command "' + ('Test-Path -LiteralPath \'' \
             + qfilepath + '\'').replace('"', '\\"') + '" -PathType Leaf'
 
-            logger.debug('Checking existence of ' + obj.filepath.text + ': ' + cmd)
+            logger.debug('Checking existence of ' + obj.filepath.get_value() + ': ' + cmd)
             return_code, out_lines, err_lines = self.host.exec_command(cmd)
             if out_lines[0] == 'False':
                 item.status = 'does not exist'
                 return [item]
             elif out_lines[0] != 'True':
-                logger.warning('Unable to check existence ' + obj.filepath.text \
+                logger.warning('Unable to check existence ' + obj.filepath.get_value() \
                 + str((return_code, out_lines, err_lines)))
                 item.status = 'error'
                 return [item]
             item.status = 'exists'
 
             # get the hash
-            item.hash_type = EntityItemHashTypeType(value=obj.hash_type.text)
+            item.hash_type = EntityItemHashTypeType(value=obj.hash_type.get_value())
             try:
                 cmd = 'powershell -Command "' \
                 + ('Get-FileHash -LiteralPath \'' + qfilepath + '\' ' \
-                + '-Algorithm ' + hash_param[obj.hash_type.text]).replace('"', '\\"') \
+                + '-Algorithm ' + hash_param[obj.hash_type.get_value()]).replace('"', '\\"') \
                 + ' | foreach {$_.Hash}"'
 
-                logger.debug('Collecting ' + obj.filepath.text + ': ' + cmd)
+                logger.debug('Collecting ' + obj.filepath.get_value() + ': ' + cmd)
                 return_code, out_lines, err_lines = self.host.exec_command(cmd)
                 item.hash = EntityItemStringType(value=out_lines[0])
             except (IndexError, KeyError):
-                logger.warning('Unable to collect ' + obj.filepath.text + str((return_code, out_lines, err_lines)))
+                logger.warning('Unable to collect ' + obj.filepath.get_value() + str((return_code, out_lines, err_lines)))
                 item.status = 'not collected'
                 return [item]
 
         elif obj.path is not None and obj.filename is not None:
-            item.path = EntityItemStringType(value=obj.path.text)
-            item.filename = EntityItemStringType(value=obj.filename.text)
-            qpath = obj.path.text.replace('"', '\\"')
-            qfilename = obj.filename.text.replace('"', '\\"')
+            item.path = EntityItemStringType(value=obj.path.get_value())
+            item.filename = EntityItemStringType(value=obj.filename.get_value())
+            qpath = obj.path.get_value().replace('"', '\\"')
+            qfilename = obj.filename.get_value().replace('"', '\\"')
 
             # check if path exists
             # TODO datatype, operation, mask, var_ref, var_check
             cmd = 'powershell -Command "' \
             + ('Test-Path -Path \'' + qpath + '\'').replace('"', '\\"') \
             + '" -PathType Container'
-            logger.debug('Checking existence of ' + obj.path.text + ': ' + cmd)
+            logger.debug('Checking existence of ' + obj.path.get_value() + ': ' + cmd)
             return_code, out_lines, err_lines = self.host.exec_command(cmd)
             if out_lines[0] == 'False':
                 item.status = 'does not exist'
                 return [item]
             elif out_lines[0] != 'True':
-                logger.warning('Unable to check existence ' + obj.filepath.text + str((return_code, out_lines, err_lines)))
+                logger.warning('Unable to check existence ' + obj.filepath.get_value() + str((return_code, out_lines, err_lines)))
                 item.status = 'error'
                 return [item]
             item.status = 'exists'
@@ -115,14 +115,13 @@ class FileHash58Collector(OvalCollector):
 
             # TODO filename entity cannot be empty unless the xsi:nil attribute is set to true or a var_ref is used
             # TODO datatype, operation, mask, var_ref, var_check
-            if obj.filename
             if obj.filename.is_nil():
                 # can't hash a dir
                 item.status = 'not collected'
                 return [item]
 
             # TODO
-            item.hash_type = EntityItemHashTypeType(value=obj.hash_type.text)
+            item.hash_type = EntityItemHashTypeType(value=obj.hash_type.get_value())
 
         else:
             item.status = 'not collected'

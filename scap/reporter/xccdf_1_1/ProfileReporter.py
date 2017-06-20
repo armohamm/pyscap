@@ -49,7 +49,7 @@ class ProfileReporter(Reporter):
 
         # elements
         t = TextType(tag_name='title')
-        t.text = 'Results for ' + host.hostname + ', profile ' + self.model.id
+        t.set_value('Results for ' + host.hostname + ', profile ' + self.model.id)
         test_result.titles.append(t)
 
         # TODO test_result.remarks.append()
@@ -58,7 +58,7 @@ class ProfileReporter(Reporter):
 
         if 'identity' in host.facts:
             test_result.identity = IdentityType(tag_name='identity')
-            test_result.identity.text = host.facts['identity']['name']
+            test_result.identity.set_value(host.facts['identity']['name'])
             if 'authenticated' in host.facts['identity']:
                 test_result.identity.authenticated = str(host.facts['identity']['authenticated'])
             if 'privileged' in host.facts['identity']:
@@ -75,20 +75,20 @@ class ProfileReporter(Reporter):
         f = FactType(tag_name='fact')
         f.name = 'urn:scap:fact:asset:identifier:host_name'
         f.type = 'string'
-        f.text = host.hostname
+        f.set_value(host.hostname)
         test_result.target_facts.facts.append(f)
 
         for fqdn in host.facts['fqdn']:
             f = FactType(tag_name='fact')
             f.name = 'urn:scap:fact:asset:identifier:fqdn'
             f.type = 'string'
-            f.text = fqdn
+            f.set_value(fqdn)
             test_result.target_facts.facts.append(f)
 
         f = FactType(tag_name='fact')
         f.name = 'urn:scap:fact:asset:identifier:guid'
         f.type = 'string'
-        f.text = host.facts['unique_id']
+        f.set_value(host.facts['unique_id'])
         test_result.target_facts.facts.append(f)
 
         # TODO 'urn:scap:fact:asset:identifier:active_directory'
@@ -98,7 +98,7 @@ class ProfileReporter(Reporter):
                 f = FactType(tag_name='fact')
                 f.name = 'urn:scap:fact:asset:identifier:mac'
                 f.type = 'string'
-                f.text = netcon['mac_address']
+                f.set_value(netcon['mac_address'])
                 test_result.target_facts.facts.append(f)
             for netadd in netcon['network_addresses']:
                 test_result.target_addresses.append(String(tag_name='target-address', value=netadd['address']))
@@ -106,13 +106,13 @@ class ProfileReporter(Reporter):
                     f = FactType(tag_name='fact')
                     f.name = 'urn:scap:fact:asset:identifier:ipv4'
                     f.type = 'string'
-                    f.text = netadd['address']
+                    f.set_value(netadd['address'])
                     test_result.target_facts.facts.append(f)
                 elif netadd['type'] == 'ipv6':
                     f = FactType(tag_name='fact')
                     f.name = 'urn:scap:fact:asset:identifier:ipv6'
                     f.type = 'string'
-                    f.text = netadd['address']
+                    f.set_value(netadd['address'])
                     test_result.target_facts.facts.append(f)
 
         for cpe in host.facts['cpe']['os']:

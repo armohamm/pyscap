@@ -19,12 +19,13 @@ import logging
 
 from scap.Model import Model
 from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.oval_5 import DATATYPE_ENUMERATION, EXISTENCE_RESULT_ENUMERATION
 
 logger = logging.getLogger(__name__)
 class EntityItemFieldType(AnySimpleType):
     MODEL_MAP = {
         'attributes': {
-            'name': {'type': 'StringType', 'required': True, 'pattern': '[^A-Z]+'}
+            'name': {'type': 'StringType', 'required': True, 'pattern': '[^A-Z]+'},
             'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
             'mask': {'type': 'BooleanType', 'default': False},
             'status': {'enum': EXISTENCE_RESULT_ENUMERATION, 'default': 'exists'},

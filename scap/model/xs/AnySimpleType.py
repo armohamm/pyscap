@@ -28,7 +28,7 @@ class AnySimpleType(Model):
         return str(value)
 
     def __str__(self):
-        return super(AnySimpleType, self).__str__() + ' = ' + str(self.text)
+        return super(AnySimpleType, self).__str__() + ' = ' + str(self.get_value())
 
     def from_xml(self, parent, sub_el):
         super(AnySimpleType, self).from_xml(parent, sub_el)
