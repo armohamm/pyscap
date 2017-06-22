@@ -514,6 +514,10 @@ class Model(object):
     def is_nil(self):
         return self._xsi_nil
 
+    def set_nil(self):
+        self._xsi_nil = True
+        self.text = None
+
     def __str__(self):
         s = self.__class__.__module__ + '.' + self.__class__.__name__
         if hasattr(self, 'id') and self.id is not None:
