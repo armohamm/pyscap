@@ -60,8 +60,112 @@ class EntityObjectType(Model):
         'version': StringType,
     }
 
+    DATATYPE_ALLOWED_OPERATIONS = {
+        'binary': [
+            'equals',
+            'not equal',
+        ],
+        'boolean': [
+            'equals',
+            'not equal',
+        ],
+        'evr_string': [
+            'equals',
+            'not equal',
+            'greater than',
+            'greater than or equal',
+            'less than',
+            'less than or equal',
+        ],
+        'debian_evr_string': [
+            'equals',
+            'not equal',
+            'greater than',
+            'greater than or equal',
+            'less than',
+            'less than or equal',
+        ],
+        'fileset_revision': [
+            'equals',
+            'not equal',
+            'greater than',
+            'greater than or equal',
+            'less than',
+            'less than or equal',
+        ],
+        'float': [
+            'equals',
+            'not equal',
+            'greater than',
+            'greater than or equal',
+            'less than',
+            'less than or equal',
+        ],
+        'ios_version': [
+            'equals',
+            'not equal',
+            'greater than',
+            'greater than or equal',
+            'less than',
+            'less than or equal',
+        ],
+        'int': [
+            'equals',
+            'not equal',
+            'greater than',
+            'greater than or equal',
+            'less than',
+            'less than or equal',
+            'bitwise and',
+            'bitwise or',
+        ],
+        'ipv4_address': [
+            'equals',
+            'not equal',
+            'greater than',
+            'greater than or equal',
+            'less than',
+            'less than or equal',
+            'subset of',
+            'superset of',
+        ],
+        'ipv6_address': [
+            'equals',
+            'not equal',
+            'greater than',
+            'greater than or equal',
+            'less than',
+            'less than or equal',
+            'subset of',
+            'superset of',
+        ],
+        'string': [
+            'equals',
+            'not equal',
+            'case insensitive equals',
+            'case insensitive not equal',
+            'pattern match',
+        ],
+        'version': [
+            'equals',
+            'not equal',
+            'greater than',
+            'greater than or equal',
+            'less than',
+            'less than or equal',
+        ],
+        'record': [
+            'equals',
+            #'not equal', # not in spec
+        ],
+    }
+
     def from_xml(self, parent, sub_el):
         super(EntityObjectType, self).from_xml(parent, sub_el)
+
+        if self.datatype in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS \
+        and self.operation not in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS[self.datatype]:
+            raise ValueError('Invalid operation ' + self.operation + ' on datatype ' + self.datatype + ' for ' + self.__class__.__name__)
 
         if sub_el.text is not None:
             if sub_el.text == '':
@@ -76,6 +180,10 @@ class EntityObjectType(Model):
                     raise ValueError(self.__class__.__name__ + ' requires a value matching ' + self.get_value_pattern())
 
     def to_xml(self):
+        if self.datatype in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS \
+        and self.operation not in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS[self.datatype]:
+            raise ValueError('Invalid operation ' + self.operation + ' on datatype ' + self.datatype + ' for ' + self.__class__.__name__)
+
         if self.datatype in EntityObjectType.DATATYPE_CLASS_MAPPING:
             self.text = EntityObjectType.DATATYPE_CLASS_MAPPING[self.datatype]().produce_value(sub_el.text)
 
