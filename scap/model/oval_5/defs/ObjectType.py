@@ -31,19 +31,20 @@ class ObjectType(Model):
         'attributes': {
             'id': {'type': 'scap.model.oval_5.ObjectIdPattern', 'required': True},
             'version': {'type': 'NonNegativeIntegerType', 'required': True},
-            'comment': {'type': 'scap.model.oval_5.NonEmptyString'}, # required in the spec
+            'comment': {'type': 'scap.model.oval_5.NonEmptyString'}, # required in the spec, not always seen in the wild
             'deprecated': {'type': 'BooleanType', 'default': False},
         },
     }
 
-    def collect_items(self, host, content, imports, export_names):
-        items = []
+    def evaluate(self, host, content, imports, export_names):
         if self.set is not None:
-            items = self.set.collect_items(host, content, imports, export_names)
+            sc_objects, items = self.set.evaluate(host, content, imports, export_names)
         else:
-            items = host.collect_oval_items(self, content, imports, export_names)
+            sc_objects, items = host.evaluate_oval_object(self, content, imports, export_names)
 
         for f in self.filters:
             items = f.filter_items(items)
 
-        return items
+        return sc_objects, items
+
+    def resolve_variables(self):

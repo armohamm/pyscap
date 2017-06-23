@@ -35,3 +35,6 @@ class VariableType(Model):
             'deprecated': {'type': 'BooleanType', 'default': False},
         },
     }
+
+    def evaluate(self, content, imports, export_names, var_check):
+        pass

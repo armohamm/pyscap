@@ -93,7 +93,7 @@ class Host(object):
         import inspect
         raise NotImplementedError(inspect.stack()[0][3] + '() has not been implemented in subclass: ' + self.__class__.__name__)
 
-    def collect_oval_items(self, obj, content, imports, export_names):
+    def evaluate_oval_object(self, obj, content, imports, export_names):
         if 'oval_family' not in self.facts:
             if 'cpe' not in self.facts or 'os' not in self.facts['cpe'] or len(self.facts['cpe']['os']) <= 0:
                 raise ValueError('Need a defined OS CPE to determine family')

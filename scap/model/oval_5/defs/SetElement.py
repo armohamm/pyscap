@@ -65,10 +65,10 @@ class SetElement(Model):
                     items.append(i)
         return items
 
-    def collect_items(self, host, content, imports, export_names):
+    def evaluate(self, host, content, imports, export_names):
         item_sets = []
         for s in self.set:
-            item_sets.append(s.collect_items(host, content, imports, export_names))
+            item_sets.append(s.evaluate(host, content, imports, export_names))
 
         # 1. Identify the OVAL Objects that are part of the set by examining
         # the object_references associated with the set. Each
@@ -78,7 +78,7 @@ class SetElement(Model):
             obj = self.args['content'].find_reference(o)
             if not isinstance(obj, self.__class__):
                 raise ValueError('Set members must match parent element class: ' + self.__class__.__name__)
-            item_sets.append(obj.collect_items(host, content, imports, export_names))
+            item_sets.append(obj.evaluate(host, content, imports, export_names))
 
         # 2. For every defined filter (See Section 5.3.3.4.2 filter), apply
         # the associated filter to each OVAL Item.
@@ -99,4 +99,4 @@ class SetElement(Model):
         # 4. The resulting OVAL Items will be the unique set of OVAL Items
         # referenced by the OVAL Object that contains the set.
 
-        return items
+        return items, variable_values

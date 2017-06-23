@@ -73,11 +73,12 @@ def test_family(oval_family):
         pytest.skip('Does not apply to platform')
 
     obj = FamilyObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
 
-    items = obj.collect_items(host, None, {}, [])
-    assert len(items) == 1
-    assert isinstance(items[0], FamilyItemElement)
-    assert items[0].family.text == oval_family
+    sc_obj = obj.collect(host, None, {}, [])
+    assert len(sc_obj.items) == 1
+    assert isinstance(sc_obj.items[0], FamilyItemElement)
+    assert sc_obj.items[0].family.text == oval_family
 
 hash_params = [
     # Need separate test for linux & windows because line ending difference changes the hashes
@@ -101,15 +102,16 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
         pytest.skip('Does not apply to platform')
 
     obj = FileHash58ObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
     obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
     obj.hash_type = EntityObjectHashTypeType(value=hash_type)
 
-    items = obj.collect_items(host, None, {}, [])
+    items = obj.evaluate(host, None, {}, [])
     assert len(items) == 1
-    assert isinstance(items[0], FileHash58ItemElement)
-    assert items[0].status == 'exists'
-    assert items[0].hash_type.text == hash_type
-    assert items[0].hash.text == hash_value
+    assert isinstance(sc_obj.items[0], FileHash58ItemElement)
+    assert sc_obj.items[0].status == 'exists'
+    assert sc_obj.items[0].hash_type.text == hash_type
+    assert sc_obj.items[0].hash.text == hash_value
 
 # @pytest.mark.parametrize("oval_family, hash_type,hash_value", hash_params)
 # def test_filehash58_path_filename(oval_family, hash_type, hash_value):
