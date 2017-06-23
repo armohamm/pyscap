@@ -37,14 +37,86 @@ class ObjectType(Model):
     }
 
     def evaluate(self, host, content, imports, export_names):
+        if self.deprecated:
+            logger.warning('Deprecated object ' + self.id + ' is being evaluated')
+
         if self.set is not None:
-            sc_objects, items = self.set.evaluate(host, content, imports, export_names)
+            results = self.set.evaluate(host, content, imports, export_names)
         else:
-            sc_objects, items = host.evaluate_oval_object(self, content, imports, export_names)
+            values = {}
+            for element_def in self._model_map['elements']:
+                if element_def['tag_name'].endswith('*'):
+                    # entity object should be defined explicitly
+                    raise NotImplementedError('wildcard EntityObjectTypes are unsupported')
+
+                # otherwise, resolve the entity_object
+                elif 'list' in element_def:
+                    arg_name = element_def['list']
+                    values[arg_name] = []
+                    lst = getattr(self, arg_name)
+                    for v in lst:
+                        if isinstance(v, EntityObjectType):
+                            values[arg_name].extend(v.resolve_entity_object_values(host, content, imports, export_names))
+                        else:
+                            values[arg_name].append(v)
+
+                elif 'dict' in element_def:
+                    raise NotImplementedError('dict EntityObjectTypes are not supported')
+
+                elif 'class' in element_def:
+                    if 'in' in element_def:
+                        arg_name = element_def['in']
+                    else:
+                        arg_name = element_def['tag_name'].replace('-', '_')
+
+                    v = getattr(self, arg_name)
+                    if isinstance(v, EntityObjectType):
+                        values[arg_name] = v.resolve_entity_object_values(host, content, imports, export_names)
+                    else:
+                        values[arg_name] = [v]
+
+                else:
+                    if 'in' in element_def:
+                        arg_name = element_def['in']
+                    else:
+                        arg_name = element_def['tag_name'].replace('-', '_')
+                    values[arg_name] = [getattr(self, arg_name)]
+
+            lens = {}
+            for arg_name in values.keys():
+                lens[arg_name] = len(values[arg_name])
+            arg_sets = []
+            # TODO
+
+            results = []
+            for arg_set in args_sets
+            collector = self.load_collector(host, results['args'])
+            results['items'] = collector.collect()
 
         for f in self.filters:
-            items = f.filter_items(items)
+            results['items'] = f.filter_items(results['items'])
 
-        return sc_objects, items
+        return results
 
-    def resolve_variables(self):
+    def load_collector(self, host, args):
+        if 'oval_family' not in host.facts:
+            if 'cpe' not in host.facts or 'os' not in host.facts['cpe'] or len(host.facts['cpe']['os']) <= 0:
+                raise ValueError('Need a defined OS CPE to determine family')
+
+            for cpe in host.facts['cpe']['os']:
+                logger.debug('Checking ' + str(cpe) + ' for family match')
+                if CPE(part='o', vendor='linux').matches(cpe):
+                    host.facts['oval_family'] = 'linux'
+                elif CPE(part='o', vendor='microsoft').matches(cpe):
+                    host.facts['oval_family'] = 'windows'
+
+            if 'oval_family' not in host.facts:
+                raise ValueError('Unable to determine family from discovered CPEs')
+
+        collector_module = self.__module__.replace('ObjectElement', 'Collector').replace(
+            'scap.model.oval_5.defs.',
+            'scap.collector.' + host.facts['oval_family'] + '.oval_5.')
+        collector_class = self.__class__.__name__.replace('ObjectElement', 'Collector')
+        mod = importlib.import_module(collector_module, collector_class)
+        class_ = getattr(mod, collector_class)
+        return class_(host, args)

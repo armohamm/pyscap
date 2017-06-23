@@ -24,23 +24,6 @@ class OvalCollector(Collector):
     def __init__(self, host, args):
         super(OvalCollector, self).__init__(host, args)
 
-        if 'object' not in self.args:
-            raise ValueError('OVAL collector requires an OVAL object as an argument')
-
-        if self.args['object'].deprecated:
-            logger.warning('Deprecated object ' + self.args['object'].id + ' is being referenced')
-
-    def resolve_entity_object_value(self, entity_object):
-        if entity_object.var_ref is not None:
-            if 'content' not in self.args:
-                raise ValueError('OVAL collector requires an OVAL definition tree to de-reference variable definitions')
-            imports = {}
-            if 'imports' in self.args:
-                imports = self.args['imports']
-            export_names = []
-                export_names = self.args['export_names']
-
-            var = self.args['content'].find_reference(entity_object.var_ref)
-            return var.evaluate(self.args['content'], imports, export_names, self.var_check)
-        else:
-            return [entity_object.get_value()]
+        for key in ['object', 'content', 'imports', 'export_names']:
+            if key not in self.args:
+                raise ValueError('OVAL collector requires an OVAL object as an argument')

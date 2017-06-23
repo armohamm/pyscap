@@ -42,6 +42,13 @@ class EntityObjectType(Model):
         }
     }
 
+    def resolve_values(self, host, content, imports, export_names):
+        if self.var_ref is not None:
+            var = content.find_reference(self.var_ref)
+            return var.evaluate(content, imports, export_names, self.var_check)
+        else:
+            return [self.get_value()]
+
     def __str__(self):
         return super(EntityObjectType, self).__str__() + ' = ' + str(self.get_value())
 
