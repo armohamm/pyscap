@@ -36,5 +36,5 @@ class VariableType(Model):
         },
     }
 
-    def evaluate(self, content, imports, export_names, var_check):
-        pass
+    def resolve_values(self, content, imports, export_names, var_check):
+        raise NotImplementedError('not implemented')
