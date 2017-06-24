@@ -18,6 +18,7 @@
 import logging
 
 from scap.Model import Model
+from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 class ObjectType(Model):
@@ -36,69 +37,26 @@ class ObjectType(Model):
         },
     }
 
+    def _iter_arg(self, arg, values, counters, arg_order):
+        argsets = []
+        i = arg_order.index(arg)
+        if i == len(arg_order) - 1:
+            template = {a: values[a][counters[a]] for a in arg_order[0:i-1]}
+            for j in range(len(values[arg])):
+                counters[arg] = j
+                argsets.append({a: values[a][counters[a]] for a in arg_order})
+            return argsets
+        else:
+            for j in range(len(values[arg])):
+                counters[arg] = j
+                argsets.extend(self._iter_arg(arg_order[i+1], values, counters, arg_order))
+            return argsets
+
     def evaluate(self, host, content, imports, export_names):
         if self.deprecated:
             logger.warning('Deprecated object ' + self.id + ' is being evaluated')
 
-        if self.set is not None:
-            results = self.set.evaluate(host, content, imports, export_names)
-        else:
-            values = {}
-            for element_def in self._model_map['elements']:
-                if element_def['tag_name'].endswith('*'):
-                    # entity object should be defined explicitly
-                    raise NotImplementedError('wildcard EntityObjectTypes are unsupported')
-
-                # otherwise, resolve the entity_object
-                elif 'list' in element_def:
-                    arg_name = element_def['list']
-                    values[arg_name] = []
-                    lst = getattr(self, arg_name)
-                    for v in lst:
-                        if isinstance(v, EntityObjectType):
-                            values[arg_name].extend(v.resolve_entity_object_values(host, content, imports, export_names))
-                        else:
-                            values[arg_name].append(v)
-
-                elif 'dict' in element_def:
-                    raise NotImplementedError('dict EntityObjectTypes are not supported')
-
-                elif 'class' in element_def:
-                    if 'in' in element_def:
-                        arg_name = element_def['in']
-                    else:
-                        arg_name = element_def['tag_name'].replace('-', '_')
-
-                    v = getattr(self, arg_name)
-                    if isinstance(v, EntityObjectType):
-                        values[arg_name] = v.resolve_entity_object_values(host, content, imports, export_names)
-                    else:
-                        values[arg_name] = [v]
-
-                else:
-                    if 'in' in element_def:
-                        arg_name = element_def['in']
-                    else:
-                        arg_name = element_def['tag_name'].replace('-', '_')
-                    values[arg_name] = [getattr(self, arg_name)]
-
-            lens = {}
-            for arg_name in values.keys():
-                lens[arg_name] = len(values[arg_name])
-            arg_sets = []
-            # TODO
-
-            results = []
-            for arg_set in args_sets
-            collector = self.load_collector(host, results['args'])
-            results['items'] = collector.collect()
-
-        for f in self.filters:
-            results['items'] = f.filter_items(results['items'])
-
-        return results
-
-    def load_collector(self, host, args):
+        # ensure oval_family is defined
         if 'oval_family' not in host.facts:
             if 'cpe' not in host.facts or 'os' not in host.facts['cpe'] or len(host.facts['cpe']['os']) <= 0:
                 raise ValueError('Need a defined OS CPE to determine family')
@@ -113,10 +71,60 @@ class ObjectType(Model):
             if 'oval_family' not in host.facts:
                 raise ValueError('Unable to determine family from discovered CPEs')
 
-        collector_module = self.__module__.replace('ObjectElement', 'Collector').replace(
-            'scap.model.oval_5.defs.',
-            'scap.collector.' + host.facts['oval_family'] + '.oval_5.')
-        collector_class = self.__class__.__name__.replace('ObjectElement', 'Collector')
-        mod = importlib.import_module(collector_module, collector_class)
-        class_ = getattr(mod, collector_class)
-        return class_(host, args)
+        if self.set is not None:
+            items = self.set.evaluate(host, content, imports, export_names)
+        else:
+            values = {}
+            for element_def in self._model_map['elements']:
+                if element_def['tag_name'].endswith('*'):
+                    # entity object should be defined explicitly
+                    raise NotImplementedError('wildcard EntityObjectTypes are unsupported')
+
+                # otherwise, resolve the entity_object
+                elif 'list' in element_def:
+                    arg_name = element_def['list']
+                    values[arg_name] = []
+                    lst = getattr(self, arg_name)
+                    for v in lst:
+                        if isinstance(v, EntityObjectType):
+                            values[arg_name].extend(v.resolve_values(host, content, imports, export_names))
+                        else:
+                            values[arg_name].append(v)
+
+                elif 'dict' in element_def:
+                    raise NotImplementedError('dict EntityObjectTypes are not supported')
+
+                elif 'class' in element_def:
+                    if 'in' in element_def:
+                        arg_name = element_def['in']
+                    else:
+                        arg_name = element_def['tag_name'].replace('-', '_')
+
+                    v = getattr(self, arg_name)
+                    if isinstance(v, EntityObjectType):
+                        values[arg_name] = v.resolve_values(host, content, imports, export_names)
+                    else:
+                        values[arg_name] = [v]
+
+                else:
+                    if 'in' in element_def:
+                        arg_name = element_def['in']
+                    else:
+                        arg_name = element_def['tag_name'].replace('-', '_')
+                    values[arg_name] = [getattr(self, arg_name)]
+
+            arg_order = list(values.keys())
+            counters = {x: 0 for x in values.keys()}
+            arg_sets = self._iter_arg(arg_order[0], values, counters, arg_order)
+
+            items = []
+            for args in arg_sets:
+                items.extend(self.collect_items_for_args(host, args))
+
+        for f in self.filters:
+            items = f.filter(items)
+
+        return items
+
+    def collect_items_for_args(self, host, args):
+        raise NotImplementedError(self.__class__.__name__ + ' does not define collect_items_for_args')

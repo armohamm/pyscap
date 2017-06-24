@@ -31,3 +31,27 @@ class ItemType(Model):
             'status': {'enum': EXISTENCE_RESULT_ENUMERATION, 'default': 'exists'},
         }
     }
+
+    __last_item_id = 0
+
+    def __init__(self, obj, args, result, value=None, xmlns=None, tag_name=None):
+        super(ItemType, self).__init__(value=value, xmlns=xmlns, tag_name=tag_name)
+
+        self._generating_object = obj
+
+        ItemType.__last_item_id += 1
+        self.id = ItemType.__last_item_id
+
+        if 'status' in result:
+            self.status = result['status']
+
+        if 'messages' in result:
+            for m in messages:
+                msg = MessageType(value=m['message'])
+                msg.level = m['level']
+                self.messages.append(msg)
+
+        self.process_result(args, result)
+
+    def process_result(self, args, result):
+        raise NotImplementedError(self.__class__.__name__ + ' does not define process_result')

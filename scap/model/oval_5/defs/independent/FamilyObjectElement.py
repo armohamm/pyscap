@@ -18,9 +18,30 @@
 import logging
 
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
+from scap.model.oval_5.sc.independent.FamilyItemElement import FamilyItemElement
+from scap.model.oval_5.sc.independent.EntityItemFamilyType import EntityItemFamilyType
 
 logger = logging.getLogger(__name__)
 class FamilyObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'family_object',
     }
+
+    def evaluate(self, host, content, imports, export_names):
+        if 'oval_family' not in host.facts:
+            if 'cpe' not in host.facts or 'os' not in host.facts['cpe'] or len(host.facts['cpe']['os']) <= 0:
+                raise ValueError('Need a defined OS CPE to determine family')
+
+            for cpe in host.facts['cpe']['os']:
+                logger.debug('Checking ' + str(cpe) + ' for family match')
+                if CPE(part='o', vendor='linux').matches(cpe):
+                    host.facts['oval_family'] = 'linux'
+                elif CPE(part='o', vendor='microsoft').matches(cpe):
+                    host.facts['oval_family'] = 'windows'
+
+            if 'oval_family' not in host.facts:
+                raise ValueError('Unable to determine family from discovered CPEs')
+
+        item = FamilyItemElement(self, {},{})
+        item.family = EntityItemFamilyType(value=host.facts['oval_family'])
+        return [item]

@@ -29,3 +29,6 @@ class FamilyItemElement(ItemType):
         'attributes': {
         }
     }
+
+    def process_result(self, args, result):
+        pass
