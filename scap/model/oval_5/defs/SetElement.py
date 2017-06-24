@@ -84,7 +84,7 @@ class SetElement(Model):
         # the associated filter to each OVAL Item.
         for f in self.filters:
             for i in range(len(item_sets)):
-                item_sets[i] = f.filter_items(item_sets[i])
+                item_sets[i] = f.filter(item_sets[i])
 
         # 3. Apply the set operator to all OVAL Items remaining in the set.
         if self.set_operator == 'COMPLEMENT':
