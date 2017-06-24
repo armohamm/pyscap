@@ -21,9 +21,4 @@ from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
 class OvalCollector(Collector):
-    def __init__(self, host, args):
-        super(OvalCollector, self).__init__(host, args)
-
-        for key in ['object', 'content', 'imports', 'export_names']:
-            if key not in self.args:
-                raise ValueError('OVAL collector requires an OVAL object as an argument')
+    pass
