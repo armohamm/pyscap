@@ -29,3 +29,6 @@ class FilterElement(StateIdPattern):
             'action': {'enum': [ 'exclude', 'include', ], 'default': 'exclude'},
         }
     }
+
+    def filter(self, results):
+        raise NotImplementedError('Not implemented')
