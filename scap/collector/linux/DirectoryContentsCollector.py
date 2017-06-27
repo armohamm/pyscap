@@ -47,29 +47,35 @@ class DirectoryContentsCollector(Collector):
     def collect(self):
         path = self.args['path'].replace('"', '\\"')
         if 'hidden' in self.args and self.args['hidden']:
-            cmd = 'ls --color=never -lsi1 -A "' + path + '"'
+            cmd = 'ls --color=never -l1A "' + path + '"'
         else:
-            cmd = 'ls --color=never -lsi1 "' + path + '"'
+            cmd = 'ls --color=never -l1 "' + path + '"'
         return_code, out_lines, err_lines = self.host.exec_command(cmd)
         entries = []
         for l in out_lines:
-            m = re.fullmatch(r'([0-9]+)\s+([0-9]+)\s([-a-z])([-sStTrwx]{3})([-sStTrwx]{3})([-rwx]{3})[. ]([0-9]+)\s+(\S+)\s+(\S+)\s+([0-9]+)\s+(\S+\s+\S+\s+\S+)\s+(.*)( -> (.*))?', l)
+            if l.startswith('total'):
+                continue
+
+            m = re.fullmatch(r'([-a-z])([-sStTrwx]{3})([-sStTrwx]{3})([-rwx]{3})(\.)?\s+([0-9]+)\s+(\S+)\s+(\S+)\s+([0-9]+)\s+(\S+\s+\S+\s+\S+)\s+(.*)( -> (.*))?', l)
             if m:
                 entry = {
-                    'inode': m.group(1),
-                    'blocks': m.group(2),
-                    'type': TYPE_MAP[m.group(3)],
-                    'user_mode': m.group(4),
-                    'group_mode': m.group(5),
-                    'other_mode': m.group(6),
-                    'link_count': m.group(7),
-                    'owner': m.group(8),
-                    'group_owner': m.group(9),
-                    'size': int(m.group(10)),
-                    'modified': m.group(11),
-                    'name': m.group(12),
+                    'type': DirectoryContentsCollector.TYPE_MAP[m.group(1)],
+                    'user_mode': m.group(2),
+                    'group_mode': m.group(3),
+                    'other_mode': m.group(4),
+                    'link_count': m.group(6),
+                    'owner': m.group(7),
+                    'group_owner': m.group(8),
+                    'size': int(m.group(9)),
+                    'modified': m.group(10),
+                    'name': m.group(11),
                 }
-                if m.group(13) is not None:
-                    entry['link_target'] = m.group(13)
+                if m.group(5) is not None:
+                    entry['has_security_context'] = True
+                if m.group(12) is not None:
+                    entry['link_target'] = m.group(12)
+
                 entries.append(entry)
+            else:
+                raise ValueError('Unable to parse line from ls: ' + l)
         return entries

@@ -39,11 +39,14 @@ class FileHashCollector(Collector):
         if 'type' not in args:
             raise ArgumentException('FileHashCollector requires type argument')
 
-        if args['type'] not in :
+        if args['type'] not in FileHashCollector.HASH_COMMANDS.keys():
             raise ArgumentException('Unknown hash type: ' + args['type'])
 
     def collect(self):
         cmd = FileHashCollector.HASH_COMMANDS[self.args['type']] \
             + ' ' + self.args['path'].replace('"', '\\"') + ' | cut -f1 -d" "'
         return_code, out_lines, err_lines = self.host.exec_command(cmd)
-        return out_lines[0]
+        if len(out_lines) == 0 or return_code != 0:
+            raise FileNotFoundError('Unable to collect hash for ' + self.args['path'])
+        else:
+            return out_lines[0]
