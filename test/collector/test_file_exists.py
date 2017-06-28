@@ -44,6 +44,10 @@ def test_exists():
     c = host.load_collector('FileExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml')})
     assert c.collect() == True
 
+def test_exists_ci():
+    c = host.load_collector('FileExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'TEST_XLINK.xml'), 'case_insensitive': True})
+    assert c.collect() == True
+
 def test_not_exists():
     c = host.load_collector('FileExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'nope.xml')})
     assert c.collect() == False

@@ -44,6 +44,10 @@ def test_exists():
     c = host.load_collector('DirectoryExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model')})
     assert c.collect() == True
 
+def test_exists_CI():
+    c = host.load_collector('DirectoryExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'MODEL'), 'case_insensitive': True})
+    assert c.collect() == True
+
 def test_not_exists():
     c = host.load_collector('DirectoryExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'nope')})
     assert c.collect() == False
