@@ -29,8 +29,12 @@ class DirectoryExistsCollector(Collector):
 
     def collect(self):
         path = self.args['path'].replace('"', '\\"')
-        return_code, out_lines, err_lines = self.host.exec_command('if [ -d "' + path + '" ]; then echo True; else echo False; fi')
-        if out_lines[0] == 'True':
+        if 'case_insensitive' in self.args and self.args['case_insensitive']:
+            cmd = 'find `dirname "' + path + '"` -type d -iwholename "' + path + '"'
+        else:
+            cmd = 'find `dirname "' + path + '"` -type d -wholename "' + path + '"'
+        return_code, out_lines, err_lines = self.host.exec_command(cmd)
+        if len(out_lines) > 0:
             return True
         else:
             return False
