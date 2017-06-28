@@ -16,18 +16,32 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import os
+import pathlib
+import pytest
+import uuid
 
-from scap.Collector import Collector, ArgumentException
+from scap.Collector import ArgumentException
+from scap.Host import Host
+from scap.model.cpe_matching_2_3.CPE import CPE
+from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
-class EnvironmentVariableCollector(Collector):
-    def __init__(self, host, args):
-        super(EnvironmentVariableCollector, self).__init__(host, args)
 
-        if 'name' not in args:
-            raise ArgumentException('EnvironmentVariableCollector requires name argument')
+filename = os.path.expanduser('~/.pyscap/inventory.ini')
+try:
+    with open(filename, 'r') as fp:
+        logger.debug('Loading inventory from ' + filename)
+        Inventory().readfp(fp)
+except IOError:
+    logger.error('Could not read from inventory file ' + filename)
 
-    def collect(self):
-        cmd = 'echo $' + self.args['name']
-        return_code, out_lines, err_lines = self.host.exec_command(cmd)
-        return out_lines[0]
+host = Host.load('localhost')
+for col in host.detect_collectors({}):
+    col.collect()
+
+def test_exists():
+    c = host.load_collector('EnvironmentCollector', {})
+    env = c.collect()
+    assert isinstance(env, dict)
+    assert 'HOME' in env
