@@ -17,18 +17,17 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.StateIdPattern import StateIdPattern
+from scap.Collector import Collector, ArgumentException
 
 logger = logging.getLogger(__name__)
-class FilterElement(StateIdPattern):
-    MODEL_MAP = {
-        'tag_name': 'filter',
-        'attributes': {
-            'action': {'enum': [ 'exclude', 'include', ], 'default': 'exclude'},
-        }
-    }
+class EnvironmentVariableCollector(Collector):
+    def __init__(self, host, args):
+        super(EnvironmentVariableCollector, self).__init__(host, args)
 
-    def filter(self, results):
-        raise NotImplementedError('Not implemented')
+        if 'name' not in args:
+            raise ArgumentException('EnvironmentVariableCollector requires name argument')
+
+    def collect(self):
+        cmd = 'echo $' + self.args['name']
+        return_code, out_lines, err_lines = self.host.exec_command(cmd)
+        return out_lines[0]

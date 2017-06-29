@@ -93,24 +93,7 @@ class Host(object):
         import inspect
         raise NotImplementedError(inspect.stack()[0][3] + '() has not been implemented in subclass: ' + self.__class__.__name__)
 
-    def collect_oval_items(self, obj, content, imports, export_names):
-        if 'oval_family' not in self.facts:
-            if 'cpe' not in self.facts or 'os' not in self.facts['cpe'] or len(self.facts['cpe']['os']) <= 0:
-                raise ValueError('Need a defined OS CPE to determine family')
-
-            for cpe in self.facts['cpe']['os']:
-                logger.debug('Checking ' + str(cpe) + ' for family match')
-                if CPE(part='o', vendor='linux').matches(cpe):
-                    self.facts['oval_family'] = 'linux'
-                elif CPE(part='o', vendor='microsoft').matches(cpe):
-                    self.facts['oval_family'] = 'windows'
-
-            if 'oval_family' not in self.facts:
-                raise ValueError('Unable to determine family from discovered CPEs')
-
-        collector_module = obj.__module__.replace('ObjectElement', 'Collector').replace('scap.model.oval_5.defs.', 'scap.collector.' + self.facts['oval_family'] + '.oval_5.')
-        collector_class = obj.__class__.__name__.replace('ObjectElement', 'Collector')
-        mod = importlib.import_module(collector_module, collector_class)
-        class_ = getattr(mod, collector_class)
-        collector = class_(self, {'object': obj, 'content': content, 'imports': imports, 'export_names': export_names})
-        return collector.collect()
+    def load_collector(self, collector_name, args):
+        mod = importlib.import_module('scap.collector.' + self.facts['oval_family'] + '.' + collector_name)
+        class_ = getattr(mod, collector_name)
+        return class_(self, args)

@@ -15,20 +15,24 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import base64
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.StateIdPattern import StateIdPattern
+from scap.Collector import Collector, ArgumentException
 
 logger = logging.getLogger(__name__)
-class FilterElement(StateIdPattern):
-    MODEL_MAP = {
-        'tag_name': 'filter',
-        'attributes': {
-            'action': {'enum': [ 'exclude', 'include', ], 'default': 'exclude'},
-        }
-    }
+class FileContentsCollector(Collector):
+    def __init__(self, host, args):
+        super(FileContentsCollector, self).__init__(host, args)
 
-    def filter(self, results):
-        raise NotImplementedError('Not implemented')
+        if 'path' not in args:
+            raise ArgumentException('FileContentsCollector requires path argument')
+
+    def collect(self):
+        cmd = 'base64 ' \
+            + self.args['path'].replace('"', '\\"')
+        return_code, out_lines, err_lines = self.host.exec_command(cmd)
+        if len(out_lines) == 0 or return_code != 0:
+            raise FileNotFoundError('Unable to collect contents of ' + self.args['path'])
+        else:
+            return base64.b64decode(''.join(out_lines))

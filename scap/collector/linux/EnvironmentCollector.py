@@ -16,16 +16,24 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import re
 
-from scap.Collector import Collector
+from scap.Collector import Collector, ArgumentException
 
 logger = logging.getLogger(__name__)
-class OvalCollector(Collector):
-    def __init__(self, host, args):
-        super(OvalCollector, self).__init__(host, args)
-
-        if 'object' not in self.args:
-            raise ValueError('OVAL collector requires an OVAL object as an argument')
-
-        if self.args['object'].deprecated:
-            logger.warning('Deprecated object ' + self.args['object'].id + ' is being referenced')
+class EnvironmentCollector(Collector):
+    def collect(self):
+        cmd = 'export'
+        return_code, out_lines, err_lines = self.host.exec_command(cmd)
+        env = {}
+        for l in out_lines:
+            m = re.fullmatch(r'declare -x (\S+)=[\'"](.*)[\'"]', l)
+            if m:
+                env[m.group(1)] = m.group(2)
+                continue
+            m = re.fullmatch(r'export (\S+)=[\'"](.*)[\'"]', l)
+            if m:
+                env[m.group(1)] = m.group(2)
+                continue
+                raise ValueError('Unable to parse export line: ' + l)
+        return env
