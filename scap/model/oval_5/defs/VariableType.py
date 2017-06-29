@@ -38,3 +38,4 @@ class VariableType(Model):
 
     def resolve_values(self, content, imports, export_names, var_check):
         raise NotImplementedError('not implemented')
+        # values, datatype, operation, mask
