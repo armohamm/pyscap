@@ -75,6 +75,9 @@ class ObjectType(Model):
             items = self.set.evaluate(host, content, imports, export_names)
         else:
             values = {}
+            value_datatypes = {}
+            value_operations = {}
+            value_masks = {}
             for element_def in self._model_map['elements']:
                 if element_def['tag_name'].endswith('*'):
                     # entity object should be defined explicitly
@@ -87,7 +90,9 @@ class ObjectType(Model):
                     lst = getattr(self, arg_name)
                     for v in lst:
                         if isinstance(v, EntityObjectType):
-                            values[arg_name].extend(v.resolve_values(host, content, imports, export_names))
+                            vals, value_datatypes[arg_name], value_operations[arg_name], \
+                            value_masks[arg_name] = v.resolve_values(host, content, imports, export_names)
+                            values[arg_name].extend(vals)
                         else:
                             values[arg_name].append(v)
 
@@ -102,7 +107,8 @@ class ObjectType(Model):
 
                     v = getattr(self, arg_name)
                     if isinstance(v, EntityObjectType):
-                        values[arg_name] = v.resolve_values(host, content, imports, export_names)
+                        values[arg_name], value_datatypes[arg_name], value_operations[arg_name], \
+                        value_masks[arg_name] = v.resolve_values(host, content, imports, export_names)
                     else:
                         values[arg_name] = [v]
 
@@ -111,7 +117,8 @@ class ObjectType(Model):
                         arg_name = element_def['in']
                     else:
                         arg_name = element_def['tag_name'].replace('-', '_')
-                    values[arg_name] = [getattr(self, arg_name)]
+                    values[arg_name], value_datatypes[arg_name], value_operations[arg_name], \
+                    value_masks[arg_name] = [getattr(self, arg_name)]
 
             arg_order = list(values.keys())
             counters = {x: 0 for x in values.keys()}
@@ -119,6 +126,9 @@ class ObjectType(Model):
 
             items = []
             for args in arg_sets:
+                args['value_datatypes'] = value_datatypes
+                args['value_operations'] = value_operations
+                args['value_masks'] = value_masks
                 items.extend(self.collect_items_for_args(host, args))
 
         for f in self.filters:
@@ -126,5 +136,5 @@ class ObjectType(Model):
 
         return items
 
-    def collect_items_for_args(self, host, args):
+    def collect_items_for_args(self, host, args, value_datatypes, value_operations, value_masks):
         raise NotImplementedError(self.__class__.__name__ + ' does not define collect_items_for_args')
