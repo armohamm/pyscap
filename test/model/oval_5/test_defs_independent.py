@@ -53,6 +53,7 @@ Model.register_namespace('scap.model.oval_5.sc.independent', 'http://oval.mitre.
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
+
 filename = os.path.expanduser('~/.pyscap/inventory.ini')
 try:
     with open(filename, 'r') as fp:
@@ -62,8 +63,8 @@ except IOError:
     logger.error('Could not read from inventory file ' + filename)
 
 host = Host.load('localhost')
-for collector in host.detect_collectors({}):
-    collector.collect()
+# for collector in host.detect_collectors({}):
+#     collector.collect()
 
 @pytest.mark.parametrize('oval_family', [('linux'), ('windows')])
 def test_family(oval_family):
@@ -78,38 +79,41 @@ def test_family(oval_family):
     assert isinstance(items[0], FamilyItemElement)
     assert items[0].family.text == oval_family
 
-# hash_params = [
-#     # Need separate test for linux & windows because line ending difference changes the hashes
-#     ('linux', 'MD5', '088c92cb4d6c96cc3981678e4355fa4a'),
-#     ('linux', 'SHA-1', '8d1f3a9fe1fdef59204dbbbe163e1098c49d142b'),
-#     ('linux', 'SHA-224', '05dfa237b19462f5042625fd6301c03aa31b7ab23ec1ab990fd0aac6'),
-#     ('linux', 'SHA-256', '2eb5d6d679443b74e168948cba53f689572d7b0fabf4052016cd71241cb31356'),
-#     ('linux', 'SHA-384', '220d7a9e4035522342bda46f02dc9c0fd2dc20a9ad97cc005ff973f5f56c3461bedaffd506bd363593730102d8bf384c'),
-#     ('linux', 'SHA-512', '9e50035cb3b290015ce44dbd4152ee3dc506677b98329129c1440144fa1da591e1d77a3522ee780d5390391431ebee4336eb4ddaa1af20adfef07aacf71b65f8'),
-#     ('windows', 'MD5', '64383C3236AA3F8E8416C2D284A6C368'),
-#     ('windows', 'SHA-1', '703884F0C787F3A287815FE4A793F71591671894'),
-#     #('windows', 'SHA-224', ''), # not supported by powershell
-#     ('windows', 'SHA-256', '09617D45A40CB8CC577C73996D4723513F6C04E68D8AE6B0F1F25B3F34178748'),
-#     ('windows', 'SHA-384', '0EDEAB27A4C3008F80DADBE116997CADAA47A6327C3E9CC420578CA843D904E089E7A83D5701CE80DD0B5CE1237322E0'),
-#     ('windows', 'SHA-512', '5055CE3D494D4E003EA8F875E50BAC35AA4EFF13AEBADA45FC295763E2386FE007EC901F968D6D64BBA5DE1B3A17904E11ADDDE470A36DA018DCD660475FF2B7'),
-# ]
-#
-# @pytest.mark.parametrize("oval_family, hash_type,hash_value", hash_params)
-# def test_filehash58_filepath(oval_family, hash_type, hash_value):
-#     if host.facts['oval_family'] != oval_family:
-#         pytest.skip('Does not apply to platform')
-#
-#     obj = FileHash58ObjectElement()
-#     obj.id = 'oval:biz.jaymes:obj:42'
-#     obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
-#     obj.hash_type = EntityObjectHashTypeType(value=hash_type)
-#
-#     items = obj.evaluate(host, None, {}, [])
-#     assert len(items) == 1
-#     assert isinstance(sc_obj.items[0], FileHash58ItemElement)
-#     assert sc_obj.items[0].status == 'exists'
-#     assert sc_obj.items[0].hash_type.text == hash_type
-#     assert sc_obj.items[0].hash.text == hash_value
+@pytest.mark.parametrize(
+    "oval_family, hash_type,hash_value",
+    [
+        # Need separate test for linux & windows because line ending difference changes the hashes
+        ('linux', 'MD5', '088c92cb4d6c96cc3981678e4355fa4a'),
+        ('linux', 'SHA-1', '8d1f3a9fe1fdef59204dbbbe163e1098c49d142b'),
+        ('linux', 'SHA-224', '05dfa237b19462f5042625fd6301c03aa31b7ab23ec1ab990fd0aac6'),
+        ('linux', 'SHA-256', '2eb5d6d679443b74e168948cba53f689572d7b0fabf4052016cd71241cb31356'),
+        ('linux', 'SHA-384', '220d7a9e4035522342bda46f02dc9c0fd2dc20a9ad97cc005ff973f5f56c3461bedaffd506bd363593730102d8bf384c'),
+        ('linux', 'SHA-512', '9e50035cb3b290015ce44dbd4152ee3dc506677b98329129c1440144fa1da591e1d77a3522ee780d5390391431ebee4336eb4ddaa1af20adfef07aacf71b65f8'),
+        ('windows', 'MD5', '64383C3236AA3F8E8416C2D284A6C368'),
+        ('windows', 'SHA-1', '703884F0C787F3A287815FE4A793F71591671894'),
+        #('windows', 'SHA-224', ''), # not supported by powershell
+        ('windows', 'SHA-256', '09617D45A40CB8CC577C73996D4723513F6C04E68D8AE6B0F1F25B3F34178748'),
+        ('windows', 'SHA-384', '0EDEAB27A4C3008F80DADBE116997CADAA47A6327C3E9CC420578CA843D904E089E7A83D5701CE80DD0B5CE1237322E0'),
+        ('windows', 'SHA-512', '5055CE3D494D4E003EA8F875E50BAC35AA4EFF13AEBADA45FC295763E2386FE007EC901F968D6D64BBA5DE1B3A17904E11ADDDE470A36DA018DCD660475FF2B7'),
+    ]
+)
+def test_filehash58_filepath(oval_family, hash_type, hash_value):
+    if host.facts['oval_family'] != oval_family:
+        pytest.skip('Does not apply to platform')
+
+    obj = FileHash58ObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
+    obj.filepath.datatype = 'string'
+    obj.filepath.operation = 'equals'
+    obj.hash_type = EntityObjectHashTypeType(value=hash_type)
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], FileHash58ItemElement)
+    assert items[0].status == 'exists'
+    assert items[0].hash_type.text == hash_type
+    assert items[0].hash.text == hash_value
 
 def test_EntityObjectEngineType_parse():
     assert EntityObjectEngineType(value='ingres').get_value() == 'ingres'

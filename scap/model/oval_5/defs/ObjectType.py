@@ -21,6 +21,7 @@ from scap.Model import Model
 from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
 class ObjectType(Model):
     MODEL_MAP = {
         'elements': [
@@ -40,37 +41,21 @@ class ObjectType(Model):
     def _iter_arg(self, arg, values, counters, arg_order):
         argsets = []
         i = arg_order.index(arg)
-        if i == len(arg_order) - 1:
-            template = {a: values[a][counters[a]] for a in arg_order[0:i-1]}
-            for j in range(len(values[arg])):
-                counters[arg] = j
+        logger.debug('Iterating arg ' + arg)
+        for j in range(len(values[arg])):
+            logger.debug('Arg ' + arg + ' iteration ' + str(values[arg][j]))
+            counters[arg] = j
+            if i == len(arg_order) - 1:
                 argsets.append({a: values[a][counters[a]] for a in arg_order})
-            return argsets
-        else:
-            for j in range(len(values[arg])):
-                counters[arg] = j
+            else:
                 argsets.extend(self._iter_arg(arg_order[i+1], values, counters, arg_order))
-            return argsets
+        return argsets
 
     def evaluate(self, host, content, imports, export_names):
         if self.deprecated:
             logger.warning('Deprecated object ' + self.id + ' is being evaluated')
 
-        # ensure oval_family is defined
-        if 'oval_family' not in host.facts:
-            if 'cpe' not in host.facts or 'os' not in host.facts['cpe'] or len(host.facts['cpe']['os']) <= 0:
-                raise ValueError('Need a defined OS CPE to determine family')
-
-            for cpe in host.facts['cpe']['os']:
-                logger.debug('Checking ' + str(cpe) + ' for family match')
-                if CPE(part='o', vendor='linux').matches(cpe):
-                    host.facts['oval_family'] = 'linux'
-                elif CPE(part='o', vendor='microsoft').matches(cpe):
-                    host.facts['oval_family'] = 'windows'
-
-            if 'oval_family' not in host.facts:
-                raise ValueError('Unable to determine family from discovered CPEs')
-
+        items = []
         if self.set is not None:
             items = self.set.evaluate(host, content, imports, export_names)
         else:
@@ -82,6 +67,10 @@ class ObjectType(Model):
                 if element_def['tag_name'].endswith('*'):
                     # entity object should be defined explicitly
                     raise NotImplementedError('wildcard EntityObjectTypes are unsupported')
+
+                if element_def['tag_name'] in ('set', 'filter', 'notes', 'Signature'):
+                    # skip object elements
+                    continue
 
                 # otherwise, resolve the entity_object
                 elif 'list' in element_def:
@@ -117,15 +106,18 @@ class ObjectType(Model):
                         arg_name = element_def['in']
                     else:
                         arg_name = element_def['tag_name'].replace('-', '_')
-                    values[arg_name], value_datatypes[arg_name], value_operations[arg_name], \
-                    value_masks[arg_name] = [getattr(self, arg_name)]
+                    values[arg_name] = [getattr(self, arg_name)]
+
+            logger.debug('Values resolved to: ' + str(values))
 
             arg_order = list(values.keys())
+            logger.debug('arg_order: ' + str(arg_order))
             counters = {x: 0 for x in values.keys()}
             arg_sets = self._iter_arg(arg_order[0], values, counters, arg_order)
+            logger.debug('arg_sets: ' + str(arg_sets))
 
-            items = []
             for args in arg_sets:
+                logger.debug('Collecting items for args ' + str(args))
                 args['value_datatypes'] = value_datatypes
                 args['value_operations'] = value_operations
                 args['value_masks'] = value_masks
