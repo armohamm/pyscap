@@ -35,10 +35,11 @@ except IOError:
     logger.error('Could not read from inventory file ' + filename)
 
 host = Host.load('localhost')
-for col in host.detect_collectors({}):
-    col.collect()
+# for col in host.detect_collectors({}):
+#     col.collect()
 
 def test_collected_cpes():
+    host.load_collector('CpeCollector', {}).collect()
     assert isinstance(host.facts['cpe'], dict)
 
     assert 'os' in host.facts['cpe']

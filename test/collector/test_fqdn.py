@@ -35,10 +35,12 @@ except IOError:
     logger.error('Could not read from inventory file ' + filename)
 
 host = Host.load('localhost')
-for col in host.detect_collectors({}):
-    col.collect()
+# for col in host.detect_collectors({}):
+#     col.collect()
 
 def test_collected_fqdns():
+    host.load_collector('FqdnCollector', {}).collect()
+
     assert isinstance(host.facts['fqdn'], list)
     assert len(host.facts['fqdn']) > 0
 

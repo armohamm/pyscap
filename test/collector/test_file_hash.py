@@ -37,8 +37,8 @@ except IOError:
     logger.error('Could not read from inventory file ' + filename)
 
 host = Host.load('localhost')
-for col in host.detect_collectors({}):
-    col.collect()
+# for col in host.detect_collectors({}):
+#     col.collect()
 
 hash_params = [
     # Need separate test for linux & windows because line ending difference changes the hashes

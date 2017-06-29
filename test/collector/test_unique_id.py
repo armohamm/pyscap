@@ -35,10 +35,11 @@ except IOError:
     logger.error('Could not read from inventory file ' + filename)
 
 host = Host.load('localhost')
-for col in host.detect_collectors({}):
-    col.collect()
+# for col in host.detect_collectors({}):
+#     col.collect()
 
-def test_collected_system_uuid():
+def test_collected_unique_id():
+    host.load_collector('UniqueIdCollector', {}).collect()
     assert 'unique_id' in host.facts
     unique_id = host.facts['unique_id']
 

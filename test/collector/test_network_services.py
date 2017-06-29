@@ -35,10 +35,11 @@ except IOError:
     logger.error('Could not read from inventory file ' + filename)
 
 host = Host.load('localhost')
-for col in host.detect_collectors({}):
-    col.collect()
+# for col in host.detect_collectors({}):
+#     col.collect()
 
 def test_collected_network_services():
+    host.load_collector('NetworkServiceCollector', {}).collect()
     assert 'network_services' in host.facts
     assert isinstance(host.facts['network_services'], list)
 
