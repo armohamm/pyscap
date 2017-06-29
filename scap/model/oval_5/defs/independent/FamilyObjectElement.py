@@ -42,6 +42,6 @@ class FamilyObjectElement(ObjectType):
             if 'oval_family' not in host.facts:
                 raise ValueError('Unable to determine family from discovered CPEs')
 
-        item = FamilyItemElement(self, {},{})
+        item = FamilyItemElement(self, {})
         item.family = EntityItemFamilyType(value=host.facts['oval_family'])
         return [item]
