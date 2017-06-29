@@ -47,6 +47,7 @@ class EntityObjectType(Model):
             var = content.find_reference(self.var_ref)
             return var.resolve_values(content, imports, export_names, self.var_check)
         else:
+            logger.debug('Resolved values to ' + str(([self.get_value()], self.datatype, self.operation, self.mask)))
             return [self.get_value()], self.datatype, self.operation, self.mask
 
     def __str__(self):
