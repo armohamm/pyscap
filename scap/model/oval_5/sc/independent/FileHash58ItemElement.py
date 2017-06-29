@@ -34,6 +34,3 @@ class FileHash58ItemElement(ItemType):
         'attributes': {
         }
     }
-
-    def process_result(self, args, result):
-        pass
