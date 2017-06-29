@@ -62,19 +62,24 @@ class FileBehaviors(Model):
             'recurse_file_system': {'enum': ['all', 'local', 'defined'], 'default': 'all'},
             # 'recurse_file_system' defines the file system limitation of any
             # searching and applies to all operations as specified on the path
-            # or filepath entity. The value of 'local' limits the search scope
-            # to local file systems (as opposed to file systems mounted from an
-            # external system).  The value of 'defined' keeps any recursion
-            # within the file system that the file_object (path+filename or
-            # filepath) has specified. For example, on Windows, if the path
-            # specified was "C:\", you would search only the C: drive, not other
-            # filesystems mounted to descendant paths. Similarly, on UNIX, if
-            # the path specified was "/", you would search only the filesystem
-            # mounted there, not other filesystems mounted to descendant paths.
-            # The value of 'defined' only applies when an equality operation is
-            # used for searching because the path or filepath entity must
-            # explicitly define a file system. The default value is 'all'
-            # meaning to search all available file systems for data collection.
+            # or filepath entity.
+
+            # The value of 'local' limits the search scope to local file systems
+            # (as opposed to file systems mounted from an external system).
+            
+            # The value of 'defined' keeps any recursion within the file system
+            # that the file_object (path+filename or filepath) has specified.
+            # For example, on Windows, if the path specified was "C:\", you
+            # would search only the C: drive, not other filesystems mounted to
+            # descendant paths. Similarly, on UNIX, if the path specified was "/",
+            # you would search only the filesystem mounted there, not other
+            # filesystems mounted to descendant paths. The value of 'defined'
+            # only applies when an equality operation is used for searching
+            # because the path or filepath entity must explicitly define a file
+            # system.
+
+            # The default value is 'all' meaning to search all available file
+            # systems for data collection.
 
             # Note that in most cases it is recommended that the value of
             # 'local' be used to ensure that file system searching is limited to
