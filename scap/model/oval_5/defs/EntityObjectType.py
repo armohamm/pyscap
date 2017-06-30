@@ -168,31 +168,32 @@ class EntityObjectType(Model):
         ],
     }
 
-    def from_xml(self, parent, sub_el):
-        super(EntityObjectType, self).from_xml(parent, sub_el)
+    def from_xml(self, parent, el):
+        super(EntityObjectType, self).from_xml(parent, el)
 
         if self.datatype in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS \
         and self.operation not in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS[self.datatype]:
             raise ValueError('Invalid operation ' + self.operation + ' on datatype ' + self.datatype + ' for ' + self.__class__.__name__)
 
-        if sub_el.text is not None:
-            if sub_el.text == '':
-                self.text = ''
+        if el.text is not None:
+            if el.text == '':
+                self.set_value('')
             elif self.datatype in EntityObjectType.DATATYPE_CLASS_MAPPING:
-                self.text = EntityObjectType.DATATYPE_CLASS_MAPPING[self.datatype]().parse_value(sub_el.text)
+                self.set_value(EntityObjectType.DATATYPE_CLASS_MAPPING[self.datatype]().parse_value(el.text))
 
                 # allow StringType-like enums & patterns
-                if hasattr(self, 'get_value_enum') and self.text not in self.get_value_enum():
+                if hasattr(self, 'get_value_enum') and self.get_value() not in self.get_value_enum():
                     raise ValueError(self.__class__.__name__ + ' requires a value in ' + str(self.get_value_enum()))
-                if hasattr(self, 'get_value_pattern') and not re.fullmatch(self.get_value_pattern(), self.text):
+                if hasattr(self, 'get_value_pattern') and not re.fullmatch(self.get_value_pattern(), self.get_value()):
                     raise ValueError(self.__class__.__name__ + ' requires a value matching ' + self.get_value_pattern())
 
     def to_xml(self):
+        el =  super(EntityObjectType, self).to_xml()
         if self.datatype in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS \
         and self.operation not in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS[self.datatype]:
             raise ValueError('Invalid operation ' + self.operation + ' on datatype ' + self.datatype + ' for ' + self.__class__.__name__)
 
         if self.datatype in EntityObjectType.DATATYPE_CLASS_MAPPING:
-            self.text = EntityObjectType.DATATYPE_CLASS_MAPPING[self.datatype]().produce_value(sub_el.text)
+            el.text = EntityObjectType.DATATYPE_CLASS_MAPPING[self.datatype]().produce_value(self.get_value())
 
-        return super(EntityObjectType, self).to_xml()
+        return el
