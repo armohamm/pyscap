@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.oval_5 import DATABASE_ENGINE_ENUMERATION
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
@@ -24,7 +25,7 @@ class SQL57ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'sql57_object',
         'elements': [
-            {'tag_name': 'engine', 'class': 'EntityObjectEngineType', 'min': 0},
+            {'tag_name': 'engine', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'value_enum': DATABASE_ENGINE_ENUMERATION},
             {'tag_name': 'version', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
             {'tag_name': 'connection_string', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
             {'tag_name': 'sql', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},

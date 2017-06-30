@@ -115,9 +115,6 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
     assert items[0].hash_type.text == hash_type
     assert items[0].hash.text == hash_value
 
-def test_EntityObjectEngineType_parse():
-    assert EntityObjectEngineType(value='ingres').get_value() == 'ingres'
-
 def test_EntityObjectHashTypeType_parse():
     assert EntityObjectHashTypeType(value='SHA-256').get_value() == 'SHA-256'
 
