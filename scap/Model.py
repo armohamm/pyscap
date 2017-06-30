@@ -514,7 +514,10 @@ class Model(object):
 
         # initialize value
         # TODO we use self.text as the value storage; probably a better way
-        self.set_value(value)
+        if value is not None:
+            self.set_value(value)
+        else:
+            self.text = None
         self.tail = None
 
     def is_nil(self):

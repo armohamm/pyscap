@@ -22,5 +22,7 @@ class RootFixture(Model):
         'tag_name': 'RootFixture',
         'elements': [
             {'tag_name': 'EnclosedFixture', 'class': 'EnclosedFixture', 'min': 0},
+            {'tag_name': 'EnumValue', 'class': 'EnclosedFixture', 'min': 0, 'value_enum': ['alpha', 'bravo', 'charlie']},
+            {'tag_name': 'PatternValue', 'class': 'EnclosedFixture', 'min': 0, 'value_pattern': r'[a-zA-Z]{5}[0-9]{2}'},
         ],
     }

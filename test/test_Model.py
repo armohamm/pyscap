@@ -705,3 +705,13 @@ def test_in_and_out():
     print(test_xml)
     print(out_xml)
     assert out_xml == test_xml
+
+def test_load_attribute_value_in_enum():
+    el = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnumValue>bravo</test:EnumValue></test:RootFixture>'))
+    assert isinstance(el, RootFixture)
+    assert hasattr(el, 'EnumValue')
+    assert el.EnumValue.get_value() == 'bravo'
+
+def test_load_attribute_value_not_in_enum():
+    with pytest.raises(ValueError):
+        Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnumValue>delta</test:EnumValue></test:RootFixture>'))
