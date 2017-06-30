@@ -24,6 +24,6 @@ class VariableObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'variable_object',
         'elements': [
-            {'tag_name': 'var_ref', 'class': 'EntityObjectVariableRefType', 'min': 0},
+            {'tag_name': 'var_ref', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'value_pattern': r'(oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*){0,}'},
         ],
     }
