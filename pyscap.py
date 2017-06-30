@@ -48,6 +48,7 @@ rootLogger.addHandler(ch)
 rootLogger.addHandler(fh)
 
 rootLogger.setLevel(logging.DEBUG)
+ch.setLevel(logging.WARNING)
 
 # report start time & end time
 logger = logging.getLogger(__name__)
@@ -62,19 +63,19 @@ atexit.register(end_func)
 
 # set up argument parsing
 arg_parser = argparse.ArgumentParser()
-arg_parser.add_argument('--version', action='version', version='%(prog)s 1.0')
+arg_parser.add_argument('--version', '-V', action='version', version='%(prog)s 1.0')
 arg_parser.add_argument('--verbose', '-v', action='count')
-arg_parser.add_argument('--output', nargs='?', default='-')
+arg_parser.add_argument('--output', '-o', nargs='?', default='-')
 arg_parser.add_argument('--inventory', nargs='+')
 arg_parser.add_argument('--host', nargs='+')
 
 group = arg_parser.add_mutually_exclusive_group()
 group.add_argument('--list-hosts', help='outputs a list of the hosts', action='store_true')
+group.add_argument('--parse', help='parse the supplied files', nargs='+', type=argparse.FileType('r'))
 group.add_argument('--detect', help='detect facts about the host', action='store_true')
 group.add_argument('--collect', help='collect system characteristics about the host', action='store_true')
 group.add_argument('--benchmark', help='benchmark hosts and produce a report', action='store_true')
 # group.add_argument('--test', help='perform a test on the selected hosts', nargs='+')
-group.add_argument('--parse', help='parse the supplied files', nargs='+', type=argparse.FileType('r'))
 
 # pre-parse arguments
 args = arg_parser.parse_known_args()
@@ -96,6 +97,8 @@ if args[0].verbose:
 # set up the modes
 if args[0].list_hosts:
     logger.info("List hosts operation")
+elif args[0].parse:
+    logger.info('File parsing operation')
 elif args[0].detect:
     logger.info("Detect operation")
 elif args[0].collect:
@@ -163,6 +166,15 @@ if args['list_hosts']:
     print('Hosts: ')
     for host in hosts:
         print(host.hostname)
+
+elif args['parse']:
+    for uri in args['parse']:
+        logger.debug('Loading content file: ' + uri)
+        with open(uri, mode='r', encoding='utf_8') as f:
+            content = ET.parse(f).getroot()
+            model = Model.load(None, content)
+            logger.debug('Loaded ' + uri + ' successfully')
+
 elif args['detect']:
     for host in hosts:
         host.connect()
@@ -259,5 +271,6 @@ elif args['benchmark']:
         output.write(pretty_xml.encode(locale.getpreferredencoding()))
     else:
         output.write(sio.getvalue().encode(locale.getpreferredencoding()))
+
 else:
     arg_parser.error('No valid operation was given')
