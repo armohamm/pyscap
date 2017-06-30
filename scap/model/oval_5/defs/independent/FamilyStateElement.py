@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.oval_5 import FAMILY_ENUMERATION
 from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
@@ -24,6 +25,6 @@ class FamilyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'family_state',
         'elements': [
-            {'tag_name': 'family', 'class': 'EntityStateFamilyType', 'min': 0, 'max': 1},
+            {'tag_name': 'family', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1, 'value_enum': FAMILY_ENUMERATION},
         ],
     }

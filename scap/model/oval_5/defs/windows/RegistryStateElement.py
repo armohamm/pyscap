@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
 from scap.model.oval_5.defs.windows.StateType import StateType
 
 logger = logging.getLogger(__name__)
@@ -31,6 +32,6 @@ class RegistryStateElement(StateType):
             {'tag_name': 'last_write_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'type', 'class': 'EntityStateRegistryTypeType', 'min': 0},
             {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'windows_view', 'class': 'EntityStateWindowsViewType', 'min': 0},
+            {'tag_name': 'windows_view', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': WINDOWS_VIEW_ENUMERATION},
         ],
     }

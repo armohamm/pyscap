@@ -39,6 +39,7 @@ host = Host.load('localhost')
 #     col.collect()
 
 def test_collected_cpes():
+    #pytest.skip('speed')
     host.load_collector('CpeCollector', {}).collect()
     assert isinstance(host.facts['cpe'], dict)
 

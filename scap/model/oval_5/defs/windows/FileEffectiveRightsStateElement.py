@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
 from scap.model.oval_5.defs.windows.StateType import StateType
 
 logger = logging.getLogger(__name__)
@@ -46,6 +47,6 @@ class FileEffectiveRightsStateElement(StateType):
             {'tag_name': 'file_delete_child', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'file_read_attributes', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'file_write_attributes', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'windows_view', 'class': 'EntityStateWindowsViewType', 'min': 0},
+            {'tag_name': 'windows_view', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': WINDOWS_VIEW_ENUMERATION},
         ],
     }

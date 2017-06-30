@@ -114,12 +114,3 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
     assert items[0].status == 'exists'
     assert items[0].hash_type.text == hash_type
     assert items[0].hash.text == hash_value
-
-def test_EntityStateLdaptypeType_parse():
-    assert EntityStateLdaptypeType(value='LDAPTYPE_CERTIFICATE').get_value() == 'LDAPTYPE_CERTIFICATE'
-
-def test_EntityStateVariableRefType_parse():
-    assert EntityStateVariableRefType(value='oval:biz.jaymes:var:12345').get_value() == 'oval:biz.jaymes:var:12345'
-
-def test_EntityStateWindowsViewType_parse():
-    assert EntityStateWindowsViewType(value='32_bit').get_value() == '32_bit'

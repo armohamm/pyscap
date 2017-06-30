@@ -127,6 +127,3 @@ def test_EntityStateSystemMetricIndexType_parse():
 
 def test_EntityStateUserRightType_parse():
     assert EntityStateUserRightType(value='SE_CREATE_PAGEFILE_NAME').get_value() == 'SE_CREATE_PAGEFILE_NAME'
-
-def test_EntityStateWindowsViewType_parse():
-    assert EntityStateWindowsViewType(value='64_bit').get_value() == '64_bit'

@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
 from scap.model.oval_5.defs.windows.StateType import StateType
 
 logger = logging.getLogger(__name__)
@@ -42,6 +43,6 @@ class FileStateElement(StateType):
             {'tag_name': 'original_filename', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'product_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'product_version', 'class': 'EntityStateType', 'min': 0},
-            {'tag_name': 'windows_view', 'class': 'EntityStateWindowsViewType', 'min': 0},
+            {'tag_name': 'windows_view', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': WINDOWS_VIEW_ENUMERATION},
         ],
     }

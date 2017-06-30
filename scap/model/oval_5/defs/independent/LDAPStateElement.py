@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.oval_5 import LDAP_TYPE_ENUMERATION
 from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
@@ -28,7 +29,7 @@ class LDAPStateElement(StateType):
             {'tag_name': 'relative_dn', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'attribute', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'object_class', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'ldaptype', 'class': 'scap.model.oval_5.defs.EntityStateLdaptypeType', 'min': 0},
+            {'tag_name': 'ldaptype', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': LDAP_TYPE_ENUMERATION},
             {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
         ],
     }
