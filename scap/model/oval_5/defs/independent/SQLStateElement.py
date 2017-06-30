@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.oval_5 import DATABASE_ENGINE_ENUMERATION
 from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
@@ -24,7 +25,7 @@ class SQLStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'sql_state',
         'elements': [
-            {'tag_name': 'engine', 'class': 'EntityStateEngineType', 'min': 0},
+            {'tag_name': 'engine', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': DATABASE_ENGINE_ENUMERATION},
             {'tag_name': 'version', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'connection_string', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
             {'tag_name': 'sql', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
