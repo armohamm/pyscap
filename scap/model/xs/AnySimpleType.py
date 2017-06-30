@@ -21,21 +21,9 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 class AnySimpleType(Model):
-    def parse_value(self, value):
-        return value
-
-    def produce_value(self, value):
-        return str(value)
+    MODEL_MAP = {
+    }
 
     def __str__(self):
-        return super(AnySimpleType, self).__str__() + ' = ' + str(self.get_value())
-
-    def from_xml(self, parent, sub_el):
-        super(AnySimpleType, self).from_xml(parent, sub_el)
-
-        if sub_el.text is not None:
-            self.text = self.parse_value(sub_el.text)
-
-    def to_xml(self):
-        self.text = self.produce_value(self.text)
-        return super(AnySimpleType, self).to_xml()
+        # using self.text instead of self.get_value to avoid stack overflow loop
+        return super(AnySimpleType, self).__str__() + ' = ' + str(self.text)
