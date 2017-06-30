@@ -525,18 +525,18 @@ class Model(object):
         self.set_value(None)
 
     def get_value(self):
-        logger.debug(str(self) + ' value currently ' + str(self.text))
+        logger.debug(self.__class__.__name__ + ' value currently ' + str(self.text))
         return self.text
 
     def set_value(self, value):
         if self._value_enum is not None:
             if value not in self._value_enum:
-                raise ValueError(str(self) + ' Invalid value ' + str(value) + '; not in ' + str(self._value_enum))
+                raise ValueError(self.__class__.__name__ + ' Invalid value ' + str(value) + '; not in ' + str(self._value_enum))
         if self._value_pattern is not None:
             if not isinstance(value, str) or not re.fullmatch(self._value_pattern, value):
-                raise ValueError(str(self) + ' Invalid value ' + str(value) + '; does not match ' + self._value_pattern)
+                raise ValueError(self.__class__.__name__ + ' Invalid value ' + str(value) + '; does not match ' + self._value_pattern)
         self.text = value
-        logger.debug(str(self) + ' value set to ' + str(self.text))
+        logger.debug(self.__class__.__name__ + ' value set to ' + str(self.text))
 
     def parse_value(self, value):
         return value
