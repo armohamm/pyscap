@@ -269,7 +269,7 @@ class Model(object):
         return Model.__xmlns_to_package[xmlns]
 
     @staticmethod
-    def load(parent, child_el):
+    def load(parent, child_el, element_def=None):
         xmlns, tag_name = Model.parse_tag(child_el.tag)
 
         # try to load the tag's module
@@ -315,6 +315,7 @@ class Model(object):
             model_module = module_name
             module_name = module_name.rpartition('.')[2]
 
+        # use cached copy of module if possible
         if model_module not in sys.modules:
             logger.debug('Loading module ' + model_module)
             mod = importlib.import_module(model_module)
@@ -323,7 +324,10 @@ class Model(object):
 
         # instantiate an instance of the class & load it
         class_ = getattr(mod, module_name)
-        inst = class_()
+        if element_def is not None:
+            inst = class_(element_def=element_def)
+        else:
+            inst = class_()
         inst.from_xml(parent, child_el)
 
         return inst
@@ -342,6 +346,7 @@ class Model(object):
 
     @staticmethod
     def _get_model_map(model_class):
+        # check the __model_mappings cache first, otherwise generate
         fq_model_class_name = model_class.__module__ + '.' + model_class.__name__
         if fq_model_class_name not in Model.__model_mappings:
             at_map = {}
@@ -389,6 +394,7 @@ class Model(object):
             for element_def in el_map:
                 if not isinstance(element_def, dict):
                     raise TagMappingException('Class ' + fq_model_class_name + ' has an invalid element definition: ' + str(element_def))
+
                 if 'xmlns' not in element_def and element_def['tag_name'] == '*':
                     el_lookup['*'] = element_def
                 elif 'xmlns' in element_def:
@@ -420,7 +426,7 @@ class Model(object):
 
         raise ReferenceException('Could not find content for: ' + uri)
 
-    def __init__(self, value=None, xmlns=None, tag_name=None):
+    def __init__(self, value=None, xmlns=None, tag_name=None, element_def=None):
         # child_map must be first to prevent recursion of __getattr__
         self._child_map = {}
         self._children_values = []
@@ -430,14 +436,15 @@ class Model(object):
 
         self._references = {}
 
-        if value is None:
-            self.text = None
-        else:
-            self.text = value
-
-        self.tail = None
-
         self._model_map = Model._get_model_map(self.__class__)
+
+        self._value_enum = None
+        self._value_pattern = None
+        if element_def is not None:
+            if 'value_enum' in element_def:
+                self._value_enum = element_def['value_enum']
+            if 'value_pattern' in element_def:
+                self._value_pattern = element_def['value_pattern']
 
         if tag_name is not None:
             self.tag_name = tag_name
@@ -464,13 +471,14 @@ class Model(object):
                 attr_name = attr_name.replace('-', '_')
 
             if 'default' in attr_map:
-                value = attr_map['default']
-                setattr(self, attr_name, value)
-                logger.debug('Default of attribute ' + attr_name + ' = ' + str(value))
+                default_value = attr_map['default']
+                setattr(self, attr_name, default_value)
+                logger.debug('Default of attribute ' + attr_name + ' = ' + str(default_value))
             else:
                 setattr(self, attr_name, None)
 
-        # initialize elements; if subclass defined, we don't re-define
+        # initialize elements; if subclass defined the corresponding attribute,
+        # we don't re-define
         for element_def in self._model_map['elements']:
             if element_def['tag_name'].endswith('*'):
                 if 'in' not in element_def:
@@ -504,19 +512,39 @@ class Model(object):
                     logger.debug('Initializing ' + name + ' to ModelChild()')
                     self._child_map[name] = ModelChild(self, element_def)
 
-    # mostly for overriding
-    def get_value(self):
-        return self.text
-
-    def set_value(self, value):
-        self.text = value
+        # initialize value
+        # TODO we use self.text as the value storage; probably a better way
+        self.set_value(value)
+        self.tail = None
 
     def is_nil(self):
         return self._xsi_nil
 
     def set_nil(self):
         self._xsi_nil = True
-        self.text = None
+        self.set_value(None)
+
+    def get_value(self):
+        logger.debug(str(self) + ' value currently ' + str(self.text))
+        return self.text
+
+    def set_value(self, value):
+        if self._value_enum is not None:
+            if value not in self._value_enum:
+                raise ValueError(str(self) + ' Invalid value ' + str(value) + '; not in ' + str(self._value_enum))
+        if self._value_pattern is not None:
+            if not isinstance(value, str) or not re.fullmatch(self._value_pattern, value):
+                raise ValueError(str(self) + ' Invalid value ' + str(value) + '; does not match ' + self._value_pattern)
+        self.text = value
+        logger.debug(str(self) + ' value set to ' + str(self.text))
+
+    def parse_value(self, value):
+        return value
+
+    def produce_value(self, value):
+        if value is None:
+            return value
+        return str(value)
 
     def __str__(self):
         s = self.__class__.__module__ + '.' + self.__class__.__name__
@@ -675,8 +703,8 @@ class Model(object):
             if max_ is not None and tag in self._tag_counts and self._tag_counts[tag] > max_:
                 raise MaximumElementException(self.__class__.__name__ + ' may have at most ' + str(max_) + ' ' + tag + ' elements')
 
-        self.text = el.text
-        self.tail = el.tail
+        if el.text is not None:
+            self.set_value(self.parse_value(el.text))
 
     def _load_type_class(self, type_):
         if '.' in type_:
@@ -780,7 +808,7 @@ class Model(object):
                 elif 'type' in element_def:
                     value = self._parse_value_as_type(el.text, element_def['type'])
                 else:
-                    value = Model.load(self, el)
+                    value = Model.load(self, el, element_def=element_def)
                     value.xmlns = xmlns
                     value.tag_name = tag_name
 
@@ -801,7 +829,7 @@ class Model(object):
                 elif 'type' in element_def:
                     value = self._parse_value_as_type(el.text, element_def['type'])
                 else:
-                    value = Model.load(self, el)
+                    value = Model.load(self, el, element_def=element_def)
                     value.xmlns = xmlns
                     value.tag_name = tag_name
 
@@ -847,7 +875,7 @@ class Model(object):
                         value = self._parse_value_as_type(el.text, element_def['type'])
                     else:
                         # needs 'class' in element_def
-                        value = Model.load(self, el)
+                        value = Model.load(self, el, element_def=element_def)
                         value.xmlns = xmlns
                         value.tag_name = tag_name
 
@@ -864,7 +892,7 @@ class Model(object):
                     else:
                         raise ValueError(el.tag + ' is nil, but not expecting nil value')
                 else:
-                    value = Model.load(self, el)
+                    value = Model.load(self, el, element_def=element_def)
                     value.xmlns = xmlns
                     value.tag_name = tag_name
 
@@ -927,12 +955,6 @@ class Model(object):
         logger.debug(str(self) + ' to xml')
         el = ET.Element('{' + self.xmlns + '}' + self.tag_name)
 
-        if self.text is not None:
-            el.text = str(self.text)
-
-        if self.tail is not None:
-            el.tail = str(self.tail)
-
         for name in self._model_map['attributes']:
             value = self._produce_attribute(name, el)
 
@@ -975,6 +997,11 @@ class Model(object):
 
         for i in range(0, len(self._children_values)):
             self._produce_child(i, el)
+
+        el.text = self.produce_value(self.get_value())
+
+        if self.tail is not None:
+            el.tail = str(self.tail)
 
         return el
 
@@ -1095,16 +1122,13 @@ class Model(object):
                 if 'value_attr' in element_def:
                     if child is None:
                         raise ValueError(str(self) + ' Cannot have none for a value_attr: ' + element_def['dict'] + '[' + self._children_keys[child_index] + ']')
-                    class_ = self._load_type_class(element_def['type'])
-                    value = class_().produce_value(child)
+                    value = self._produce_value_as_type(child, element_def['type'])
                     sub_el.set(element_def['value_attr'], value)
                 else:
                     if child is None:
                         sub_el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
                     else:
-                        class_ = self._load_type_class(element_def['type'])
-                        value = class_().produce_value(child)
-                        sub_el.text = value
+                        sub_el.text = self._produce_value_as_type(child, element_def['type'])
                 el.append(sub_el)
 
             elif 'class' in element_def:
@@ -1144,7 +1168,7 @@ class Model(object):
             if child is None:
                 return
 
-            if el.text not in element_def['enum']:
+            if child not in element_def['enum']:
                 raise EnumerationException(tag + ' value must be one of ' + str(element_def['enum']))
 
             if 'xmlns' in element_def:
