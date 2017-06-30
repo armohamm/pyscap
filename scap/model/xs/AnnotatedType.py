@@ -32,8 +32,8 @@ class AnnotatedType(AnyTypeType):
         },
     }
 
-    def __init__(self):
-        super(AnnotatedType, self).__init__()
+    def __init__(self, *args, **kwargs):
+        super(AnnotatedType, self).__init__(*args, **kwargs)
 
         self._super_module = 'scap.Model'
         self._super_class = 'Model'

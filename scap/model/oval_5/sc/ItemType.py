@@ -34,8 +34,8 @@ class ItemType(Model):
 
     __last_item_id = 0
 
-    def __init__(self, obj, args, value=None, xmlns=None, tag_name=None):
-        super(ItemType, self).__init__(value=value, xmlns=xmlns, tag_name=tag_name)
+    def __init__(self, obj, item_args, *args, **kwargs):
+        super(ItemType, self).__init__(*args, **kwargs)
 
         self._generating_object = obj
 

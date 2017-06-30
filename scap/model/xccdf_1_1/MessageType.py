@@ -28,8 +28,8 @@ class MessageType(StringType):
         }
     }
 
-    def __init__(self, value=None, tag_name=None, severity=None):
-        super(String, self).__init__(value=value, tag_name=tag_name)
+    def __init__(self, severity=None, *args, **kwargs):
+        super(String, self).__init__(*args, **kwargs)
 
         if severity is not None:
             self.severity = severity

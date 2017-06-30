@@ -44,8 +44,8 @@ class ValueType(ItemType):
         },
     }
 
-    def __init__(self):
-        super(ValueType, self).__init__()
+    def __init__(self, *args, **kwargs):
+        super(ValueType, self).__init__(*args, **kwargs)
 
         self.default = None
         self.value = None

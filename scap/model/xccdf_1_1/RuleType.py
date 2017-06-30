@@ -53,8 +53,8 @@ class RuleType(SelectableItemType):
         },
     }
 
-    def __init__(self):
-        super(RuleType, self).__init__()
+    def __init__(self, *args, **kwargs):
+        super(RuleType, self).__init__(*args, **kwargs)
 
         self.check_selector = None
 
