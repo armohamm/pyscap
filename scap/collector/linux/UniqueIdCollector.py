@@ -26,10 +26,10 @@ class UniqueIdCollector(Collector):
     def collect(self):
         try:
             from scap.collector.linux.DmiDecodeCollector import DmiDecodeCollector
-            DmiDecodeCollector(self.host, self.args).collect()
+            DmiDecodeCollector(self.host, {}).collect()
         except:
             # fall back to root fs uuid
             from scap.collector.linux.RootFsUuidCollector import RootFsUuidCollector
-            RootFsUuidCollector(self.host, self.args).collect()
+            RootFsUuidCollector(self.host, {}).collect()
             self.host.facts['unique_id'] = self.host.facts['root_uuid']
         logger.debug('System UUID: ' + self.host.facts['unique_id'])

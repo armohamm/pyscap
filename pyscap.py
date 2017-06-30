@@ -35,7 +35,6 @@ from scap.ColorFormatter import ColorFormatter
 from scap.Model import Model
 from scap.Host import Host
 from scap.Inventory import Inventory
-from scap.collector.Checker import Checker
 from scap.Reporter import Reporter
 
 rootLogger = logging.getLogger()

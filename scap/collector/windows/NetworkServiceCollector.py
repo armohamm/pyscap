@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class NetworkServiceCollector(Collector):
     def collect(self):
         from scap.collector.windows.NetstatCollector import NetstatCollector
-        NetstatCollector(self.host, self.args).collect()
+        NetstatCollector(self.host, {}).collect()
 
         for netsvc in self.host.facts['network_services']:
             logger.debug('Service: Address: ' + netsvc['ip_address'] + ' Port: ' + netsvc['port'] + ' Protocol: ' + netsvc['protocol'] + ' Source: ' + netsvc['source'] + ' Timestamp: ' + netsvc['timestamp'])

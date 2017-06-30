@@ -28,13 +28,13 @@ class CpeCollector(Collector):
 
         # hardware
         from scap.collector.linux.LshwCollector import LshwCollector
-        LshwCollector(self.host, self.args).collect()
+        LshwCollector(self.host, {}).collect()
 
         from scap.collector.linux.LspciCollector import LspciCollector
-        LspciCollector(self.host, self.args).collect()
+        LspciCollector(self.host, {}).collect()
 
         from scap.collector.linux.LscpuCollector import LscpuCollector
-        LscpuCollector(self.host, self.args).collect()
+        LscpuCollector(self.host, {}).collect()
 
         # TODO hwinfo
         # TODO lsusb
@@ -43,10 +43,10 @@ class CpeCollector(Collector):
 
         # os
         from scap.collector.linux.LsbReleaseCollector import LsbReleaseCollector
-        LsbReleaseCollector(self.host, self.args).collect()
+        LsbReleaseCollector(self.host, {}).collect()
 
         from scap.collector.UNameCollector import UNameCollector
-        UNameCollector(self.host, self.args).collect()
+        UNameCollector(self.host, {}).collect()
 
         # application
         for cpe in self.host.facts['cpe']['os']:
@@ -54,7 +54,7 @@ class CpeCollector(Collector):
             or CPE(part='o', vendor='debian').matches(cpe) \
             or CPE(part='o', vendor='linuxmint').matches(cpe):
                 from scap.collector.linux.DpkgCollector import DpkgCollector
-                DpkgCollector(self.host, self.args).collect()
+                DpkgCollector(self.host, {}).collect()
 
             # TODO Red Hat, CentOS: yum, rpm
             # TODO Fedora: dnf

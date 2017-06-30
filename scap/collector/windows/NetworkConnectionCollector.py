@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class NetworkConnectionCollector(Collector):
     def collect(self):
         from scap.collector.windows.IpConfigAllCollector import IpConfigAllCollector
-        IpConfigAllCollector(self.host, self.args).collect()
+        IpConfigAllCollector(self.host, {}).collect()
 
         for dev, netcon in self.host.facts['network_connections'].items():
             logger.debug('Device: ' + dev)

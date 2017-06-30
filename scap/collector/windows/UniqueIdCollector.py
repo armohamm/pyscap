@@ -30,4 +30,4 @@ logger = logging.getLogger(__name__)
 class UniqueIdCollector(Collector):
     def collect(self):
         from scap.collector.windows.WmicCsProductCollector import WmicCsProductCollector
-        WmicCsProductCollector(self.host, self.args).collect()
+        WmicCsProductCollector(self.host, {}).collect()

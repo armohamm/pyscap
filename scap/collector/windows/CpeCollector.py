@@ -29,15 +29,15 @@ class CpeCollector(Collector):
 
         # hardware
         from scap.collector.windows.WmicPnPEntityCollector import WmicPnPEntityCollector
-        WmicPnPEntityCollector(self.host, self.args).collect()
+        WmicPnPEntityCollector(self.host, {}).collect()
 
         # os
         from scap.collector.windows.SystemInfoCollector import SystemInfoCollector
-        SystemInfoCollector(self.host, self.args).collect()
+        SystemInfoCollector(self.host, {}).collect()
 
         # application
         from scap.collector.windows.RegUninstallCollector import RegUninstallCollector
-        RegUninstallCollector(self.host, self.args).collect()
+        RegUninstallCollector(self.host, {}).collect()
 
         for cpe_part in self.host.facts['cpe']:
             for cpe in self.host.facts['cpe'][cpe_part]:
