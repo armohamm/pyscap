@@ -61,7 +61,10 @@ def test_namespace_registration():
 
 def test_is_nil():
     root = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />'))
+    assert root.get_value() is None
     assert root.is_nil()
+
+def test_is_not_nil():
     root = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test" />'))
     assert not root.is_nil()
 
