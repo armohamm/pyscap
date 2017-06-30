@@ -70,9 +70,10 @@ arg_parser.add_argument('--inventory', nargs='+')
 arg_parser.add_argument('--host', nargs='+')
 
 group = arg_parser.add_mutually_exclusive_group()
-group.add_argument('--collect', help='try to connect and collect facts from the host', action='store_true')
-group.add_argument('--benchmark', help='benchmark hosts', action='store_true')
 group.add_argument('--list-hosts', help='outputs a list of the hosts', action='store_true')
+group.add_argument('--detect', help='detect facts about the host', action='store_true')
+group.add_argument('--collect', help='collect system characteristics about the host', action='store_true')
+group.add_argument('--benchmark', help='benchmark hosts and produce a report', action='store_true')
 # group.add_argument('--test', help='perform a test on the selected hosts', nargs='+')
 group.add_argument('--parse', help='parse the supplied files', nargs='+', type=argparse.FileType('r'))
 
@@ -94,8 +95,13 @@ if args[0].verbose:
         logger.debug('Set console logging level to NOTSET')
 
 # set up the modes
-if args[0].collect:
+if args[0].list_hosts:
+    logger.info("List hosts operation")
+elif args[0].detect:
+    logger.info("Detect operation")
+elif args[0].collect:
     logger.info("Collect operation")
+    arg_parser.add_argument('--content', required=True, nargs='+')
 elif args[0].benchmark:
     logger.info("Benchmark operation")
     arg_parser.add_argument('--content', required=True, nargs='+')
@@ -103,8 +109,6 @@ elif args[0].benchmark:
     arg_parser.add_argument('--checklist', nargs=1)
     arg_parser.add_argument('--profile', nargs=1)
     arg_parser.add_argument('--pretty', action='store_true')
-elif args[0].list_hosts:
-    logger.info("List hosts operation")
 else:
     arg_parser.error('No valid operation was given')
 
@@ -145,16 +149,52 @@ if args['output'] != '-':
 else:
     output = sys.stdout.buffer
 
-if args['collect']:
+detection_collectors = [
+    'UniqueIdCollector',
+    'CpeCollector',
+    'FqdnCollector',
+    'HostnameCollector',
+    'NetworkConnectionCollector',
+    'NetworkServiceCollector',
+    'IdentityCollector',
+]
+
+if args['list_hosts']:
+    print('Hosts: ')
+    for host in hosts:
+        print(host.hostname)
+elif args['detect']:
     for host in hosts:
         host.connect()
-        for collector in host.detect_collectors(args):
-            collector.collect()
+
+        # run detection collectors
+        for col_name in detection_collectors:
+            col = host.load_collector(col_name, {})
+            col.collect()
+
         host.disconnect()
 
-        logger.info('Fact collection dump:')
+        logger.info('Host detection dump:')
         pp = pprint.PrettyPrinter(width=132)
         pp.pprint(host.facts)
+
+elif args['collect']:
+    if args['content'] is None or len(args['content']) == 0:
+        arg_parser.error('No content specified (--content)')
+
+    # this mode will collect oval system characteristics
+    for host in hosts:
+        host.connect()
+
+        # run detection collectors
+        for col_name in detection_collectors:
+            col = host.load_collector(col_name, {})
+            col.collect()
+
+        raise NotImplementedError('System characteristic collection is not implemented')
+
+        host.disconnect()
+
 elif args['benchmark']:
     ### Loading.Import
     # Import the XCCDF document into the program and build an initial internal
@@ -184,8 +224,10 @@ elif args['benchmark']:
     for host in hosts:
         host.connect()
 
-        for collector in host.detect_collectors(args):
-            collector.collect()
+        # run detection collectors
+        for col_name in detection_collectors:
+            col = host.load_collector(col_name, {})
+            col.collect()
 
         benchmark_model.noticing()
 
@@ -217,9 +259,5 @@ elif args['benchmark']:
         output.write(pretty_xml.encode(locale.getpreferredencoding()))
     else:
         output.write(sio.getvalue().encode(locale.getpreferredencoding()))
-elif args['list_hosts']:
-    print('Hosts: ')
-    for host in hosts:
-        print(host.hostname)
 else:
     arg_parser.error('No valid operation was given')

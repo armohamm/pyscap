@@ -63,8 +63,6 @@ except IOError:
     logger.error('Could not read from inventory file ' + filename)
 
 host = Host.load('localhost')
-# for collector in host.detect_collectors({}):
-#     collector.collect()
 
 @pytest.mark.parametrize('oval_family', [('linux'), ('windows')])
 def test_family(oval_family):

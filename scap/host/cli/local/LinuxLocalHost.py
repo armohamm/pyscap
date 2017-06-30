@@ -34,10 +34,6 @@ class LinuxLocalHost(LocalHost):
         # so we short circuit any detection
         self.facts['oval_family'] = 'linux'
 
-    def detect_collectors(self, args):
-        from scap.collector.linux.Collector import Collector
-        return [Collector(self, args)]
-
     def exec_command(self, cmd, sudo=False):
         inventory = Inventory()
 

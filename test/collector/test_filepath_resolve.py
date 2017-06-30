@@ -37,8 +37,6 @@ except IOError:
     logger.error('Could not read from inventory file ' + filename)
 
 host = Host.load('localhost')
-# for col in host.detect_collectors({}):
-#     col.collect()
 
 def test_existing_file_equals():
     filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml')

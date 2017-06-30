@@ -59,10 +59,6 @@ class SSHHost(CLIHost):
             else:
                 raise RuntimeError('Key for ' + hostname + ' not accepted')
 
-    def detect_collectors(self, args):
-        from scap.collector.SSHCollector import SSHCollector
-        return [SSHCollector(self, args)]
-
     def connect(self):
         self.client = paramiko.client.SSHClient()
         self.client.load_system_host_keys()
@@ -117,6 +113,22 @@ class SSHHost(CLIHost):
             else:
                 self.sudo_password = ssh_password
             self.client.connect(self.hostname, port=port, username=ssh_username, password=ssh_password)
+
+        try:
+            from scap.collector.UNameCollector import UNameCollector
+            UNameCollector(self, {}).collect()
+        except:
+            # uname didn't work
+            raise NotImplementedError('Unable to run uname on host: ' + self.host.hostname)
+
+        if self.facts['uname'].startswith('Linux'):
+            self.facts['oval_family'] = 'linux'
+        # elif uname.startswith('Darwin'):
+        #     pass
+        elif self.facts['uname'].startswith('Windows NT'):
+            self.facts['oval_family'] = 'windows'
+        else:
+            raise NotImplementedError('Host detection has not been implemented for uname: ' + self.facts['uname'] + ' on ' + self.hostname)
 
     def _recv(self, chan):
         try:

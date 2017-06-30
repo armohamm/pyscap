@@ -24,7 +24,19 @@ def test_host_detection():
     host = Host.load('localhost')
     assert isinstance(host, LocalHost)
 
-def test_collector_detection():
+def test_load_collector():
     host = Host.load('localhost')
-    collectors = host.detect_collectors({})
-    assert len(collectors) > 0
+    detection_collectors = [
+        'UniqueIdCollector',
+        'CpeCollector',
+        'FqdnCollector',
+        'HostnameCollector',
+        'NetworkConnectionCollector',
+        'NetworkServiceCollector',
+        'IdentityCollector',
+    ]
+
+    for col_name in detection_collectors:
+        col = host.load_collector(col_name, {})
+        # collection is tested elsewhere
+        #col.collect()

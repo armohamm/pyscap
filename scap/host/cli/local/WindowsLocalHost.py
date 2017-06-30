@@ -30,10 +30,6 @@ class WindowsLocalHost(LocalHost):
         # so we short circuit any detection
         self.facts['oval_family'] = 'windows'
 
-    def detect_collectors(self, args):
-        from scap.collector.windows.Collector import Collector
-        return [Collector(self, args)]
-
     def is_admin():
         try:
             return ctypes.windll.shell32.IsUserAnAdmin()
