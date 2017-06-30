@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.oval_5 import HASH_TYPE_ENUMERATION
 from scap.model.oval_5.defs.independent.FileBehaviors import FileBehaviors
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
@@ -33,7 +34,7 @@ class FileHash58ObjectElement(ObjectType):
             {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
             {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
             {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'hash_type', 'class': 'EntityObjectHashTypeType', 'min': 0},
+            {'tag_name': 'hash_type', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'value_enum': HASH_TYPE_ENUMERATION},
         ],
     }
 

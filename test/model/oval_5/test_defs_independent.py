@@ -106,7 +106,7 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
     obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
     obj.filepath.datatype = 'string'
     obj.filepath.operation = 'equals'
-    obj.hash_type = EntityObjectHashTypeType(value=hash_type)
+    obj.hash_type = EntityObjectType(value=hash_type)
 
     items = obj.evaluate(host, None, {}, [])
     assert len(items) == 1
@@ -114,9 +114,6 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
     assert items[0].status == 'exists'
     assert items[0].hash_type.text == hash_type
     assert items[0].hash.text == hash_value
-
-def test_EntityObjectHashTypeType_parse():
-    assert EntityObjectHashTypeType(value='SHA-256').get_value() == 'SHA-256'
 
 def test_EntityStateLdaptypeType_parse():
     assert EntityStateLdaptypeType(value='LDAPTYPE_CERTIFICATE').get_value() == 'LDAPTYPE_CERTIFICATE'
