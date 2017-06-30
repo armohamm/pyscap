@@ -134,6 +134,7 @@ else:
             Inventory().readfp(fp)
     except IOError:
         logger.error('Could not read from inventory file ' + filename)
+
 if args['host'] is None or len(args['host']) == 0:
     arg_parser.error('No host specified (--host)')
 

@@ -686,6 +686,9 @@ class CPE(object):
     def __str__(self):
         return self.to_uri_string()
 
+    def __repr__(self):
+        return self.to_uri_string()
+
     ####### FS #######
     FS_INDEX = [
         'part',
