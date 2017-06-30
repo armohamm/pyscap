@@ -20,6 +20,7 @@ import logging
 import importlib
 import sys
 import os.path
+import re
 import xml.etree.ElementTree as ET
 
 XML_SPACE_ENUMERATION = [

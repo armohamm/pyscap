@@ -715,3 +715,13 @@ def test_load_attribute_value_in_enum():
 def test_load_attribute_value_not_in_enum():
     with pytest.raises(ValueError):
         Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnumValue>delta</test:EnumValue></test:RootFixture>'))
+
+def test_load_attribute_value_matches_pattern():
+    el = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:PatternValue>Bravo12</test:PatternValue></test:RootFixture>'))
+    assert isinstance(el, RootFixture)
+    assert hasattr(el, 'PatternValue')
+    assert el.PatternValue.get_value() == 'Bravo12'
+
+def test_load_attribute_value_not_matches_pattern():
+    with pytest.raises(ValueError):
+        Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:PatternValue>delta</test:PatternValue></test:RootFixture>'))
