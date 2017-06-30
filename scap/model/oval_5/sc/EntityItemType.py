@@ -61,18 +61,19 @@ class EntityItemType(Model):
 
         if sub_el.text is not None:
             if sub_el.text == '':
-                self.text = ''
+                self.set_value('')
             elif self.datatype in EntityItemType.DATATYPE_CLASS_MAPPING:
-                self.text = EntityItemType.DATATYPE_CLASS_MAPPING[self.datatype].parse_value(sub_el.text)
+                self.set_value(EntityItemType.DATATYPE_CLASS_MAPPING[self.datatype].parse_value(sub_el.text))
 
                 # allow StringType-like enums & patterns
-                if hasattr(self, 'get_value_enum') and self.text not in self.get_value_enum():
+                if hasattr(self, 'get_value_enum') and self.get_value() not in self.get_value_enum():
                     raise ValueError(self.__class__.__name__ + ' requires a value in ' + str(self.get_value_enum()))
-                if hasattr(self, 'get_value_pattern') and not re.fullmatch(self.get_value_pattern(), self.text):
+                if hasattr(self, 'get_value_pattern') and not re.fullmatch(self.get_value_pattern(), self.get_value()):
                     raise ValueError(self.__class__.__name__ + ' requires a value matching ' + self.get_value_pattern())
 
     def to_xml(self):
+        el = super(EntityItemType, self).to_xml()
         if self.datatype in EntityItemType.DATATYPE_CLASS_MAPPING:
-            self.text = EntityItemType.DATATYPE_CLASS_MAPPING[self.datatype].produce_value(sub_el.text)
+            el.text = EntityItemType.DATATYPE_CLASS_MAPPING[self.datatype].produce_value(self.get_value())
 
-        return super(EntityItemType, self).to_xml()
+        return el
