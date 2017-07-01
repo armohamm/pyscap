@@ -44,7 +44,8 @@ def test_exists():
 
 def test_not_exists():
     c = host.load_collector('EnvironmentVariableCollector', {'name': 'nope'})
-    assert c.collect() == ''
+    with pytest.raises(KeyError):
+        c.collect()
 
 def test_args():
     with pytest.raises(ArgumentException):

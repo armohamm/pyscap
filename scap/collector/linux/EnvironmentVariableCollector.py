@@ -30,4 +30,6 @@ class EnvironmentVariableCollector(Collector):
     def collect(self):
         cmd = 'echo $' + self.args['name']
         return_code, out_lines, err_lines = self.host.exec_command(cmd)
+        if return_code != 0 or len(out_lines) < 1 or out_lines[0] == '':
+            raise KeyError('Environment variable ' + self.args['name'] + ' was not found')
         return out_lines[0]

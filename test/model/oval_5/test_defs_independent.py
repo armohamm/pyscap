@@ -112,3 +112,28 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
     assert items[0].status == 'exists'
     assert items[0].hash_type.text == hash_type
     assert items[0].hash.text == hash_value
+
+def test_env_var():
+    obj = EnvironmentVariable58ObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.name = EntityObjectType(value='PWD')
+    obj.name.datatype = 'string'
+    obj.name.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], EnvironmentVariable58ItemElement)
+    assert items[0].status == 'exists'
+    assert items[0].value.get_value() != ''
+
+def test_env_var_missing():
+    obj = EnvironmentVariable58ObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.name = EntityObjectType(value='nope')
+    obj.name.datatype = 'string'
+    obj.name.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], EnvironmentVariable58ItemElement)
+    assert items[0].status == 'not exists'
