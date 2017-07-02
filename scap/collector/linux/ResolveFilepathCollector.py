@@ -16,6 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import re
 
 from scap.Collector import Collector, ArgumentException
 from scap.model.oval_5.defs.independent.FileBehaviors import FileBehaviors
@@ -37,18 +38,32 @@ class ResolveFilepathCollector(Collector):
 
         # NOTE: operation should be already validated by EntityObjectType
 
-        # TODO the max_depth behavior is not allowed with a filepath entity
-        # recurse
-        # TODO the recurse_direction behavior is not allowed with a filepath entity
-        # the recurse_file_system behavior MUST not be set to 'defined' when a pattern match is used with a filepath entity
         if args['value_operations']['filepath'] == 'pattern match' and args['behavior_recurse_file_system'] == 'defined':
             raise ArgumentException('ResolveFilepathCollector behavior_recurse_file_system set to defined with pattern match operation')
 
     def collect(self):
+        opt = '-L'
+        expr = []
+
+        if 'behavior_recurse' in self.args and self.args['behavior_recurse'] == 'directories':
+            opt = '-H'
+        elif 'behavior_recurse' in self.args and self.args['behavior_recurse'] == 'symlinks':
+            opt = '-L'
+            expr.append('-maxdepth 1')
+
+        if 'behavior_recurse_file_system' in self.args and self.args['behavior_recurse_file_system'] == 'defined':
+            expr.append('-xdev')
+        # TODO linux doesn't differentiate local vs remote filesystems
+        # so behavior_recurse_file_system = {local,all} is non-trivial
+
+        expr = ' '.join(expr)
+        filepath = self.args['filepath'].replace('\"', '\\"')
+
         if self.args['value_operations']['filepath'] == 'equals':
-            filepath = self.args['filepath'].replace('"', '\\"')
-            cmd = 'find `dirname "' + filepath + '"` -wholename "' + filepath + '"'
+            cmd = 'find ' + opt + ' `dirname "' + filepath + '"` ' + expr + '-wholename "' + filepath + '"'
+            logger.debug(cmd)
             return_code, out_lines, err_lines = self.host.exec_command(cmd)
+
             if return_code != 0 or len(out_lines) == 0:
                 raise FileNotFoundError(self.args['filepath'] + ' was not found')
 
@@ -58,9 +73,10 @@ class ResolveFilepathCollector(Collector):
             raise NotImplementedError('not equal operation not supported for ResolveFilepathCollector')
 
         elif self.args['value_operations']['filepath'] == 'case insensitive equals':
-            filepath = self.args['filepath'].replace('"', '\\"')
-            cmd = 'find `dirname "' + filepath + '"` -iwholename "' + filepath + '"'
+            cmd = 'find ' + opt + ' `dirname "' + filepath + '"` ' + expr + '-iwholename "' + filepath + '"'
+            logger.debug(cmd)
             return_code, out_lines, err_lines = self.host.exec_command(cmd)
+
             if return_code != 0 or len(out_lines) == 0:
                 raise FileNotFoundError(self.args['filepath'] + ' was not found')
 
@@ -70,11 +86,14 @@ class ResolveFilepathCollector(Collector):
             raise NotImplementedError('not equal operation not supported for ResolveFilepathCollector')
 
         elif self.args['value_operations']['filepath'] == 'pattern match':
-            filepath = self.args['filepath'].replace("'", "\\'")
-            cmd = 'locate --regex \'' + filepath + "'"
+            # NOTE: allowing -L here would run possibly forever
+            cmd = 'find -H / ' + expr + ' 2>/dev/null | grep --perl-regexp --line-regexp --colour=never "' + filepath + '"'
+            logger.debug(cmd)
             return_code, out_lines, err_lines = self.host.exec_command(cmd)
-            if return_code != 0:
-                raise FileNotFoundError('Unable to find pattern ' + self.args['filepath'] + ' in locatedb')
+
+            if return_code != 0 or len(out_lines) < 1:
+                raise FileNotFoundError('Unable to find pattern ' + self.args['filepath'])
+
             return out_lines
 
         else:

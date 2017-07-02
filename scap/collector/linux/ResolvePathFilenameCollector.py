@@ -73,11 +73,13 @@ class ResolvePathFilenameCollector(Collector):
             raise NotImplementedError('not equal operation not supported for ResolvePathFilenameCollector')
 
         elif self.args['value_operations']['path'] == 'pattern match':
-            path = self.args['path'].replace("'", "\\'")
-            cmd = 'locate --regex \'' + path + "'"
+            path = self.args['path'].replace('\"', '\\"')
+
+            cmd = 'find -H / -type d 2>/dev/null | grep --perl-regexp --line-regexp --colour=never "' + path + '"'
+            logger.debug(cmd)
             return_code, out_lines, err_lines = self.host.exec_command(cmd)
-            if return_code != 0:
-                raise FileNotFoundError('Unable to find pattern ' + self.args['path'] + ' in locatedb')
+            if return_code != 0 or len(out_lines) < 1:
+                raise FileNotFoundError('Unable to find pattern ' + self.args['path'] + '; using base dir ' + basedir + '; regex ' + regex)
 
             paths = []
             for d in out_lines:
