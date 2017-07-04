@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import datetime
 import logging
 import re
 
@@ -47,16 +48,20 @@ class DirectoryContentsCollector(Collector):
     def collect(self):
         path = self.args['path'].replace('"', '\\"')
         if 'hidden' in self.args and self.args['hidden']:
-            cmd = 'ls --color=never -l1A "' + path + '"'
+            cmd = 'ls -1A --color=never --full-time "' + path + '"'
         else:
-            cmd = 'ls --color=never -l1 "' + path + '"'
+            cmd = 'ls -1 --color=never --full-time "' + path + '"'
         return_code, out_lines, err_lines = self.host.exec_command(cmd)
+        if return_code != 0:
+            raise FileNotFoundError('Unable to collect the contents of ' + self.args['path'])
+
         entries = []
         for l in out_lines:
             if l.startswith('total'):
                 continue
 
-            m = re.fullmatch(r'([-a-z])([-sStTrwx]{3})([-sStTrwx]{3})([-rwx]{3})(\.)?\s+([0-9]+)\s+(\S+)\s+(\S+)\s+([0-9]+)\s+(\S+\s+\S+\s+\S+)\s+(.*)( -> (.*))?', l)
+            #2011-11-08 18:02:08.954092000 -0700
+            m = re.fullmatch(r'([-a-z])([-sStTrwx]{3})([-sStTrwx]{3})([-rwx]{3})(\.)?\s+([0-9]+)\s+(\S+)\s+(\S+)\s+([0-9]+)\s+([0-9]+-[0-9]+-[0-9]+\s+[0-9]+:[0-9]+:[0-9.]+\s+[0-9-]+)\s+(.*)( -> (.*))?', l)
             if m:
                 entry = {
                     'type': DirectoryContentsCollector.TYPE_MAP[m.group(1)],
@@ -67,7 +72,8 @@ class DirectoryContentsCollector(Collector):
                     'owner': m.group(7),
                     'group_owner': m.group(8),
                     'size': int(m.group(9)),
-                    'modified': m.group(10),
+                    'modified_raw': m.group(10),
+                    'modified': datetime.strptime(m.group(10), '%Y-%m-%d %H:%M:%S.%f %z'),
                     'name': m.group(11),
                 }
                 if m.group(5) is not None:
