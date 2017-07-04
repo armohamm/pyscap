@@ -38,8 +38,15 @@ except IOError:
 
 host = Host.load('localhost')
 
-def test_exists():
+@pytest.mark.parametrize("oval_family, env_var", (
+    ('linux', 'HOME'),
+    ('windows', 'USERNAME'),
+))
+def test_exists(oval_family, env_var):
+    if host.facts['oval_family'] != oval_family:
+        pytest.skip('Does not apply to platform')
+
     c = host.load_collector('EnvironmentCollector', {})
     env = c.collect()
     assert isinstance(env, dict)
-    assert 'HOME' in env
+    assert env_var in env
