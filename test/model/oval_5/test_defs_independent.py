@@ -54,7 +54,7 @@ Model.register_namespace('scap.model.oval_5.sc.independent', 'http://oval.mitre.
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
-filename = os.path.expanduser('~/.pyscap/inventory.ini')
+filename = str(pathlib.Path(os.path.expanduser('~')) / '.pyscap' / 'inventory.ini')
 try:
     with open(filename, 'r') as fp:
         logger.debug('Loading inventory from ' + filename)
