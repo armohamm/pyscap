@@ -24,6 +24,7 @@ from io import StringIO
 import locale
 import logging
 import os
+import pathlib
 import pprint
 import sys
 import time
@@ -130,7 +131,7 @@ if args['inventory'] is not None:
         except IOError:
             logger.error('Could not read from inventory file ' + filename)
 else:
-    filename = os.path.expanduser('~/.pyscap/inventory.ini')
+    filename = str(pathlib.Path(os.path.expanduser('~')) / '.pyscap' / 'inventory.ini')
     try:
         with open(filename, 'r') as fp:
             logger.debug('Loading inventory from ' + filename)
