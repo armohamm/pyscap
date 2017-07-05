@@ -30,6 +30,8 @@ class WindowsLocalHost(LocalHost):
         # so we short circuit any detection
         self.facts['oval_family'] = 'windows'
 
+        # TODO check if powershell is available & at least 4.0
+
     def is_admin():
         try:
             return ctypes.windll.shell32.IsUserAnAdmin()
