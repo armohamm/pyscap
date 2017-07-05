@@ -141,6 +141,7 @@ def test_existing(path, filename, results, path_operation, filename_operation, m
 # TODO path operation pattern match
 # TODO recurse_direction up
 # TODO recurse_file_system local, all
+# TODO windows view
 
 def test_args():
     with pytest.raises(ArgumentException):
