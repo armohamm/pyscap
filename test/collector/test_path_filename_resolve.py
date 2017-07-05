@@ -27,6 +27,7 @@ from scap.model.cpe_matching_2_3.CPE import CPE
 from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
 
 filename = str(pathlib.Path(os.path.expanduser('~')) / '.pyscap' / 'inventory.ini')
 try:
