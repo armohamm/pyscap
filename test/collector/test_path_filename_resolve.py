@@ -176,6 +176,8 @@ def test_recurse_down_view_32():
     })
     assert c.collect() == [filepath]
 
+# TODO empty path
+# TODO no matching files
 # TODO recurse symlinks
 # TODO path operation pattern match
 # TODO recurse_direction up
