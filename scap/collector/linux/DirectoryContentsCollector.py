@@ -57,7 +57,7 @@ class DirectoryContentsCollector(Collector):
 
         entries = []
         for l in out_lines:
-            if l.startswith('total'):
+            if re.fullmatch(r'\w+\s+[0-9]+'):   # total line
                 continue
 
             #2011-11-08 18:02:08.954092000 -0700
