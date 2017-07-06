@@ -176,3 +176,28 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
     assert items[0].status == 'exists'
     assert items[0].hash_type.text == hash_type
     assert items[0].hash.text == hash_value
+
+@pytest.mark.parametrize(
+    "oval_family, md5, sha1",
+    [
+        # Need separate test for linux & windows because line ending difference changes the hashes
+        ('linux', '088c92cb4d6c96cc3981678e4355fa4a', '8d1f3a9fe1fdef59204dbbbe163e1098c49d142b'),
+        ('windows', '64383C3236AA3F8E8416C2D284A6C368', '703884F0C787F3A287815FE4A793F71591671894'),
+    ]
+)
+def test_filehash_filepath(oval_family, md5, sha1):
+    if host.facts['oval_family'] != oval_family:
+        pytest.skip('Does not apply to platform')
+
+    obj = FileHashObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
+    obj.filepath.datatype = 'string'
+    obj.filepath.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], FileHashItemElement)
+    assert items[0].status == 'exists'
+    assert items[0].md5.text == md5
+    assert items[0].sha1.text == sha1
