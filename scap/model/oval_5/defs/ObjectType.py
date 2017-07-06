@@ -128,5 +128,5 @@ class ObjectType(Model):
 
         return items
 
-    def collect_items_for_args(self, host, args, value_datatypes, value_operations, value_masks):
+    def collect_items_for_args(self, host, args):
         raise NotImplementedError(self.__class__.__name__ + ' does not define collect_items_for_args')
