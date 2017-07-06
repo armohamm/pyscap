@@ -64,6 +64,70 @@ except IOError:
 
 host = Host.load('localhost')
 
+@pytest.mark.parametrize("oval_family, env_var", (
+    ('linux', 'HOME'),
+    ('windows', 'USERNAME'),
+))
+def test_env_var58(oval_family, env_var):
+    if host.facts['oval_family'] != oval_family:
+        pytest.skip('Does not apply to platform')
+
+    obj = EnvironmentVariable58ObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.name = EntityObjectType(value=env_var)
+    obj.name.datatype = 'string'
+    obj.name.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], EnvironmentVariable58ItemElement)
+    assert items[0].status == 'exists'
+    assert items[0].value.get_value() != ''
+
+def test_env_var58_missing():
+    obj = EnvironmentVariable58ObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.name = EntityObjectType(value='nope')
+    obj.name.datatype = 'string'
+    obj.name.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], EnvironmentVariable58ItemElement)
+    assert items[0].status == 'not exists'
+
+@pytest.mark.parametrize("oval_family, env_var", (
+    ('linux', 'HOME'),
+    ('windows', 'USERNAME'),
+))
+def test_env_var(oval_family, env_var):
+    if host.facts['oval_family'] != oval_family:
+        pytest.skip('Does not apply to platform')
+
+    obj = EnvironmentVariableObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.name = EntityObjectType(value=env_var)
+    obj.name.datatype = 'string'
+    obj.name.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], EnvironmentVariableItemElement)
+    assert items[0].status == 'exists'
+    assert items[0].value.get_value() != ''
+
+def test_env_var_missing():
+    obj = EnvironmentVariableObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.name = EntityObjectType(value='nope')
+    obj.name.datatype = 'string'
+    obj.name.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], EnvironmentVariableItemElement)
+    assert items[0].status == 'not exists'
+
 @pytest.mark.parametrize('oval_family', [('linux'), ('windows')])
 def test_family(oval_family):
     if host.facts['oval_family'] != oval_family:
@@ -112,35 +176,3 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
     assert items[0].status == 'exists'
     assert items[0].hash_type.text == hash_type
     assert items[0].hash.text == hash_value
-
-@pytest.mark.parametrize("oval_family, env_var", (
-    ('linux', 'HOME'),
-    ('windows', 'USERNAME'),
-))
-def test_env_var(oval_family, env_var):
-    if host.facts['oval_family'] != oval_family:
-        pytest.skip('Does not apply to platform')
-
-    obj = EnvironmentVariable58ObjectElement()
-    obj.id = 'oval:biz.jaymes:obj:42'
-    obj.name = EntityObjectType(value=env_var)
-    obj.name.datatype = 'string'
-    obj.name.operation = 'equals'
-
-    items = obj.evaluate(host, None, {}, [])
-    assert len(items) == 1
-    assert isinstance(items[0], EnvironmentVariable58ItemElement)
-    assert items[0].status == 'exists'
-    assert items[0].value.get_value() != ''
-
-def test_env_var_missing():
-    obj = EnvironmentVariable58ObjectElement()
-    obj.id = 'oval:biz.jaymes:obj:42'
-    obj.name = EntityObjectType(value='nope')
-    obj.name.datatype = 'string'
-    obj.name.operation = 'equals'
-
-    items = obj.evaluate(host, None, {}, [])
-    assert len(items) == 1
-    assert isinstance(items[0], EnvironmentVariable58ItemElement)
-    assert items[0].status == 'not exists'
