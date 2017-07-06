@@ -134,7 +134,7 @@ def test_filename_pattern_recurse_down():
 def test_recurse_down_fs_defined():
     c = host.load_collector('ResolvePathFilenameCollector', {
         'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model'),
-        'filename': '.*xlink.xml',
+        'filename': 'test_xlink.xml',
         'value_datatypes': {'path': 'string', 'filename': 'string'},
         'value_operations': {'path': 'equals', 'filename': 'equals'},
         'value_masks': {'path': False, 'filename': False},
@@ -149,7 +149,7 @@ def test_recurse_down_fs_defined():
 def test_recurse_down_fs_local():
     c = host.load_collector('ResolvePathFilenameCollector', {
         'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model'),
-        'filename': '.*xlink.xml',
+        'filename': 'test_xlink.xml',
         'value_datatypes': {'path': 'string', 'filename': 'string'},
         'value_operations': {'path': 'equals', 'filename': 'equals'},
         'value_masks': {'path': False, 'filename': False},
@@ -164,7 +164,7 @@ def test_recurse_down_fs_local():
 def test_recurse_down_view_32():
     c = host.load_collector('ResolvePathFilenameCollector', {
         'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model'),
-        'filename': '.*xlink.xml',
+        'filename': 'test_xlink.xml',
         'value_datatypes': {'path': 'string', 'filename': 'string'},
         'value_operations': {'path': 'equals', 'filename': 'equals'},
         'value_masks': {'path': False, 'filename': False},
