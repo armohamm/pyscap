@@ -201,3 +201,29 @@ def test_filehash_filepath(oval_family, md5, sha1):
     assert items[0].status == 'exists'
     assert items[0].md5.text == md5
     assert items[0].sha1.text == sha1
+
+# test_ldap57
+# test_ldap
+# test_sql57
+# test_sql
+
+def test_textfile54():
+    obj = TextFileContent54ObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
+    obj.filepath.datatype = 'string'
+    obj.filepath.operation = 'equals'
+    obj.pattern = EntityObjectType(value=r'xmlns:test="http://([^/]+)/test"')
+    obj.pattern.datatype = 'string'
+    obj.pattern.operation = 'pattern match'
+    obj.instance = EntityObjectType(value=1)
+    obj.instance.datatype = 'int'
+    obj.instance.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], TextFileContentItemElement)
+    assert items[0].status == 'exists'
+    assert items[0].text.get_value() == 'xmlns:test="http://jaymes.biz/test"'
+    assert len(items[0].subexpressions) == 1
+    assert items[0].subexpressions[0].get_value() == 'jaymes.biz'
