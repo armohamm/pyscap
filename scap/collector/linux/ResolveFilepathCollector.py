@@ -87,12 +87,12 @@ class ResolveFilepathCollector(Collector):
 
         elif self.args['value_operations']['filepath'] == 'pattern match':
             # NOTE: allowing -L here would run possibly forever
-            cmd = 'find -H / ' + expr + ' 2>/dev/null | grep --perl-regexp --line-regexp --colour=never "' + filepath + '"'
+            cmd = 'find -H / ' + expr + ' 2>/dev/null | grep --colour=never --perl-regexp --line-regexp "' + filepath + '"'
             logger.debug(cmd)
             return_code, out_lines, err_lines = self.host.exec_command(cmd)
 
             if return_code != 0 or len(out_lines) < 1:
-                raise FileNotFoundError('Unable to find pattern ' + self.args['filepath'])
+                raise FileNotFoundError('Unable to find pattern ' + self.args['filepath'] + ': ' + str(return_code))
 
             return out_lines
 
