@@ -27,8 +27,8 @@ from scap.model.cpe_matching_2_3.CPE import CPE
 from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
-
-filename = os.path.expanduser('~/.pyscap/inventory.ini')
+logging.basicConfig(level=logging.DEBUG)
+filename = str(pathlib.Path(os.path.expanduser('~')) / '.pyscap' / 'inventory.ini')
 try:
     with open(filename, 'r') as fp:
         logger.debug('Loading inventory from ' + filename)
@@ -38,8 +38,15 @@ except IOError:
 
 host = Host.load('localhost')
 
-def test_exists():
-    c = host.load_collector('EnvironmentVariableCollector', {'name': 'PWD'})
+@pytest.mark.parametrize("oval_family, env_var", (
+    ('linux', 'HOME'),
+    ('windows', 'USERNAME'),
+))
+def test_exists(oval_family, env_var):
+    if host.facts['oval_family'] != oval_family:
+        pytest.skip('Does not apply to platform')
+
+    c = host.load_collector('EnvironmentVariableCollector', {'name': env_var})
     assert c.collect() != ''
 
 def test_not_exists():

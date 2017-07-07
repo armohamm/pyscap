@@ -31,7 +31,7 @@ class TextFileContentItemElement(ItemType):
             {'tag_name': 'instance', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
             {'tag_name': 'line', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
             {'tag_name': 'text', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'subexpression', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
+            {'tag_name': 'subexpression', 'list': 'subexpressions', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
             {'tag_name': 'windows_view', 'class': 'EntityItemWindowsViewType', 'min': 0},
         ],
         'attributes': {

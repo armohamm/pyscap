@@ -28,7 +28,7 @@ from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
 
-filename = os.path.expanduser('~/.pyscap/inventory.ini')
+filename = str(pathlib.Path(os.path.expanduser('~')) / '.pyscap' / 'inventory.ini')
 try:
     with open(filename, 'r') as fp:
         logger.debug('Loading inventory from ' + filename)

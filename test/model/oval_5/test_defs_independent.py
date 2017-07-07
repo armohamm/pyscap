@@ -54,7 +54,7 @@ Model.register_namespace('scap.model.oval_5.sc.independent', 'http://oval.mitre.
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
-filename = os.path.expanduser('~/.pyscap/inventory.ini')
+filename = str(pathlib.Path(os.path.expanduser('~')) / '.pyscap' / 'inventory.ini')
 try:
     with open(filename, 'r') as fp:
         logger.debug('Loading inventory from ' + filename)
@@ -63,6 +63,70 @@ except IOError:
     logger.error('Could not read from inventory file ' + filename)
 
 host = Host.load('localhost')
+
+@pytest.mark.parametrize("oval_family, env_var", (
+    ('linux', 'HOME'),
+    ('windows', 'USERNAME'),
+))
+def test_env_var58(oval_family, env_var):
+    if host.facts['oval_family'] != oval_family:
+        pytest.skip('Does not apply to platform')
+
+    obj = EnvironmentVariable58ObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.name = EntityObjectType(value=env_var)
+    obj.name.datatype = 'string'
+    obj.name.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], EnvironmentVariable58ItemElement)
+    assert items[0].status == 'exists'
+    assert items[0].value.get_value() != ''
+
+def test_env_var58_missing():
+    obj = EnvironmentVariable58ObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.name = EntityObjectType(value='nope')
+    obj.name.datatype = 'string'
+    obj.name.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], EnvironmentVariable58ItemElement)
+    assert items[0].status == 'not exists'
+
+@pytest.mark.parametrize("oval_family, env_var", (
+    ('linux', 'HOME'),
+    ('windows', 'USERNAME'),
+))
+def test_env_var(oval_family, env_var):
+    if host.facts['oval_family'] != oval_family:
+        pytest.skip('Does not apply to platform')
+
+    obj = EnvironmentVariableObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.name = EntityObjectType(value=env_var)
+    obj.name.datatype = 'string'
+    obj.name.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], EnvironmentVariableItemElement)
+    assert items[0].status == 'exists'
+    assert items[0].value.get_value() != ''
+
+def test_env_var_missing():
+    obj = EnvironmentVariableObjectElement()
+    obj.id = 'oval:biz.jaymes:obj:42'
+    obj.name = EntityObjectType(value='nope')
+    obj.name.datatype = 'string'
+    obj.name.operation = 'equals'
+
+    items = obj.evaluate(host, None, {}, [])
+    assert len(items) == 1
+    assert isinstance(items[0], EnvironmentVariableItemElement)
+    assert items[0].status == 'not exists'
 
 @pytest.mark.parametrize('oval_family', [('linux'), ('windows')])
 def test_family(oval_family):
@@ -113,27 +177,53 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
     assert items[0].hash_type.text == hash_type
     assert items[0].hash.text == hash_value
 
-def test_env_var():
-    obj = EnvironmentVariable58ObjectElement()
+@pytest.mark.parametrize(
+    "oval_family, md5, sha1",
+    [
+        # Need separate test for linux & windows because line ending difference changes the hashes
+        ('linux', '088c92cb4d6c96cc3981678e4355fa4a', '8d1f3a9fe1fdef59204dbbbe163e1098c49d142b'),
+        ('windows', '64383C3236AA3F8E8416C2D284A6C368', '703884F0C787F3A287815FE4A793F71591671894'),
+    ]
+)
+def test_filehash_filepath(oval_family, md5, sha1):
+    if host.facts['oval_family'] != oval_family:
+        pytest.skip('Does not apply to platform')
+
+    obj = FileHashObjectElement()
     obj.id = 'oval:biz.jaymes:obj:42'
-    obj.name = EntityObjectType(value='PWD')
-    obj.name.datatype = 'string'
-    obj.name.operation = 'equals'
+    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
+    obj.filepath.datatype = 'string'
+    obj.filepath.operation = 'equals'
 
     items = obj.evaluate(host, None, {}, [])
     assert len(items) == 1
-    assert isinstance(items[0], EnvironmentVariable58ItemElement)
+    assert isinstance(items[0], FileHashItemElement)
     assert items[0].status == 'exists'
-    assert items[0].value.get_value() != ''
+    assert items[0].md5.text == md5
+    assert items[0].sha1.text == sha1
 
-def test_env_var_missing():
-    obj = EnvironmentVariable58ObjectElement()
+# test_ldap57
+# test_ldap
+# test_sql57
+# test_sql
+
+def test_textfile54():
+    obj = TextFileContent54ObjectElement()
     obj.id = 'oval:biz.jaymes:obj:42'
-    obj.name = EntityObjectType(value='nope')
-    obj.name.datatype = 'string'
-    obj.name.operation = 'equals'
+    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
+    obj.filepath.datatype = 'string'
+    obj.filepath.operation = 'equals'
+    obj.pattern = EntityObjectType(value=r'xmlns:test="http://([^/]+)/test"')
+    obj.pattern.datatype = 'string'
+    obj.pattern.operation = 'pattern match'
+    obj.instance = EntityObjectType(value=1)
+    obj.instance.datatype = 'int'
+    obj.instance.operation = 'equals'
 
     items = obj.evaluate(host, None, {}, [])
     assert len(items) == 1
-    assert isinstance(items[0], EnvironmentVariable58ItemElement)
-    assert items[0].status == 'not exists'
+    assert isinstance(items[0], TextFileContentItemElement)
+    assert items[0].status == 'exists'
+    assert items[0].text.get_value() == 'xmlns:test="http://jaymes.biz/test"'
+    assert len(items[0].subexpressions) == 1
+    assert items[0].subexpressions[0].get_value() == 'jaymes.biz'

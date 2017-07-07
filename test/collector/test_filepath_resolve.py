@@ -27,8 +27,9 @@ from scap.model.cpe_matching_2_3.CPE import CPE
 from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.DEBUG)
 
-filename = os.path.expanduser('~/.pyscap/inventory.ini')
+filename = str(pathlib.Path(os.path.expanduser('~')) / '.pyscap' / 'inventory.ini')
 try:
     with open(filename, 'r') as fp:
         logger.debug('Loading inventory from ' + filename)
@@ -50,7 +51,7 @@ def test_existing_file_equals():
     assert c.collect() == [filepath]
 
 def test_existing_file_pattern():
-    regexfilepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / '.*xlink.xml')
+    regexfilepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / '.*xlink.xml').replace('\\', '\\\\')
     filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml')
     c = host.load_collector('ResolveFilepathCollector', {
         'filepath': regexfilepath,
@@ -88,7 +89,7 @@ def test_not_existing_file_equals():
 
 def test_not_existing_file_pattern():
     filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink2.xml')
-    regexfilepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / '.*xlink2.xml')
+    regexfilepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / '.*xlink2.xml').replace('\\', '\\\\')
     c = host.load_collector('ResolveFilepathCollector', {
         'filepath': regexfilepath,
         'value_datatypes': {'filepath': 'string'},

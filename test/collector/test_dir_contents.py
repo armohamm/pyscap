@@ -27,8 +27,9 @@ from scap.model.cpe_matching_2_3.CPE import CPE
 from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
+#logging.basicConfig(level=logging.DEBUG)
 
-filename = os.path.expanduser('~/.pyscap/inventory.ini')
+filename = str(pathlib.Path(os.path.expanduser('~')) / '.pyscap' / 'inventory.ini')
 try:
     with open(filename, 'r') as fp:
         logger.debug('Loading inventory from ' + filename)
@@ -69,8 +70,10 @@ def test_exists():
         ]
 
 def test_not_exists():
-    c = host.load_collector('DirectoryContentsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'nope')})
-    assert c.collect() == []
+    with pytest.raises(FileNotFoundError):
+        host.load_collector('DirectoryContentsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'nope')}).collect()
+
+# TODO test empty == []
 
 def test_args():
     with pytest.raises(ArgumentException):

@@ -16,27 +16,26 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import os
-import pathlib
-import pytest
-import uuid
+import json
+import pprint
+import re
 
-from scap.Host import Host
-from scap.model.cpe_matching_2_3.CPE import CPE
-from scap.Inventory import Inventory
+from scap.Collector import Collector, ArgumentException
 
 logger = logging.getLogger(__name__)
+class EnvironmentCollector(Collector):
+    def collect(self):
+        cmd = 'Get-ChildItem Env:'
+        cmd = cmd + " | Select-Object -Property * | ConvertTo-Json -Compress"
+        return_code, out_lines, err_lines = self.host.exec_command('powershell -Command \"' + cmd + '\"')
 
-filename = str(pathlib.Path(os.path.expanduser('~')) / '.pyscap' / 'inventory.ini')
-try:
-    with open(filename, 'r') as fp:
-        logger.debug('Loading inventory from ' + filename)
-        Inventory().readfp(fp)
-except IOError:
-    logger.error('Could not read from inventory file ' + filename)
+        s = ''
+        for l in out_lines:
+            s = s + l
+        j = json.loads(s)
 
-host = Host.load('localhost')
+        env = {}
+        for e in j:
+            env[e['Key']] = e['Value']
 
-def test_collected_hostname():
-    host.load_collector('HostnameCollector', {}).collect()
-    assert isinstance(host.facts['hostname'], str)
+        return env
