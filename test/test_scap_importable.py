@@ -19,7 +19,7 @@ import importlib
 import pkgutil
 import sys
 
-import scap
+import scap, expatriate
 
 def iter_packages(pkg):
     if sys.platform != 'win32' and 'windows' in pkg.__name__.lower():
@@ -31,5 +31,8 @@ def iter_packages(pkg):
         if m_ispkg:
             iter_packages(mod)
 
-def test_importable():
+def test_scap_importable():
     iter_packages(scap)
+
+def test_expatriate_importable():
+    iter_packages(expatriate)

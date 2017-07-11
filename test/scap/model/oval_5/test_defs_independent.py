@@ -165,7 +165,7 @@ def test_filehash58_filepath(oval_family, hash_type, hash_value):
 
     obj = FileHash58ObjectElement()
     obj.id = 'oval:biz.jaymes:obj:42'
-    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
+    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model' / 'test_xlink.xml'))
     obj.filepath.datatype = 'string'
     obj.filepath.operation = 'equals'
     obj.hash_type = EntityObjectType(value=hash_type)
@@ -191,7 +191,7 @@ def test_filehash_filepath(oval_family, md5, sha1):
 
     obj = FileHashObjectElement()
     obj.id = 'oval:biz.jaymes:obj:42'
-    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
+    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model' / 'test_xlink.xml'))
     obj.filepath.datatype = 'string'
     obj.filepath.operation = 'equals'
 
@@ -210,7 +210,7 @@ def test_filehash_filepath(oval_family, md5, sha1):
 def test_textfile54():
     obj = TextFileContent54ObjectElement()
     obj.id = 'oval:biz.jaymes:obj:42'
-    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'))
+    obj.filepath = EntityObjectType(value=str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model' / 'test_xlink.xml'))
     obj.filepath.datatype = 'string'
     obj.filepath.operation = 'equals'
     obj.pattern = EntityObjectType(value=r'xmlns:test="http://([^/]+)/test"')

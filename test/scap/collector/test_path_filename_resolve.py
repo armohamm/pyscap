@@ -39,11 +39,11 @@ except IOError:
 
 host = Host.load('localhost')
 
-filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml')
+filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model' / 'test_xlink.xml')
 
 def test_recurse_none():
     c = host.load_collector('ResolvePathFilenameCollector', {
-        'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model'),
+        'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model'),
         'filename': 'test_xlink.xml',
         'value_datatypes': {'path': 'string', 'filename': 'string'},
         'value_operations': {'path': 'equals', 'filename': 'equals'},
@@ -114,11 +114,26 @@ def test_recurse_down_depth_3():
         'behavior_recurse_file_system': 'all',
         'behavior_windows_view': '64_bit',
     })
+    assert c.collect() == []
+
+def test_recurse_down_depth_4():
+    c = host.load_collector('ResolvePathFilenameCollector', {
+        'path': str(pytest.config.rootdir),
+        'filename': 'test_xlink.xml',
+        'value_datatypes': {'path': 'string', 'filename': 'string'},
+        'value_operations': {'path': 'equals', 'filename': 'equals'},
+        'value_masks': {'path': False, 'filename': False},
+        'behavior_max_depth': 4,
+        'behavior_recurse': 'symlinks and directories',
+        'behavior_recurse_direction': 'down',
+        'behavior_recurse_file_system': 'all',
+        'behavior_windows_view': '64_bit',
+    })
     assert c.collect() == [filepath]
 
 def test_filename_pattern_recurse_down():
     c = host.load_collector('ResolvePathFilenameCollector', {
-        'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model'),
+        'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model'),
         'filename': '.*xlink.xml',
         'value_datatypes': {'path': 'string', 'filename': 'string'},
         'value_operations': {'path': 'equals', 'filename': 'pattern match'},
@@ -133,7 +148,7 @@ def test_filename_pattern_recurse_down():
 
 def test_recurse_down_fs_defined():
     c = host.load_collector('ResolvePathFilenameCollector', {
-        'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model'),
+        'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model'),
         'filename': 'test_xlink.xml',
         'value_datatypes': {'path': 'string', 'filename': 'string'},
         'value_operations': {'path': 'equals', 'filename': 'equals'},
@@ -148,7 +163,7 @@ def test_recurse_down_fs_defined():
 
 def test_recurse_down_fs_local():
     c = host.load_collector('ResolvePathFilenameCollector', {
-        'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model'),
+        'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model'),
         'filename': 'test_xlink.xml',
         'value_datatypes': {'path': 'string', 'filename': 'string'},
         'value_operations': {'path': 'equals', 'filename': 'equals'},
@@ -163,7 +178,7 @@ def test_recurse_down_fs_local():
 
 def test_recurse_down_view_32():
     c = host.load_collector('ResolvePathFilenameCollector', {
-        'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model'),
+        'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model'),
         'filename': 'test_xlink.xml',
         'value_datatypes': {'path': 'string', 'filename': 'string'},
         'value_operations': {'path': 'equals', 'filename': 'equals'},

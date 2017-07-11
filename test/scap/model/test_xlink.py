@@ -31,7 +31,7 @@ Model.register_namespace('scap.model.xlink', 'http://www.w3.org/1999/xlink')
 
 def test_simple_local():
     path = (
-        pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml'
+        pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model' / 'test_xlink.xml'
     ).as_posix()
     if not path.startswith('/'):
         path = '/' + path
