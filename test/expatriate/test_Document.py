@@ -65,6 +65,20 @@ def test_xmlns_prefix_element():
     assert doc.children[0].attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
     assert len(doc.children[0].namespaces) == 1
 
+def test_xmlns_prefix_attribute():
+    doc = Document()
+    doc.parse('''<Document xmlns:test2="http://jaymes.biz/test2"><test2:Element test2:attribute="test"/></Document>''')
+    assert len(doc.children) == 1
+    assert isinstance(doc.children[0], Element)
+    assert len(doc.children[0].attributes) == 1
+    assert 'xmlns:test2' in doc.children[0].attributes
+    assert doc.children[0].attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
+    assert len(doc.children[0].namespaces) == 1
+    assert len(doc.children[0].children) == 1
+    assert len(doc.children[0].children[0].attributes) == 1
+    assert 'test2:attribute' in doc.children[0].children[0].attributes
+    assert doc.children[0].children[0].attributes['test2:attribute'] == 'test'
+
 def test_xmlns_prefix_element_unknown():
     doc = Document()
     with pytest.raises(UnknownNamespaceException):

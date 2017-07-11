@@ -116,8 +116,10 @@ class Document(object):
         logger.debug('_start_element_handler elname: ' + str(name) + ' attname: ' + str(name) + ' attributes: ' + str(attributes))
         el = Element(name, attributes)
 
+        # check for a default namespace
         if 'xmlns' in el.attributes:
             el.namespaces[None] = el.attributes['xmlns']
+        # check for prefix namespaces
         for k in el.attributes:
             if k.startswith('xmlns:'):
                 prefix = k.partition(':')[2]
@@ -125,10 +127,12 @@ class Document(object):
                 self._namespaces[prefix] = el.attributes[k]
                 logger.debug('Added prefix ' + prefix + ' for ' + el.attributes[k])
 
+        # check name for prefix
         if ':' in name:
             prefix = name.partition(':')[0]
             if prefix not in self._namespaces:
                 raise UnknownNamespaceException('Unable to map element name prefix ' + prefix + ' to namespace')
+        # check attributes for prefix
         for k in el.attributes:
             if not k.startswith('xmlns:') and ':' in k:
                 prefix = k.partition(':')[0]
