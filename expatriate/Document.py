@@ -26,6 +26,9 @@ from .ProcessingInstruction import ProcessingInstruction
 
 logger = logging.getLogger(__name__)
 
+class UnknownNamespaceException(Exception):
+    pass
+
 class Document(object):
     def __init__(self, encoding=None, skip_whitespace=True):
         self.version = None
@@ -38,6 +41,7 @@ class Document(object):
         self._parser = xml.parsers.expat.ParserCreate(encoding=encoding)
         self._in_cdata = False
         self._stack = [self]
+
         self._namespaces = {}
 
         self._parser.XmlDeclHandler = lambda version, encoding, standalone: self._xml_decl_handler(version, encoding, standalone)
@@ -58,8 +62,8 @@ class Document(object):
 
         self._parser.NotationDeclHandler = lambda notationName, base, systemId, publicId: self._notation_decl_handler(notationName, base, systemId, publicId)
 
-        self._parser.StartNamespaceDeclHandler = lambda prefix, uri: self._start_namespace_handler(prefix, uri)
-        self._parser.EndNamespaceDeclHandler = lambda prefix: self._end_namespace_handler(prefix)
+        # self._parser.StartNamespaceDeclHandler = lambda prefix, uri: self._start_namespace_handler(prefix, uri)
+        # self._parser.EndNamespaceDeclHandler = lambda prefix: self._end_namespace_handler(prefix)
 
         self._parser.CommentHandler = lambda data: self._comment_handler(data)
 
@@ -73,85 +77,121 @@ class Document(object):
         self._parser.ExternalEntityRefHandler = lambda context, base, systemId, publicId: self._external_entity_ref_handler(context, base, systemId, publicId)
 
     def parse(self, data, isfinal=True):
+        logger.debug('Parsing data: ' + str(data))
         self._parser.Parse(data, isfinal)
 
         # TODO check that we're the only thing left on the stack when isfinal
 
     def parse_file(self, file_):
+        logger.debug('Parsing file: ' + str(file_))
         self._parser.ParseFile(file_)
 
         # TODO check that we're the only thing left on the stack when isfinal
 
     def _add_to_current_element(self, item):
-        if len(self._stack) > 0:
-            self._stack[-1].children.append(item)
-            item.parent = self._stack[-1]
+        logger.debug('_add_to_current_element: ' + str(item) + ' to children of ' + str(self._stack[-1]))
+
+        self._stack[-1].children.append(item)
+        item.parent = self._stack[-1]
 
     def _xml_decl_handler(self, version, encoding, standalone):
+        logger.debug('_xml_decl_handler version: ' + str(version) + ' encoding: ' + str(encoding) + ' standalone: ' + str(standalone))
         self.version = version
         self.encoding = encoding
         self.standalone = standalone
 
     def _start_doctype_decl_handler(self, doctypeName, systemId, publicId, has_internal_subset):
-        pass
+        logger.debug('_start_doctype_decl_handler doctypeName: ' + str(doctypeName) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId) + ' has_internal_subset: ' + str(has_internal_subset))
 
     def _end_doctype_decl_handler(self):
-        pass
+        logger.debug('_end_doctype_decl_handler')
 
     def _element_decl_handler(self, name, model):
-        pass
+        logger.debug('_element_decl_handler doctypeName: ' + str(name) + ' model: ' + str(model))
 
     def _attlist_decl_handler(self, elname, attname, type_, default, required):
-        pass
+        logger.debug('_attlist_decl_handler elname: ' + str(elname) + ' attname: ' + str(attname) + ' type_: ' + str(type_) + ' default: ' + str(default) + ' required: ' + str(required))
 
     def _start_element_handler(self, name, attributes):
+        logger.debug('_start_element_handler elname: ' + str(name) + ' attname: ' + str(name) + ' attributes: ' + str(attributes))
         el = Element(name, attributes)
 
-        self._add_to_current_element(el)
+        if 'xmlns' in el.attributes:
+            el.namespaces[None] = el.attributes['xmlns']
+        for k in el.attributes:
+            if k.startswith('xmlns:'):
+                prefix = k.partition(':')[2]
+                el.namespaces[prefix] = el.attributes[k]
+                self._namespaces[prefix] = el.attributes[k]
+                logger.debug('Added prefix ' + prefix + ' for ' + el.attributes[k])
 
+        if ':' in name:
+            prefix = name.partition(':')[0]
+            if prefix not in self._namespaces:
+                raise UnknownNamespaceException('Unable to map element name prefix ' + prefix + ' to namespace')
+        for k in el.attributes:
+            if not k.startswith('xmlns:') and ':' in k:
+                prefix = k.partition(':')[0]
+                if prefix not in self._namespaces:
+                    raise UnknownNamespaceException('Unable to map attribute prefix ' + prefix + ' to namespace')
+
+        self._add_to_current_element(el)
         self._stack.append(el)
 
     def _end_element_handler(self, name):
+        logger.debug('_end_element_handler name: ' + str(name))
         el = self._stack.pop()
+        for k in el.attributes:
+            if k.startswith('xmlns:'):
+                prefix = k.partition(':')[2]
+                del self._namespaces[prefix]
+                logger.debug('Removed prefix ' + prefix)
 
     def _processing_instruction_handler(self, target, data):
+        logger.debug('_processing_instruction_handler target: ' + str(target) + ' data: ' + str(data))
         pi = ProcessingInstruction(target, data)
         self._add_to_current_element(pi)
 
     def _character_data_handler(self, data):
+        logger.debug('_character_data_handler data: ' + str(data))
         if self.skip_whitespace and data.strip() == '':
             return
-            
+
         char_data = CharacterData(data)
         self._add_to_current_element(char_data)
 
     def _entity_decl_handler(self, entityName, is_parameter_entity, value, base, systemId, publicId, notationName):
-        pass
+        logger.debug('_entity_decl_handler entityName: ' + str(entityName) + ' is_parameter_entity: ' + str(is_parameter_entity) + ' value: ' + str(value) + ' base: ' + str(base) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId) + ' notationName: ' + str(notationName))
 
     def _notation_decl_handler(self, notationName, base, systemId, publicId):
-        pass
+        logger.debug('_notation_decl_handler notationName: ' + str(notationName) + ' base: ' + str(base) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId))
 
-    def _start_namespace_handler(self, prefix, uri):
-        self._namespaces[prefix] = url
-
-    def _end_namespace_handler(self, prefix):
-        self._stack[-1].namespaces[prefix] = self._namespaces[prefix]
+    # def _start_namespace_handler(self, prefix, uri):
+    #     logger.debug('_start_namespace_handler prefix: ' + str(prefix) + ' uri: ' + str(uri))
+    #     self._namespaces[prefix] = url
+    #
+    # def _end_namespace_handler(self, prefix):
+    #     logger.debug('_end_namespace_handler prefix: ' + str(prefix))
+    #     self._stack[-1].namespaces[prefix] = self._namespaces[prefix]
 
     def _comment_handler(self, data):
+        logger.debug('_comment_handler data: ' + str(data))
         c = Comment(data)
         self._add_to_current_element(c)
 
     def _start_cdata_section_handler(self):
+        logger.debug('_start_cdata_section_handler')
         self._in_cdata = True
 
     def _end_cdata_section_handler(self):
+        logger.debug('_end_cdata_section_handler')
         self._in_cdata = False
 
     def _default_handler_expand(self, data):
-        pass
+        logger.debug('_default_handler_expand data: ' + str(data))
 
     def _not_standalone_handler(self, data):
-        pass
+        logger.debug('_not_standalone_handler data: ' + str(data))
 
     def _external_entity_ref_handler(self, context, base, systemId, publicId):
-        pass
+        logger.debug('_external_entity_ref_handler context: ' + str(context) + ' base: ' + str(base) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId))

@@ -16,9 +16,11 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import pytest
 
 from expatriate.CharacterData import CharacterData
 from expatriate.Document import Document
+from expatriate.Document import UnknownNamespaceException
 from expatriate.Element import Element
 
 logging.basicConfig(level=logging.DEBUG)
@@ -30,7 +32,50 @@ def test_empty_doc():
     assert isinstance(doc.children[0], Element)
     assert len(doc.children[0].children) == 0
 
-def test_whitespace():
+def test_xmlns_default_def():
+    doc = Document()
+    doc.parse('''<Document xmlns="http://jaymes.biz/test"></Document>''')
+    assert len(doc.children) == 1
+    assert isinstance(doc.children[0], Element)
+    assert len(doc.children[0].children) == 0
+    assert len(doc.children[0].attributes) == 1
+    assert 'xmlns' in doc.children[0].attributes
+    assert doc.children[0].attributes['xmlns'] == 'http://jaymes.biz/test'
+    assert len(doc.children[0].namespaces) == 1
+
+def test_xmlns_prefix_def():
+    doc = Document()
+    doc.parse('''<Document xmlns:test2="http://jaymes.biz/test2"></Document>''')
+    assert len(doc.children) == 1
+    assert isinstance(doc.children[0], Element)
+    assert len(doc.children[0].children) == 0
+    assert len(doc.children[0].attributes) == 1
+    assert 'xmlns:test2' in doc.children[0].attributes
+    assert doc.children[0].attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
+    assert len(doc.children[0].namespaces) == 1
+
+def test_xmlns_prefix_element():
+    doc = Document()
+    doc.parse('''<Document xmlns:test2="http://jaymes.biz/test2"><test2:Element/></Document>''')
+    assert len(doc.children) == 1
+    assert isinstance(doc.children[0], Element)
+    assert len(doc.children[0].children) == 1
+    assert len(doc.children[0].attributes) == 1
+    assert 'xmlns:test2' in doc.children[0].attributes
+    assert doc.children[0].attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
+    assert len(doc.children[0].namespaces) == 1
+
+def test_xmlns_prefix_element_unknown():
+    doc = Document()
+    with pytest.raises(UnknownNamespaceException):
+        doc.parse('''<Document><test:Element/></Document>''')
+
+def test_xmlns_prefix_attribute_unknown():
+    doc = Document()
+    with pytest.raises(UnknownNamespaceException):
+        doc.parse('''<Document><Element test:attribute="test"/></Document>''')
+
+def test_not_skip_whitespace():
     doc = Document(skip_whitespace=False)
     doc.parse('''<Document>
 </Document>''')
