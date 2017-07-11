@@ -15,26 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import importlib
-import pkgutil
-import sys
+import logging
 
-import scap
-import xml
+from .Entity import Entity
 
-def iter_packages(pkg):
-    if sys.platform != 'win32' and 'windows' in pkg.__name__.lower():
-        # windows modules frequently fail to import on non-windows
-        return
+logger = logging.getLogger(__name__)
 
-    for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
-        mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
-        if m_ispkg:
-            iter_packages(mod)
-
-def test_scap_importable():
-    iter_packages(scap)
-
-
-def test_xml_importable():
-    iter_packages(scap)
+class CharacterData(Entity):
+    def __init__(self, data):
+        self.data = data
