@@ -20,7 +20,6 @@ import pkgutil
 import sys
 
 import scap
-import xml
 
 def iter_packages(pkg):
     if sys.platform != 'win32' and 'windows' in pkg.__name__.lower():
@@ -32,9 +31,5 @@ def iter_packages(pkg):
         if m_ispkg:
             iter_packages(mod)
 
-def test_scap_importable():
-    iter_packages(scap)
-
-
-def test_xml_importable():
+def test_importable():
     iter_packages(scap)
