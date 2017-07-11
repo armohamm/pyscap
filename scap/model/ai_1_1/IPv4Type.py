@@ -17,7 +17,6 @@
 
 from scap.model.xs.TokenType import TokenType
 import logging
-import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
 class IPv4Type(TokenType):

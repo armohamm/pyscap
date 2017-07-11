@@ -17,7 +17,6 @@
 
 from scap.model.xnl_2_0.NameDetailsType import NameDetailsType
 import logging
-import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
 class NameDetailsElement(NameDetailsType):

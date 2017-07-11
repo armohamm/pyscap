@@ -16,7 +16,6 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 from scap.model.rep_core_1_1.RelationshipsContainerType import RelationshipsContainerType
-import xml.etree.ElementTree as ET
 import logging
 
 logger = logging.getLogger(__name__)

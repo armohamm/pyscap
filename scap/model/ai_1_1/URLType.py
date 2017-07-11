@@ -17,7 +17,6 @@
 
 from scap.model.xs.AnyUriType import AnyUriType
 import logging
-import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
 class URLType(AnyUriType):

@@ -17,7 +17,6 @@
 
 from scap.model.ai_1_1.AssetsType import AssetsType
 import logging
-import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
 class AssetIdentificationType(AssetsType):

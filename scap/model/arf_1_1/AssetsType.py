@@ -16,7 +16,6 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 from scap.Model import Model
-import xml.etree.ElementTree as ET
 import logging
 
 logger = logging.getLogger(__name__)

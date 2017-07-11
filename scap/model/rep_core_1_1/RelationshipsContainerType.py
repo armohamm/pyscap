@@ -16,7 +16,6 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import xml.etree.ElementTree as ET
 
 from scap.Model import Model
 

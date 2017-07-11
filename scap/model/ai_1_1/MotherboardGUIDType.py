@@ -17,7 +17,6 @@
 
 from scap.model.xs.StringType import StringType
 import logging
-import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
 class MotherboardGUIDType(StringType):

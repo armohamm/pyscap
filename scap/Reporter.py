@@ -15,11 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import logging
-import xml.etree.ElementTree as ET
-import uuid
-import sys
 import importlib
+import logging
+import sys
+import uuid
 
 logger = logging.getLogger(__name__)
 class Reporter(object):

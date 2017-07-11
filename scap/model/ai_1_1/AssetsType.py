@@ -17,7 +17,6 @@
 
 from scap.model.rep_core_1_1.RelationshipsContainerType import RelationshipsContainerType
 import logging
-import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
 class AssetsType(RelationshipsContainerType):

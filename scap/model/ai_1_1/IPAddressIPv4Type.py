@@ -17,7 +17,6 @@
 
 from scap.model.ai_1_1.IPv4Type import IPv4Type
 import logging
-import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
 class IPAddressIPv4Type(IPv4Type):

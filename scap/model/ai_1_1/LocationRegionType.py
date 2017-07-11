@@ -18,7 +18,6 @@
 from scap.model.ai_1_1.LocationType import LocationType
 from scap.model.xs.NormalizedStringType import NormalizedStringType
 import logging
-import xml.etree.ElementTree as ET
 
 logger = logging.getLogger(__name__)
 class LocationRegionType(LocationType, NormalizedStringType):
