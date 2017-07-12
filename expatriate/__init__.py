@@ -14,3 +14,20 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
+
+from .CharacterData import CharacterData
+from .Comment import Comment
+from .Document import Document
+from .Document import DuplicateNamespaceException
+from .Document import UnknownNamespaceException
+from .Element import Element
+from .ProcessingInstruction import ProcessingInstruction
+
+__all__ = [
+    'CharacterData',
+    'Document',
+    'Element',
+    'ProcessingInstruction',
+    'DuplicateNamespaceException',
+    'UnknownNamespaceException',
+]

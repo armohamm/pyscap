@@ -18,10 +18,7 @@
 import logging
 import pytest
 
-from expatriate.CharacterData import CharacterData
-from expatriate.Document import Document
-from expatriate.Document import UnknownNamespaceException
-from expatriate.Element import Element
+from expatriate import *
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -88,6 +85,11 @@ def test_xmlns_prefix_attribute_unknown():
     doc = Document()
     with pytest.raises(UnknownNamespaceException):
         doc.parse('''<Document><Element test:attribute="test"/></Document>''')
+
+def test_xmlns_prefix_duplicate():
+    doc = Document()
+    with pytest.raises(DuplicateNamespaceException):
+        doc.parse('''<Document xmlns:test="http://jaymes.biz/test"><Element xmlns:test="http://jaymes.biz/test2"/></Document>''')
 
 def test_not_skip_whitespace():
     doc = Document(skip_whitespace=False)

@@ -26,6 +26,9 @@ from .ProcessingInstruction import ProcessingInstruction
 
 logger = logging.getLogger(__name__)
 
+class DuplicateNamespaceException(Exception):
+    pass
+
 class UnknownNamespaceException(Exception):
     pass
 
@@ -124,6 +127,8 @@ class Document(object):
             if k.startswith('xmlns:'):
                 prefix = k.partition(':')[2]
                 el.namespaces[prefix] = el.attributes[k]
+                if prefix in self._namespaces:
+                    raise DuplicateNamespaceException('Prefix ' + prefix + ' has already been used but is being redefined')
                 self._namespaces[prefix] = el.attributes[k]
                 logger.debug('Added prefix ' + prefix + ' for ' + el.attributes[k])
 
