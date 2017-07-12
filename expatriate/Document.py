@@ -40,12 +40,11 @@ class Document(object):
         self.skip_whitespace = skip_whitespace
 
         self.children = []
+        self.namespaces = {}
 
         self._parser = xml.parsers.expat.ParserCreate(encoding=encoding)
         self._in_cdata = False
         self._stack = [self]
-
-        self._namespaces = {}
 
         self._parser.XmlDeclHandler = lambda version, encoding, standalone: self._xml_decl_handler(version, encoding, standalone)
 
@@ -122,26 +121,27 @@ class Document(object):
         # check for a default namespace
         if 'xmlns' in el.attributes:
             el.namespaces[None] = el.attributes['xmlns']
+            self.namespaces[None] = el.attributes['xmlns']
         # check for prefix namespaces
         for k in el.attributes:
             if k.startswith('xmlns:'):
                 prefix = k.partition(':')[2]
                 el.namespaces[prefix] = el.attributes[k]
-                if prefix in self._namespaces:
+                if prefix in self.namespaces:
                     raise DuplicateNamespaceException('Prefix ' + prefix + ' has already been used but is being redefined')
-                self._namespaces[prefix] = el.attributes[k]
+                self.namespaces[prefix] = el.attributes[k]
                 logger.debug('Added prefix ' + prefix + ' for ' + el.attributes[k])
 
         # check name for prefix
         if ':' in name:
             prefix = name.partition(':')[0]
-            if prefix not in self._namespaces:
+            if prefix not in self.namespaces:
                 raise UnknownNamespaceException('Unable to map element name prefix ' + prefix + ' to namespace')
         # check attributes for prefix
         for k in el.attributes:
             if not k.startswith('xmlns:') and ':' in k:
                 prefix = k.partition(':')[0]
-                if prefix not in self._namespaces:
+                if prefix not in self.namespaces:
                     raise UnknownNamespaceException('Unable to map attribute prefix ' + prefix + ' to namespace')
 
         self._add_to_current_element(el)
@@ -150,11 +150,6 @@ class Document(object):
     def _end_element_handler(self, name):
         logger.debug('_end_element_handler name: ' + str(name))
         el = self._stack.pop()
-        for k in el.attributes:
-            if k.startswith('xmlns:'):
-                prefix = k.partition(':')[2]
-                del self._namespaces[prefix]
-                logger.debug('Removed prefix ' + prefix)
 
     def _processing_instruction_handler(self, target, data):
         logger.debug('_processing_instruction_handler target: ' + str(target) + ' data: ' + str(data))
@@ -177,11 +172,11 @@ class Document(object):
 
     # def _start_namespace_handler(self, prefix, uri):
     #     logger.debug('_start_namespace_handler prefix: ' + str(prefix) + ' uri: ' + str(uri))
-    #     self._namespaces[prefix] = url
+    #     self.namespaces[prefix] = url
     #
     # def _end_namespace_handler(self, prefix):
     #     logger.debug('_end_namespace_handler prefix: ' + str(prefix))
-    #     self._stack[-1].namespaces[prefix] = self._namespaces[prefix]
+    #     self._stack[-1].namespaces[prefix] = self.namespaces[prefix]
 
     def _comment_handler(self, data):
         logger.debug('_comment_handler data: ' + str(data))

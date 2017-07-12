@@ -149,3 +149,11 @@ def test_encoding_utf8():
     assert isinstance(el.children[0], CharacterData)
     assert el.name == 'city'
     assert el.children[0].data == "linköping"
+
+def test_namespaces():
+    doc = Document()
+    doc.parse('''<Document xmlns="http://jaymes.biz/" xmlns:test="http://jaymes.biz/test"><test2:Element xmlns:test2="http://jaymes.biz/test2"/></Document>''')
+    assert len(doc.namespaces) == 3
+    assert None in doc.namespaces
+    assert 'test' in doc.namespaces
+    assert 'test2' in doc.namespaces
