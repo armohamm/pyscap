@@ -26,6 +26,8 @@ logger = logging.getLogger(__name__)
 class DmiDecodeCollector(Collector):
     def collect(self):
         return_code, out_lines, err_lines = self.host.exec_command('dmidecode --type 1', sudo=True)
+        if return_code != 0 or len(out_lines) < 1:
+            raise RuntimeError('Could not run sudo dmidecode --type 1')
 
         u = ''
         for line in out_lines:
@@ -35,7 +37,7 @@ class DmiDecodeCollector(Collector):
                 u = line[pos+1:].strip()
 
         if not u:
-            raise RuntimeError('Could not parse system uuid from dmidecode')
+            raise RuntimeError('Could not parse dmidecode output: ' + str(out_lines))
 
         u = uuid.UUID(u)
         self.host.facts['unique_id'] = u.hex
