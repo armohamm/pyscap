@@ -39,12 +39,12 @@ class Document(object):
         self.standalone = None
         self.skip_whitespace = skip_whitespace
 
-        self.children = []
+        self.root = None
         self.namespaces = {}
 
         self._parser = xml.parsers.expat.ParserCreate(encoding=encoding)
         self._in_cdata = False
-        self._stack = [self]
+        self._stack = []
 
         self._parser.XmlDeclHandler = lambda version, encoding, standalone: self._xml_decl_handler(version, encoding, standalone)
 
@@ -91,10 +91,14 @@ class Document(object):
         # TODO check that we're the only thing left on the stack when isfinal
 
     def _add_to_current_element(self, item):
-        logger.debug('_add_to_current_element: ' + str(item) + ' to children of ' + str(self._stack[-1]))
+        logger.debug('_add_to_current_element: ' + str(item))
 
-        self._stack[-1].children.append(item)
-        item.parent = self._stack[-1]
+        if len(self._stack) == 0:
+            self.root = item
+            item.parent = self
+        else:
+            self._stack[-1].children.append(item)
+            item.parent = self._stack[-1]
 
     def _xml_decl_handler(self, version, encoding, standalone):
         logger.debug('_xml_decl_handler version: ' + str(version) + ' encoding: ' + str(encoding) + ' standalone: ' + str(standalone))
