@@ -29,14 +29,15 @@ class DmiDecodeCollector(Collector):
         if return_code != 0 or len(out_lines) < 1:
             raise RuntimeError('Could not run sudo dmidecode --type 1')
 
-        u = ''
+        u = None
         for line in out_lines:
             if "UUID" in line:
-                line      = line.replace(" ","")
+                logger.debug('Found uuid line: ' + line)
                 pos       = line.find(":")
                 u = line[pos+1:].strip()
+                logger.debug('Parsed uuid: ' + u)
 
-        if not u:
+        if u is None:
             raise RuntimeError('Could not parse dmidecode output: ' + str(out_lines))
 
         u = uuid.UUID(u)
