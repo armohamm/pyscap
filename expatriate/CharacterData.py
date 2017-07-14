@@ -22,8 +22,14 @@ from .Entity import Entity
 logger = logging.getLogger(__name__)
 
 class CharacterData(Entity):
-    def __init__(self, data):
+    def __init__(self, data, cdata_block=False):
         self.data = data
+        self.cdata_block = cdata_block
 
     def produce(self):
-        return self.escape(self.data)
+        s = ''
+        if self.cdata_block:
+            s += '<![CDATA[' + self.data + ']]>'
+        else:
+            s += self.escape(self.data)
+        return s

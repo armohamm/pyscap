@@ -223,6 +223,24 @@ def test_produce_elements():
 
     assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Level0 xmlns="http://jaymes.biz/"><test:Level1 xmlns:test="http://jaymes.biz/test"><test2:Level2 xmlns:test2="http://jaymes.biz/test2"/></test:Level1></Level0>'
 
+def test_produce_cdata():
+    doc = Document()
+    doc.parse('''
+    <Document>
+        <![CDATA[test]]>
+    </Document>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document><![CDATA[test]]></Document>'
+
+def test_produce_char_data():
+    doc = Document()
+    doc.parse('''
+    <Document>
+        test
+    </Document>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document>test</Document>'
+
 def test_produce_pi():
     doc = Document()
     doc.parse('''

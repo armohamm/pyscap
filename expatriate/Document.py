@@ -194,12 +194,16 @@ class Document(object):
             pi.parent = self._stack[-1]
 
     def _character_data_handler(self, data):
-        logger.debug('_character_data_handler data: ' + str(data))
+        logger.debug('_character_data_handler data: ' + str(data.encode('UTF-8')))
         if not self._in_space_preserve:
-            if self._skip_whitespace and data.strip() == '':
+            if self._skip_whitespace:
+                data = data.strip(' \t\n')
+                logger.debug('Stripped to: ' + str(data.encode('UTF-8')))
+            if data == '':
+                logger.debug('Skipping whitespace character data')
                 return
 
-        char_data = CharacterData(data)
+        char_data = CharacterData(data, cdata_block=self._in_cdata)
 
         if len(self._stack) == 0:
             self.children.append(char_data)
