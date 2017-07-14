@@ -38,7 +38,8 @@ class Document(object):
         self.encoding = encoding
         self.standalone = None
 
-        self.root = None
+        self.root_element = None
+        self.children = []
         self.namespaces = {}
 
         self._parser = xml.parsers.expat.ParserCreate(encoding=encoding)
@@ -107,19 +108,9 @@ class Document(object):
                     output = output + b' standalone="no"'
             output = output + b'>'
 
-            output = output + self.root.produce()
+            output = output + self.root_element.produce()
 
             return output
-
-    def _add_to_current_element(self, item):
-        logger.debug('_add_to_current_element: ' + str(item))
-
-        if len(self._stack) == 0:
-            self.root = item
-            item.parent = self
-        else:
-            self._stack[-1].children.append(item)
-            item.parent = self._stack[-1]
 
     def _xml_decl_handler(self, version, encoding, standalone):
         logger.debug('_xml_decl_handler version: ' + str(version) + ' encoding: ' + str(encoding) + ' standalone: ' + str(standalone))
@@ -175,7 +166,13 @@ class Document(object):
                 if prefix not in self.namespaces:
                     raise UnknownNamespaceException('Unable to map attribute prefix ' + prefix + ' to namespace')
 
-        self._add_to_current_element(el)
+        if len(self._stack) == 0:
+            self.root_element = el
+            self.children.append(el)
+            el.parent = self
+        else:
+            self._stack[-1].children.append(el)
+            el.parent = self._stack[-1]
         self._stack.append(el)
 
     def _end_element_handler(self, name):
@@ -185,7 +182,13 @@ class Document(object):
     def _processing_instruction_handler(self, target, data):
         logger.debug('_processing_instruction_handler target: ' + str(target) + ' data: ' + str(data))
         pi = ProcessingInstruction(target, data)
-        self._add_to_current_element(pi)
+
+        if len(self._stack) == 0:
+            self.children.append(pi)
+            pi.parent = self
+        else:
+            self._stack[-1].children.append(pi)
+            pi.parent = self._stack[-1]
 
     def _character_data_handler(self, data):
         logger.debug('_character_data_handler data: ' + str(data))
@@ -194,7 +197,13 @@ class Document(object):
                 return
 
         char_data = CharacterData(data)
-        self._add_to_current_element(char_data)
+
+        if len(self._stack) == 0:
+            self.children.append(char_data)
+            char_data.parent = self
+        else:
+            self._stack[-1].children.append(char_data)
+            char_data.parent = self._stack[-1]
 
     def _entity_decl_handler(self, entityName, is_parameter_entity, value, base, systemId, publicId, notationName):
         logger.debug('_entity_decl_handler entityName: ' + str(entityName) + ' is_parameter_entity: ' + str(is_parameter_entity) + ' value: ' + str(value) + ' base: ' + str(base) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId) + ' notationName: ' + str(notationName))
@@ -213,7 +222,13 @@ class Document(object):
     def _comment_handler(self, data):
         logger.debug('_comment_handler data: ' + str(data))
         c = Comment(data)
-        self._add_to_current_element(c)
+
+        if len(self._stack) == 0:
+            self.children.append(c)
+            c.parent = self
+        else:
+            self._stack[-1].children.append(c)
+            c.parent = self._stack[-1]
 
     def _start_cdata_section_handler(self):
         logger.debug('_start_cdata_section_handler')

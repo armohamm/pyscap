@@ -25,51 +25,51 @@ logging.basicConfig(level=logging.DEBUG)
 def test_empty_doc():
     doc = Document()
     doc.parse('''<Document></Document>''')
-    assert isinstance(doc.root, Element)
-    assert len(doc.root.children) == 0
+    assert isinstance(doc.root_element, Element)
+    assert len(doc.root_element.children) == 0
 
 def test_xmlns_default_def():
     doc = Document()
     doc.parse('''<Document xmlns="http://jaymes.biz/test"></Document>''')
-    assert isinstance(doc.root, Element)
-    assert len(doc.root.children) == 0
-    assert len(doc.root.attributes) == 1
-    assert 'xmlns' in doc.root.attributes
-    assert doc.root.attributes['xmlns'] == 'http://jaymes.biz/test'
-    assert len(doc.root.namespaces) == 1
+    assert isinstance(doc.root_element, Element)
+    assert len(doc.root_element.children) == 0
+    assert len(doc.root_element.attributes) == 1
+    assert 'xmlns' in doc.root_element.attributes
+    assert doc.root_element.attributes['xmlns'] == 'http://jaymes.biz/test'
+    assert len(doc.root_element.namespaces) == 1
 
 def test_xmlns_prefix_def():
     doc = Document()
     doc.parse('''<Document xmlns:test2="http://jaymes.biz/test2"></Document>''')
-    assert isinstance(doc.root, Element)
-    assert len(doc.root.children) == 0
-    assert len(doc.root.attributes) == 1
-    assert 'xmlns:test2' in doc.root.attributes
-    assert doc.root.attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
-    assert len(doc.root.namespaces) == 1
+    assert isinstance(doc.root_element, Element)
+    assert len(doc.root_element.children) == 0
+    assert len(doc.root_element.attributes) == 1
+    assert 'xmlns:test2' in doc.root_element.attributes
+    assert doc.root_element.attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
+    assert len(doc.root_element.namespaces) == 1
 
 def test_xmlns_prefix_element():
     doc = Document()
     doc.parse('''<Document xmlns:test2="http://jaymes.biz/test2"><test2:Element/></Document>''')
-    assert isinstance(doc.root, Element)
-    assert len(doc.root.children) == 1
-    assert len(doc.root.attributes) == 1
-    assert 'xmlns:test2' in doc.root.attributes
-    assert doc.root.attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
-    assert len(doc.root.namespaces) == 1
+    assert isinstance(doc.root_element, Element)
+    assert len(doc.root_element.children) == 1
+    assert len(doc.root_element.attributes) == 1
+    assert 'xmlns:test2' in doc.root_element.attributes
+    assert doc.root_element.attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
+    assert len(doc.root_element.namespaces) == 1
 
 def test_xmlns_prefix_attribute():
     doc = Document()
     doc.parse('''<Document xmlns:test2="http://jaymes.biz/test2"><test2:Element test2:attribute="test"/></Document>''')
-    assert isinstance(doc.root, Element)
-    assert len(doc.root.attributes) == 1
-    assert 'xmlns:test2' in doc.root.attributes
-    assert doc.root.attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
-    assert len(doc.root.namespaces) == 1
-    assert len(doc.root.children) == 1
-    assert len(doc.root.children[0].attributes) == 1
-    assert 'test2:attribute' in doc.root.children[0].attributes
-    assert doc.root.children[0].attributes['test2:attribute'] == 'test'
+    assert isinstance(doc.root_element, Element)
+    assert len(doc.root_element.attributes) == 1
+    assert 'xmlns:test2' in doc.root_element.attributes
+    assert doc.root_element.attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
+    assert len(doc.root_element.namespaces) == 1
+    assert len(doc.root_element.children) == 1
+    assert len(doc.root_element.children[0].attributes) == 1
+    assert 'test2:attribute' in doc.root_element.children[0].attributes
+    assert doc.root_element.children[0].attributes['test2:attribute'] == 'test'
 
 def test_xmlns_prefix_element_unknown():
     doc = Document()
@@ -90,16 +90,16 @@ def test_not_skip_whitespace():
     doc = Document(skip_whitespace=False)
     doc.parse('''<Document>
 </Document>''')
-    assert isinstance(doc.root, Element)
-    assert len(doc.root.children) == 1
-    assert isinstance(doc.root.children[0], CharacterData)
+    assert isinstance(doc.root_element, Element)
+    assert len(doc.root_element.children) == 1
+    assert isinstance(doc.root_element.children[0], CharacterData)
 
 def test_skip_whitespace():
     doc = Document()
     doc.parse('''<Document>
 </Document>''')
-    assert isinstance(doc.root, Element)
-    assert len(doc.root.children) == 0
+    assert isinstance(doc.root_element, Element)
+    assert len(doc.root_element.children) == 0
 
 def test_parse_xml_decl_version_1_0():
     doc = Document()
@@ -118,18 +118,18 @@ def test_parse_xml_decl_version_1_1():
 def test_encoding_iso_8859_1():
     doc = Document()
     doc.parse(b"""<?xml version='1.0' encoding='iso-8859-1'?><author><name>fredrik lundh</name><city>link\xF6ping</city></author>""")
-    assert isinstance(doc.root, Element)
-    el = doc.root
+    assert isinstance(doc.root_element, Element)
+    el = doc.root_element
     assert len(el.children) == 2
     assert isinstance(el.children[0], Element)
 
-    el = doc.root.children[0]
+    el = doc.root_element.children[0]
     assert len(el.children) == 1
     assert isinstance(el.children[0], CharacterData)
     assert el.name == 'name'
     assert el.children[0].data == "fredrik lundh"
 
-    el = doc.root.children[1]
+    el = doc.root_element.children[1]
     assert len(el.children) == 1
     assert isinstance(el.children[0], CharacterData)
     assert el.name == 'city'
@@ -138,18 +138,18 @@ def test_encoding_iso_8859_1():
 def test_encoding_utf8():
     doc = Document()
     doc.parse(b"""<?xml version='1.0' encoding='UTF-8'?><author><name>fredrik lundh</name><city>link\xC3\xB6ping</city></author>""")
-    assert isinstance(doc.root, Element)
-    el = doc.root
+    assert isinstance(doc.root_element, Element)
+    el = doc.root_element
     assert len(el.children) == 2
     assert isinstance(el.children[0], Element)
 
-    el = doc.root.children[0]
+    el = doc.root_element.children[0]
     assert len(el.children) == 1
     assert isinstance(el.children[0], CharacterData)
     assert el.name == 'name'
     assert el.children[0].data == "fredrik lundh"
 
-    el = doc.root.children[1]
+    el = doc.root_element.children[1]
     assert len(el.children) == 1
     assert isinstance(el.children[0], CharacterData)
     assert el.name == 'city'
