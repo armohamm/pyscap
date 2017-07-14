@@ -40,7 +40,7 @@ class Document(object):
 
         self.root_element = None
         self.children = []
-        self.namespaces = {}
+        self.namespaces = {'xml': 'http://www.w3.org/XML/1998/namespace'}
 
         self._parser = xml.parsers.expat.ParserCreate(encoding=encoding)
         self._skip_whitespace = skip_whitespace
@@ -50,10 +50,21 @@ class Document(object):
 
         self._parser.XmlDeclHandler = self._xml_decl_handler
 
-        self._parser.StartDoctypeDeclHandler = self._start_doctype_decl_handler
-        self._parser.EndDoctypeDeclHandler = self._end_doctype_decl_handler
-        self._parser.ElementDeclHandler = self._element_decl_handler
-        self._parser.AttlistDeclHandler = self._attlist_decl_handler
+        # we ignore dtds
+        # self._parser.StartDoctypeDeclHandler = self._start_doctype_decl_handler
+        # self._parser.EndDoctypeDeclHandler = self._end_doctype_decl_handler
+        # self._parser.ElementDeclHandler = self._element_decl_handler
+        # self._parser.AttlistDeclHandler = self._attlist_decl_handler
+        #
+        # self._parser.EntityDeclHandler = self._entity_decl_handler
+        #
+        # self._parser.NotationDeclHandler = self._notation_decl_handler
+        #
+        # self._parser.ExternalEntityRefHandler = self._external_entity_ref_handler
+
+        # we do our own namespace processing
+        # self._parser.StartNamespaceDeclHandler = self._start_namespace_handler
+        # self._parser.EndNamespaceDeclHandler = self._end_namespace_handler
 
         self._parser.StartElementHandler = self._start_element_handler
         self._parser.EndElementHandler = self._end_element_handler
@@ -61,13 +72,6 @@ class Document(object):
         self._parser.ProcessingInstructionHandler = self._processing_instruction_handler
 
         self._parser.CharacterDataHandler = self._character_data_handler
-
-        self._parser.EntityDeclHandler = self._entity_decl_handler
-
-        self._parser.NotationDeclHandler = self._notation_decl_handler
-
-        # self._parser.StartNamespaceDeclHandler = self._start_namespace_handler
-        # self._parser.EndNamespaceDeclHandler = self._end_namespace_handler
 
         self._parser.CommentHandler = self._comment_handler
 
@@ -77,8 +81,6 @@ class Document(object):
         self._parser.DefaultHandlerExpand = self._default_handler_expand
 
         self._parser.NotStandaloneHandler = self._not_standalone_handler
-
-        self._parser.ExternalEntityRefHandler = self._external_entity_ref_handler
 
     def parse(self, data, isfinal=True):
         logger.debug('Parsing data: ' + str(data))
@@ -124,21 +126,13 @@ class Document(object):
             else:
                 self.standalone = False
 
-    def _start_doctype_decl_handler(self, doctypeName, systemId, publicId, has_internal_subset):
-        logger.debug('_start_doctype_decl_handler doctypeName: ' + str(doctypeName) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId) + ' has_internal_subset: ' + str(has_internal_subset))
-
-    def _end_doctype_decl_handler(self):
-        logger.debug('_end_doctype_decl_handler')
-
-    def _element_decl_handler(self, name, model):
-        logger.debug('_element_decl_handler doctypeName: ' + str(name) + ' model: ' + str(model))
-
-    def _attlist_decl_handler(self, elname, attname, type_, default, required):
-        logger.debug('_attlist_decl_handler elname: ' + str(elname) + ' attname: ' + str(attname) + ' type_: ' + str(type_) + ' default: ' + str(default) + ' required: ' + str(required))
-
     def _start_element_handler(self, name, attributes):
         logger.debug('_start_element_handler elname: ' + str(name) + ' attname: ' + str(name) + ' attributes: ' + str(attributes))
         el = Element(name, attributes)
+
+        # check for whitespace preservation
+        if 'xml:space' in el.attributes and el.attributes['xml:space'] == 'preserve':
+            self._in_space_preserve = True
 
         # check for a default namespace
         if 'xmlns' in el.attributes:
@@ -178,6 +172,12 @@ class Document(object):
     def _end_element_handler(self, name):
         logger.debug('_end_element_handler name: ' + str(name))
         el = self._stack.pop()
+        if el.name != name:
+            raise ValueError('Stack pop element name (' + el.name + ') does not match end tag name: ' + name)
+
+        # check for whitespace preservation
+        if 'xml:space' in el.attributes and el.attributes['xml:space'] == 'preserve':
+            self._in_space_preserve = False
 
     def _processing_instruction_handler(self, target, data):
         logger.debug('_processing_instruction_handler target: ' + str(target) + ' data: ' + str(data))
@@ -205,20 +205,6 @@ class Document(object):
             self._stack[-1].children.append(char_data)
             char_data.parent = self._stack[-1]
 
-    def _entity_decl_handler(self, entityName, is_parameter_entity, value, base, systemId, publicId, notationName):
-        logger.debug('_entity_decl_handler entityName: ' + str(entityName) + ' is_parameter_entity: ' + str(is_parameter_entity) + ' value: ' + str(value) + ' base: ' + str(base) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId) + ' notationName: ' + str(notationName))
-
-    def _notation_decl_handler(self, notationName, base, systemId, publicId):
-        logger.debug('_notation_decl_handler notationName: ' + str(notationName) + ' base: ' + str(base) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId))
-
-    # def _start_namespace_handler(self, prefix, uri):
-    #     logger.debug('_start_namespace_handler prefix: ' + str(prefix) + ' uri: ' + str(uri))
-    #     self.namespaces[prefix] = url
-    #
-    # def _end_namespace_handler(self, prefix):
-    #     logger.debug('_end_namespace_handler prefix: ' + str(prefix))
-    #     self._stack[-1].namespaces[prefix] = self.namespaces[prefix]
-
     def _comment_handler(self, data):
         logger.debug('_comment_handler data: ' + str(data))
         c = Comment(data)
@@ -244,5 +230,31 @@ class Document(object):
     def _not_standalone_handler(self, data):
         logger.debug('_not_standalone_handler data: ' + str(data))
 
-    def _external_entity_ref_handler(self, context, base, systemId, publicId):
-        logger.debug('_external_entity_ref_handler context: ' + str(context) + ' base: ' + str(base) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId))
+    # def _start_doctype_decl_handler(self, doctypeName, systemId, publicId, has_internal_subset):
+    #     logger.debug('_start_doctype_decl_handler doctypeName: ' + str(doctypeName) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId) + ' has_internal_subset: ' + str(has_internal_subset))
+    #
+    # def _end_doctype_decl_handler(self):
+    #     logger.debug('_end_doctype_decl_handler')
+    #
+    # def _element_decl_handler(self, name, model):
+    #     logger.debug('_element_decl_handler doctypeName: ' + str(name) + ' model: ' + str(model))
+    #
+    # def _attlist_decl_handler(self, elname, attname, type_, default, required):
+    #     logger.debug('_attlist_decl_handler elname: ' + str(elname) + ' attname: ' + str(attname) + ' type_: ' + str(type_) + ' default: ' + str(default) + ' required: ' + str(required))
+    #
+    # def _entity_decl_handler(self, entityName, is_parameter_entity, value, base, systemId, publicId, notationName):
+    #     logger.debug('_entity_decl_handler entityName: ' + str(entityName) + ' is_parameter_entity: ' + str(is_parameter_entity) + ' value: ' + str(value) + ' base: ' + str(base) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId) + ' notationName: ' + str(notationName))
+    #
+    # def _notation_decl_handler(self, notationName, base, systemId, publicId):
+    #     logger.debug('_notation_decl_handler notationName: ' + str(notationName) + ' base: ' + str(base) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId))
+    #
+    # def _external_entity_ref_handler(self, context, base, systemId, publicId):
+    #     logger.debug('_external_entity_ref_handler context: ' + str(context) + ' base: ' + str(base) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId))
+
+    # def _start_namespace_handler(self, prefix, uri):
+    #     logger.debug('_start_namespace_handler prefix: ' + str(prefix) + ' uri: ' + str(uri))
+    #     self.namespaces[prefix] = url
+    #
+    # def _end_namespace_handler(self, prefix):
+    #     logger.debug('_end_namespace_handler prefix: ' + str(prefix))
+    #     self._stack[-1].namespaces[prefix] = self.namespaces[prefix]

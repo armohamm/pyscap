@@ -158,7 +158,37 @@ def test_encoding_utf8():
 def test_namespaces():
     doc = Document()
     doc.parse('''<Document xmlns="http://jaymes.biz/" xmlns:test="http://jaymes.biz/test"><test2:Element xmlns:test2="http://jaymes.biz/test2"/></Document>''')
-    assert len(doc.namespaces) == 3
+    assert len(doc.namespaces) == 4
+    assert 'xml' in doc.namespaces
     assert None in doc.namespaces
     assert 'test' in doc.namespaces
     assert 'test2' in doc.namespaces
+
+def test_whitespace_preservation():
+    doc = Document()
+    doc.parse('''<Document><Element xml:space="preserve">
+test
+  test
+</Element></Document>''')
+    assert len(doc.root_element.children) == 1
+    assert doc.root_element.children[0].name == 'Element'
+    assert len(doc.root_element.children[0].children) == 5
+    i = 0
+    assert isinstance(doc.root_element.children[0].children[i], CharacterData)
+    assert doc.root_element.children[0].children[i].data == '\n'
+
+    i += 1
+    assert isinstance(doc.root_element.children[0].children[i], CharacterData)
+    assert doc.root_element.children[0].children[i].data == 'test'
+
+    i += 1
+    assert isinstance(doc.root_element.children[0].children[i], CharacterData)
+    assert doc.root_element.children[0].children[i].data == '\n'
+
+    i += 1
+    assert isinstance(doc.root_element.children[0].children[i], CharacterData)
+    assert doc.root_element.children[0].children[i].data == '  test'
+
+    i += 1
+    assert isinstance(doc.root_element.children[0].children[i], CharacterData)
+    assert doc.root_element.children[0].children[i].data == '\n'
