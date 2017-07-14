@@ -211,8 +211,7 @@ def test_namespace_resolve():
     assert isinstance(doc.root_element.children[0].children[0], Element)
     assert doc.root_element.children[0].children[0].resolve_namespace(None) == "http://jaymes.biz/"
 
-
-def test_produce():
+def test_produce_elements():
     doc = Document()
     doc.parse('''
     <Level0 xmlns="http://jaymes.biz/">
@@ -223,3 +222,21 @@ def test_produce():
     </Level0>''')
 
     assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Level0 xmlns="http://jaymes.biz/"><test:Level1 xmlns:test="http://jaymes.biz/test"><test2:Level2 xmlns:test2="http://jaymes.biz/test2"/></test:Level1></Level0>'
+
+def test_produce_pi():
+    doc = Document()
+    doc.parse('''
+    <Document>
+        <?target data?>
+    </Document>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document><?target data?></Document>'
+
+def test_produce_comment():
+    doc = Document()
+    doc.parse('''
+    <Document>
+        <!-- comment data -->
+    </Document>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document><!-- comment data --></Document>'

@@ -25,3 +25,6 @@ class ProcessingInstruction(Entity):
     def __init__(self, target, data):
         self.target = target
         self.data = data
+
+    def produce(self):
+        return '<?' + self.target + ' ' + self.data + '?>'

@@ -24,3 +24,6 @@ logger = logging.getLogger(__name__)
 class CharacterData(Entity):
     def __init__(self, data):
         self.data = data
+
+    def produce(self):
+        return self.escape(self.data)
