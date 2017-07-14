@@ -37,12 +37,13 @@ class Document(object):
         self.version = None
         self.encoding = encoding
         self.standalone = None
-        self.skip_whitespace = skip_whitespace
 
         self.root = None
         self.namespaces = {}
 
         self._parser = xml.parsers.expat.ParserCreate(encoding=encoding)
+        self._skip_whitespace = skip_whitespace
+        self._in_space_preserve = False
         self._in_cdata = False
         self._stack = []
 
@@ -90,6 +91,26 @@ class Document(object):
 
         # TODO check that we're the only thing left on the stack when isfinal
 
+    def produce(self, xml_decl=True):
+        output = b''
+        if xml_decl:
+            output = b'<?xml version="'
+            if self.version is None:
+                self.version = 1.0
+            output = output + str(self.version) + b'"'
+            if self.encoding is not None:
+                output = output + b' encoding="' + self.encoding + b'"'
+            if self.standalone is not None:
+                if self.standalone:
+                    output = output + b' standalone="yes"'
+                else:
+                    output = output + b' standalone="no"'
+            output = output + b'>'
+
+            output = output + self.root.produce()
+
+            return output
+
     def _add_to_current_element(self, item):
         logger.debug('_add_to_current_element: ' + str(item))
 
@@ -102,9 +123,15 @@ class Document(object):
 
     def _xml_decl_handler(self, version, encoding, standalone):
         logger.debug('_xml_decl_handler version: ' + str(version) + ' encoding: ' + str(encoding) + ' standalone: ' + str(standalone))
-        self.version = version
+        self.version = float(version)
         self.encoding = encoding
-        self.standalone = standalone
+        if standalone is None or standalone == -1:
+            self.standalone = None
+        else:
+            if standalone.lower() == 'yes':
+                self.standalone = True
+            else:
+                self.standalone = False
 
     def _start_doctype_decl_handler(self, doctypeName, systemId, publicId, has_internal_subset):
         logger.debug('_start_doctype_decl_handler doctypeName: ' + str(doctypeName) + ' systemId: ' + str(systemId) + ' publicId: ' + str(publicId) + ' has_internal_subset: ' + str(has_internal_subset))
@@ -162,8 +189,9 @@ class Document(object):
 
     def _character_data_handler(self, data):
         logger.debug('_character_data_handler data: ' + str(data))
-        if self.skip_whitespace and data.strip() == '':
-            return
+        if not self._in_space_preserve:
+            if self._skip_whitespace and data.strip() == '':
+                return
 
         char_data = CharacterData(data)
         self._add_to_current_element(char_data)

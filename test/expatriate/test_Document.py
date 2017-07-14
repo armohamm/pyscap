@@ -101,6 +101,20 @@ def test_skip_whitespace():
     assert isinstance(doc.root, Element)
     assert len(doc.root.children) == 0
 
+def test_parse_xml_decl_version_1_0():
+    doc = Document()
+    doc.parse(b"""<?xml version='1.0'?><author></author>""")
+    assert doc.version == 1.0
+    assert doc.encoding == None
+    assert doc.standalone == None
+
+def test_parse_xml_decl_version_1_1():
+    doc = Document()
+    doc.parse(b"""<?xml version='1.1'?><author></author>""")
+    assert doc.version == 1.1
+    assert doc.encoding == None
+    assert doc.standalone == None
+
 def test_encoding_iso_8859_1():
     doc = Document()
     doc.parse(b"""<?xml version='1.0' encoding='iso-8859-1'?><author><name>fredrik lundh</name><city>link\xF6ping</city></author>""")
