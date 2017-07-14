@@ -48,37 +48,37 @@ class Document(object):
         self._in_cdata = False
         self._stack = []
 
-        self._parser.XmlDeclHandler = lambda version, encoding, standalone: self._xml_decl_handler(version, encoding, standalone)
+        self._parser.XmlDeclHandler = self._xml_decl_handler
 
-        self._parser.StartDoctypeDeclHandler = lambda doctypeName, systemId, publicId, has_internal_subset: self._start_doctype_decl_handler(doctypeName, systemId, publicId, has_internal_subset)
-        self._parser.EndDoctypeDeclHandler = lambda : self._end_doctype_decl_handler()
-        self._parser.ElementDeclHandler = lambda name, model: self._element_decl_handler(name, model)
-        self._parser.AttlistDeclHandler = lambda elname, attname, type_, default, required: self._attlist_decl_handler(elname, attname, type_, default, required)
+        self._parser.StartDoctypeDeclHandler = self._start_doctype_decl_handler
+        self._parser.EndDoctypeDeclHandler = self._end_doctype_decl_handler
+        self._parser.ElementDeclHandler = self._element_decl_handler
+        self._parser.AttlistDeclHandler = self._attlist_decl_handler
 
-        self._parser.StartElementHandler = lambda name, attributes: self._start_element_handler(name, attributes)
-        self._parser.EndElementHandler = lambda name: self._end_element_handler(name)
+        self._parser.StartElementHandler = self._start_element_handler
+        self._parser.EndElementHandler = self._end_element_handler
 
-        self._parser.ProcessingInstructionHandler = lambda target, data: self._processing_instruction_handler(target, data)
+        self._parser.ProcessingInstructionHandler = self._processing_instruction_handler
 
-        self._parser.CharacterDataHandler = lambda data: self._character_data_handler(data)
+        self._parser.CharacterDataHandler = self._character_data_handler
 
-        self._parser.EntityDeclHandler = lambda entityName, is_parameter_entity, value, base, systemId, publicId, notationName: self._entity_decl_handler(entityName, is_parameter_entity, value, base, systemId, publicId, notationName)
+        self._parser.EntityDeclHandler = self._entity_decl_handler
 
-        self._parser.NotationDeclHandler = lambda notationName, base, systemId, publicId: self._notation_decl_handler(notationName, base, systemId, publicId)
+        self._parser.NotationDeclHandler = self._notation_decl_handler
 
-        # self._parser.StartNamespaceDeclHandler = lambda prefix, uri: self._start_namespace_handler(prefix, uri)
-        # self._parser.EndNamespaceDeclHandler = lambda prefix: self._end_namespace_handler(prefix)
+        # self._parser.StartNamespaceDeclHandler = self._start_namespace_handler
+        # self._parser.EndNamespaceDeclHandler = self._end_namespace_handler
 
-        self._parser.CommentHandler = lambda data: self._comment_handler(data)
+        self._parser.CommentHandler = self._comment_handler
 
-        self._parser.StartCdataSectionHandler = lambda: self._start_cdata_section_handler()
-        self._parser.EndCdataSectionHandler = lambda: self._end_cdata_section_handler()
+        self._parser.StartCdataSectionHandler = self._start_cdata_section_handler
+        self._parser.EndCdataSectionHandler = self._end_cdata_section_handler
 
-        self._parser.DefaultHandlerExpand = lambda data: self._default_handler_expand(data)
+        self._parser.DefaultHandlerExpand = self._default_handler_expand
 
-        self._parser.NotStandaloneHandler = lambda data: self._not_standalone_handler(data)
+        self._parser.NotStandaloneHandler = self._not_standalone_handler
 
-        self._parser.ExternalEntityRefHandler = lambda context, base, systemId, publicId: self._external_entity_ref_handler(context, base, systemId, publicId)
+        self._parser.ExternalEntityRefHandler = self._external_entity_ref_handler
 
     def parse(self, data, isfinal=True):
         logger.debug('Parsing data: ' + str(data))
