@@ -95,24 +95,27 @@ class Document(object):
         # TODO check that we're the only thing left on the stack when isfinal
 
     def produce(self, xml_decl=True):
-        output = b''
+        s = ''
         if xml_decl:
-            output = b'<?xml version="'
+            s = '<?xml version="'
             if self.version is None:
                 self.version = 1.0
-            output = output + str(self.version) + b'"'
-            if self.encoding is not None:
-                output = output + b' encoding="' + self.encoding + b'"'
+            s += str(self.version)
+            s += '"'
+            if self.encoding is None:
+                self.encoding = 'UTF-8'
+            s += ' encoding="' + self.encoding + '"'
             if self.standalone is not None:
                 if self.standalone:
-                    output = output + b' standalone="yes"'
+                    s += ' standalone="yes"'
                 else:
-                    output = output + b' standalone="no"'
-            output = output + b'>'
+                    s += ' standalone="no"'
+            s += '>'
 
-            output = output + self.root_element.produce()
+            for item in self.children:
+                s += item.produce()
 
-            return output
+            return s.encode(self.encoding)
 
     def _xml_decl_handler(self, version, encoding, standalone):
         logger.debug('_xml_decl_handler version: ' + str(version) + ' encoding: ' + str(encoding) + ' standalone: ' + str(standalone))

@@ -39,3 +39,17 @@ class Element(Entity):
                 return p.namespaces[ns]
             p = p.parent
         return None
+
+    def produce(self):
+        s = '<' + self.name
+        for k, v in self.attributes.items():
+            s += ' ' + k + '="' + self.escape(v) + '"'
+        if len(self.children) == 0:
+            s += '/>'
+        else:
+            s += '>'
+            for c in self.children:
+                s += c.produce()
+            s += '</' + self.name + '>'
+
+        return s
