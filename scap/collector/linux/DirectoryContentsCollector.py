@@ -61,7 +61,7 @@ class DirectoryContentsCollector(Collector):
                 continue
 
             #2011-11-08 18:02:08.954092000 -0700
-            m = re.fullmatch(r'([-a-z])([-sStTrwx]{3})([-sStTrwx]{3})([-rwx]{3})(\.)?\s+([0-9]+)\s+(\S+)\s+(\S+)\s+([0-9]+)\s+([0-9]+-[0-9]+-[0-9]+\s+[0-9]+:[0-9]+:[0-9.]+\s+[0-9-]+)\s+(.*)( -> (.*))?', l)
+            m = re.fullmatch(r'([-a-z])([-sStTrwx]{3})([-sStTrwx]{3})([-rwx]{3})(\.)?\s+([0-9]+)\s+(\S+)\s+(\S+)\s+([0-9]+)\s+([0-9]+-[0-9]+-[0-9]+\s+[0-9]+:[0-9]+:[0-9.]+\s[-+][0-9]+)\s+(.*)( -> (.*))?', l)
             if m:
                 mtime = m.group(10)
                 logger.debug('original mtime: ' + str(mtime))
