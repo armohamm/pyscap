@@ -31,3 +31,11 @@ class Element(Entity):
 
         self.children = []
         self.namespaces = {}
+
+    def resolve_namespace(self, ns):
+        p = self
+        while(p is not None):
+            if ns in p.namespaces:
+                return p.namespaces[ns]
+            p = p.parent
+        return None

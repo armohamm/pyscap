@@ -192,3 +192,21 @@ test
     i += 1
     assert isinstance(doc.root_element.children[0].children[i], CharacterData)
     assert doc.root_element.children[0].children[i].data == '\n'
+
+def test_namespace_resolve():
+    doc = Document()
+    doc.parse('''
+    <Level0 xmlns="http://jaymes.biz/">
+        <test:Level1 xmlns:test="http://jaymes.biz/test">
+            <test2:Level2 xmlns:test2="http://jaymes.biz/test2">
+            </test2:Level2>
+        </test:Level1>
+    </Level0>''')
+
+    assert len(doc.namespaces) == 4
+    assert isinstance(doc.root_element, Element)
+    assert len(doc.root_element.children) == 1
+    assert isinstance(doc.root_element.children[0], Element)
+    assert len(doc.root_element.children[0].children) == 1
+    assert isinstance(doc.root_element.children[0].children[0], Element)
+    assert doc.root_element.children[0].children[0].resolve_namespace(None) == "http://jaymes.biz/"
