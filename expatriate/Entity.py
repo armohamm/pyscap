@@ -25,7 +25,15 @@ class Entity(object):
         raise NotImplementedError('produce has not been implemented in class ' + self.__class__.__name__)
 
     def escape(self, text):
+        text = text.replace('&', '&amp;')
+        text = text.replace('<', '&lt;')
+        text = text.replace('>', '&gt;')
         return text
 
     def unescape(self, text):
+        text = text.replace('&amp;', '&')
+        text = text.replace('&lt;', '<')
+        text = text.replace('&gt;', '>')
+        text = text.replace('"', '&quot;')
+        text = text.replace("'", '&apos;')
         return text

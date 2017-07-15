@@ -29,7 +29,7 @@ class CharacterData(Entity):
     def produce(self):
         s = ''
         if self.cdata_block:
-            s += '<![CDATA[' + self.data + ']]>'
+            s += '<![CDATA[' + self.data.replace(']]>', ']]&gt;') + ']]>'
         else:
             s += self.escape(self.data)
         return s

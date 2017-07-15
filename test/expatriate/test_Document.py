@@ -211,17 +211,23 @@ def test_namespace_resolve():
     assert isinstance(doc.root_element.children[0].children[0], Element)
     assert doc.root_element.children[0].children[0].resolve_namespace(None) == "http://jaymes.biz/"
 
-def test_produce_elements():
+def test_produce_element():
     doc = Document()
-    doc.parse('''
-    <Level0 xmlns="http://jaymes.biz/">
-        <test:Level1 xmlns:test="http://jaymes.biz/test">
-            <test2:Level2 xmlns:test2="http://jaymes.biz/test2">
-            </test2:Level2>
-        </test:Level1>
-    </Level0>''')
+    doc.parse('''<Level0/>''')
 
-    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Level0 xmlns="http://jaymes.biz/"><test:Level1 xmlns:test="http://jaymes.biz/test"><test2:Level2 xmlns:test2="http://jaymes.biz/test2"/></test:Level1></Level0>'
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Level0/>'
+
+def test_produce_element_attribute():
+    doc = Document()
+    doc.parse('''<Level0 test="test"/>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Level0 test="test"/>'
+
+def test_produce_element_attribute_escapement():
+    doc = Document()
+    doc.parse('''<Level0 test="test&quot;"/>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Level0 test="test&quot;"/>'
 
 def test_produce_cdata():
     doc = Document()
@@ -232,6 +238,43 @@ def test_produce_cdata():
 
     assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document><![CDATA[test]]></Document>'
 
+# TODO expat actually doesn't handle this correctly either
+# def test_produce_cdata_escapement():
+#     doc = Document()
+#     doc.parse('''
+#     <Document>
+#         <![CDATA[test]]&gt;]]>
+#     </Document>''')
+#
+#     assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document><![CDATA[test]]&gt;]]></Document>'
+
+def test_produce_cdata_lt():
+    doc = Document()
+    doc.parse('''
+    <Document>
+        <![CDATA[<test]]>
+    </Document>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document><![CDATA[<test]]></Document>'
+
+def test_produce_cdata_gt():
+    doc = Document()
+    doc.parse('''
+    <Document>
+        <![CDATA[test>]]>
+    </Document>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document><![CDATA[test>]]></Document>'
+
+def test_produce_cdata_amp():
+    doc = Document()
+    doc.parse('''
+    <Document>
+        <![CDATA[test&]]>
+    </Document>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document><![CDATA[test&]]></Document>'
+
 def test_produce_char_data():
     doc = Document()
     doc.parse('''
@@ -240,6 +283,33 @@ def test_produce_char_data():
     </Document>''')
 
     assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document>test</Document>'
+
+def test_produce_char_data_lt():
+    doc = Document()
+    doc.parse('''
+    <Document>
+        &lt;test
+    </Document>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document>&lt;test</Document>'
+
+def test_produce_char_data_gt():
+    doc = Document()
+    doc.parse('''
+    <Document>
+        &gt;test
+    </Document>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document>&gt;test</Document>'
+
+def test_produce_char_data_amp():
+    doc = Document()
+    doc.parse('''
+    <Document>
+        &amp;test
+    </Document>''')
+
+    assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document>&amp;test</Document>'
 
 def test_produce_pi():
     doc = Document()

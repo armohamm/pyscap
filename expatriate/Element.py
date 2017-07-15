@@ -40,10 +40,13 @@ class Element(Entity):
             p = p.parent
         return None
 
+    def escape_attribute(self, text):
+        return self.escape(text).replace('"', '&quot;')
+
     def produce(self):
         s = '<' + self.name
         for k, v in self.attributes.items():
-            s += ' ' + k + '="' + self.escape(v) + '"'
+            s += ' ' + k + '="' + self.escape_attribute(v) + '"'
         if len(self.children) == 0:
             s += '/>'
         else:
