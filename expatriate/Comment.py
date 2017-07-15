@@ -30,5 +30,8 @@ class Comment(Node):
     def produce(self):
         return '<!--' + self.data + '-->'
 
+    def get_string_value(self):
+        return self.data
+
     def get_type(self):
         return 'comment'

@@ -238,3 +238,7 @@ class Document(Node):
 
     def get_type(self):
         return 'root'
+
+    def get_string_value(self):
+        # TODO
+        pass

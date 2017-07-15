@@ -18,13 +18,21 @@
 import logging
 
 class Node(object):
+    FUNCTION_LIBRARY = {
+
+    }
     def __init__(self, parent):
         self.parent = parent
         self._document = None
 
-    def get_xpath(self, expr, version=1.0):
-        raise NotImplementedError('get_xpath has not been implemented in class ' + self.__class__.__name__)
-
+    def get_xpath(self, expr, version=1.0, context_position=1, context_size=1, variables={}):
+        if version != 1.0:
+            raise NotImplementedError('Only XPath 1.0 has been implemented')
+        #a node (the context node)
+        #a pair of non-zero positive integers (the context position and the context size)
+        #a set of variable bindings
+        #a function library
+        #the set of namespace declarations in scope for the expression
     def get_type(self):
         raise NotImplementedError('get_type has not been implemented in class ' + self.__class__.__name__)
 

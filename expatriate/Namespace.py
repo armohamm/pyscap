@@ -31,5 +31,8 @@ class Namespace(Node):
     def get_type(self):
         return 'namespace'
 
+    def get_string_value(self):
+        return self.uri
+
     def get_expanded_name(self):
         return (None, self.prefix)

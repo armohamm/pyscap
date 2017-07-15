@@ -36,5 +36,8 @@ class CharacterData(Node):
             s += self.escape(self.data)
         return s
 
+    def get_string_value(self):
+        return self.data
+
     def get_type(self):
         return 'text'

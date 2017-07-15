@@ -119,5 +119,9 @@ class Element(Node):
     def get_type(self):
         return 'element'
 
+    def get_string_value(self):
+        # TODO
+        pass
+
     def get_expanded_name(self):
         return (self.name_namespace, self.name_local)
