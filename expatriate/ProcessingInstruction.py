@@ -22,8 +22,8 @@ from .Node import Node
 logger = logging.getLogger(__name__)
 
 class ProcessingInstruction(Node):
-    def __init__(self, target, data):
-        super(ProcessingInstruction, self).__init__()
+    def __init__(self, target, data, parent=None):
+        super(ProcessingInstruction, self).__init__(parent=parent)
 
         self.target = target
         self.data = data

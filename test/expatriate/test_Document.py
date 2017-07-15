@@ -36,7 +36,7 @@ def test_xmlns_default_def():
     assert len(doc.root_element.attributes) == 1
     assert 'xmlns' in doc.root_element.attributes
     assert doc.root_element.attributes['xmlns'] == 'http://jaymes.biz/test'
-    assert len(doc.root_element.namespaces) == 1
+    assert len(doc.root_element.namespaces) == 2
 
 def test_xmlns_prefix_def():
     doc = Document()
@@ -46,7 +46,7 @@ def test_xmlns_prefix_def():
     assert len(doc.root_element.attributes) == 1
     assert 'xmlns:test2' in doc.root_element.attributes
     assert doc.root_element.attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
-    assert len(doc.root_element.namespaces) == 1
+    assert len(doc.root_element.namespaces) == 2
 
 def test_xmlns_prefix_element():
     doc = Document()
@@ -56,7 +56,7 @@ def test_xmlns_prefix_element():
     assert len(doc.root_element.attributes) == 1
     assert 'xmlns:test2' in doc.root_element.attributes
     assert doc.root_element.attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
-    assert len(doc.root_element.namespaces) == 1
+    assert len(doc.root_element.namespaces) == 2
 
 def test_xmlns_prefix_attribute():
     doc = Document()
@@ -65,9 +65,11 @@ def test_xmlns_prefix_attribute():
     assert len(doc.root_element.attributes) == 1
     assert 'xmlns:test2' in doc.root_element.attributes
     assert doc.root_element.attributes['xmlns:test2'] == 'http://jaymes.biz/test2'
-    assert len(doc.root_element.namespaces) == 1
+    assert len(doc.root_element.namespaces) == 2
+
     assert len(doc.root_element.children) == 1
     assert len(doc.root_element.children[0].attributes) == 1
+    assert len(doc.root_element.children[0].namespaces) == 2
     assert 'test2:attribute' in doc.root_element.children[0].attributes
     assert doc.root_element.children[0].attributes['test2:attribute'] == 'test'
 
@@ -158,11 +160,14 @@ def test_encoding_utf8():
 def test_namespaces():
     doc = Document()
     doc.parse('''<Document xmlns="http://jaymes.biz/" xmlns:test="http://jaymes.biz/test"><test2:Element xmlns:test2="http://jaymes.biz/test2"/></Document>''')
-    assert len(doc.namespaces) == 4
-    assert 'xml' in doc.namespaces
-    assert None in doc.namespaces
-    assert 'test' in doc.namespaces
-    assert 'test2' in doc.namespaces
+    assert len(doc.root_element.namespaces) == 3
+    assert 'xml' in doc.root_element.namespaces
+    assert None in doc.root_element.namespaces
+    assert 'test' in doc.root_element.namespaces
+
+    assert len(doc.root_element.children) == 1
+    assert len(doc.root_element.children[0].namespaces) == 4
+    assert 'test2' in doc.root_element.children[0].namespaces
 
 def test_whitespace_preservation():
     doc = Document()
@@ -192,24 +197,6 @@ test
     i += 1
     assert isinstance(doc.root_element.children[0].children[i], CharacterData)
     assert doc.root_element.children[0].children[i].data == '\n'
-
-def test_namespace_resolve():
-    doc = Document()
-    doc.parse('''
-    <Level0 xmlns="http://jaymes.biz/">
-        <test:Level1 xmlns:test="http://jaymes.biz/test">
-            <test2:Level2 xmlns:test2="http://jaymes.biz/test2">
-            </test2:Level2>
-        </test:Level1>
-    </Level0>''')
-
-    assert len(doc.namespaces) == 4
-    assert isinstance(doc.root_element, Element)
-    assert len(doc.root_element.children) == 1
-    assert isinstance(doc.root_element.children[0], Element)
-    assert len(doc.root_element.children[0].children) == 1
-    assert isinstance(doc.root_element.children[0].children[0], Element)
-    assert doc.root_element.children[0].children[0].resolve_namespace(None) == "http://jaymes.biz/"
 
 def test_produce_element():
     doc = Document()

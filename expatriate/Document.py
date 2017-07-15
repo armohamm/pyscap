@@ -40,7 +40,6 @@ class Document(object):
 
         self.root_element = None
         self.children = []
-        self.namespaces = {'xml': 'http://www.w3.org/XML/1998/namespace'}
 
         self._parser = xml.parsers.expat.ParserCreate(encoding=encoding)
         self._skip_whitespace = skip_whitespace
@@ -138,39 +137,42 @@ class Document(object):
         if 'xml:space' in el.attributes and el.attributes['xml:space'] == 'preserve':
             self._in_space_preserve = True
 
+        if len(self._stack) == 0:
+            self.root_element = el
+            self.children.append(el)
+            el.parent = None
+            el.namespaces = {'xml': 'http://www.w3.org/XML/1998/namespace'}
+        else:
+            self._stack[-1].children.append(el)
+            el.parent = self._stack[-1]
+            el.namespaces = el.parent.namespaces.copy()
+
         # check for a default namespace
         if 'xmlns' in el.attributes:
             el.namespaces[None] = el.attributes['xmlns']
-            self.namespaces[None] = el.attributes['xmlns']
+
         # check for prefix namespaces
         for k in el.attributes:
             if k.startswith('xmlns:'):
                 prefix = k.partition(':')[2]
-                el.namespaces[prefix] = el.attributes[k]
-                if prefix in self.namespaces:
+                if prefix in el.namespaces:
                     raise DuplicateNamespaceException('Prefix ' + prefix + ' has already been used but is being redefined')
-                self.namespaces[prefix] = el.attributes[k]
+                el.namespaces[prefix] = el.attributes[k]
                 logger.debug('Added prefix ' + prefix + ' for ' + el.attributes[k])
 
         # check name for prefix
         if ':' in name:
             prefix = name.partition(':')[0]
-            if prefix not in self.namespaces:
+            if prefix not in el.namespaces:
                 raise UnknownNamespaceException('Unable to map element name prefix ' + prefix + ' to namespace')
+
         # check attributes for prefix
         for k in el.attributes:
             if not k.startswith('xmlns:') and ':' in k:
                 prefix = k.partition(':')[0]
-                if prefix not in self.namespaces:
+                if prefix not in el.namespaces:
                     raise UnknownNamespaceException('Unable to map attribute prefix ' + prefix + ' to namespace')
 
-        if len(self._stack) == 0:
-            self.root_element = el
-            self.children.append(el)
-            el.parent = self
-        else:
-            self._stack[-1].children.append(el)
-            el.parent = self._stack[-1]
         self._stack.append(el)
 
     def _end_element_handler(self, name):

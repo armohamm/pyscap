@@ -22,8 +22,8 @@ from .Node import Node
 logger = logging.getLogger(__name__)
 
 class Element(Node):
-    def __init__(self, name, attributes):
-        super(Element, self).__init__()
+    def __init__(self, name, attributes, parent=None):
+        super(Element, self).__init__(parent=parent)
 
         self.name = name
         # TODO parse out namespace
@@ -33,14 +33,6 @@ class Element(Node):
 
         self.children = []
         self.namespaces = {}
-
-    def resolve_namespace(self, ns):
-        p = self
-        while(p is not None):
-            if ns in p.namespaces:
-                return p.namespaces[ns]
-            p = p.parent
-        return None
 
     def escape_attribute(self, text):
         return self.escape(text).replace('"', '&quot;')
