@@ -22,9 +22,6 @@ class Node(object):
         self.parent = parent
         self._document = None
 
-    def produce(self):
-        raise NotImplementedError('produce has not been implemented in class ' + self.__class__.__name__)
-
     def get_xpath(self, expr, version=1.0):
         raise NotImplementedError('get_xpath has not been implemented in class ' + self.__class__.__name__)
 

@@ -18,6 +18,8 @@
 import logging
 
 from .Node import Node
+from .Attribute import Attribute
+from .Namespace import Namespace
 
 logger = logging.getLogger(__name__)
 
@@ -32,10 +34,8 @@ class Element(Node):
         super(Element, self).__init__(parent)
 
         self.name = name
-        # TODO parse out namespace
 
         self.attributes = attributes
-        # TODO parse out namespace
 
         self.children = []
 
@@ -47,29 +47,57 @@ class Element(Node):
 
         # check for a default namespace
         if 'xmlns' in self.attributes:
-            self.namespaces[None] = self.attributes['xmlns']
+            if self.attributes['xmlns'] == '' and None in self.namespaces:
+                del self.namespaces[None]
+            else:
+                self.namespaces[None] = self.attributes['xmlns']
 
         # check for prefix namespaces
-        for k in self.attributes:
+        for k, v in self.attributes.items():
             if k.startswith('xmlns:'):
                 prefix = k.partition(':')[2]
                 if prefix in self.namespaces:
                     raise DuplicateNamespaceException('Prefix ' + prefix + ' has already been used but is being redefined')
-                self.namespaces[prefix] = self.attributes[k]
-                logger.debug('Added prefix ' + prefix + ' for ' + self.attributes[k])
+                self.namespaces[prefix] = v
+                logger.debug('Added prefix ' + prefix + ' for ' + v)
 
-        # check name for prefix
+        # create nodes for each of the namespaces
+        self.namespace_nodes = {}
+        for prefix, uri in self.namespaces.items():
+            self.namespace_nodes[prefix] = Namespace(self, prefix, uri)
+
+        # parse the namespace & local part of the element name
         if ':' in name:
-            prefix = name.partition(':')[0]
-            if prefix not in self.namespaces:
-                raise UnknownNamespaceException('Unable to map element name prefix ' + prefix + ' to namespace')
+            n = name.partition(':')
+            if n[0] not in self.namespaces:
+                raise UnknownNamespaceException('Unable to map element name prefix ' + n[0] + ' to namespace')
+            self.name_namespace = self.namespaces[n[0]]
+            self.name_local = n[2]
+        else:
+            self.name_namespace = None
+            self.name_local = name
 
         # check attributes for prefix
-        for k in self.attributes:
-            if not k.startswith('xmlns:') and ':' in k:
-                prefix = k.partition(':')[0]
-                if prefix not in self.namespaces:
-                    raise UnknownNamespaceException('Unable to map attribute prefix ' + prefix + ' to namespace')
+        self.attribute_locals = {}
+        self.attribute_namespaces = {}
+        self.attribute_nodes = {}
+        for k, v in self.attributes.items():
+            if k.startswith('xmlns:'):
+                continue
+
+            # parse the namespace & local part from each attribute
+            if ':' in k:
+                n = k.partition(':')
+                if n[0] not in self.namespaces:
+                    raise UnknownNamespaceException('Unable to map attribute prefix ' + n[0] + ' to namespace')
+                self.attribute_namespaces[k] = self.namespaces[n[0]]
+                self.attribute_locals[k] = n[2]
+            else:
+                self.attribute_namespaces[k] = None
+                self.attribute_locals[k] = k
+
+            self.attribute_nodes[k] = Attribute(self, self.attribute_namespaces[k], self.attribute_locals[k], v)
+
 
     def escape_attribute(self, text):
         return self.escape(text).replace('"', '&quot;')
