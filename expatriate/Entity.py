@@ -20,6 +20,7 @@ import logging
 class Entity(object):
     def __init__(self):
         self.parent = None
+        self._document = None
 
     def produce(self):
         raise NotImplementedError('produce has not been implemented in class ' + self.__class__.__name__)

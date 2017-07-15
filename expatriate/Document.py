@@ -132,6 +132,7 @@ class Document(object):
     def _start_element_handler(self, name, attributes):
         logger.debug('_start_element_handler elname: ' + str(name) + ' attname: ' + str(name) + ' attributes: ' + str(attributes))
         el = Element(name, attributes)
+        el._document = self
 
         # check for whitespace preservation
         if 'xml:space' in el.attributes and el.attributes['xml:space'] == 'preserve':
@@ -185,6 +186,7 @@ class Document(object):
     def _processing_instruction_handler(self, target, data):
         logger.debug('_processing_instruction_handler target: ' + str(target) + ' data: ' + str(data))
         pi = ProcessingInstruction(target, data)
+        pi._document = self
 
         if len(self._stack) == 0:
             self.children.append(pi)
@@ -204,6 +206,7 @@ class Document(object):
                 return
 
         char_data = CharacterData(data, cdata_block=self._in_cdata)
+        char_data._document = self
 
         if len(self._stack) == 0:
             self.children.append(char_data)
@@ -215,6 +218,7 @@ class Document(object):
     def _comment_handler(self, data):
         logger.debug('_comment_handler data: ' + str(data))
         c = Comment(data)
+        c._document = self
 
         if len(self._stack) == 0:
             self.children.append(c)
