@@ -27,3 +27,6 @@ class Namespace(Node):
 
         self.prefix = prefix
         self.uri = uri
+
+    def get_type(self):
+        return 'namespace'

@@ -30,3 +30,6 @@ class ProcessingInstruction(Node):
 
     def produce(self):
         return '<?' + self.target + ' ' + self.data + '?>'
+
+    def get_type(self):
+        return 'processing instruction'

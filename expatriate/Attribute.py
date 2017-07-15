@@ -28,3 +28,6 @@ class Attribute(Node):
         self.name_namespace = name_namespace
         self.name_local = name_local
         self.value = value
+
+    def get_type(self):
+        return 'attribute'

@@ -22,12 +22,14 @@ import xml.parsers.expat
 from .CharacterData import CharacterData
 from .Comment import Comment
 from .Element import Element
+from .Node import Node
 from .ProcessingInstruction import ProcessingInstruction
 
 logger = logging.getLogger(__name__)
 
-class Document(object):
+class Document(Node):
     def __init__(self, encoding=None, skip_whitespace=True):
+        super(Document, self).__init__(None)
         self.version = None
         self.encoding = encoding
         self.standalone = None
@@ -233,3 +235,6 @@ class Document(object):
     # def _end_namespace_handler(self, prefix):
     #     logger.debug('_end_namespace_handler prefix: ' + str(prefix))
     #     self._stack[-1].namespaces[prefix] = self.namespaces[prefix]
+
+    def get_type(self):
+        return 'root'

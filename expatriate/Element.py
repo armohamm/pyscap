@@ -115,3 +115,6 @@ class Element(Node):
             s += '</' + self.name + '>'
 
         return s
+
+    def get_type(self):
+        return 'element'
