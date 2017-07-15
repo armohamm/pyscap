@@ -17,12 +17,14 @@
 
 import logging
 
-from .Entity import Entity
+from .Node import Node
 
 logger = logging.getLogger(__name__)
 
-class Element(Entity):
+class Element(Node):
     def __init__(self, name, attributes):
+        super(Element, self).__init__()
+
         self.name = name
         # TODO parse out namespace
 

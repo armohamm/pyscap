@@ -17,12 +17,14 @@
 
 import logging
 
-from .Entity import Entity
+from .Node import Node
 
 logger = logging.getLogger(__name__)
 
-class CharacterData(Entity):
+class CharacterData(Node):
     def __init__(self, data, cdata_block=False):
+        super(CharacterData, self).__init__()
+        
         self.data = data
         self.cdata_block = cdata_block
 

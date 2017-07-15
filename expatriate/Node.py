@@ -17,7 +17,7 @@
 
 import logging
 
-class Entity(object):
+class Node(object):
     def __init__(self):
         self.parent = None
         self._document = None

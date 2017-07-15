@@ -17,12 +17,14 @@
 
 import logging
 
-from .Entity import Entity
+from .Node import Node
 
 logger = logging.getLogger(__name__)
 
-class Comment(Entity):
+class Comment(Node):
     def __init__(self, data):
+        super(Comment, self).__init__()
+
         self.data = data
 
     def produce(self):

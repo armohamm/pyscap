@@ -17,12 +17,14 @@
 
 import logging
 
-from .Entity import Entity
+from .Node import Node
 
 logger = logging.getLogger(__name__)
 
-class ProcessingInstruction(Entity):
+class ProcessingInstruction(Node):
     def __init__(self, target, data):
+        super(ProcessingInstruction, self).__init__()
+
         self.target = target
         self.data = data
 
