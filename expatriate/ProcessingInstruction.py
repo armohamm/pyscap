@@ -33,3 +33,6 @@ class ProcessingInstruction(Node):
 
     def get_type(self):
         return 'processing instruction'
+
+    def get_expanded_name(self):
+        return (None, self.target)
