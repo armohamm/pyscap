@@ -26,12 +26,6 @@ from .ProcessingInstruction import ProcessingInstruction
 
 logger = logging.getLogger(__name__)
 
-class DuplicateNamespaceException(Exception):
-    pass
-
-class UnknownNamespaceException(Exception):
-    pass
-
 class Document(object):
     def __init__(self, encoding=None, skip_whitespace=True):
         self.version = None
@@ -130,48 +124,20 @@ class Document(object):
 
     def _start_element_handler(self, name, attributes):
         logger.debug('_start_element_handler elname: ' + str(name) + ' attname: ' + str(name) + ' attributes: ' + str(attributes))
-        el = Element(name, attributes)
-        el._document = self
 
         # check for whitespace preservation
-        if 'xml:space' in el.attributes and el.attributes['xml:space'] == 'preserve':
+        if 'xml:space' in attributes and attributes['xml:space'] == 'preserve':
             self._in_space_preserve = True
 
         if len(self._stack) == 0:
+            el = Element(self, name, attributes)
             self.root_element = el
             self.children.append(el)
-            el.parent = None
-            el.namespaces = {'xml': 'http://www.w3.org/XML/1998/namespace'}
         else:
+            el = Element(self._stack[-1], name, attributes)
             self._stack[-1].children.append(el)
-            el.parent = self._stack[-1]
-            el.namespaces = el.parent.namespaces.copy()
 
-        # check for a default namespace
-        if 'xmlns' in el.attributes:
-            el.namespaces[None] = el.attributes['xmlns']
-
-        # check for prefix namespaces
-        for k in el.attributes:
-            if k.startswith('xmlns:'):
-                prefix = k.partition(':')[2]
-                if prefix in el.namespaces:
-                    raise DuplicateNamespaceException('Prefix ' + prefix + ' has already been used but is being redefined')
-                el.namespaces[prefix] = el.attributes[k]
-                logger.debug('Added prefix ' + prefix + ' for ' + el.attributes[k])
-
-        # check name for prefix
-        if ':' in name:
-            prefix = name.partition(':')[0]
-            if prefix not in el.namespaces:
-                raise UnknownNamespaceException('Unable to map element name prefix ' + prefix + ' to namespace')
-
-        # check attributes for prefix
-        for k in el.attributes:
-            if not k.startswith('xmlns:') and ':' in k:
-                prefix = k.partition(':')[0]
-                if prefix not in el.namespaces:
-                    raise UnknownNamespaceException('Unable to map attribute prefix ' + prefix + ' to namespace')
+        el._document = self
 
         self._stack.append(el)
 
@@ -187,15 +153,14 @@ class Document(object):
 
     def _processing_instruction_handler(self, target, data):
         logger.debug('_processing_instruction_handler target: ' + str(target) + ' data: ' + str(data))
-        pi = ProcessingInstruction(target, data)
-        pi._document = self
 
         if len(self._stack) == 0:
+            pi = ProcessingInstruction(self, target, data)
             self.children.append(pi)
-            pi.parent = self
         else:
+            pi = ProcessingInstruction(self._stack[-1], target, data)
             self._stack[-1].children.append(pi)
-            pi.parent = self._stack[-1]
+        pi._document = self
 
     def _character_data_handler(self, data):
         logger.debug('_character_data_handler data: ' + str(data.encode('UTF-8')))
@@ -207,27 +172,24 @@ class Document(object):
                 logger.debug('Skipping whitespace character data')
                 return
 
-        char_data = CharacterData(data, cdata_block=self._in_cdata)
-        char_data._document = self
-
         if len(self._stack) == 0:
+            char_data = CharacterData(self, data, cdata_block=self._in_cdata)
             self.children.append(char_data)
-            char_data.parent = self
         else:
+            char_data = CharacterData(self._stack[-1], data, cdata_block=self._in_cdata)
             self._stack[-1].children.append(char_data)
-            char_data.parent = self._stack[-1]
+        char_data._document = self
 
     def _comment_handler(self, data):
         logger.debug('_comment_handler data: ' + str(data))
-        c = Comment(data)
-        c._document = self
 
         if len(self._stack) == 0:
+            c = Comment(self, data)
             self.children.append(c)
-            c.parent = self
         else:
+            c = Comment(self._stack[-1], data)
             self._stack[-1].children.append(c)
-            c.parent = self._stack[-1]
+        c._document = self
 
     def _start_cdata_section_handler(self):
         logger.debug('_start_cdata_section_handler')

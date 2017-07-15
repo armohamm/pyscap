@@ -21,9 +21,15 @@ from .Node import Node
 
 logger = logging.getLogger(__name__)
 
+class DuplicateNamespaceException(Exception):
+    pass
+
+class UnknownNamespaceException(Exception):
+    pass
+
 class Element(Node):
-    def __init__(self, name, attributes, parent=None):
-        super(Element, self).__init__(parent=parent)
+    def __init__(self, parent, name, attributes):
+        super(Element, self).__init__(parent)
 
         self.name = name
         # TODO parse out namespace
@@ -32,7 +38,38 @@ class Element(Node):
         # TODO parse out namespace
 
         self.children = []
-        self.namespaces = {}
+
+        if isinstance(self.parent, Element):
+            self.namespaces = self.parent.namespaces.copy()
+        else:
+            # Document
+            self.namespaces = {'xml': 'http://www.w3.org/XML/1998/namespace'}
+
+        # check for a default namespace
+        if 'xmlns' in self.attributes:
+            self.namespaces[None] = self.attributes['xmlns']
+
+        # check for prefix namespaces
+        for k in self.attributes:
+            if k.startswith('xmlns:'):
+                prefix = k.partition(':')[2]
+                if prefix in self.namespaces:
+                    raise DuplicateNamespaceException('Prefix ' + prefix + ' has already been used but is being redefined')
+                self.namespaces[prefix] = self.attributes[k]
+                logger.debug('Added prefix ' + prefix + ' for ' + self.attributes[k])
+
+        # check name for prefix
+        if ':' in name:
+            prefix = name.partition(':')[0]
+            if prefix not in self.namespaces:
+                raise UnknownNamespaceException('Unable to map element name prefix ' + prefix + ' to namespace')
+
+        # check attributes for prefix
+        for k in self.attributes:
+            if not k.startswith('xmlns:') and ':' in k:
+                prefix = k.partition(':')[0]
+                if prefix not in self.namespaces:
+                    raise UnknownNamespaceException('Unable to map attribute prefix ' + prefix + ' to namespace')
 
     def escape_attribute(self, text):
         return self.escape(text).replace('"', '&quot;')

@@ -18,7 +18,7 @@
 import logging
 
 class Node(object):
-    def __init__(self, parent=None):
+    def __init__(self, parent):
         self.parent = parent
         self._document = None
 

@@ -18,9 +18,9 @@
 from .CharacterData import CharacterData
 from .Comment import Comment
 from .Document import Document
-from .Document import DuplicateNamespaceException
-from .Document import UnknownNamespaceException
 from .Element import Element
+from .Element import DuplicateNamespaceException
+from .Element import UnknownNamespaceException
 from .ProcessingInstruction import ProcessingInstruction
 
 __all__ = [
