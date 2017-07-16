@@ -20,6 +20,15 @@ import math
 
 logger = logging.getLogger(__name__)
 class Operator(object):
+    def op_div(x,y):
+        if y == 0:
+            if x > 0:
+                return math.inf
+            else:
+                return -math.inf
+        else:
+            return x // y
+
     OPERATORS = {
         '*': lambda x,y: x * y,
         # /
@@ -36,7 +45,7 @@ class Operator(object):
         'and': lambda x,y: x and y,
         'or': lambda x,y: x or y,
         'mod': lambda x,y: math.fmod(x, y),
-        'div': lambda x,y: x // y,
+        'div': op_div,
         'negate': lambda x: - x,
     }
     def __init__(self, op):

@@ -24,82 +24,82 @@ logging.basicConfig(level=logging.DEBUG)
 
 doc = Document()
 
-def test_op_mult():
+def test_mult():
     assert doc.xpath('2 * 4') == 8
 
-def test_op_add():
+def test_add():
     assert doc.xpath('2 + 4') == 6
 
-def test_op_sub1():
+def test_sub1():
     assert doc.xpath('2 - 4') == -2
 
-def test_op_sub2():
+def test_sub2():
     assert doc.xpath('4 - 2') == 2
 
-def test_op_eq():
+def test_eq():
     assert doc.xpath('4 = 4') == True
 
-def test_op_eq2():
+def test_eq2():
     assert doc.xpath('4 = 2') == False
 
-def test_op_ne():
+def test_ne():
     assert doc.xpath('4 != 4') == False
 
-def test_op_ne2():
+def test_ne2():
     assert doc.xpath('4 != 2') == True
 
-def test_op_lt():
+def test_lt():
     assert doc.xpath('4 < 4') == False
 
-def test_op_lt2():
+def test_lt2():
     assert doc.xpath('2 < 4') == True
 
-def test_op_le():
+def test_le():
     assert doc.xpath('4 <= 3') == False
 
-def test_op_le2():
+def test_le2():
     assert doc.xpath('2 <= 4') == True
 
-def test_op_gt():
+def test_gt():
     assert doc.xpath('4 > 5') == False
 
-def test_op_gt2():
+def test_gt2():
     assert doc.xpath('4 > 2') == True
 
-def test_op_ge():
+def test_ge():
     assert doc.xpath('4 >= 5') == False
 
-def test_op_ge2():
+def test_ge2():
     assert doc.xpath('5 >= 4') == True
 
-def test_op_and():
+def test_and():
     assert doc.xpath('true and true') == True
 
-def test_op_and2():
+def test_and2():
     assert doc.xpath('true and false') == False
 
-def test_op_or():
+def test_or():
     assert doc.xpath('true or false') == True
 
-def test_op_or2():
+def test_or2():
     assert doc.xpath('false or false') == False
 
-def test_op_mod0():
+def test_mod0():
     assert doc.xpath('5 mod 2') == 1
 
-def test_op_mod1():
+def test_mod1():
     assert doc.xpath('5 mod -2') == 1
 
-def test_op_mod2():
+def test_mod2():
     assert doc.xpath('-5 mod 2') == -1
 
-def test_op_mod3():
+def test_mod3():
     assert doc.xpath('-5 mod -2') == -1
 
-def test_op_div0():
+def test_div0():
     assert doc.xpath('5 div 2') == 2
 
-def test_op_negate():
+def test_negate():
     assert doc.xpath('-42') == -42
 
 # def test_and_presides_or():

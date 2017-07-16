@@ -16,42 +16,135 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import math
+import re
 
 logger = logging.getLogger(__name__)
 class Function(object):
-    FUNCTIONS {
+    def f_string(args):
+        # TODO If the argument is omitted, it defaults to a node-set with the context node as its only member.
+        if isinstance(args, float):
+            if args == math.nan:
+                return 'NaN'
+            elif args == -math.inf:
+                return '-Infinity'
+            elif args == math.inf:
+                return 'Infinity'
+            else:
+                return str(args)
+        elif args == True:
+            return 'true'
+        elif args == False:
+            return 'false'
+        else:
+            return str(args)
+
+    def f_concat(args):
+        r = ''
+        for a in args:
+            r += a
+        return r
+
+    def f_starts_with(args):
+        return args[0].startswith(args[1])
+
+    def f_contains(args):
+        return args[1] in args[0]
+
+    def f_substring_before(args):
+        return args[0].partition(args[1])[0]
+
+    def f_substring_after(args):
+        return args[0].partition(args[1])[2]
+
+    def f_substring(args):
+        if args[1] == -math.inf:
+            return ''
+
+        arg_1 = Function.f_round((args[1]))
+        start = arg_1 - 1
+        if start < 0:
+            start = 0
+        logger.debug('Substring start: ' + str(start))
+
+        if len(args) > 2:
+            if args[2] == -math.inf:
+                return ''
+            elif args[2] == math.inf:
+                return args[0][start:]
+
+            end = arg_1 - 1 + Function.f_round(args[2])
+            logger.debug('Substring end: ' + str(end))
+
+            return args[0][start:end]
+        else:
+            return args[0][start:]
+
+    def f_string_length(args):
+        return len(args)
+
+    def f_normalize_space(args):
+        # TODO If the argument is omitted, it defaults to the context node converted to a string, in other words the string-value of the context node.
+        args = args.strip('\x20\x09\x0D\x0A')
+        return re.sub(r'[\x20\x09\x0D\x0A]+', ' ', args)
+
+    def f_translate(args):
+        s = args[0]
+        from_ = args[1]
+        to = args[2]
+        if len(to) > len(from_):
+            to = to[:len(from_)]
+        delete = from_[len(to):]
+        from_ = from_[:len(to)]
+
+        return s.translate(str.maketrans(from_, to, delete))
+
+    def f_round(args):
+        if args == math.nan:
+            return math.nan
+        elif args == math.inf:
+            return math.inf
+        elif args == - math.inf:
+            return - math.inf
+        return round(args)
+
+    FUNCTIONS = {
         # Node Set Functions
-        'last': None,
-        'position': : None,
-        'count': None,
-        'id': None,
-        'local-name': None,
-        'namespace-uri': None,
-        'name': None,
+        # 'last': f_last,
+        # 'position': f_position,
+        # 'count': f_count,
+        # 'id': f_id,
+        # 'local-name': f_local_name,
+        # 'namespace-uri': f_namespace_uri,
+        # 'name': f_name,
+
         # String Functions
-        'string': None,
-        'concat': None,
-        'starts-with': None,
-        'contains': None,
-        'substring-before': None,
-        'substring-after': None,
-        'substring': None,
-        'string-length': None,
-        'normalize-space': None,
-        'translate': None,
+        'string': f_string,
+        'concat': f_concat,
+        'starts-with': f_starts_with,
+        'contains': f_contains,
+        'substring-before': f_substring_before,
+        'substring-after': f_substring_after,
+        'substring': f_substring,
+        'string-length': f_string_length,
+        'normalize-space': f_normalize_space,
+        'translate': f_translate,
+
         # Boolean Functions
-        'boolean': None,
-        'not': None,
-        'true': None,
-        'false': None,
-        'lang': None,
+        # 'boolean': f_boolean,
+        # 'not': f_not,
+        # 'true': f_true,
+        # 'false': f_false,
+        # 'lang': f_lang,
+
         # Number Functions
-        'number': None,
-        'sum': None,
-        'floor': None,
-        'ceiling': None,
-        'round': None,
+        # 'number': f_number,
+        # 'sum': f_sum,
+        # 'floor': f_floor,
+        # 'ceiling': f_ceiling,
+        'round': f_round,
     }
+
     def __init__(self, name):
         self.name = name
         self.children = []

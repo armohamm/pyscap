@@ -19,7 +19,9 @@ import logging
 import re
 
 from .xpath.Expression import Expression
+from .xpath.Function import Function
 from .xpath.Literal import Literal
+from .xpath.NodeType import NodeType
 from .xpath.Operator import Operator
 
 logger = logging.getLogger(__name__)
@@ -201,14 +203,14 @@ class Node(object):
                 logger.debug('Pushing ' + str(l) + ' on stack')
                 stack.append(l)
             elif token in Operator.OPERATORS:
-                if token == '-' and (len(stack) == 0 or isinstance(stack[-1], Operator)):
+                if token == '-' and (len(stack) == 0 or isinstance(stack[-1], Operator) or prev_token == ','):
                     o = Operator('negate')
                 else:
                     o = Operator(token)
                     o.children.append(stack.pop())
                 logger.debug('Pushing ' + str(o) + ' on stack')
                 stack.append(o)
-            elif token.isalnum():
+            elif re.fullmatch(r'[a-zA-Z0-9_-]+', token):
                 # skip; we have to wait till the next token to process
                 stack.append(token)
             else:
