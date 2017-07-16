@@ -48,7 +48,7 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
         ('true', ['true']),
         ('true or false', ['true', 'or', 'false']),
         ('5 mod 2', ['5', 'mod', '2']),
-        ('-5 mod -2', ['-5', 'mod', '-2']),
+        ('-5 mod -2', ['-', '5', 'mod', '-', '2']),
         ('child::para', ['child', '::', 'para']),
         ('child::*', ['child', '::', '*']),
         ('child::text()', ['child', '::', 'text', '(', ')']),
@@ -101,21 +101,24 @@ def test_tokenization(expr, tokens):
 # def test_left_association():
 #     assert doc.xpath('3 > 2 > 1') == doc.xpath('(3 > 2) > 1')
 #
-# def test_mod0():
-#     assert doc.xpath('5 mod 2') == 1
-#
-# def test_mod1():
-#     assert doc.xpath('5 mod -2') == 1
-#
-# def test_mod2():
-#     assert doc.xpath('-5 mod 2') == -1
-#
-# def test_mod3():
-#     assert doc.xpath('-5 mod -2') == -1
-#
-# def test_parenthized_subexpr():
-#     assert doc.xpath('(2+3)+2') == 7
-#
+def test_div0():
+    assert doc.xpath('5 div 2') == 2
+
+def test_mod0():
+    assert doc.xpath('5 mod 2') == 1
+
+def test_mod1():
+    assert doc.xpath('5 mod -2') == 1
+
+def test_mod2():
+    assert doc.xpath('-5 mod 2') == -1
+
+def test_mod3():
+    assert doc.xpath('-5 mod -2') == -1
+
+def test_subexpr():
+    assert doc.xpath('(2+3)+2') == 7
+
 # def test_context_node():
 #     assert doc.xpath('.') == doc
 #

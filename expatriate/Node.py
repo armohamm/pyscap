@@ -18,6 +18,11 @@
 import logging
 import re
 
+from .xpath.Expression import Expression
+from .xpath.Literal import Literal
+from .xpath.Operator import Operator
+
+logger = logging.getLogger(__name__)
 class Node(object):
     FUNCTION_LIBRARY = {
 
@@ -38,18 +43,11 @@ class Node(object):
                     if expr[i] == t[0] and t[-1] != '\\':
                         tokens.append(t)
                         t = ''
-                elif t[0] == '-' and (expr[i].isdigit() or expr[i] == '.'):
-                    if t == '-':
-                        t += expr[i]
-                    elif re.fullmatch(t[1:], r'[0-9.]+'):
-                        if expr[i].isdigit() or expr[i] == '.':
-                            t += expr[i]
-                        else:
-                            tokens.append(t)
-                            t = expr[i]
-                    else:
-                        tokens.append(t)
-                        t = expr[i]
+                elif t == '-':
+                    tokens.append(t)
+                    t = expr[i]
+                elif re.fullmatch(r'[0-9.]+', t) and (expr[i].isdigit() or expr[i] == '.'):
+                    t += expr[i]
                 elif t[0] == '$' and expr[i].isalpha():
                     t += expr[i]
                 elif t.isspace():
@@ -87,6 +85,56 @@ class Node(object):
             raise NotImplementedError('Only XPath 1.0 has been implemented')
 
         tokens = self._tokenize(expr)
+        logger.debug('Tokens: ' + str(tokens))
+
+        stack = []
+        for token in tokens:
+            if token == '(':
+                e = Expression()
+                logger.debug('Processing sub expression ' + str(e))
+                stack.append(e)
+            elif token == ')':
+                logger.debug('End of sub expression ' + str(e))
+                i = stack.pop()
+                logger.debug('Popped ' + str(i) + ' off stack, adding to expression ' + str(stack[-1]))
+                stack[-1].children.append(i)
+            elif re.fullmatch(r'[0-9.]+', token):
+                if '.' in token:
+                    l = Literal(float(token))
+                else:
+                    l = Literal(int(token))
+
+                if len(stack) > 0 and isinstance(stack[-1], Operator):
+                    op = stack.pop()
+                    op.children.append(l)
+                    logger.debug('Pushing ' + str(op) + ' back on stack')
+                    stack.append(op)
+                else:
+                    logger.debug('Pushing ' + str(l) + ' on stack')
+                    stack.append(l)
+            elif token[0] in '\'"':
+                l = Literal(token[1:-2])
+                logger.debug('Pushing ' + str(l) + ' on stack')
+                stack.append(l)
+            elif token in Operator.OPERATORS:
+                if token == '-' and (len(stack) == 0 or isinstance(stack[-1], Operator)):
+                    o = Operator('negate')
+                else:
+                    o = Operator(token)
+                    o.children.append(stack.pop())
+                logger.debug('Pushing ' + str(o) + ' on stack')
+                stack.append(o)
+            else:
+                raise ValueError('Unknown token: ' + str(token))
+
+        while(len(stack) > 1):
+            i = stack.pop()
+            logger.debug('Adding ' + str(i) + ' to children of ' + str(stack[-1]))
+            stack[-1].children.append(i)
+        i = stack.pop()
+        logger.debug('Final pop off stack got ' + str(i))
+
+        return i.evaluate()
 
     def get_type(self):
         raise NotImplementedError('get_type has not been implemented in class ' + self.__class__.__name__)
