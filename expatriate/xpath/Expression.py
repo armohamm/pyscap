@@ -28,7 +28,18 @@ class Expression(object):
 
     def evaluate(self):
         logger.debug('Evaluating expression ' + str(self))
-        if len(self.children) > 1:
-            raise ValueError('Expression resolved to more than one child: ' + str(self.children))
 
-        return self.children[0].evaluate()
+        child_eval = []
+        for c in self.children:
+            child_eval.append(c.evaluate())
+            logger.debug('Child ' + str(c) + ' evaluated to ' + str(child_eval[-1]))
+
+        if len(child_eval) == 0:
+            return ()
+        elif len(child_eval) == 1:
+            return child_eval[0]
+        else:
+            return tuple(child_eval)
+
+    def __str__(self):
+        return 'Expression ' + hex(id(self))

@@ -19,7 +19,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 class Axis(object):
-    AXES {
+    AXES = {
         'ancestor': None,
         'ancestor-or-self': None,
         'attribute': None,

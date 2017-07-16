@@ -111,23 +111,22 @@ class Node(object):
                         stack.append(nt)
                     else:
                         raise NotImplementedError('Unknown function: ' + prev_token)
-                else:
-                    e = Expression()
-                    logger.debug('Processing sub expression ' + str(e))
-                    stack.append(e)
+                e = Expression()
+                logger.debug('Starting sub expression ' + str(e))
+                stack.append(e)
             elif token == ')':
+                if len(stack) <= 1:
+                    continue
+
                 i = stack.pop()
-                if isinstance(stack[-1], Expression):
-                    logger.debug('Popped ' + str(i) + ' off stack, adding to expression ' + str(stack[-1]))
-                    stack[-1].children.append(i)
-                elif isinstance(stack[-1], Function):
-                    logger.debug('Popped ' + str(i) + ' off stack, adding to function ' + str(stack[-1]))
-                    stack[-1].children.append(i)
-                elif isinstance(stack[-1], NodeType):
-                    logger.debug('Popped ' + str(i) + ' off stack, adding to NodeType ' + str(stack[-1]))
-                    stack[-1].children.append(i)
-                else:
-                    raise ValueError('Unexpected component after ): ' + str(stack[-1]))
+                logger.debug('Popped ' + str(i) + ' off stack, adding to expression ' + str(stack[-1]))
+                stack[-1].children.append(i)
+                logger.debug('End of expression ' + str(stack[-1]))
+                if len(stack) > 1:
+                    e = stack.pop()
+                    logger.debug('Adding expression ' + str(e) + ' to ' + str(stack[-1]))
+                    stack[-1].children.append(e)
+                # else just let it on the stack
             elif token  == '::':
                 if prev_token in Axis.AXES:
                     a = Axis(prev_token)
@@ -148,6 +147,47 @@ class Node(object):
                 else:
                     logger.debug('Pushing ' + str(l) + ' on stack')
                     stack.append(l)
+            elif token == '@':
+                a = Axis('attribute')
+                stack.append(a)
+            elif token == '//': # /descendant-or-self::node()/
+                s = Step()
+                a = Axis('descendant-or-self')
+                s.children.append(a)
+                nt = NodeType('node')
+                a.children.append(nt)
+                e = Expression()
+                nt.children.append(e)
+                stack.append(s)
+            elif token == '.': # self::node()
+                s = Step()
+                a = Axis('self')
+                s.children.append(a)
+                nt = NodeType('node')
+                a.children.append(nt)
+                e = Expression()
+                nt.children.append(e)
+                stack.append(s)
+            elif token == '..': # parent::node()
+                s = Step()
+                a = Axis('parent')
+                s.children.append(a)
+                nt = NodeType('node')
+                a.children.append(nt)
+                e = Expression()
+                nt.children.append(e)
+                stack.append(s)
+            elif token == ',':
+                i = stack.pop()
+                logger.debug('Popped ' + str(i) + ' off the stack')
+                if len(stack) == 0:
+                    logger.debug('No explicit expression on stack, pushing one')
+                    e = Expression()
+                    stack.append(e)
+                else:
+                    e = stack[-1]
+                logger.debug('Adding ' + str(i) + ' to expression ' + str(e))
+                e.children.append(i)
             elif token[0] in '\'"':
                 l = Literal(token[1:-1])
                 logger.debug('Pushing ' + str(l) + ' on stack')
