@@ -21,10 +21,22 @@ import math
 logger = logging.getLogger(__name__)
 class Operator(object):
     OPERATORS = {
+        '*': lambda x,y: x * y,
+        # /
+        # //
+        # |
         '+': lambda x,y: x + y,
         '-': lambda x,y: x - y,
-        'div': lambda x,y: x // y,
+        '=': lambda x,y: x == y,
+        '!=': lambda x,y: x != y,
+        '<': lambda x,y: x < y,
+        '<=': lambda x,y: x <= y,
+        '>': lambda x,y: x > y,
+        '>=': lambda x,y: x >= y,
+        'and': lambda x,y: x and y,
+        'or': lambda x,y: x or y,
         'mod': lambda x,y: math.fmod(x, y),
+        'div': lambda x,y: x // y,
         'negate': lambda x: - x,
     }
     def __init__(self, op):

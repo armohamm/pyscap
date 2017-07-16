@@ -24,9 +24,9 @@ from .xpath.Operator import Operator
 
 logger = logging.getLogger(__name__)
 class Node(object):
-    FUNCTION_LIBRARY = {
-
-    }
+    MULT_PREV_TOKENS = ['@', '::', '(', '[', ',', 'and', 'or', 'mod', 'div',
+        '*', '/', '//', '|', '+', '-', '=', '!=', '<', '<=', '>', '>=',
+    ]
     def __init__(self, parent):
         self.parent = parent
         self._document = None
@@ -88,16 +88,52 @@ class Node(object):
         logger.debug('Tokens: ' + str(tokens))
 
         stack = []
+        prev_token = None
         for token in tokens:
+            if prev_token is not None \
+            and prev_token not in Node.MULT_PREV_TOKENS \
+            and token in Operator.OPERATORS:
+                o = Operator(token)
+                o.children.append(stack.pop())
+                logger.debug('Pushing ' + str(o) + ' on stack')
+                stack.append(o)
+                prev_token = token
+                continue
+
             if token == '(':
-                e = Expression()
-                logger.debug('Processing sub expression ' + str(e))
-                stack.append(e)
+                if len(stack) > 0 and prev_token == stack[-1]:
+                    stack.pop()
+                    if prev_token in Function.FUNCTIONS:
+                        f = Function(prev_token)
+                        stack.append(f)
+                    elif prev_token in NodeType.NODE_TYPES:
+                        nt = NodeType(prev_token)
+                        stack.append(nt)
+                    else:
+                        raise NotImplementedError('Unknown function: ' + prev_token)
+                else:
+                    e = Expression()
+                    logger.debug('Processing sub expression ' + str(e))
+                    stack.append(e)
             elif token == ')':
-                logger.debug('End of sub expression ' + str(e))
                 i = stack.pop()
-                logger.debug('Popped ' + str(i) + ' off stack, adding to expression ' + str(stack[-1]))
-                stack[-1].children.append(i)
+                if isinstance(stack[-1], Expression):
+                    logger.debug('Popped ' + str(i) + ' off stack, adding to expression ' + str(stack[-1]))
+                    stack[-1].children.append(i)
+                elif isinstance(stack[-1], Function):
+                    logger.debug('Popped ' + str(i) + ' off stack, adding to function ' + str(stack[-1]))
+                    stack[-1].children.append(i)
+                elif isinstance(stack[-1], NodeType):
+                    logger.debug('Popped ' + str(i) + ' off stack, adding to NodeType ' + str(stack[-1]))
+                    stack[-1].children.append(i)
+                else:
+                    raise ValueError('Unexpected component after ): ' + str(stack[-1]))
+            elif token  == '::':
+                if prev_token in Axis.AXES:
+                    a = Axis(prev_token)
+                    stack.append(a)
+                else:
+                    raise NotImplementedError('Unknown axis: ' + prev_token)
             elif re.fullmatch(r'[0-9.]+', token):
                 if '.' in token:
                     l = Literal(float(token))
@@ -113,7 +149,15 @@ class Node(object):
                     logger.debug('Pushing ' + str(l) + ' on stack')
                     stack.append(l)
             elif token[0] in '\'"':
-                l = Literal(token[1:-2])
+                l = Literal(token[1:-1])
+                logger.debug('Pushing ' + str(l) + ' on stack')
+                stack.append(l)
+            elif token == 'true':
+                l = Literal(True)
+                logger.debug('Pushing ' + str(l) + ' on stack')
+                stack.append(l)
+            elif token == 'false':
+                l = Literal(False)
                 logger.debug('Pushing ' + str(l) + ' on stack')
                 stack.append(l)
             elif token in Operator.OPERATORS:
@@ -124,8 +168,13 @@ class Node(object):
                     o.children.append(stack.pop())
                 logger.debug('Pushing ' + str(o) + ' on stack')
                 stack.append(o)
+            elif token.isalnum():
+                # skip; we have to wait till the next token to process
+                stack.append(token)
             else:
                 raise ValueError('Unknown token: ' + str(token))
+
+            prev_token = token
 
         while(len(stack) > 1):
             i = stack.pop()
