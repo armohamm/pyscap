@@ -21,6 +21,8 @@ import re
 
 logger = logging.getLogger(__name__)
 class Function(object):
+    # String Functions
+
     def f_string(args):
         # TODO If the argument is omitted, it defaults to a node-set with the context node as its only member.
         if isinstance(args, float):
@@ -80,9 +82,6 @@ class Function(object):
         else:
             return args[0][start:]
 
-    def f_string_length(args):
-        return len(args)
-
     def f_normalize_space(args):
         # TODO If the argument is omitted, it defaults to the context node converted to a string, in other words the string-value of the context node.
         args = args.strip('\x20\x09\x0D\x0A')
@@ -98,6 +97,20 @@ class Function(object):
         from_ = from_[:len(to)]
 
         return s.translate(str.maketrans(from_, to, delete))
+
+        # Boolean Functions
+
+    def f_boolean(args):
+        if isinstance(args, int) or isinstance(args, float):
+            if args != 0 and args != math.nan:
+                return True
+            else:
+                return False
+        # TODO if nodese; return len(set) > 0
+        elif isinstance(args, str):
+            return len(args) > 0
+        else:
+            return bool(args)
 
     def f_round(args):
         if args == math.nan:
@@ -124,17 +137,17 @@ class Function(object):
         'starts-with': f_starts_with,
         'contains': f_contains,
         'substring-before': f_substring_before,
-        'substring-after': f_substring_after,
+        'substring-after': lambda x: x[0].partition(x[1])[2],
         'substring': f_substring,
-        'string-length': f_string_length,
+        'string-length': lambda x: len(x),
         'normalize-space': f_normalize_space,
         'translate': f_translate,
 
         # Boolean Functions
-        # 'boolean': f_boolean,
-        # 'not': f_not,
-        # 'true': f_true,
-        # 'false': f_false,
+        'boolean': f_boolean,
+        'not': lambda x: not x,
+        'true': lambda : True,
+        'false': lambda : False,
         # 'lang': f_lang,
 
         # Number Functions

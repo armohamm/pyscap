@@ -27,7 +27,7 @@ class Literal(object):
         return self.value
 
     def __str__(self):
-        return str(self.value)
+        return 'Literal' + str(self.value)
 
     def __repr__(self):
         return repr(self.value)

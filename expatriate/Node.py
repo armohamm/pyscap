@@ -92,15 +92,33 @@ class Node(object):
         stack = []
         prev_token = None
         for token in tokens:
-            if prev_token is not None \
-            and prev_token not in Node.MULT_PREV_TOKENS \
-            and token in Operator.OPERATORS:
-                o = Operator(token)
-                o.children.append(stack.pop())
-                logger.debug('Pushing ' + str(o) + ' on stack')
-                stack.append(o)
-                prev_token = token
-                continue
+            if prev_token is not None:
+                if prev_token not in Node.MULT_PREV_TOKENS \
+                and token in Operator.OPERATORS:
+                    o = Operator(token)
+                    o.children.append(stack.pop())
+                    logger.debug('Pushing ' + str(o) + ' on stack')
+                    stack.append(o)
+                    prev_token = token
+                    continue
+
+                elif prev_token == 'true' and token != '(':
+                    stack.pop()
+                    l = Literal(True)
+                    logger.debug('Pushing ' + str(l) + ' on stack')
+                    stack.append(l)
+                    prev_token = token
+                    continue
+
+                elif prev_token == 'false' and token != '(':
+                    stack.pop()
+                    l = Literal(False)
+                    logger.debug('Pushing ' + str(l) + ' on stack')
+                    stack.append(l)
+                    prev_token = token
+                    continue
+
+                # otherwise, keep processing
 
             if token == '(':
                 if len(stack) > 0 and prev_token == stack[-1]:

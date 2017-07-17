@@ -139,10 +139,39 @@ def test_translate(expr, result):
 
 # # Boolean Functions
 
-# 'boolean': None,
-# 'not': None,
-# 'true': None,
-# 'false': None,
+@pytest.mark.parametrize(
+    "expr, result",
+    (
+        ('boolean(0)', False),
+        ('boolean(1)', True),
+        ('boolean(3)', True),
+        # TODO nodeset
+        ('boolean("")', False),
+        ('boolean("test")', True),
+        ('boolean(true)', True),
+        ('boolean(false)', False),
+    )
+)
+def test_boolean(expr, result):
+    assert doc.xpath(expr) == result
+
+
+@pytest.mark.parametrize(
+    "expr, result",
+    (
+        ('not(true)', False),
+        ('not(false)', True),
+    )
+)
+def test_not(expr, result):
+    assert doc.xpath(expr) == result
+
+def test_true():
+    assert doc.xpath('true()') == True
+
+def test_false():
+    assert doc.xpath('false()') == False
+
 # 'lang': None,
 # # Number Functions
 # 'number': None,
