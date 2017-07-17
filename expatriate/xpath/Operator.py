@@ -59,4 +59,4 @@ class Operator(object):
             return Operator.OPERATORS[self.op](self.children[0].evaluate(), self.children[1].evaluate())
 
     def __str__(self):
-        return 'Operator ' + self.op + ': ' + str(self.children)
+        return 'Operator ' + self.op + ' ' + hex(id(self)) + ': ' + str(self.children)

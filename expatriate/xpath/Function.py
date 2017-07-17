@@ -146,8 +146,8 @@ class Function(object):
         # Boolean Functions
         'boolean': f_boolean,
         'not': lambda x: not x,
-        'true': lambda : True,
-        'false': lambda : False,
+        'true': lambda x: True, # x is to swallow the empty expression
+        'false': lambda x: False, # x is to swallow the empty expression
         # 'lang': f_lang,
 
         # Number Functions

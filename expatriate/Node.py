@@ -90,8 +90,37 @@ class Node(object):
         logger.debug('Tokens: ' + str(tokens))
 
         stack = []
-        prev_token = None
-        for token in tokens:
+        for i in range(len(tokens)):
+            token = tokens[i]
+            if i > 0:
+                prev_token = tokens[i-1]
+            else:
+                prev_token = None
+
+            if len(stack) > 0 and token != '(':
+                if stack[-1] == 'true':
+                    stack.pop()
+                    l = Literal(True)
+                    logger.debug('Pushing ' + str(l) + ' on stack')
+                    stack.append(l)
+                elif stack[-1] == 'false':
+                    stack.pop()
+                    l = Literal(False)
+                    logger.debug('Pushing ' + str(l) + ' on stack')
+                    stack.append(l)
+
+            if i == (len(tokens) -1): # last token
+                if token == 'true':
+                    l = Literal(True)
+                    logger.debug('Pushing ' + str(l) + ' on stack')
+                    stack.append(l)
+                    continue
+                elif token == 'false':
+                    l = Literal(False)
+                    logger.debug('Pushing ' + str(l) + ' on stack')
+                    stack.append(l)
+                    continue
+
             if prev_token is not None:
                 if prev_token not in Node.MULT_PREV_TOKENS \
                 and token in Operator.OPERATORS:
@@ -99,23 +128,6 @@ class Node(object):
                     o.children.append(stack.pop())
                     logger.debug('Pushing ' + str(o) + ' on stack')
                     stack.append(o)
-                    prev_token = token
-                    continue
-
-                elif prev_token == 'true' and token != '(':
-                    stack.pop()
-                    l = Literal(True)
-                    logger.debug('Pushing ' + str(l) + ' on stack')
-                    stack.append(l)
-                    prev_token = token
-                    continue
-
-                elif prev_token == 'false' and token != '(':
-                    stack.pop()
-                    l = Literal(False)
-                    logger.debug('Pushing ' + str(l) + ' on stack')
-                    stack.append(l)
-                    prev_token = token
                     continue
 
                 # otherwise, keep processing
@@ -212,14 +224,6 @@ class Node(object):
                 l = Literal(token[1:-1])
                 logger.debug('Pushing ' + str(l) + ' on stack')
                 stack.append(l)
-            elif token == 'true':
-                l = Literal(True)
-                logger.debug('Pushing ' + str(l) + ' on stack')
-                stack.append(l)
-            elif token == 'false':
-                l = Literal(False)
-                logger.debug('Pushing ' + str(l) + ' on stack')
-                stack.append(l)
             elif token in Operator.OPERATORS:
                 if token == '-' and (len(stack) == 0 or isinstance(stack[-1], Operator) or prev_token == ','):
                     o = Operator('negate')
@@ -230,11 +234,10 @@ class Node(object):
                 stack.append(o)
             elif re.fullmatch(r'[a-zA-Z0-9_-]+', token):
                 # skip; we have to wait till the next token to process
+                logger.debug('Pushing token ' + token + ' on stack')
                 stack.append(token)
             else:
                 raise ValueError('Unknown token: ' + str(token))
-
-            prev_token = token
 
         while(len(stack) > 1):
             i = stack.pop()
