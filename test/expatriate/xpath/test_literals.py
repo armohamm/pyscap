@@ -24,20 +24,26 @@ logging.basicConfig(level=logging.DEBUG)
 
 doc = Document()
 
-def test_string():
-    assert doc.xpath('"test"') == 'test'
+@pytest.mark.parametrize(
+    "expr, result",
+    (
+        ('"test"', 'test'),
+        ('"test test\t test\n test"', 'test test\t test\n test'),
+    )
+)
+def test_string(expr, result):
+    assert doc.xpath(expr) == result
 
-def test_string_ws():
-    assert doc.xpath('"test test\t test\n test"') == 'test test\t test\n test'
-
-def test_number():
-    assert doc.xpath('3') == 3
-
-def test_number2():
-    assert doc.xpath('42') == 42
-
-def test_number3():
-    assert doc.xpath('4.2') == 4.2
+@pytest.mark.parametrize(
+    "expr, result",
+    (
+        ('3', 3),
+        ('42', 42),
+        ('4.2', 4.2),
+    )
+)
+def test_number(expr, result):
+    assert doc.xpath(expr) == result
 
 def test_true():
     assert doc.xpath('true') == True

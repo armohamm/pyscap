@@ -36,49 +36,53 @@ doc = Document()
 
 # # String Functions
 
-def test_string_int():
-    assert doc.xpath('string(3)') == '3'
-
-def test_string_float():
-    assert doc.xpath('string(3.3)') == '3.3'
-
-def test_string_bool():
-    assert doc.xpath('string(true)') == 'true'
-
-def test_string_str():
-    assert doc.xpath('string("test")') == 'test'
-
-def test_string_expr():
-    assert doc.xpath('string(2+2)') == '4'
+@pytest.mark.parametrize(
+    "expr, result",
+    (
+        ('string(3)', '3'),
+        ('string(3.3)', '3.3'),
+        ('string(true)', 'true'),
+        ('string("test")', 'test'),
+        ('string(2+2)', '4'),
+    )
+)
+def test_string(expr, result):
+    assert doc.xpath(expr) == result
 
 # TODO string() edge cases
 
-def test_concat1():
-    assert doc.xpath('concat("a")') == 'a'
+@pytest.mark.parametrize(
+    "expr, result",
+    (
+        ('concat("a")', 'a'),
+        ('concat("a", "b")', 'ab'),
+        ('concat("a", "b", "c")', 'abc'),
+    )
+)
+def test_concat(expr, result):
+    assert doc.xpath(expr) == result
 
-def test_concat2():
-    assert doc.xpath('concat("a", "b")') == 'ab'
+@pytest.mark.parametrize(
+    "expr, result",
+    (
+        ('starts-with("a", "b")', False),
+        ('starts-with("apple", "a")', True),
+        ('starts-with("a", "")', True),
+    )
+)
+def test_starts_with(expr, result):
+    assert doc.xpath(expr) == result
 
-def test_concat3():
-    assert doc.xpath('concat("a", "b", "c")') == 'abc'
-
-def test_starts_with1():
-    assert doc.xpath('starts-with("a", "b")') == False
-
-def test_starts_with2():
-    assert doc.xpath('starts-with("apple", "a")') == True
-
-def test_starts_with_empty():
-    assert doc.xpath('starts-with("a", "")') == True
-
-def test_contains1():
-    assert doc.xpath('contains("apple", "a")') == True
-
-def test_contains2():
-    assert doc.xpath('contains("apple", "b")') == False
-
-def test_contains_empty():
-    assert doc.xpath('contains("a", "")') == True
+@pytest.mark.parametrize(
+    "expr, result",
+    (
+        ('contains("apple", "a")', True),
+        ('contains("apple", "b")', False),
+        ('contains("a", "")', True),
+    )
+)
+def test_contains(expr, result):
+    assert doc.xpath(expr) == result
 
 def test_substring_before():
     assert doc.xpath('substring-before("1999/04/01","/")') == '1999'

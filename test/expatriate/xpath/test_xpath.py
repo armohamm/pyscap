@@ -38,21 +38,6 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
 </Root>
 ''')
 
-def test_subexpr():
-    assert doc.xpath('(2+3)+2') == 7
-
-# def test_and_presides_or():
-#     pytest.fail()
-#
-# def test_equality_presides_and():
-#     pytest.fail()
-#
-# def test_comparison_presides_equality():
-#     pytest.fail()
-#
-def test_left_association():
-    assert doc.xpath('3 > 2 > 1') == doc.xpath('(3 > 2) > 1')
-
 # def test_context_node():
 #     assert doc.xpath('.') == doc
 #
