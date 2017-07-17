@@ -179,6 +179,28 @@ def test_false():
 @pytest.mark.parametrize(
     "expr, result",
     (
+        ('floor(1.1)', 1),
+        ('floor(2.6)', 2),
+    )
+)
+def test_floor(expr, result):
+    assert doc.xpath(expr) == result
+
+# 'sum': None,
+
+@pytest.mark.parametrize(
+    "expr, result",
+    (
+        ('ceiling(1.1)', 2),
+        ('ceiling(2.6)', 3),
+    )
+)
+def test_ceiling(expr, result):
+    assert doc.xpath(expr) == result
+
+@pytest.mark.parametrize(
+    "expr, result",
+    (
         ('number(1)', 1),
         ('number(2.6)', 2.6),
         ('number(true)', 1),
@@ -190,10 +212,6 @@ def test_false():
 )
 def test_number(expr, result):
     assert doc.xpath(expr) == result
-
-# 'sum': None,
-# 'floor': None,
-# 'ceiling': None,
 
 @pytest.mark.parametrize(
     "expr, result",

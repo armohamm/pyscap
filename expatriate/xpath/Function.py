@@ -171,8 +171,8 @@ class Function(object):
         # Number Functions
         'number': f_number,
         # 'sum': f_sum,
-        # 'floor': f_floor,
-        # 'ceiling': f_ceiling,
+        'floor': lambda x: math.floor(x),
+        'ceiling': lambda x: math.ceil(x),
         'round': f_round,
     }
 
