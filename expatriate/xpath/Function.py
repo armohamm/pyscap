@@ -141,12 +141,19 @@ class Function(object):
 
     FUNCTIONS = {
         # Node Set Functions
+        # TODO
         # 'last': f_last,
+        # TODO
         # 'position': f_position,
+        # TODO
         # 'count': f_count,
+        # TODO
         # 'id': f_id,
+        # TODO
         # 'local-name': f_local_name,
+        # TODO
         # 'namespace-uri': f_namespace_uri,
+        # TODO
         # 'name': f_name,
 
         # String Functions
@@ -166,10 +173,12 @@ class Function(object):
         'not': lambda x: not x,
         'true': lambda x: True, # x is to swallow the empty expression
         'false': lambda x: False, # x is to swallow the empty expression
+        # TODO
         # 'lang': f_lang,
 
         # Number Functions
         'number': f_number,
+        # TODO
         # 'sum': f_sum,
         'floor': lambda x: math.floor(x),
         'ceiling': lambda x: math.ceil(x),

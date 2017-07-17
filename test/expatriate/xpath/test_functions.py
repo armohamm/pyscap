@@ -26,13 +26,13 @@ doc = Document()
 
 # # Node Set Functions
 
-# 'last': None,
-# 'position': : None,
-# 'count': None,
-# 'id': None,
-# 'local-name': None,
-# 'namespace-uri': None,
-# 'name': None,
+# TODO 'last': None,
+# TODO 'position': : None,
+# TODO 'count': None,
+# TODO 'id': None,
+# TODO 'local-name': None,
+# TODO 'namespace-uri': None,
+# TODO 'name': None,
 
 # # String Functions
 
@@ -186,7 +186,7 @@ def test_false():
 def test_floor(expr, result):
     assert doc.xpath(expr) == result
 
-# 'sum': None,
+# TODO 'sum': None,
 
 @pytest.mark.parametrize(
     "expr, result",
