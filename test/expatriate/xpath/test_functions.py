@@ -172,9 +172,25 @@ def test_true():
 def test_false():
     assert doc.xpath('false()') == False
 
-# 'lang': None,
+# TODO 'lang': None,
+
 # # Number Functions
-# 'number': None,
+
+@pytest.mark.parametrize(
+    "expr, result",
+    (
+        ('number(1)', 1),
+        ('number(2.6)', 2.6),
+        ('number(true)', 1),
+        ('number(false)', 0),
+        ('number("3")', 3),
+        ('number("3.1")', 3.1),
+        ('number(concat("4", "2"))', 42),
+    )
+)
+def test_number(expr, result):
+    assert doc.xpath(expr) == result
+
 # 'sum': None,
 # 'floor': None,
 # 'ceiling': None,

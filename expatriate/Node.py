@@ -225,7 +225,11 @@ class Node(object):
                 logger.debug('Pushing ' + str(l) + ' on stack')
                 stack.append(l)
             elif token in Operator.OPERATORS:
-                if token == '-' and (len(stack) == 0 or isinstance(stack[-1], Operator) or prev_token == ','):
+                if token == '-' and ( \
+                    len(stack) == 0 \
+                    or isinstance(stack[-1], Operator) \
+                    or prev_token == ',' \
+                ):
                     o = Operator('negate')
                 else:
                     o = Operator(token)

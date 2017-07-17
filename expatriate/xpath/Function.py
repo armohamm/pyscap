@@ -98,7 +98,7 @@ class Function(object):
 
         return s.translate(str.maketrans(from_, to, delete))
 
-        # Boolean Functions
+    # Boolean Functions
 
     def f_boolean(args):
         if isinstance(args, int) or isinstance(args, float):
@@ -106,11 +106,29 @@ class Function(object):
                 return True
             else:
                 return False
-        # TODO if nodese; return len(set) > 0
+        # TODO if nodeset; return len(set) > 0
         elif isinstance(args, str):
             return len(args) > 0
         else:
             return bool(args)
+
+    # Number Functions
+
+    def f_number(args):
+        if isinstance(args, str):
+            if '.' in args:
+                return float(args)
+            else:
+                return int(args)
+        elif args == True:
+            return 1
+        elif args == False:
+            return 0
+        # TODO a node-set is first converted to a string as if by a call to the string function and then converted in the same way as a string argument
+        elif isinstance(args, int) or isinstance(args, float):
+            return args
+        else:
+            return int(args)
 
     def f_round(args):
         if args == math.nan:
@@ -151,7 +169,7 @@ class Function(object):
         # 'lang': f_lang,
 
         # Number Functions
-        # 'number': f_number,
+        'number': f_number,
         # 'sum': f_sum,
         # 'floor': f_floor,
         # 'ceiling': f_ceiling,
@@ -163,10 +181,12 @@ class Function(object):
         self.children = []
 
     def evaluate(self):
-        children = []
+        child_evals = []
         for c in self.children:
-            children.append(c.evaluate())
-        return Function.FUNCTIONS[self.name](*children)
+            v = c.evaluate()
+            logger.debug('Evaluated child of ' + str(self) + ' to ' + str(v))
+            child_evals.append(v)
+        return Function.FUNCTIONS[self.name](*child_evals)
 
     def __str__(self):
         return 'Function ' + self.name + ': ' + str(self.children)
