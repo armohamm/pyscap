@@ -29,11 +29,10 @@ class NodeType(object):
         self.name = name
         self.children = []
 
-    def evaluate(self):
-        children = []
-        for c in self.children:
-            children.append(c.evaluate())
-        return NodeType.NODE_TYPES[self.name](*children)
+    # TODO processing-instruction can have a literal that matches its name
+
+    def test(self, node):
+        return node.get_type == self.name
 
     def __str__(self):
-        return 'NodeType ' + self.name + ': ' + str(self.children)
+        return 'NodeType ' + hex(id(self)) + ' ' + self.name + ': ' + str(self.children)

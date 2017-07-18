@@ -38,8 +38,8 @@ doc = Document()
         ('child::para', ['child', '::', 'para']),
         ('child::*', ['child', '::', '*']),
         ('child::text()', ['child', '::', 'text', '(', ')']),
-        ('child::para[@id]', ['child', '::', 'para', '[', '@', 'id', ']']),
-        ('descendant-or-self::para[@id]', ['descendant-or-self', '::', 'para', '[', '@', 'id', ']']),
+        ('child::para[@id]', ['child', '::', 'para', '[', 'attribute', '::', 'id', ']']),
+        ('descendant-or-self::para[@id]', ['descendant-or-self', '::', 'para', '[', 'attribute', '::', 'id', ']']),
         ('child::*/child::para', ['child', '::', '*', '/', 'child', '::', 'para']),
         ('/descendant::para', ['/', 'descendant', '::', 'para']),
         ('child::para[position()=1]', ['child', '::', 'para', '[', 'position', '(', ')', '=', '1', ']']),
@@ -47,11 +47,14 @@ doc = Document()
         ('child::para[attribute::type="warning"]', ['child', '::', 'para', '[', 'attribute', '::', 'type', '=', '"warning"', ']']),
         ('para', ['para']),
         ('*', ['*']),
-        ('@name', ['@', 'name']),
+        ('@name', ['attribute', '::', 'name']),
         ('*/para', ['*', '/', 'para']),
         ('/doc/chapter[5]/section[2]', ['/', 'doc', '/', 'chapter', '[', '5', ']', '/', 'section', '[', '2', ']']),
-        ('employee[@secretary and @assistant]', ['employee', '[', '@', 'secretary', 'and', '@', 'assistant', ']']),
+        ('employee[@secretary and @assistant]', ['employee', '[', 'attribute', '::', 'secretary', 'and', 'attribute', '::', 'assistant', ']']),
         ('$test', ['$test']),
+        ('.', ['self', '::', 'node', '(', ')']),
+        ('//', ['/', 'descendant-or-self', '::', 'node', '(', ')', '/']),
+        ('..', ['parent', '::', 'node', '(', ')']),
     )
 )
 def test_tokenization(expr, tokens):

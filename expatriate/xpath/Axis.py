@@ -39,10 +39,10 @@ class Axis(object):
         self.children = []
 
     def evaluate(self):
-        children = []
+        child_eval = []
         for c in self.children:
-            children.append(c.evaluate())
-        return Axis.AXES[self.name](*children)
+            child_eval.append(c.evaluate())
+        return Axis.AXES[self.name](*child_eval)
 
     def __str__(self):
-        return 'Axis ' + self.name + ': ' + str(self.children)
+        return 'Axis ' + hex(id(self)) + ' ' + self.name + ': ' + str(self.children)

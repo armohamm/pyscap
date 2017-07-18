@@ -18,6 +18,7 @@
 import logging
 import re
 
+from .xpath.Axis import Axis
 from .xpath.Expression import Expression
 from .xpath.Function import Function
 from .xpath.Literal import Literal
@@ -26,9 +27,6 @@ from .xpath.Operator import Operator
 
 logger = logging.getLogger(__name__)
 class Node(object):
-    MULT_PREV_TOKENS = ['@', '::', '(', '[', ',', 'and', 'or', 'mod', 'div',
-        '*', '/', '//', '|', '+', '-', '=', '!=', '<', '<=', '>', '>=',
-    ]
     def __init__(self, parent):
         self.parent = parent
         self._document = None
@@ -48,26 +46,35 @@ class Node(object):
                 elif t == '-':
                     tokens.append(t)
                     t = expr[i]
-                elif re.fullmatch(r'[0-9.]+', t) and (expr[i].isdigit() or expr[i] == '.'):
+                elif t == '.' and expr[i] != '.':
+                    tokens.extend(['self', '::', 'node', '(', ')'])
+                    t = expr[i]
+                elif re.fullmatch(r'[0-9][0-9.]*', t) and (expr[i].isdigit() or expr[i] == '.'):
                     t += expr[i]
                 elif t[0] == '$' and expr[i].isalpha():
                     t += expr[i]
                 elif t.isspace():
+                    # skip space
                     t = expr[i]
                 elif t in ':/.!<>':
                     if t + expr[i] in ['::', '//', '..', '!=', '<=', '>=']:
-                        tokens.append(t + expr[i])
+                        t += expr[i]
+                        if t == '//':
+                            tokens.extend(['/', 'descendant-or-self', '::', 'node', '(', ')', '/'])
+                        elif t == '..':
+                            tokens.extend(['parent', '::', 'node', '(', ')'])
+                        else:
+                            tokens.append(t)
                         t = ''
                     else:
                         tokens.append(t)
                         t = expr[i]
                 elif t in '()[]@,\'"*|+=':
-                    tokens.append(t)
+                    if t == '@':
+                        tokens.extend(['attribute', '::'])
+                    else:
+                        tokens.append(t)
                     t = expr[i]
-                elif expr[i] in '()[]@,\'"*|+=':
-                    tokens.append(t)
-                    tokens.append(expr[i])
-                    t = ''
                 elif expr[i].isalnum() or expr[i] == '-':
                     t += expr[i]
                 else:
@@ -77,7 +84,12 @@ class Node(object):
                 if expr[i].isspace():
                     continue
                 t += expr[i]
-        if t != '':
+
+        # append final token if there is one
+        if t == '.':
+            tokens.extend(['self', '::', 'node', '(', ')'])
+            t = expr[i]
+        elif t != '':
             tokens.append(t)
 
         return tokens
@@ -122,7 +134,10 @@ class Node(object):
                     continue
 
             if prev_token is not None:
-                if prev_token not in Node.MULT_PREV_TOKENS \
+                if prev_token not in [
+                    '::', '(', '[', ',', 'and', 'or', 'mod', 'div',
+                    '*', '/', '//', '|', '+', '-', '=', '!=', '<', '<=',
+                    '>', '>=' ] \
                 and token in Operator.OPERATORS:
                     o = Operator(token)
                     o.children.append(stack.pop())
@@ -143,6 +158,7 @@ class Node(object):
                         stack.append(nt)
                     else:
                         raise NotImplementedError('Unknown function: ' + prev_token)
+                    logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
                 e = Expression()
                 logger.debug('Starting sub expression ' + str(e))
                 stack.append(e)
@@ -150,9 +166,10 @@ class Node(object):
                 if len(stack) <= 1:
                     continue
 
-                i = stack.pop()
-                logger.debug('Popped ' + str(i) + ' off stack, adding to expression ' + str(stack[-1]))
-                stack[-1].children.append(i)
+                if prev_token == ')': # empty expression
+                    i = stack.pop()
+                    logger.debug('Popped ' + str(i) + ' off stack, adding to expression ' + str(stack[-1]))
+                    stack[-1].children.append(i)
                 logger.debug('End of expression ' + str(stack[-1]))
                 if len(stack) > 1:
                     e = stack.pop()
@@ -161,54 +178,12 @@ class Node(object):
                 # else just let it on the stack
             elif token  == '::':
                 if prev_token in Axis.AXES:
+                    stack.pop()
                     a = Axis(prev_token)
                     stack.append(a)
+                    logger.debug('Pushed ' + str(a) + ' on stack')
                 else:
                     raise NotImplementedError('Unknown axis: ' + prev_token)
-            elif re.fullmatch(r'[0-9.]+', token):
-                if '.' in token:
-                    l = Literal(float(token))
-                else:
-                    l = Literal(int(token))
-
-                if len(stack) > 0 and isinstance(stack[-1], Operator):
-                    op = stack.pop()
-                    op.children.append(l)
-                    logger.debug('Pushing ' + str(op) + ' back on stack')
-                    stack.append(op)
-                else:
-                    logger.debug('Pushing ' + str(l) + ' on stack')
-                    stack.append(l)
-            elif token == '@':
-                a = Axis('attribute')
-                stack.append(a)
-            elif token == '//': # /descendant-or-self::node()/
-                s = Step()
-                a = Axis('descendant-or-self')
-                s.children.append(a)
-                nt = NodeType('node')
-                a.children.append(nt)
-                e = Expression()
-                nt.children.append(e)
-                stack.append(s)
-            elif token == '.': # self::node()
-                s = Step()
-                a = Axis('self')
-                s.children.append(a)
-                nt = NodeType('node')
-                a.children.append(nt)
-                e = Expression()
-                nt.children.append(e)
-                stack.append(s)
-            elif token == '..': # parent::node()
-                s = Step()
-                a = Axis('parent')
-                s.children.append(a)
-                nt = NodeType('node')
-                a.children.append(nt)
-                e = Expression()
-                nt.children.append(e)
-                stack.append(s)
             elif token == ',':
                 i = stack.pop()
                 logger.debug('Popped ' + str(i) + ' off the stack')
@@ -224,6 +199,20 @@ class Node(object):
                 l = Literal(token[1:-1])
                 logger.debug('Pushing ' + str(l) + ' on stack')
                 stack.append(l)
+            elif re.fullmatch(r'[0-9.]+', token):
+                if '.' in token:
+                    l = Literal(float(token))
+                else:
+                    l = Literal(int(token))
+
+                if len(stack) > 0 and isinstance(stack[-1], Operator):
+                    op = stack.pop()
+                    op.children.append(l)
+                    logger.debug('Pushing ' + str(op) + ' back on stack')
+                    stack.append(op)
+                else:
+                    logger.debug('Pushing ' + str(l) + ' on stack')
+                    stack.append(l)
             elif token in Operator.OPERATORS:
                 if token == '-' and ( \
                     len(stack) == 0 \
