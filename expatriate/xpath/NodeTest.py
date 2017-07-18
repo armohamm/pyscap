@@ -19,5 +19,5 @@ import logging
 
 logger = logging.getLogger(__name__)
 class NodeTest(object):
-    # abstract
-    pass
+    def __init__(self):
+        self.children = []

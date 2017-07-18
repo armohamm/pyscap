@@ -17,6 +17,12 @@
 
 import logging
 
+from .NodeTest import NodeTest
+
 logger = logging.getLogger(__name__)
-class AnyNodeTest(object):
-    pass
+class AnyNodeTest(NodeTest):
+    def test(self, node, context_node, context_position, context_size, variables):
+        return True
+
+    def __str__(self):
+        return 'AnyNodeTest ' + hex(id(self)) + ': ' + str([str(x) for x in self.children])

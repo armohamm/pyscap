@@ -19,4 +19,5 @@ import logging
 
 logger = logging.getLogger(__name__)
 class QNameNodeTest(object):
-    pass
+    def __init__(self, name):
+        super(QNameNodeTest, self).__init__()

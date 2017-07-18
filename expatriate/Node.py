@@ -18,12 +18,13 @@
 import logging
 import re
 
+from .xpath.AnyNodeTest import AnyNodeTest
 from .xpath.Axis import Axis
 from .xpath.Expression import Expression
 from .xpath.Function import Function
 from .xpath.Literal import Literal
-from .xpath.NodeType import NodeType
 from .xpath.Operator import Operator
+from .xpath.TypeNodeTest import TypeNodeTest
 
 logger = logging.getLogger(__name__)
 class Node(object):
@@ -156,8 +157,8 @@ class Node(object):
                     if prev_token in functions:
                         f = Function(prev_token, functions[prev_token])
                         stack.append(f)
-                    elif prev_token in NodeType.NODE_TYPES:
-                        nt = NodeType(prev_token)
+                    elif prev_token in TypeNodeTest.NODE_TYPES:
+                        nt = TypeNodeTest(prev_token)
                         stack.append(nt)
                     else:
                         raise NotImplementedError('Unknown function: ' + prev_token)
@@ -187,6 +188,10 @@ class Node(object):
                     logger.debug('Pushed ' + str(a) + ' on stack')
                 else:
                     raise NotImplementedError('Unknown axis: ' + prev_token)
+            elif token == '*' and prev_token == '::':
+                nt = AnyNodeTest()
+                stack.append(nt)
+                logger.debug('Pushed ' + str(nt) + 'on stack')
             elif token == ',':
                 i = stack.pop()
                 logger.debug('Popped ' + str(i) + ' off the stack')
@@ -242,7 +247,7 @@ class Node(object):
         i = stack.pop()
         logger.debug('Final pop off stack got ' + str(i))
 
-        return i.evaluate(self, context_position=1, context_size=1, variables={})
+        return i.evaluate(self, 1, 1, variables)
 
     def __repr__(self):
         return self.__class__.__name__ + ' ' + hex(id(self))

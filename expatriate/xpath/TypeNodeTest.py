@@ -20,7 +20,7 @@ import logging
 from .NodeTest import NodeTest
 
 logger = logging.getLogger(__name__)
-class NodeType(NodeTest):
+class TypeNodeTest(NodeTest):
     NODE_TYPES = [
         'comment',
         'text',
@@ -29,8 +29,8 @@ class NodeType(NodeTest):
     ]
 
     def __init__(self, name):
+        super(TypeNodeTest, self).__init__()
         self.name = name
-        self.children = []
 
     # TODO processing-instruction can have a literal that matches its name
 
@@ -41,4 +41,4 @@ class NodeType(NodeTest):
             return node.get_type == self.name
 
     def __str__(self):
-        return 'NodeType ' + hex(id(self)) + ' ' + self.name + ': ' + str([str(x) for x in self.children])
+        return 'TypeNodeTest ' + hex(id(self)) + ' ' + self.name + ': ' + str([str(x) for x in self.children])

@@ -25,22 +25,30 @@ logging.basicConfig(level=logging.DEBUG)
 doc = Document()
 doc.parse('''<?xml version='1.0' encoding='utf-8'?>
 <Root xmlns="http://jaymes.biz">
-    <Element id="element1">
-    </Element>
-    <Element id="element2"/>
-    <Element id="element3">
-        <SubEl id="subel1">
-            <KalEl id="kalel1">
+    <para name="element1">
+        text node
+    </para>
+    <para name="element2"/>
+    <para name="element3">
+        <para name="subel1">
+            <para name="kal-el">
                 Superman's dad
-            </KalEl>
-        </SubEl>
-    </Element>
+            </para>
+        </para>
+    </para>
 </Root>
 ''')
 
-def test_context_node():
-    assert doc.xpath('.') == [doc]
-
+# @pytest.mark.parametrize(
+#     "expr, result",
+#     (
+#         ('.', [doc]),
+#         ('child::para', doc.children),
+#     )
+# )
+# def test_context_node(expr, result):
+#     assert doc.xpath(expr) == result
+#
 # def test_context_node():
 #     assert doc.root_element.xpath('..') == doc
 #

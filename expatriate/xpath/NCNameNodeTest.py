@@ -19,4 +19,5 @@ import logging
 
 logger = logging.getLogger(__name__)
 class NCNameNodeTest(object):
-    pass
+    def __init__(self, name):
+        super(NCNameNodeTest, self).__init__()
