@@ -23,6 +23,7 @@ class Negate(object):
     def __init__(self, operand):
         self.operand = operand
 
-    def evaluate(self):
-        logger.debug('Negating ' + str(self.operand))
-        return - self.operand
+    def evaluate(self, context_node, context_position, context_size, variables):
+        op = self.operand.evaluate(context_node, context_position, context_size, variables)
+        logger.debug('Negating ' + str(op))
+        return - op

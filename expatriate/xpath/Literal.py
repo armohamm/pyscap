@@ -23,7 +23,7 @@ class Literal(object):
     def __init__(self, value):
         self.value = value
 
-    def evaluate(self):
+    def evaluate(self, context_node, context_position, context_size, variables):
         return self.value
 
     def __str__(self):

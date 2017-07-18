@@ -39,7 +39,7 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
 ''')
 
 def test_context_node():
-    assert doc.xpath('.') == doc
+    assert doc.xpath('.') == [doc]
 
 # def test_context_node():
 #     assert doc.root_element.xpath('..') == doc

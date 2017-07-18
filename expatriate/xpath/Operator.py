@@ -52,11 +52,14 @@ class Operator(object):
         self.op = op
         self.children = []
 
-    def evaluate(self):
+    def evaluate(self, context_node, context_position, context_size, variables):
         if self.op == 'negate':
-            return Operator.OPERATORS['negate'](self.children[0].evaluate())
+            return Operator.OPERATORS['negate'](self.children[0].evaluate(context_node, context_position, context_size, variables))
         else:
-            return Operator.OPERATORS[self.op](self.children[0].evaluate(), self.children[1].evaluate())
+            return Operator.OPERATORS[self.op]( \
+                self.children[0].evaluate(context_node, context_position, context_size, variables), \
+                self.children[1].evaluate(context_node, context_position, context_size, variables) \
+            )
 
     def __str__(self):
-        return 'Operator ' + self.op + ' ' + hex(id(self)) + ': ' + str(self.children)
+        return 'Operator ' + self.op + ' ' + hex(id(self)) + ': ' + str([str(x) for x in self.children])

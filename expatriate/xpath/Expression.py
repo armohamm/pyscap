@@ -26,12 +26,12 @@ class Expression(object):
     def __init__(self):
         self.children = []
 
-    def evaluate(self):
+    def evaluate(self, context_node, context_position, context_size, variables):
         logger.debug('Evaluating expression ' + str(self))
 
         child_eval = []
         for c in self.children:
-            child_eval.append(c.evaluate())
+            child_eval.append(c.evaluate(context_node, context_position, context_size, variables))
             logger.debug('Child ' + str(c) + ' evaluated to ' + str(child_eval[-1]))
 
         if len(child_eval) == 0:
@@ -42,4 +42,4 @@ class Expression(object):
             return tuple(child_eval)
 
     def __str__(self):
-        return 'Expression ' + hex(id(self))
+        return 'Expression ' + hex(id(self)) + ': ' + str([str(x) for x in self.children])

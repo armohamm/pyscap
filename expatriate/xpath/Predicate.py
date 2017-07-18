@@ -17,28 +17,6 @@
 
 import logging
 
-from .NodeTest import NodeTest
-
 logger = logging.getLogger(__name__)
-class NodeType(NodeTest):
-    NODE_TYPES = [
-        'comment',
-        'text',
-        'processing-instruction',
-        'node',
-    ]
-
-    def __init__(self, name):
-        self.name = name
-        self.children = []
-
-    # TODO processing-instruction can have a literal that matches its name
-
-    def test(self, node, context_node, context_position, context_size, variables):
-        if self.name == 'node':
-            return True
-        else:
-            return node.get_type == self.name
-
-    def __str__(self):
-        return 'NodeType ' + hex(id(self)) + ' ' + self.name + ': ' + str([str(x) for x in self.children])
+class Predicate(object):
+    pass

@@ -94,12 +94,15 @@ class Node(object):
 
         return tokens
 
-    def xpath(self, expr, version=1.0, context_position=1, context_size=1, variables={}):
+    def xpath(self, expr, version=1.0, variables={}, add_functions={}):
         if version != 1.0:
             raise NotImplementedError('Only XPath 1.0 has been implemented')
 
         tokens = self._tokenize(expr)
         logger.debug('Tokens: ' + str(tokens))
+
+        functions = Function.FUNCTIONS.copy()
+        functions.update(add_functions)
 
         stack = []
         for i in range(len(tokens)):
@@ -150,8 +153,8 @@ class Node(object):
             if token == '(':
                 if len(stack) > 0 and prev_token == stack[-1]:
                     stack.pop()
-                    if prev_token in Function.FUNCTIONS:
-                        f = Function(prev_token)
+                    if prev_token in functions:
+                        f = Function(prev_token, functions[prev_token])
                         stack.append(f)
                     elif prev_token in NodeType.NODE_TYPES:
                         nt = NodeType(prev_token)
@@ -239,7 +242,10 @@ class Node(object):
         i = stack.pop()
         logger.debug('Final pop off stack got ' + str(i))
 
-        return i.evaluate()
+        return i.evaluate(self, context_position=1, context_size=1, variables={})
+
+    def __repr__(self):
+        return self.__class__.__name__ + ' ' + hex(id(self))
 
     def get_type(self):
         raise NotImplementedError('get_type has not been implemented in class ' + self.__class__.__name__)

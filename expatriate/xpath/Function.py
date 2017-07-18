@@ -185,17 +185,18 @@ class Function(object):
         'round': f_round,
     }
 
-    def __init__(self, name):
+    def __init__(self, name, function):
         self.name = name
+        self.function = function
         self.children = []
 
-    def evaluate(self):
+    def evaluate(self, context_node, context_position, context_size, variables):
         child_evals = []
         for c in self.children:
-            v = c.evaluate()
+            v = c.evaluate(context_node, context_position, context_size, variables)
             logger.debug('Evaluated child of ' + str(self) + ' to ' + str(v))
             child_evals.append(v)
-        return Function.FUNCTIONS[self.name](*child_evals)
+        return self.function(*child_evals)
 
     def __str__(self):
-        return 'Function ' + self.name + ': ' + str(self.children)
+        return 'Function ' + self.name + ': ' + str([str(x) for x in self.children])
