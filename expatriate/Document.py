@@ -42,6 +42,7 @@ class Document(Node):
         self._in_space_preserve = False
         self._in_cdata = False
         self._stack = []
+        self._element_index = {}
 
         self._parser.XmlDeclHandler = self._xml_decl_handler
 
@@ -140,6 +141,9 @@ class Document(Node):
             self._stack[-1].children.append(el)
 
         el._document = self
+
+        if 'id' in attributes:
+            self._element_index[attributes['id']] = el
 
         self._stack.append(el)
 

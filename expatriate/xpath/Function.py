@@ -21,9 +21,42 @@ import re
 
 logger = logging.getLogger(__name__)
 class Function(object):
+    # Node Set Functions
+    def f_last(args, context_node, context_position, context_size, variables):
+        return context_size
+
+    def f_position(args, context_node, context_position, context_size, variables):
+        return context_position
+
+    def f_count(args, context_node, context_position, context_size, variables):
+        return len(args[0])
+
+    def f_id(args, context_node, context_position, context_size, variables):
+        ids = []
+        if isinstance(args, list): # node list
+            for n in args:
+                ids.extend(re.split(r'[\x20\x09\x0D\x0A]+', n.get_string_value()))
+        else:
+            ids = re.split(r'[\x20\x09\x0D\x0A]+', f_string(args))
+
+        ns = []
+        for i in ids:
+            if i in context_node._document._element_index:
+                ns.append(context_node._document._element_index[i])
+        return s
+
+    def f_local_name(args, context_node, context_position, context_size, variables):
+        pass
+
+    def f_namespace_uri(args, context_node, context_position, context_size, variables):
+        pass
+
+    def f_name(args, context_node, context_position, context_size, variables):
+        pass
+
     # String Functions
 
-    def f_string(args):
+    def f_string(args, context_node, context_position, context_size, variables):
         # TODO If the argument is omitted, it defaults to a node-set with the context node as its only member.
         if isinstance(args, float):
             if args == math.nan:
@@ -41,29 +74,29 @@ class Function(object):
         else:
             return str(args)
 
-    def f_concat(args):
+    def f_concat(args, context_node, context_position, context_size, variables):
         r = ''
         for a in args:
             r += a
         return r
 
-    def f_starts_with(args):
+    def f_starts_with(args, context_node, context_position, context_size, variables):
         return args[0].startswith(args[1])
 
-    def f_contains(args):
+    def f_contains(args, context_node, context_position, context_size, variables):
         return args[1] in args[0]
 
-    def f_substring_before(args):
+    def f_substring_before(args, context_node, context_position, context_size, variables):
         return args[0].partition(args[1])[0]
 
-    def f_substring_after(args):
+    def f_substring_after(args, context_node, context_position, context_size, variables):
         return args[0].partition(args[1])[2]
 
-    def f_substring(args):
+    def f_substring(args, context_node, context_position, context_size, variables):
         if args[1] == -math.inf:
             return ''
 
-        arg_1 = Function.f_round((args[1]))
+        arg_1 = Function.f_round((args[1]), context_node, context_position, context_size, variables)
         start = arg_1 - 1
         if start < 0:
             start = 0
@@ -75,19 +108,22 @@ class Function(object):
             elif args[2] == math.inf:
                 return args[0][start:]
 
-            end = arg_1 - 1 + Function.f_round(args[2])
+            end = arg_1 - 1 + Function.f_round(args[2], context_node, context_position, context_size, variables)
             logger.debug('Substring end: ' + str(end))
 
             return args[0][start:end]
         else:
             return args[0][start:]
 
-    def f_normalize_space(args):
+    def f_string_length(args, context_node, context_position, context_size, variables):
+        return len(args)
+
+    def f_normalize_space(args, context_node, context_position, context_size, variables):
         # TODO If the argument is omitted, it defaults to the context node converted to a string, in other words the string-value of the context node.
         args = args.strip('\x20\x09\x0D\x0A')
         return re.sub(r'[\x20\x09\x0D\x0A]+', ' ', args)
 
-    def f_translate(args):
+    def f_translate(args, context_node, context_position, context_size, variables):
         s = args[0]
         from_ = args[1]
         to = args[2]
@@ -100,7 +136,7 @@ class Function(object):
 
     # Boolean Functions
 
-    def f_boolean(args):
+    def f_boolean(args, context_node, context_position, context_size, variables):
         if isinstance(args, int) or isinstance(args, float):
             if args != 0 and args != math.nan:
                 return True
@@ -112,9 +148,21 @@ class Function(object):
         else:
             return bool(args)
 
+    def f_not(args, context_node, context_position, context_size, variables):
+        return not args
+
+    def f_true(args, context_node, context_position, context_size, variables):
+        return True
+
+    def f_false(args, context_node, context_position, context_size, variables):
+        return False
+
+    def f_lang(args, context_node, context_position, context_size, variables):
+        pass
+
     # Number Functions
 
-    def f_number(args):
+    def f_number(args, context_node, context_position, context_size, variables):
         if isinstance(args, str):
             if '.' in args:
                 return float(args)
@@ -130,7 +178,16 @@ class Function(object):
         else:
             return int(args)
 
-    def f_round(args):
+    def f_sum(args, context_node, context_position, context_size, variables):
+        pass
+
+    def f_floor(args, context_node, context_position, context_size, variables):
+        return math.floor(args)
+
+    def f_ceiling(args, context_node, context_position, context_size, variables):
+        return math.ceil(args)
+
+    def f_round(args, context_node, context_position, context_size, variables):
         if args == math.nan:
             return math.nan
         elif args == math.inf:
@@ -141,20 +198,13 @@ class Function(object):
 
     FUNCTIONS = {
         # Node Set Functions
-        # TODO
-        # 'last': f_last,
-        # TODO
-        # 'position': f_position,
-        # TODO
-        # 'count': f_count,
-        # TODO
-        # 'id': f_id,
-        # TODO
-        # 'local-name': f_local_name,
-        # TODO
-        # 'namespace-uri': f_namespace_uri,
-        # TODO
-        # 'name': f_name,
+        'last': f_last,
+        'position': f_position,
+        'count': f_count,
+        'id': f_id,
+        'local-name': f_local_name,
+        'namespace-uri': f_namespace_uri,
+        'name': f_name,
 
         # String Functions
         'string': f_string,
@@ -162,26 +212,24 @@ class Function(object):
         'starts-with': f_starts_with,
         'contains': f_contains,
         'substring-before': f_substring_before,
-        'substring-after': lambda x: x[0].partition(x[1])[2],
+        'substring-after': f_substring_after,
         'substring': f_substring,
-        'string-length': lambda x: len(x),
+        'string-length': f_string_length,
         'normalize-space': f_normalize_space,
         'translate': f_translate,
 
         # Boolean Functions
         'boolean': f_boolean,
-        'not': lambda x: not x,
-        'true': lambda x: True, # x is to swallow the empty expression
-        'false': lambda x: False, # x is to swallow the empty expression
-        # TODO
-        # 'lang': f_lang,
+        'not': f_not,
+        'true': f_true, # x is to swallow the empty expression
+        'false': f_false, # x is to swallow the empty expression
+        'lang': f_lang,
 
         # Number Functions
         'number': f_number,
-        # TODO
-        # 'sum': f_sum,
-        'floor': lambda x: math.floor(x),
-        'ceiling': lambda x: math.ceil(x),
+        'sum': f_sum,
+        'floor': f_floor,
+        'ceiling': f_ceiling,
         'round': f_round,
     }
 
@@ -196,7 +244,7 @@ class Function(object):
             v = c.evaluate(context_node, context_position, context_size, variables)
             logger.debug('Evaluated child of ' + str(self) + ' to ' + str(v))
             child_evals.append(v)
-        return self.function(*child_evals)
+        return self.function(*child_evals, context_node, context_position, context_size, variables)
 
     def __str__(self):
         return 'Function ' + self.name + ': ' + str([str(x) for x in self.children])

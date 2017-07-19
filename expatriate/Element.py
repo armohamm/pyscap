@@ -98,7 +98,6 @@ class Element(Node):
 
             self.attribute_nodes[k] = Attribute(self, self.attribute_namespaces[k], self.attribute_locals[k], v)
 
-
     def escape_attribute(self, text):
         return self.escape(text).replace('"', '&quot;')
 
