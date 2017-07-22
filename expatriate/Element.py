@@ -30,8 +30,8 @@ class UnknownNamespaceException(Exception):
     pass
 
 class Element(Node):
-    def __init__(self, parent, name, attributes):
-        super(Element, self).__init__(parent)
+    def __init__(self, document, parent, name, attributes):
+        super(Element, self).__init__(document, parent)
 
         self.name = name
 
@@ -64,7 +64,7 @@ class Element(Node):
         # create nodes for each of the namespaces
         self.namespace_nodes = {}
         for prefix, uri in self.namespaces.items():
-            self.namespace_nodes[prefix] = Namespace(self, prefix, uri)
+            self.namespace_nodes[prefix] = Namespace(document, self, prefix, uri)
 
         # parse the namespace & local part of the element name
         if ':' in name:
@@ -96,7 +96,7 @@ class Element(Node):
                 self.attribute_namespaces[k] = None
                 self.attribute_locals[k] = k
 
-            self.attribute_nodes[k] = Attribute(self, self.attribute_namespaces[k], self.attribute_locals[k], v)
+            self.attribute_nodes[k] = Attribute(document, self, self.attribute_namespaces[k], self.attribute_locals[k], v)
 
     def escape_attribute(self, text):
         return self.escape(text).replace('"', '&quot;')
@@ -119,8 +119,14 @@ class Element(Node):
         return 'element'
 
     def get_string_value(self):
-        # TODO
-        pass
+        from .CharacterData import CharacterData
+        s = ''
+        for c in self.children:
+            if isinstance(c, CharacterData):
+                s += c.data
+            elif isinstance(c, Element):
+                s += c.get_string_value()
+        return s
 
     def get_expanded_name(self):
         return (self.name_namespace, self.name_local)

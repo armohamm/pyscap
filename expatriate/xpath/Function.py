@@ -19,25 +19,44 @@ import logging
 import math
 import re
 
+from ..xpath import SyntaxException
+
 logger = logging.getLogger(__name__)
 class Function(object):
     # Node Set Functions
     def f_last(args, context_node, context_position, context_size, variables):
+        if len(args) != 0:
+            raise SyntaxException('last() expects 0 arguments')
+
         return context_size
 
     def f_position(args, context_node, context_position, context_size, variables):
+        if len(args) != 0:
+            raise SyntaxException('position() expects 0 arguments')
+
         return context_position
 
     def f_count(args, context_node, context_position, context_size, variables):
+        if len(args) != 1:
+            raise SyntaxException('count() expects 1 argument')
+
         return len(args[0])
 
     def f_id(args, context_node, context_position, context_size, variables):
+        if len(args) != 1:
+            raise SyntaxException('id() expects 1 argument')
+
+        from ..Node import Node
         ids = []
-        if isinstance(args, list): # node list
-            for n in args:
-                ids.extend(re.split(r'[\x20\x09\x0D\x0A]+', n.get_string_value()))
+        if isinstance(args[0], list): # node list
+            for n in args[0]:
+                if not isinstance(n, Node):
+                    raise SyntaxException('Cannot determine the string value of ' + str(n))
+                s = n.get_string_value()
+                logger.debug('Using ' + str(s) + ' as string-value of ' + str(n))
+                ids.extend(re.split(r'[\x20\x09\x0D\x0A]+', s))
         else:
-            ids = re.split(r'[\x20\x09\x0D\x0A]+', f_string(args))
+            ids = re.split(r'[\x20\x09\x0D\x0A]+', f_string((args[0],), context_node, context_position, context_size, variables))
 
         ns = []
         for i in ids:
@@ -46,57 +65,108 @@ class Function(object):
         return s
 
     def f_local_name(args, context_node, context_position, context_size, variables):
+        if len(args) == 0:
+            a = [context_node]
+        elif len(args) == 1:
+            a = args[0]
+        else:
+            raise SyntaxException('local-name() expects 1 argument or none')
+
+        # TODO
         pass
 
     def f_namespace_uri(args, context_node, context_position, context_size, variables):
+        if len(args) == 0:
+            a = [context_node]
+        elif len(args) == 1:
+            a = args[0]
+        else:
+            raise SyntaxException('namespace-uri() expects 1 argument or none')
+
+        # TODO
         pass
 
     def f_name(args, context_node, context_position, context_size, variables):
+        if len(args) == 0:
+            a = [context_node]
+        elif len(args) == 1:
+            a = args[0]
+        else:
+            raise SyntaxException('name() expects 1 argument or none')
+
+        # TODO
         pass
 
     # String Functions
 
     def f_string(args, context_node, context_position, context_size, variables):
-        # TODO If the argument is omitted, it defaults to a node-set with the context node as its only member.
-        if isinstance(args, float):
-            if args == math.nan:
+        if len(args) == 0:
+            a = [context_node]
+        elif len(args) == 1:
+            a = args[0]
+        else:
+            raise SyntaxException('string() expects 1 argument or none')
+
+        if isinstance(a, list): # node-set
+            # TODO should be first in document order, not [0]
+            return a[0].get_string_value()
+        if isinstance(a, float):
+            if a == math.nan:
                 return 'NaN'
-            elif args == -math.inf:
+            elif a == -math.inf:
                 return '-Infinity'
-            elif args == math.inf:
+            elif a == math.inf:
                 return 'Infinity'
             else:
-                return str(args)
-        elif args == True:
+                return str(a)
+        elif a == True:
             return 'true'
-        elif args == False:
+        elif a == False:
             return 'false'
         else:
-            return str(args)
+            return str(a)
 
     def f_concat(args, context_node, context_position, context_size, variables):
+        if len(args) < 2:
+            raise SyntaxException('concat() expects at least 2 arguments')
+
         r = ''
         for a in args:
             r += a
         return r
 
     def f_starts_with(args, context_node, context_position, context_size, variables):
+        if len(args) != 2:
+            raise SyntaxException('starts-with() expects 2 arguments')
+
         return args[0].startswith(args[1])
 
     def f_contains(args, context_node, context_position, context_size, variables):
+        if len(args) != 2:
+            raise SyntaxException('contains() expects 2 arguments')
+
         return args[1] in args[0]
 
     def f_substring_before(args, context_node, context_position, context_size, variables):
+        if len(args) != 2:
+            raise SyntaxException('substring-before() expects 2 arguments')
+
         return args[0].partition(args[1])[0]
 
     def f_substring_after(args, context_node, context_position, context_size, variables):
+        if len(args) != 2:
+            raise SyntaxException('substring-after() expects 2 arguments')
+
         return args[0].partition(args[1])[2]
 
     def f_substring(args, context_node, context_position, context_size, variables):
+        if len(args) not in (2,3):
+            raise SyntaxException('substring() expects 2 or 3 arguments')
+
         if args[1] == -math.inf:
             return ''
 
-        arg_1 = Function.f_round((args[1]), context_node, context_position, context_size, variables)
+        arg_1 = Function.f_round((args[1],), context_node, context_position, context_size, variables)
         start = arg_1 - 1
         if start < 0:
             start = 0
@@ -108,7 +178,7 @@ class Function(object):
             elif args[2] == math.inf:
                 return args[0][start:]
 
-            end = arg_1 - 1 + Function.f_round(args[2], context_node, context_position, context_size, variables)
+            end = arg_1 - 1 + Function.f_round((args[2],), context_node, context_position, context_size, variables)
             logger.debug('Substring end: ' + str(end))
 
             return args[0][start:end]
@@ -116,14 +186,26 @@ class Function(object):
             return args[0][start:]
 
     def f_string_length(args, context_node, context_position, context_size, variables):
-        return len(args)
+        if len(args) != 1:
+            raise SyntaxException('string_length() expects 1 argument')
+
+        return len(args[0])
 
     def f_normalize_space(args, context_node, context_position, context_size, variables):
-        # TODO If the argument is omitted, it defaults to the context node converted to a string, in other words the string-value of the context node.
-        args = args.strip('\x20\x09\x0D\x0A')
-        return re.sub(r'[\x20\x09\x0D\x0A]+', ' ', args)
+        if len(args) == 0:
+            a = context_node.get_string_value()
+        elif len(args) == 1:
+            a = args[0]
+        else:
+            raise SyntaxException('normalize_space() expects 1 argument or none')
+
+        a = a.strip('\x20\x09\x0D\x0A')
+        return re.sub(r'[\x20\x09\x0D\x0A]+', ' ', a)
 
     def f_translate(args, context_node, context_position, context_size, variables):
+        if len(args) != 3:
+            raise SyntaxException('translate() expects 3 arguments')
+
         s = args[0]
         from_ = args[1]
         to = args[2]
@@ -137,64 +219,96 @@ class Function(object):
     # Boolean Functions
 
     def f_boolean(args, context_node, context_position, context_size, variables):
-        if isinstance(args, int) or isinstance(args, float):
-            if args != 0 and args != math.nan:
+        if len(args) != 1:
+            raise SyntaxException('boolean() expects 1 argument')
+
+        if isinstance(args[0], int) or isinstance(args[0], float):
+            if args[0] != 0 and args[0] != math.nan:
                 return True
             else:
                 return False
         # TODO if nodeset; return len(set) > 0
-        elif isinstance(args, str):
-            return len(args) > 0
+        elif isinstance(args[0], str):
+            return len(args[0]) > 0
         else:
-            return bool(args)
+            return bool(args[0])
 
     def f_not(args, context_node, context_position, context_size, variables):
-        return not args
+        if len(args) != 1:
+            raise SyntaxException('not() expects 1 argument')
+
+        return not args[0]
 
     def f_true(args, context_node, context_position, context_size, variables):
+        if len(args) != 0:
+            raise SyntaxException('true() accepts no arguments')
+
         return True
 
     def f_false(args, context_node, context_position, context_size, variables):
+        if len(args) != 0:
+            raise SyntaxException('false() accepts no arguments')
+
         return False
 
     def f_lang(args, context_node, context_position, context_size, variables):
+        if len(args) != 1:
+            raise SyntaxException('lang() expects 1 argument')
+
+        # TODO
         pass
 
     # Number Functions
 
     def f_number(args, context_node, context_position, context_size, variables):
-        if isinstance(args, str):
-            if '.' in args:
-                return float(args)
+        if len(args) != 1:
+            raise SyntaxException('number() expects 1 argument')
+
+        if isinstance(args[0], str):
+            if '.' in args[0]:
+                return float(args[0])
             else:
-                return int(args)
-        elif args == True:
+                return int(args[0])
+        elif args[0] == True:
             return 1
-        elif args == False:
+        elif args[0] == False:
             return 0
         # TODO a node-set is first converted to a string as if by a call to the string function and then converted in the same way as a string argument
-        elif isinstance(args, int) or isinstance(args, float):
-            return args
+        elif isinstance(args[0], int) or isinstance(args[0], float):
+            return args[0]
         else:
-            return int(args)
+            return int(args[0])
 
     def f_sum(args, context_node, context_position, context_size, variables):
+        if len(args) != 1:
+            raise SyntaxException('sum() expects 1 argument')
+
+        # TODO
         pass
 
     def f_floor(args, context_node, context_position, context_size, variables):
-        return math.floor(args)
+        if len(args) != 1:
+            raise SyntaxException('floor() expects 1 argument')
+
+        return math.floor(args[0])
 
     def f_ceiling(args, context_node, context_position, context_size, variables):
-        return math.ceil(args)
+        if len(args) != 1:
+            raise SyntaxException('ceiling() expects 1 argument')
+
+        return math.ceil(args[0])
 
     def f_round(args, context_node, context_position, context_size, variables):
-        if args == math.nan:
+        if len(args) != 1:
+            raise SyntaxException('round() expects 1 argument')
+
+        if args[0] == math.nan:
             return math.nan
-        elif args == math.inf:
+        elif args[0] == math.inf:
             return math.inf
-        elif args == - math.inf:
+        elif args[0] == - math.inf:
             return - math.inf
-        return round(args)
+        return round(args[0])
 
     FUNCTIONS = {
         # Node Set Functions
@@ -239,12 +353,12 @@ class Function(object):
         self.children = []
 
     def evaluate(self, context_node, context_position, context_size, variables):
-        child_evals = []
+        arg_evals = []
         for c in self.children:
             v = c.evaluate(context_node, context_position, context_size, variables)
             logger.debug('Evaluated child of ' + str(self) + ' to ' + str(v))
-            child_evals.append(v)
-        return self.function(*child_evals, context_node, context_position, context_size, variables)
+            arg_evals.append(v)
+        return self.function(arg_evals, context_node, context_position, context_size, variables)
 
     def __str__(self):
         return 'Function ' + self.name + ': ' + str([str(x) for x in self.children])

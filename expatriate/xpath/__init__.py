@@ -15,23 +15,5 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import logging
-
-from .Node import Node
-
-logger = logging.getLogger(__name__)
-
-class Comment(Node):
-    def __init__(self, document, parent, data):
-        super(Comment, self).__init__(document, parent)
-
-        self.data = data
-
-    def produce(self):
-        return '<!--' + self.data + '-->'
-
-    def get_string_value(self):
-        return self.data
-
-    def get_type(self):
-        return 'comment'
+class SyntaxException(Exception):
+    pass

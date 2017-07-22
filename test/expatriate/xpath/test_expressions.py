@@ -32,18 +32,3 @@ def test_subexpr2():
 
 def test_left_association():
     assert doc.xpath('3 > 2 > 1') == doc.xpath('(3 > 2) > 1')
-
-def test_tuple2():
-    assert doc.xpath('(2,3)') == (2,3)
-
-def test_tuple3():
-    assert doc.xpath('(2,3,4)') == (2,3,4)
-
-def test_tuple_embedded_op():
-    assert doc.xpath('(2+2,3,5)') == (4,3,5)
-
-def test_tuple_embedded_sub1():
-    assert doc.xpath('((2,3),5,4)') == ((2,3),5,4)
-
-def test_tuple_embedded_sub2():
-    assert doc.xpath('(3,4,(2,5))') == (3,4,(2,5))

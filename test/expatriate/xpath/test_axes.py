@@ -129,7 +129,9 @@ def test_attribute():
     assert doc.root_element.children[0].xpath('attribute::*') == [doc.root_element.children[0].attribute_nodes['name']]
 
 def test_namespace():
-    assert doc.root_element.children[0].xpath('namespace::*') == [doc.root_element.children[0].namespace_nodes['xml'], doc.root_element.children[0].namespace_nodes[None]]
+    ns = doc.root_element.children[0].xpath('namespace::*')
+    assert doc.root_element.children[0].namespace_nodes[None] in ns
+    assert doc.root_element.children[0].namespace_nodes['xml'] in ns
 
 def test_self():
     assert doc.xpath('self::*') == [doc]

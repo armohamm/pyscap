@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 class Document(Node):
     def __init__(self, encoding=None, skip_whitespace=True):
-        super(Document, self).__init__(None)
+        super(Document, self).__init__(self, None)
         self.version = None
         self.encoding = encoding
         self.standalone = None
@@ -133,14 +133,12 @@ class Document(Node):
             self._in_space_preserve = True
 
         if len(self._stack) == 0:
-            el = Element(self, name, attributes)
+            el = Element(self, self, name, attributes)
             self.root_element = el
             self.children.append(el)
         else:
-            el = Element(self._stack[-1], name, attributes)
+            el = Element(self, self._stack[-1], name, attributes)
             self._stack[-1].children.append(el)
-
-        el._document = self
 
         if 'id' in attributes:
             self._element_index[attributes['id']] = el
@@ -161,12 +159,11 @@ class Document(Node):
         logger.debug('_processing_instruction_handler target: ' + str(target) + ' data: ' + str(data))
 
         if len(self._stack) == 0:
-            pi = ProcessingInstruction(self, target, data)
+            pi = ProcessingInstruction(self, self, target, data)
             self.children.append(pi)
         else:
-            pi = ProcessingInstruction(self._stack[-1], target, data)
+            pi = ProcessingInstruction(self, self._stack[-1], target, data)
             self._stack[-1].children.append(pi)
-        pi._document = self
 
     def _character_data_handler(self, data):
         logger.debug('_character_data_handler data: ' + str(data.encode('UTF-8')))
@@ -179,12 +176,11 @@ class Document(Node):
                 return
 
         if len(self._stack) == 0:
-            char_data = CharacterData(self, data, cdata_block=self._in_cdata)
+            char_data = CharacterData(self, self, data, cdata_block=self._in_cdata)
             self.children.append(char_data)
         else:
-            char_data = CharacterData(self._stack[-1], data, cdata_block=self._in_cdata)
+            char_data = CharacterData(self, self._stack[-1], data, cdata_block=self._in_cdata)
             self._stack[-1].children.append(char_data)
-        char_data._document = self
 
     def _comment_handler(self, data):
         logger.debug('_comment_handler data: ' + str(data))
@@ -193,9 +189,8 @@ class Document(Node):
             c = Comment(self, data)
             self.children.append(c)
         else:
-            c = Comment(self._stack[-1], data)
+            c = Comment(self, self._stack[-1], data)
             self._stack[-1].children.append(c)
-        c._document = self
 
     def _start_cdata_section_handler(self):
         logger.debug('_start_cdata_section_handler')
@@ -244,5 +239,4 @@ class Document(Node):
         return 'root'
 
     def get_string_value(self):
-        # TODO
-        pass
+        return self.root_element.get_string_value()

@@ -18,6 +18,7 @@
 import logging
 import re
 
+from .xpath import SyntaxException
 from .xpath.AnyNodeTest import AnyNodeTest
 from .xpath.Axis import Axis
 from .xpath.Expression import Expression
@@ -28,9 +29,9 @@ from .xpath.TypeNodeTest import TypeNodeTest
 
 logger = logging.getLogger(__name__)
 class Node(object):
-    def __init__(self, parent):
+    def __init__(self, document, parent):
+        self._document = document
         self.parent = parent
-        self._document = None
 
     def _tokenize(self, expr):
         tokens = []
@@ -170,14 +171,14 @@ class Node(object):
                 if len(stack) <= 1:
                     continue
 
-                if prev_token == ')': # empty expression
-                    i = stack.pop()
-                    logger.debug('Popped ' + str(i) + ' off stack, adding to expression ' + str(stack[-1]))
-                    stack[-1].children.append(i)
-                logger.debug('End of expression ' + str(stack[-1]))
-                if len(stack) > 1:
+                logger.debug('End of ' + str(stack[-1]))
+                if prev_token == '(':
+                    # don't add empty Expression
+                    stack.pop()
+                    logger.debug('Ignoring empty expression')
+                elif len(stack) > 1:
                     e = stack.pop()
-                    logger.debug('Adding expression ' + str(e) + ' to ' + str(stack[-1]))
+                    logger.debug('Adding ' + str(e) + ' to ' + str(stack[-1]))
                     stack[-1].children.append(e)
                 # else just let it on the stack
             elif token  == '::':
@@ -193,16 +194,17 @@ class Node(object):
                 stack.append(nt)
                 logger.debug('Pushed ' + str(nt) + 'on stack')
             elif token == ',':
-                i = stack.pop()
-                logger.debug('Popped ' + str(i) + ' off the stack')
-                if len(stack) == 0:
-                    logger.debug('No explicit expression on stack, pushing one')
-                    e = Expression()
-                    stack.append(e)
-                else:
-                    e = stack[-1]
-                logger.debug('Adding ' + str(i) + ' to expression ' + str(e))
-                e.children.append(i)
+                try:
+                    while(not isinstance(stack[-1], Function)):
+                        i = stack.pop()
+                        logger.debug('Adding ' + str(i) + ' to children of ' + str(stack[-1]))
+                        stack[-1].children.append(i)
+                except IndexError:
+                    raise SyntaxException('Unable to add argument to function')
+
+                logger.debug('Starting new expression ' + str(e) + ' for function argument')
+                e = Expression()
+                stack.append(e)
             elif token[0] in '\'"':
                 l = Literal(token[1:-1])
                 logger.debug('Pushing ' + str(l) + ' on stack')
@@ -234,11 +236,11 @@ class Node(object):
                 logger.debug('Pushing ' + str(o) + ' on stack')
                 stack.append(o)
             elif re.fullmatch(r'[a-zA-Z0-9_-]+', token):
-                # skip; we have to wait till the next token to process
+                # just push; we have to wait till the next token to process
                 logger.debug('Pushing token ' + token + ' on stack')
                 stack.append(token)
             else:
-                raise ValueError('Unknown token: ' + str(token))
+                raise SyntaxException('Unknown token: ' + str(token))
 
         while(len(stack) > 1):
             i = stack.pop()
@@ -254,6 +256,9 @@ class Node(object):
 
     def get_type(self):
         raise NotImplementedError('get_type has not been implemented in class ' + self.__class__.__name__)
+
+    def get_string_value(self):
+        raise NotImplementedError('get_string_value has not been implemented in class ' + self.__class__.__name__)
 
     def escape(self, text):
         text = text.replace('&', '&amp;')

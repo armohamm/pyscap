@@ -23,13 +23,36 @@ from expatriate import *
 logging.basicConfig(level=logging.DEBUG)
 
 doc = Document()
+doc.parse('''<?xml version='1.0' encoding='utf-8'?>
+<Root xmlns="http://jaymes.biz">
+    <para name="element1">
+        text node
+    </para>
+    <para name="element2"/>
+    <para name="element3">
+        <para name="subel1">
+            <para name="kal-el">
+                Superman's dad
+            </para>
+        </para>
+    </para>
+</Root>
+''')
 
 # # Node Set Functions
 
-# TODO 'last': None,
-# TODO 'position': : None,
-# TODO 'count': None,
-# TODO 'id': None,
+def test_last():
+    assert doc.xpath('last()') == 1
+
+def test_last():
+    assert doc.xpath('position()') == 1
+
+def test_count():
+    assert doc.xpath('count(child::*)') == 1
+
+def test_id():
+    assert doc.xpath('id(child::*)') == 'text nodeSuperman\'s dad'
+
 # TODO 'local-name': None,
 # TODO 'namespace-uri': None,
 # TODO 'name': None,
@@ -54,13 +77,22 @@ def test_string(expr, result):
 @pytest.mark.parametrize(
     "expr, result",
     (
-        ('concat("a")', 'a'),
         ('concat("a", "b")', 'ab'),
         ('concat("a", "b", "c")', 'abc'),
     )
 )
 def test_concat(expr, result):
     assert doc.xpath(expr) == result
+
+@pytest.mark.parametrize(
+    "expr, result",
+    (
+        ('concat("a")', 'a'),
+    )
+)
+def test_concat_err(expr, result):
+    with pytest.raises(SyntaxException):
+        doc.xpath(expr)
 
 @pytest.mark.parametrize(
     "expr, result",

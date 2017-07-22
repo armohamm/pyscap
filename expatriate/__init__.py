@@ -22,6 +22,7 @@ from .Element import Element
 from .Element import DuplicateNamespaceException
 from .Element import UnknownNamespaceException
 from .ProcessingInstruction import ProcessingInstruction
+from .xpath import SyntaxException
 
 __all__ = [
     'CharacterData',
@@ -30,4 +31,5 @@ __all__ = [
     'ProcessingInstruction',
     'DuplicateNamespaceException',
     'UnknownNamespaceException',
+    'SyntaxException',
 ]
