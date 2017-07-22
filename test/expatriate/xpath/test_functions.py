@@ -44,7 +44,7 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
 def test_last():
     assert doc.xpath('last()') == 1
 
-def test_last():
+def test_position():
     assert doc.xpath('position()') == 1
 
 def test_count():
