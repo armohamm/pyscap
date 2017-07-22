@@ -75,7 +75,10 @@ class Element(Node):
             self.name_namespace = self.namespaces[n[0]]
             self.name_local = n[2]
         else:
-            self.name_namespace = None
+            if None in self.namespaces:
+                self.name_namespace = self.namespaces[None]
+            else:
+                self.name_namespace = None
             self.name_local = name
 
         # check attributes for prefix

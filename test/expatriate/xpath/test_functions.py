@@ -44,8 +44,12 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
 def test_last():
     assert doc.xpath('last()') == 1
 
+# TODO actual node set
+
 def test_position():
     assert doc.xpath('position()') == 1
+
+# TODO actual node set
 
 def test_count():
     assert doc.xpath('count(child::*)') == 1
@@ -55,8 +59,18 @@ def test_id():
 
 def test_local_name():
     assert doc.root_element.xpath('local-name()') == 'Root'
-# TODO 'namespace-uri': None,
-# TODO 'name': None,
+
+# TODO prefixed qname
+
+def test_namespace_uri():
+    assert doc.root_element.xpath('namespace-uri()') == 'http://jaymes.biz'
+
+# TODO prefixed qname
+
+def test_name():
+    assert doc.root_element.xpath('name()') == 'Root'
+
+# TODO prefixed qname
 
 # # String Functions
 
@@ -209,7 +223,10 @@ def test_true():
 def test_false():
     assert doc.xpath('false()') == False
 
-# TODO 'lang': None,
+def test_lang():
+    assert doc.xpath('lang("en")') == False
+
+# TODO actual xml:lang
 
 # # Number Functions
 
@@ -223,7 +240,11 @@ def test_false():
 def test_floor(expr, result):
     assert doc.xpath(expr) == result
 
-# TODO 'sum': None,
+def test_sum():
+    with pytest.raises(SyntaxException):
+        doc.xpath('sum(child::*)')
+
+# TODO real sum test
 
 @pytest.mark.parametrize(
     "expr, result",

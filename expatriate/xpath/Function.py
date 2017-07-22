@@ -282,8 +282,19 @@ class Function(object):
         if len(args) != 1:
             raise SyntaxException('lang() expects 1 argument')
 
-        # TODO
-        pass
+        a = args[0].lower()
+
+        n = context_node
+        while(not hasattr(n, 'attributes') or 'xml:lang' not in n.attributes):
+            if n.parent is None:
+                return False
+            n = n.parent
+        attr = n.attributes['xml:lang'].lower()
+
+        if attr.startswith(a):
+            return True
+        else:
+            return False
 
     # Number Functions
 
@@ -291,25 +302,28 @@ class Function(object):
         if len(args) != 1:
             raise SyntaxException('number() expects 1 argument')
 
-        if isinstance(args[0], str):
-            if '.' in args[0]:
-                return float(args[0])
+        try:
+            if isinstance(args[0], str):
+                if '.' in args[0]:
+                    return float(args[0])
+                else:
+                    return int(args[0])
+            elif args[0] == True:
+                return 1
+            elif args[0] == False:
+                return 0
+            elif isinstance(args[0],  list):
+                s = f_string((args[0],), context_node, context_position, context_size, variables)
+                if '.' in s:
+                    return float(s)
+                else:
+                    return int(args[0])
+            elif isinstance(args[0], int) or isinstance(args[0], float):
+                return args[0]
             else:
                 return int(args[0])
-        elif args[0] == True:
-            return 1
-        elif args[0] == False:
-            return 0
-        elif isinstance(args[0],  list):
-            s = f_string((args[0],), context_node, context_position, context_size, variables)
-            if '.' in s:
-                return float(s)
-            else:
-                return int(args[0])
-        elif isinstance(args[0], int) or isinstance(args[0], float):
-            return args[0]
-        else:
-            return int(args[0])
+        except ValueError:
+            raise SyntaxException('Invalid syntax for a number')
 
     def f_sum(args, context_node, context_position, context_size, variables):
         if len(args) != 1:
@@ -317,8 +331,8 @@ class Function(object):
 
         r = 0
         for n in args[0]:
-            s = f_string((n,), context_node, context_position, context_size, variables)
-            i = f_number((s,), context_node, context_position, context_size, variables)
+            s = Function.f_string((n,), context_node, context_position, context_size, variables)
+            i = Function.f_number((s,), context_node, context_position, context_size, variables)
             r += i
         return r
 
