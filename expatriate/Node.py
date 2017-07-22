@@ -29,8 +29,9 @@ from .xpath.TypeNodeTest import TypeNodeTest
 
 logger = logging.getLogger(__name__)
 class Node(object):
-    def __init__(self, document, parent):
+    def __init__(self, document, document_order, parent):
         self._document = document
+        self._document_order = document_order
         self.parent = parent
 
     def _tokenize(self, expr):
@@ -256,9 +257,6 @@ class Node(object):
 
     def get_type(self):
         raise NotImplementedError('get_type has not been implemented in class ' + self.__class__.__name__)
-
-    def get_string_value(self):
-        raise NotImplementedError('get_string_value has not been implemented in class ' + self.__class__.__name__)
 
     def escape(self, text):
         text = text.replace('&', '&amp;')

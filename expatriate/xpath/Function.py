@@ -72,8 +72,16 @@ class Function(object):
         else:
             raise SyntaxException('local-name() expects 1 argument or none')
 
-        # TODO
-        pass
+        if len(a) <= 0:
+            return ''
+
+        from ..Document import Document
+        first_node = Document.get_first_in_document_order(a)
+
+        if not hasattr(first_node, 'get_expanded_name'):
+            return ''
+        else:
+            return first_node.get_expanded_name()[1]
 
     def f_namespace_uri(args, context_node, context_position, context_size, variables):
         if len(args) == 0:
@@ -83,8 +91,16 @@ class Function(object):
         else:
             raise SyntaxException('namespace-uri() expects 1 argument or none')
 
-        # TODO
-        pass
+        if len(a) <= 0:
+            return ''
+
+        from ..Document import Document
+        first_node = Document.get_first_in_document_order(a)
+
+        if not hasattr(first_node, 'get_expanded_name'):
+            return ''
+        else:
+            return first_node.get_expanded_name()[0]
 
     def f_name(args, context_node, context_position, context_size, variables):
         if len(args) == 0:
@@ -94,8 +110,16 @@ class Function(object):
         else:
             raise SyntaxException('name() expects 1 argument or none')
 
-        # TODO
-        pass
+        if len(a) <= 0:
+            return ''
+
+        from ..Document import Document
+        first_node = Document.get_first_in_document_order(a)
+
+        if not hasattr(first_node, 'name'):
+            return ''
+        else:
+            return first_node.name
 
     # String Functions
 
@@ -108,8 +132,10 @@ class Function(object):
             raise SyntaxException('string() expects 1 argument or none')
 
         if isinstance(a, list): # node-set
-            # TODO should be first in document order, not [0]
-            return a[0].get_string_value()
+            from ..Document import Document
+            first_node = Document.get_first_in_document_order(a)
+
+            return first_node.get_string_value()
         if isinstance(a, float):
             if a == math.nan:
                 return 'NaN'
@@ -227,7 +253,8 @@ class Function(object):
                 return True
             else:
                 return False
-        # TODO if nodeset; return len(set) > 0
+        elif isinstance(args[0], list):
+            return len(args[0]) > 0
         elif isinstance(args[0], str):
             return len(args[0]) > 0
         else:
@@ -273,7 +300,12 @@ class Function(object):
             return 1
         elif args[0] == False:
             return 0
-        # TODO a node-set is first converted to a string as if by a call to the string function and then converted in the same way as a string argument
+        elif isinstance(args[0],  list):
+            s = f_string((args[0],), context_node, context_position, context_size, variables)
+            if '.' in s:
+                return float(s)
+            else:
+                return int(args[0])
         elif isinstance(args[0], int) or isinstance(args[0], float):
             return args[0]
         else:
@@ -283,8 +315,12 @@ class Function(object):
         if len(args) != 1:
             raise SyntaxException('sum() expects 1 argument')
 
-        # TODO
-        pass
+        r = 0
+        for n in args[0]:
+            s = f_string((n,), context_node, context_position, context_size, variables)
+            i = f_number((s,), context_node, context_position, context_size, variables)
+            r += i
+        return r
 
     def f_floor(args, context_node, context_position, context_size, variables):
         if len(args) != 1:

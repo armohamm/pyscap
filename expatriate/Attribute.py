@@ -22,8 +22,8 @@ from .Node import Node
 logger = logging.getLogger(__name__)
 
 class Attribute(Node):
-    def __init__(self, document, parent, name_namespace, name_local, value):
-        super(Attribute, self).__init__(document, parent)
+    def __init__(self, document, document_order, parent, name_namespace, name_local, value):
+        super(Attribute, self).__init__(document, document_order, parent)
 
         self.name_namespace = name_namespace
         self.name_local = name_local

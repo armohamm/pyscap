@@ -22,8 +22,8 @@ from .Node import Node
 logger = logging.getLogger(__name__)
 
 class Namespace(Node):
-    def __init__(self, document, parent, prefix, uri):
-        super(Namespace, self).__init__(document, parent)
+    def __init__(self, document, document_order, parent, prefix, uri):
+        super(Namespace, self).__init__(document, document_order, parent)
 
         self.prefix = prefix
         self.uri = uri

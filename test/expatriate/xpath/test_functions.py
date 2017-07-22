@@ -53,7 +53,8 @@ def test_count():
 def test_id():
     assert doc.xpath('id(child::*)') == 'text nodeSuperman\'s dad'
 
-# TODO 'local-name': None,
+def test_local_name():
+    assert doc.root_element.xpath('local-name()') == 'Root'
 # TODO 'namespace-uri': None,
 # TODO 'name': None,
 

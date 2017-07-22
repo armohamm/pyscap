@@ -28,8 +28,18 @@ from .ProcessingInstruction import ProcessingInstruction
 logger = logging.getLogger(__name__)
 
 class Document(Node):
+    @staticmethod
+    def get_first_in_document_order(node_set):
+        if len(node_set) == 0:
+            return None
+        n = node_set[0]
+        for i in range(1, len(node_set)):
+            if node_set[i]._document_order < n._document_order:
+                n = node_set[i]
+        return n
+
     def __init__(self, encoding=None, skip_whitespace=True):
-        super(Document, self).__init__(self, None)
+        super(Document, self).__init__(self, -1, None)
         self.version = None
         self.encoding = encoding
         self.standalone = None
@@ -43,6 +53,7 @@ class Document(Node):
         self._in_cdata = False
         self._stack = []
         self._element_index = {}
+        self._order_count = 0
 
         self._parser.XmlDeclHandler = self._xml_decl_handler
 
@@ -133,12 +144,13 @@ class Document(Node):
             self._in_space_preserve = True
 
         if len(self._stack) == 0:
-            el = Element(self, self, name, attributes)
+            el = Element(self, self._order_count, self, name, attributes)
             self.root_element = el
             self.children.append(el)
         else:
-            el = Element(self, self._stack[-1], name, attributes)
+            el = Element(self, self._order_count, self._stack[-1], name, attributes)
             self._stack[-1].children.append(el)
+        self._order_count += 1
 
         if 'id' in attributes:
             self._element_index[attributes['id']] = el
@@ -159,11 +171,12 @@ class Document(Node):
         logger.debug('_processing_instruction_handler target: ' + str(target) + ' data: ' + str(data))
 
         if len(self._stack) == 0:
-            pi = ProcessingInstruction(self, self, target, data)
+            pi = ProcessingInstruction(self, self._order_count, self, target, data)
             self.children.append(pi)
         else:
-            pi = ProcessingInstruction(self, self._stack[-1], target, data)
+            pi = ProcessingInstruction(self, self._order_count, self._stack[-1], target, data)
             self._stack[-1].children.append(pi)
+        self._order_count += 1
 
     def _character_data_handler(self, data):
         logger.debug('_character_data_handler data: ' + str(data.encode('UTF-8')))
@@ -176,21 +189,23 @@ class Document(Node):
                 return
 
         if len(self._stack) == 0:
-            char_data = CharacterData(self, self, data, cdata_block=self._in_cdata)
+            char_data = CharacterData(self, self._order_count, self, data, cdata_block=self._in_cdata)
             self.children.append(char_data)
         else:
-            char_data = CharacterData(self, self._stack[-1], data, cdata_block=self._in_cdata)
+            char_data = CharacterData(self, self._order_count, self._stack[-1], data, cdata_block=self._in_cdata)
             self._stack[-1].children.append(char_data)
+        self._order_count += 1
 
     def _comment_handler(self, data):
         logger.debug('_comment_handler data: ' + str(data))
 
         if len(self._stack) == 0:
-            c = Comment(self, data)
+            c = Comment(self, self._order_count, data)
             self.children.append(c)
         else:
-            c = Comment(self, self._stack[-1], data)
+            c = Comment(self, self._order_count, self._stack[-1], data)
             self._stack[-1].children.append(c)
+        self._order_count += 1
 
     def _start_cdata_section_handler(self):
         logger.debug('_start_cdata_section_handler')
