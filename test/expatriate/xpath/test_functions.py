@@ -175,6 +175,10 @@ def test_substring(expr, result):
 def test_string_length(expr, result):
     assert doc.xpath(expr) == result
 
+def test_string_length_fail():
+    with pytest.raises(SyntaxException):
+        doc.xpath('string-length(3)')
+
 @pytest.mark.parametrize(
     "expr, result",
     (

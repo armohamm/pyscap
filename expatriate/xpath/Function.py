@@ -213,7 +213,9 @@ class Function(object):
 
     def f_string_length(args, context_node, context_position, context_size, variables):
         if len(args) != 1:
-            raise SyntaxException('string_length() expects 1 argument')
+            raise SyntaxException('string-length() expects 1 argument')
+        if not isinstance(args[0], str):
+            raise SyntaxException('string-length() expects a string argument')
 
         return len(args[0])
 
@@ -223,7 +225,7 @@ class Function(object):
         elif len(args) == 1:
             a = args[0]
         else:
-            raise SyntaxException('normalize_space() expects 1 argument or none')
+            raise SyntaxException('normalize-space() expects 1 argument or none')
 
         a = a.strip('\x20\x09\x0D\x0A')
         return re.sub(r'[\x20\x09\x0D\x0A]+', ' ', a)
