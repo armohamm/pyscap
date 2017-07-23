@@ -84,17 +84,19 @@ def test_name():
 # # String Functions
 
 @pytest.mark.parametrize(
-    "expr, result",
+    "test, result",
     (
-        ('string(3)', '3'),
-        ('string(3.3)', '3.3'),
-        ('string(true)', 'true'),
-        ('string("test")', 'test'),
-        ('string(2+2)', '4'),
+        (doc.xpath('string(3)'), '3'),
+        (doc.xpath('string(3.3)'), '3.3'),
+        (doc.xpath('string(true)'), 'true'),
+        (doc.xpath('string("test")'), 'test'),
+        (doc.xpath('string(2+2)'), '4'),
+        (doc.xpath('string()'), 'text nodeSuperman\'s dadSupermanns Vater'),
+        (doc.root_element.children[0].xpath('string()'), 'text node'),
     )
 )
-def test_string(expr, result):
-    assert doc.xpath(expr) == result
+def test_string(test, result):
+    assert test == result
 
 # TODO string() edge cases
 
