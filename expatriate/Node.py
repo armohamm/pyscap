@@ -16,6 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import math
 import re
 
 from .xpath import SyntaxException
@@ -228,7 +229,7 @@ class Node(object):
                 if token == '-' and ( \
                     len(stack) == 0 \
                     or isinstance(stack[-1], Operator) \
-                    or prev_token == ',' \
+                    or prev_token in ('(', ',') \
                 ):
                     o = Operator('negate')
                 else:
@@ -236,6 +237,10 @@ class Node(object):
                     o.children.append(stack.pop())
                 logger.debug('Pushing ' + str(o) + ' on stack')
                 stack.append(o)
+            elif token == 'Infinity':
+                stack.append(Literal(math.inf))
+            elif token == 'NaN':
+                stack.append(Literal(math.nan))
             elif re.fullmatch(r'[a-zA-Z0-9_-]+', token):
                 # just push; we have to wait till the next token to process
                 logger.debug('Pushing token ' + token + ' on stack')

@@ -137,7 +137,7 @@ class Function(object):
 
             return first_node.get_string_value()
         if isinstance(a, float):
-            if a == math.nan:
+            if math.isnan(a):
                 return 'NaN'
             elif a == -math.inf:
                 return '-Infinity'
@@ -249,7 +249,7 @@ class Function(object):
             raise SyntaxException('boolean() expects 1 argument')
 
         if isinstance(args[0], int) or isinstance(args[0], float):
-            if args[0] != 0 and args[0] != math.nan:
+            if args[0] != 0 and not math.isnan(args[0]):
                 return True
             else:
                 return False
@@ -304,7 +304,11 @@ class Function(object):
 
         try:
             if isinstance(args[0], str):
-                if '.' in args[0]:
+                if args[0] == 'NaN':
+                    return math.nan
+                elif args[0] == 'Infinity':
+                    return math.inf
+                elif '.' in args[0]:
                     return float(args[0])
                 else:
                     return int(args[0])
@@ -314,10 +318,7 @@ class Function(object):
                 return 0
             elif isinstance(args[0],  list):
                 s = f_string((args[0],), context_node, context_position, context_size, variables)
-                if '.' in s:
-                    return float(s)
-                else:
-                    return int(args[0])
+                return f_number(s, context_node, context_position, context_size, variables)
             elif isinstance(args[0], int) or isinstance(args[0], float):
                 return args[0]
             else:
@@ -352,7 +353,7 @@ class Function(object):
         if len(args) != 1:
             raise SyntaxException('round() expects 1 argument')
 
-        if args[0] == math.nan:
+        if math.isnan(args[0]):
             return math.nan
         elif args[0] == math.inf:
             return math.inf

@@ -16,6 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
+import math
 import pytest
 
 from expatriate import *
@@ -253,6 +254,26 @@ def test_lang(test, result):
 @pytest.mark.parametrize(
     "expr, result",
     (
+        ('number(1)', 1),
+        ('number(2.6)', 2.6),
+        ('number(true)', 1),
+        ('number(false)', 0),
+        ('number("3")', 3),
+        ('number("3.1")', 3.1),
+        ('number(concat("4", "2"))', 42),
+        ('number(-Infinity)', -math.inf),
+        ('number(Infinity)', math.inf),
+    )
+)
+def test_number(expr, result):
+    assert doc.xpath(expr) == result
+
+def test_number_nan():
+    assert math.isnan(doc.xpath('number(NaN)'))
+
+@pytest.mark.parametrize(
+    "expr, result",
+    (
         ('floor(1.1)', 1),
         ('floor(2.6)', 2),
     )
@@ -274,21 +295,6 @@ def test_sum():
     )
 )
 def test_ceiling(expr, result):
-    assert doc.xpath(expr) == result
-
-@pytest.mark.parametrize(
-    "expr, result",
-    (
-        ('number(1)', 1),
-        ('number(2.6)', 2.6),
-        ('number(true)', 1),
-        ('number(false)', 0),
-        ('number("3")', 3),
-        ('number("3.1")', 3.1),
-        ('number(concat("4", "2"))', 42),
-    )
-)
-def test_number(expr, result):
     assert doc.xpath(expr) == result
 
 @pytest.mark.parametrize(
