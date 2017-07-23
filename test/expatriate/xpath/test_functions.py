@@ -30,9 +30,12 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
     </para>
     <para name="element2"/>
     <para name="element3">
-        <para name="subel1">
+        <para name="subel1" xml:lang="en">
             <para name="kal-el">
                 Superman's dad
+            </para>
+            <para name="kal-el" xml:lang="de">
+                Supermanns Vater
             </para>
         </para>
     </para>
@@ -41,8 +44,14 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
 
 # # Node Set Functions
 
-def test_last():
-    assert doc.xpath('last()') == 1
+@pytest.mark.parametrize(
+    "test, result",
+    (
+        (doc.xpath('last()'), 1),
+    )
+)
+def test_last(test, result):
+    assert test == result
 
 # TODO actual node set
 
@@ -55,7 +64,7 @@ def test_count():
     assert doc.xpath('count(child::*)') == 1
 
 def test_id():
-    assert doc.xpath('id(child::*)') == 'text nodeSuperman\'s dad'
+    assert doc.xpath('id(child::*)') == 'text nodeSuperman\'s dadSupermanns Vater'
 
 def test_local_name():
     assert doc.root_element.xpath('local-name()') == 'Root'
@@ -223,10 +232,18 @@ def test_true():
 def test_false():
     assert doc.xpath('false()') == False
 
-def test_lang():
-    assert doc.xpath('lang("en")') == False
-
-# TODO actual xml:lang
+@pytest.mark.parametrize(
+    "test, result",
+    (
+        (doc.root_element.xpath('lang("en")'), False),
+        (doc.root_element.children[2].children[0].xpath('lang("en")'), True),
+        (doc.root_element.children[2].children[0].children[0].xpath('lang("en")'), True),
+        (doc.root_element.children[2].children[0].children[1].xpath('lang("en")'), False),
+        (doc.root_element.children[2].children[0].children[1].xpath('lang("de")'), True),
+    )
+)
+def test_lang(test, result):
+    assert test == result
 
 # # Number Functions
 
