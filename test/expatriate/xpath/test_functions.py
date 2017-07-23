@@ -200,20 +200,21 @@ def test_translate(expr, result):
 # # Boolean Functions
 
 @pytest.mark.parametrize(
-    "expr, result",
+    "test, result",
     (
-        ('boolean(0)', False),
-        ('boolean(1)', True),
-        ('boolean(3)', True),
-        # TODO nodeset
-        ('boolean("")', False),
-        ('boolean("test")', True),
-        ('boolean(true)', True),
-        ('boolean(false)', False),
+        (doc.xpath('boolean(0)'), False),
+        (doc.xpath('boolean(1)'), True),
+        (doc.xpath('boolean(3)'), True),
+        (doc.xpath('boolean(child::*)'), True),
+        (doc.root_element.children[1].xpath('boolean(child::*)'), False),
+        (doc.xpath('boolean("")'), False),
+        (doc.xpath('boolean("test")'), True),
+        (doc.xpath('boolean(true)'), True),
+        (doc.xpath('boolean(false)'), False),
     )
 )
-def test_boolean(expr, result):
-    assert doc.xpath(expr) == result
+def test_boolean(test, result):
+    assert test == result
 
 
 @pytest.mark.parametrize(
