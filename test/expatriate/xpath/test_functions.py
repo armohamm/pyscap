@@ -72,8 +72,16 @@ def test_local_name():
 
 # TODO prefixed qname
 
-def test_namespace_uri():
-    assert doc.root_element.xpath('namespace-uri()') == 'http://jaymes.biz'
+@pytest.mark.parametrize(
+    "test, result",
+    (
+        (doc.root_element.xpath('namespace-uri()'), 'http://jaymes.biz'),
+        (doc.root_element.children[0].xpath('namespace-uri()'), 'http://jaymes.biz/test'),
+        (doc.root_element.xpath('namespace-uri(child::*)'), 'http://jaymes.biz/test'),
+    )
+)
+def test_namespace_uri(test, result):
+    assert test == result
 
 # TODO prefixed qname
 
@@ -82,6 +90,7 @@ def test_namespace_uri():
     (
         (doc.root_element.xpath('name()'), 'Root'),
         (doc.root_element.children[0].xpath('name()'), 'test:para'),
+        (doc.root_element.xpath('name(child::*)'), 'test:para'),
     )
 )
 def test_name(test, result):
