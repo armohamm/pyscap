@@ -26,9 +26,9 @@ logging.basicConfig(level=logging.DEBUG)
 doc = Document()
 doc.parse('''<?xml version='1.0' encoding='utf-8'?>
 <Root xmlns="http://jaymes.biz">
-    <para name="element1">
+    <test:para name="element1" xmlns:test="http://jaymes.biz/test">
         text node
-    </para>
+    </test:para>
     <para name="element2"/>
     <para name="element3">
         <para name="subel1" xml:lang="en">
@@ -77,10 +77,15 @@ def test_namespace_uri():
 
 # TODO prefixed qname
 
-def test_name():
-    assert doc.root_element.xpath('name()') == 'Root'
-
-# TODO prefixed qname
+@pytest.mark.parametrize(
+    "test, result",
+    (
+        (doc.root_element.xpath('name()'), 'Root'),
+        (doc.root_element.children[0].xpath('name()'), 'test:para'),
+    )
+)
+def test_name(test, result):
+    assert test == result
 
 # # String Functions
 
