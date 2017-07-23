@@ -28,13 +28,13 @@ class Expression(object):
 
     def evaluate(self, context_node, context_position, context_size, variables):
         logger.debug('Evaluating ' + str(self))
+        if len(self.children) > 1:
+            raise SyntaxException('Expression has more than 1 child')
 
-        child_eval = []
-        for c in self.children:
-            child_eval.append(c.evaluate(context_node, context_position, context_size, variables))
-            logger.debug('Child ' + str(c) + ' evaluated to ' + str(child_eval[-1]))
+        v = self.children[0].evaluate(context_node, context_position, context_size, variables)
+        logger.debug('Child ' + str(self.children[0]) + ' evaluated to ' + str(v))
 
-        return child_eval[0]
+        return v
 
     def __str__(self):
         return 'Expression ' + hex(id(self)) + ': ' + str([str(x) for x in self.children])
