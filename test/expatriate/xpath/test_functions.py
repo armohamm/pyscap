@@ -67,10 +67,16 @@ def test_count():
 def test_id():
     assert doc.xpath('id(child::*)') == 'text nodeSuperman\'s dadSupermanns Vater'
 
-def test_local_name():
-    assert doc.root_element.xpath('local-name()') == 'Root'
-
-# TODO prefixed qname
+@pytest.mark.parametrize(
+    "test, result",
+    (
+        (doc.root_element.xpath('local-name()'), 'Root'),
+        (doc.root_element.children[0].xpath('local-name()'), 'para'),
+        (doc.root_element.xpath('local-name(child::*)'), 'para'),
+    )
+)
+def test_local_name(test, result):
+    assert test == result
 
 @pytest.mark.parametrize(
     "test, result",
@@ -82,8 +88,6 @@ def test_local_name():
 )
 def test_namespace_uri(test, result):
     assert test == result
-
-# TODO prefixed qname
 
 @pytest.mark.parametrize(
     "test, result",
