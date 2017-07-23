@@ -94,12 +94,13 @@ def test_name():
         (doc.xpath('string(2+2)'), '4'),
         (doc.xpath('string()'), 'text nodeSuperman\'s dadSupermanns Vater'),
         (doc.root_element.children[0].xpath('string()'), 'text node'),
+        (doc.xpath('string(NaN)'), 'NaN'),
+        (doc.xpath('string(Infinity)'), 'Infinity'),
+        (doc.xpath('string(-Infinity)'), '-Infinity'),
     )
 )
 def test_string(test, result):
     assert test == result
-
-# TODO string() edge cases
 
 @pytest.mark.parametrize(
     "expr, result",
