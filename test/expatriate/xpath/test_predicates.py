@@ -43,5 +43,8 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
 def test_number():
     assert doc.root_element.xpath('child::*[2]') == [doc.root_element.children[1]]
 
-def test_explicit_position():
+def test_boolean():
     assert doc.root_element.xpath('child::*[position()=2]') == [doc.root_element.children[1]]
+
+def test_sub_expr():
+    assert doc.root_element.xpath('child::*[position()-1=1]') == [doc.root_element.children[1]]
