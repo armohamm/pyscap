@@ -214,11 +214,13 @@ def test_translate(expr, result):
         (doc.xpath('boolean("test")'), True),
         (doc.xpath('boolean(true)'), True),
         (doc.xpath('boolean(false)'), False),
+        (doc.xpath('boolean(NaN)'), False),
+        (doc.xpath('boolean(-Infinity)'), True),
+        (doc.xpath('boolean(Infinity)'), True),
     )
 )
 def test_boolean(test, result):
     assert test == result
-
 
 @pytest.mark.parametrize(
     "expr, result",
