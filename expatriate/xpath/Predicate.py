@@ -17,6 +17,26 @@
 
 import logging
 
+from .Function import Function
+
 logger = logging.getLogger(__name__)
 class Predicate(object):
-    pass
+    def __init__(self):
+        self.children = []
+
+    def evaluate(self, context_node, context_position, context_size, variables):
+        if len(self.children) != 1:
+            raise SyntaxException('Predicate can only have 1 expression')
+
+        v = self.children[0].evaluate(context_node, context_position, context_size, variables)
+
+        if isinstance(v, bool):
+            logger.debug('Boolean predicate subexpression: ' + str(v))
+            return v
+        elif isinstance(v, int) or isinstance(v, float):
+            logger.debug('Numeric result for predicate subexpression: ' + str(v) + '; comparing to position()')
+            return Function.f_position((), context_node, context_position, context_size, variables) == v
+        else:
+            v_b = Function.f_boolean((v,), context_node, context_position, context_size, variables)
+            logger.debug('Converting predicate subexpression result ' + str(v) + ' to boolean: '  + str(v_b))
+            return v_b

@@ -34,11 +34,11 @@ class TypeNodeTest(NodeTest):
 
     # TODO processing-instruction can have a literal that matches its name
 
-    def test(self, node, context_node, context_position, context_size, variables):
+    def evaluate(self, context_node, context_position, context_size, variables):
         if self.name == 'node':
             return True
         else:
-            return node.get_type == self.name
+            return context_node.get_type == self.name
 
     def __str__(self):
         return 'TypeNodeTest ' + hex(id(self)) + ' ' + self.name + ': ' + str([str(x) for x in self.children])

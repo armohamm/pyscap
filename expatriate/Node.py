@@ -26,6 +26,7 @@ from .xpath.Expression import Expression
 from .xpath.Function import Function
 from .xpath.Literal import Literal
 from .xpath.Operator import Operator
+from .xpath.Predicate import Predicate
 from .xpath.TypeNodeTest import TypeNodeTest
 
 logger = logging.getLogger(__name__)
@@ -183,6 +184,26 @@ class Node(object):
                     logger.debug('Adding ' + str(e) + ' to ' + str(stack[-1]))
                     stack[-1].children.append(e)
                 # else just let it on the stack
+            elif token == '[':
+                nt = stack.pop()
+                stack[-1].children.append(nt)
+                p = Predicate()
+                stack.append(p)
+                logger.debug('Starting predicate ' + str(p))
+                e = Expression()
+                stack.append(e)
+                logger.debug('Starting sub expression ' + str(e))
+            elif token == ']':
+                logger.debug('End of ' + str(stack[-1]))
+                if prev_token == '[':
+                    # don't add empty predicate
+                    stack.pop()
+                    stack.pop()
+                    logger.debug('Ignoring empty expression & predicate')
+                else:
+                    e = stack.pop()
+                    logger.debug('Adding ' + str(e) + ' to ' + str(stack[-1]))
+                    stack[-1].children.append(e)
             elif token  == '::':
                 if prev_token in Axis.AXES:
                     stack.pop()
@@ -229,7 +250,7 @@ class Node(object):
                 if token == '-' and ( \
                     len(stack) == 0 \
                     or isinstance(stack[-1], Operator) \
-                    or prev_token in ('(', ',') \
+                    or prev_token in ('(', ',', '[') \
                 ):
                     o = Operator('negate')
                 else:

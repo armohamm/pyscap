@@ -21,7 +21,7 @@ from .NodeTest import NodeTest
 
 logger = logging.getLogger(__name__)
 class AnyNodeTest(NodeTest):
-    def test(self, node, context_node, context_position, context_size, variables):
+    def evaluate(self, context_node, context_position, context_size, variables):
         return True
 
     def __str__(self):

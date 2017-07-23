@@ -167,9 +167,11 @@ class Axis(object):
             for i in range(len(nodeset)):
                 node = nodeset[i]
                 logger.debug('Testing ' + str(node) + ' against ' + str(c))
-                if c.test(node, context_node, i+1, len(nodeset), variables):
+                if c.evaluate(node, i+1, len(nodeset), variables):
                     logger.debug(str(node) + ' passed ' + str(c))
                     ns.append(node)
+                else:
+                    logger.debug(str(node) + ' failed ' + str(c))
             nodeset = ns
 
         return nodeset
