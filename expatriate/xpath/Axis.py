@@ -18,6 +18,7 @@
 import logging
 
 from .NodeTest import NodeTest
+from .Predicate import Predicate
 
 def a_ancestor(node):
     ns = []
@@ -155,10 +156,13 @@ class Axis(object):
         self.children = []
 
     def evaluate(self, context_node, context_position, context_size, variables):
-        if len(self.children) < 1 or not isinstance(self.children[0], NodeTest):
+        if len(self.children) <= 0:
             raise ValueError('Axis missing NodeTest')
-
-        # TODO the rest need to be predicates
+        for i in range(len(self.children)):
+            if i == 0 and not isinstance(self.children[i], NodeTest):
+                raise ValueError('Axis missing NodeTest')
+            elif i > 0 and not isinstance(self.children[i], Predicate):
+                raise ValueError('Axis children past the first must be predicates: ' + str(self.children[i]))
 
         nodeset = Axis.AXES[self.name](context_node)
         logger.debug('Initial nodeset: ' + str(nodeset))
@@ -173,8 +177,8 @@ class Axis(object):
                 else:
                     logger.debug(str(nodeset[i]) + ' failed ' + str(c))
             nodeset = ns
-        logger.debug('Final nodeset: ' + str(nodeset))
 
+        logger.debug('Final nodeset: ' + str(nodeset))
         return nodeset
 
     def __str__(self):
