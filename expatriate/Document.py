@@ -26,7 +26,7 @@ from .Node import Node
 from .ProcessingInstruction import ProcessingInstruction
 
 logger = logging.getLogger(__name__)
-
+logger.setLevel(logging.INFO)
 class Document(Node):
     @staticmethod
     def get_first_in_document_order(node_set):

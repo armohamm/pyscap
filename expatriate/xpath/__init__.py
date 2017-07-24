@@ -17,3 +17,30 @@
 
 class SyntaxException(Exception):
     pass
+
+from .AnyNodeTest import AnyNodeTest
+from .Axis import Axis
+from .Expression import Expression
+from .Function import Function
+from .Literal import Literal
+from .NCNameNodeTest import NCNameNodeTest
+from .NodeTest import NodeTest
+from .Operator import Operator
+from .Predicate import Predicate
+from .QNameNodeTest import QNameNodeTest
+from .TypeNodeTest import TypeNodeTest
+
+__all__ = [
+    'AnyNodeTest',
+    'Axis',
+    'Expression',
+    'Function',
+    'Literal',
+    'NCNameNodeTest',
+    'NodeTest',
+    'Operator',
+    'Predicate',
+    'QNameNodeTest',
+    'SyntaxException',
+    'TypeNodeTest',
+]

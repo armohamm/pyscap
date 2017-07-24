@@ -17,7 +17,18 @@
 
 import logging
 
+from .NodeTest import NodeTest
+
 logger = logging.getLogger(__name__)
-class QNameNodeTest(object):
+class QNameNodeTest(NodeTest):
     def __init__(self, name):
         super(QNameNodeTest, self).__init__()
+        self.name = name
+
+    def evaluate(self, context_node, context_position, context_size, variables):
+        if not hasattr(context_node, 'name'):
+            return False
+        return context_node.name == self.name
+
+    def __str__(self):
+        return 'QNameNodeTest ' + hex(id(self)) + ' ' + self.name + ': ' + str([str(x) for x in self.children])

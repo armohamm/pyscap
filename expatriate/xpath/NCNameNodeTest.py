@@ -17,7 +17,18 @@
 
 import logging
 
+from .NodeTest import NodeTest
+
 logger = logging.getLogger(__name__)
-class NCNameNodeTest(object):
+class NCNameNodeTest(NodeTest):
     def __init__(self, name):
         super(NCNameNodeTest, self).__init__()
+        self.name = name
+
+    def evaluate(self, context_node, context_position, context_size, variables):
+        if not hasattr(context_node, 'name_local'):
+            return False
+        return context_node.name_local == self.name
+
+    def __str__(self):
+        return 'NCNameNodeTest ' + hex(id(self)) + ' ' + self.name + ': ' + str([str(x) for x in self.children])

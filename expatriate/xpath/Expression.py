@@ -19,7 +19,6 @@ import logging
 import re
 
 from .Operator import Operator
-from .Negate import Negate
 
 logger = logging.getLogger(__name__)
 class Expression(object):

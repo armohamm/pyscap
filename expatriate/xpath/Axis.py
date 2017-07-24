@@ -155,24 +155,25 @@ class Axis(object):
         self.children = []
 
     def evaluate(self, context_node, context_position, context_size, variables):
-        nodeset = Axis.AXES[self.name](context_node)
-        logger.debug('Initial nodeset: ' + str(nodeset))
-
         if len(self.children) < 1 or not isinstance(self.children[0], NodeTest):
             raise ValueError('Axis missing NodeTest')
-            # TODO the rest need to be predicates
+
+        # TODO the rest need to be predicates
+
+        nodeset = Axis.AXES[self.name](context_node)
+        logger.debug('Initial nodeset: ' + str(nodeset))
 
         for c in self.children:
             ns = []
             for i in range(len(nodeset)):
-                node = nodeset[i]
-                logger.debug('Testing ' + str(node) + ' against ' + str(c))
-                if c.evaluate(node, i+1, len(nodeset), variables):
-                    logger.debug(str(node) + ' passed ' + str(c))
-                    ns.append(node)
+                logger.debug('Testing ' + str(nodeset[i]) + ' against ' + str(c))
+                if c.evaluate(nodeset[i], i+1, len(nodeset), variables):
+                    logger.debug(str(nodeset[i]) + ' passed ' + str(c))
+                    ns.append(nodeset[i])
                 else:
-                    logger.debug(str(node) + ' failed ' + str(c))
+                    logger.debug(str(nodeset[i]) + ' failed ' + str(c))
             nodeset = ns
+        logger.debug('Final nodeset: ' + str(nodeset))
 
         return nodeset
 
