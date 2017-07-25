@@ -140,18 +140,12 @@ class Element(Node):
     def get_expanded_name(self):
         return (self.name_namespace, self.name_local)
 
-    def __getattr__(self, name):
-        try:
-            return self._attr_index[name]
-        except KeyError:
-            raise AttributeError('Attribute ' + str(name) + ' was not found')
-
     def __len__(self):
         return len(self.children)
 
     def __getitem__(self, key):
-        if not isinstance(key, int):
-            raise TypeError('Key values must be of int type')
+        if not isinstance(key, int) and not isinstance(key, slice):
+            raise TypeError('Key values must be of int type or slice')
 
         return self.children[key]
 

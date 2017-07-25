@@ -260,8 +260,8 @@ class Document(Node):
         return len(self.children)
 
     def __getitem__(self, key):
-        if not isinstance(key, int):
-            raise TypeError('Key values must be of int type')
+        if not isinstance(key, int) and not isinstance(key, slice):
+            raise TypeError('Key values must be of int type or slice')
 
         return self.children[key]
 
