@@ -25,99 +25,102 @@ logging.basicConfig(level=logging.DEBUG)
 doc = Document()
 doc.parse('''<?xml version='1.0' encoding='utf-8'?>
 <doc xmlns="http://jaymes.biz">
-    <chapter name="ch1">
-        <title>Figures</title>
-        <figure name="fig01"/>
-        <figure name="fig02"/>
-        <figure name="fig03"/>
-        <figure name="fig04"/>
-        <figure name="fig05"/>
-        <figure name="fig06"/>
-        <figure name="fig07"/>
-        <figure name="fig08"/>
-        <figure name="fig09"/>
-        <figure name="fig10"/>
-        <figure name="fig11"/>
-        <figure name="fig12"/>
-        <figure name="fig13"/>
-        <figure name="fig14"/>
-        <figure name="fig15"/>
-        <figure name="fig16"/>
-        <figure name="fig17"/>
-        <figure name="fig18"/>
-        <figure name="fig19"/>
+    <chapter name="[0]">
+        <title name="[0][0]">Figures</title>
+        <figure name="[0][1]">1</figure>
+        <figure name="[0][2]">2</figure>
+        <figure name="[0][3]">3</figure>
+        <figure name="[0][4]">4</figure>
+        <figure name="[0][5]">5</figure>
+        <figure name="[0][6]">6</figure>
+        <figure name="[0][7]">7</figure>
+        <figure name="[0][8]">8</figure>
+        <figure name="[0][9]">9</figure>
+        <figure name="[0][10]">10</figure>
+        <figure name="[0][11]">11</figure>
+        <figure name="[0][12]">12</figure>
+        <figure name="[0][13]">13</figure>
+        <figure name="[0][14]">14</figure>
+        <figure name="[0][15]">15</figure>
+        <figure name="[0][16]">16</figure>
+        <figure name="[0][17]">17</figure>
+        <figure name="[0][18]">18</figure>
+        <figure name="[0][19]">19</figure>
     </chapter>
-    <chapter name="ch2">
-        <title>Introduction</title>
-        text node
-        <div name="ch2_div1">
-            <div name="ch2_div1_div2">
-                <para name="ch2_div1_div2_p1" type="warning">Context para 1</para>
-                <para name="ch2_div1_div2_p2">Context para 2</para>
-                <para name="ch2_div1_div2_p3">Context para 3</para>
+    <chapter name="[1]" type="information">
+        <title name="[1][0]">Introduction</title>
+        text node [1][1]
+        <div name="[1][2]">
+            <div name="[1][2][0]">
+                <para name="[1][2][0][0]" type="warning">Context para 1</para>
+                <para name="[1][2][0][1]">text node [1][2][0][1][0]</para>
+                <para name="[1][2][0][2]">
+                    text node [1][2][0][2][0]
+                    <para name="[1][2][0][2][1]"></para>
+                </para>
             </div>
-            <para name="ch2_div1_p1">Context para 3</para>
-            <figure name="fig20"/>
-            <figure name="fig21"/>
-            <figure name="fig22"/>
-            <figure name="fig23"/>
-            <figure name="fig24"/>
-            <figure name="fig25"/>
-            <figure name="fig26"/>
-            <figure name="fig27"/>
-            <figure name="fig28"/>
-            <figure name="fig29"/>
+            <para name="[1][2][1]">Context para 3</para>
+            <figure name="[1][2][2]"></figure>
+            <figure name="[1][2][3]"></figure>
+            <figure name="[1][2][4]"></figure>
+            <figure name="[1][2][5]"></figure>
+            <figure name="[1][2][6]"></figure>
+            <figure name="[1][2][7]"></figure>
+            <figure name="[1][2][8]"></figure>
+            <figure name="[1][2][9]"></figure>
+            <figure name="[1][2][10]"></figure>
+            <figure name="[1][2][11]"></figure>
         </div>
-        <para name="ch2_p1">Context para 1</para>
-        <para name="ch2_p2">Context para 2</para>
+        <para name="[1][3]">text node [1][3][0]</para>
+        <para name="[1][4]">text node [1][4][0]</para>
     </chapter>
-    <chapter name="ch3">
-        <title>Paras and Figures</title>
-        <para name="ch3_p1" type="warning">Chapter para 1</para>
-        <para name="ch3_p2" type="warning">Chapter para 2</para>
-        <figure name="fig30"/>
-        <figure name="fig31"/>
-        <figure name="fig32"/>
-        <figure name="fig33"/>
-        <figure name="fig34"/>
-        <figure name="fig35"/>
-        <figure name="fig36"/>
-        <figure name="fig37"/>
-        <figure name="fig38"/>
-        <figure name="fig39"/>
+    <chapter name="[2]">
+        <title name="[2][0]">text node [2][0][0]</title>
+        <para name="[2][1]" type="warning">text node [2][1][0]</para>
+        <para name="[2][2]" type="warning">text node [2][2][0]</para>
+        <figure name="[2][3]">30</figure>
+        <figure name="[2][4]">31</figure>
+        <figure name="[2][5]">32</figure>
+        <figure name="[2][6]">33</figure>
+        <figure name="[2][7]">34</figure>
+        <figure name="[2][8]">35</figure>
+        <figure name="[2][9]">36</figure>
+        <figure name="[2][10]">37</figure>
+        <figure name="[2][11]">38</figure>
+        <figure name="[2][12]">39</figure>
     </chapter>
-    <chapter name="ch4">
-        <title>Introduction</title>
-        <para name="ch4_p1" type="warning">Chapter para 1</para>
-        <para name="ch4_p2" type="warning">Chapter para 2</para>
-        <olist name="ch4_ol1">
-            <item name="ch4_ol1_i1">Item 1</item>
-            <item name="ch4_ol1_i1">Item 2</item>
+    <chapter name="[3]">
+        <title name="[3][0]">text node [3][0][0]</title>
+        <para name="[3][1]" type="warning">text node [3][1][0]</para>
+        <para name="[3][2]" type="warning">text node [3][2][0]</para>
+        <olist name="[3][3]">
+            <item name="[3][3][0]">text node [3][3][0][0]</item>
+            <item name="[3][3][1]">text node [3][3][0][1]</item>
         </olist>
-        <para name="ch4_p3" type="warning">Chapter para 3</para>
-        <para name="ch4_p4" type="warning">Chapter para 4</para>
-        <figure name="fig40"/>
-        <figure name="fig41"/>
-        <figure name="fig42"/>
+        <para name="[3][4]" type="warning">text node [3][4][0]</para>
+        <para name="[3][5]" type="warning">text node [3][5][0]</para>
+        <figure name="[3][6]">40</figure>
+        <figure name="[3][7]">41</figure>
+        <figure name="[3][8]">42</figure>
     </chapter>
-    <chapter name="ch5">
-        <title>Summary</title>
-        <section name="ch5_sec1">
+    <chapter name="[4]">
+        <title name="[4][0]">text node [4][0][0]</title>
+        <section name="[4][1]">
         </section>
-        <section name="ch5_sec2">
+        <section name="[4][2]">
         </section>
     </chapter>
-    <appendix name="a1">
-        <title>Appendix 1</title>
-        <employee secretary="Jane">John</employee>
-        <employee>Jane</employee>
-        <employee secretary="Charles" assistant="Cecil">Charleen</employee>
-        <employee>Charles</employee>
-        <employee assistant="Chuck">Cecil</employee>
+    <appendix name="[5]">
+        <title name="[5][0]">text node [5][0][0]</title>
+        <employee name="[5][1]" secretary="Jane">John</employee>
+        <employee name="[5][2]">Jane</employee>
+        <employee name="[5][3]" secretary="Charles" assistant="Cecil">Charleen</employee>
+        <employee name="[5][4]">Charles</employee>
+        <employee name="[5][5]" assistant="Chuck">Cecil</employee>
     </appendix>
-    <appendix name="a2">
+    <appendix name="[6]">
     </appendix>
-    <appendix name="a3">
+    <appendix name="[7]">
     </appendix>
 </doc>
 ''')
@@ -125,25 +128,94 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
 @pytest.mark.parametrize(
     "test, result",
     (
-        (doc.root_element.children[1].xpath('child::para'), [
-            doc.root_element.children[1].children[3],
-            doc.root_element.children[1].children[4],
+        # 0
+        (doc.root_element[1].xpath('child::para'), [
+            doc.root_element[1][3],
+            doc.root_element[1][4],
         ]),
-        (doc.root_element.children[1].xpath('child::*'), [
-            doc.root_element.children[1].children[0],
-            doc.root_element.children[1].children[2],
-            doc.root_element.children[1].children[3],
-            doc.root_element.children[1].children[4],
+        # 1
+        (doc.root_element[1].xpath('child::*'), [
+            doc.root_element[1][0],
+            doc.root_element[1][2],
+            doc.root_element[1][3],
+            doc.root_element[1][4],
         ]),
-        (doc.root_element.children[1].xpath('child::text()'), [
-            doc.root_element.children[1].children[1],
+        # 2
+        (doc.root_element[1].xpath('child::text()'), [
+            doc.root_element[1][1],
         ]),
-        (doc.root_element.children[1].xpath('child::node()'), [
-            doc.root_element.children[1].children[0],
-            doc.root_element.children[1].children[1],
-            doc.root_element.children[1].children[2],
-            doc.root_element.children[1].children[3],
-            doc.root_element.children[1].children[4],
+        # 3
+        (doc.root_element[1].xpath('child::node()'), [
+            doc.root_element[1][0],
+            doc.root_element[1][1],
+            doc.root_element[1][2],
+            doc.root_element[1][3],
+            doc.root_element[1][4],
+        ]),
+        # 4
+        (doc.root_element[1].xpath('attribute::name'), [
+            doc.root_element[1].attribute_nodes['name'],
+        ]),
+        # 5
+        (doc.root_element[1].xpath('attribute::name'), [
+            doc.root_element[1].attribute_nodes['name'],
+        ]),
+        # 6
+        (doc.root_element[1].xpath('attribute::*'), [
+            doc.root_element[1].attribute_nodes['name'],
+            doc.root_element[1].attribute_nodes['type'],
+        ]),
+        # 7
+        (doc.root_element[1].xpath('descendant::para'), [
+            doc.root_element[1][2][0][0],
+            doc.root_element[1][2][0][1],
+            doc.root_element[1][2][0][2],
+            doc.root_element[1][2][0][2][1],
+            doc.root_element[1][2][1],
+            doc.root_element[1][3],
+            doc.root_element[1][4],
+        ]),
+        # 8
+        (doc.root_element[1][2][0][0].xpath('ancestor::div'), [
+            doc.root_element[1][2][0],
+            doc.root_element[1][2],
+        ]),
+        # 9
+        (doc.root_element[1][2][0].xpath('ancestor-or-self::div'), [
+            doc.root_element[1][2][0],
+            doc.root_element[1][2],
+        ]),
+        # 10
+        (doc.root_element[1][2].xpath('ancestor-or-self::div'), [
+            doc.root_element[1][2],
+        ]),
+        # 11
+        (doc.root_element[1][2][0][2].xpath('descendant-or-self::para'), [
+            doc.root_element[1][2][0][2],
+            doc.root_element[1][2][0][2][1],
+        ]),
+        # 12
+        (doc.root_element[1][2][0][2].xpath('self::para'), [
+            doc.root_element[1][2][0][2],
+        ]),
+        # 13
+        (doc.root_element[1].xpath('self::para'), [
+        ]),
+        # 13
+        (doc.root_element.xpath('child::chapter/descendant::para'), [
+            doc.root_element[1][2][0][0],
+            doc.root_element[1][2][0][1],
+            doc.root_element[1][2][0][2],
+            doc.root_element[1][2][0][2][1],
+            doc.root_element[1][2][1],
+            doc.root_element[1][3],
+            doc.root_element[1][4],
+            doc.root_element[2][1],
+            doc.root_element[2][2],
+            doc.root_element[3][1],
+            doc.root_element[3][2],
+            doc.root_element[3][4],
+            doc.root_element[3][5],
         ]),
     )
 )

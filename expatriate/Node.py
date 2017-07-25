@@ -200,16 +200,21 @@ class Node(object):
                 else:
                     stack.append(l)
                 logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
-            elif tokens[i] in Operator.OPERATORS:
-                if tokens[i] == '-' and ( \
-                    len(stack) == 0 \
-                    or isinstance(stack[-1], Operator) \
-                    or (i > 0 and tokens[i-1] in ('(', ',', '[')) \
-                ):
-                    o = Operator('negate')
-                else:
-                    o = Operator(tokens[i])
-                    o.children.append(stack.pop())
+            elif tokens[i] == '-' and ( \
+                len(stack) == 0 \
+                or isinstance(stack[-1], Operator) \
+                or (i > 0 and tokens[i-1] in ('(', ',', '[')) \
+            ):
+                o = Operator('negate')
+                stack.append(o)
+                logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
+            elif tokens[i] in Operator.OPERATORS and i > 0 and tokens[-1] not in [
+                '::', '(', '[', ',', 'and', 'or', 'mod', 'div',
+                '*', '/', '//', '|', '+', '-', '=', '!=', '<', '<=',
+                '>', '>=',
+            ]:
+                o = Operator(tokens[i])
+                o.children.append(stack.pop())
                 stack.append(o)
                 logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
             elif tokens[i] == '/':

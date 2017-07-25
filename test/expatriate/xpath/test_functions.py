@@ -71,7 +71,7 @@ def test_id():
     "test, result",
     (
         (doc.root_element.xpath('local-name()'), 'Root'),
-        (doc.root_element.children[0].xpath('local-name()'), 'para'),
+        (doc.root_element[0].xpath('local-name()'), 'para'),
         (doc.root_element.xpath('local-name(child::*)'), 'para'),
     )
 )
@@ -82,7 +82,7 @@ def test_local_name(test, result):
     "test, result",
     (
         (doc.root_element.xpath('namespace-uri()'), 'http://jaymes.biz'),
-        (doc.root_element.children[0].xpath('namespace-uri()'), 'http://jaymes.biz/test'),
+        (doc.root_element[0].xpath('namespace-uri()'), 'http://jaymes.biz/test'),
         (doc.root_element.xpath('namespace-uri(child::*)'), 'http://jaymes.biz/test'),
     )
 )
@@ -93,7 +93,7 @@ def test_namespace_uri(test, result):
     "test, result",
     (
         (doc.root_element.xpath('name()'), 'Root'),
-        (doc.root_element.children[0].xpath('name()'), 'test:para'),
+        (doc.root_element[0].xpath('name()'), 'test:para'),
         (doc.root_element.xpath('name(child::*)'), 'test:para'),
     )
 )
@@ -111,7 +111,7 @@ def test_name(test, result):
         (doc.xpath('string("test")'), 'test'),
         (doc.xpath('string(2+2)'), '4'),
         (doc.xpath('string()'), 'text nodeSuperman\'s dadSupermanns Vater'),
-        (doc.root_element.children[0].xpath('string()'), 'text node'),
+        (doc.root_element[0].xpath('string()'), 'text node'),
         (doc.xpath('string(NaN)'), 'NaN'),
         (doc.xpath('string(Infinity)'), 'Infinity'),
         (doc.xpath('string(-Infinity)'), '-Infinity'),
@@ -232,7 +232,7 @@ def test_translate(expr, result):
         (doc.xpath('boolean(1)'), True),
         (doc.xpath('boolean(3)'), True),
         (doc.xpath('boolean(child::*)'), True),
-        (doc.root_element.children[1].xpath('boolean(child::*)'), False),
+        (doc.root_element[1].xpath('boolean(child::*)'), False),
         (doc.xpath('boolean("")'), False),
         (doc.xpath('boolean("test")'), True),
         (doc.xpath('boolean(true)'), True),
@@ -265,10 +265,10 @@ def test_false():
     "test, result",
     (
         (doc.root_element.xpath('lang("en")'), False),
-        (doc.root_element.children[2].children[0].xpath('lang("en")'), True),
-        (doc.root_element.children[2].children[0].children[0].xpath('lang("en")'), True),
-        (doc.root_element.children[2].children[0].children[1].xpath('lang("en")'), False),
-        (doc.root_element.children[2].children[0].children[1].xpath('lang("de")'), True),
+        (doc.root_element[2][0].xpath('lang("en")'), True),
+        (doc.root_element[2][0][0].xpath('lang("en")'), True),
+        (doc.root_element[2][0][1].xpath('lang("en")'), False),
+        (doc.root_element[2][0][1].xpath('lang("de")'), True),
     )
 )
 def test_lang(test, result):

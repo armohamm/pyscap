@@ -54,7 +54,7 @@ def test_any(test, result):
     "test, result",
     (
         (doc.xpath('child::Root'), [doc.root_element]),
-        (doc.root_element.xpath('para'), doc.root_element.children[:-1]),
+        (doc.root_element.xpath('para'), doc.root_element[:-1]),
     )
 )
 def test_ncname(test, result):
@@ -64,7 +64,7 @@ def test_ncname(test, result):
     "test, result",
     (
         (doc.xpath('child::test:Root'), [doc.root_element]),
-        (doc.root_element.xpath('test:para'), [doc.root_element.children[1]]),
+        (doc.root_element.xpath('test:para'), [doc.root_element[1]]),
     )
 )
 def test_qname(test, result):
@@ -73,8 +73,8 @@ def test_qname(test, result):
 @pytest.mark.parametrize(
     "test, result",
     (
-        (doc.root_element.xpath('child::comment()'), [doc.root_element.children[3]]),
-        (doc.root_element.children[0].xpath('text()'), [doc.root_element.children[0].children[0]]),
+        (doc.root_element.xpath('child::comment()'), [doc.root_element[3]]),
+        (doc.root_element[0].xpath('text()'), [doc.root_element[0][0]]),
         (doc.root_element.xpath('node()'), doc.root_element.children),
     )
 )

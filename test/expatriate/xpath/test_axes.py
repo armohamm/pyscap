@@ -45,12 +45,12 @@ def test_child():
 
 def test_descendant():
     ns = [
-        doc.root_element.children[0],
-        doc.root_element.children[1],
-        doc.root_element.children[2],
-        doc.root_element.children[2].children[0],
-        doc.root_element.children[2].children[0].children[0],
-        doc.root_element.children[2].children[1],
+        doc.root_element[0],
+        doc.root_element[1],
+        doc.root_element[2],
+        doc.root_element[2][0],
+        doc.root_element[2][0][0],
+        doc.root_element[2][1],
     ]
 
     test = doc.root_element.xpath('descendant::*')
@@ -59,70 +59,70 @@ def test_descendant():
 def test_descendant_or_self():
     ns = [
         doc.root_element,
-        doc.root_element.children[0],
-        doc.root_element.children[1],
-        doc.root_element.children[2],
-        doc.root_element.children[2].children[0],
-        doc.root_element.children[2].children[0].children[0],
-        doc.root_element.children[2].children[1],
+        doc.root_element[0],
+        doc.root_element[1],
+        doc.root_element[2],
+        doc.root_element[2][0],
+        doc.root_element[2][0][0],
+        doc.root_element[2][1],
     ]
 
     test = doc.root_element.xpath('descendant-or-self::*')
     assert test == ns
 
 def test_parent():
-    assert doc.root_element.children[0].xpath('parent::*') == [doc.root_element]
+    assert doc.root_element[0].xpath('parent::*') == [doc.root_element]
 
 def test_ancestor():
     ns = [
-        doc.root_element.children[2].children[0],
-        doc.root_element.children[2],
+        doc.root_element[2][0],
+        doc.root_element[2],
         doc.root_element,
     ]
-    assert doc.root_element.children[2].children[0].children[0].xpath('ancestor::*') == ns
+    assert doc.root_element[2][0][0].xpath('ancestor::*') == ns
 
 def test_ancestor_or_self():
     ns = [
-        doc.root_element.children[2].children[0].children[0],
-        doc.root_element.children[2].children[0],
-        doc.root_element.children[2],
+        doc.root_element[2][0][0],
+        doc.root_element[2][0],
+        doc.root_element[2],
         doc.root_element,
     ]
-    assert doc.root_element.children[2].children[0].children[0].xpath('ancestor-or-self::*') == ns
+    assert doc.root_element[2][0][0].xpath('ancestor-or-self::*') == ns
 
 def test_following_sibling():
-    assert doc.root_element.children[0].xpath('following-sibling::*') == [
-        doc.root_element.children[1],
-        doc.root_element.children[2],
+    assert doc.root_element[0].xpath('following-sibling::*') == [
+        doc.root_element[1],
+        doc.root_element[2],
     ]
 
 def test_preceding_sibling():
-    assert doc.root_element.children[2].xpath('preceding-sibling::*') == [
-        doc.root_element.children[1],
-        doc.root_element.children[0],
+    assert doc.root_element[2].xpath('preceding-sibling::*') == [
+        doc.root_element[1],
+        doc.root_element[0],
     ]
 
 def test_following():
-    assert doc.root_element.children[2].children[0].children[0].xpath('following::*') == [
-        doc.root_element.children[2].children[1],
+    assert doc.root_element[2][0][0].xpath('following::*') == [
+        doc.root_element[2][1],
     ]
 
 def test_preceding():
-    assert doc.root_element.children[2].children[0].children[0].xpath('preceding::*') == [
-        doc.root_element.children[2].children[0],
-        doc.root_element.children[2],
-        doc.root_element.children[1],
-        doc.root_element.children[0],
+    assert doc.root_element[2][0][0].xpath('preceding::*') == [
+        doc.root_element[2][0],
+        doc.root_element[2],
+        doc.root_element[1],
+        doc.root_element[0],
         doc.root_element,
     ]
 
 def test_attribute():
-    assert doc.root_element.children[0].xpath('attribute::*') == [doc.root_element.children[0].attribute_nodes['name']]
+    assert doc.root_element[0].xpath('attribute::*') == [doc.root_element[0].attribute_nodes['name']]
 
 def test_namespace():
-    ns = doc.root_element.children[0].xpath('namespace::*')
-    assert doc.root_element.children[0].namespace_nodes[None] in ns
-    assert doc.root_element.children[0].namespace_nodes['xml'] in ns
+    ns = doc.root_element[0].xpath('namespace::*')
+    assert doc.root_element[0].namespace_nodes[None] in ns
+    assert doc.root_element[0].namespace_nodes['xml'] in ns
 
 def test_self():
     assert doc.root_element.xpath('self::*') == [doc.root_element]

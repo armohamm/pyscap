@@ -135,3 +135,6 @@ class Element(Node):
 
     def get_expanded_name(self):
         return (self.name_namespace, self.name_local)
+
+    def __getitem__(self, key):
+        return self.children[key]
