@@ -39,18 +39,12 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
 </Root>
 ''')
 
-# @pytest.mark.parametrize(
-#     "expr, result",
-#     (
-#         ('.', [doc]),
-#         ('child::para', doc.children),
-#     )
-# )
-# def test_context_node(expr, result):
-#     assert doc.xpath(expr) == result
-#
-# def test_context_node():
-#     assert doc.root_element.xpath('..') == doc
-#
-# def test_predicate():
-#     assert doc.xpath('.[@id="element1"]') == doc.root_element.children[0]
+@pytest.mark.parametrize(
+    "test, result",
+    (
+        (doc.root_element.xpath('.'), [doc.root_element]),
+        (doc.root_element.xpath('/'), [doc.root_element]),
+    )
+)
+def test_steps(test, result):
+    assert test == result

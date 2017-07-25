@@ -18,15 +18,12 @@
 import logging
 
 logger = logging.getLogger(__name__)
-class Literal(object):
-    def __init__(self, value):
-        self.value = value
+class Step(object):
+    def __init__(self):
+        self.children = []
 
     def evaluate(self, context_node, context_position, context_size, variables):
         return self.value
 
     def __str__(self):
-        return 'Literal ' + hex(id(self)) + ': ' + str(self.value)
-
-    def __repr__(self):
-        return repr(self.value)
+        return 'Step ' + hex(id(self)) + ': ' + str(self.children)

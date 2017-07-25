@@ -15,36 +15,26 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-class SyntaxException(Exception):
-    pass
+import logging
 
-from .AnyNodeTest import AnyNodeTest
-from .Axis import Axis
-from .Expression import Expression
-from .Function import Function
-from .Literal import Literal
-from .NCNameNodeTest import NCNameNodeTest
-from .NodeTest import NodeTest
-from .Operator import Operator
-from .Predicate import Predicate
-from .QNameNodeTest import QNameNodeTest
-from .RootStep import RootStep
 from .Step import Step
-from .TypeNodeTest import TypeNodeTest
 
-__all__ = [
-    'AnyNodeTest',
-    'Axis',
-    'Expression',
-    'Function',
-    'Literal',
-    'NCNameNodeTest',
-    'NodeTest',
-    'Operator',
-    'Predicate',
-    'QNameNodeTest',
-    'RootStep',
-    'Step',
-    'SyntaxException',
-    'TypeNodeTest',
-]
+logger = logging.getLogger(__name__)
+class RootStep(Step):
+    def __init__(self, root_element):
+        self.children = []
+        self._root_element = root_element
+
+    def evaluate(self, context_node, context_position, context_size, variables):
+        if len(self.children) != 1:
+            raise SyntaxException('Root step should have 1 child')
+
+        logger.debug('Initial nodeset: ' + str(nodeset))
+
+        raise NotImplementedError('')
+
+        logger.debug('Final nodeset: ' + str(nodeset))
+        return nodeset
+
+    def __str__(self):
+        return 'Step ' + hex(id(self)) + ': ' + str(self.children)

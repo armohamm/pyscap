@@ -210,6 +210,20 @@ class Node(object):
                     o.children.append(stack.pop())
                 stack.append(o)
                 logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
+            elif token == '/':
+                if i == 0:
+                    s = RootStep(self._document)
+                else:
+                    while(len(stack) > 1 and not isinstance(stack[-1])):
+                        i = stack.pop()
+                        logger.debug('Adding ' + str(i) + ' to children of ' + str(stack[-1]))
+                        stack[-1].children.append(i)
+                    s = Step()
+                    i = stack.pop()
+                    logger.debug('Adding ' + str(i) + ' to children of ' + str(s))
+                    s.children.append(i)
+                stack.append(s)
+                logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
             elif token == 'Infinity':
                 stack.append(Literal(math.inf))
                 logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
@@ -290,6 +304,7 @@ class Node(object):
         i = stack.pop()
         logger.debug('Final pop off stack got ' + str(i))
 
+        # TODO need to make sure node set items are unique
         return i.evaluate(self, 1, 1, variables)
 
     def __repr__(self):
