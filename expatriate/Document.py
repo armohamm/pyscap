@@ -255,3 +255,6 @@ class Document(Node):
 
     def get_string_value(self):
         return self.root_element.get_string_value()
+
+    def __getitem__(self, key):
+        return self.children[key]
