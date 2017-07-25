@@ -18,6 +18,7 @@
 import logging
 
 from .Step import Step
+from ..xpath import SyntaxException
 
 logger = logging.getLogger(__name__)
 class RootStep(Step):
@@ -26,15 +27,16 @@ class RootStep(Step):
         self._root_element = root_element
 
     def evaluate(self, context_node, context_position, context_size, variables):
-        if len(self.children) != 1:
-            raise SyntaxException('Root step should have 1 child')
-
-        logger.debug('Initial nodeset: ' + str(nodeset))
-
-        raise NotImplementedError('')
-
-        logger.debug('Final nodeset: ' + str(nodeset))
-        return nodeset
+        if len(self.children) == 0:
+            logger.debug('Root step with no children: using ' + str(self._root_element) + ' as the result set')
+            return [self._root_element]
+        elif len(self.children) == 1:
+            logger.debug('Root step with 1 child: ' + str(self.children[0]) + '; evaluating with root element ' + str(self._root_element) + ' as context node')
+            ns = self.children[0].evaluate(self._root_element, 1, 1, variables)
+            logger.debug(str(self) + ' resulting nodeset: ' + str(ns))
+            return ns
+        else:
+            return super(RootStep, self).evaluate(context_node, context_position, context_size, variables)
 
     def __str__(self):
-        return 'Step ' + hex(id(self)) + ': ' + str(self.children)
+        return 'RootStep ' + hex(id(self)) + ': ' + str([str(x) for x in self.children])
