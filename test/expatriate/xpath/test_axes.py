@@ -45,46 +45,39 @@ def test_child():
 
 def test_descendant():
     ns = [
-        doc.root_element,
         doc.root_element.children[0],
-        doc.root_element.children[0].children[0],
         doc.root_element.children[1],
         doc.root_element.children[2],
         doc.root_element.children[2].children[0],
         doc.root_element.children[2].children[0].children[0],
-        doc.root_element.children[2].children[0].children[0].children[0],
         doc.root_element.children[2].children[1],
     ]
 
-    test = doc.xpath('descendant::*')
+    test = doc.root_element.xpath('descendant::*')
     assert test == ns
 
 def test_descendant_or_self():
     ns = [
-        doc,
         doc.root_element,
         doc.root_element.children[0],
-        doc.root_element.children[0].children[0],
         doc.root_element.children[1],
         doc.root_element.children[2],
         doc.root_element.children[2].children[0],
         doc.root_element.children[2].children[0].children[0],
-        doc.root_element.children[2].children[0].children[0].children[0],
         doc.root_element.children[2].children[1],
     ]
 
-    test = doc.xpath('descendant-or-self::*')
+    test = doc.root_element.xpath('descendant-or-self::*')
     assert test == ns
 
 def test_parent():
-    assert doc.root_element.xpath('parent::*') == [doc]
+    assert doc.root_element.children[0].xpath('parent::*') == [doc.root_element]
 
 def test_ancestor():
     ns = [
         doc.root_element.children[2].children[0],
         doc.root_element.children[2],
         doc.root_element,
-        doc,
     ]
     assert doc.root_element.children[2].children[0].children[0].xpath('ancestor::*') == ns
 
@@ -94,7 +87,6 @@ def test_ancestor_or_self():
         doc.root_element.children[2].children[0],
         doc.root_element.children[2],
         doc.root_element,
-        doc,
     ]
     assert doc.root_element.children[2].children[0].children[0].xpath('ancestor-or-self::*') == ns
 
@@ -122,7 +114,6 @@ def test_preceding():
         doc.root_element.children[1],
         doc.root_element.children[0],
         doc.root_element,
-        doc,
     ]
 
 def test_attribute():
@@ -134,6 +125,6 @@ def test_namespace():
     assert doc.root_element.children[0].namespace_nodes['xml'] in ns
 
 def test_self():
-    assert doc.xpath('self::*') == [doc]
+    assert doc.root_element.xpath('self::*') == [doc.root_element]
 
 # NOTE: The ancestor, descendant, following, preceding and self axes partition a document (ignoring attribute and namespace nodes): they do not overlap and together they contain all the nodes in the document.

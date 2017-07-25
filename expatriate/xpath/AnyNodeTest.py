@@ -21,8 +21,12 @@ from .NodeTest import NodeTest
 
 logger = logging.getLogger(__name__)
 class AnyNodeTest(NodeTest):
+    def __init__(self, principal_node_type):
+        super(AnyNodeTest, self).__init__()
+        self._prinicpal_node_type = principal_node_type
+
     def evaluate(self, context_node, context_position, context_size, variables):
-        return True
+        return context_node.get_type() == self._prinicpal_node_type
 
     def __str__(self):
         return 'AnyNodeTest ' + hex(id(self)) + ': ' + str([str(x) for x in self.children])

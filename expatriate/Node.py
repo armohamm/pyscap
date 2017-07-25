@@ -166,7 +166,7 @@ class Node(object):
                         a = Axis('child')
                         stack.append(a)
                         logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
-                    nt = AnyNodeTest()
+                    nt = AnyNodeTest(stack[-1].get_principal_node_type())
                     stack.append(nt)
                     logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
             elif tokens[i] == ',':

@@ -151,6 +151,22 @@ class Axis(object):
         'self': lambda node: [node],
     }
 
+    PRINCIPAL_NODE_TYPE = {
+        'ancestor': 'element',
+        'ancestor-or-self': 'element',
+        'attribute': 'attribute',
+        'child': 'element',
+        'descendant': 'element',
+        'descendant-or-self': 'element',
+        'following': 'element',
+        'following-sibling': 'element',
+        'namespace': 'namespace',
+        'parent': 'element',
+        'preceding': 'element',
+        'preceding-sibling': 'element',
+        'self': 'element',
+    }
+
     def __init__(self, name):
         self.name = name
         self.children = []
@@ -180,6 +196,9 @@ class Axis(object):
 
         logger.debug('Final nodeset: ' + str(nodeset))
         return nodeset
+
+    def get_principal_node_type(self):
+        return Axis.PRINCIPAL_NODE_TYPE[self.name]
 
     def __str__(self):
         return 'Axis ' + hex(id(self)) + ' ' + self.name + ': ' + str([str(x) for x in self.children])
