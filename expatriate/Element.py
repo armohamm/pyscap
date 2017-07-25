@@ -85,6 +85,7 @@ class Element(Node):
         self.attribute_locals = {}
         self.attribute_namespaces = {}
         self.attribute_nodes = {}
+        self._attr_index = {}
         for k, v in self.attributes.items():
             if k.startswith('xmlns:'):
                 continue
@@ -96,10 +97,13 @@ class Element(Node):
                     raise UnknownNamespaceException('Unable to map attribute prefix ' + n[0] + ' to namespace')
                 self.attribute_namespaces[k] = self.namespaces[n[0]]
                 self.attribute_locals[k] = n[2]
+                if n[2] not in self._attr_index:
+                    self._attr_index[n[2]] = v
             else:
                 self.attribute_namespaces[k] = None
                 self.attribute_locals[k] = k
 
+            self._attr_index[k] = v
             self.attribute_nodes[k] = Attribute(document, document._order_count, self, self.attribute_namespaces[k], self.attribute_locals[k], v)
             document._order_count += 1
 
@@ -136,5 +140,34 @@ class Element(Node):
     def get_expanded_name(self):
         return (self.name_namespace, self.name_local)
 
+    def __getattr__(self, name):
+        try:
+            return self._attr_index[name]
+        except KeyError:
+            raise AttributeError('Attribute ' + str(name) + ' was not found')
+
+    def __len__(self):
+        return len(self.children)
+
     def __getitem__(self, key):
+        if not isinstance(key, int):
+            raise TypeError('Key values must be of int type')
+
         return self.children[key]
+
+    def __setitem__(self, key, value):
+        if not isinstance(key, int):
+            raise TypeError('Key values must be of int type')
+        if not isinstance(value, Node):
+            raise TypeError('Values must be of Node type')
+
+        self.children[key] = value
+
+    def __delitem__(self, key):
+        if not isinstance(key, int):
+            raise TypeError('Key values must be of int type')
+
+        del self.children[key]
+
+    def __iter__(self):
+        return iter(self.children)
