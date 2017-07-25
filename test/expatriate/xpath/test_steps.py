@@ -43,10 +43,10 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
     "test, result",
     (
         (doc.root_element.xpath('.'), [doc.root_element]),
-        (doc.root_element.xpath('/'), [doc.root_element]),
-        (doc.root_element.xpath('/para'), doc.root_element.children),
+        (doc.root_element.xpath('/'), [doc]),
+        (doc.xpath('/Root/para'), doc.root_element.children),
         (doc.root_element.xpath('para'), doc.root_element.children),
-        (doc.root_element.xpath('/para/node()'), [
+        (doc.xpath('/Root/para/node()'), [
             doc.root_element.children[0].children[0],
             doc.root_element.children[2].children[0],
         ]),
@@ -54,19 +54,19 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
             doc.root_element.children[0].children[0],
             doc.root_element.children[2].children[0],
         ]),
-        (doc.root_element.xpath('/para/para'), [
+        (doc.xpath('/Root/para/para'), [
             doc.root_element.children[2].children[0],
         ]),
         (doc.root_element.xpath('para/para'), [
             doc.root_element.children[2].children[0],
         ]),
-        (doc.root_element.xpath('/para/para/para'), [
+        (doc.xpath('/Root/para/para/para'), [
             doc.root_element.children[2].children[0].children[0],
         ]),
         (doc.root_element.xpath('para/para/para'), [
             doc.root_element.children[2].children[0].children[0],
         ]),
-        (doc.root_element.xpath('/para/para/para/text()'), [
+        (doc.xpath('/Root/para/para/para/text()'), [
             doc.root_element.children[2].children[0].children[0].children[0],
         ]),
         (doc.root_element.xpath('para/para/para/text()'), [

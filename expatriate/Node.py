@@ -214,7 +214,7 @@ class Node(object):
                 logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
             elif tokens[i] == '/':
                 if i == 0:
-                    s = RootStep(self._document.root_element)
+                    s = RootStep(self._document)
                 else:
                     while(len(stack) > 0 and not isinstance(stack[-1], Step)):
                         i = stack.pop()

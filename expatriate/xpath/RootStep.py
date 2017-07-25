@@ -22,17 +22,17 @@ from ..xpath import SyntaxException
 
 logger = logging.getLogger(__name__)
 class RootStep(Step):
-    def __init__(self, root_element):
+    def __init__(self, document):
         self.children = []
-        self._root_element = root_element
+        self._document = document
 
     def evaluate(self, context_node, context_position, context_size, variables):
         if len(self.children) == 0:
-            logger.debug('Root step with no children: using ' + str(self._root_element) + ' as the result set')
-            return [self._root_element]
+            logger.debug('Root step with no children: using ' + str(self._document) + ' as the result set')
+            return [self._document]
         elif len(self.children) == 1:
-            logger.debug('Root step with 1 child: ' + str(self.children[0]) + '; evaluating with root element ' + str(self._root_element) + ' as context node')
-            ns = self.children[0].evaluate(self._root_element, 1, 1, variables)
+            logger.debug('Root step with 1 child: ' + str(self.children[0]) + '; evaluating with ' + str(self._document) + ' as context node')
+            ns = self.children[0].evaluate(self._document, 1, 1, variables)
             logger.debug(str(self) + ' resulting nodeset: ' + str(ns))
             return ns
         else:
