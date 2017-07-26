@@ -86,6 +86,8 @@ class Node(object):
         if t == '.':
             tokens.extend(['self', '::', 'node', '(', ')'])
             t = expr[i]
+        elif t.isspace():
+            pass
         elif t != '':
             tokens.append(t)
 
