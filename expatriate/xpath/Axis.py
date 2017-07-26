@@ -20,121 +20,121 @@ import logging
 from .NodeTest import NodeTest
 from .Predicate import Predicate
 
-def a_ancestor(node):
-    ns = []
-    while(node.parent is not None):
-        ns.append(node.parent)
-        node = node.parent
-    return ns
-
-def a_ancestor_or_self(node):
-    ns = [node]
-    ns.extend(a_ancestor(node))
-    return ns
-
-def a_attribute(node):
-    if hasattr(node, 'attribute_nodes'):
-        return list(node.attribute_nodes.values())
-    else:
-        return []
-
-def a_child(node):
-    if hasattr(node, 'children'):
-        return node.children.copy()
-    else:
-        return []
-
-def a_descendant(node):
-    if not hasattr(node, 'children') or len(node.children) == 0:
-        logger.debug(str(node) + ' has no children')
-        return []
-    else:
-        ns = []
-        for n in node.children:
-            ns.append(n)
-            ns.extend(a_descendant(n))
-        return ns
-
-def a_descendant_or_self(node):
-    ns = [node]
-    ns.extend(a_descendant(node))
-    return ns
-
-def a_namespace(node):
-    if hasattr(node, 'namespace_nodes'):
-        return list(node.namespace_nodes.values())
-    else:
-        return []
-
-def a_parent(node):
-    if node.parent is not None:
-        return [node.parent]
-    else:
-        return []
-
-def a_following_sibling(node):
-    from ..Attribute import Attribute
-    from ..Namespace import Namespace
-    if isinstance(node, Attribute) \
-    or isinstance(node, Namespace) \
-    or node.parent is None:
-        return []
-
-    ns = []
-    # figure out our index then go through children > our index
-    node_i = node.parent.children.index(node)
-    for i in range(node_i + 1, len(node.parent.children)):
-        ns.append(node.parent.children[i])
-    return ns
-
-def a_following(node):
-    from ..Attribute import Attribute
-    from ..Namespace import Namespace
-    if isinstance(node, Attribute) \
-    or isinstance(node, Namespace):
-        return []
-
-    ns = []
-    while node is not None:
-        ns.extend(a_following_sibling(node))
-        node = node.parent
-    return ns
-
-def a_preceding_sibling(node):
-    from ..Attribute import Attribute
-    from ..Namespace import Namespace
-    if isinstance(node, Attribute) \
-    or isinstance(node, Namespace) \
-    or node.parent is None:
-        return []
-
-    ns = []
-    # figure out our index then go through children < our index
-    node_i = node.parent.children.index(node)
-    for i in range(node_i - 1, -1, -1):
-        logger.debug('Appending sibling ' + str(i) + ' of ' + str(node))
-        ns.append(node.parent.children[i])
-    return ns
-
-def a_preceding(node):
-    from ..Attribute import Attribute
-    from ..Namespace import Namespace
-    if isinstance(node, Attribute) \
-    or isinstance(node, Namespace):
-        return []
-
-    ns = []
-    while node is not None:
-        logger.debug('Extending nodeset with ' + str(node) + ' preceding siblings')
-        ns.extend(a_preceding_sibling(node))
-        if node.parent is not None:
-            logger.debug('Appending parent of ' + str(node) + ': ' + str(node.parent))
-            ns.append(node.parent)
-        node = node.parent
-    return ns
-
 logger = logging.getLogger(__name__)
 class Axis(object):
+    def a_ancestor(node):
+        ns = []
+        while(node.parent is not None):
+            ns.append(node.parent)
+            node = node.parent
+        return ns
+
+    def a_ancestor_or_self(node):
+        ns = [node]
+        ns.extend(Axis.a_ancestor(node))
+        return ns
+
+    def a_attribute(node):
+        if hasattr(node, 'attribute_nodes'):
+            return list(node.attribute_nodes.values())
+        else:
+            return []
+
+    def a_child(node):
+        if hasattr(node, 'children'):
+            return node.children.copy()
+        else:
+            return []
+
+    def a_descendant(node):
+        if not hasattr(node, 'children') or len(node.children) == 0:
+            logger.debug(str(node) + ' has no children')
+            return []
+        else:
+            ns = []
+            for n in node.children:
+                ns.append(n)
+                ns.extend(Axis.a_descendant(n))
+            return ns
+
+    def a_descendant_or_self(node):
+        ns = [node]
+        ns.extend(Axis.a_descendant(node))
+        return ns
+
+    def a_namespace(node):
+        if hasattr(node, 'namespace_nodes'):
+            return list(node.namespace_nodes.values())
+        else:
+            return []
+
+    def a_parent(node):
+        if node.parent is not None:
+            return [node.parent]
+        else:
+            return []
+
+    def a_following_sibling(node):
+        from ..Attribute import Attribute
+        from ..Namespace import Namespace
+        if isinstance(node, Attribute) \
+        or isinstance(node, Namespace) \
+        or node.parent is None:
+            return []
+
+        ns = []
+        # figure out our index then go through children > our index
+        node_i = node.parent.children.index(node)
+        for i in range(node_i + 1, len(node.parent.children)):
+            ns.append(node.parent.children[i])
+        return ns
+
+    def a_following(node):
+        from ..Attribute import Attribute
+        from ..Namespace import Namespace
+        if isinstance(node, Attribute) \
+        or isinstance(node, Namespace):
+            return []
+
+        ns = []
+        while node is not None:
+            ns.extend(Axis.a_following_sibling(node))
+            node = node.parent
+        return ns
+
+    def a_preceding_sibling(node):
+        from ..Attribute import Attribute
+        from ..Namespace import Namespace
+        if isinstance(node, Attribute) \
+        or isinstance(node, Namespace) \
+        or node.parent is None:
+            return []
+
+        ns = []
+        # figure out our index then go through children < our index
+        node_i = node.parent.children.index(node)
+        for i in range(node_i - 1, -1, -1):
+            logger.debug('Appending sibling ' + str(i) + ' of ' + str(node))
+            ns.append(node.parent.children[i])
+        return ns
+
+    def a_preceding(node):
+        from ..Attribute import Attribute
+        from ..Namespace import Namespace
+        if isinstance(node, Attribute) \
+        or isinstance(node, Namespace):
+            return []
+
+        ns = []
+        while node is not None:
+            logger.debug('Extending nodeset with ' + str(node) + ' preceding siblings')
+            ns.extend(Axis.a_preceding_sibling(node))
+            if node.parent is not None:
+                logger.debug('Appending parent of ' + str(node) + ': ' + str(node.parent))
+                ns.append(node.parent)
+            node = node.parent
+        return ns
+
     AXES = {
         'ancestor': a_ancestor,
         'ancestor-or-self': a_ancestor_or_self,
