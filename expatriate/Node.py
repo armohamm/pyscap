@@ -140,9 +140,15 @@ class Node(object):
                     stack.pop()
                     logger.debug('Ignoring empty expression & predicate')
                 else:
-                    e = stack.pop()
-                    logger.debug('Adding ' + str(e) + ' to ' + str(stack[-1]))
-                    stack[-1].children.append(e)
+                    while(len(stack) > 1 and not isinstance(stack[-1], Predicate)):
+                        i = stack.pop()
+                        logger.debug('Adding ' + str(i) + ' to ' + str(stack[-1]))
+                        stack[-1].children.append(i)
+                    p = stack.pop()
+                    if not isinstance(stack[-1], Axis):
+                        raise SyntaxException('Expecting Axis on stack before predicate')
+                    logger.debug('Adding ' + str(p) + ' to ' + str(stack[-1]))
+                    stack[-1].children.append(p)
             elif tokens[i]  == '::':
                 # already processed axis
                 pass
@@ -320,7 +326,7 @@ class Node(object):
         logger.debug('*** Evaluating ' + str(i))
         return i.evaluate(self, 1, 1, variables)
 
-    def __repr__(self):
+    def __str__(self):
         return self.__class__.__name__ + ' ' + hex(id(self))
 
     def get_type(self):

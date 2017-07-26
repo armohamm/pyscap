@@ -124,6 +124,7 @@ class Function(object):
     # String Functions
 
     def f_string(args, context_node, context_position, context_size, variables):
+        from ..Node import Node
         if len(args) == 0:
             a = [context_node]
         elif len(args) == 1:
@@ -134,9 +135,10 @@ class Function(object):
         if isinstance(a, list): # node-set
             from ..Document import Document
             first_node = Document.get_first_in_document_order(a)
-
             return first_node.get_string_value()
-        if isinstance(a, float):
+        elif isinstance(a, Node) and hasattr(a, 'get_string_value'):
+            return a.get_string_value()
+        elif isinstance(a, float):
             if math.isnan(a):
                 return 'NaN'
             elif a == -math.inf:

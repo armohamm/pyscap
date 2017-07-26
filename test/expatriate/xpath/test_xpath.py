@@ -54,7 +54,7 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
             <div name="[1][2][0]">
                 <para name="[1][2][0][0]" type="warning">Context para 1</para>
                 <para name="[1][2][0][1]">text node [1][2][0][1][0]</para>
-                <para name="[1][2][0][2]">
+                <para name="[1][2][0][2]" type="warning">
                     text node [1][2][0][2][0]
                     <para name="[1][2][0][2][1]"></para>
                 </para>
@@ -99,9 +99,11 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
         </olist>
         <para name="[3][4]" type="warning">text node [3][4][0]</para>
         <para name="[3][5]" type="warning">text node [3][5][0]</para>
-        <figure name="[3][6]">40</figure>
-        <figure name="[3][7]">41</figure>
-        <figure name="[3][8]">42</figure>
+        <para name="[3][6]">text node [3][6][0]</para>
+        <figure name="[3][7]">40</figure>
+        <figure name="[3][8]">41</figure>
+        <figure name="[3][9]">42</figure>
+        <para name="[3][10]" type="warning">text node [3][10][0]</para>
     </chapter>
     <chapter name="[4]">
         <title name="[4][0]">text node [4][0][0]</title>
@@ -201,7 +203,7 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
         # 13
         (doc.root_element[1].xpath('self::para'), [
         ]),
-        # 13
+        # 14
         (doc.root_element.xpath('child::chapter/descendant::para'), [
             doc.root_element[1][2][0][0],
             doc.root_element[1][2][0][1],
@@ -216,8 +218,10 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
             doc.root_element[3][2],
             doc.root_element[3][4],
             doc.root_element[3][5],
+            doc.root_element[3][6],
+            doc.root_element[3][10],
         ]),
-        # 14
+        # 15
         (doc.root_element.xpath('child::*/child::para'), [
             doc.root_element[1][3],
             doc.root_element[1][4],
@@ -227,12 +231,14 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
             doc.root_element[3][2],
             doc.root_element[3][4],
             doc.root_element[3][5],
+            doc.root_element[3][6],
+            doc.root_element[3][10],
         ]),
-        # 15
+        # 16
         (doc.root_element.xpath('/'), [
             doc,
         ]),
-        # 16
+        # 17
         (doc.root_element.xpath('/descendant::para'), [
             doc.root_element[1][2][0][0],
             doc.root_element[1][2][0][1],
@@ -247,15 +253,95 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
             doc.root_element[3][2],
             doc.root_element[3][4],
             doc.root_element[3][5],
+            doc.root_element[3][6],
+            doc.root_element[3][10],
         ]),
-        # 17
+        # 18
         (doc.root_element[3].xpath('/descendant::olist/child::item'), [
             doc.root_element[3][3][0],
             doc.root_element[3][3][1],
         ]),
-        # 18
+        # 19
         (doc.root_element[3].xpath('child::para[position()=1]'), [
             doc.root_element[3][1],
+        ]),
+        # 20
+        (doc.root_element[3].xpath('child::para[position()=last()]'), [
+            doc.root_element[3][10],
+        ]),
+        # 21
+        (doc.root_element[3].xpath('child::para[position()=last()-1]'), [
+            doc.root_element[3][6],
+        ]),
+        # 22
+        (doc.root_element[3].xpath('child::para[position()>1]'), [
+            doc.root_element[3][2],
+            doc.root_element[3][4],
+            doc.root_element[3][5],
+            doc.root_element[3][6],
+            doc.root_element[3][10],
+        ]),
+        # 23
+        (doc.root_element[0].xpath('following-sibling::chapter[position()=1]'), [
+            doc.root_element[1],
+        ]),
+        # 24
+        (doc.root_element[2].xpath('preceding-sibling::chapter[position()=1]'), [
+            doc.root_element[1],
+        ]),
+        # 25
+        (doc.root_element.xpath('/descendant::figure[position()=42]'), [
+            doc.root_element[3][9],
+        ]),
+        # 26
+        (doc.root_element.xpath('/child::doc/child::chapter[position()=5]/child::section[position()=2]'), [
+            doc.root_element[4][2],
+        ]),
+        # 27
+        (doc.root_element[3].xpath('child::para[attribute::type="warning"]'), [
+            doc.root_element[3][1],
+            doc.root_element[3][2],
+            doc.root_element[3][4],
+            doc.root_element[3][5],
+            doc.root_element[3][10],
+        ]),
+        # 28
+        (doc.root_element[3].xpath('child::para[attribute::type=\'warning\'][position()=5]'), [
+            doc.root_element[3][10],
+        ]),
+        # 29
+        (doc.root_element[3].xpath('child::para[position()=5][attribute::type="warning"]'), [
+        ]),
+        # 30
+        (doc.root_element[3].xpath('child::para[position()=4][attribute::type="warning"]'), [
+            doc.root_element[3][5],
+        ]),
+        # 31
+        (doc.root_element.xpath('child::chapter[child::title=\'Introduction\']'), [
+            doc.root_element[1],
+        ]),
+        # 32
+        (doc.root_element.xpath('child::chapter[child::title]'), [
+            doc.root_element[0],
+            doc.root_element[1],
+            doc.root_element[2],
+            doc.root_element[3],
+            doc.root_element[4],
+        ]),
+        # 33
+        (doc.root_element.xpath('child::*[self::chapter or self::appendix]'), [
+            doc.root_element[0],
+            doc.root_element[1],
+            doc.root_element[2],
+            doc.root_element[3],
+            doc.root_element[4],
+            doc.root_element[5],
+            doc.root_element[6],
+            doc.root_element[7],
+        ]),
+        # 34
+        (doc.root_element.xpath('child::*[self::chapter or self::appendix][position()=last()]'), [
+            doc.root_element[7],
         ]),
     )
 )

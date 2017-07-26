@@ -18,6 +18,7 @@
 import logging
 
 from .Node import Node
+from .xpath.Literal import Literal
 
 logger = logging.getLogger(__name__)
 
@@ -37,3 +38,8 @@ class Attribute(Node):
 
     def get_expanded_name(self):
         return (self.name_namespace, self.name_local)
+
+    def __eq__(self, other):
+        if isinstance(other, Literal):
+            return self.value == other.value
+        return other == self.value

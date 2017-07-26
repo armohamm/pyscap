@@ -165,3 +165,11 @@ class Element(Node):
 
     def __iter__(self):
         return iter(self.children)
+
+    def __str__(self):
+        s = self.__class__.__name__ + ' ' + hex(id(self))
+        if 'id' in self._attr_index:
+            s += ' id=' + self._attr_index['id']
+        if 'name' in self._attr_index:
+            s += ' name=' + self._attr_index['name']
+        return s
