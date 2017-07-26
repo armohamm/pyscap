@@ -167,7 +167,7 @@ class Element(Node):
         return iter(self.children)
 
     def __str__(self):
-        s = self.__class__.__name__ + ' ' + hex(id(self))
+        s = self.__class__.__name__ + ' ' + hex(id(self)) + ' ' + self.name
         if 'id' in self._attr_index:
             s += ' id=' + self._attr_index['id']
         if 'name' in self._attr_index:

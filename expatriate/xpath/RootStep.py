@@ -34,4 +34,4 @@ class RootStep(Step):
             return super(RootStep, self).evaluate(self._document, 1, 1, variables)
 
     def __str__(self):
-        return 'RootStep ' + hex(id(self)) + ': ' + str([str(x) for x in self.children])
+        return 'RootStep ' + hex(id(self)) + ': ' + ','.join([str(x) for x in self.children])

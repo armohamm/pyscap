@@ -47,6 +47,7 @@ class Axis(object):
             return []
 
     def a_descendant(node):
+        logger.debug('Collecting descendants of ' + str(node))
         if not hasattr(node, 'children') or len(node.children) == 0:
             logger.debug(str(node) + ' has no children')
             return []
@@ -55,6 +56,7 @@ class Axis(object):
             for n in node.children:
                 ns.append(n)
                 ns.extend(Axis.a_descendant(n))
+            logger.debug(str(node) + ' descendants: ' + ','.join([str(x) for x in ns]))
             return ns
 
     def a_descendant_or_self(node):
@@ -184,7 +186,7 @@ class Axis(object):
         if len(nodeset) == 0:
             return nodeset
 
-        logger.debug('Initial nodeset: ' + str([str(x) for x in nodeset]))
+        logger.debug('Initial nodeset: ' + ','.join([str(x) for x in nodeset]))
         for c in self.children:
             ns = []
             for i in range(len(nodeset)):
@@ -195,7 +197,7 @@ class Axis(object):
                 else:
                     logger.debug(str(nodeset[i]) + ' failed ' + str(c))
             nodeset = ns
-        logger.debug('Final nodeset: ' + str([str(x) for x in nodeset]))
+        logger.debug('Final nodeset: ' + ','.join([str(x) for x in nodeset]))
 
         return nodeset
 
@@ -203,4 +205,4 @@ class Axis(object):
         return Axis.PRINCIPAL_NODE_TYPE[self.name]
 
     def __str__(self):
-        return 'Axis ' + hex(id(self)) + ' ' + self.name + ': ' + str([str(x) for x in self.children])
+        return 'Axis ' + hex(id(self)) + ' ' + self.name + ': ' + ','.join([str(x) for x in self.children])

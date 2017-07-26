@@ -156,4 +156,4 @@ class Operator(object):
                     return Operator.OPERATORS[self.op](left, right)
 
     def __str__(self):
-        return 'Operator ' + self.op + ' ' + hex(id(self)) + ': ' + str([str(x) for x in self.children])
+        return 'Operator ' + self.op + ' ' + hex(id(self)) + ': ' + ','.join([str(x) for x in self.children])
