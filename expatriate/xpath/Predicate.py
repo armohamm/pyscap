@@ -40,3 +40,6 @@ class Predicate(object):
             v_b = Function.f_boolean((v,), context_node, context_position, context_size, variables)
             logger.debug('Converting predicate subexpression result ' + str(v) + ' to boolean: '  + str(v_b))
             return v_b
+
+    def __str__(self):
+        return 'Predicate ' + hex(id(self)) + ': ' + str([str(x) for x in self.children])
