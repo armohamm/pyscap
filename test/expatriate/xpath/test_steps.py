@@ -43,7 +43,6 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
     "test, result",
     (
         (doc.root_element.xpath('.'), [doc.root_element]),
-        (doc.root_element.xpath('/'), [doc]),
         (doc.xpath('/Root/para'), doc.root_element.children),
         (doc.root_element.xpath('para'), doc.root_element.children),
         (doc.xpath('/Root/para/node()'), [

@@ -126,8 +126,6 @@ class Node(object):
                     stack[-1].children.append(e)
                 # else just let it on the stack
             elif tokens[i] == '[':
-                nt = stack.pop()
-                stack[-1].children.append(nt)
                 p = Predicate()
                 stack.append(p)
                 logger.debug('Starting predicate ' + str(p))
@@ -167,8 +165,8 @@ class Node(object):
                         stack.append(a)
                         logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
                     nt = AnyNodeTest(stack[-1].get_principal_node_type())
-                    stack.append(nt)
-                    logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
+                    stack[-1].children.append(nt)
+                    logger.debug('Adding ' + str(nt) + ' to children of ' + str(stack[-1]))
             elif tokens[i] == ',':
                 try:
                     while(not isinstance(stack[-1], Function)):
@@ -267,8 +265,8 @@ class Node(object):
                         stack.append(Axis('child'))
                         logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
                     nt = TypeNodeTest(tokens[i])
-                    stack.append(nt)
-                    logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
+                    stack[-1].children.append(nt)
+                    logger.debug('Added ' + str(nt) + ' to children of ' + str(stack[-1]))
                 elif tokens[i] == 'true':
                     stack.append(Literal(True))
                     logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
@@ -276,9 +274,8 @@ class Node(object):
                     stack.append(Literal(False))
                     logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
                 elif tokens[i] in Operator.OPERATORS and i > 0 and tokens[-1] not in [
-                    '::', '(', '[', ',', 'and', 'or', 'mod', 'div',
-                    '*', '/', '//', '|', '+', '-', '=', '!=', '<', '<=',
-                    '>', '>=']:
+                    '::', '(', '[', ',', 'and', 'or', 'mod', 'div', '*', '/',
+                    '//', '|', '+', '-', '=', '!=', '<', '<=', '>', '>=']:
                     o = Operator(tokens[i])
                     o.children.append(stack.pop())
                     stack.append(o)
@@ -292,6 +289,7 @@ class Node(object):
                     stack.append(nt)
                     logger.debug('Pushed ' + str(stack[-1]) + ' on stack')
                 elif i > 0 and tokens[i-1] == ':':
+                    # second part of a qname test
                     if len(stack) == 0 or not isinstance(stack[-1], QNameNodeTest):
                         raise SyntaxException('Expecting QNameNodeTest on stack; got second half of QName')
                     nt = stack.pop()
@@ -301,6 +299,7 @@ class Node(object):
                     stack[-1].children.append(nt)
                     logger.debug('Added ' + str(nt) + ' to ' + str(stack[-1]))
                 else:
+                    # has to be a ncname test
                     if len(stack) == 0 or not isinstance(stack[-1], Axis):
                         stack.append(Axis('child'))
                         logger.debug('Pushed ' + str(stack[-1]) + ' on stack')

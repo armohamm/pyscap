@@ -217,6 +217,46 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
             doc.root_element[3][4],
             doc.root_element[3][5],
         ]),
+        # 14
+        (doc.root_element.xpath('child::*/child::para'), [
+            doc.root_element[1][3],
+            doc.root_element[1][4],
+            doc.root_element[2][1],
+            doc.root_element[2][2],
+            doc.root_element[3][1],
+            doc.root_element[3][2],
+            doc.root_element[3][4],
+            doc.root_element[3][5],
+        ]),
+        # 15
+        (doc.root_element.xpath('/'), [
+            doc,
+        ]),
+        # 16
+        (doc.root_element.xpath('/descendant::para'), [
+            doc.root_element[1][2][0][0],
+            doc.root_element[1][2][0][1],
+            doc.root_element[1][2][0][2],
+            doc.root_element[1][2][0][2][1],
+            doc.root_element[1][2][1],
+            doc.root_element[1][3],
+            doc.root_element[1][4],
+            doc.root_element[2][1],
+            doc.root_element[2][2],
+            doc.root_element[3][1],
+            doc.root_element[3][2],
+            doc.root_element[3][4],
+            doc.root_element[3][5],
+        ]),
+        # 17
+        (doc.root_element[3].xpath('/descendant::olist/child::item'), [
+            doc.root_element[3][3][0],
+            doc.root_element[3][3][1],
+        ]),
+        # 18
+        (doc.root_element[3].xpath('child::para[position()=1]'), [
+            doc.root_element[3][1],
+        ]),
     )
 )
 def test_xpath(test, result):
