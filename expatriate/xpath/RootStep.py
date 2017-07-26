@@ -30,13 +30,8 @@ class RootStep(Step):
         if len(self.children) == 0:
             logger.debug('Root step with no children: using ' + str(self._document) + ' as the result set')
             return [self._document]
-        elif len(self.children) == 1:
-            logger.debug('Root step with 1 child: ' + str(self.children[0]) + '; evaluating with ' + str(self._document) + ' as context node')
-            ns = self.children[0].evaluate(self._document, 1, 1, variables)
-            logger.debug(str(self) + ' resulting nodeset: ' + str(ns))
-            return ns
         else:
-            return super(RootStep, self).evaluate(context_node, context_position, context_size, variables)
+            return super(RootStep, self).evaluate(self._document, 1, 1, variables)
 
     def __str__(self):
         return 'RootStep ' + hex(id(self)) + ': ' + str([str(x) for x in self.children])
