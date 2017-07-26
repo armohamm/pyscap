@@ -31,4 +31,4 @@ class NCNameNodeTest(NodeTest):
         return context_node.name_local == self.name
 
     def __str__(self):
-        return 'NCNameNodeTest ' + hex(id(self)) + ' ' + self.name + ': ' + ','.join([str(x) for x in self.children])
+        return 'NCNameNodeTest ' + hex(id(self)) + ' ' + self.name + ': [' + ','.join([str(x) for x in self.children]) + ']'

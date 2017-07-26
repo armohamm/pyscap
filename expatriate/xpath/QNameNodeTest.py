@@ -31,4 +31,4 @@ class QNameNodeTest(NodeTest):
         return context_node.name == self.name
 
     def __str__(self):
-        return 'QNameNodeTest ' + hex(id(self)) + ' ' + self.name + ': ' + ','.join([str(x) for x in self.children])
+        return 'QNameNodeTest ' + hex(id(self)) + ' ' + self.name + ': [' + ','.join([str(x) for x in self.children]) + ']'

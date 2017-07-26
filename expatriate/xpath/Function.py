@@ -416,4 +416,4 @@ class Function(object):
         return self.function(arg_evals, context_node, context_position, context_size, variables)
 
     def __str__(self):
-        return 'Function ' + self.name + ': ' + ','.join([str(x) for x in self.children])
+        return 'Function ' + self.name + ': [' + ','.join([str(x) for x in self.children]) + ']'

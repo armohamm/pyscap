@@ -97,10 +97,11 @@ class Node(object):
         if version != 1.0:
             raise NotImplementedError('Only XPath 1.0 has been implemented')
 
-        logger.debug('*** Tokenizing xpath expression: ' + str(expr))
+        logger.debug('********************************************')
+        logger.debug('Tokenizing xpath expression: ' + str(expr))
 
         tokens = self._tokenize(expr)
-        logger.debug('*** Tokens: ' + str(tokens))
+        logger.debug('Tokens: ' + str(tokens))
 
         functions = Function.FUNCTIONS.copy()
         functions.update(add_functions)
@@ -325,7 +326,8 @@ class Node(object):
         logger.debug('Final pop off stack got ' + str(i))
 
         # TODO need to make sure node set items are unique
-        logger.debug('*** Evaluating ' + str(i))
+        logger.debug('********************************************')
+        logger.debug('Evaluating ' + str(i))
         return i.evaluate(self, 1, 1, variables)
 
     def __str__(self):

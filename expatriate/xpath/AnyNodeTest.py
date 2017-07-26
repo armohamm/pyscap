@@ -29,4 +29,4 @@ class AnyNodeTest(NodeTest):
         return context_node.get_type() == self._prinicpal_node_type
 
     def __str__(self):
-        return 'AnyNodeTest ' + hex(id(self)) + ': ' + ','.join([str(x) for x in self.children])
+        return 'AnyNodeTest ' + hex(id(self)) + ': [' + ','.join([str(x) for x in self.children]) + ']'

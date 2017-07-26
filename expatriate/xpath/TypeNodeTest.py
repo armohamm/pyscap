@@ -41,4 +41,4 @@ class TypeNodeTest(NodeTest):
             return context_node.get_type() == self.name
 
     def __str__(self):
-        return 'TypeNodeTest ' + hex(id(self)) + ' ' + self.name + ': ' + ','.join([str(x) for x in self.children])
+        return 'TypeNodeTest ' + hex(id(self)) + ' ' + self.name + ': [' + ','.join([str(x) for x in self.children]) + ']'

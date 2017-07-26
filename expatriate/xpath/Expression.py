@@ -37,4 +37,4 @@ class Expression(object):
         return v
 
     def __str__(self):
-        return 'Expression ' + hex(id(self)) + ': ' + ','.join([str(x) for x in self.children])
+        return 'Expression ' + hex(id(self)) + ': [' + ','.join([str(x) for x in self.children]) + ']'

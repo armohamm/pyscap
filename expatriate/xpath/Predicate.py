@@ -42,4 +42,4 @@ class Predicate(object):
             return v_b
 
     def __str__(self):
-        return 'Predicate ' + hex(id(self)) + ': ' + ','.join([str(x) for x in self.children])
+        return 'Predicate ' + hex(id(self)) + ': [' + ','.join([str(x) for x in self.children]) + ']'

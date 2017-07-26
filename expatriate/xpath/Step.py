@@ -28,14 +28,14 @@ class Step(object):
         if len(self.children) == 1:
             logger.debug('Collecting nodes with ' + str(self.children[0]) + ' for context node ' + str(context_node))
             ns = self.children[0].evaluate(context_node, context_position, context_size, variables)
-            logger.debug('Nodes from ' + str(self.children[0]) + ': ' + ','.join([str(x) for x in ns]))
+            logger.debug('Nodes from ' + str(self.children[0]) + ': [' + ','.join([str(x) for x in ns]) + ']')
 
             logger.debug(str(self) + ' nodeset: ' + str(ns))
             return ns
         elif len(self.children) == 2:
             logger.debug('Collecting context nodes with ' + str(self.children[0]) + ' for context node ' + str(context_node))
             context_nodes = self.children[0].evaluate(context_node, context_position, context_size, variables)
-            logger.debug('Context nodes from ' + str(self.children[0]) + ': ' + ','.join([str(x) for x in context_nodes]))
+            logger.debug('Context nodes from ' + str(self.children[0]) + ': [' + ','.join([str(x) for x in context_nodes]) + ']')
 
             ns = []
             for i in range(len(context_nodes)):
@@ -48,4 +48,4 @@ class Step(object):
             raise SyntaxException('Steps require between 1 and 2 children')
 
     def __str__(self):
-        return 'Step ' + hex(id(self)) + ': ' + ','.join([str(x) for x in self.children])
+        return 'Step ' + hex(id(self)) + ': [' + ','.join([str(x) for x in self.children]) + ']'
