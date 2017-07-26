@@ -85,7 +85,6 @@ class Element(Node):
         self.attribute_locals = {}
         self.attribute_namespaces = {}
         self.attribute_nodes = {}
-        self._attr_index = {}
         for k, v in self.attributes.items():
             if k.startswith('xmlns:'):
                 continue
@@ -97,13 +96,10 @@ class Element(Node):
                     raise UnknownNamespaceException('Unable to map attribute prefix ' + n[0] + ' to namespace')
                 self.attribute_namespaces[k] = self.namespaces[n[0]]
                 self.attribute_locals[k] = n[2]
-                if n[2] not in self._attr_index:
-                    self._attr_index[n[2]] = v
             else:
                 self.attribute_namespaces[k] = None
                 self.attribute_locals[k] = k
 
-            self._attr_index[k] = v
             self.attribute_nodes[k] = Attribute(document, document._order_count, self, self.attribute_namespaces[k], self.attribute_locals[k], v)
             document._order_count += 1
 
@@ -168,8 +164,8 @@ class Element(Node):
 
     def __str__(self):
         s = self.__class__.__name__ + ' ' + hex(id(self)) + ' ' + self.name
-        if 'id' in self._attr_index:
-            s += ' id=' + self._attr_index['id']
-        if 'name' in self._attr_index:
-            s += ' name=' + self._attr_index['name']
+        if 'id' in self.attributes:
+            s += ' id=' + self.attributes['id']
+        if 'name' in self.attributes:
+            s += ' name=' + self.attributes['name']
         return s
