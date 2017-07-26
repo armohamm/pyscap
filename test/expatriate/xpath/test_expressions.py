@@ -24,11 +24,26 @@ logging.basicConfig(level=logging.DEBUG)
 
 doc = Document()
 
-def test_subexpr1():
-    assert doc.xpath('(2)') == 2
-
-def test_subexpr2():
-    assert doc.xpath('(2+3)+2') == 7
+@pytest.mark.parametrize(
+    "test, result",
+    (
+        (doc.xpath('(2)'), 2),
+        (doc.xpath('(2+3)+2'), 7),
+    )
+)
+def test_subexpr(test, result):
+    assert test == result
 
 def test_left_association():
     assert doc.xpath('3 > 2 > 1') == doc.xpath('(3 > 2) > 1')
+
+@pytest.mark.parametrize(
+    "test, result",
+    (
+        (doc.xpath('2 '), 2),
+        (doc.xpath(' 2'), 2),
+        (doc.xpath(' 2 '), 2),
+    )
+)
+def test_whitespace(test, result):
+    assert test == result
