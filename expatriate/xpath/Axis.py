@@ -181,8 +181,10 @@ class Axis(object):
                 raise ValueError('Axis children past the first must be predicates: ' + str(self.children[i]))
 
         nodeset = Axis.AXES[self.name](context_node)
-        logger.debug('Initial nodeset: ' + str(nodeset))
+        if len(nodeset) == 0:
+            return nodeset
 
+        logger.debug('Initial nodeset: ' + str([str(x) for x in nodeset]))
         for c in self.children:
             ns = []
             for i in range(len(nodeset)):
@@ -193,8 +195,8 @@ class Axis(object):
                 else:
                     logger.debug(str(nodeset[i]) + ' failed ' + str(c))
             nodeset = ns
+        logger.debug('Final nodeset: ' + str([str(x) for x in nodeset]))
 
-        logger.debug('Final nodeset: ' + str(nodeset))
         return nodeset
 
     def get_principal_node_type(self):
