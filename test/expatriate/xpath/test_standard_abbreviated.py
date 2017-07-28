@@ -89,10 +89,10 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
         <figure name="[2][11]">38</figure>
         <figure name="[2][12]">39</figure>
     </chapter>
-    <chapter name="[3]">
+    <chapter name="[3]" xml:lang="en">
         <title name="[3][0]">text node [3][0][0]</title>
         <para name="[3][1]" type="warning">text node [3][1][0]</para>
-        <para name="[3][2]" type="warning">text node [3][2][0]</para>
+        <para name="[3][2]" type="warning" xml:lang="es">nodo de texto [3][2][0]</para>
         <olist name="[3][3]">
             <item name="[3][3][0]">text node [3][3][0][0]</item>
             <item name="[3][3][1]">text node [3][3][0][1]</item>
@@ -190,31 +190,83 @@ doc.parse('''<?xml version='1.0' encoding='utf-8'?>
             doc.root_element[3][6],
             doc.root_element[3][10],
         ]),
+        # 9
+        (doc.root_element.xpath('//para'), [
+            doc.root_element[1][2][0][0],
+            doc.root_element[1][2][0][1],
+            doc.root_element[1][2][0][2],
+            doc.root_element[1][2][0][2][1],
+            doc.root_element[1][2][1],
+            doc.root_element[1][3],
+            doc.root_element[1][4],
+            doc.root_element[2][1],
+            doc.root_element[2][2],
+            doc.root_element[3][1],
+            doc.root_element[3][2],
+            doc.root_element[3][4],
+            doc.root_element[3][5],
+            doc.root_element[3][6],
+            doc.root_element[3][10],
+        ]),
+        # 10
+        (doc.root_element.xpath('//olist/item'), [
+            doc.root_element[3][3][0],
+            doc.root_element[3][3][1],
+        ]),
+        # 11
+        (doc.root_element.xpath('.'), [
+            doc.root_element,
+        ]),
+        # 12
+        (doc.root_element[1].xpath('.//para'), [
+            doc.root_element[1][2][0][0],
+            doc.root_element[1][2][0][1],
+            doc.root_element[1][2][0][2],
+            doc.root_element[1][2][0][2][1],
+            doc.root_element[1][2][1],
+            doc.root_element[1][3],
+            doc.root_element[1][4],
+        ]),
+        # 13
+        (doc.root_element[1].xpath('..'), [
+            doc.root_element,
+        ]),
+        # 14
+        (doc.root_element[3][0].xpath('../@lang'), [
+            'en',
+        ]),
+        # 15
+        (doc.root_element[3].xpath('para[@type="warning"]'), [
+            doc.root_element[3][1],
+            doc.root_element[3][2],
+            doc.root_element[3][4],
+            doc.root_element[3][5],
+            doc.root_element[3][10],
+        ]),
+        # 16
+        (doc.root_element[3].xpath('para[@type="warning"][5]'), [
+            doc.root_element[3][10],
+        ]),
+        # 17
+        (doc.root_element[3].xpath('para[5][@type="warning"]'), [
+        ]),
+        # 18
+        (doc.root_element.xpath('chapter[title="Introduction"]'), [
+            doc.root_element[1],
+        ]),
+        # 19
+        (doc.root_element.xpath('chapter[title]'), [
+            doc.root_element[0],
+            doc.root_element[1],
+            doc.root_element[2],
+            doc.root_element[3],
+            doc.root_element[4],
+        ]),
+        # 20
+        (doc.root_element[5].xpath('employee[@secretary and @assistant]'), [
+            doc.root_element[5][3],
+        ]),
     )
 )
 def test_xpath(test, result):
     assert test == result
-
-# //para selects all the para descendants of the document root and thus selects all para elements in the same document as the context node
-#
-# //olist/item selects all the item elements in the same document as the context node that have an olist parent
-#
-# . selects the context node
-#
-# .//para selects the para element descendants of the context node
-#
-# .. selects the parent of the context node
-#
-# ../@lang selects the lang attribute of the parent of the context node
-#
-# para[@type="warning"] selects all para children of the context node that have a type attribute with value warning
-#
-# para[@type="warning"][5] selects the fifth para child of the context node that has a type attribute with value warning
-#
-# para[5][@type="warning"] selects the fifth para child of the context node if that child has a type attribute with value warning
-#
-# chapter[title="Introduction"] selects the chapter children of the context node that have one or more title children with string-value equal to Introduction
-#
-# chapter[title] selects the chapter children of the context node that have one or more title children
-#
-# employee[@secretary and @assistant] selects all the employee children of the context node that have both a secretary attribute and an assistant attribute
