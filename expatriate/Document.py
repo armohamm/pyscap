@@ -29,14 +29,29 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 class Document(Node):
     @staticmethod
-    def get_first_in_document_order(node_set):
-        if len(node_set) == 0:
+    def ordered_first(nodeset):
+        if len(nodeset) == 0:
             return None
-        n = node_set[0]
-        for i in range(1, len(node_set)):
-            if node_set[i]._document_order < n._document_order:
-                n = node_set[i]
+        n = nodeset[0]
+        for i in range(1, len(nodeset)):
+            if nodeset[i]._document_order < n._document_order:
+                n = nodeset[i]
         return n
+
+    @staticmethod
+    def is_nodeset(nodeset):
+        if not isinstance(nodeset, list):
+            return False
+        for n in nodeset:
+            if not isinstance(n, Node):
+                return False
+        return True
+
+    @staticmethod
+    def order_sort(nodeset, reverse=False):
+        if not Document.is_nodeset(nodeset):
+            raise TypeError('Cannot sort by document order without a nodeset')
+        return sorted(nodeset, key=lambda x: x._document_order, reverse=reverse)
 
     def __init__(self, encoding=None, skip_whitespace=True):
         super(Document, self).__init__(self, -1, None)

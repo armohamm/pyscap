@@ -315,3 +315,21 @@ def test_produce_comment():
     </Document>''')
 
     assert doc.produce() == b'<?xml version="1.0" encoding="UTF-8"><Document><!-- comment data --></Document>'
+
+def test_ordered_first():
+    doc = Document()
+    doc.parse('<node><node/><node/><node/></node>')
+
+    assert Document.ordered_first([doc.root_element[2], doc.root_element[1], doc.root_element[0]]) == doc.root_element[0]
+
+def test_is_nodeset():
+    doc = Document()
+    doc.parse('<node><node/><node/><node/></node>')
+
+    assert Document.is_nodeset(doc.children)
+
+def test_order_sort():
+    doc = Document()
+    doc.parse('<node><node/><node/><node/></node>')
+
+    assert Document.order_sort([doc.root_element[2], doc.root_element[1], doc.root_element[0]]) == [doc.root_element[0], doc.root_element[1], doc.root_element[2]]
