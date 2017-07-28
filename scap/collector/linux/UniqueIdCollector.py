@@ -25,11 +25,27 @@ logger = logging.getLogger(__name__)
 class UniqueIdCollector(Collector):
     def collect(self):
         try:
-            from scap.collector.linux.DmiDecodeCollector import DmiDecodeCollector
-            DmiDecodeCollector(self.host, {}).collect()
+            return_code, out_lines, err_lines = self.host.exec_command('cat /sys/class/dmi/id/product_uuid')
+            if return_code != 0 or len(out_lines) < 1:
+                raise RuntimeError('Could not cat /sys/class/dmi/id/product_uuid')
+
+            logger.debug('From /sys/class/dmi/id/product_uuid: ' + out_lines[0])
+            u = None
+            u = uuid.UUID(out_lines[0].strip())
+
+            if u is None:
+                raise RuntimeError('Could not parse dmidecode output: ' + str(out_lines))
+
+            u = uuid.UUID(u)
+            self.host.facts['unique_id'] = u.hex
+            self.host.facts['motherboard_uuid'] = self.host.facts['unique_id']
         except:
-            # fall back to root fs uuid
-            from scap.collector.linux.RootFsUuidCollector import RootFsUuidCollector
-            RootFsUuidCollector(self.host, {}).collect()
-            self.host.facts['unique_id'] = self.host.facts['root_uuid']
+            try:
+                from scap.collector.linux.DmiDecodeCollector import DmiDecodeCollector
+                DmiDecodeCollector(self.host, {}).collect()
+            except:
+                # fall back to root fs uuid
+                from scap.collector.linux.RootFsUuidCollector import RootFsUuidCollector
+                RootFsUuidCollector(self.host, {}).collect()
+                self.host.facts['unique_id'] = self.host.facts['root_uuid']
         logger.debug('System UUID: ' + self.host.facts['unique_id'])
