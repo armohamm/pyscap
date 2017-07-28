@@ -76,7 +76,7 @@ class Function(object):
             return ''
 
         from ..Document import Document
-        first_node = Document.get_first_in_document_order(a)
+        first_node = Document.ordered_first(a)
 
         if not hasattr(first_node, 'get_expanded_name'):
             return ''
@@ -95,7 +95,7 @@ class Function(object):
             return ''
 
         from ..Document import Document
-        first_node = Document.get_first_in_document_order(a)
+        first_node = Document.ordered_first(a)
 
         if not hasattr(first_node, 'get_expanded_name'):
             return ''
@@ -114,7 +114,7 @@ class Function(object):
             return ''
 
         from ..Document import Document
-        first_node = Document.get_first_in_document_order(a)
+        first_node = Document.ordered_first(a)
 
         if not hasattr(first_node, 'name'):
             return ''
@@ -134,7 +134,7 @@ class Function(object):
 
         if isinstance(a, list): # node-set
             from ..Document import Document
-            first_node = Document.get_first_in_document_order(a)
+            first_node = Document.ordered_first(a)
             return first_node.get_string_value()
         elif isinstance(a, Node) and hasattr(a, 'get_string_value'):
             return a.get_string_value()

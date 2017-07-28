@@ -169,11 +169,28 @@ class Axis(object):
         'self': 'element',
     }
 
+    AXIS_DIRECTION = {
+        'ancestor': 'reverse',
+        'ancestor-or-self': 'reverse',
+        'attribute': 'forward',
+        'child': 'forward',
+        'descendant': 'forward',
+        'descendant-or-self': 'forward',
+        'following': 'forward',
+        'following-sibling': 'forward',
+        'namespace': 'forward',
+        'parent': 'forward',
+        'preceding': 'reverse',
+        'preceding-sibling': 'reverse',
+        'self': 'forward',
+    }
+
     def __init__(self, name):
         self.name = name
         self.children = []
 
     def evaluate(self, context_node, context_position, context_size, variables):
+        from ..Document import Document
         if len(self.children) <= 0:
             raise ValueError('Axis missing NodeTest')
         for i in range(len(self.children)):
@@ -190,13 +207,17 @@ class Axis(object):
         for c in self.children:
             ns = []
             for i in range(len(nodeset)):
-                logger.debug('Testing ' + str(nodeset[i]) + ' against ' + str(c))
+                # logger.debug('Testing ' + str(nodeset[i]) + ' against ' + str(c))
                 if c.evaluate(nodeset[i], i+1, len(nodeset), variables):
-                    logger.debug(str(nodeset[i]) + ' passed ' + str(c))
+                    # logger.debug(str(nodeset[i]) + ' passed ' + str(c))
                     ns.append(nodeset[i])
-                else:
-                    logger.debug(str(nodeset[i]) + ' failed ' + str(c))
+                # else:
+                #     logger.debug(str(nodeset[i]) + ' failed ' + str(c))
             nodeset = ns
+        if Axis.AXIS_DIRECTION[self.name] == 'forward':
+            nodeset = Document.order_sort(nodeset)
+        else:
+            nodeset = Document.order_sort(nodeset, reverse=True)
         logger.debug('Final nodeset: [' + ','.join([str(x) for x in nodeset]) + ']')
 
         return nodeset

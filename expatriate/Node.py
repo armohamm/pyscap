@@ -333,6 +333,10 @@ class Node(object):
     def __str__(self):
         return self.__class__.__name__ + ' ' + hex(id(self))
 
+    def __repr__(self):
+        # just for pytest output
+        return self.__str__()
+
     def get_type(self):
         raise NotImplementedError('get_type has not been implemented in class ' + self.__class__.__name__)
 
