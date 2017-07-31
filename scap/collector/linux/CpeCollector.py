@@ -27,6 +27,25 @@ class CpeCollector(Collector):
         self.host.facts['cpe'] = {'os':[], 'application':[], 'hardware':[]}
 
         # hardware
+        # /proc/bus/pci/*
+        #       Used to access the configuration of installed PCI busses and devices.
+        #
+        # /proc/ide/*
+        #       Used to access the configuration of installed IDE busses and devices.
+        #
+        # /proc/scsi/*, /dev/sg*
+        #       Used to access the configuration of installed SCSI devices.
+        #
+        # /dev/cpu/*/cpuid
+        #       Used on x86 platforms to access CPU-specific configuration.
+        #
+        # /proc/device-tree/*
+        #       Used on PowerPC platforms to access OpenFirmware configuration.
+        #
+        # /proc/bus/usb/*
+        #       Used to access the configuration of installed USB busses and devices.
+        #
+        # /sys/* Used on 2.6 kernels to access hardware/driver configuration information.
         from scap.collector.linux.LshwCollector import LshwCollector
         LshwCollector(self.host, {}).collect()
 
