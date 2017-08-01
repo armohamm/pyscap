@@ -39,15 +39,15 @@ except IOError:
 host = Host.load('localhost')
 
 def test_exists():
-    c = host.load_collector('DirectoryExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model')})
+    c = host.load_collector('DirectoryExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model')})
     assert c.collect() == True
 
 def test_exists_CI():
-    c = host.load_collector('DirectoryExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'MODEL'), 'case_insensitive': True})
+    c = host.load_collector('DirectoryExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'MODEL'), 'case_insensitive': True})
     assert c.collect() == True
 
 def test_not_exists():
-    c = host.load_collector('DirectoryExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'nope')})
+    c = host.load_collector('DirectoryExistsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'nope')})
     assert c.collect() == False
 
 def test_args():

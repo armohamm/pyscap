@@ -30,5 +30,5 @@ Model.register_namespace('scap.model.dc_elements_1_1', 'http://purl.org/dc/eleme
 Model.register_namespace('scap.model.cpe_lang_2_3', 'http://cpe.mitre.org/language/2.0')
 
 def test_benchmark():
-    path = pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'scap' / 'model' / 'test_xccdf_1_1.xml'
+    path = pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xccdf_1_1.xml'
     model = Model.load(None, ET.parse(str(path)).getroot())
