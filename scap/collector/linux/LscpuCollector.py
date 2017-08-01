@@ -28,7 +28,7 @@ class LscpuCollector(Collector):
         # TODO convert to a provider collector
         try:
             cpe = CPE(part='h')
-            return_code, out_lines, err_lines = self.host.exec_command('lscpu', sudo=True)
+            return_code, out_lines, err_lines = self.host.exec_command('lscpu')
             for line in out_lines:
                 m = re.match(r'^[^:]+:\s+(.+)$', line)
                 if m:
