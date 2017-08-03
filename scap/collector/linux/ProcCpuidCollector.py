@@ -33,7 +33,7 @@ class ProcCollector(Collector):
 
         self.host.facts['devices']['processors'] = {}
 
-        return_code, out_lines, err_lines = self.host.exec_command('cat cat /proc/cpuinfo')
+        return_code, out_lines, err_lines = self.host.exec_command('cat /proc/cpuinfo')
         if return_code == 0 and len(out_lines) >= 1:
             cur_proc = {}
             for line in out_lines:
@@ -47,5 +47,3 @@ class ProcCollector(Collector):
                 k = k.strip()
                 v = v.strip()
                 cur_proc[k] = v
-
-        # TODO CPEs

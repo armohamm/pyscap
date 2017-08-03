@@ -27,6 +27,21 @@ class UniqueIdCollector(Collector):
         try:
             from .SysDmiCollector import SysDmiCollector
             SysDmiCollector(self.host, {}).collect()
+
+            if 'product_uuid' not in self.host.facts['devices']['dmi']:
+                raise RuntimeError('Unable to determine unique id from /sys/devices/virtual/dmi/id/product_uuid')
+
+            logger.debug('From /sys/class/dmi/id/product_uuid: ' + self.host.facts['devices']['dmi']['product_uuid'])
+            u = None
+            u = uuid.UUID(self.host.facts['devices']['dmi']['product_uuid'])
+
+            if u is None:
+                raise RuntimeError('Could not parse UUID from /sys/class/dmi/id/product_uuid')
+
+            u = uuid.UUID(u)
+            self.host.facts['unique_id'] = u.hex
+            self.host.facts['motherboard_uuid'] = self.host.facts['unique_id']
+
         except:
             try:
                 from scap.collector.linux.DmiDecodeCollector import DmiDecodeCollector
@@ -36,4 +51,5 @@ class UniqueIdCollector(Collector):
                 from scap.collector.linux.RootFsUuidCollector import RootFsUuidCollector
                 RootFsUuidCollector(self.host, {}).collect()
                 self.host.facts['unique_id'] = self.host.facts['root_uuid']
+
         logger.debug('System UUID: ' + self.host.facts['unique_id'])

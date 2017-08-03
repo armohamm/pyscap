@@ -74,19 +74,3 @@ class SysCollector(Collector):
             return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/power/' + p)
             if return_code == 0 and len(out_lines) >= 1:
                 self.host.facts['devices']['dmi']['power_' + p] = out_lines[0].strip()
-
-        if 'product_uuid' not in self.host.facts['devices']['dmi']:
-            raise RuntimeError('Unable to determine unique id from /sys/devices/virtual/dmi/id/product_uuid')
-
-        logger.debug('From /sys/class/dmi/id/product_uuid: ' + self.host.facts['devices']['dmi']['product_uuid'])
-        u = None
-        u = uuid.UUID(self.host.facts['devices']['dmi']['product_uuid'])
-
-        if u is None:
-            raise RuntimeError('Could not parse UUID from /sys/class/dmi/id/product_uuid')
-
-        u = uuid.UUID(u)
-        self.host.facts['unique_id'] = u.hex
-        self.host.facts['motherboard_uuid'] = self.host.facts['unique_id']
-
-        # TODO CPEs
