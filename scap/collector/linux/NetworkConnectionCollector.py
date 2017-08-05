@@ -34,5 +34,6 @@ class NetworkConnectionCollector(Collector):
                 logger.debug('MAC: ' + netcon['mac_address'])
             if 'default_route' in netcon:
                 logger.debug('Default Route: ' + netcon['default_route'])
-            for netadd in netcon['network_addresses']:
-                logger.debug('Type: ' + netadd['type'] + ' Address: ' + netadd['address'] + ' Mask: ' + netadd['subnet_mask'])
+            if 'network_addresses' in netcon:
+                for netadd in netcon['network_addresses']:
+                    logger.debug('Type: ' + netadd['type'] + ' Address: ' + netadd['address'] + ' Mask: ' + netadd['subnet_mask'])
