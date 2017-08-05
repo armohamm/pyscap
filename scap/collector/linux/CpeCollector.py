@@ -29,6 +29,7 @@ class CpeCollector(Collector):
         try:
             from .SysDmiCollector import SysDmiCollector
             SysDmiCollector(self.host, {}).collect()
+
             cpe = CPE(
                 part='h',
                 vendor=self.host.facts['devices']['dmi']['bios_vendor'],
@@ -64,6 +65,7 @@ class CpeCollector(Collector):
 
             from .ProcCpuidCollector import ProcCpuidCollector
             ProcCpuidCollector(self.host, {}).collect()
+
             for cpu in self.host.facts['devices']['processors']:
                 cpe = CPE(
                     part='h',
@@ -75,14 +77,15 @@ class CpeCollector(Collector):
                     self.host.facts['cpe']['hardware'].append(cpe)
 
         except:
-            from scap.collector.linux.LshwCollector import LshwCollector
-            LshwCollector(self.host, {}).collect()
-
-            from scap.collector.linux.LspciCollector import LspciCollector
-            LspciCollector(self.host, {}).collect()
-
-            from scap.collector.linux.LscpuCollector import LscpuCollector
-            LscpuCollector(self.host, {}).collect()
+            # from scap.collector.linux.LshwCollector import LshwCollector
+            # LshwCollector(self.host, {}).collect()
+            #
+            # from scap.collector.linux.LspciCollector import LspciCollector
+            # LspciCollector(self.host, {}).collect()
+            #
+            # from scap.collector.linux.LscpuCollector import LscpuCollector
+            # LscpuCollector(self.host, {}).collect()
+            pass
 
         # os
         from scap.collector.linux.LsbReleaseCollector import LsbReleaseCollector
