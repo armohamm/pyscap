@@ -60,7 +60,7 @@ class SysCollector(Collector):
             'sys_vendor',
             'uevent',
         ]:
-            return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/' + dmi_id)
+            return_code, out_lines, err_lines = self.host.exec_command('cat /sys/class/dmi/id/' + dmi_id)
             if return_code == 0 and len(out_lines) >= 1:
                 self.host.facts['devices']['dmi'][dmi_id] = out_lines[0].strip()
 
