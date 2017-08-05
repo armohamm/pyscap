@@ -23,7 +23,7 @@ from scap.Collector import Collector
 from scap.model.cpe_matching_2_3.CPE import CPE
 
 logger = logging.getLogger(__name__)
-class SysCollector(Collector):
+class SysDmiCollector(Collector):
     def collect(self):
         if 'devices' not in self.host.facts:
             self.host.facts['devices'] = {}
