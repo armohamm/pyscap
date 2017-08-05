@@ -87,7 +87,19 @@ class ResolveFilepathCollector(Collector):
 
         elif self.args['value_operations']['filepath'] == 'pattern match':
             # NOTE: allowing -L here would run possibly forever
-            cmd = 'find -H / ' + expr + ' 2>/dev/null | grep --colour=never --perl-regexp --line-regexp "' + filepath + '"'
+            if filepath.startswith('/'):
+                filepath_prefix = '/'
+                for fp in filepath[1:].split('/'):
+                    if re.fullmatch(r'[a-zA-Z0-9 ._-]+', fp):
+                        logger.debug('Adding ' + fp + '/ to prefix')
+                        filepath_prefix += fp + '/'
+                    else:
+                        logger.debug(fp + ' looks like a regex, so finishing filepath_prefix with ' + filepath_prefix)
+                        break
+                cmd = 'find -H '  + filepath_prefix + ' ' + expr + ' 2>/dev/null | grep --colour=never --perl-regexp --line-regexp "' + filepath + '"'
+
+            else:
+                cmd = 'find -H . ' + expr + ' 2>/dev/null | grep --colour=never --perl-regexp --line-regexp "' + filepath + '"'
             logger.debug(cmd)
             return_code, out_lines, err_lines = self.host.exec_command(cmd)
 
