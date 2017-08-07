@@ -29,7 +29,7 @@ class UniqueIdCollector(Collector):
 
         from .VirtualMachineDetectionCollector import VirtualMachineDetectionCollector
         VirtualMachineDetectionCollector(self.host, {}).collect()
-        
+
         if 'product_uuid' not in self.host.facts['devices']['dmi']:
             raise RuntimeError('Unable to determine unique id from SysDmiCollector')
 
@@ -45,6 +45,7 @@ class UniqueIdCollector(Collector):
         self.host.facts['motherboard_uuid'] = self.host.facts['unique_id']
 
         # try:
+        # dmidecode -s system-uuid
         #     from scap.collector.linux.DmiDecodeCollector import DmiDecodeCollector
         #     DmiDecodeCollector(self.host, {}).collect()
         # except:

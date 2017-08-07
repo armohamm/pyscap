@@ -47,6 +47,18 @@ class VirtualMachineDetectionCollector(Collector):
     def _detect_virt(self):
         # The following adapted from the virt-what script from Red Hat
 
+        return_code, out_lines, err_lines = self.host.exec_command('if [ -f "/.dockerinit" ]; then echo docker; fi')
+        if return_code == 0 and len(out_lines) >= 1 and out_lines[0].strip() == 'docker':
+            self.host.facts['in_virtual_machine'] = True
+            self.host.facts['hosting_hypervisor'] = 'docker'
+            return
+
+        return_code, out_lines, err_lines = self.host.exec_command('if [ -f "/.dockerenv" ]; then echo docker; fi')
+        if return_code == 0 and len(out_lines) >= 1 and out_lines[0].strip() == 'docker':
+            self.host.facts['in_virtual_machine'] = True
+            self.host.facts['hosting_hypervisor'] = 'docker'
+            return
+
         from .SysDmiCollector import SysDmiCollector
         SysDmiCollector(self.host, {}).collect()
 
@@ -198,10 +210,4 @@ class VirtualMachineDetectionCollector(Collector):
         if 'QEMU' in self.host.facts['cpuinfo']:
             self.host.facts['in_virtual_machine'] = True
             self.host.facts['hosting_hypervisor'] = 'qemu'
-            return
-
-        return_code, out_lines, err_lines = self.host.exec_command('if [ -f "/.dockerinit" ]; then echo docker; fi')
-        if return_code == 0 and len(out_lines) >= 1 and out_lines[0].strip() == 'docker':
-            self.host.facts['in_virtual_machine'] = True
-            self.host.facts['hosting_hypervisor'] = 'docker'
             return
