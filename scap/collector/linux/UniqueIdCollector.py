@@ -28,15 +28,24 @@ class UniqueIdCollector(Collector):
         VirtualMachineDetectionCollector(self.host, {}).collect()
 
         u = None
-        if self.host.facts['hosting_hypervisor'] == 'docker':
-            return_code, out_lines, err_lines = self.host.exec_command('cat /proc/self/cgroup')
-            if return_code == 0 and len(out_lines) > 0:
+        if self.host.facts['in_virtual_machine']:
+            if self.host.facts['hosting_hypervisor'] == 'docker':
+                return_code, out_lines, err_lines = self.host.exec_command('cat /proc/self/cgroup')
+                if return_code != 0 or len(out_lines) <= 0:
+                    raise RuntimeError('Unable to determine unique id from docker')
+
                 logger.debug('/proc/self/cgroup: ' + '\n'.join(out_lines))
                 for line in out_lines:
-                    if 'docker' in line:
-                        logger.debug('found docker line: ' + line)
-            else:
+                    m = re.match(r'docker[/.-]([a-fA-F0-9]+)')
+                    if m:
+                        self.host.facts['unique_id'] = m.group(1)
+                        logger.debug('Found docker id: ' + self.host.facts['unique_id'])
+                        break
+
+                # raise if we didn't find it
                 raise RuntimeError('Unable to determine unique id from docker')
+            else:
+                raise NotImplementedError('Unable to determine unique id from hypervisor/container: ' + self.host.facts['hosting_hypervisor'])
         else:
             from .SysDmiCollector import SysDmiCollector
             SysDmiCollector(self.host, {}).collect()
@@ -57,11 +66,11 @@ class UniqueIdCollector(Collector):
             #     self.host.facts['unique_id'] = self.host.facts['root_uuid']
 
 
-        if u is None:
-            raise RuntimeError('Could not parse UUID from SysDmiCollector')
+            if u is None:
+                raise RuntimeError('Could not parse UUID from SysDmiCollector')
 
-        u = uuid.UUID(u)
-        self.host.facts['unique_id'] = u.hex
-        self.host.facts['motherboard_uuid'] = self.host.facts['unique_id']
+            u = uuid.UUID(u)
+            self.host.facts['unique_id'] = u.hex
+            self.host.facts['motherboard_uuid'] = self.host.facts['unique_id']
 
-        logger.debug('System UUID: ' + self.host.facts['unique_id'])
+        logger.debug('System unique id: ' + self.host.facts['unique_id'])

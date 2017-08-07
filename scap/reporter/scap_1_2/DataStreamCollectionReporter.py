@@ -95,7 +95,7 @@ class DataStreamCollectionReporter(Reporter):
             comp.hostname = ComputingDeviceHostnameType(host.facts['hostname'])
 
             try:
-                comp.motherboard_guid = MotherboardGUIDType(str(uuid.UUID(host.facts['motherboard_uuid'])))
+                comp.motherboard_guid = MotherboardGUIDType(host.facts['motherboard_uuid'])
             except KeyError:
                 logger.debug("Couldn't parse motherboard-guid")
 
