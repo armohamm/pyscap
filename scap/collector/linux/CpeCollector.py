@@ -30,51 +30,69 @@ class CpeCollector(Collector):
         from .SysDmiCollector import SysDmiCollector
         SysDmiCollector(self.host, {}).collect()
 
-        cpe = CPE(
-            part='h',
-            vendor=self.host.facts['devices']['dmi']['bios_vendor'],
-            product='BIOS',
-            version=self.host.facts['devices']['dmi']['bios_version'],
-        )
-        if cpe not in self.host.facts['cpe']['hardware']:
-            self.host.facts['cpe']['hardware'].append(cpe)
-        cpe = CPE(
-            part='h',
-            vendor=self.host.facts['devices']['dmi']['board_vendor'],
-            product=self.host.facts['devices']['dmi']['board_name'],
-            version=self.host.facts['devices']['dmi']['board_version'],
-        )
-        if cpe not in self.host.facts['cpe']['hardware']:
-            self.host.facts['cpe']['hardware'].append(cpe)
-        cpe = CPE(
-            part='h',
-            vendor=self.host.facts['devices']['dmi']['chassis_vendor'],
-            product=self.host.facts['devices']['dmi']['chassis_type'],
-            version=self.host.facts['devices']['dmi']['chassis_version'],
-        )
-        if cpe not in self.host.facts['cpe']['hardware']:
-            self.host.facts['cpe']['hardware'].append(cpe)
-        cpe = CPE(
-            part='h',
-            vendor=self.host.facts['devices']['dmi']['sys_vendor'],
-            product=self.host.facts['devices']['dmi']['product_name'],
-            version=self.host.facts['devices']['dmi']['product_version'],
-        )
-        if cpe not in self.host.facts['cpe']['hardware']:
-            self.host.facts['cpe']['hardware'].append(cpe)
+        try:
+            cpe = CPE(
+                part='h',
+                vendor=self.host.facts['devices']['dmi']['bios_vendor'],
+                product='BIOS',
+                version=self.host.facts['devices']['dmi']['bios_version'],
+            )
+            if cpe not in self.host.facts['cpe']['hardware']:
+                self.host.facts['cpe']['hardware'].append(cpe)
+        except KeyError:
+            pass
+
+        try:
+            cpe = CPE(
+                part='h',
+                vendor=self.host.facts['devices']['dmi']['board_vendor'],
+                product=self.host.facts['devices']['dmi']['board_name'],
+                version=self.host.facts['devices']['dmi']['board_version'],
+            )
+            if cpe not in self.host.facts['cpe']['hardware']:
+                self.host.facts['cpe']['hardware'].append(cpe)
+        except KeyError:
+            pass
+
+        try:
+            cpe = CPE(
+                part='h',
+                vendor=self.host.facts['devices']['dmi']['chassis_vendor'],
+                product=self.host.facts['devices']['dmi']['chassis_type'],
+                version=self.host.facts['devices']['dmi']['chassis_version'],
+            )
+            if cpe not in self.host.facts['cpe']['hardware']:
+                self.host.facts['cpe']['hardware'].append(cpe)
+        except KeyError:
+            pass
+
+        try:
+            cpe = CPE(
+                part='h',
+                vendor=self.host.facts['devices']['dmi']['sys_vendor'],
+                product=self.host.facts['devices']['dmi']['product_name'],
+                version=self.host.facts['devices']['dmi']['product_version'],
+            )
+            if cpe not in self.host.facts['cpe']['hardware']:
+                self.host.facts['cpe']['hardware'].append(cpe)
+        except KeyError:
+            pass
 
         from .ProcCpuidCollector import ProcCpuidCollector
         ProcCpuidCollector(self.host, {}).collect()
 
         for cpu in self.host.facts['devices']['processors']:
-            cpe = CPE(
-                part='h',
-                vendor=cpu['vendor_id'],
-                product=cpu['model name'],
-                version=cpu['stepping'],
-            )
-            if cpe not in self.host.facts['cpe']['hardware']:
-                self.host.facts['cpe']['hardware'].append(cpe)
+            try:
+                cpe = CPE(
+                    part='h',
+                    vendor=cpu['vendor_id'],
+                    product=cpu['model name'],
+                    version=cpu['stepping'],
+                )
+                if cpe not in self.host.facts['cpe']['hardware']:
+                    self.host.facts['cpe']['hardware'].append(cpe)
+            except KeyError:
+                pass
 
         # except:
             # from scap.collector.linux.LshwCollector import LshwCollector

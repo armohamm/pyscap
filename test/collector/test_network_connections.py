@@ -48,9 +48,9 @@ def test_collected_network_connections():
             if i in netcon:
                 assert isinstance(netcon[i], str)
 
-        assert 'network_addresses' in netcon
-        assert isinstance(netcon['network_addresses'], list)
-        for netadd in netcon['network_addresses']:
-            for i in ['type', 'address', 'subnet_mask']:
-                assert i in netadd
-                assert isinstance(netadd[i], str)
+        if 'network_addresses' in netcon:
+            assert isinstance(netcon['network_addresses'], list)
+            for netadd in netcon['network_addresses']:
+                for i in ['type', 'address', 'subnet_mask']:
+                    assert i in netadd
+                    assert isinstance(netadd[i], str)
