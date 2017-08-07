@@ -63,6 +63,7 @@ class SysDmiCollector(Collector):
             return_code, out_lines, err_lines = self.host.exec_command('cat /sys/class/dmi/id/' + dmi_id)
             if return_code == 0 and len(out_lines) >= 1:
                 self.host.facts['devices']['dmi'][dmi_id] = out_lines[0].strip()
+                logger.debug('devices/dmi/' + dmi_id + ' = ' + self.host.facts['devices']['dmi'][dmi_id])
 
         for p in [
             'autosuspend_delay_ms'
@@ -74,3 +75,4 @@ class SysDmiCollector(Collector):
             return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/power/' + p)
             if return_code == 0 and len(out_lines) >= 1:
                 self.host.facts['devices']['dmi']['power_' + p] = out_lines[0].strip()
+                logger.debug('devices/dmi/power_' + p + ' = ' + self.host.facts['devices']['dmi']['power_' + p])
