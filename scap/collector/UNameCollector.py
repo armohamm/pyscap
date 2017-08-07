@@ -42,7 +42,10 @@ class UNameCollector(Collector):
             '--version': 'version',
         }:
             return_code, out_lines, err_lines = self.host.exec_command('uname ' + option)
-            if return_code != 0 or len(out_lines) < 1:
-                raise RuntimeError('Uname information is unavailable')
+            if return_code == 0 and len(out_lines) > 0:
+                self.host.facts['uname'][key] = out_lines[0].strip()
 
-            self.host.facts['uname'][key] = out_lines[0].strip()
+        if len(self.host.facts['uname']) == 0:
+            raise RuntimeError('Uname information is unavailable')
+
+        logger.debug('uname: ' + str(self.host.facts['uname']))
