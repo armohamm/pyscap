@@ -40,7 +40,7 @@ class UNameCollector(Collector):
             '-i': 'hardware_platform',
             '-o': 'operating_system',
             '--version': 'version',
-        }:
+        }.items():
             return_code, out_lines, err_lines = self.host.exec_command('uname ' + option)
             if return_code == 0 and len(out_lines) > 0:
                 self.host.facts['uname'][key] = out_lines[0].strip()
