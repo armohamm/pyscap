@@ -31,7 +31,7 @@ class ProcCpuidCollector(Collector):
         if 'processors' in self.host.facts['devices']:
             return
 
-        self.host.facts['devices']['processors'] = {}
+        self.host.facts['devices']['processors'] = []
 
         return_code, out_lines, err_lines = self.host.exec_command('cat /proc/cpuinfo')
         if return_code == 0 and len(out_lines) >= 1:
