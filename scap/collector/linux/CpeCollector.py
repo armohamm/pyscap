@@ -34,7 +34,7 @@ class CpeCollector(Collector):
             cpe.set_value('vendor', 'linux')
             cpe.set_value('product', 'linux_kernel')
 
-            m = re.match(r'^Linux \S+ ([0-9.]+)-(\S+)', self.host.facts['uname'])
+            m = re.fullmatch(r'([0-9.]+)-(\S+)', self.host.facts['uname']['kernel_release'])
             if m:
                 cpe.set_value('version', m.group(1))
                 cpe.set_value('update', m.group(2))

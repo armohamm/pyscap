@@ -28,7 +28,7 @@ class ProcCpuidCollector(Collector):
         if 'devices' not in self.host.facts:
             self.host.facts['devices'] = {}
 
-        if 'processors' in self.host.facts['devices']:
+        if 'cpuinfo' in self.host.facts:
             return
 
         self.host.facts['devices']['processors'] = []

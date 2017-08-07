@@ -35,8 +35,7 @@ class SysDmiCollector(Collector):
 
         return_code, out_lines, err_lines = self.host.exec_command('ls /sys/devices/virtual/dmi/id/')
         if return_code == 0 and len(out_lines) > 0:
-            for line in out_lines:
-                logger.debug('/sys/devices/virtual/dmi/id contains: ' + line.strip())
+            logger.debug('/sys/devices/virtual/dmi/id contains: ' +' '.join(out_lines))
 
         for dmi_id in [
             'bios_date',
@@ -68,7 +67,7 @@ class SysDmiCollector(Collector):
             return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/' + dmi_id)
             if return_code == 0 and len(out_lines) >= 1:
                 self.host.facts['devices']['dmi'][dmi_id] = out_lines[0].strip()
-                logger.debug('devices/dmi/' + dmi_id + ' = ' + self.host.facts['devices']['dmi'][dmi_id])
+                logger.debug(dmi_id + ' = ' + self.host.facts['devices']['dmi'][dmi_id])
 
         for p in [
             'autosuspend_delay_ms'
@@ -80,4 +79,4 @@ class SysDmiCollector(Collector):
             return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/power/' + p)
             if return_code == 0 and len(out_lines) >= 1:
                 self.host.facts['devices']['dmi']['power_' + p] = out_lines[0].strip()
-                logger.debug('devices/dmi/power_' + p + ' = ' + self.host.facts['devices']['dmi']['power_' + p])
+                logger.debug('power_' + p + ' = ' + self.host.facts['devices']['dmi']['power_' + p])

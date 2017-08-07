@@ -64,7 +64,10 @@ class VirtualMachineDetectionCollector(Collector):
             elif 'xen' in sys_vendor:
                 self.host.facts['in_virtual_machine'] = True
                 self.host.facts['hosting_hypervisor'] = 'xen'
-                # allow further detection techniques
+                if 'hvm' in product_name:
+                    self.host.facts['hosting_hypervisor'] = 'xen-hvm'
+                    return
+                # else allow further detection techniques
             elif 'innotek' in sys_vendor or 'oracle' in sys_vendor:
                 self.host.facts['in_virtual_machine'] = True
                 self.host.facts['hosting_hypervisor'] = 'virtualbox'
