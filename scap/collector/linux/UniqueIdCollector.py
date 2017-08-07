@@ -29,9 +29,12 @@ class UniqueIdCollector(Collector):
 
         u = None
         if self.host.facts['hosting_hypervisor'] == 'docker':
-            return_code, out_lines, err_lines = self.host.exec_command('cat /proc/self/cgroup | grep -o  -e "docker-.*.scope" | head -n 1 | sed "s/docker-\(.*\).scope/\\\\1/"')
+            return_code, out_lines, err_lines = self.host.exec_command('cat /proc/self/cgroup')
             if return_code == 0 and len(out_lines) > 0:
-                u = out_lines[0].strip()
+                logger.debug('/proc/self/cgroup: ' + '\n'.join(out_lines))
+                for line in out_lines:
+                    if 'docker' in line:
+                        logger.debug('found docker line: ' + line)
             else:
                 raise RuntimeError('Unable to determine unique id from docker')
         else:
