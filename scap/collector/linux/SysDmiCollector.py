@@ -33,6 +33,11 @@ class SysDmiCollector(Collector):
 
         self.host.facts['devices']['dmi'] = {}
 
+        return_code, out_lines, err_lines = self.host.exec_command('ls /sys/devices/virtual/dmi/id/')
+        if return_code == 0 and len(out_lines) > 0:
+            for line in out_lines:
+                logger.debug('/sys/devices/virtual/dmi/id contains: ' + line.strip())
+
         for dmi_id in [
             'bios_date',
             'bios_vendor',
@@ -60,7 +65,7 @@ class SysDmiCollector(Collector):
             'sys_vendor',
             'uevent',
         ]:
-            return_code, out_lines, err_lines = self.host.exec_command('cat /sys/class/dmi/id/' + dmi_id)
+            return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/' + dmi_id)
             if return_code == 0 and len(out_lines) >= 1:
                 self.host.facts['devices']['dmi'][dmi_id] = out_lines[0].strip()
                 logger.debug('devices/dmi/' + dmi_id + ' = ' + self.host.facts['devices']['dmi'][dmi_id])

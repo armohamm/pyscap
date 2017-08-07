@@ -27,22 +27,22 @@ class UNameCollector(Collector):
         if 'uname' in self.host.facts:
             return
 
-        return_code, out_lines, err_lines = self.host.exec_command('uname -a')
-        self.host.facts['uname'] = out_lines[0]
+        self.host.facts['uname'] = {}
 
-        if self.host.facts['uname'].startswith('Linux'):
-            cpe = CPE()
-            cpe.set_value('part', 'o')
-            cpe.set_value('vendor', 'linux')
-            cpe.set_value('product', 'linux_kernel')
+        for option, key in {
+            '-a': 'all',
+            '-s': 'kernel_name',
+            '-n': 'nodename',
+            '-r': 'kernel_release',
+            '-v': 'kernel_version',
+            '-m': 'machine',
+            '-p': 'processor',
+            '-i': 'hardware_platform',
+            '-o': 'operating_system',
+            '--version': 'version',
+        }:
+            return_code, out_lines, err_lines = self.host.exec_command('uname ' + option)
+            if return_code != 0 or len(out_lines) < 1:
+                raise RuntimeError('Uname information is unavailable')
 
-            m = re.match(r'^Linux \S+ ([0-9.]+)-(\S+)', self.host.facts['uname'])
-            if m:
-                cpe.set_value('version', m.group(1))
-                cpe.set_value('update', m.group(2))
-
-            if 'cpe' not in self.host.facts:
-                self.host.facts['cpe'] = {'os':[], 'application':[], 'hardware':[]}
-
-            if cpe not in self.host.facts['cpe']['os']:
-                self.host.facts['cpe']['os'].append(cpe)
+            self.host.facts['uname'][key] = out_lines[0].strip()

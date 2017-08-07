@@ -26,6 +26,31 @@ class CpeCollector(Collector):
     def collect(self):
         self.host.facts['cpe'] = {'os':[], 'application':[], 'hardware':[]}
 
+        from ..UNameCollector import UNameCollector
+        UNameCollector(self.host, {}).collect()
+        if self.host.facts['uname']['kernel_name'] == 'Linux':
+            cpe = CPE()
+            cpe.set_value('part', 'o')
+            cpe.set_value('vendor', 'linux')
+            cpe.set_value('product', 'linux_kernel')
+
+            m = re.match(r'^Linux \S+ ([0-9.]+)-(\S+)', self.host.facts['uname'])
+            if m:
+                cpe.set_value('version', m.group(1))
+                cpe.set_value('update', m.group(2))
+
+            if cpe not in self.host.facts['cpe']['os']:
+                self.host.facts['cpe']['os'].append(cpe)
+        elif self.host.facts['uname']['kernel_name'] == 'Windows NT':
+            cpe = CPE()
+            cpe.set_value('part', 'o')
+            cpe.set_value('vendor', 'microsoft')
+            cpe.set_value('product', 'windows')
+            cpe.set_value('version', 'nt')
+
+            if cpe not in self.host.facts['cpe']['os']:
+                self.host.facts['cpe']['os'].append(cpe)
+
         # try:
         from .SysDmiCollector import SysDmiCollector
         SysDmiCollector(self.host, {}).collect()

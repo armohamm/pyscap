@@ -35,6 +35,7 @@ class ProcCpuidCollector(Collector):
 
         return_code, out_lines, err_lines = self.host.exec_command('cat /proc/cpuinfo')
         if return_code == 0 and len(out_lines) >= 1:
+            self.host.facts['cpuinfo'] = '\n'.join(out_lines)
             cur_proc = {}
             for line in out_lines:
                 line = line.strip()
@@ -47,3 +48,4 @@ class ProcCpuidCollector(Collector):
                 k = k.strip()
                 v = v.strip()
                 cur_proc[k] = v
+                logger.debug(k + ' = ' + v)

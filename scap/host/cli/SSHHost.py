@@ -114,18 +114,14 @@ class SSHHost(CLIHost):
                 self.sudo_password = ssh_password
             self.client.connect(self.hostname, port=port, username=ssh_username, password=ssh_password)
 
-        try:
-            from scap.collector.UNameCollector import UNameCollector
-            UNameCollector(self, {}).collect()
-        except:
-            # uname didn't work
-            raise NotImplementedError('Unable to run uname on host: ' + self.host.hostname)
+        from scap.collector.UNameCollector import UNameCollector
+        UNameCollector(self, {}).collect()
 
-        if self.facts['uname'].startswith('Linux'):
+        if self.facts['uname']['kernel_name'] == 'Linux':
             self.facts['oval_family'] = 'linux'
         # elif uname.startswith('Darwin'):
-        #     pass
-        elif self.facts['uname'].startswith('Windows NT'):
+        #     TODO
+        elif self.facts['uname']['kernel_name'] == 'Windows NT':
             self.facts['oval_family'] = 'windows'
         else:
             raise NotImplementedError('Host detection has not been implemented for uname: ' + self.facts['uname'] + ' on ' + self.hostname)

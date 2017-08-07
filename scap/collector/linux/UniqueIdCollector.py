@@ -24,10 +24,12 @@ from scap.Collector import Collector
 logger = logging.getLogger(__name__)
 class UniqueIdCollector(Collector):
     def collect(self):
-        #try:
         from .SysDmiCollector import SysDmiCollector
         SysDmiCollector(self.host, {}).collect()
 
+        from .VirtualMachineDetectionCollector import VirtualMachineDetectionCollector
+        VirtualMachineDetectionCollector(self.host, {}).collect()
+        
         if 'product_uuid' not in self.host.facts['devices']['dmi']:
             raise RuntimeError('Unable to determine unique id from SysDmiCollector')
 
@@ -42,14 +44,13 @@ class UniqueIdCollector(Collector):
         self.host.facts['unique_id'] = u.hex
         self.host.facts['motherboard_uuid'] = self.host.facts['unique_id']
 
-        #except:
-            # try:
-            #     from scap.collector.linux.DmiDecodeCollector import DmiDecodeCollector
-            #     DmiDecodeCollector(self.host, {}).collect()
-            # except:
-            #     # fall back to root fs uuid
-            #     from scap.collector.linux.RootFsUuidCollector import RootFsUuidCollector
-            #     RootFsUuidCollector(self.host, {}).collect()
-            #     self.host.facts['unique_id'] = self.host.facts['root_uuid']
+        # try:
+        #     from scap.collector.linux.DmiDecodeCollector import DmiDecodeCollector
+        #     DmiDecodeCollector(self.host, {}).collect()
+        # except:
+        #     # fall back to root fs uuid
+        #     from scap.collector.linux.RootFsUuidCollector import RootFsUuidCollector
+        #     RootFsUuidCollector(self.host, {}).collect()
+        #     self.host.facts['unique_id'] = self.host.facts['root_uuid']
 
         logger.debug('System UUID: ' + self.host.facts['unique_id'])
