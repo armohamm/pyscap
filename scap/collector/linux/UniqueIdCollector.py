@@ -44,7 +44,8 @@ class UniqueIdCollector(Collector):
                         break
 
                 # raise if we didn't find it
-                raise RuntimeError('Unable to parse unique id from docker')
+                if 'unique_id' not in self.host.facts or self.host.facts['unique_id'] is None:
+                    raise RuntimeError('Unable to parse unique id from docker')
             else:
                 raise NotImplementedError('Unable to determine unique id from hypervisor/container: ' + self.host.facts['hosting_hypervisor'])
         else:
