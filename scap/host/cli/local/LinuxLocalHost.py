@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import getpass
 import logging
 import os
 import selectors
@@ -34,26 +33,8 @@ class LinuxLocalHost(LocalHost):
         # so we short circuit any detection
         self.facts['oval_family'] = 'linux'
 
-    def exec_command(self, cmd, sudo=False):
-        inventory = Inventory()
-
-        if sudo:
-            if hasattr(self, 'sudo_password'):
-                pass
-            elif inventory.has_option(self.hostname, 'sudo_password'):
-                self.sudo_password = inventory.get(self.hostname, 'sudo_password')
-            else:
-                self.sudo_password = getpass.getpass('Sudo password for host ' + self.hostname + ': ')
-
-            cmd = 'sudo -S -- sh -c "' + cmd.replace('"', r'\"') + '"'
-
-            if sys.platform.startswith('linux'):
-                sudo_prompt = '[sudo]'
-            elif sys.platform.startswith('darwin'):
-                sudo_prompt = 'Password:'
-            else:
-                raise NotImplementedError('sudo prompt unknown for platform ' + sys.platform)
-
+    def exec_command(self, cmd):
+        cmd = 'sh -c "' + cmd.replace('"', r'\"') + '"'
         logger.debug("Sending command: " + cmd)
         p = Popen(cmd, stdout=PIPE, stdin=PIPE, stderr=PIPE, shell=True, universal_newlines=True)
 
@@ -81,7 +62,7 @@ class LinuxLocalHost(LocalHost):
                     if len(errs) > 0:
                         logger.debug('Got stderr: ' + errs)
                         err_buf += errs
-                    if sudo and err_buf.startswith(sudo_prompt):
+                    if self.can_sudo() and err_buf.startswith(sudo_prompt):
                         logger.debug("Sending sudo_password...")
                         p.stdin.write(self.sudo_password + "\n")
                         p.stdin.close()
@@ -107,7 +88,7 @@ class LinuxLocalHost(LocalHost):
             if len(errs) > 0:
                 logger.debug('Got extra-loop stderr: ' + errs)
                 err_buf += errs
-            if sudo and err_buf.startswith(sudo_prompt):
+            if self.can_sudo() and (err_buf.startswith('[sudo]') or err_buf.startswith('Password:')):
                 logger.debug("Sending sudo_password...")
                 p.stdin.write(self.sudo_password + "\n")
                 p.stdin.close()

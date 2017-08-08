@@ -25,9 +25,9 @@ from scap.Collector import Collector
 logger = logging.getLogger(__name__)
 class DmiDecodeCollector(Collector):
     def collect(self):
-        return_code, out_lines, err_lines = self.host.exec_command('dmidecode --type 1', sudo=True)
+        return_code, out_lines, err_lines = self.host.exec_command('sudo dmidecode -s system-uuid')
         if return_code != 0 or len(out_lines) < 1:
-            raise RuntimeError('Could not run sudo dmidecode --type 1')
+            raise RuntimeError('Could not run sudo dmidecode -s system-uuid')
 
         u = None
         for line in out_lines:

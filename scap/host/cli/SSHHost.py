@@ -141,39 +141,16 @@ class SSHHost(CLIHost):
             if len(errs) > 0:
                 logger.debug('Got stderr: ' + errs)
                 self.err_buf += errs
-            if sudo and self.err_buf.startswith(self.sudo_prompt):
+            if self.can_sudo() and (err_buf.startswith('[sudo]') or err_buf.startswith('Password:')):
                 logger.debug("Sending sudo_password...")
                 chan.send(self.sudo_password + "\n")
                 self.err_buf = ''
         except socket.timeout:
             pass
 
-    def exec_command(self, cmd, sudo=False, enable=False):
+    def exec_command(self, cmd):
         inventory = Inventory()
-        if sudo:
-            if not self.sudo_password:
-                if not inventory.has_option(self.hostname, 'sudo_password'):
-                    self.sudo_password = getpass.getpass('Sudo password for host ' + self.hostname + ': ')
-                else:
-                    self.sudo_password = inventory.get(self.hostname, 'sudo_password')
-            cmd = 'sudo -S -- sh -c "' + cmd.replace('"', r'\"') + '"'
-
-            # TODO need to do platform detection for sudo prompt
-            #if sys.platform.startswith('linux'):
-            self.sudo_prompt = '[sudo]'
-            #elif sys.platform.startswith('darwin'):
-            #    self.sudo_prompt = 'Password:'
-            #else:
-            #    raise NotImplementedError('sudo prompt unknown for platform ' + sys.platform)
-        elif enable:
-            if not self.enable_password:
-                if not inventory.has_option(self.hostname, 'enable_password'):
-                    self.enable_password = getpass.getpass('Enable password for host ' + self.hostname + ': ')
-                else:
-                    self.enable_password = inventory.get(self.hostname, 'enable_password')
-
-        else:
-            cmd = 'sh -c "' + cmd.replace('"', r'\"') + '"'
+        cmd = 'sh -c "' + cmd.replace('"', r'\"') + '"'
 
         logger.debug("Sending command: " + cmd)
         chan = self.client.get_transport().open_session()

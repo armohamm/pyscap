@@ -18,6 +18,7 @@
 import logging
 
 from scap.Host import Host
+from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
 
@@ -28,6 +29,27 @@ class AuthenticationException(Exception):
     pass
 
 class CLIHost(Host):
+    def __init__(self, hostname):
+        super(CLIHost, self).__init__(hostname)
+
+        inventory = Inventory()
+
+        if inventory.has_option(self.hostname, 'sudo_password'):
+            self.sudo_password = inventory.get(self.hostname, 'sudo_password')
+        else:
+            self.sudo_password = None
+
+        if inventory.has_option(self.hostname, 'enable_password'):
+            self.sudo_password = inventory.get(self.hostname, 'enable_password')
+        else:
+            self.sudo_password = None
+
+    def can_sudo(self):
+        return self.sudo_password is not None
+
+    def can_enable(self):
+        return self.sudo_password is not None
+
     def exec_command(self, cmd):
         ''' should return (status, out_lines, err_lines) '''
         import inspect
