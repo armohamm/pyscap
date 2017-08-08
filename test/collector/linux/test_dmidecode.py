@@ -48,4 +48,4 @@ def test_dmidecode():
     host.load_collector('DmiDecodeCollector', {}).collect()
 
     assert 'dmidecode' in host.facts
-    assert 'system_uuid' in host.facts['dmidecode']
+    assert 'system-uuid' in host.facts['dmidecode']

@@ -30,8 +30,32 @@ class DmiDecodeCollector(Collector):
 
         self.host.facts['dmidecode'] = {}
 
-        return_code, out_lines, err_lines = self.host.exec_command('sudo -S dmidecode -s system-uuid')
-        if return_code != 0 or len(out_lines) < 1:
-            raise RuntimeError('Could not run sudo -S dmidecode -s system-uuid')
+        for s in (
+            'bios-vendor',
+            'bios-version',
+            'bios-release-date',
+            'system-manufacturer',
+            'system-product-name',
+            'system-version',
+            'system-serial-number',
+            'system-uuid',
+            'baseboard-manufacturer',
+            'baseboard-product-name',
+            'baseboard-version',
+            'baseboard-serial-number',
+            'baseboard-asset-tag',
+            'chassis-manufacturer',
+            'chassis-type',
+            'chassis-version',
+            'chassis-serial-number',
+            'chassis-asset-tag',
+            'processor-family',
+            'processor-manufacturer',
+            'processor-version',
+            'processor-frequency',
+        ):
+            return_code, out_lines, err_lines = self.host.exec_command('sudo -S dmidecode -s ' + s)
+            if return_code != 0 or len(out_lines) < 1:
+                raise RuntimeError('Could not run sudo -S dmidecode -s ' + s)
 
-        self.host.facts['dmidecode']['system_uuid'] = out_lines[0]
+            self.host.facts['dmidecode'][s] = out_lines[0]

@@ -21,6 +21,7 @@ import logging
 import re
 
 from scap.Collector import Collector
+from scap.host.CLIHost import SudoException
 
 logger = logging.getLogger(__name__)
 class UniqueIdCollector(Collector):
@@ -51,12 +52,12 @@ class UniqueIdCollector(Collector):
                 from .DmiDecodeCollector import DmiDecodeCollector
                 DmiDecodeCollector(self.host, {}).collect()
 
-                if 'system_uuid' not in self.host.facts['dmidecode']:
+                if 'system-uuid' not in self.host.facts['dmidecode']:
                     raise RuntimeError('Unable to determine unique id from DmiDecodeCollector')
 
-                self.host.facts['unique_id'] = self.host.facts['dmidecode']['system_uuid']
-                self.host.facts['motherboard_uuid'] = self.host.facts['dmidecode']['system_uuid']
-            except RuntimeError:
+                self.host.facts['unique_id'] = self.host.facts['dmidecode']['system-uuid']
+                self.host.facts['motherboard_uuid'] = self.host.facts['dmidecode']['system-uuid']
+            except (RuntimeError, SudoException):
                 try:
                     from .SysDmiCollector import SysDmiCollector
                     SysDmiCollector(self.host, {}).collect()
