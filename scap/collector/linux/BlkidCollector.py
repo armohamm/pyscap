@@ -28,7 +28,7 @@ class BlkidCollector(Collector):
         self.host.facts['blkid'] = {}
         return_code, out_lines, err_lines = self.host.exec_command("blkid")
         if return_code != 0 or len(out_lines) <= 0:
-            raise RuntimeError('Unable to collect filesystem blkids')
+            raise RuntimeError('Unable to collect filesystem blkids: ' + str(err_lines))
 
         for line in out_lines:
             dev, sep, values = line.partition(':')
