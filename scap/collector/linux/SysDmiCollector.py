@@ -33,45 +33,24 @@ class SysDmiCollector(Collector):
 
         self.host.facts['devices']['dmi'] = {}
 
-        return_code, out_lines, err_lines = self.host.exec_command('ls /sys/devices/virtual/dmi/id/')
+        return_code, out_lines, err_lines = self.host.exec_command('ls -1 --color=never /sys/devices/virtual/dmi/id')
         if return_code == 0 and len(out_lines) > 0:
             logger.debug('/sys/devices/virtual/dmi/id contains: ' +' '.join(out_lines))
+            dmi_ids = out_lines
+            for dmi_id in dmi_ids:
+                if dmi_id in ('subsystem', 'power'):
+                    continue
+                return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/' + dmi_id)
+                if return_code == 0 and len(out_lines) > 0:
+                    self.host.facts['devices']['dmi'][dmi_id] = out_lines[0].strip()
+                    logger.debug(dmi_id + ' = ' + self.host.facts['devices']['dmi'][dmi_id])
 
-        for dmi_id in [
-            'bios_date',
-            'bios_vendor',
-            'bios_version',
-            'board_asset_tag',
-            'board_name',
-            'board_serial',
-            'board_vendor',
-            'board_version',
-            'chassis_asset_tag',
-            'chassis_serial',
-            'chassis_type',
-            'chassis_vendor',
-            'chassis_version',
-            'modalias',
-            'product_serial',
-            'product_name',
-            'product_version',
-            'product_uuid',
-            'sys_vendor',
-            'uevent',
-        ]:
-            return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/' + dmi_id)
-            if return_code == 0 and len(out_lines) > 0:
-                self.host.facts['devices']['dmi'][dmi_id] = out_lines[0].strip()
-                logger.debug(dmi_id + ' = ' + self.host.facts['devices']['dmi'][dmi_id])
-
-        for p in [
-            'autosuspend_delay_ms'
-            'control',
-            'runtime_active_time',
-            'runtime_status',
-            'runtime_suspended_time',
-        ]:
-            return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/power/' + p)
-            if return_code == 0 and len(out_lines) >= 1:
-                self.host.facts['devices']['dmi']['power_' + p] = out_lines[0].strip()
-                logger.debug('power_' + p + ' = ' + self.host.facts['devices']['dmi']['power_' + p])
+        return_code, out_lines, err_lines = self.host.exec_command('ls -1 --color=never /sys/devices/virtual/dmi/id/power')
+        if return_code == 0 and len(out_lines) > 0:
+            logger.debug('/sys/devices/virtual/dmi/id/power contains: ' +' '.join(out_lines))
+            power_items = out_lines
+            for p in power_items:
+                return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/power/' + p)
+                if return_code == 0 and len(out_lines) > 0:
+                    self.host.facts['devices']['dmi']['power_' + p] = out_lines[0].strip()
+                    logger.debug('power_' + p + ' = ' + self.host.facts['devices']['dmi']['power_' + p])
