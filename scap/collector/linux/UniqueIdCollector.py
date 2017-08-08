@@ -33,7 +33,7 @@ class UniqueIdCollector(Collector):
             if self.host.facts['hosting_hypervisor'] == 'docker':
                 return_code, out_lines, err_lines = self.host.exec_command('cat /proc/self/cgroup')
                 if return_code != 0 or len(out_lines) <= 0:
-                    raise RuntimeError('Unable to determine unique id from docker')
+                    raise RuntimeError('Unable to determine unique id from docker: return_code=' + str(return_code) + ' out_lines=' + str(out_lines))
 
                 logger.debug('/proc/self/cgroup: ' + '\n'.join(out_lines))
                 for line in out_lines:
