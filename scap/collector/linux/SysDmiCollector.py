@@ -21,6 +21,7 @@ import pprint
 
 from scap.Collector import Collector
 from scap.model.cpe_matching_2_3.CPE import CPE
+from scap.host.CLIHost import SudoException
 
 logger = logging.getLogger(__name__)
 class SysDmiCollector(Collector):
@@ -40,7 +41,10 @@ class SysDmiCollector(Collector):
             for dmi_id in dmi_ids:
                 if dmi_id in ('subsystem', 'power'):
                     continue
-                return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/' + dmi_id)
+                try:
+                    return_code, out_lines, err_lines = self.host.exec_command('sudo -S cat /sys/devices/virtual/dmi/id/' + dmi_id)
+                except SudoException:
+                    return_code, out_lines, err_lines = self.host.exec_command('cat /sys/devices/virtual/dmi/id/' + dmi_id)
                 if return_code == 0 and len(out_lines) > 0:
                     self.host.facts['devices']['dmi'][dmi_id] = out_lines[0].strip()
                     logger.debug(dmi_id + ' = ' + self.host.facts['devices']['dmi'][dmi_id])
