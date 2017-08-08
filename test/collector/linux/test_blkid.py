@@ -37,6 +37,7 @@ except IOError:
 host = Host.load('localhost')
 
 def setup_module(module):
+    host.load_collector('VirtualMachineDetectionCollector', {}).collect()
     if host.facts['oval_family'] != 'linux':
         pytest.skip('Does not apply to platform')
     if host.facts['in_virtual_machine'] and host.facts['hosting_hypervisor'] == 'docker':
