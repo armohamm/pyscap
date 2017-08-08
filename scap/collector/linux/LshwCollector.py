@@ -32,7 +32,7 @@ class LshwCollector(Collector):
         try:
             path = [{}]
             indents = [0]
-            return_code, out_lines, err_lines = self.host.exec_command('sudo lshw')
+            return_code, out_lines, err_lines = self.host.exec_command('sudo -S lshw')
             for line in out_lines:
                 m = re.match(r'^([ ]+)\*-(\S+)', line)
                 if m:

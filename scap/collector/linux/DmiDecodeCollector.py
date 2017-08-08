@@ -32,6 +32,6 @@ class DmiDecodeCollector(Collector):
 
         return_code, out_lines, err_lines = self.host.exec_command('sudo -S dmidecode -s system-uuid')
         if return_code != 0 or len(out_lines) < 1:
-            raise RuntimeError('Could not run sudo dmidecode -s system-uuid')
+            raise RuntimeError('Could not run sudo -S dmidecode -s system-uuid')
 
         self.host.facts['dmidecode']['system_uuid'] = out_lines[0]
