@@ -43,5 +43,3 @@ def test_collected_unique_id():
     unique_id = host.facts['unique_id']
 
     assert isinstance(unique_id, str)
-    # fail if the unique_id doesn't parse as a UUID
-    uuid.UUID(unique_id)
