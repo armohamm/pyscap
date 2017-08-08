@@ -18,6 +18,7 @@
 # Based on https://github.com/MyNameIsMeerkat/GetSysUUID/blob/master/GetSysUUID.py
 
 import logging
+import re
 
 from scap.Collector import Collector
 
