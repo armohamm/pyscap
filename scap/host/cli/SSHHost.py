@@ -135,7 +135,7 @@ class SSHHost(CLIHost):
         except socket.timeout:
             pass
 
-    def _recv_stderr(self, chan, sudo):
+    def _recv_stderr(self, chan):
         try:
             errs = chan.recv_stderr(1024).decode()
             if len(errs) > 0:
@@ -164,11 +164,11 @@ class SSHHost(CLIHost):
                 self._recv(chan)
 
             if chan.recv_stderr_ready():
-                self._recv_stderr(chan, sudo)
+                self._recv_stderr(chan)
 
             if chan.exit_status_ready():
                 self._recv(chan)
-                self._recv_stderr(chan, sudo)
+                self._recv_stderr(chan)
                 break
 
         status = chan.recv_exit_status()
