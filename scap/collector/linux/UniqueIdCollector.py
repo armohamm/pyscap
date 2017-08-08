@@ -36,7 +36,7 @@ class UniqueIdCollector(Collector):
 
                 logger.debug('/proc/self/cgroup: ' + '\n'.join(out_lines))
                 for line in out_lines:
-                    m = re.match(r'docker[/.-]([a-fA-F0-9]+)')
+                    m = re.match(r'docker[/.-]([a-fA-F0-9]+)', line)
                     if m:
                         self.host.facts['unique_id'] = m.group(1)
                         logger.debug('Found docker id: ' + self.host.facts['unique_id'])
@@ -48,35 +48,45 @@ class UniqueIdCollector(Collector):
                 raise NotImplementedError('Unable to determine unique id from hypervisor/container: ' + self.host.facts['hosting_hypervisor'])
         else:
             try:
-                from .SysDmiCollector import SysDmiCollector
-                SysDmiCollector(self.host, {}).collect()
+                from .DmiDecodeCollector import DmiDecodeCollector
+                DmiDecodeCollector(self.host, {}).collect()
 
-                if 'product_uuid' not in self.host.facts['devices']['dmi']:
-                    raise RuntimeError('Unable to determine unique id from SysDmiCollector')
+                if 'system_uuid' not in self.host.facts['dmidecode']:
+                    raise RuntimeError('Unable to determine unique id from DmiDecodeCollector')
 
-                logger.debug('From SysDmiCollector: ' + self.host.facts['devices']['dmi']['product_uuid'])
-
-                self.host.facts['unique_id'] = self.host.facts['devices']['dmi']['product_uuid']
-                self.host.facts['motherboard_uuid'] = self.host.facts['devices']['dmi']['product_uuid']
+                self.host.facts['unique_id'] = self.host.facts['dmidecode']['system_uuid']
+                self.host.facts['motherboard_uuid'] = self.host.facts['dmidecode']['system_uuid']
             except RuntimeError:
                 try:
-                    from .DBusMachineIdCollector import DBusMachineIdCollector
-                    DBusMachineIdCollector(self.host, {}).collect()
+                    from .SysDmiCollector import SysDmiCollector
+                    SysDmiCollector(self.host, {}).collect()
 
-                    self.host.facts['unique_id'] = self.host.facts['dbus_machine_id']
+                    if 'product_uuid' not in self.host.facts['devices']['dmi']:
+                        raise RuntimeError('Unable to determine unique id from SysDmiCollector')
+
+                    logger.debug('From SysDmiCollector: ' + self.host.facts['devices']['dmi']['product_uuid'])
+
+                    self.host.facts['unique_id'] = self.host.facts['devices']['dmi']['product_uuid']
+                    self.host.facts['motherboard_uuid'] = self.host.facts['devices']['dmi']['product_uuid']
                 except RuntimeError:
                     try:
-                        from .RootFsUuidCollector import RootFsUuidCollector
-                        RootFsUuidCollector(self.host, {}).collect()
+                        from .DBusMachineIdCollector import DBusMachineIdCollector
+                        DBusMachineIdCollector(self.host, {}).collect()
 
-                        self.host.facts['unique_id'] = self.host.facts['root_filesystem_uuid']
+                        self.host.facts['unique_id'] = self.host.facts['dbus_machine_id']
                     except RuntimeError:
-                        # this is a crappy unique id to use since it changes on the next boot, but better than nothing
-                        return_code, out_lines, err_lines = self.host.exec_command('cat /proc/sys/kernel/random/boot_id')
-                        if return_code != 0 or len(out_lines) <= 0:
-                            raise RuntimeError('Unable to determine unique id from /proc/sys/kernel/random/boot_id')
+                        try:
+                            from .RootFsUuidCollector import RootFsUuidCollector
+                            RootFsUuidCollector(self.host, {}).collect()
 
-                        self.host.facts['unique_id'] = out_lines[0]
+                            self.host.facts['unique_id'] = self.host.facts['root_filesystem_uuid']
+                        except RuntimeError:
+                            # this is a crappy unique id to use since it changes on the next boot, but better than nothing
+                            return_code, out_lines, err_lines = self.host.exec_command('cat /proc/sys/kernel/random/boot_id')
+                            if return_code != 0 or len(out_lines) <= 0:
+                                raise RuntimeError('Unable to determine unique id from /proc/sys/kernel/random/boot_id')
+
+                            self.host.facts['unique_id'] = out_lines[0]
 
             # try:
             # dmidecode -s system-uuid

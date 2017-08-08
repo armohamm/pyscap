@@ -37,10 +37,15 @@ except IOError:
 host = Host.load('localhost')
 
 def setup_module(module):
+    host.load_collector('VirtualMachineDetectionCollector', {}).collect()
     if host.facts['oval_family'] != 'linux':
         pytest.skip('Does not apply to platform')
+    if host.facts['in_virtual_machine'] and host.facts['hosting_hypervisor'] == 'docker':
+        pytest.skip('Does not apply to platform')
 
-def test_rootfsuuid():
-    host.load_collector('RootFsUuidCollector', {}).collect()
 
-    assert 'root_filesystem_uuid' in host.facts
+def test_dmidecode():
+    host.load_collector('DmiDecodeCollector', {}).collect()
+
+    assert 'dmidecode' in host.facts
+    assert 'system_uuid' in host.facts['dmidecode']
