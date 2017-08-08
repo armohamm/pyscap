@@ -33,15 +33,19 @@ class LinuxLocalHost(LocalHost):
         # so we short circuit any detection
         self.facts['oval_family'] = 'linux'
 
+    def _send_stdin(self, p, data):
+        p.stdin.write(data)
+        p.stdin.close()
+
     def exec_command(self, cmd):
-        cmd = 'sh -c "' + cmd.replace('"', r'\"') + '"'
+        #cmd = 'sh -c "' + cmd.replace('"', r'\"') + '"'
         logger.debug("Sending command: " + cmd)
         p = Popen(cmd, stdout=PIPE, stdin=PIPE, stderr=PIPE, shell=True, universal_newlines=True)
 
         # note; can't use p.communicate; have to figure out if we get a prompt
         # because there isn't if within sudo timeout
-        out_buf = ''
-        err_buf = ''
+        self._cmd_out_buf = ''
+        self._cmd_err_buf = ''
         sel = selectors.DefaultSelector()
         sel.register(p.stdout, selectors.EVENT_READ)
         sel.register(p.stderr, selectors.EVENT_READ)
@@ -55,18 +59,11 @@ class LinuxLocalHost(LocalHost):
                 if key.fileobj is p.stdout and events & selectors.EVENT_READ:
                     outs = p.stdout.buffer.read1(1024).decode()
                     if len(outs) > 0:
-                        logger.debug('Got stdout: ' + outs)
-                        out_buf += outs
+                        self._recv_stdout(p, outs)
                 elif key.fileobj is p.stderr and events & selectors.EVENT_READ:
                     errs = p.stderr.buffer.read1(1024).decode()
                     if len(errs) > 0:
-                        logger.debug('Got stderr: ' + errs)
-                        err_buf += errs
-                    if self.can_sudo() and err_buf.startswith(sudo_prompt):
-                        logger.debug("Sending sudo_password...")
-                        p.stdin.write(self.sudo_password + "\n")
-                        p.stdin.close()
-                        err_buf = ''
+                        self._recv_stderr(p, errs)
 
             if p.stdout.closed and p.stderr.closed:
                 p.stdin.close()
@@ -77,30 +74,23 @@ class LinuxLocalHost(LocalHost):
                 p.stdin.close()
                 break
 
-        if not p.stdout.closed:
-            outs = p.stdout.buffer.read1(1024).decode()
-            if len(outs) > 0:
-                logger.debug('Got extra-loop stdout: ' + outs)
-                out_buf += outs
-
         if not p.stderr.closed:
             errs = p.stderr.buffer.read1(1024).decode()
             if len(errs) > 0:
-                logger.debug('Got extra-loop stderr: ' + errs)
-                err_buf += errs
-            if self.can_sudo() and (err_buf.startswith('[sudo]') or err_buf.startswith('Password:')):
-                logger.debug("Sending sudo_password...")
-                p.stdin.write(self.sudo_password + "\n")
-                p.stdin.close()
-                err_buf = ''
+                self._recv_stderr(p, errs)
+
+        if not p.stdout.closed:
+            outs = p.stdout.buffer.read1(1024).decode()
+            if len(outs) > 0:
+                self._recv_stdout(p, outs)
 
         sel.unregister(p.stdout)
         sel.unregister(p.stderr)
         sel.close()
 
-        out_lines = str.splitlines(out_buf)
+        out_lines = str.splitlines(self._cmd_out_buf)
         out_lines = [line.strip('\x0A\x0D') for line in out_lines]
-        err_lines = str.splitlines(err_buf)
+        err_lines = str.splitlines(self._cmd_err_buf)
         err_lines = [line.strip('\x0A\x0D') for line in err_lines]
 
         return (p.returncode, out_lines, err_lines)

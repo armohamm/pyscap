@@ -77,16 +77,10 @@ class SSHHost(CLIHost):
         else:
             port = 22
 
-        self.sudo_password = None
-
         if inventory.has_option(self.hostname, 'ssh_username') and inventory.has_option(self.hostname, 'ssh_password'):
             self.client.connect(self.hostname, port=port,
                 username=inventory.get(self.hostname, 'ssh_username'),
                 password=inventory.get(self.hostname, 'ssh_password'))
-            if inventory.has_option(self.hostname, 'sudo_password'):
-                self.sudo_password = inventory.get(self.hostname, 'sudo_password')
-            else:
-                self.sudo_password = inventory.get(self.hostname, 'ssh_password')
         elif inventory.has_option(self.hostname, 'ssh_private_key_filename'):
             if inventory.has_option(self.hostname, 'ssh_private_key_file_password'):
                 self.client.connect(self.hostname, port=port,
@@ -108,10 +102,6 @@ class SSHHost(CLIHost):
             if ssh_username.strip() == '':
                 raise RuntimeError('No method of authenticating with host ' + self.hostname + ' found')
             ssh_password = getpass.getpass('Password for host ' + self.hostname + ': ')
-            if inventory.has_option(self.hostname, 'sudo_password'):
-                self.sudo_password = inventory.get(self.hostname, 'sudo_password')
-            else:
-                self.sudo_password = ssh_password
             self.client.connect(self.hostname, port=port, username=ssh_username, password=ssh_password)
 
         from scap.collector.UNameCollector import UNameCollector
@@ -126,25 +116,9 @@ class SSHHost(CLIHost):
         else:
             raise NotImplementedError('Host detection has not been implemented for uname: ' + self.facts['uname'] + ' on ' + self.hostname)
 
-    def _recv(self, chan):
+    def _send_stdin(self, chan, data):
         try:
-            outs = chan.recv(1024).decode()
-            if len(outs) > 0:
-                logger.debug('Got stdout: ' + outs)
-                self.out_buf += outs
-        except socket.timeout:
-            pass
-
-    def _recv_stderr(self, chan):
-        try:
-            errs = chan.recv_stderr(1024).decode()
-            if len(errs) > 0:
-                logger.debug('Got stderr: ' + errs)
-                self.err_buf += errs
-            if self.can_sudo() and (err_buf.startswith('[sudo]') or err_buf.startswith('Password:')):
-                logger.debug("Sending sudo_password...")
-                chan.send(self.sudo_password + "\n")
-                self.err_buf = ''
+            chan.send(self.sudo_password + "\n")
         except socket.timeout:
             pass
 
@@ -157,27 +131,40 @@ class SSHHost(CLIHost):
         chan.exec_command(cmd)
         chan.settimeout(self.SSH_TIMEOUT)
 
-        self.out_buf = ''
-        self.err_buf = ''
+        self._cmd_out_buf = ''
+        self._cmd_err_buf = ''
         while True:
             if chan.recv_ready():
-                self._recv(chan)
+                try:
+                    self._recv_stdout(chan.recv(1024).decode())
+                except socket.timeout:
+                    pass
 
             if chan.recv_stderr_ready():
-                self._recv_stderr(chan)
+                try:
+                    self._recv_stderr(chan.recv_stderr(1024).decode())
+                except socket.timeout:
+                    pass
 
             if chan.exit_status_ready():
-                self._recv(chan)
-                self._recv_stderr(chan)
+                try:
+                    self._recv_stdout(chan.recv(1024).decode())
+                except socket.timeout:
+                    pass
+                try:
+                    self._recv_stderr(chan.recv_stderr(1024).decode())
+                except socket.timeout:
+                    pass
                 break
 
         status = chan.recv_exit_status()
 
         chan.close()
 
-        out_lines = str.splitlines(self.out_buf)
+        out_lines = str.splitlines(self._cmd_out_buf)
         out_lines = [line.strip('\x0A\x0D') for line in out_lines]
-        err_lines = [line.strip('\x0A\x0D') for line in str.splitlines(self.err_buf)]
+
+        err_lines = [line.strip('\x0A\x0D') for line in str.splitlines(self._cmd_err_buf)]
         err_lines = [line.strip('\x0A\x0D') for line in err_lines]
 
         return (status, out_lines,err_lines)
