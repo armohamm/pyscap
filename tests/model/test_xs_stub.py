@@ -39,7 +39,7 @@ logging.basicConfig(level=logging.DEBUG)
 #Model.register_namespace('scap.model.xs', 'http://www.w3.org/2001/XMLSchema')
 
 def test_parse_xsd():
-    path = pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xs_stub.xsd'
+    path = pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'test_xs_stub.xsd'
     model = Model.load(None, ET.parse(str(path)).getroot())
 
 # TODO test stub functions; writes a file

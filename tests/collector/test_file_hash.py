@@ -59,11 +59,11 @@ def test_hash(oval_family, hash_type, hash_value):
     if host.facts['oval_family'] != oval_family:
         pytest.skip('Does not apply to platform')
 
-    c = host.load_collector('FileHashCollector', {'type': hash_type, 'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml')})
+    c = host.load_collector('FileHashCollector', {'type': hash_type, 'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'test_xlink.xml')})
     assert c.collect() == hash_value
 
 def test_not_exists():
-    c = host.load_collector('FileHashCollector', {'type': 'MD5', 'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'nope.xml')})
+    c = host.load_collector('FileHashCollector', {'type': 'MD5', 'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'nope.xml')})
     with pytest.raises(FileNotFoundError):
         c.collect()
 

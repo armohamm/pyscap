@@ -40,7 +40,7 @@ except IOError:
 host = Host.load('localhost')
 
 def test_exists():
-    c = host.load_collector('DirectoryContentsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'scap')})
+    c = host.load_collector('DirectoryContentsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'src' / 'scap')})
     entries = c.collect()
     assert isinstance(entries, list)
     assert len(entries) >= 11
@@ -71,7 +71,7 @@ def test_exists():
 
 def test_not_exists():
     with pytest.raises(FileNotFoundError):
-        host.load_collector('DirectoryContentsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'nope')}).collect()
+        host.load_collector('DirectoryContentsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'nope')}).collect()
 
 # TODO test empty == []
 

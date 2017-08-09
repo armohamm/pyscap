@@ -39,7 +39,7 @@ except IOError:
 host = Host.load('localhost')
 
 def test_exists():
-    path = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml')
+    path = str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'test_xlink.xml')
     c = host.load_collector('FileContentsCollector', {'path': path})
     xml = ''
     with open(path, 'rb') as f:
@@ -47,7 +47,7 @@ def test_exists():
     assert c.collect() == xml
 
 def test_not_exists():
-    c = host.load_collector('FileContentsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'nope.xml')})
+    c = host.load_collector('FileContentsCollector', {'path': str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'nope.xml')})
     with pytest.raises(FileNotFoundError):
         c.collect()
 

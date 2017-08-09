@@ -40,7 +40,7 @@ except IOError:
 host = Host.load('localhost')
 
 def test_existing_file_equals():
-    filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml')
+    filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'test_xlink.xml')
     c = host.load_collector('ResolveFilepathCollector', {
         'filepath': filepath,
         'value_datatypes': {'filepath': 'string'},
@@ -51,8 +51,8 @@ def test_existing_file_equals():
     assert c.collect() == [filepath]
 
 def test_existing_file_pattern():
-    regexfilepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / '.*xlink.xml').replace('\\', '\\\\')
-    filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink.xml')
+    regexfilepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / '.*xlink.xml').replace('\\', '\\\\')
+    filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'test_xlink.xml')
     c = host.load_collector('ResolveFilepathCollector', {
         'filepath': regexfilepath,
         'value_datatypes': {'filepath': 'string'},
@@ -63,7 +63,7 @@ def test_existing_file_pattern():
     assert c.collect() == [filepath]
 
 def test_existing_dir_equals():
-    filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model')
+    filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model')
     c = host.load_collector('ResolveFilepathCollector', {
         'filepath': filepath,
         'value_datatypes': {'filepath': 'string'},
@@ -76,7 +76,7 @@ def test_existing_dir_equals():
 # TODO existing dir pattern
 
 def test_not_existing_file_equals():
-    filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink2.xml')
+    filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'test_xlink2.xml')
     c = host.load_collector('ResolveFilepathCollector', {
         'filepath': filepath,
         'value_datatypes': {'filepath': 'string'},
@@ -88,8 +88,8 @@ def test_not_existing_file_equals():
         c.collect()
 
 def test_not_existing_file_pattern():
-    filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / 'test_xlink2.xml')
-    regexfilepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'test' / 'model' / '.*xlink2.xml').replace('\\', '\\\\')
+    filepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'test_xlink2.xml')
+    regexfilepath = str(pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / '.*xlink2.xml').replace('\\', '\\\\')
     c = host.load_collector('ResolveFilepathCollector', {
         'filepath': regexfilepath,
         'value_datatypes': {'filepath': 'string'},
