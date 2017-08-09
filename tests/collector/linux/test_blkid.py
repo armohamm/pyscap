@@ -43,7 +43,6 @@ def setup_module(module):
     if host.facts['in_virtual_machine'] and host.facts['hosting_hypervisor'] == 'docker':
         pytest.skip('Does not apply to platform')
 
-
 def test_blkid():
     host.load_collector('BlkidCollector', {}).collect()
 
