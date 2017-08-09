@@ -29,7 +29,7 @@ class MessageType(StringType):
     }
 
     def __init__(self, severity=None, *args, **kwargs):
-        super(String, self).__init__(*args, **kwargs)
+        super(StringType, self).__init__(*args, **kwargs)
 
         if severity is not None:
             self.severity = severity
