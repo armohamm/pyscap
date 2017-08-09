@@ -22,7 +22,7 @@ import logging
 import os
 import xml.etree.ElementTree as ET
 
-import namespace_registry
+from scap import register_namespaces
 from scap.ColorFormatter import ColorFormatter
 from scap.Model import Model
 from scap.model.xs.SchemaElement import SchemaElement
@@ -35,6 +35,8 @@ rootLogger.addHandler(ch)
 
 rootLogger.setLevel(logging.INFO)
 logger = logging.getLogger(__name__)
+
+register_namespaces()
 
 arg_parser = argparse.ArgumentParser()
 arg_parser.add_argument('--content', required=True, nargs=1)

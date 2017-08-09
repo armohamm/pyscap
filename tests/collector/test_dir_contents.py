@@ -55,6 +55,8 @@ def test_exists():
             'reporter',
             '__init__.py',
             '__init__.pyc',
+            '__main__.py',
+            '__main__.pyc',
             'Collector.py',
             'Collector.pyc',
             'ColorFormatter.py',
