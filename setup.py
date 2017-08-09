@@ -20,14 +20,14 @@ with open(join(dirname(__file__), 'CLASSIFIERS.txt'), 'r') as f:
     CLASSIFIERS = list(f)
 
 with open(join(dirname(__file__), 'KEYWORDS.txt'), 'r') as f:
-    KEYWORDS = list(f)
+    KEYWORDS = ' '.join(list(f))
 
 with open(join(dirname(__file__), 'requirements.txt'), 'r') as f:
     REQUIREMENTS = list(f)
 
 long_description = README + '\n' + CHANGELOG
 
-setup(name='PySCAP',
+setup(name='pyscap',
     version=VERSION,
     license='GPL',
     description='A security scanner consuming and generating SCAP content',
@@ -48,7 +48,8 @@ setup(name='PySCAP',
     include_package_data=True,
     entry_points={
         'console_scripts': [
-            'pyscap = pyscap:main',
+            'pyscap = scap:main',
         ]
     },
+    python_requires='>=3',
 )
