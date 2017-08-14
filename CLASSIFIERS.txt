@@ -1,0 +1,21 @@
+Development Status :: 3 - Alpha
+Environment :: Console
+Intended Audience :: Financial and Insurance Industry
+Intended Audience :: Healthcare Industry
+Intended Audience :: Information Technology
+Intended Audience :: Other Audience
+Intended Audience :: System Administrators
+License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Operating System :: Microsoft :: Windows
+Operating System :: POSIX
+Operating System :: POSIX :: Linux
+Operating System :: Unix
+Programming Language :: Python
+Programming Language :: Python :: 3
+Programming Language :: Python :: 3.5
+Programming Language :: Python :: 3.6
+Programming Language :: Python :: Implementation :: CPython
+Programming Language :: Python :: Implementation :: PyPy
+Topic :: Security
+Topic :: System :: Systems Administration

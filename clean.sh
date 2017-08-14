@@ -1,9 +1,9 @@
 #!/bin/bash
 
-find scap -name '*.pyc' -delete
-find test -name '*.pyc' -delete
+find src -name '*.pyc' -delete
+find tests -name '*.pyc' -delete
 rm -f *.pem
 (
-    cd agent
+    cd src/agent
     bash clean.sh
 )
