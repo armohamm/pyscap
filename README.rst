@@ -1,5 +1,6 @@
 pyscap
 ======
+.. image:: https://travis-ci.org/cjaymes/pyscap.svg?branch=master
 
 Python implementation of a Security Content Automation Protocol
 compatible Configuration, Vulnerability, Patch and Inventory Scanner
