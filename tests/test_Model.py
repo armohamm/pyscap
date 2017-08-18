@@ -21,15 +21,10 @@ import xml.etree.ElementTree as ET
 import types
 import sys
 
-from scap.Model import Model, \
-    ModelList, \
-    ModelDict, \
-    UnregisteredNamespaceException, \
-    TagMappingException, \
-    RequiredAttributeException, \
-    MinimumElementException, \
-    MaximumElementException, \
-    ReferenceException
+from scap.Model import Model
+from scap.Model import ModelList
+from scap.Model import ModelDict
+from scap.model.exceptions import *
 
 from fixtures.test.RootFixture import RootFixture
 from fixtures.test.EnclosedFixture import EnclosedFixture

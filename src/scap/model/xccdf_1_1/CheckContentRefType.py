@@ -17,7 +17,8 @@
 
 import logging
 
-from scap.Model import Model, ReferenceException
+from scap.Model import Model
+from ..exceptions import *
 
 logger = logging.getLogger(__name__)
 class CheckContentRefType(Model):

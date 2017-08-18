@@ -21,7 +21,7 @@ import logging
 import re
 
 from scap.Collector import Collector
-from scap.host.CLIHost import SudoException
+from scap.host.exceptions import *
 
 logger = logging.getLogger(__name__)
 class UniqueIdCollector(Collector):

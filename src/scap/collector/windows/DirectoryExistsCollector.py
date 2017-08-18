@@ -17,7 +17,8 @@
 
 import logging
 
-from scap.Collector import Collector, ArgumentException
+from scap.Collector import Collector
+from ..exceptions import *
 
 logger = logging.getLogger(__name__)
 class DirectoryExistsCollector(Collector):

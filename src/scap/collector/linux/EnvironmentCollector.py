@@ -18,7 +18,7 @@
 import logging
 import re
 
-from scap.Collector import Collector, ArgumentException
+from scap.Collector import Collector
 
 logger = logging.getLogger(__name__)
 class EnvironmentCollector(Collector):

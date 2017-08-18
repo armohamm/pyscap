@@ -23,6 +23,8 @@ import os.path
 import re
 import xml.etree.ElementTree as ET
 
+from scap.model.exceptions import *
+
 XML_SPACE_ENUMERATION = [
     'default',
     # The value "default" signals that applications' default white-space
@@ -34,36 +36,6 @@ XML_SPACE_ENUMERATION = [
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
-class UnregisteredNamespaceException(Exception):
-    pass
-
-class TagMappingException(Exception):
-    pass
-
-class MinimumElementException(Exception):
-    pass
-
-class MaximumElementException(Exception):
-    pass
-
-class RequiredAttributeException(Exception):
-    pass
-
-class ProhibitedAttributeException(Exception):
-    pass
-
-class UnknownAttributeException(Exception):
-    pass
-
-class UnknownElementException(Exception):
-    pass
-
-class EnumerationException(Exception):
-    pass
-
-class ReferenceException(Exception):
-    pass
 
 class ModelList(UserList):
     def __init__(self, model, element_def, *args, **kwargs):

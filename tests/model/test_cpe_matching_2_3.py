@@ -19,7 +19,8 @@ import logging
 import pytest
 
 import scap.model.cpe_matching_2_3
-from scap.model.cpe_matching_2_3.CPE import CPE, CpeParseException
+from scap.model.cpe_matching_2_3.CPE import CPE
+from scap.model.exceptions import *
 
 logging.basicConfig(level=logging.DEBUG)
 

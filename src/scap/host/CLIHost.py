@@ -18,22 +18,11 @@
 import logging
 
 from scap.Host import Host
+from .exceptions import *
 from scap.Inventory import Inventory
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
-class ElevationException(Exception):
-    pass
-
-class SudoException(ElevationException):
-    pass
-
-class EnableException(ElevationException):
-    pass
-
-class AuthenticationException(Exception):
-    pass
 
 class CLIHost(Host):
     def __init__(self, hostname):

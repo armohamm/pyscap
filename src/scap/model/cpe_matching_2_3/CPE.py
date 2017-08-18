@@ -18,11 +18,10 @@
 import re
 import logging
 
+from ..exceptions import *
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
-
-class CpeParseException(Exception):
-    pass
 
 class CPE(object):
     class Value(object):

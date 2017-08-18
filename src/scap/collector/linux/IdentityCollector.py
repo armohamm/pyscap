@@ -18,7 +18,6 @@
 import logging
 
 from scap.Collector import Collector
-from scap.host.CLIHost import ElevationException
 
 logger = logging.getLogger(__name__)
 class IdentityCollector(Collector):

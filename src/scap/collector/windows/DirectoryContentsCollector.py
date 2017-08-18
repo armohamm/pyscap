@@ -19,7 +19,8 @@ import datetime
 import json
 import logging
 
-from scap.Collector import Collector, ArgumentException
+from scap.Collector import Collector
+from ..exceptions import *
 from scap.collector.windows import convert_json_timestamp
 
 logger = logging.getLogger(__name__)

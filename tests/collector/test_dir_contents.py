@@ -21,7 +21,7 @@ import pathlib
 import pytest
 import uuid
 
-from scap.Collector import ArgumentException
+from scap.collector.exceptions import *
 from scap.Host import Host
 from scap.model.cpe_matching_2_3.CPE import CPE
 from scap.Inventory import Inventory

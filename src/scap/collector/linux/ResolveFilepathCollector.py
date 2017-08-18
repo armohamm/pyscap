@@ -18,7 +18,8 @@
 import logging
 import re
 
-from scap.Collector import Collector, ArgumentException
+from scap.Collector import Collector
+from ..exceptions import *
 from scap.model.oval_5.defs.independent.FileBehaviors import FileBehaviors
 
 logger = logging.getLogger(__name__)

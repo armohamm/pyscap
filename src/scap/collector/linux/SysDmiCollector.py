@@ -21,7 +21,7 @@ import pprint
 
 from scap.Collector import Collector
 from scap.model.cpe_matching_2_3.CPE import CPE
-from scap.host.CLIHost import SudoException
+from scap.host.exceptions import *
 
 logger = logging.getLogger(__name__)
 class SysDmiCollector(Collector):
