@@ -23,7 +23,7 @@ import os.path
 import re
 import xml.etree.ElementTree as ET
 
-from scap.decorators import *
+from scap.model.decorators import *
 from scap.model.exceptions import *
 
 XML_SPACE_ENUMERATION = [

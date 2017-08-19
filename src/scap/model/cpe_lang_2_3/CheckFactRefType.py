@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.decorators import *
+from scap.model.decorators import *
 from scap.model.cpe_lang_2_3.FactRefType import FactRefType
 
 logger = logging.getLogger(__name__)

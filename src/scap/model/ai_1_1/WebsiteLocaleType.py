@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.decorators import *
+from scap.model.decorators import *
 from scap.model.ai_1_1.LocaleType import LocaleType
 
 logger = logging.getLogger(__name__)

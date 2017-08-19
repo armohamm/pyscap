@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.decorators import *
+from scap.model.decorators import *
 from scap.model.ai_1_1.LocationType import LocationType
 from scap.model.xal_2_0.AddressDetailsType import AddressDetailsType
 

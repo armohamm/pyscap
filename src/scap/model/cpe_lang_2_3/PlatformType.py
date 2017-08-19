@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.decorators import *
+from scap.model.decorators import *
 from scap.model.cpe_lang_2_3.PlatformBaseType import PlatformBaseType
 
 logger = logging.getLogger(__name__)

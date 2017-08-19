@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.decorators import *
+from scap.model.decorators import *
 from scap.model.ai_1_1.IPv4Type import IPv4Type
 
 logger = logging.getLogger(__name__)

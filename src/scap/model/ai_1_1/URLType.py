@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.decorators import *
+from scap.model.decorators import *
 from scap.model.xs.AnyUriType import AnyUriType
 
 logger = logging.getLogger(__name__)

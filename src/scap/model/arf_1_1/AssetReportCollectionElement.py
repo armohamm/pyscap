@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.decorators import *
+from scap.model.decorators import *
 from scap.model.rep_core_1_1.RelationshipsContainerType import RelationshipsContainerType
 
 logger = logging.getLogger(__name__)
