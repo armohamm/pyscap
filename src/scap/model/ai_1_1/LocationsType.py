@@ -22,8 +22,8 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'location-address', list='locations', class='LocationAddressType', min=0, max=None)
-@element(None, 'location-point', list='locations', class='LocationPointType', min=0, max=None)
-@element(None, 'location-region', list='locations', class='LocationRegionType', min=0, max=None)
+@element(None, 'location-address', list='locations', cls='LocationAddressType', min=0, max=None)
+@element(None, 'location-point', list='locations', cls='LocationPointType', min=0, max=None)
+@element(None, 'location-region', list='locations', cls='LocationRegionType', min=0, max=None)
 class LocationsType(Model):
     pass

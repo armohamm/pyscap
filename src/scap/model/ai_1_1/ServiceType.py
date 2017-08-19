@@ -22,9 +22,9 @@ from scap.model.ai_1_1.ITAssetType import ITAssetType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'host', class='HostType', min=0),
-@element(None, 'port', list='ports', class='ServicePortType', min=0, max=None),
-@element(None, 'port-range', list='port_ranges', class='PortRangeType', min=0, max=None),
-@element(None, 'protocol', class='ProtocolType', min=0),
+@element(None, 'host', cls='HostType', min=0)
+@element(None, 'port', list='ports', cls='ServicePortType', min=0, max=None)
+@element(None, 'port-range', list='port_ranges', cls='PortRangeType', min=0, max=None)
+@element(None, 'protocol', cls='ProtocolType', min=0)
 class ServiceType(ITAssetType):
     pass

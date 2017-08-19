@@ -22,6 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'asset', list='assets', class='AssetElement', max=None)
+@element(None, 'asset', list='assets', cls='AssetElement', max=None)
 class AssetsType(Model):
     pass

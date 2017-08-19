@@ -22,6 +22,6 @@ from scap.model.rep_core_1_1.RelationshipsContainerType import RelationshipsCont
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'asset', list='assets', class='AssetsAssetElement')
+@element(None, 'asset', list='assets', cls='AssetsAssetElement')
 class AssetsType(RelationshipsContainerType):
     pass

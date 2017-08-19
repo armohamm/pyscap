@@ -22,8 +22,8 @@ from scap.model.ai_1_1.ITAssetType import ITAssetType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'installation-id', class='InstallationIDType', min=0),
-@element(None, 'cpe', class='CPEType', min=0),
-@element(None, 'license', class='LicenseType', min=0, max=None),
+@element(None, 'installation-id', cls='InstallationIDType', min=0)
+@element(None, 'cpe', cls='CPEType', min=0)
+@element(None, 'license', cls='LicenseType', min=0, max=None)
 class SoftwareType(ITAssetType):
     pass

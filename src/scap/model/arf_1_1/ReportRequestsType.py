@@ -22,6 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'report-request', list='report_requests', class='ReportRequestType', max=None)
+@element(None, 'report-request', list='report_requests', cls='ReportRequestType', max=None)
 class ReportRequestsType(Model):
     pass

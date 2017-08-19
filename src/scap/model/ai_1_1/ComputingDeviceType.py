@@ -22,12 +22,12 @@ from scap.model.ai_1_1.ITAssetType import ITAssetType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'distinguished-name', class='DistinguishedNameType', min=0)
-@element(None, 'cpe', list='cpes', class='CPEType', min=0, max=None),
-@element(None, 'connections', class='ConnectionsType', min=0),
-@element(None, 'fqdn', class='FQDNType', min=0),
-@element(None, 'hostname', class='ComputingDeviceHostnameType', min=0),
-@element(None, 'motherboard-guid', class='MotherboardGUIDType', min=0),
+@element(None, 'distinguished-name', cls='DistinguishedNameType', min=0)
+@element(None, 'cpe', list='cpes', cls='CPEType', min=0, max=None)
+@element(None, 'connections', cls='ConnectionsType', min=0)
+@element(None, 'fqdn', cls='FQDNType', min=0)
+@element(None, 'hostname', cls='ComputingDeviceHostnameType', min=0)
+@element(None, 'motherboard-guid', cls='MotherboardGUIDType', min=0)
 class ComputingDeviceType(ITAssetType):
     #TODO: cpes as fs_string
     pass

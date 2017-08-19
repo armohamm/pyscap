@@ -22,6 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'extended-info', list='extended_infos', class='ExtendedInfoElement', max=None)
+@element(None, 'extended-info', list='extended_infos', cls='ExtendedInfoElement', max=None)
 class ExtendedInfosType(Model):
     pass

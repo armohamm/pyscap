@@ -22,6 +22,6 @@ from scap.model.ai_1_1.ITAssetType import ITAssetType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'instance-name', class='InstanceNameType', min=0)
+@element(None, 'instance-name', cls='InstanceNameType', min=0)
 class DatabaseType(ITAssetType):
     pass

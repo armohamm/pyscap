@@ -22,7 +22,7 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'fqdn', class='FQDNType')
-@element(None, 'ip-address', class='IPAddressType')
+@element(None, 'fqdn', cls='FQDNType')
+@element(None, 'ip-address', cls='IPAddressType')
 class HostType(Model):
     pass

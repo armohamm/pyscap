@@ -24,9 +24,9 @@ logger = logging.getLogger(__name__)
 
 @attribute(None, 'id', type='NCNameType', required=True)
 @attribute('*', '*')
-@element(None, 'report-requests', class='ReportRequestsType', 'min=0)
-@element(None, 'assets', class='AssetsType', min=0)
-@element(None, 'reports', class='ReportsType')
-@element(None, 'extended-infos', class='ExtendedInfosType', min=0)
+@element(None, 'report-requests', cls='ReportRequestsType', min=0)
+@element(None, 'assets', cls='AssetsType', min=0)
+@element(None, 'reports', cls='ReportsType')
+@element(None, 'extended-infos', cls='ExtendedInfosType', min=0)
 class AssetReportCollectionElement(RelationshipsContainerType):
     pass

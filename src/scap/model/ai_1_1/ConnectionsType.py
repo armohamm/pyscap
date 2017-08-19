@@ -22,6 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'connection', list='connections', class='NetworkInterfaceType', max=None)
+@element(None, 'connection', list='connections', cls='NetworkInterfaceType', max=None)
 class ConnectionsType(Model):
     pass

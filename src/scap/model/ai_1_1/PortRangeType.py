@@ -22,8 +22,8 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'lower-bound', class='PortType', required=True)
-@attribute(None, 'upper-bound', class='PortType', required=True)
+@attribute(None, 'lower-bound', cls='PortType', required=True)
+@attribute(None, 'upper-bound', cls='PortType', required=True)
 @attribute(None, 'source', type='Source')
 @attribute(None, 'timestamp', type='Timestamp')
 @attribute('*', '*')

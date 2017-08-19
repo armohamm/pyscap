@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 @attribute(None, 'id', type='NCNameType', required=True)
 @attribute('*', '*')
-@element(None, 'content', class='ReportRequestContentElement')
-@element(None, 'remote-resource', class='RemoteResourceElement')
+@element(None, 'content', cls='ReportRequestContentElement')
+@element(None, 'remote-resource', cls='RemoteResourceElement')
 class ReportRequestType(Model):
     pass

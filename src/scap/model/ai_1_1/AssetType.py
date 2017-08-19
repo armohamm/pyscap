@@ -23,9 +23,9 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 
 @attribute(None, 'timestamp', type='Timestamp')
-@element(None, 'synthetic-id', class='SyntheticIDType', list='synthetic_ids', min=0, max=None),
-@element(None, 'locations', class='LocationsType', min=0),
-@element(None, 'extended-information', class='ExtendedInformationType', min=0),
-@element('*', '*'),
+@element(None, 'synthetic-id', cls='SyntheticIDType', list='synthetic_ids', min=0, max=None)
+@element(None, 'locations', cls='LocationsType', min=0)
+@element(None, 'extended-information', cls='ExtendedInformationType', min=0)
+@element('*', '*')
 class AssetType(Model):
     pass

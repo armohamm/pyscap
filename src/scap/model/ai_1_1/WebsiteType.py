@@ -22,7 +22,7 @@ from scap.model.ai_1_1.ITAssetType import ITAssetType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'document-root', class='DocumentRootType', min=0)
-@element(None, 'locale', class='WebsiteLocaleType', min=0)
+@element(None, 'document-root', cls='DocumentRootType', min=0)
+@element(None, 'locale', cls='WebsiteLocaleType', min=0)
 class WebsiteType(ITAssetType):
     pass

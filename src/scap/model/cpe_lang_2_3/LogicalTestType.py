@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 @attribute(None, 'operator', enum=['AND', 'OR'], required=True)
 @attribute(None, 'negate', type='BooleanType', required=True)
-@element(None, 'logical-test', list='logical_tests', class='LogicalTestType', min=0, max=None)
-@element(None, 'fact-ref', list='fact_refs', class='FactRefType', min=0, max=None)
+@element(None, 'logical-test', list='logical_tests', cls='LogicalTestType', min=0, max=None)
+@element(None, 'fact-ref', list='fact_refs', cls='FactRefType', min=0, max=None)
 class LogicalTestType(Model):
     pass
