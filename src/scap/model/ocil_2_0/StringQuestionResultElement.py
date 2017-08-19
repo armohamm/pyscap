@@ -15,8 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ocil_2_0.StringQuestionResultType import StringQuestionResultType
 import logging
+
+from scap.model.decorators import *
+from scap.model.ocil_2_0.StringQuestionResultType import StringQuestionResultType
 
 logger = logging.getLogger(__name__)
 class StringQuestionResultElement(StringQuestionResultType):
