@@ -17,17 +17,14 @@
 
 import logging
 
+from scap.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'operator', enum=['AND', 'OR'], required=True)
+@attribute(None, 'negate', type='BooleanType', required=True)
+@element(None, 'logical-test', list='logical_tests', class='LogicalTestType', min=0, max=None)
+@element(None, 'fact-ref', list='fact_refs', class='FactRefType', min=0, max=None)
 class LogicalTestType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'logical-test', 'list': 'logical_tests', 'class': 'LogicalTestType', 'min': 0, 'max': None},
-            {'tag_name': 'fact-ref', 'list': 'fact_refs', 'class': 'FactRefType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'operator': {'enum': [ 'AND', 'OR', ], 'required': True},
-            'negate': {'type': 'BooleanType', 'required': True},
-        },
-    }
+    pass

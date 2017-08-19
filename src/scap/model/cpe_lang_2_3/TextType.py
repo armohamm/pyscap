@@ -17,12 +17,10 @@
 
 import logging
 
+from scap.decorators import *
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
 class TextType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            '{http://www.w3.org/XML/1998/namespace}lang': {'type': 'LangType'},
-        },
-    }
+    pass

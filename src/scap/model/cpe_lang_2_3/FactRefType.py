@@ -17,12 +17,11 @@
 
 import logging
 
+from scap.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'name', type='NormalizedStringType')
 class FactRefType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'name': {'type': 'NormalizedStringType'},
-        },
-    }
+    pass

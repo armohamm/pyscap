@@ -17,14 +17,13 @@
 
 import logging
 
+from scap.decorators import *
 from scap.model.cpe_lang_2_3.FactRefType import FactRefType
 
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'system', type='AnyUriType', required=True)
+@attribute(None, 'href', type='AnyUriType', required=True)
+@attribute(None, 'id-ref', type='Token', required=True)
 class CheckFactRefType(FactRefType):
-    MODEL_MAP = {
-        'attributes': {
-            'system': {'type': 'AnyUriType', 'required': True},
-            'href': {'type': 'AnyUriType', 'required': True},
-            'id-ref': {'type': 'Token', 'required': True},
-        },
-    }
+    pass

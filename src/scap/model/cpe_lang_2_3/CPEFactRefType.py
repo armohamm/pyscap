@@ -17,12 +17,11 @@
 
 import logging
 
+from scap.decorators import *
 from scap.model.cpe_lang_2_3.FactRefType import FactRefType
 
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'name', type='NamePattern', required=True)
 class CPEFactRefType(FactRefType):
-    MODEL_MAP = {
-        'attributes': {
-            'name': {'type': 'NamePattern', 'required': True},
-        },
-    }
+    pass

@@ -17,14 +17,13 @@
 
 import logging
 
+from scap.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@element(None, 'title', list='titles', class='TextType', min=0, max=None)
+@element(None, 'remark', list='remarks', class='TextType', min=0, max=None)
+@element(None, 'logical-test', class='LogicalTestType', min=1, max=1)
 class PlatformBaseType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'title', 'list': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
-            {'tag_name': 'remark', 'list': 'remarks', 'class': 'TextType', 'min': 0, 'max': None},
-            {'tag_name': 'logical-test', 'class': 'LogicalTestType', 'min': 1, 'max': 1},
-        ],
-    }
+    pass

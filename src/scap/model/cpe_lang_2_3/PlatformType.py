@@ -17,12 +17,11 @@
 
 import logging
 
+from scap.decorators import *
 from scap.model.cpe_lang_2_3.PlatformBaseType import PlatformBaseType
 
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'id', type='AnyUriType', required=True)
 class PlatformType(PlatformBaseType):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'type': 'AnyUriType', 'required': True},
-        },
-    }
+    pass
