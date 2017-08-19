@@ -17,11 +17,11 @@
 
 import logging
 
+from scap.decorators import *
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class Cpe23Type(StringType):
-    MODEL_MAP = {
-    }
 
-    # TODO cpe:2\.3:[aho\*\-](:(((\?*|\*?)([a-zA-Z0-9\-\._]|(\\[\\\*\?!&quot;#$$%&amp;'\(\)\+,/:;&lt;=&gt;@\[\]\^`\{\|}~]))+(\?*|\*?))|[\*\-])){5}(:(([a-zA-Z]{2,3}(-([a-zA-Z]{2}|[0-9]{3}))?)|[\*\-]))(:(((\?*|\*?)([a-zA-Z0-9\-\._]|(\\[\\\*\?!&quot;#$$%&amp;'\(\)\+,/:;&lt;=&gt;@\[\]\^`\{\|}~]))+(\?*|\*?))|[\*\-])){4}
+@content(regex=r'^cpe:2\.3:[aho](?::(?:[a-zA-Z0-9!"#$%&' + r"'" + r'()*+,\\\-_.\/;<=>?@\[\]^`{|}~]|\\:)+){10}$')
+class Cpe23Type(StringType):
+    pass

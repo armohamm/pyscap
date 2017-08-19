@@ -17,11 +17,11 @@
 
 import logging
 
+from scap.decorators import *
 from scap.model.xs.AnyUriType import AnyUriType
 
 logger = logging.getLogger(__name__)
-class Cpe22Type(AnyUriType):
-    MODEL_MAP = {
-    }
 
-    # TODO [c][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}
+@content(regex=r'[cC][pP][eE]:/[AHOaho]?(:[A-Za-z0-9\._\-~%]*){0,6}')
+class Cpe22Type(AnyUriType):
+    pass
