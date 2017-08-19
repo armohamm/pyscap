@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.TextType import TextType
 
 logger = logging.getLogger(__name__)
+
 class ReferenceType(TextType):
     MODEL_MAP = {
         'attributes': {

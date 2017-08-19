@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.QuestionTestActionType import QuestionTestActionType
 
 logger = logging.getLogger(__name__)
+
 class StringQuestionTestActionType(QuestionTestActionType):
     MODEL_MAP = {
         'elements': [

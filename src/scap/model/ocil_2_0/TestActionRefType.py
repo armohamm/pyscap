@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.TestActionRefValuePattern import TestActionRefValuePattern
 
 logger = logging.getLogger(__name__)
+
 class TestActionRefType(TestActionRefValuePattern):
     MODEL_MAP = {
         'tag_name': 'test_action_ref',

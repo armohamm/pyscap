@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.BinaryArtifactValueType import BinaryArtifactValueType
 
 logger = logging.getLogger(__name__)
+
 class BinaryArtifactValueElement(BinaryArtifactValueType):
     MODEL_MAP = {
         'tag_name': 'binary_artifact_value',

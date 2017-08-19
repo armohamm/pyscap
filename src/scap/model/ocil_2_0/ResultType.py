@@ -21,5 +21,6 @@ from scap.model.decorators import *
 from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
+
 class ResultType(TokenType):
     MODEL_MAP = {}

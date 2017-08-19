@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.TestActionConditionType import TestActionConditionType
 
 logger = logging.getLogger(__name__)
+
 class ChoiceTestActionConditionType(TestActionConditionType):
     MODEL_MAP = {
         'elements': [

@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
 class TestActionsType(Model):
     MODEL_MAP = {
         'elements': [

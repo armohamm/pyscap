@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.NumericQuestionTestActionType import NumericQuestionTestActionType
 
 logger = logging.getLogger(__name__)
+
 class NumericQuestionTestActionElement(NumericQuestionTestActionType):
     MODEL_MAP = {
         'tag_name': 'choice_question_test_action',

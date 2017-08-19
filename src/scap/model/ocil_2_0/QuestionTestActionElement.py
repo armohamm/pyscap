@@ -22,6 +22,7 @@ from scap.model.ocil_2_0.QuestionTestActionType import QuestionTestActionType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
 class QuestionTestActionElement(QuestionTestActionType):
     MODEL_MAP = {
         # abstract

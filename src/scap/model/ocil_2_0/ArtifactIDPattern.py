@@ -20,6 +20,8 @@ import logging
 from scap.model.decorators import *
 from scap.model.xs.TokenType import TokenType
 
+logger = logging.getLogger(__name__)
+
+@content(regex=r'ocil:[A-Za-z0-9_\-\.]+:artifact:[1-9][0-9]*')
 class ArtifactIDPattern(TokenType):
-    #  <xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:artifact:[1-9][0-9]*"/>
     pass

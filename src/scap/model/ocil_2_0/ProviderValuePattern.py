@@ -20,6 +20,8 @@ import logging
 from scap.model.decorators import *
 from scap.model.xs.TokenType import TokenType
 
+logger = logging.getLogger(__name__)
+
 class ProviderValuePattern(TokenType):
     #   <xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:user:[1-9][0-9]*"/>
     #   <xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:system:[1-9][0-9]*"/>

@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.UserType import UserType
 
 logger = logging.getLogger(__name__)
+
 class UserElement(UserType):
     MODEL_MAP = {
         'tag_name': 'user',

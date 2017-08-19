@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.BooleanQuestionType import BooleanQuestionType
 
 logger = logging.getLogger(__name__)
+
 class BooleanQuestionElement(BooleanQuestionType):
     MODEL_MAP = {
         'tag_name': 'boolean_question',

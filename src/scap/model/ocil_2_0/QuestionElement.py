@@ -22,6 +22,7 @@ from scap.model.ocil_2_0.QuestionType import QuestionType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
 class QuestionElement(QuestionType):
     MODEL_MAP = {
         # abstract

@@ -20,6 +20,8 @@ import logging
 from scap.model.decorators import *
 from scap.model.ocil_2_0.OCILType import OCILType
 
+logger = logging.getLogger(__name__)
+
 class OCILElement(OCILType):
     MODEL_MAP = {
         'tag_name': 'ocil',

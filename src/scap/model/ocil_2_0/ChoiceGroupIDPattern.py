@@ -20,6 +20,8 @@ import logging
 from scap.model.decorators import *
 from scap.model.xs.TokenType import TokenType
 
+logger = logging.getLogger(__name__)
+
 class ChoiceGroupIDPattern(TokenType):
     #   <xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:choicegroup:[1-9][0-9]*"/>
     pass

@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.SetExpressionChoiceType import SetExpressionChoiceType
 
 logger = logging.getLogger(__name__)
+
 class WhenChoiceElement(SetExpressionChoiceType):
     MODEL_MAP = {
         'tag_name': 'when_choice',

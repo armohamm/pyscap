@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.SystemTargetType import SystemTargetType
 
 logger = logging.getLogger(__name__)
+
 class SystemTargetElement(SystemTargetType):
     MODEL_MAP = {
         'tag_name': 'system',

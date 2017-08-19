@@ -22,6 +22,7 @@ from scap.model.ocil_2_0.ItemBaseType import ItemBaseType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
 class CompoundTestActionType(ItemBaseType):
     MODEL_MAP = {
         'elements': [

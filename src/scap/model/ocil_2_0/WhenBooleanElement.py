@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.SetExpressionBooleanType import SetExpressionBooleanType
 
 logger = logging.getLogger(__name__)
+
 class WhenChoiceElement(SetExpressionBooleanType):
     MODEL_MAP = {
         'tag_name': 'when_boolean',

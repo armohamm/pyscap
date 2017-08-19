@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.QuestionResultType import QuestionResultType
 
 logger = logging.getLogger(__name__)
+
 class QuestionResultElement(QuestionResultType):
     MODEL_MAP = {
         # abstract

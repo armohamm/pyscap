@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.VariableType import VariableType
 
 logger = logging.getLogger(__name__)
+
 class LocalVariableType(VariableType):
     MODEL_MAP = {
         'elements': [

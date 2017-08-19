@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.xs.DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
+
 class RangeValueType(DecimalType):
     MODEL_MAP = {
         'attributes': {

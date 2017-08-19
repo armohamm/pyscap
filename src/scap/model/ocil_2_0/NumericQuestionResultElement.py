@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.NumericQuestionResultType import NumericQuestionResultType
 
 logger = logging.getLogger(__name__)
+
 class NumericQuestionResultElement(NumericQuestionResultType):
     MODEL_MAP = {
         'tag_name': 'numeric_question_result',

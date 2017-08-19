@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.ItemBaseType import ItemBaseType
 
 logger = logging.getLogger(__name__)
+
 class NamedItemBaseType(ItemBaseType):
     MODEL_MAP = {
         'elements': [

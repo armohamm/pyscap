@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.EmbeddedArtifactValueType import EmbeddedArtifactValueType
 
 logger = logging.getLogger(__name__)
+
 class TextArtifactValueType(EmbeddedArtifactValueType):
     MODEL_MAP = {
         'elements': [

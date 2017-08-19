@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.ResultsType import ResultsType
 
 logger = logging.getLogger(__name__)
+
 class ResultsElement(ResultsType):
     MODEL_MAP = {
         'tag_name': 'results',

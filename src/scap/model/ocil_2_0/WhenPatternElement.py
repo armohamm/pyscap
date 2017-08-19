@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.SetExpressionPatternType import SetExpressionPatternType
 
 logger = logging.getLogger(__name__)
+
 class WhenPatternElement(SetExpressionPatternType):
     MODEL_MAP = {
         'tag_name': 'when_pattern',

@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.ConstantVariableType import ConstantVariableType
 
 logger = logging.getLogger(__name__)
+
 class ConstantVariableElement(ConstantVariableType):
     MODEL_MAP = {
         'tag_name': 'constant_variable',

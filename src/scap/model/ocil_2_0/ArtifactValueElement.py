@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.ocil_2_0.ArtifactValueType import ArtifactValueType
 
 logger = logging.getLogger(__name__)
+
 class ArtifactValueElement(ArtifactValueType):
     # abstract
     MODEL_MAP = {
