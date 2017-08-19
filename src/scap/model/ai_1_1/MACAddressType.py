@@ -15,18 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.TokenType import TokenType
 import logging
 
+from scap.model.xs.TokenType import TokenType
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'source', type='Source')
+@attribute(None, 'timestamp', type='Timestamp')
+@attribute('*', '*')
+@content(regex=r'([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}')
 class MACAddressType(TokenType):
-    # <xs:pattern value="([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}"/>
     # collapsed mac-address element & mac-address-type
-    MODEL_MAP = {
-        'tag_name': 'mac-address',
-        'attributes': {
-            'source': {'type': 'Source'},
-            'timestamp': {'type': 'Timestamp'},
-            '*': {},
-        }
-    }
+    pass

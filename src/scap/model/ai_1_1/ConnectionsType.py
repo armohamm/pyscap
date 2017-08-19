@@ -15,14 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'connection', list='connections', class='NetworkInterfaceType', max=None)
 class ConnectionsType(Model):
-    MODEL_MAP = {
-        'tag_name': 'connections',
-        'elements': [
-            {'tag_name': 'connection', 'list': 'connections', 'class': 'NetworkInterfaceType', 'max': None},
-        ],
-    }
+    pass

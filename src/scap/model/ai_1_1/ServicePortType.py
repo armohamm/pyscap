@@ -15,16 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.PortType import PortType
 import logging
 
+from scap.model.ai_1_1.PortType import PortType
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'source', type='Source')
+@attribute(None, 'timestamp', type='Timestamp')
+@attribute('*', '*')
 class ServicePortType(PortType):
-    MODEL_MAP = {
-        'tag_name': 'port',
-        'attributes': {
-            'source': {'type': 'Source'},
-            'timestamp': {'type': 'Timestamp'},
-            '*': {},
-        }
-    }
+    pass

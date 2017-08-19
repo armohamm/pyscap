@@ -15,17 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.LocationType import LocationType
-from scap.model.xs.NormalizedStringType import NormalizedStringType
 import logging
 
+from scap.model.ai_1_1.LocationType import LocationType
+from scap.model.xs.NormalizedStringType import NormalizedStringType
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'source', type='Source')
+@attribute(None, 'timestamp', type='Timestamp')
+@attribute('*', '*')
 class LocationRegionType(LocationType, NormalizedStringType):
-    MODEL_MAP = {
-        'tag_name': 'location-region',
-        'attributes': {
-            'source': {'type': 'Source'},
-            'timestamp': {'type': 'Timestamp'},
-            '*': {},
-        }
-    }
+    pass

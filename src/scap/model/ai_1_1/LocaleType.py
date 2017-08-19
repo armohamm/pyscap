@@ -15,11 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.TokenType import TokenType
 import logging
 
+from scap.model.xs.TokenType import TokenType
+
 logger = logging.getLogger(__name__)
+
+@content(regex=r'[a-zA-Z]{2,3}(-([a-zA-Z]{2}|[0-9]{3}))?')
 class LocaleType(TokenType):
-    # <xs:pattern value="[a-zA-Z]{2,3}(-([a-zA-Z]{2}|[0-9]{3}))?"/>
-    MODEL_MAP = {
-    }
+    pass

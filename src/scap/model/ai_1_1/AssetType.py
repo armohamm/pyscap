@@ -15,20 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'timestamp', type='Timestamp')
+@element(None, 'synthetic-id', class='SyntheticIDType', list='synthetic_ids', min=0, max=None),
+@element(None, 'locations', class='LocationsType', min=0),
+@element(None, 'extended-information', class='ExtendedInformationType', min=0),
+@element('*', '*'),
 class AssetType(Model):
-    MODEL_MAP = {
-        'tag_name': 'asset',
-        'elements': [
-            {'tag_name': 'synthetic-id', 'class': 'SyntheticIDType', 'list': 'synthetic_ids', 'min': 0, 'max': None},
-            {'tag_name': 'locations', 'class': 'LocationsType', 'min': 0},
-            {'tag_name': 'extended-information', 'class': 'ExtendedInformationType', 'min': 0},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'timestamp': {'type': 'Timestamp'}
-        },
-    }
+    pass

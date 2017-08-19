@@ -15,14 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.rep_core_1_1.RelationshipsContainerType import RelationshipsContainerType
 import logging
 
+from scap.decorators import *
+from scap.model.rep_core_1_1.RelationshipsContainerType import RelationshipsContainerType
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'asset', list='assets', class='AssetsAssetElement')
 class AssetsType(RelationshipsContainerType):
-    # abstract
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'asset', 'list': 'assets', 'class': 'AssetsAssetElement'},
-        ],
-    }
+    pass

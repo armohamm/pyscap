@@ -15,16 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'ip-v4', class='IPAddressIPv4Type', min=0)
+@element(None, 'ip-v6', class='IPAddressIPv6Type', min=0)
 class IPAddressType(Model):
     # collapsed ip-address element into ip-address-type
-    MODEL_MAP = {
-        'tag_name': 'ip-address',
-        'elements': [
-            {'tag_name': 'ip-v4', 'class': 'IPAddressIPv4Type', 'min': 0},
-            {'tag_name': 'ip-v6', 'class': 'IPAddressIPv6Type', 'min': 0},
-        ],
-    }
+    pass

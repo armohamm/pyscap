@@ -15,17 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'location-address', list='locations', class='LocationAddressType', min=0, max=None)
+@element(None, 'location-point', list='locations', class='LocationPointType', min=0, max=None)
+@element(None, 'location-region', list='locations', class='LocationRegionType', min=0, max=None)
 class LocationsType(Model):
-    MODEL_MAP = {
-        'tag_name': 'locations',
-        'elements': [
-            # TODO: min locations is 1
-            {'tag_name': 'location-address', 'list': 'locations', 'class': 'LocationAddressType', 'min': 0, 'max': None},
-            {'tag_name': 'location-point', 'list': 'locations', 'class': 'LocationPointType', 'min': 0, 'max': None},
-            {'tag_name': 'location-region', 'list': 'locations', 'class': 'LocationRegionType', 'min': 0, 'max': None},
-        ],
-    }
+    pass

@@ -15,28 +15,25 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.decorators import *
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@attributes(None, 'id', type='NCNameType', required=True)
+@attributes('*', '*')
+@element(None, 'circuit', in='asset', class='CircuitType')
+@element(None, 'computing-device', in='asset', class='ComputingDeviceType')
+@element(None, 'data', in='asset', class='DataType')
+@element(None, 'database', in='asset', class='DatabaseType')
+@element(None, 'network', in='asset', class='NetworkType')
+@element(None, 'organization', in='asset', class='OrganizationType')
+@element(None, 'person', in='asset', class='PersonType')
+@element(None, 'service', in='asset', class='ServiceType')
+@element(None, 'software', in='asset', class='SoftwareType')
+@element(None, 'system', in='asset', class='SystemType')
+@element(None, 'website', in='asset', class='WebsiteType')
 class AssetsAssetElement(Model):
-    MODEL_MAP = {
-        'tag_name': 'asset',
-        'elements': [
-            {'tag_name': 'circuit', 'in': 'asset', 'class': 'CircuitType'},
-            {'tag_name': 'computing-device', 'in': 'asset', 'class': 'ComputingDeviceType'},
-            {'tag_name': 'data', 'in': 'asset', 'class': 'DataType'},
-            {'tag_name': 'database', 'in': 'asset', 'class': 'DatabaseType'},
-            {'tag_name': 'network', 'in': 'asset', 'class': 'NetworkType'},
-            {'tag_name': 'organization', 'in': 'asset', 'class': 'OrganizationType'},
-            {'tag_name': 'person', 'in': 'asset', 'class': 'PersonType'},
-            {'tag_name': 'service', 'in': 'asset', 'class': 'ServiceType'},
-            {'tag_name': 'software', 'in': 'asset', 'class': 'SoftwareType'},
-            {'tag_name': 'system', 'in': 'asset', 'class': 'SystemType'},
-            {'tag_name': 'website', 'in': 'asset', 'class': 'WebsiteType'},
-        ],
-        'attributes': {
-            'id': {'type': 'NCNameType', 'required': True},
-            '*': {},
-        }
-    }
+    pass

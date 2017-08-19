@@ -15,15 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'ip-net-range-start', class='IPAddressType')
+@element(None, 'ip-net-range-end', class='IPAddressType')
 class IPNetRangeType(Model):
-    MODEL_MAP = {
-        'tag_name': 'ip-net-range',
-        'elements': [
-            {'tag_name': 'ip-net-range-start', 'class': 'IPAddressType'},
-            {'tag_name': 'ip-net-range-end', 'class': 'IPAddressType'},
-        ],
-    }
+    pass

@@ -15,16 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.IPv6Type import IPv6Type
 import logging
 
+from scap.model.ai_1_1.IPv6Type import IPv6Type
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'source', type='Source')
+@attribute(None, 'timestamp', type='Timestamp')
+@attribute('*', '*')
 class IPAddressIPv6Type(IPv6Type):
-    MODEL_MAP = {
-        'tag_name': 'ip-v6',
-        'attributes': {
-            'source': {'type': 'Source'},
-            'timestamp': {'type': 'Timestamp'},
-            '*': {},
-        }
-    }
+    pass

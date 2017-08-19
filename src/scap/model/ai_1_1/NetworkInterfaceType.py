@@ -15,18 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'ip-address', class='IPAddressType', min=0),
+@element(None, 'mac-address', class='MACAddressType', min=0),
+@element(None, 'url', list='urls', class='URLType', min=0, max=None),
+@element(None, 'subnet-mask', class='IPAddressType', min=0),
+@element(None, 'default-route', class='IPAddressType', min=0),
 class NetworkInterfaceType(Model):
-    MODEL_MAP = {
-        'tag_name': 'connection',
-        'elements': [
-            {'tag_name': 'ip-address', 'class': 'IPAddressType', 'min': 0},
-            {'tag_name': 'mac-address', 'class': 'MACAddressType', 'min': 0},
-            {'tag_name': 'url', 'list': 'urls', 'class': 'URLType', 'min': 0, 'max': None},
-            {'tag_name': 'subnet-mask', 'class': 'IPAddressType', 'min': 0},
-            {'tag_name': 'default-route', 'class': 'IPAddressType', 'min': 0},
-        ],
-    }
+    pass

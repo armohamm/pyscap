@@ -15,20 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.LocationType import LocationType
 import logging
 
+from scap.model.ai_1_1.LocationType import LocationType
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'latitude', required=True, type='DoubleType')
+@attribute(None, 'longitude', required=True, type='DoubleType')
+@attribute(None, 'elevation', type='DoubleType')
+@attribute(None, 'radius', type='DoubleType')
+@attribute(None, 'source', type='Source')
+@attribute(None, 'timestamp', type='Timestamp')
+@attribute('*', '*')
 class LocationPointType(LocationType):
-    MODEL_MAP = {
-        'tag_name': 'location-point',
-        'attributes': {
-            'latitude': {'required': True, 'type': 'DoubleType'},
-            'longitude': {'required': True, 'type': 'DoubleType'},
-            'elevation': {'type': 'DoubleType'},
-            'radius': {'type': 'DoubleType'},
-            'source': {'type': 'Source'},
-            'timestamp': {'type': 'Timestamp'},
-            '*': {},
-        }
-    }
+    pass

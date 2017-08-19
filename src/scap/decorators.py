@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-class model_attribute(object):
+class attribute(object):
     def __init__(self, namespace, local_name, **kwargs):
         self._namespace = namespace
         self._local_name = local_name
@@ -27,7 +27,7 @@ class model_attribute(object):
         cls._model_attributes[(self._namespace, self._local_name)] = self._kwargs
         return cls
 
-class model_element(object):
+class element(object):
     def __init__(self, namespace, local_name, **kwargs):
         self._namespace = namespace
         self._local_name = local_name
@@ -44,11 +44,10 @@ class model_element(object):
         cls._model_element_order.insert(0, (self._namespace, self._local_name))
         return cls
 
-class model_name(object):
-    def __init__(self, namespace, local_name):
-        self._namespace = namespace
-        self._local_name = local_name
+class content(object):
+    def __init__(self, **kwargs):
+        self._kwargs = kwargs
 
     def __call__(self, cls):
-        cls._model_name = (self._namespace, self._local_name)
+        cls._model_content = self._kwargs
         return cls

@@ -15,16 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.StringType import StringType
 import logging
 
+from scap.model.xs.StringType import StringType
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'source', type='Source')
+@attribute(None, 'timestamp', type='Timestamp')
+@attribute('*', '*')
 class LicenseType(StringType):
-    MODEL_MAP = {
-        'tag_name': 'license',
-        'attributes': {
-            'source': {'class': 'Source'},
-            'timestamp': {'class': 'Timestamp'},
-            '*': {},
-        }
-    }
+    pass

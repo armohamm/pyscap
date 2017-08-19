@@ -15,17 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.AssetType import AssetType
 import logging
 
+from scap.model.ai_1_1.AssetType import AssetType
+
 logger = logging.getLogger(__name__)
+
+@element('urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'OrganisationNameDetails', list='organization_name_details', class='OrganisationNameDetailsType', min=0, max=None)
+@element(None, 'email-address', list='email_addresses', class='EmailAddressType', min=0, max=None)
+@element(None, 'telephone-number', list='telephone_numbers', class='TelephoneNumberType', min=0, max=None)
+@element(None, 'website-url', list='website_urls', class='WebsiteURLType', min=0, max=None)
 class OrganizationType(AssetType):
-    MODEL_MAP = {
-        'tag_name': 'organization',
-        'elements': [
-            {'xmlns': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'OrganisationNameDetails', 'list': 'organization_name_details', 'class': 'OrganisationNameDetailsType', 'min': 0, 'max': None},
-            {'tag_name': 'email-address', 'list': 'email_addresses', 'class': 'EmailAddressType', 'min': 0, 'max': None},
-            {'tag_name': 'telephone-number', 'list': 'telephone_numbers', 'class': 'TelephoneNumberType', 'min': 0, 'max': None},
-            {'tag_name': 'website-url', 'list': 'website_urls', 'class': 'WebsiteURLType', 'min': 0, 'max': None},
-        ],
-    }
+    pass

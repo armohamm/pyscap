@@ -15,15 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.ITAssetType import ITAssetType
 import logging
 
+from scap.model.ai_1_1.ITAssetType import ITAssetType
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'system-name', list='system_names', class='SystemNameType', min=0, max=None)
+@element(None, 'version', class='VersionType', min=0)
 class SystemType(ITAssetType):
-    MODEL_MAP = {
-        'tag_name': 'system',
-        'elements': [
-            {'tag_name': 'system-name', 'list': 'system_names', 'class': 'SystemNameType', 'min': 0, 'max': None},
-            {'tag_name': 'version', 'class': 'VersionType', 'min': 0},
-        ],
-    }
+    pass

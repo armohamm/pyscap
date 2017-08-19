@@ -15,17 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.AnyUriType import AnyUriType
 import logging
 
+from scap.model.xs.AnyUriType import AnyUriType
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'source', type='Source')
+@attribute(None, 'timestamp', type='Timestamp')
+@attribute('*', '*')
 class URLType(AnyUriType):
     # collapsed mac-address element & mac-address-type
-    MODEL_MAP = {
-        'tag_name': 'url',
-        'attributes': {
-            'source': {'type': 'Source'},
-            'timestamp': {'type': 'Timestamp'},
-            '*': {},
-        }
-    }
+    pass

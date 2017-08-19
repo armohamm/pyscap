@@ -15,18 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'lower-bound', class='PortType', required=True)
+@attribute(None, 'upper-bound', class='PortType', required=True)
+@attribute(None, 'source', type='Source')
+@attribute(None, 'timestamp', type='Timestamp')
+@attribute('*', '*')
 class PortRangeType(Model):
-    MODEL_MAP = {
-        'tag_name': 'port-range',
-        'attributes': {
-            'lower-bound': {'class': 'PortType', 'required': True},
-            'upper-bound': {'class': 'PortType', 'required': True},
-            'source': {'type': 'Source'},
-            'timestamp': {'type': 'Timestamp'},
-            '*': {},
-        }
-    }
+    pass

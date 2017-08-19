@@ -23,8 +23,8 @@ from scap.decorators import *
 logging.basicConfig(level=logging.DEBUG)
 
 def test_attribute():
-    @model_attribute(None, 'local_name', type='type1')
-    @model_attribute('http://jaymes.biz', 'xmlns_name', type='type2')
+    @attribute(None, 'local_name', type='type1')
+    @attribute('http://jaymes.biz', 'xmlns_name', type='type2')
     class AttrClass(object):
         pass
 
@@ -37,8 +37,8 @@ def test_attribute():
     assert AttrClass._model_attributes[('http://jaymes.biz', 'xmlns_name')]['type'] == 'type2'
 
 def test_element():
-    @model_element(None, 'local_name', type='type1')
-    @model_element('http://jaymes.biz', 'xmlns_name', type='type2')
+    @element(None, 'local_name', type='type1')
+    @element('http://jaymes.biz', 'xmlns_name', type='type2')
     class ElClass(object):
         pass
 
@@ -53,18 +53,4 @@ def test_element():
     assert ElClass._model_element_order[0] == (None, 'local_name')
     assert ElClass._model_element_order[1] == ('http://jaymes.biz', 'xmlns_name')
 
-def test_name_implicit_ns():
-    @model_name(None, 'local_name')
-    class NameClass(object):
-        pass
-
-    assert hasattr(NameClass, '_model_name')
-    assert NameClass._model_name == (None, 'local_name')
-
-def test_name_explicit_ns():
-    @model_name('http://jaymes.biz', 'local_name')
-    class NameClass(object):
-        pass
-
-    assert hasattr(NameClass, '_model_name')
-    assert NameClass._model_name == ('http://jaymes.biz', 'local_name')
+# TODO content

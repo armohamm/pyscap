@@ -15,11 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.TokenType import TokenType
 import logging
 
+from scap.model.xs.TokenType import TokenType
+
 logger = logging.getLogger(__name__)
+
+@content(regex=r'[\w\-]+(\.[\w\-]+){0,}')
 class HostnameType(TokenType):
-    # [\w\-]+(\.[\w\-]+){0,}
-    MODEL_MAP = {
-    }
+    pass

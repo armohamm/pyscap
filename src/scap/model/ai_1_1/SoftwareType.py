@@ -15,16 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.ITAssetType import ITAssetType
 import logging
 
+from scap.model.ai_1_1.ITAssetType import ITAssetType
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'installation-id', class='InstallationIDType', min=0),
+@element(None, 'cpe', class='CPEType', min=0),
+@element(None, 'license', class='LicenseType', min=0, max=None),
 class SoftwareType(ITAssetType):
-    MODEL_MAP = {
-        'tag_name': 'software',
-        'elements': [
-            {'tag_name': 'installation-id', 'class': 'InstallationIDType', 'min': 0},
-            {'tag_name': 'cpe', 'class': 'CPEType', 'min': 0},
-            {'tag_name': 'license', 'class': 'LicenseType', 'min': 0, 'max': None},
-        ],
-    }
+    pass

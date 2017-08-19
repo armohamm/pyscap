@@ -15,11 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.LocationType import LocationType
-from scap.model.xal_2_0.AddressDetailsType import AddressDetailsType
 import logging
 
+from scap.model.ai_1_1.LocationType import LocationType
+from scap.model.xal_2_0.AddressDetailsType import AddressDetailsType
+
 logger = logging.getLogger(__name__)
+
 class LocationAddressType(LocationType, AddressDetailsType):
-    MODEL_MAP = {
-    }
+    pass

@@ -15,16 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.ITAssetType import ITAssetType
 import logging
 
+from scap.model.ai_1_1.ITAssetType import ITAssetType
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'network-name', class='NetworkNameType', min=0),
+@element(None, 'ip-net-range', class='IPNetRangeType', min=0),
+@element(None, 'cidr', class='NetworkCIDRType', min=0),
 class NetworkType(ITAssetType):
-    MODEL_MAP = {
-        'tag_name': 'network',
-        'elements': [
-            {'tag_name': 'network-name', 'class': 'NetworkNameType', 'min': 0},
-            {'tag_name': 'ip-net-range', 'class': 'IPNetRangeType', 'min': 0},
-            {'tag_name': 'cidr', 'class': 'NetworkCIDRType', 'min': 0},
-        ],
-    }
+    pass

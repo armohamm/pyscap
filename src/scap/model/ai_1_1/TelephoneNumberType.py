@@ -15,18 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.TokenType import TokenType
 import logging
 
+from scap.model.xs.TokenType import TokenType
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'source', type='Source')
+@attribute(None, 'timestamp', type='Timestamp')
+@attribute('*', '*')
+@content(regex=r'(([2-9][0-8]\d-[2-9]\d{2}-[0-9]{4})|(\+([0-9] ?){6,14}[0-9]))')
 class TelephoneNumberType(TokenType):
     # collapsed element telephone-number into telephone-number-type
-    # <xs:pattern value="(([2-9][0-8]\d-[2-9]\d{2}-[0-9]{4})|(\+([0-9] ?){6,14}[0-9]))"/>
-    MODEL_MAP = {
-        'tag_name': 'telephone-number',
-        'attributes': {
-            'source': {'class': 'Source'},
-            'timestamp': {'class': 'Timestamp'},
-            '*': {},
-        }
-    }
+    pass

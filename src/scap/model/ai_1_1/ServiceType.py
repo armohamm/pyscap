@@ -15,17 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.ITAssetType import ITAssetType
 import logging
 
+from scap.model.ai_1_1.ITAssetType import ITAssetType
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'host', class='HostType', min=0),
+@element(None, 'port', list='ports', class='ServicePortType', min=0, max=None),
+@element(None, 'port-range', list='port_ranges', class='PortRangeType', min=0, max=None),
+@element(None, 'protocol', class='ProtocolType', min=0),
 class ServiceType(ITAssetType):
-    MODEL_MAP = {
-        'tag_name': 'service',
-        'elements': [
-            {'tag_name': 'host', 'class': 'HostType', 'min': 0},
-            {'tag_name': 'port', 'list': 'ports', 'class': 'ServicePortType', 'min': 0, 'max': None},
-            {'tag_name': 'port-range', 'list': 'port_ranges', 'class': 'PortRangeType', 'min': 0, 'max': None},
-            {'tag_name': 'protocol', 'class': 'ProtocolType', 'min': 0},
-        ],
-    }
+    pass

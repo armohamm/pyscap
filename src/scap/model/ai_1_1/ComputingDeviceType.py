@@ -15,20 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.ITAssetType import ITAssetType
 import logging
 
+from scap.model.ai_1_1.ITAssetType import ITAssetType
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'distinguished-name', class='DistinguishedNameType', min=0)
+@element(None, 'cpe', list='cpes', class='CPEType', min=0, max=None),
+@element(None, 'connections', class='ConnectionsType', min=0),
+@element(None, 'fqdn', class='FQDNType', min=0),
+@element(None, 'hostname', class='ComputingDeviceHostnameType', min=0),
+@element(None, 'motherboard-guid', class='MotherboardGUIDType', min=0),
 class ComputingDeviceType(ITAssetType):
-    MODEL_MAP = {
-        'tag_name': 'computing-device',
-        'elements': [
-            {'tag_name': 'distinguished-name', 'class': 'DistinguishedNameType', 'min': 0},
-            {'tag_name': 'cpe', 'list': 'cpes', 'class': 'CPEType', 'min': 0, 'max': None},
-            {'tag_name': 'connections', 'class': 'ConnectionsType', 'min': 0},
-            {'tag_name': 'fqdn', 'class': 'FQDNType', 'min': 0},
-            {'tag_name': 'hostname', 'class': 'ComputingDeviceHostnameType', 'min': 0},
-            {'tag_name': 'motherboard-guid', 'class': 'MotherboardGUIDType', 'min': 0},
-        ],
-    }
     #TODO: cpes as fs_string
+    pass

@@ -15,13 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.IntegerType import IntegerType
 import logging
 
+from scap.model.xs.IntegerType import IntegerType
+
 logger = logging.getLogger(__name__)
+
+@content(min=0, max=65535)
 class PortType(IntegerType):
-    # <xs:minInclusive value="0"/>
-    # <xs:maxInclusive value="65535"/>
-    MODEL_MAP = {
-        'tag_name': 'port',
-    }
+    pass

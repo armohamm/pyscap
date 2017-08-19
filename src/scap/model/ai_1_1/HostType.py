@@ -15,15 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'fqdn', class='FQDNType')
+@element(None, 'ip-address', class='IPAddressType')
 class HostType(Model):
-    MODEL_MAP = {
-        'tag_name': 'host',
-        'elements': [
-            {'tag_name': 'fqdn', 'class': 'FQDNType'},
-            {'tag_name': 'ip-address', 'class': 'IPAddressType'},
-        ],
-    }
+    pass

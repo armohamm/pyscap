@@ -15,17 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.ai_1_1.AssetType import AssetType
 import logging
 
+from scap.model.ai_1_1.AssetType import AssetType
+
 logger = logging.getLogger(__name__)
+
+@element('urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'PersonName', class='PersonNameType', min=0)
+@element(None, 'email-address', list='email_addresses', class='EmailAddressType', min=0, max=None)
+@element(None, 'telephone-number', list='telephone_numbers', class='TelephoneNumberType', min=0, max=None)
+@element(None, 'birthdate', class='BirthdateType', min=0)
 class PersonType(AssetType):
-    MODEL_MAP = {
-        'tag_name': 'person',
-        'elements': [
-            {'xmlns': 'urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'tag_name': 'PersonName', 'class': 'PersonNameType', 'min': 0},
-            {'tag_name': 'email-address', 'list': 'email_addresses', 'class': 'EmailAddressType', 'min': 0, 'max': None},
-            {'tag_name': 'telephone-number', 'list': 'telephone_numbers', 'class': 'TelephoneNumberType', 'min': 0, 'max': None},
-            {'tag_name': 'birthdate', 'class': 'BirthdateType', 'min': 0},
-        ],
-    }
+    pass
