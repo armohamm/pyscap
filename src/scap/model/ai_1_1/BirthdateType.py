@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.decorators import *
 from scap.model.xs.DateType import DateType
 
 logger = logging.getLogger(__name__)

@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.decorators import *
 from scap.model.ai_1_1.HostnameType import HostnameType
 
 logger = logging.getLogger(__name__)

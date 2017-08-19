@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.decorators import *
 from scap.model.ai_1_1.IPv6Type import IPv6Type
 
 logger = logging.getLogger(__name__)
