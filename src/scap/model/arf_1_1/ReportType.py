@@ -15,19 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'id', type='NCNameType', required=True)
+@attribute('*', '*')
+@element(None, 'content', class='ReportContentElement')
+@element(None, 'remote-resource', class='RemoteResourceElement')
 class ReportType(Model):
-    MODEL_MAP = {
-        'tag_name': 'report',
-        'elements': [
-            {'tag_name': 'content', 'class': 'ReportContentElement'},
-            {'tag_name': 'remote-resource', 'class': 'RemoteResourceElement'},
-        ],
-        'attributes': {
-            'id': {'type': 'NCNameType', 'required': True},
-            '*': {},
-        }
-    }
+    pass

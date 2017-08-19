@@ -15,16 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@attribute('http://www.w3.org/1999/xlink', 'type', required=True, enum=['simple'])
+@attribute('http://www.w3.org/1999/xlink', 'href', required=True, type='AnyUriType')
+@attribute('*', '*')
 class RemoteResourceElement(Model):
-    MODEL_MAP = {
-        'tag_name': 'remote-resource',
-        'attributes': {
-            '{http://www.w3.org/1999/xlink}type': {'required': True, 'enum': ['simple']},
-            '{http://www.w3.org/1999/xlink}href': {'required': True, 'type': 'AnyUriType'},
-            '*': {},
-        }
-    }
+    pass

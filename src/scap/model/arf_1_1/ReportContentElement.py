@@ -15,19 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'data-valid-start-date', type='DateType')
+@attribute(None, 'data-valid-end-date', type='DateType')
+@attribute('*', '*')
+@element('*', '*')
 class ReportContentElement(Model):
-    MODEL_MAP = {
-        'tag_name': 'content',
-        'elements': [
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'data-valid-start-date': {'type': 'DateType'},
-            'data-valid-end-date': {'type': 'DateType'},
-            '*': {},
-        }
-    }
+    pass

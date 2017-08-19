@@ -15,21 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.rep_core_1_1.RelationshipsContainerType import RelationshipsContainerType
 import logging
 
+from scap.model.rep_core_1_1.RelationshipsContainerType import RelationshipsContainerType
+
 logger = logging.getLogger(__name__)
+
+@attribute(None, 'id', type='NCNameType', required=True)
+@attribute('*', '*')
+@element(None, 'report-requests', class='ReportRequestsType', 'min=0)
+@element(None, 'assets', class='AssetsType', min=0)
+@element(None, 'reports', class='ReportsType')
+@element(None, 'extended-infos', class='ExtendedInfosType', min=0)
 class AssetReportCollectionElement(RelationshipsContainerType):
-    MODEL_MAP = {
-        'tag_name': 'asset-report-collection',
-        'elements': [
-            {'tag_name': 'report-requests', 'class': 'ReportRequestsType', 'min': 0},
-            {'tag_name': 'assets', 'class': 'AssetsType', 'min': 0},
-            {'tag_name': 'reports', 'class': 'ReportsType'},
-            {'tag_name': 'extended-infos', 'class': 'ExtendedInfosType', 'min': 0},
-        ],
-        'attributes': {
-            'id': {'type': 'NCNameType', 'required': True},
-            '*': {},
-        }
-    }
+    pass

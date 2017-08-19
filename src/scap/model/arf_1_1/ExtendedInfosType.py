@@ -15,14 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+
 logger = logging.getLogger(__name__)
+
+@element(None, 'extended-info', list='extended_infos', class='ExtendedInfoElement', max=None)
 class ExtendedInfosType(Model):
-    MODEL_MAP = {
-        'tag_name': 'extended-infos',
-        'elements': [
-            {'tag_name': 'extended-info', 'list': 'extended_infos', 'class': 'ExtendedInfoElement', 'max': None},
-        ],
-    }
+    pass
