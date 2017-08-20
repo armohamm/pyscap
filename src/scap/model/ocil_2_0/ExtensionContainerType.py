@@ -22,9 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element('*', '*', list='additional_data', min=1, max=None)
 class ExtensionContainerType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': '*', 'list': 'additional_data', 'min': 1, 'max': None},
-        ],
-    }
+    pass

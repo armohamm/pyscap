@@ -22,12 +22,9 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'constant_variable', list='variables', cls='ConstantVariableElement', min=0, max=None)
+@element(None, 'local_variable', list='variables', cls='LocalVariableElement', min=0, max=None)
+@element(None, 'external_variable', list='variables', cls='ExternalVariableElement', min=0, max=None)
 class VariablesType(Model):
-    MODEL_MAP = {
-        'elements': [
-            #TODO: at least one *_variable
-            {'tag_name': 'constant_variable', 'list': 'variables', 'class': 'ConstantVariableElement', 'min': 0, 'max': None},
-            {'tag_name': 'local_variable', 'list': 'variables', 'class': 'LocalVariableElement', 'min': 0, 'max': None},
-            {'tag_name': 'external_variable', 'list': 'variables', 'class': 'ExternalVariableElement', 'min': 0, 'max': None},
-        ],
-    }
+    #TODO: at least one *_variable
+    pass

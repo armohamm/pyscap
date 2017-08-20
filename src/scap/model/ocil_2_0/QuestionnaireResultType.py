@@ -22,13 +22,8 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'questionnaire_ref', type='QuestionIDPattern', required=True)
+@attribute(None, 'result', cls='ResultType', required=True)
+@element(None, 'artifact_results', cls='ArtifactResultsType', min=0, max=1)
 class QuestionnaireResultType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'artifact_results', 'class': 'ArtifactResultsType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'questionnaire_ref': {'type': 'QuestionnaireIDPattern', 'required': True},
-            'result': {'class': 'ResultType', 'required': True},
-        }
-    }
+    pass

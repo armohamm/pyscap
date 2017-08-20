@@ -22,15 +22,11 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'product_name', type='NormalizedStringType', min=0, max=1)
+@element(None, 'product_version', type='NormalizedStringType', min=0, max=1)
+@element(None, 'author', list='authors', cls='UserType', min=0, max=None)
+@element(None, 'schema_version', type='DecimalType', min=1, max=1)
+@element(None, 'timestamp', type='DateTimeType', min=1, max=1)
+@element(None, 'additional_data', cls='ExtensionContainerType', min=0)
 class GeneratorType(Model):
-    MODEL_MAP = {
-        'tag_name': 'generator',
-        'elements': [
-            {'tag_name': 'product_name', 'type': 'NormalizedStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'product_version', 'type': 'NormalizedStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'author', 'list': 'authors', 'class': 'UserType', 'min': 0, 'max': None},
-            {'tag_name': 'schema_version', 'type': 'DecimalType', 'min': 1, 'max': 1},
-            {'tag_name': 'timestamp', 'type': 'DateTimeType', 'min': 1, 'max': 1},
-            {'tag_name': 'additional_data', 'class': 'ExtensionContainerType', 'min': 0},
-        ],
-    }
+    pass

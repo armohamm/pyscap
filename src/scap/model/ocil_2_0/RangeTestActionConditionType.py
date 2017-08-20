@@ -23,9 +23,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'range', list='ranges', cls='RangeType', min=1, max=None)
 class RangeTestActionConditionType(TestActionConditionType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'range', 'list': 'ranges', 'class': 'RangeType', 'min': 1, 'max': None},
-        ],
-    }
+    pass

@@ -22,12 +22,7 @@ from scap.model.ocil_2_0.TestActionConditionType import TestActionConditionType
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'var_ref', type='VariableIdPattern')
+@element(None, 'value', list='values', type='DecimalType', min=1, max=None)
 class EqualsTestActionConditionType(TestActionConditionType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'value', 'list': 'values', 'type': 'DecimalType', 'min': 1, 'max': None},
-        ],
-        'attributes': {
-            'var_ref': {'type': 'VariableIdPattern'},
-        },
-    }
+    pass

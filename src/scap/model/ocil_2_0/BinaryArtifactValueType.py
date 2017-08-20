@@ -22,9 +22,6 @@ from scap.model.ocil_2_0.EmbeddedArtifactValueType import EmbeddedArtifactValueT
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'data', type='Base64Binary')
 class BinaryArtifactValueType(EmbeddedArtifactValueType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'data', 'type': 'Base64Binary'},
-        ],
-    }
+    pass

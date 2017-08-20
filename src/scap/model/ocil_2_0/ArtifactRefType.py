@@ -22,10 +22,7 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'idref', type='ArtifactIDPattern')
+@attribute(None, 'required', type='BooleanType', default=False)
 class ArtifactRefType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'idref': {'type': 'ArtifactIDPattern',},
-            'required': {'type': 'BooleanType', 'default': False},
-        }
-    }
+    pass

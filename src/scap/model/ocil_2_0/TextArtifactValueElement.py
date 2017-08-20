@@ -23,6 +23,4 @@ from scap.model.ocil_2_0.TextArtifactValueType import TextArtifactValueType
 logger = logging.getLogger(__name__)
 
 class TextArtifactValueElement(TextArtifactValueType):
-    MODEL_MAP = {
-        'tag_name': 'text_artifact_value',
-    }
+    pass

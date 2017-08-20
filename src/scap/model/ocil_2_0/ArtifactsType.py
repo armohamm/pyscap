@@ -22,9 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'artifact', list='artifacts', cls='ArtifactElement', min=1, max=None)
 class ArtifactsType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'artifact', 'list': 'artifacts', 'class': 'ArtifactElement', 'min': 1, 'max': None},
-        ],
-    }
+    pass

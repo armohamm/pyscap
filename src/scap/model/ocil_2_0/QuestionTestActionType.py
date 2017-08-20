@@ -23,18 +23,12 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'question_ref', type='QuestionIDPattern', required=True)
+@attribute(None, 'id', type='QuestionTestActionIDPattern', required=True)
+@element(None, 'title', cls='TextType', min=0, max=1)
+@element(None, 'when_unknown', cls='TestActionConditionType', min=0)
+@element(None, 'when_not_tested', cls='TestActionConditionType', min=0)
+@element(None, 'when_not_applicable', cls='TestActionConditionType', min=0)
+@element(None, 'when_error', cls='TestActionConditionType', min=0)
 class QuestionTestActionType(ItemBaseType):
-    MODEL_MAP = {
-        # abstract
-        'elements': [
-            {'tag_name': 'title', 'class': 'TextType', 'min': 0, 'max': 1},
-            {'tag_name': 'when_unknown', 'class': 'TestActionConditionType', 'min': 0},
-            {'tag_name': 'when_not_tested', 'class': 'TestActionConditionType', 'min': 0},
-            {'tag_name': 'when_not_applicable', 'class': 'TestActionConditionType', 'min': 0},
-            {'tag_name': 'when_error', 'class': 'TestActionConditionType', 'min': 0},
-        ],
-        'attributes': {
-            'question_ref': {'type': 'QuestionIDPattern', 'required': True},
-            'id': {'type': 'QuestionTestActionIDPattern', 'required': True},
-        }
-    }
+    pass

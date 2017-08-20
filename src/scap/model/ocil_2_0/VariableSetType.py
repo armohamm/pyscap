@@ -22,13 +22,10 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-class VariableSetType(Model):
-    MODEL_MAP = {
-        'elements': [
-            #TODO: at least one when_*
-            {'tag_name': 'when_pattern', 'list': 'expressions', 'class': 'WhenPatternElement', 'min': 0, 'max': None},
-            {'tag_name': 'when_choice', 'list': 'expressions', 'class': 'WhenChoiceElement', 'min': 0, 'max': None},
-            {'tag_name': 'when_range', 'list': 'expressions', 'class': 'WhenRangeElement', 'min': 0, 'max': None},
-            {'tag_name': 'when_boolean', 'list': 'expressions', 'class': 'WhenBooleanElement', 'min': 0, 'max': None},
-        ],
-    }
+@element(None, 'when_pattern', list='expressions', cls='WhenPatternElement', min=0, max=None)
+@element(None, 'when_choice', list='expressions', cls='WhenChoiceElement', min=0, max=None)
+@element(None, 'when_range', list='expressions', cls='WhenRangeElement', min=0, max=None)
+@element(None, 'when_boolean', list='expressions', cls='WhenBooleanElement', min=0, max=None)
+lass VariableSetType(Model):
+    #TODO: at least one when_*
+    pass

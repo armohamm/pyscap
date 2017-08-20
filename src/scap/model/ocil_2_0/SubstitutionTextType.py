@@ -22,9 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'var_ref', type='VariableIdPattern', required=True)
 class SubstitutionTextType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'var_ref': {'type': 'VariableIdPattern', 'required': True},
-        }
-    }
+    pass

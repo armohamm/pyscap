@@ -23,5 +23,4 @@ from scap.model.ocil_2_0.VariableType import VariableType
 logger = logging.getLogger(__name__)
 
 class ExternalVariableType(VariableType):
-    MODEL_MAP = {
-    }
+    pass

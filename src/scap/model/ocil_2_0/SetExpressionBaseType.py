@@ -22,10 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'value', cls='SetExpressionValueType')
 class SetExpressionBaseType(Model):
-    MODEL_MAP = {
-        # abstract
-        'elements': [
-            {'tag_name': 'value', 'class': 'SetExpressionValueType'},
-        ],
-    }
+    pass

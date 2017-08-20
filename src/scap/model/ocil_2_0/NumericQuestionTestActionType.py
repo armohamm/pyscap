@@ -22,11 +22,7 @@ from scap.model.ocil_2_0.QuestionTestActionType import QuestionTestActionType
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'when_equals', list='when_equals', cls='EqualsTestActionConditionType', min=0, max=None)
+@element(None, 'when_range', list='when_ranges', cls='RangeTestActionConditionType', min=0, max=None)
 class NumericQuestionTestActionType(QuestionTestActionType):
-    MODEL_MAP = {
-        'elements': [
-            #TODO: must be at least one; when_equals first
-            {'tag_name': 'when_equals', 'list': 'when_equals', 'class': 'EqualsTestActionConditionType', 'min': 0, 'max': None},
-            {'tag_name': 'when_range', 'list': 'when_ranges', 'class': 'RangeTestActionConditionType', 'min': 0, 'max': None},
-        ],
-    }
+    pass

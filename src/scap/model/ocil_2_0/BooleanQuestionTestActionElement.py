@@ -23,6 +23,4 @@ from scap.model.ocil_2_0.BooleanQuestionTestActionType import BooleanQuestionTes
 logger = logging.getLogger(__name__)
 
 class BooleanQuestionTestActionElement(BooleanQuestionTestActionType):
-    MODEL_MAP = {
-        'tag_name': 'boolean_question_test_action',
-    }
+    pass

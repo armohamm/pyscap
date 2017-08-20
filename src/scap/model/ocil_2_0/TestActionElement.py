@@ -23,6 +23,4 @@ from scap.model.ocil_2_0.ItemBaseType import ItemBaseType
 logger = logging.getLogger(__name__)
 
 class TestActionElement(ItemBaseType):
-    # abstract
-    MODEL_MAP = {
-    }
+    pass

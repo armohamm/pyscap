@@ -22,9 +22,6 @@ from scap.model.ocil_2_0.ItemBaseType import ItemBaseType
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'name', type='StringType', min=1, max=1)
 class NamedItemBaseType(ItemBaseType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'name', 'type': 'StringType', 'min': 1, 'max': 1},
-        ],
-    }
+    pass

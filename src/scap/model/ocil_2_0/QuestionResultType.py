@@ -22,10 +22,7 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'question_ref', type='QuestionIDPattern', required=True)
+@attribute(None, 'response', enum=['UNKNOWN', 'ERROR', 'NOT_TESTED', 'NOT_APPLICABLE', 'ANSWERED'], default='ANSWERED')
 class QuestionResultType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'question_ref': {'type': 'QuestionIDPattern', 'required': True},
-            'response': {'enum': ['UNKNOWN', 'ERROR', 'NOT_TESTED', 'NOT_APPLICABLE', 'ANSWERED'], 'default': 'ANSWERED'},
-        }
-    }
+    pass

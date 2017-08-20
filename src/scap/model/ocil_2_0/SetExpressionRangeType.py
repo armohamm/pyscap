@@ -22,10 +22,7 @@ from scap.model.ocil_2_0.SetExpressionBaseType import SetExpressionBaseType
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'min', type='DecimalType', required=True)
+@attribute(None, 'max', type='DecimalType', required=True)
 class SetExpressionRangeType(SetExpressionBaseType):
-    MODEL_MAP = {
-        'attributes': {
-            'min': {'type': 'DecimalType', 'required': True},
-            'max': {'type': 'DecimalType', 'required': True},
-        }
-    }
+    pass

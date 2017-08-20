@@ -23,6 +23,4 @@ from scap.model.ocil_2_0.LocalVariableType import LocalVariableType
 logger = logging.getLogger(__name__)
 
 class LocalVariableElement(LocalVariableType):
-    MODEL_MAP = {
-        'tag_name': 'local_variable',
-    }
+    pass

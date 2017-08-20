@@ -23,5 +23,4 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 
 class SetExpressionValueType(Model):
-    MODEL_MAP = {
-    }
+    pass

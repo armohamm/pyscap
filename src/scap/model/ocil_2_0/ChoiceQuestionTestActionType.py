@@ -22,9 +22,6 @@ from scap.model.ocil_2_0.QuestionTestActionType import QuestionTestActionType
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'when_choice', list='when_choices', cls='ChoiceTestActionConditionType', min=1, max=None)
 class ChoiceQuestionTestActionType(QuestionTestActionType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'when_choice', 'list': 'when_choices', 'class': 'ChoiceTestActionConditionType', 'min': 1, 'max': None},
-        ],
-    }
+    pass

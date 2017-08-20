@@ -22,11 +22,8 @@ from scap.model.ocil_2_0.NamedItemBaseType import NamedItemBaseType
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'organization', list='organization', type='NormalizedStringType', min=0, max=None)
+@element(None, 'position', list='positions', type='NormalizedStringType', min=0, max=None)
+@element(None, 'email', list='emails', type='Token', min=0, max=None)
 class UserType(NamedItemBaseType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'organization', 'list': 'organizations', 'type': 'NormalizedStringType', 'min': 0, 'max': None},
-            {'tag_name': 'position', 'list': 'positions', 'type': 'NormalizedStringType', 'min': 0, 'max': None},
-            {'tag_name': 'email', 'list': 'emails', 'type': 'Token', 'min': 0, 'max': None},
-        ],
-    }
+    pass

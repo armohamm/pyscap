@@ -22,9 +22,6 @@ from scap.model.ocil_2_0.QuestionType import QuestionType
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'default_answer', type='DecimalType')
 class NumericQuestionType(QuestionType):
-    MODEL_MAP = {
-        'attributes': {
-            'default_answer': {'type': 'DecimalType'},
-        }
-    }
+    pass

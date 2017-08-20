@@ -22,12 +22,8 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'title', type='NormalizedStringType', min=1, max=1)
+@element(None, 'description', list='descriptions', type='NormalizedStringType', min=0, max=None)
+@element(None, 'notice', list='notices', type='StringType', min=0, max=None)
 class DocumentType(Model):
-    MODEL_MAP = {
-        'tag_name': 'document',
-        'elements': [
-            {'tag_name': 'title', 'type': 'NormalizedStringType', 'min': 1, 'max': 1},
-            {'tag_name': 'description', 'list': 'descriptions', 'type': 'NormalizedStringType', 'min': 0, 'max': None},
-            {'tag_name': 'notice', 'list': 'notices', 'type': 'StringType', 'min': 0, 'max': None},
-        ],
-    }
+    pass

@@ -23,9 +23,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'pattern', list='patterns', cls='PatternType', min=1, max=None)
 class PatternTestActionConditionType(TestActionConditionType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'pattern', 'list': 'patterns', 'class': 'PatternType', 'min': 1, 'max': None},
-        ],
-    }
+    pass

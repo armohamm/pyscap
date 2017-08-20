@@ -22,14 +22,8 @@ from scap.model.ocil_2_0.ItemBaseType import ItemBaseType
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'id', type='VariableIdPattern', required=True)
+@attribute(None, 'datatype', enum=['TEXT', 'NUMERIC'], required=True)
+@element(None, 'description', cls='TextType', min=0, max=1)
 class VariableType(ItemBaseType):
-    # abstract
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'description', 'class': 'TextType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'id': {'type': 'VariableIdPattern', 'required': True},
-            'datatype': {'enum': ['TEXT', 'NUMERIC'], 'required': True},
-        }
-    }
+    pass

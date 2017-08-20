@@ -22,9 +22,6 @@ from scap.model.ocil_2_0.SetExpressionBaseType import SetExpressionBaseType
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'value', type='BooleanType', required=True)
 class SetExpressionBooleanType(SetExpressionBaseType):
-    MODEL_MAP = {
-        'attributes': {
-            'value': {'type': 'BooleanType', 'required': True},
-        }
-    }
+    pass

@@ -22,9 +22,6 @@ from scap.model.ocil_2_0.SetExpressionBaseType import SetExpressionBaseType
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'pattern', type='StringType', required=True)
 class SetExpressionPatternType(SetExpressionBaseType):
-    MODEL_MAP = {
-        'attributes': {
-            'pattern': {'type': 'StringType', 'required': True},
-        }
-    }
+    pass

@@ -23,6 +23,4 @@ from scap.model.ocil_2_0.StringQuestionResultType import StringQuestionResultTyp
 logger = logging.getLogger(__name__)
 
 class StringQuestionResultElement(StringQuestionResultType):
-    MODEL_MAP = {
-        'tag_name': 'string_question_result',
-    }
+    pass

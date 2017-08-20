@@ -22,16 +22,13 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'generator', cls='GeneratorType', min=1, max=1)
+@element(None, 'document', cls='DocumentType', min=0, max=1)
+@element(None, 'questionnaires', cls='QuestionnairesType', min=1, max=1)
+@element(None, 'test_actions', cls='TestActionsType', min=1, max=1)
+@element(None, 'questions', cls='QuestionsType', min=1, max=1)
+@element(None, 'artifacts', cls='ArtifactsType', min=0, max=1)
+@element(None, 'variables', cls='VariablesType', min=0, max=1)
+@element(None, 'results', cls='ResultsElement', min=0, max=1)
 class OCILType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'generator', 'class': 'GeneratorType', 'min': 1, 'max': 1},
-            {'tag_name': 'document', 'class': 'DocumentType', 'min': 0, 'max': 1},
-            {'tag_name': 'questionnaires', 'class': 'QuestionnairesType', 'min': 1, 'max': 1},
-            {'tag_name': 'test_actions', 'class': 'TestActionsType', 'min': 1, 'max': 1},
-            {'tag_name': 'questions', 'class': 'QuestionsType', 'min': 1, 'max': 1},
-            {'tag_name': 'artifacts', 'class': 'ArtifactsType', 'min': 0, 'max': 1},
-            {'tag_name': 'variables', 'class': 'VariablesType', 'min': 0, 'max': 1},
-            {'tag_name': 'results', 'class': 'ResultsElement', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

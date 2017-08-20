@@ -22,14 +22,11 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'boolean_question', list='questions', cls='BooleanQuestionElement', min=0, max=None)
+@element(None, 'choice_question', list='questions', cls='ChoiceQuestionElement', min=0, max=None)
+@element(None, 'numeric_question', list='questions', cls='NumericQuestionElement', min=0, max=None)
+@element(None, 'string_question', list='questions', cls='StringQuestionElement', min=0, max=None)
+@element(None, 'choice_group', list='questions', cls='ChoiceGroupType', min=0, max=None)
 class QuestionsType(Model):
-    MODEL_MAP = {
-        'elements': [
-            #TODO: at least one of the following *_question elements
-            {'tag_name': 'boolean_question', 'list': 'questions', 'class': 'BooleanQuestionElement', 'min': 0, 'max': None},
-            {'tag_name': 'choice_question', 'list': 'questions', 'class': 'ChoiceQuestionElement', 'min': 0, 'max': None},
-            {'tag_name': 'numeric_question', 'list': 'questions', 'class': 'NumericQuestionElement', 'min': 0, 'max': None},
-            {'tag_name': 'string_question', 'list': 'questions', 'class': 'StringQuestionElement', 'min': 0, 'max': None},
-            {'tag_name': 'choice_group', 'list': 'questions', 'class': 'ChoiceGroupType', 'min': 0, 'max': None},
-        ],
-    }
+    #TODO: at least one of the following *_question elements
+    pass

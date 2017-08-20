@@ -22,12 +22,7 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'revision', type='NonNegativeIntegerType', default=0)
+@element(None, 'notes', list='notes', type='StringType', min=0, max=None)
 class ItemBaseType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'notes', 'list': 'notes', 'type': 'StringType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'revision': {'type': 'NonNegativeIntegerType', 'default': 0},
-        }
-    }
+    pass

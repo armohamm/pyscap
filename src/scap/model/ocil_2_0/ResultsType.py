@@ -22,18 +22,13 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'start_time', type='DateTimeType')
+@attribute(None, 'end_time', type='DateTimeType')
+@element(None, 'title', cls='TextType', min=0, max=1)
+@element(None, 'questionnaire_results', cls='QuestionnaireResultsType', min=0, max=1)
+@element(None, 'test_action_results', cls='TestActionResultsType', min=0, max=1)
+@element(None, 'question_results', cls='QuestionResultsType', min=0, max=1)
+@element(None, 'artifact_results', cls='ArtifactResultsType', min=0, max=1)
+@element(None, 'targets', cls='TargetsType', min=0, max=1)
 class ResultsType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'title', 'class': 'TextType', 'min': 0, 'max': 1},
-            {'tag_name': 'questionnaire_results', 'class': 'QuestionnaireResultsType', 'min': 0, 'max': 1},
-            {'tag_name': 'test_action_results', 'class': 'TestActionResultsType', 'min': 0, 'max': 1},
-            {'tag_name': 'question_results', 'class': 'QuestionResultsType', 'min': 0, 'max': 1},
-            {'tag_name': 'artifact_results', 'class': 'ArtifactResultsType', 'min': 0, 'max': 1},
-            {'tag_name': 'targets', 'class': 'TargetsType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'start_time': {'type': 'DateTimeType'},
-            'end_time': {'type': 'DateTimeType'},
-        }
-    }
+    pass

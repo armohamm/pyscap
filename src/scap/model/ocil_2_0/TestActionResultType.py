@@ -22,13 +22,8 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'test_action_ref', type='TestActionRefValuePattern', required=True)
+@attribute(None, 'result', cls='ResultType', required=True)
+@element(None, 'artifact_results', cls='ArtifactRefsType', min=0, max=1)
 class TestActionResultType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'artifact_results', 'class': 'ArtifactRefsType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'test_action_ref': {'type': 'TestActionRefValuePattern', 'required': True},
-            'result': {'class': 'ResultType', 'required': True},
-        }
-    }
+    pass

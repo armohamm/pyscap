@@ -22,12 +22,7 @@ from scap.model.ocil_2_0.VariableType import VariableType
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'question_ref', type='QuestionIDPattern', required=True)
+@element(None, 'set', cls='SetType', min=0, max=1)
 class LocalVariableType(VariableType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'set', 'class': 'SetType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'question_ref': {'type': 'QuestionIDPattern', 'required': True},
-        }
-    }
+    pass

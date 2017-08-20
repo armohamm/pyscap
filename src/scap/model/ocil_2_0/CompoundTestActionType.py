@@ -23,12 +23,9 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'title', cls='TextType', min=0, max=1)
+@element(None, 'description', cls='TextType', min=0, max=1)
+@element(None, 'references', cls='ReferencesType', min=0, max=1)
+@element(None, 'actions', cls='OperationType', min=1, max=1)
 class CompoundTestActionType(ItemBaseType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'title', 'class': 'TextType', 'min': 0, 'max': 1},
-            {'tag_name': 'description', 'class': 'TextType', 'min': 0, 'max': 1},
-            {'tag_name': 'references', 'class': 'ReferencesType', 'min': 0, 'max': 1},
-            {'tag_name': 'actions', 'class': 'OperationType', 'min': 1, 'max': 1},
-        ],
-    }
+    pass

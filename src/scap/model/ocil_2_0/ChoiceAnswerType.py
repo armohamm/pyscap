@@ -22,9 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'choice_ref', type='ChoiceIDPattern')
 class ChoiceAnswerType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'choice_ref': {'type': 'ChoiceIDPattern'},
-        },
-    }
+    pass

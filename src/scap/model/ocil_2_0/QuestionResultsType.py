@@ -22,13 +22,10 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'boolean_question_result', list='question_results', cls='BooleanQuestionResultType', min=0, max=None)
+@element(None, 'choice_question_result', list='question_results', cls='ChoiceQuestionResultType', min=0, max=None)
+@element(None, 'numeric_question_result', list='question_results', cls='NumericQuestionResultType', min=0, max=None)
+@element(None, 'string_question_result', list='question_results', cls='StringQuestionResultType', min=0, max=None)
 class QuestionResultsType(Model):
-    MODEL_MAP = {
-        'elements': [
-            # TODO: at least one of *_question_result
-            {'tag_name': 'boolean_question_result', 'list': 'question_results', 'class': 'BooleanQuestionResultType', 'min': 0, 'max': None},
-            {'tag_name': 'choice_question_result', 'list': 'question_results', 'class': 'ChoiceQuestionResultType', 'min': 0, 'max': None},
-            {'tag_name': 'numeric_question_result', 'list': 'question_results', 'class': 'NumericQuestionResultType', 'min': 0, 'max': None},
-            {'tag_name': 'string_question_result', 'list': 'question_results', 'class': 'StringQuestionResultType', 'min': 0, 'max': None},
-        ],
-    }
+    # TODO at least one question_results
+    pass

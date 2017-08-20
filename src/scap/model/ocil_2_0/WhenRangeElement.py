@@ -23,6 +23,4 @@ from scap.model.ocil_2_0.SetExpressionRangeType import SetExpressionRangeType
 logger = logging.getLogger(__name__)
 
 class WhenChoiceElement(SetExpressionRangeType):
-    MODEL_MAP = {
-        'tag_name': 'when_range',
-    }
+    pass

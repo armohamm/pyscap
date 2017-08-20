@@ -23,13 +23,8 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'id', type='QuestionIDPattern', required=True)
+@element(None, 'question_text', list='question_texts', cls='QuestionTextType', min=1, max=None)
+@element(None, 'instructions', cls='InstructionsType', min=0, max=1)
 class QuestionType(ItemBaseType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'question_text', 'list': 'question_texts', 'class': 'QuestionTextType', 'min': 1, 'max': None},
-            {'tag_name': 'instructions', 'class': 'InstructionsType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'id': {'type': 'QuestionIDPattern', 'required': True},
-        }
-    }
+    pass

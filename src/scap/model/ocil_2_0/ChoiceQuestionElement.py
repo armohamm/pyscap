@@ -23,6 +23,4 @@ from scap.model.ocil_2_0.ChoiceQuestionType import ChoiceQuestionType
 logger = logging.getLogger(__name__)
 
 class ChoiceQuestionElement(ChoiceQuestionType):
-    MODEL_MAP = {
-        'tag_name': 'choice_question',
-    }
+    pass

@@ -23,6 +23,4 @@ from scap.model.ocil_2_0.SetExpressionPatternType import SetExpressionPatternTyp
 logger = logging.getLogger(__name__)
 
 class WhenPatternElement(SetExpressionPatternType):
-    MODEL_MAP = {
-        'tag_name': 'when_pattern',
-    }
+    pass

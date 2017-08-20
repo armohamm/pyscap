@@ -22,15 +22,9 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'Version')
+@attribute('*', '*')
+@element('urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'AddressDetails', list='address_details', cls='AddressDetailsType')
+@element('*', '*')
 class XALType(Model):
-    MODEL_MAP = {
-        'tag_name': 'xAL',
-        'elements': [
-            {'xmlns': 'urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'tag_name': 'AddressDetails', 'list': 'address_details', 'class': 'AddressDetailsType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Version': {},
-            '*': {},
-        },
-    }
+    pass

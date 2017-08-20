@@ -22,7 +22,6 @@ from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
 
+@content(regex=r'ocil:[A-Za-z0-9_\-\.]+:(user|system):[1-9][0-9]*')
 class ProviderValuePattern(TokenType):
-    #   <xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:user:[1-9][0-9]*"/>
-    #   <xsd:pattern value="ocil:[A-Za-z0-9_\-\.]+:system:[1-9][0-9]*"/>
     pass

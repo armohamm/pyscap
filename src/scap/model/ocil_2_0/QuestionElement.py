@@ -24,6 +24,4 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 
 class QuestionElement(QuestionType):
-    MODEL_MAP = {
-        # abstract
-    }
+    pass

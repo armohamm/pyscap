@@ -23,6 +23,4 @@ from scap.model.ocil_2_0.SetExpressionBaseType import SetExpressionBaseType
 logger = logging.getLogger(__name__)
 
 class ExpressionElement(SetExpressionBaseType):
-    MODEL_MAP = {
-        # abstract
-    }
+    pass

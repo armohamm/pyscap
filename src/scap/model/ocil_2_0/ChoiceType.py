@@ -22,10 +22,7 @@ from scap.model.xs.NormalizedStringType import NormalizedStringType
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'id', type='ChoiceIDPattern', required=True)
+@attribute(None, 'var_ref', type='VariableIdPattern')
 class ChoiceType(NormalizedStringType):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'type': 'ChoiceIDPattern', 'required': True},
-            'var_ref': {'type': 'VariableIdPattern'},
-        },
-    }
+    pass

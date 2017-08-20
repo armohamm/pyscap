@@ -22,10 +22,7 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'title', cls='TextType', min=1, max=1)
+@element(None, 'step', list='steps', cls='StepType', min=1, max=None)
 class InstructionsType(object):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'title', 'class': 'TextType', 'min': 1, 'max': 1},
-            {'tag_name': 'step', 'list': 'steps', 'class': 'StepType', 'min': 1, 'max': None},
-        ],
-    }
+    pass

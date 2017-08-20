@@ -22,9 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'sub', cls='SubstitutionTextType', min=0, max=None)
 class QuestionTextType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'sub', 'class': 'SubstitutionTextType', 'min': 0, 'max': None},
-        ],
-    }
+    pass

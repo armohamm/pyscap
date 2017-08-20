@@ -23,6 +23,4 @@ from scap.model.ocil_2_0.BooleanQuestionResultType import BooleanQuestionResultT
 logger = logging.getLogger(__name__)
 
 class BooleanQuestionResultElement(BooleanQuestionResultType):
-    MODEL_MAP = {
-        'tag_name': 'boolean_question_result',
-    }
+    pass

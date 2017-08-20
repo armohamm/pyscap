@@ -23,6 +23,4 @@ from scap.model.xs.NormalizedStringType import NormalizedStringType
 logger = logging.getLogger(__name__)
 
 class TextType(NormalizedStringType):
-    MODEL_MAP = {
-        #xml:lang
-    }
+    pass

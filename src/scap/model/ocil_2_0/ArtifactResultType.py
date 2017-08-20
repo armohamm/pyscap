@@ -22,19 +22,12 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'artifact_ref', type='ArtifactIDPattern', required=True)
+@attribute(None, 'timestamp', type='DateTimeType', required=True)
+@element(None, 'text_artifact_value', cls='TextArtifactValueElement', min=0, max=1)
+@element(None, 'binary_artifact_value', cls='BinaryArtifactValueElement', min=0, max=1)
+@element(None, 'reference_artifact_value', cls='ReferenceArtifactValueElement', min=0, max=1)
+@element(None, 'provider', type='ProviderValuePattern', min=1, max=1)
+@element(None, 'submitter', cls='UserType', min=1, max=1)
 class ArtifactResultType(Model):
-    MODEL_MAP = {
-        'elements': [
-            # children of artifact_value tag
-            # TODO: at least one of *_artifact_value
-            {'tag_name': 'text_artifact_value', 'class': 'TextArtifactValueElement', 'min': 0, 'max': 1},
-            {'tag_name': 'binary_artifact_value', 'class': 'BinaryArtifactValueElement', 'min': 0, 'max': 1},
-            {'tag_name': 'reference_artifact_value', 'class': 'ReferenceArtifactValueElement', 'min': 0, 'max': 1},
-            {'tag_name': 'provider', 'type': 'ProviderValuePattern', 'min': 1, 'max': 1},
-            {'tag_name': 'submitter', 'class': 'UserType', 'min': 1, 'max': 1},
-        ],
-        'attributes': {
-            'artifact_ref': {'type': 'ArtifactIDPattern', 'required': True},
-            'timestamp': {'type': 'DateTimeType', 'required': True},
-        }
-    }
+    pass

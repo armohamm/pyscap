@@ -22,9 +22,6 @@ from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'var_ref', type='VariableIdPattern')
 class PatternType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'var_ref': {'type': 'VariableIdPattern'},
-        },
-    }
+    pass

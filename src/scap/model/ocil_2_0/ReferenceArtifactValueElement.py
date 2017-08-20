@@ -23,6 +23,4 @@ from scap.model.ocil_2_0.ArtifactValueType import ArtifactValueType
 logger = logging.getLogger(__name__)
 
 class ReferenceArtifactValueType(ArtifactValueType):
-    MODEL_MAP = {
-        'tag_name': 'reference_artifact_value',
-    }
+    pass

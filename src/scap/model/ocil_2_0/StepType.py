@@ -22,15 +22,10 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(None, 'is_done', type='BooleanType', default=False)
+@attribute(None, 'is_required', type='BooleanType', default=True)
+@element(None, 'description', cls='TextType', min=0, max=1)
+@element(None, 'reference', list='references', cls='ReferenceType', min=0, max=None)
+@element(None, 'step', list='steps', cls='StepType', min=0, max=None)
 class StepType(object):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'description', 'class': 'TextType', 'min': 0, 'max': 1},
-            {'tag_name': 'reference', 'list': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
-            {'tag_name': 'step', 'list': 'steps', 'class': 'StepType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'is_done': {'type': 'BooleanType', 'default': False},
-            'is_required': {'type': 'BooleanType', 'default': True},
-        }
-    }
+    pass

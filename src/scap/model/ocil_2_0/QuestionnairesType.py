@@ -22,9 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'questionnaire', list='questionnaires', cls='QuestionnaireType', min=1, max=None)
 class QuestionnairesType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'questionnaire', 'list': 'questionnaires', 'class': 'QuestionnaireType', 'min': 1, 'max': None},
-        ],
-    }
+    pass

@@ -22,9 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'reference', list='references', cls='ReferenceType', min=1, max=None)
 class ReferencesType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'reference', 'list': 'references', 'class': 'ReferenceType', 'min': 1, 'max': None},
-        ],
-    }
+    pass

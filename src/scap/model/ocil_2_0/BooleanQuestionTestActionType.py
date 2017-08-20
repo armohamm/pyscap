@@ -22,10 +22,7 @@ from scap.model.ocil_2_0.QuestionTestActionType import QuestionTestActionType
 
 logger = logging.getLogger(__name__)
 
+@element(None, 'when_true', cls='TestActionConditionType', min=1, max=1)
+@element(None, 'when_false', cls='TestActionConditionType', min=1, max=1)
 class BooleanQuestionTestActionType(QuestionTestActionType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'when_true', 'class': 'TestActionConditionType', 'min': 1, 'max': 1},
-            {'tag_name': 'when_false', 'class': 'TestActionConditionType', 'min': 1, 'max': 1},
-        ],
-    }
+    pass
