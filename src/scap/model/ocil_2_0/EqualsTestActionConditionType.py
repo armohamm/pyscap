@@ -22,7 +22,7 @@ from scap.model.ocil_2_0.TestActionConditionType import TestActionConditionType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'var_ref', type='VariableIdPattern')
-@element(None, 'value', list='values', type='DecimalType', min=1, max=None)
+@attribute(local_name='var_ref', type='VariableIdPattern')
+@element(local_name='value', list='values', type='DecimalType', min=1, max=None)
 class EqualsTestActionConditionType(TestActionConditionType):
     pass

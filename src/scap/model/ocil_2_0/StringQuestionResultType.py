@@ -22,6 +22,6 @@ from scap.model.ocil_2_0.QuestionResultType import QuestionResultType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'answer', type='StringType', max=1)
+@element(local_name='answer', type='StringType', max=1)
 class StringQuestionResultType(QuestionResultType):
     pass

@@ -22,9 +22,9 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'Version')
+@attribute(local_name='Version')
 @attribute('*', '*')
-@element('urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', 'AddressDetails', list='address_details', cls='AddressDetailsType')
-@element('*', '*')
+@element(namespace='urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', local_name='AddressDetails', list='address_details', cls='AddressDetailsType')
+@element(namespace='*', local_name='*')
 class XALType(Model):
     pass

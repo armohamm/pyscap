@@ -22,6 +22,6 @@ from scap.model.ocil_2_0.TextType import TextType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'href', type='AnyUriType')
+@attribute(local_name='href', type='AnyUriType')
 class ReferenceType(TextType):
     pass

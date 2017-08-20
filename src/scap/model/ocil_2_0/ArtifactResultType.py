@@ -22,12 +22,12 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'artifact_ref', type='ArtifactIDPattern', required=True)
-@attribute(None, 'timestamp', type='DateTimeType', required=True)
-@element(None, 'text_artifact_value', cls='TextArtifactValueElement', min=0, max=1)
-@element(None, 'binary_artifact_value', cls='BinaryArtifactValueElement', min=0, max=1)
-@element(None, 'reference_artifact_value', cls='ReferenceArtifactValueElement', min=0, max=1)
-@element(None, 'provider', type='ProviderValuePattern', min=1, max=1)
-@element(None, 'submitter', cls='UserType', min=1, max=1)
+@attribute(local_name='artifact_ref', type='ArtifactIDPattern', required=True)
+@attribute(local_name='timestamp', type='DateTimeType', required=True)
+@element(local_name='text_artifact_value', cls='TextArtifactValueElement', min=0, max=1)
+@element(local_name='binary_artifact_value', cls='BinaryArtifactValueElement', min=0, max=1)
+@element(local_name='reference_artifact_value', cls='ReferenceArtifactValueElement', min=0, max=1)
+@element(local_name='provider', type='ProviderValuePattern', min=1, max=1)
+@element(local_name='submitter', cls='UserType', min=1, max=1)
 class ArtifactResultType(Model):
     pass

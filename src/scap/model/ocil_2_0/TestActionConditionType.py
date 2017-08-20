@@ -22,9 +22,9 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'result', cls='ResultType', min=0, max=1)
-@element(None, 'test_action_ref', cls='TestActionRefType', min=0, max=1)
-@element(None, 'artifact_refs', cls='ArtifactRefsType', min=0, max=1)
+@element(local_name='result', cls='ResultType', min=0, max=1)
+@element(local_name='test_action_ref', cls='TestActionRefType', min=0, max=1)
+@element(local_name='artifact_refs', cls='ArtifactRefsType', min=0, max=1)
 class TestActionConditionType(Model):
     # TODO: at least one result or test_action_ref
     pass

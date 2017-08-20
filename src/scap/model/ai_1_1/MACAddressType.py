@@ -22,8 +22,8 @@ from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'source', type='Source')
-@attribute(None, 'timestamp', type='Timestamp')
+@attribute(local_name='source', type='Source')
+@attribute(local_name='timestamp', type='Timestamp')
 @attribute('*', '*')
 @content(regex=r'([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}')
 class MACAddressType(TokenType):

@@ -22,6 +22,6 @@ from scap.model.ocil_2_0.VariableType import VariableType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'value', type='StringType', min=1, max=1)
+@element(local_name='value', type='StringType', min=1, max=1)
 class ConstantVariableType(VariableType):
     pass

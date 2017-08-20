@@ -22,13 +22,13 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'start_time', type='DateTimeType')
-@attribute(None, 'end_time', type='DateTimeType')
-@element(None, 'title', cls='TextType', min=0, max=1)
-@element(None, 'questionnaire_results', cls='QuestionnaireResultsType', min=0, max=1)
-@element(None, 'test_action_results', cls='TestActionResultsType', min=0, max=1)
-@element(None, 'question_results', cls='QuestionResultsType', min=0, max=1)
-@element(None, 'artifact_results', cls='ArtifactResultsType', min=0, max=1)
-@element(None, 'targets', cls='TargetsType', min=0, max=1)
+@attribute(local_name='start_time', type='DateTimeType')
+@attribute(local_name='end_time', type='DateTimeType')
+@element(local_name='title', cls='TextType', min=0, max=1)
+@element(local_name='questionnaire_results', cls='QuestionnaireResultsType', min=0, max=1)
+@element(local_name='test_action_results', cls='TestActionResultsType', min=0, max=1)
+@element(local_name='question_results', cls='QuestionResultsType', min=0, max=1)
+@element(local_name='artifact_results', cls='ArtifactResultsType', min=0, max=1)
+@element(local_name='targets', cls='TargetsType', min=0, max=1)
 class ResultsType(Model):
     pass

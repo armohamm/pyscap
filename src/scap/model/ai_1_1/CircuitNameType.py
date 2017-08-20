@@ -22,8 +22,8 @@ from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'source', type='Source')
-@attribute(None, 'timestamp', type='Timestamp')
+@attribute(local_name='source', type='Source')
+@attribute(local_name='timestamp', type='Timestamp')
 @attribute('*', '*')
 class CircuitNameType(TokenType):
     pass

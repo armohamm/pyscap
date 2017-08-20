@@ -22,7 +22,7 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'resource', type='AnyUriType', required=True)
-@attribute(None, 'id', type='Token', required=True)
+@attribute(local_name='resource', type='AnyUriType', required=True)
+@attribute(local_name='id', type='Token', required=True)
 class SyntheticIDType(Model):
     pass

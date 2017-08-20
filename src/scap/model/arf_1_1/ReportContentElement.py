@@ -22,9 +22,9 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'data-valid-start-date', type='DateType')
-@attribute(None, 'data-valid-end-date', type='DateType')
+@attribute(local_name='data-valid-start-date', type='DateType')
+@attribute(local_name='data-valid-end-date', type='DateType')
 @attribute('*', '*')
-@element('*', '*')
+@element(namespace='*', local_name='*')
 class ReportContentElement(Model):
     pass

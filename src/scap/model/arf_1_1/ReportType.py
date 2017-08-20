@@ -22,9 +22,9 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'id', type='NCNameType', required=True)
+@attribute(local_name='id', type='NCNameType', required=True)
 @attribute('*', '*')
-@element(None, 'content', cls='ReportContentElement')
-@element(None, 'remote-resource', cls='RemoteResourceElement')
+@element(local_name='content', cls='ReportContentElement')
+@element(local_name='remote-resource', cls='RemoteResourceElement')
 class ReportType(Model):
     pass

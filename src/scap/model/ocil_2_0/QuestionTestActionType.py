@@ -23,12 +23,12 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'question_ref', type='QuestionIDPattern', required=True)
-@attribute(None, 'id', type='QuestionTestActionIDPattern', required=True)
-@element(None, 'title', cls='TextType', min=0, max=1)
-@element(None, 'when_unknown', cls='TestActionConditionType', min=0)
-@element(None, 'when_not_tested', cls='TestActionConditionType', min=0)
-@element(None, 'when_not_applicable', cls='TestActionConditionType', min=0)
-@element(None, 'when_error', cls='TestActionConditionType', min=0)
+@attribute(local_name='question_ref', type='QuestionIDPattern', required=True)
+@attribute(local_name='id', type='QuestionTestActionIDPattern', required=True)
+@element(local_name='title', cls='TextType', min=0, max=1)
+@element(local_name='when_unknown', cls='TestActionConditionType', min=0)
+@element(local_name='when_not_tested', cls='TestActionConditionType', min=0)
+@element(local_name='when_not_applicable', cls='TestActionConditionType', min=0)
+@element(local_name='when_error', cls='TestActionConditionType', min=0)
 class QuestionTestActionType(ItemBaseType):
     pass

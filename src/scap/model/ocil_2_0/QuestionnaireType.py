@@ -22,7 +22,7 @@ from scap.model.ocil_2_0.CompoundTestActionType import CompoundTestActionType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'id', type='QuestionIDPattern', required=True)
-@attribute(None, 'child_only', type='BooleanType', default=False)
+@attribute(local_name='id', type='QuestionIDPattern', required=True)
+@attribute(local_name='child_only', type='BooleanType', default=False)
 class QuestionnaireType(CompoundTestActionType):
     pass

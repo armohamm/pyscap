@@ -22,6 +22,6 @@ from scap.model.ai_1_1.ITAssetType import ITAssetType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'circuit-name', cls='CircuitNameType', min=0)
+@element(local_name='circuit-name', cls='CircuitNameType', min=0)
 class CircuitType(ITAssetType):
     pass

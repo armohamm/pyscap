@@ -22,8 +22,8 @@ from scap.model.ocil_2_0.ArtifactValueType import ArtifactValueType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'id', type='ArtifactIDPattern', required=True)
-@attribute(None, 'persistent', type='BooleanType', default=True)
-@element(None, 'reference', cls='ReferenceType')
+@attribute(local_name='id', type='ArtifactIDPattern', required=True)
+@attribute(local_name='persistent', type='BooleanType', default=True)
+@element(local_name='reference', cls='ReferenceType')
 class ReferenceArtifactValueType(ArtifactValueType):
     pass

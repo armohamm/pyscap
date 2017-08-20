@@ -22,6 +22,6 @@ from scap.model.ocil_2_0.QuestionTestActionType import QuestionTestActionType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'when_pattern', list='when_patterns', cls='PatternTestActionConditionType', min=1, max=None)
+@element(local_name='when_pattern', list='when_patterns', cls='PatternTestActionConditionType', min=1, max=None)
 class StringQuestionTestActionType(QuestionTestActionType):
     pass

@@ -22,10 +22,10 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'is_done', type='BooleanType', default=False)
-@attribute(None, 'is_required', type='BooleanType', default=True)
-@element(None, 'description', cls='TextType', min=0, max=1)
-@element(None, 'reference', list='references', cls='ReferenceType', min=0, max=None)
-@element(None, 'step', list='steps', cls='StepType', min=0, max=None)
+@attribute(local_name='is_done', type='BooleanType', default=False)
+@attribute(local_name='is_required', type='BooleanType', default=True)
+@element(local_name='description', cls='TextType', min=0, max=1)
+@element(local_name='reference', list='references', cls='ReferenceType', min=0, max=None)
+@element(local_name='step', list='steps', cls='StepType', min=0, max=None)
 class StepType(object):
     pass

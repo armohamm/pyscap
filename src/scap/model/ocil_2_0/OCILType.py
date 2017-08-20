@@ -22,13 +22,13 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'generator', cls='GeneratorType', min=1, max=1)
-@element(None, 'document', cls='DocumentType', min=0, max=1)
-@element(None, 'questionnaires', cls='QuestionnairesType', min=1, max=1)
-@element(None, 'test_actions', cls='TestActionsType', min=1, max=1)
-@element(None, 'questions', cls='QuestionsType', min=1, max=1)
-@element(None, 'artifacts', cls='ArtifactsType', min=0, max=1)
-@element(None, 'variables', cls='VariablesType', min=0, max=1)
-@element(None, 'results', cls='ResultsElement', min=0, max=1)
+@element(local_name='generator', cls='GeneratorType', min=1, max=1)
+@element(local_name='document', cls='DocumentType', min=0, max=1)
+@element(local_name='questionnaires', cls='QuestionnairesType', min=1, max=1)
+@element(local_name='test_actions', cls='TestActionsType', min=1, max=1)
+@element(local_name='questions', cls='QuestionsType', min=1, max=1)
+@element(local_name='artifacts', cls='ArtifactsType', min=0, max=1)
+@element(local_name='variables', cls='VariablesType', min=0, max=1)
+@element(local_name='results', cls='ResultsElement', min=0, max=1)
 class OCILType(Model):
     pass

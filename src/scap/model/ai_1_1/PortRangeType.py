@@ -22,10 +22,10 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'lower-bound', cls='PortType', required=True)
-@attribute(None, 'upper-bound', cls='PortType', required=True)
-@attribute(None, 'source', type='Source')
-@attribute(None, 'timestamp', type='Timestamp')
+@attribute(local_name='lower-bound', cls='PortType', required=True)
+@attribute(local_name='upper-bound', cls='PortType', required=True)
+@attribute(local_name='source', type='Source')
+@attribute(local_name='timestamp', type='Timestamp')
 @attribute('*', '*')
 class PortRangeType(Model):
     pass

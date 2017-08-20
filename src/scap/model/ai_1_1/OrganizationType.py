@@ -22,9 +22,9 @@ from scap.model.ai_1_1.AssetType import AssetType
 
 logger = logging.getLogger(__name__)
 
-@element('urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', 'OrganisationNameDetails', list='organization_name_details', cls='OrganisationNameDetailsType', min=0, max=None)
-@element(None, 'email-address', list='email_addresses', cls='EmailAddressType', min=0, max=None)
-@element(None, 'telephone-number', list='telephone_numbers', cls='TelephoneNumberType', min=0, max=None)
-@element(None, 'website-url', list='website_urls', cls='WebsiteURLType', min=0, max=None)
+@element(namespace='urn:oasis:names:tc:ciq:xsdschema:xNL:2.0', local_name='OrganisationNameDetails', list='organization_name_details', cls='OrganisationNameDetailsType', min=0, max=None)
+@element(local_name='email-address', list='email_addresses', cls='EmailAddressType', min=0, max=None)
+@element(local_name='telephone-number', list='telephone_numbers', cls='TelephoneNumberType', min=0, max=None)
+@element(local_name='website-url', list='website_urls', cls='WebsiteURLType', min=0, max=None)
 class OrganizationType(AssetType):
     pass

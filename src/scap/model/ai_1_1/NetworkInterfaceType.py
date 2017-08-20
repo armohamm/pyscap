@@ -22,10 +22,10 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'ip-address', cls='IPAddressType', min=0)
-@element(None, 'mac-address', cls='MACAddressType', min=0)
-@element(None, 'url', list='urls', cls='URLType', min=0, max=None)
-@element(None, 'subnet-mask', cls='IPAddressType', min=0)
-@element(None, 'default-route', cls='IPAddressType', min=0)
+@element(local_name='ip-address', cls='IPAddressType', min=0)
+@element(local_name='mac-address', cls='MACAddressType', min=0)
+@element(local_name='url', list='urls', cls='URLType', min=0, max=None)
+@element(local_name='subnet-mask', cls='IPAddressType', min=0)
+@element(local_name='default-route', cls='IPAddressType', min=0)
 class NetworkInterfaceType(Model):
     pass

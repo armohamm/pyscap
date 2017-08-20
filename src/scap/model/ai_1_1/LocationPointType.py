@@ -22,12 +22,12 @@ from scap.model.ai_1_1.LocationType import LocationType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'latitude', required=True, type='DoubleType')
-@attribute(None, 'longitude', required=True, type='DoubleType')
-@attribute(None, 'elevation', type='DoubleType')
-@attribute(None, 'radius', type='DoubleType')
-@attribute(None, 'source', type='Source')
-@attribute(None, 'timestamp', type='Timestamp')
+@attribute(local_name='latitude', required=True, type='DoubleType')
+@attribute(local_name='longitude', required=True, type='DoubleType')
+@attribute(local_name='elevation', type='DoubleType')
+@attribute(local_name='radius', type='DoubleType')
+@attribute(local_name='source', type='Source')
+@attribute(local_name='timestamp', type='Timestamp')
 @attribute('*', '*')
 class LocationPointType(LocationType):
     pass

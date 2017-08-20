@@ -22,7 +22,7 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'min', cls='RangeValueType', min=0, max=1)
-@element(None, 'max', cls='RangeValueType', min=0, max=1)
+@element(local_name='min', cls='RangeValueType', min=0, max=1)
+@element(local_name='max', cls='RangeValueType', min=0, max=1)
 class RangeType(Model):
     pass

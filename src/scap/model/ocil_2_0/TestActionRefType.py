@@ -22,6 +22,6 @@ from scap.model.ocil_2_0.TestActionRefValuePattern import TestActionRefValuePatt
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'negate', type='BooleanType', default=False)
+@attribute(local_name='negate', type='BooleanType', default=False)
 class TestActionRefType(TestActionRefValuePattern):
     pass

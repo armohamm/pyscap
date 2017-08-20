@@ -22,8 +22,8 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'user', list='targets', cls='UserType', min=0, max=None)
-@element(None, 'system', list='targets', cls='SystemTargetType', min=0, max=None)
+@element(local_name='user', list='targets', cls='UserType', min=0, max=None)
+@element(local_name='system', list='targets', cls='SystemTargetType', min=0, max=None)
 class TargetsType(Model):
     #TODO: at least one of .targets[]
     pass

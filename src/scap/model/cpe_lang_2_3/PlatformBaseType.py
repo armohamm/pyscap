@@ -22,8 +22,8 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'title', list='titles', cls='TextType', min=0, max=None)
-@element(None, 'remark', list='remarks', cls='TextType', min=0, max=None)
-@element(None, 'logical-test', cls='LogicalTestType', min=1, max=1)
+@element(local_name='title', list='titles', cls='TextType', min=0, max=None)
+@element(local_name='remark', list='remarks', cls='TextType', min=0, max=None)
+@element(local_name='logical-test', cls='LogicalTestType', min=1, max=1)
 class PlatformBaseType(Model):
     pass

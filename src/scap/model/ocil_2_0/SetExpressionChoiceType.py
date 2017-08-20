@@ -22,6 +22,6 @@ from scap.model.ocil_2_0.SetExpressionBaseType import SetExpressionBaseType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'choice_ref', type='ChoiceIDPattern', required=True)
+@attribute(local_name='choice_ref', type='ChoiceIDPattern', required=True)
 class SetExpressionChoiceType(SetExpressionBaseType):
     pass

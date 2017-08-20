@@ -22,6 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'value', cls='SetExpressionValueType')
+@element(local_name='value', cls='SetExpressionValueType')
 class SetExpressionBaseType(Model):
     pass

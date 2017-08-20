@@ -22,8 +22,8 @@ from scap.model.cpe_lang_2_3.FactRefType import FactRefType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'system', type='AnyUriType', required=True)
-@attribute(None, 'href', type='AnyUriType', required=True)
-@attribute(None, 'id-ref', type='Token', required=True)
+@attribute(local_name='system', type='AnyUriType', required=True)
+@attribute(local_name='href', type='AnyUriType', required=True)
+@attribute(local_name='id-ref', type='Token', required=True)
 class CheckFactRefType(FactRefType):
     pass

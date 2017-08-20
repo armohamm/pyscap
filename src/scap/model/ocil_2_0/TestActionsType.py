@@ -22,10 +22,10 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'boolean_question_test_action', list='test_actions', cls='BooleanQuestionTestActionElement', min=0, max=None)
-@element(None, 'choice_question_test_action', list='test_actions', cls='ChoiceQuestionTestActionElement', min=0, max=None)
-@element(None, 'numeric_question_test_action', list='test_actions', cls='NumericQuestionTestActionElement', min=0, max=None)
-@element(None, 'string_question_test_action', list='test_actions', cls='StringQuestionTestActionElement', min=0, max=None)
+@element(local_name='boolean_question_test_action', list='test_actions', cls='BooleanQuestionTestActionElement', min=0, max=None)
+@element(local_name='choice_question_test_action', list='test_actions', cls='ChoiceQuestionTestActionElement', min=0, max=None)
+@element(local_name='numeric_question_test_action', list='test_actions', cls='NumericQuestionTestActionElement', min=0, max=None)
+@element(local_name='string_question_test_action', list='test_actions', cls='StringQuestionTestActionElement', min=0, max=None)
 class TestActionsType(Model):
     # TODO: min 1 of test_actions
     pass

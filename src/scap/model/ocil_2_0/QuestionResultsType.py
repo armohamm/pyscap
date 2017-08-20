@@ -22,10 +22,10 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'boolean_question_result', list='question_results', cls='BooleanQuestionResultType', min=0, max=None)
-@element(None, 'choice_question_result', list='question_results', cls='ChoiceQuestionResultType', min=0, max=None)
-@element(None, 'numeric_question_result', list='question_results', cls='NumericQuestionResultType', min=0, max=None)
-@element(None, 'string_question_result', list='question_results', cls='StringQuestionResultType', min=0, max=None)
+@element(local_name='boolean_question_result', list='question_results', cls='BooleanQuestionResultType', min=0, max=None)
+@element(local_name='choice_question_result', list='question_results', cls='ChoiceQuestionResultType', min=0, max=None)
+@element(local_name='numeric_question_result', list='question_results', cls='NumericQuestionResultType', min=0, max=None)
+@element(local_name='string_question_result', list='question_results', cls='StringQuestionResultType', min=0, max=None)
 class QuestionResultsType(Model):
     # TODO at least one question_results
     pass

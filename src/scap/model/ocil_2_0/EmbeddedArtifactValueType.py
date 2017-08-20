@@ -22,6 +22,6 @@ from scap.model.ocil_2_0.ArtifactValueType import ArtifactValueType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'mime_type', type='StringType', required=True)
+@attribute(local_name='mime_type', type='StringType', required=True)
 class EmbeddedArtifactValueType(ArtifactValueType):
     pass

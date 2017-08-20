@@ -22,7 +22,7 @@ from scap.model.xs.DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'inclusive', type='BooleanType', default=True)
-@attribute(None, 'var_ref', type='VariableIdPattern')
+@attribute(local_name='inclusive', type='BooleanType', default=True)
+@attribute(local_name='var_ref', type='VariableIdPattern')
 class RangeValueType(DecimalType):
     pass

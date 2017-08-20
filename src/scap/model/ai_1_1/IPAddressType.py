@@ -22,8 +22,8 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'ip-v4', cls='IPAddressIPv4Type', min=0)
-@element(None, 'ip-v6', cls='IPAddressIPv6Type', min=0)
+@element(local_name='ip-v4', cls='IPAddressIPv4Type', min=0)
+@element(local_name='ip-v6', cls='IPAddressIPv6Type', min=0)
 class IPAddressType(Model):
     # collapsed ip-address element into ip-address-type
     pass

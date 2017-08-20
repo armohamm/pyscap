@@ -22,7 +22,7 @@ from scap.model.ai_1_1.ITAssetType import ITAssetType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'system-name', list='system_names', cls='SystemNameType', min=0, max=None)
-@element(None, 'version', cls='VersionType', min=0)
+@element(local_name='system-name', list='system_names', cls='SystemNameType', min=0, max=None)
+@element(local_name='version', cls='VersionType', min=0)
 class SystemType(ITAssetType):
     pass

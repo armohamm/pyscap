@@ -22,6 +22,6 @@ from scap.model.cpe_lang_2_3.PlatformBaseType import PlatformBaseType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'id', type='AnyUriType', required=True)
+@attribute(local_name='id', type='AnyUriType', required=True)
 class PlatformType(PlatformBaseType):
     pass

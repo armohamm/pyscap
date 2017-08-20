@@ -22,8 +22,8 @@ from scap.model.ai_1_1.ITAssetType import ITAssetType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'network-name', cls='NetworkNameType', min=0)
-@element(None, 'ip-net-range', cls='IPNetRangeType', min=0)
-@element(None, 'cidr', cls='NetworkCIDRType', min=0)
+@element(local_name='network-name', cls='NetworkNameType', min=0)
+@element(local_name='ip-net-range', cls='IPNetRangeType', min=0)
+@element(local_name='cidr', cls='NetworkCIDRType', min=0)
 class NetworkType(ITAssetType):
     pass

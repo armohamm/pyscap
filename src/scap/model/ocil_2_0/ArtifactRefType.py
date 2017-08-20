@@ -22,7 +22,7 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'idref', type='ArtifactIDPattern')
-@attribute(None, 'required', type='BooleanType', default=False)
+@attribute(local_name='idref', type='ArtifactIDPattern')
+@attribute(local_name='required', type='BooleanType', default=False)
 class ArtifactRefType(Model):
     pass

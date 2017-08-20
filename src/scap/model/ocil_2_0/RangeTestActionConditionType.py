@@ -23,6 +23,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'range', list='ranges', cls='RangeType', min=1, max=None)
+@element(local_name='range', list='ranges', cls='RangeType', min=1, max=None)
 class RangeTestActionConditionType(TestActionConditionType):
     pass

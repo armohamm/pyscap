@@ -22,8 +22,8 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute('http://www.w3.org/1999/xlink', 'type', required=True, enum=['simple'])
-@attribute('http://www.w3.org/1999/xlink', 'href', required=True, type='AnyUriType')
+@attribute(local_name='http://www.w3.org/1999/xlink', 'type', required=True, enum=['simple'])
+@attribute(local_name='http://www.w3.org/1999/xlink', 'href', required=True, type='AnyUriType')
 @attribute('*', '*')
 class RemoteResourceElement(Model):
     pass

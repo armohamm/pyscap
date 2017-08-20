@@ -22,8 +22,8 @@ from scap.model.ocil_2_0.ItemBaseType import ItemBaseType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'id', type='VariableIdPattern', required=True)
-@attribute(None, 'datatype', enum=['TEXT', 'NUMERIC'], required=True)
-@element(None, 'description', cls='TextType', min=0, max=1)
+@attribute(local_name='id', type='VariableIdPattern', required=True)
+@attribute(local_name='datatype', enum=['TEXT', 'NUMERIC'], required=True)
+@element(local_name='description', cls='TextType', min=0, max=1)
 class VariableType(ItemBaseType):
     pass

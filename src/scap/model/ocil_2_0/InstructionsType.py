@@ -22,7 +22,7 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'title', cls='TextType', min=1, max=1)
-@element(None, 'step', list='steps', cls='StepType', min=1, max=None)
+@element(local_name='title', cls='TextType', min=1, max=1)
+@element(local_name='step', list='steps', cls='StepType', min=1, max=None)
 class InstructionsType(object):
     pass

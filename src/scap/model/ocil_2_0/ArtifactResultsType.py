@@ -22,6 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'artifact_result', list='artifact_results', cls='ArtifactResultType', min=1, max=None)
+@element(local_name='artifact_result', list='artifact_results', cls='ArtifactResultType', min=1, max=None)
 class ArtifactResultsType(Model):
     pass

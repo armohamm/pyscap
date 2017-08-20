@@ -22,6 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'ref-id', type='NCNameType', required=True)
+@attribute(local_name='ref-id', type='NCNameType', required=True)
 class ObjectRefType(Model):
     pass

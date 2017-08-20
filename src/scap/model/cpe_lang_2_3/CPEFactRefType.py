@@ -22,6 +22,6 @@ from scap.model.cpe_lang_2_3.FactRefType import FactRefType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'name', type='NamePattern', required=True)
+@attribute(local_name='name', type='NamePattern', required=True)
 class CPEFactRefType(FactRefType):
     pass

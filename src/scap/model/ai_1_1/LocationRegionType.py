@@ -23,8 +23,8 @@ from scap.model.xs.NormalizedStringType import NormalizedStringType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'source', type='Source')
-@attribute(None, 'timestamp', type='Timestamp')
+@attribute(local_name='source', type='Source')
+@attribute(local_name='timestamp', type='Timestamp')
 @attribute('*', '*')
 class LocationRegionType(LocationType, NormalizedStringType):
     pass

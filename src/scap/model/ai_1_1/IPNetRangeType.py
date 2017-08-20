@@ -22,7 +22,7 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'ip-net-range-start', cls='IPAddressType')
-@element(None, 'ip-net-range-end', cls='IPAddressType')
+@element(local_name='ip-net-range-start', cls='IPAddressType')
+@element(local_name='ip-net-range-end', cls='IPAddressType')
 class IPNetRangeType(Model):
     pass

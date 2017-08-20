@@ -22,9 +22,9 @@ from scap.model.ocil_2_0.ItemBaseType import ItemBaseType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'id', type='ArtifactIDPattern', required=True)
-@attribute(None, 'persistent', type='BooleanType', default=True)
-@element(None, 'title', cls='TextType', min=1, max=1)
-@element(None, 'description', cls='TextType', min=1, max=1)
+@attribute(local_name='id', type='ArtifactIDPattern', required=True)
+@attribute(local_name='persistent', type='BooleanType', default=True)
+@element(local_name='title', cls='TextType', min=1, max=1)
+@element(local_name='description', cls='TextType', min=1, max=1)
 class ArtifactType(ItemBaseType):
     pass

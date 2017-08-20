@@ -22,6 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'platform', list='platforms', cls='PlatformType', min=1, max=None)
+@element(local_name='platform', list='platforms', cls='PlatformType', min=1, max=None)
 class PlatformSpecificationType(Model):
     pass

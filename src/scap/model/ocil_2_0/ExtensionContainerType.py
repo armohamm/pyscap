@@ -22,6 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element('*', '*', list='additional_data', min=1, max=None)
+@element(namespace='*', local_name='*', list='additional_data', min=1, max=None)
 class ExtensionContainerType(Model):
     pass

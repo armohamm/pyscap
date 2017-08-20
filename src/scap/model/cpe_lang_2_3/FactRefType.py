@@ -22,6 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'name', type='NormalizedStringType')
+@attribute(local_name='name', type='NormalizedStringType')
 class FactRefType(Model):
     pass

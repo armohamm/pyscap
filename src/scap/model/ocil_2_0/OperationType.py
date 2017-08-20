@@ -22,8 +22,8 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'operation', enum=['AND', 'OR'], default='AND')
-@attribute(None, 'negate', type='BooleanType', default=False)
-@element(None, 'test_action_ref', list='test_action_refs', cls='TestActionRefType', min=1, max=None)
+@attribute(local_name='operation', enum=['AND', 'OR'], default='AND')
+@attribute(local_name='negate', type='BooleanType', default=False)
+@element(local_name='test_action_ref', list='test_action_refs', cls='TestActionRefType', min=1, max=None)
 class OperationType(Model):
     pass

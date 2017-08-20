@@ -22,7 +22,7 @@ from scap.model.ocil_2_0.QuestionType import QuestionType
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'default_answer', type='BooleanType')
-@attribute(None, 'model', enum=['MODEL_YES_NO', 'MODEL_TRUE_FALSE'])
+@attribute(local_name='default_answer', type='BooleanType')
+@attribute(local_name='model', enum=['MODEL_YES_NO', 'MODEL_TRUE_FALSE'])
 class BooleanQuestionType(QuestionType):
     pass

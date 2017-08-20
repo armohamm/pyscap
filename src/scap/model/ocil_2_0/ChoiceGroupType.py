@@ -22,7 +22,7 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(None, 'id', type='ChoiceGroupIDPattern', required=True)
-@element(None, 'choice', list='choices', cls='ChoiceType', min=1)
+@attribute(local_name='id', type='ChoiceGroupIDPattern', required=True)
+@element(local_name='choice', list='choices', cls='ChoiceType', min=1)
 class ChoiceGroupType(Model):
     pass

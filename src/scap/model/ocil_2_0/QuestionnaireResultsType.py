@@ -22,6 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'questionnaire_result', list='questionnaire_results', cls='QuestionnaireResultType', min=1, max=None)
+@element(local_name='questionnaire_result', list='questionnaire_results', cls='QuestionnaireResultType', min=1, max=None)
 class QuestionnaireResultsType(Model):
     pass

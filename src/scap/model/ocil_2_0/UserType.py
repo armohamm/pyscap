@@ -22,8 +22,8 @@ from scap.model.ocil_2_0.NamedItemBaseType import NamedItemBaseType
 
 logger = logging.getLogger(__name__)
 
-@element(None, 'organization', list='organization', type='NormalizedStringType', min=0, max=None)
-@element(None, 'position', list='positions', type='NormalizedStringType', min=0, max=None)
-@element(None, 'email', list='emails', type='Token', min=0, max=None)
+@element(local_name='organization', list='organization', type='NormalizedStringType', min=0, max=None)
+@element(local_name='position', list='positions', type='NormalizedStringType', min=0, max=None)
+@element(local_name='email', list='emails', type='Token', min=0, max=None)
 class UserType(NamedItemBaseType):
     pass
