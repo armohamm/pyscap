@@ -28,6 +28,6 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='radius', type='DoubleType')
 @attribute(local_name='source', type='Source')
 @attribute(local_name='timestamp', type='Timestamp')
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 class LocationPointType(LocationType):
     pass

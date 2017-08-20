@@ -23,7 +23,7 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='id', type='NCNameType', required=True)
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 class AssetElement(Model):
     MODEL_MAP = {
         'tag_name': 'asset',

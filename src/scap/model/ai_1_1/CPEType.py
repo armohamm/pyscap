@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 @attribute(local_name='source', type='Source')
 @attribute(local_name='timestamp', type='Timestamp')
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 class CPEType(StringType):
     # collapsed the cpe-type definition into cpe element definition
     #(CPE 2.2 URI or CPE 2.3 Formatted String)

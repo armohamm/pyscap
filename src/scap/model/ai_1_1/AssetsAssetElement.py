@@ -23,7 +23,7 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='id', type='NCNameType', required=True)
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 @element(local_name='circuit', into='asset', cls='CircuitType')
 @element(local_name='computing-device', into='asset', cls='ComputingDeviceType')
 @element(local_name='data', into='asset', cls='DataType')

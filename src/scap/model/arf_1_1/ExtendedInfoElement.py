@@ -23,7 +23,7 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='id', type='NCNameType', required=True)
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 @element(namespace='*', local_name='*')
 class ExtendedInfoElement(Model):
     pass

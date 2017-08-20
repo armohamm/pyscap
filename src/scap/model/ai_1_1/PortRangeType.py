@@ -26,6 +26,6 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='upper-bound', cls='PortType', required=True)
 @attribute(local_name='source', type='Source')
 @attribute(local_name='timestamp', type='Timestamp')
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 class PortRangeType(Model):
     pass

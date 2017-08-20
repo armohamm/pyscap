@@ -23,7 +23,7 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='id', type='NCNameType', required=True)
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 @element(local_name='content', cls='ReportRequestContentElement')
 @element(local_name='remote-resource', cls='RemoteResourceElement')
 class ReportRequestType(Model):

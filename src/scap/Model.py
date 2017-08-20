@@ -170,14 +170,14 @@ class ModelChild(object):
         self.element_def = element_def
         self.value = value
 
-@attribute('http://www.w3.org/XML/1998/namespace', 'lang', type='StringType', into='_xml_lang')
-@attribute('http://www.w3.org/XML/1998/namespace', 'space', enum=('default', 'preserve'), into='_xml_space')
-@attribute('http://www.w3.org/XML/1998/namespace', 'base', type='AnyUriType', into='_xml_base')
-@attribute('http://www.w3.org/XML/1998/namespace', 'id', type='ID', into='_xml_id')
-@attribute('http://www.w3.org/2001/XMLSchema-instance', 'type', type='QNameType', into='_xsi_type')
-@attribute('http://www.w3.org/2001/XMLSchema-instance', 'nil', type='BooleanType', into='_xsi_nil', default=False)
-@attribute('http://www.w3.org/2001/XMLSchema-instance', 'schemaLocation', type='AnyUriType', into='_xsi_schemaLocation')
-@attribute('http://www.w3.org/2001/XMLSchema-instance', 'noNamespaceSchemaLocation', type='AnyUriType', into='_xsi_noNamespaceSchemaLocation')
+@attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='lang', type='StringType', into='_xml_lang')
+@attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='space', enum=('default', 'preserve'), into='_xml_space')
+@attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='base', type='AnyUriType', into='_xml_base')
+@attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='id', type='ID', into='_xml_id')
+@attribute(namespace='http://www.w3.org/2001/XMLSchema-instance', local_name='type', type='QNameType', into='_xsi_type')
+@attribute(namespace='http://www.w3.org/2001/XMLSchema-instance', local_name='nil', type='BooleanType', into='_xsi_nil', default=False)
+@attribute(namespace='http://www.w3.org/2001/XMLSchema-instance', local_name='schemaLocation', type='AnyUriType', into='_xsi_schemaLocation')
+@attribute(namespace='http://www.w3.org/2001/XMLSchema-instance', local_name='noNamespaceSchemaLocation', type='AnyUriType', into='_xsi_noNamespaceSchemaLocation')
 class Model(object):
     __model_mappings = {}
 

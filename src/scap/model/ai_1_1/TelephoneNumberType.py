@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 @attribute(local_name='source', type='Source')
 @attribute(local_name='timestamp', type='Timestamp')
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 @content(regex=r'(([2-9][0-8]\d-[2-9]\d{2}-[0-9]{4})|(\+([0-9] ?){6,14}[0-9]))')
 class TelephoneNumberType(TokenType):
     # collapsed element telephone-number into telephone-number-type

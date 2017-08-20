@@ -26,6 +26,6 @@ logger = logging.getLogger(__name__)
 @element(local_name='when_choice', list='expressions', cls='WhenChoiceElement', min=0, max=None)
 @element(local_name='when_range', list='expressions', cls='WhenRangeElement', min=0, max=None)
 @element(local_name='when_boolean', list='expressions', cls='WhenBooleanElement', min=0, max=None)
-lass VariableSetType(Model):
+class VariableSetType(Model):
     #TODO: at least one when_*
     pass

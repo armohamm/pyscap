@@ -23,7 +23,7 @@ from scap.model.rep_core_1_1.RelationshipsContainerType import RelationshipsCont
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='id', type='NCNameType', required=True)
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 @element(local_name='report-requests', cls='ReportRequestsType', min=0)
 @element(local_name='assets', cls='AssetsType', min=0)
 @element(local_name='reports', cls='ReportsType')

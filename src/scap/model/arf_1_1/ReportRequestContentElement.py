@@ -23,6 +23,6 @@ from scap.Model import Model
 logger = logging.getLogger(__name__)
 
 @element(namespace='*', local_name='*')
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 class ReportRequestContentElement(Model):
     pass

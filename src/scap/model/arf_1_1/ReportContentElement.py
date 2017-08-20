@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 @attribute(local_name='data-valid-start-date', type='DateType')
 @attribute(local_name='data-valid-end-date', type='DateType')
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 @element(namespace='*', local_name='*')
 class ReportContentElement(Model):
     pass

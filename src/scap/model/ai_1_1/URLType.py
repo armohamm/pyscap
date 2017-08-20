@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 
 @attribute(local_name='source', type='Source')
 @attribute(local_name='timestamp', type='Timestamp')
-@attribute('*', '*')
+@attribute(namespace='*', local_name='*')
 class URLType(AnyUriType):
     # collapsed mac-address element & mac-address-type
     pass
