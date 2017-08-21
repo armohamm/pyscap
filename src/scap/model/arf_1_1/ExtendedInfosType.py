@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .ExtendedInfoElement import ExtendedInfoElement
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='extended-info', list='extended_infos', cls='ExtendedInfoElement', max=None)
+@element(local_name='extended-info', list='extended_infos', cls=ExtendedInfoElement, max=None)
 class ExtendedInfosType(Model):
     pass

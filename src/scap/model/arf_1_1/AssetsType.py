@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .AssetElement import AssetElement
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='asset', list='assets', cls='AssetElement', max=None)
+@element(local_name='asset', list='assets', cls=AssetElement, max=None)
 class AssetsType(Model):
     pass

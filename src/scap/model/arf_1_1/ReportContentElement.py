@@ -18,12 +18,13 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.DateType import DateType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='data-valid-start-date', type='DateType')
-@attribute(local_name='data-valid-end-date', type='DateType')
+@attribute(local_name='data-valid-start-date', type=DateType)
+@attribute(local_name='data-valid-end-date', type=DateType)
 @attribute(namespace='*', local_name='*')
 @element(namespace='*', local_name='*')
 class ReportContentElement(Model):

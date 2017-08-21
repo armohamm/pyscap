@@ -18,12 +18,13 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.AnyUriType import AnyUriType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
 @attribute(namespace='http://www.w3.org/1999/xlink', local_name='type', required=True, enum=['simple'])
-@attribute(namespace='http://www.w3.org/1999/xlink', local_name='href', required=True, type='AnyUriType')
+@attribute(namespace='http://www.w3.org/1999/xlink', local_name='href', required=True, type=AnyUriType)
 @attribute(namespace='*', local_name='*')
 class RemoteResourceElement(Model):
     pass

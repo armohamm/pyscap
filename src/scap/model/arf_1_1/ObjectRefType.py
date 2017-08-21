@@ -18,10 +18,11 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='ref-id', type='NCNameType', required=True)
+@attribute(local_name='ref-id', type=NCNameType, required=True)
 class ObjectRefType(Model):
     pass

@@ -18,11 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='id', type='NCNameType', required=True)
+@attribute(local_name='id', type=NCNameType, required=True)
 @attribute(namespace='*', local_name='*')
 @element(namespace='*', local_name='*')
 class ExtendedInfoElement(Model):

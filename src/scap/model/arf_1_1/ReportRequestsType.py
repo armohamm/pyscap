@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .ReportRequestType import ReportRequestType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='report-request', list='report_requests', cls='ReportRequestType', max=None)
+@element(local_name='report-request', list='report_requests', cls=ReportRequestType, max=None)
 class ReportRequestsType(Model):
     pass

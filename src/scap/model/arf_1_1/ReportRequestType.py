@@ -18,13 +18,17 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
 from scap.Model import Model
+
+from .ReportRequestContentElement import ReportRequestContentElement
+from .RemoteResourceElement import RemoteResourceElement
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='id', type='NCNameType', required=True)
+@attribute(local_name='id', type=NCNameType, required=True)
 @attribute(namespace='*', local_name='*')
-@element(local_name='content', cls='ReportRequestContentElement')
-@element(local_name='remote-resource', cls='RemoteResourceElement')
+@element(local_name='content', cls=ReportRequestContentElement)
+@element(local_name='remote-resource', cls=RemoteResourceElement)
 class ReportRequestType(Model):
     pass
