@@ -17,9 +17,11 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.defs.TestType import TestType as oval_def_5_TestType
 
 logger = logging.getLogger(__name__)
+
 class TestType(oval_def_5_TestType):
     MODEL_MAP = {
         'elements': [

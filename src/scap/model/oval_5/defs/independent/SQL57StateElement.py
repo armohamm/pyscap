@@ -17,10 +17,12 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import DATABASE_ENGINE_ENUMERATION
 from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
+
 class SQL57StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'sql57_state',

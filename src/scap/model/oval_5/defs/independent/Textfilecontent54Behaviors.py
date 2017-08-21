@@ -17,9 +17,11 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.defs.independent.FileBehaviors import FileBehaviors
 
 logger = logging.getLogger(__name__)
+
 class Textfilecontent54Behaviors(FileBehaviors):
     MODEL_MAP = {
         'attributes': {

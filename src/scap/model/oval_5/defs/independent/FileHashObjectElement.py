@@ -17,12 +17,14 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.defs.independent.FileBehaviors import FileBehaviors
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
 from scap.model.oval_5.sc.independent.FileHashItemElement import FileHashItemElement
 
 logger = logging.getLogger(__name__)
+
 class FileHashObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'filehash_object',

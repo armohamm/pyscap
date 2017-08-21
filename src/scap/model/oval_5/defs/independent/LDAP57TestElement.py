@@ -17,9 +17,11 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.defs.independent.TestType import TestType
 
 logger = logging.getLogger(__name__)
+
 class LDAP57TestElement(TestType):
     MODEL_MAP = {
         'tag_name': 'ldap57_test',

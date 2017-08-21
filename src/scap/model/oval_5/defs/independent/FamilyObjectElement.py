@@ -17,16 +17,14 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 from scap.model.oval_5.sc.independent.FamilyItemElement import FamilyItemElement
 from scap.model.oval_5.sc.independent.EntityItemFamilyType import EntityItemFamilyType
 
 logger = logging.getLogger(__name__)
-class FamilyObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'family_object',
-    }
 
+class FamilyObjectElement(ObjectType):
     def evaluate(self, host, content, imports, export_names):
         if 'oval_family' not in host.facts:
             if 'cpe' not in host.facts or 'os' not in host.facts['cpe'] or len(host.facts['cpe']['os']) <= 0:

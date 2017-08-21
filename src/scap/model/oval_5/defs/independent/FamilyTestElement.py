@@ -17,10 +17,10 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.defs.independent.TestType import TestType
 
 logger = logging.getLogger(__name__)
+
 class FamilyTestElement(TestType):
-    MODEL_MAP = {
-        'tag_name': 'family_test',
-    }
+    pass

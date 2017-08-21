@@ -17,10 +17,12 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
 from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
+
 class FileHashStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'filehash_state',

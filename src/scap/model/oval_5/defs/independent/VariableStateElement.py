@@ -17,9 +17,11 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
+
 class VariableStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'variable_state',

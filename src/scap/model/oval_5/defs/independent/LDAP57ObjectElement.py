@@ -17,9 +17,11 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
+
 class Ldap57ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'ldap57_object',

@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import HASH_TYPE_ENUMERATION
 from scap.model.oval_5.defs.independent.FileBehaviors import FileBehaviors
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
@@ -26,6 +27,7 @@ from scap.model.oval_5.sc.independent.FileHash58ItemElement import FileHash58Ite
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
+
 class FileHash58ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'filehash58_object',

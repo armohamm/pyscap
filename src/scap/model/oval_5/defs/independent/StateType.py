@@ -17,9 +17,11 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.defs.StateType import StateType as oval_def_5_StateType
 
 logger = logging.getLogger(__name__)
+
 class StateType(oval_def_5_StateType):
     # abstract
     MODEL_MAP = {

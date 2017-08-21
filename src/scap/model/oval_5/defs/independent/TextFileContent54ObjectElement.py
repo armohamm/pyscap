@@ -18,12 +18,14 @@
 import logging
 import re
 
+from scap.model.decorators import *
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 from scap.model.oval_5.defs.independent.Textfilecontent54Behaviors import Textfilecontent54Behaviors
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
 from scap.model.oval_5.sc.independent.TextFileContentItemElement import TextFileContentItemElement
 
 logger = logging.getLogger(__name__)
+
 class TextFileContent54ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'textfilecontent54_object',

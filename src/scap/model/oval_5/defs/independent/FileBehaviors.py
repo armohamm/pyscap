@@ -17,9 +17,11 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
 class FileBehaviors(Model):
     MODEL_MAP = {
         'attributes': {
@@ -66,7 +68,7 @@ class FileBehaviors(Model):
 
             # The value of 'local' limits the search scope to local file systems
             # (as opposed to file systems mounted from an external system).
-            
+
             # The value of 'defined' keeps any recursion within the file system
             # that the file_object (path+filename or filepath) has specified.
             # For example, on Windows, if the path specified was "C:\", you
