@@ -17,16 +17,18 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
 
+from ..GeneratorType import GeneratorType
+from ..res.DefaultDirectivesType import DefaultDirectivesType
+from ..res.ClassDirectivesType import ClassDirectivesType
+
 logger = logging.getLogger(__name__)
+
+@element(local_name='generator', cls=GeneratorType)
+@element(local_name='directives', cls=DefaultDirectivesType)
+@element(local_name='class_directives', cls=ClassDirectivesType)
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
 class OvalDirectivesElement(Model):
-    MODEL_MAP = {
-        'tag_name' : 'oval_results',
-        'elements': [
-            {'tag_name': 'generator', 'class': 'scap.model.oval_5.GeneratorType'},
-            {'tag_name': 'directives', 'class': 'scap.model.oval_5.res.DefaultDirectivesType'},
-            {'tag_name': 'class_directives', 'class': 'scap.model.oval_5.res.ClassDirectivesType', 'min': 0, 'max': 5},
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

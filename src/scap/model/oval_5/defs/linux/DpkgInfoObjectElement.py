@@ -18,8 +18,9 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.oval_5.defs.linux.ObjectType import ObjectType
-from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
+
+from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 @element(local_name='name', cls=EntityObjectType, min=0)

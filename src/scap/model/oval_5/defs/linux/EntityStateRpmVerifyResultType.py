@@ -17,8 +17,10 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import RPM_VERIFY_RESULT_ENUMERATION
-from scap.model.oval_5.defs.EntityStateType import EntityStateType
+
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 class EntityStateRpmVerifyResultType(EntityStateType):

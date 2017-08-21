@@ -17,7 +17,9 @@
 
 import logging
 
-from scap.model.oval_5.defs.EntityStateType import EntityStateType
+from scap.model.decorators import *
+
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 class ReleaseElement(EntityStateType):

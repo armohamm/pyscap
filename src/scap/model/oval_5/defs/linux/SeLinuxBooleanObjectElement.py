@@ -17,7 +17,9 @@
 
 import logging
 
-from scap.model.oval_5.defs.linux.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
 class SeLinuxBooleanObjectElement(ObjectType):
