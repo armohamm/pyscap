@@ -18,11 +18,14 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.oval_5.defs.TestType import TestType as oval_def_5_TestType
+
+from ..TestType import TestType as oval_def_5_TestType
+from ..ObjectRefType import ObjectRefType
+from ..StateRefType import StateRefType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='object', cls='scap.model.oval_5.defs.ObjectRefType')
-@element(local_name='state', list='states', cls='scap.model.oval_5.defs.StateRefType', min=0, max=None)
+@element(local_name='object', cls=ObjectRefType)
+@element(local_name='state', list='states', cls=StateRefType, min=0, max=None)
 class TestType(oval_def_5_TestType):
     pass

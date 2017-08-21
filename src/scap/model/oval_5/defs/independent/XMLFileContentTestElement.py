@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.oval_5.defs.independent.TestType import TestType
+
+from .TestType import TestType
 
 logger = logging.getLogger(__name__)
 

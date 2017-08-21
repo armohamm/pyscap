@@ -18,12 +18,14 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
-from scap.model.oval_5.defs.independent.ObjectType import ObjectType
+
+from ..EntityObjectType import EntityObjectType
+from .ObjectType import ObjectType
+from .LdapBehaviors import LdapBehaviors
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='behaviors', cls='LdapBehaviors', min=0, max=1)
+@element(local_name='behaviors', cls=LdapBehaviors, min=0, max=1)
 @element(local_name='suffix', cls=EntityObjectType, min=0)
 @element(local_name='relative_dn', cls=EntityObjectType, nillabl=True, min=0)
 @element(local_name='attribute', cls=EntityObjectType, nillabl=True, min=0)

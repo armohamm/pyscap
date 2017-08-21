@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.oval_5.defs.independent.FileBehaviors import FileBehaviors
+
+from .FileBehaviors import FileBehaviors
 
 logger = logging.getLogger(__name__)
 

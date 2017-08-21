@@ -19,9 +19,10 @@ import logging
 
 from scap.model.decorators import *
 from scap.model.oval_5 import DATABASE_ENGINE_ENUMERATION
-from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
-from scap.model.oval_5.defs.EntityStateType import EntityStateType
-from scap.model.oval_5.defs.independent.StateType import StateType
+
+from ..EntityObjectType import EntityObjectType
+from ..EntityStateType import EntityStateType
+from .StateType import StateType
 
 logger = logging.getLogger(__name__)
 

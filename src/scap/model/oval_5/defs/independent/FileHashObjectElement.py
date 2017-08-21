@@ -18,15 +18,17 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
-from scap.model.oval_5.defs.independent.FileBehaviors import FileBehaviors
-from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
 from scap.model.oval_5.sc.independent.FileHashItemElement import FileHashItemElement
 
+from ..EntityObjectType import EntityObjectType
+from .FileBehaviors import FileBehaviors
+from .ObjectType import ObjectType
+from .FileBehaviors import FileBehaviors
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='behaviors', cls='FileBehaviors', min=0)
+@element(local_name='behaviors', cls=FileBehaviors, min=0)
 @element(local_name='filepath', cls=EntityObjectType, min=0)
 @element(local_name='path', cls=EntityObjectType, min=0)
 @element(local_name='filename', cls=EntityObjectType, min=0)

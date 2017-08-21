@@ -18,8 +18,9 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
-from scap.model.oval_5.defs.independent.ObjectType import ObjectType
+
+from ..EntityObjectType import EntityObjectType
+from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
 
