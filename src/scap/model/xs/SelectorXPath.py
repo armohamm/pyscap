@@ -24,12 +24,22 @@ from scap.model.xs.TokenType import TokenType
 logger = logging.getLogger(__name__)
 class SelectorXPath(TokenType):
     def get_value_pattern(self):
-        return r'(\.//)?(((child::)?((' \
-        + i_ + c_ + r'*:)?(' \
-        + i_ + c_ + r'*|\*)))|\.)(/(((child::)?((' \
-        + i_ + c_ + r'*:)?(' \
-        + i_ + c_ + r'*|\*)))|\.))*(\|(\.//)?(((child::)?((' \
-        + i_ + c_ + r'*:)?(' \
-        + i_ + c_ + r'*|\*)))|\.)(/(((child::)?((' \
-        + i_ + c_ + r'*:)?(' \
-        + i_ + c_ + r'*|\*)))|\.))*)*'
+        return (
+            r'(\.//)?(((child::)?(('
+            + i_ + c_
+            + r'*:)?('
+            + i_ + c_
+            + r'*|\*)))|\.)(/(((child::)?(('
+            + i_ + c_
+            + r'*:)?('
+            + i_ + c_
+            + r'*|\*)))|\.))*(\|(\.//)?(((child::)?(('
+            + i_ + c_
+            + r'*:)?('
+            + i_ + c_
+            + r'*|\*)))|\.)(/(((child::)?(('
+            + i_ + c_
+            + r'*:)?('
+            + i_ + c_
+            + r'*|\*)))|\.))*)*'
+        )

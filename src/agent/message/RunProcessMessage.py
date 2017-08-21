@@ -26,9 +26,13 @@ from message.CompletedProcessMessage import CompletedProcessMessage
 logger = logging.getLogger(__name__)
 class RunProcessMessage(Message):
     def __init__(self, payload):
-        if not isinstance(payload, dict) or 'args' not in payload \
-            or not (isinstance(payload['args'], str) \
-            or isinstance(payload['args'], list)):
+        if (not isinstance(payload, dict)
+            or 'args' not in payload
+            or not (
+                isinstance(payload['args'], str)
+                or isinstance(payload['args'], list)
+            )
+        ):
             raise RuntimeError('Invalid arguments specified for run')
         super().__init__(payload)
 
@@ -55,14 +59,22 @@ class RunProcessMessage(Message):
         if 'timeout' in self.payload:
             timeout = self.payload['timeout']
 
-        self.completed_process = subprocess.run(args, stdin=stdin, input=input_, \
-            stdout=stdout, stderr=stderr, shell=shell, timeout=timeout)
+        self.completed_process = subprocess.run(
+            args,
+            stdin=stdin,
+            input=input_,
+            stdout=stdout,
+            stderr=stderr,
+            shell=shell,
+            timeout=timeout)
 
     def respond_via(self, sock):
-        resp = CompletedProcessMessage({
-            'args': self.completed_process.args,
-            'returncode': self.completed_process.returncode,
-            'stdout': self.completed_process.stdout,
-            'stderr': self.completed_process.stderr,
-        })
+        resp = CompletedProcessMessage(
+            {
+                'args': self.completed_process.args,
+                'returncode': self.completed_process.returncode,
+                'stdout': self.completed_process.stdout,
+                'stderr': self.completed_process.stderr,
+            }
+        )
         resp.send_via(sock)

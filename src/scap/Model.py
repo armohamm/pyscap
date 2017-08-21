@@ -628,16 +628,20 @@ class Model(object):
 
         for attrib in self._model_map['attributes']:
             # check that required attributes are defined
-            if 'required' in self._model_map['attributes'][attrib] \
-            and self._model_map['attributes'][attrib]['required'] \
-            and attrib not in el.keys() \
-            and 'default' not in self._model_map['attributes'][attrib]:
+            if (
+                'required' in self._model_map['attributes'][attrib]
+                and self._model_map['attributes'][attrib]['required']
+                and attrib not in el.keys()
+                and 'default' not in self._model_map['attributes'][attrib]
+            ):
                 raise RequiredAttributeException(el.tag + ' must define ' + attrib + ' attribute')
 
             # check that prohibited attributes are not defined
-            if 'prohibited' in self._model_map['attributes'][attrib] \
-            and self._model_map['attributes'][attrib]['prohibited'] \
-            and attrib in el.keys():
+            if (
+                'prohibited' in self._model_map['attributes'][attrib]
+                and self._model_map['attributes'][attrib]['prohibited']
+                and attrib in el.keys()
+            ):
                 raise ProhibitedAttributeException(el.tag + ' must not define ' + attrib + ' attribute')
 
         for name, value in list(el.items()):
@@ -770,8 +774,10 @@ class Model(object):
 
                 lst = getattr(self, name)
 
-                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
-                and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+                if (
+                    '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys()
+                    and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true'
+                ):
                     # check if we can accept nil
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
@@ -791,8 +797,10 @@ class Model(object):
                 logger.debug(str(self) + ' parsing ' + tag + ' elements into ' + element_def['list'])
                 lst = getattr(self, element_def['list'])
 
-                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
-                and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+                if (
+                    '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys()
+                    and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true'
+                ):
                     # check if we can accept nil
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
@@ -825,8 +833,10 @@ class Model(object):
                         key = el.get('id')
 
                 # TODO: implement value_element? as well
-                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
-                and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+                if (
+                    '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys()
+                    and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true'
+                ):
                     # check if we can accept nil
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
@@ -856,8 +866,10 @@ class Model(object):
 
             elif 'class' in element_def:
                 logger.debug(str(self) + ' parsing ' + tag + ' elements as ' + element_def['class'])
-                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
-                and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+                if (
+                    '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys()
+                    and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true'
+                ):
                     # check if we can accept nil
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
@@ -878,8 +890,10 @@ class Model(object):
 
             elif 'type' in element_def:
                 logger.debug(str(self) + ' parsing ' + tag + ' elements as ' + element_def['type'])
-                if '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys() \
-                and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true':
+                if (
+                    '{http://www.w3.org/2001/XMLSchema-instance}nil' in el.keys()
+                    and el.get('{http://www.w3.org/2001/XMLSchema-instance}nil') == 'true'
+                ):
                     # check if we can accept nil
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None

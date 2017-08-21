@@ -113,8 +113,12 @@ class FileHash58ObjectElement(ObjectType):
 
             return items
 
-        elif 'path' in args and args['path'] is not None \
-        and 'filename' in args and args['filename'] is not None:
+        elif (
+            'path' in args
+            and args['path'] is not None
+            and 'filename' in args
+            and args['filename'] is not None
+        ):
             try:
                 col = host.load_collector('ResolvePathFilenameCollector', args)
                 paths = col.collect()

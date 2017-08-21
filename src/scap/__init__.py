@@ -270,8 +270,10 @@ def main():
                 content = ET.parse(f).getroot()
                 model = Model.load(None, content)
 
-                if isinstance(model, xccdf_1_1_BenchmarkType) \
-                or isinstance(model, xccdf_1_2_BenchmarkType):
+                if (
+                    isinstance(model, xccdf_1_1_BenchmarkType)
+                    or isinstance(model, xccdf_1_2_BenchmarkType)
+                ):
                     benchmark_model = model
 
         for host in hosts:

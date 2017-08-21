@@ -44,8 +44,12 @@ class FileHashCollector(Collector):
             raise ArgumentException('Unknown hash type: ' + args['type'])
 
     def collect(self):
-        cmd = FileHashCollector.HASH_COMMANDS[self.args['type']] \
-            + ' ' + self.args['path'].replace('"', '\\"') + ' | cut -f1 -d" "'
+        cmd = (
+            FileHashCollector.HASH_COMMANDS[self.args['type']]
+            + ' '
+            + self.args['path'].replace('"', '\\"')
+            + ' | cut -f1 -d" "'
+        )
         return_code, out_lines, err_lines = self.host.exec_command(cmd)
         if len(out_lines) == 0 or return_code != 0:
             raise FileNotFoundError('Unable to collect hash for ' + self.args['path'])

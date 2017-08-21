@@ -24,13 +24,21 @@ from scap.model.xs.TokenType import TokenType
 logger = logging.getLogger(__name__)
 class NamespaceListType(TokenType):
     def parse_item(self, item_value):
-        if item_value == '##any' or item_value == '##other' \
-        or item_value == '##targetNamespace' or item_value == '##local':
+        if (
+            item_value == '##any'
+            or item_value == '##other'
+            or item_value == '##targetNamespace'
+            or item_value == '##local'
+        ):
             return item_value
         return Token().parse_value(item_value)
 
     def produce_item(self, item_value):
-        if item_value == '##any' or item_value == '##other' \
-        or item_value == '##targetNamespace' or item_value == '##local':
+        if (
+            item_value == '##any'
+            or item_value == '##other'
+            or item_value == '##targetNamespace'
+            or item_value == '##local'
+        ):
             return item_value
         return Token().produce_value(item_value)

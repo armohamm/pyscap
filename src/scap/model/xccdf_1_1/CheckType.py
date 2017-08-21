@@ -136,8 +136,10 @@ class CheckType(Model):
                 ]
 
         for check_import in self.check_imports:
-            if 'imports' not in result \
-            or check_import.import_name not in result['imports']:
+            if (
+                'imports' not in result
+                or check_import.import_name not in result['imports']
+            ):
                 raise ValueError('Expected import not returned by check: ' + check_import.import_name)
 
         # TODO need to assign imports to import variables

@@ -22,9 +22,19 @@ import re
 logger = logging.getLogger(__name__)
 class SevenPropertyModel(object):
 
-    def __init__(self, \
-        datetime=None, time=None, date=None, \
-        year=None, month=None, day=None, hour=None, minute=None, second=None, timezoneOffset=None):
+    def __init__(
+        self,
+        datetime=None,
+        time=None,
+        date=None,
+        year=None,
+        month=None,
+        day=None,
+        hour=None,
+        minute=None,
+        second=None,
+        timezoneOffset=None
+    ):
 
         self._year = None
         self._month = None
@@ -219,54 +229,129 @@ class SevenPropertyModel(object):
                 return '-%02d:%02d' % (int(tz_hour), tz_minute)
 
     def __str__(self):
-        if self._year is None and self._month is None and self._day is not None \
-        and self._hour is None and self._minute is None and self._second is None:
+        if (
+            self._year is None
+            and self._month is None
+            and self._day is not None
+            and self._hour is None
+            and self._minute is None
+            and self._second is None
+        ):
             # gDay
             return "---%02d%s" % (self._day, self._tz_to_string())
 
-        elif self._year is None and self._month is not None and self._day is None \
-        and self._hour is None and self._minute is None and self._second is None:
+        elif (
+            self._year is None
+            and self._month is not None
+            and self._day is None
+            and self._hour is None
+            and self._minute is None
+            and self._second is None
+        ):
             # gMonth
             return "--%02d%s" % (self._month, self._tz_to_string())
 
-        elif self._year is None and self._month is not None and self._day is not None \
-        and self._hour is None and self._minute is None and self._second is None:
+        elif (
+            self._year is None
+            and self._month is not None
+            and self._day is not None
+            and self._hour is None
+            and self._minute is None
+            and self._second is None
+        ):
             # gMonthDay
             return "--%02d-%02d%s" % (self._month, self._day, self._tz_to_string())
 
-        elif self._year is not None and self._month is None and self._day is None \
-        and self._hour is None and self._minute is None and self._second is None:
+        elif (
+            self._year is not None
+            and self._month is None
+            and self._day is None
+            and self._hour is None
+            and self._minute is None
+            and self._second is None
+        ):
             # gYear
             return "%04d%s" % (self._year, self._tz_to_string())
 
-        elif self._year is not None and self._month is not None and self._day is None \
-        and self._hour is None and self._minute is None and self._second is None:
+        elif (
+            self._year is not None
+            and self._month is not None
+            and self._day is None
+            and self._hour is None
+            and self._minute is None
+            and self._second is None
+        ):
             # gYearMonth
             return "%04d-%02d%s" % (self._year, self._month, self._tz_to_string())
 
-        elif self._year is not None and self._month is not None and self._day is not None \
-        and self._hour is None and self._minute is None and self._second is None:
+        elif (
+            self._year is not None
+            and self._month is not None
+            and self._day is not None
+            and self._hour is None
+            and self._minute is None
+            and self._second is None
+        ):
             # Date
             return "%04d-%02d-%02d%s" % (self._year, self._month, self._day, self._tz_to_string())
 
-        elif self._year is None and self._month is None and self._day is None \
-        and self._hour is not None and self._minute is not None and self._second is not None:
+        elif (
+            self._year is None
+            and self._month is None
+            and self._day is None
+            and self._hour is not None
+            and self._minute is not None
+            and self._second is not None
+        ):
             # Time
             if self._second - int(self._second) == 0.0:
                 return "%02d:%02d:%02.0f%s" % (self._hour, self._minute, self._second, self._tz_to_string())
             else:
                 return "%02d:%02d:%02.6f%s" % (self._hour, self._minute, self._second, self._tz_to_string())
 
-        elif self._year is not None and self._month is not None and self._day is not None \
-        and self._hour is not None and self._minute is not None and self._second is not None:
+        elif (
+            self._year is not None
+            and self._month is not None
+            and self._day is not None
+            and self._hour is not None
+            and self._minute is not None
+            and self._second is not None
+        ):
             # DateTime
             if self._second - int(self._second) == 0.0:
-                return "%04d-%02d-%02dT%02d:%02d:%02.0f%s" % (self._year, self._month, self._day, self._hour, self._minute, self._second, self._tz_to_string())
+                return "%04d-%02d-%02dT%02d:%02d:%02.0f%s" % (
+                    self._year,
+                    self._month,
+                    self._day,
+                    self._hour,
+                    self._minute,
+                    self._second,
+                    self._tz_to_string()
+                )
             else:
-                return "%04d-%02d-%02dT%02d:%02d:%02.6f%s" % (self._year, self._month, self._day, self._hour, self._minute, self._second, self._tz_to_string())
+                return "%04d-%02d-%02dT%02d:%02d:%02.6f%s" % (
+                    self._year,
+                    self._month,
+                    self._day,
+                    self._hour,
+                    self._minute,
+                    self._second,
+                    self._tz_to_string()
+                )
 
         else:
-            raise NotImplementedError('Value set ' + str([self._year, self._month, self._day, self._hour, self._minute, self._second]) + ' cannot be converted to a string')
+            raise NotImplementedError(
+                'Value set '
+                + str([
+                    self._year,
+                    self._month,
+                    self._day,
+                    self._hour,
+                    self._minute,
+                    self._second
+                ])
+                + ' cannot be converted to a string'
+            )
 
     def __eq__(self, other):
         if not isinstance(other, SevenPropertyModel):
@@ -299,24 +384,62 @@ class SevenPropertyModel(object):
         ms = int((self._second - int(self._second)) * 1000)
 
         if self._timezoneOffset is None:
-            return dt.datetime(year=self._year, month=self._month, day=self._day, \
-            hour=self._hour, minute=self._minute, second=int(self._second), microsecond=ms)
+            return dt.datetime(
+                year=self._year,
+                month=self._month,
+                day=self._day,
+                hour=self._hour,
+                minute=self._minute,
+                second=int(self._second),
+                microsecond=ms
+            )
         else:
-            tz = dt.timezone(offset=dt.timedelta(minutes=self._timezoneOffset))
+            tz = dt.timezone(
+                offset=dt.timedelta(
+                    minutes=self._timezoneOffset
+                )
+            )
 
-            return dt.datetime(year=self._year, month=self._month, day=self._day, \
-            hour=self._hour, minute=self._minute, second=int(self._second), microsecond=ms, tzinfo=tz)
+            return dt.datetime(
+                year=self._year,
+                month=self._month,
+                day=self._day,
+                hour=self._hour,
+                minute=self._minute,
+                second=int(self._second),
+                microsecond=ms,
+                tzinfo=tz
+            )
 
     def to_date(self):
         # TODO work around date's timezone naiveté
-        return dt.date(year=self._year, month=self._month, day=self._day)
+        return dt.date(
+            year=self._year,
+            month=self._month,
+            day=self._day
+        )
 
     def to_time(self):
         ms = int((self._second - int(self._second)) * 1000)
 
         if self._timezoneOffset is None:
-            return dt.time(hour=self._hour, minute=self._minute, second=int(self._second), microsecond=ms)
+            return dt.time(
+                hour=self._hour,
+                minute=self._minute,
+                second=int(self._second),
+                microsecond=ms
+            )
         else:
-            tz = dt.timezone(offset=dt.timedelta(minutes=self._timezoneOffset))
+            tz = dt.timezone(
+                offset=dt.timedelta(
+                    minutes=self._timezoneOffset
+                )
+            )
 
-            return dt.time(hour=self._hour, minute=self._minute, second=int(self._second), microsecond=ms, tzinfo=tz)
+            return dt.time(
+                hour=self._hour,
+                minute=self._minute,
+                second=int(self._second),
+                microsecond=ms,
+                tzinfo=tz
+            )

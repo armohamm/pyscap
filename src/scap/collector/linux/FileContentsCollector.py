@@ -30,8 +30,10 @@ class FileContentsCollector(Collector):
             raise ArgumentException('FileContentsCollector requires path argument')
 
     def collect(self):
-        cmd = 'base64 ' \
+        cmd = (
+            'base64 '
             + self.args['path'].replace('"', '\\"')
+        )
         return_code, out_lines, err_lines = self.host.exec_command(cmd)
         if len(out_lines) == 0 or return_code != 0:
             raise FileNotFoundError('Unable to collect contents of ' + self.args['path'])

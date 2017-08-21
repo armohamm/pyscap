@@ -34,6 +34,10 @@ class ExceptionMessage(Message):
         super().__init__(payload)
 
     def __str__(self):
-        return self.__class__.__name__ + '[type=' + str(self.type) + \
-            ', payload=' + str(self.payload['exception']) + ']\n' + \
-            self.payload['traceback']
+        return (self.__class__.__name__
+            + '[type='
+            + str(self.type)
+            + ', payload='
+            + str(self.payload['exception'])
+            + ']\n'
+            + self.payload['traceback'])

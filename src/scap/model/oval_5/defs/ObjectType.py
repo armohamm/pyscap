@@ -79,8 +79,12 @@ class ObjectType(Model):
                     lst = getattr(self, arg_name)
                     for v in lst:
                         if isinstance(v, EntityObjectType):
-                            vals, value_datatypes[arg_name], value_operations[arg_name], \
-                            value_masks[arg_name] = v.resolve_values(host, content, imports, export_names)
+                            r = v.resolve_values(host, content, imports, export_names)
+                            vals = r[0]
+                            value_datatypes[arg_name] = r[1]
+                            value_operations[arg_name] = r[2]
+                            value_masks[arg_name] = r[3]
+
                             values[arg_name].extend(vals)
                         else:
                             values[arg_name].append(v)
@@ -96,8 +100,11 @@ class ObjectType(Model):
 
                     v = getattr(self, arg_name)
                     if isinstance(v, EntityObjectType):
-                        values[arg_name], value_datatypes[arg_name], value_operations[arg_name], \
-                        value_masks[arg_name] = v.resolve_values(host, content, imports, export_names)
+                        r = v.resolve_values(host, content, imports, export_names)
+                        values[arg_name] = r[0]
+                        value_datatypes[arg_name] = r[1]
+                        value_operations[arg_name] = r[2]
+                        value_masks[arg_name] = r[3]
                     else:
                         values[arg_name] = [v]
 

@@ -33,9 +33,11 @@ class VirtualMachineDetectionCollector(Collector):
 
         self.host.facts['in_virtual_machine'] = False
 
-        if 'processors' in self.host.facts['devices'] \
-        and len(self.host.facts['devices']['processors']) > 0 \
-        and 'hypervisor' in self.host.facts['devices']['processors'][0]['flags']:
+        if (
+            'processors' in self.host.facts['devices']
+            and len(self.host.facts['devices']['processors']) > 0
+            and 'hypervisor' in self.host.facts['devices']['processors'][0]['flags']
+        ):
             self.host.facts['in_virtual_machine'] = True
             self.host.facts['hosting_hypervisor'] = 'unknown'
 
@@ -196,9 +198,12 @@ class VirtualMachineDetectionCollector(Collector):
         from ..UNameCollector import UNameCollector
         UNameCollector(self.host, {}).collect()
         return_code, out_lines, err_lines = self.host.exec_command('if [ -d "/sys/bus/xen" -a ! -d "/sys/bus/xen-backend" ]; then echo "xen-hvm"; fi')
-        if return_code == 0 and len(out_lines) >= 1 \
-        and self.host.facts['uname']['processor'] == 'ia64' \
-        and out_lines[0].strip() == 'xen-hvm':
+        if (
+            return_code == 0
+            and len(out_lines) >= 1
+            and self.host.facts['uname']['processor'] == 'ia64'
+            and out_lines[0].strip() == 'xen-hvm'
+        ):
             self.host.facts['in_virtual_machine'] = True
             self.host.facts['hosting_hypervisor'] = 'xen-hvm'
 

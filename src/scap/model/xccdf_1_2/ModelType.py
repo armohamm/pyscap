@@ -54,8 +54,10 @@ class ModelType(Model):
             for item_id in benchmark.items:
                 item = benchmark.items[item_id]
 
-                if not isinstance(item, GroupType) \
-                and not isinstance(item, RuleType):
+                if (
+                    not isinstance(item, GroupType)
+                    and not isinstance(item, RuleType)
+                ):
                     continue
 
                 if not item.selected:
@@ -89,8 +91,10 @@ class ModelType(Model):
             for item_id in benchmark.items:
                 item = benchmark.items[item_id]
 
-                if not isinstance(item, GroupType) \
-                and not isinstance(item, RuleType):
+                if (
+                    not isinstance(item, GroupType)
+                    and not isinstance(item, RuleType)
+                ):
                     continue
 
                 # just pass the scores upstream for processing
@@ -114,8 +118,10 @@ class ModelType(Model):
             for item_id in benchmark.items:
                 item = benchmark.items[item_id]
 
-                if not isinstance(item, GroupType) \
-                and not isinstance(item, RuleType):
+                if (
+                    not isinstance(item, GroupType)
+                    and not isinstance(item, RuleType)
+                ):
                     continue
 
                 # just pass the scores upstream for processing
@@ -139,8 +145,10 @@ class ModelType(Model):
             for item_id in benchmark.items:
                 item = benchmark.items[item_id]
 
-                if not isinstance(item, GroupType) \
-                and not isinstance(item, RuleType):
+                if (
+                    not isinstance(item, GroupType)
+                    and not isinstance(item, RuleType)
+                ):
                     continue
 
                 # just pass the scores upstream for processing

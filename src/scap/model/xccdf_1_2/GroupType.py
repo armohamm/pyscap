@@ -141,8 +141,10 @@ class GroupType(SelectableItemType):
             for item_id in self.items:
                 item = self.items[item_id]
 
-                if not isinstance(item, GroupType) \
-                and not isinstance(item, RuleType):
+                if (
+                    not isinstance(item, GroupType)
+                    and not isinstance(item, RuleType)
+                ):
                     continue
 
                 if not item.selected:
@@ -176,15 +178,19 @@ class GroupType(SelectableItemType):
 
             return {self.id: {'model': model_system, 'score': score, 'weight': self.weight, 'count': count}}
 
-        elif model_system == 'urn:xccdf:scoring:flat' \
-        or model_system == 'urn:xccdf:scoring:flat-unweighted' \
-        or model_system == 'urn:xccdf:scoring:absolute':
+        elif model_system in (
+            'urn:xccdf:scoring:flat',
+            'urn:xccdf:scoring:flat-unweighted',
+            'urn:xccdf:scoring:absolute'
+        ):
             scores = {}
             for item_id in self.items:
                 item = self.items[item_id]
 
-                if not isinstance(item, GroupType) \
-                and not isinstance(item, RuleType):
+                if (
+                    not isinstance(item, GroupType)
+                    and not isinstance(item, RuleType)
+                ):
                     continue
 
                 if not item.selected:

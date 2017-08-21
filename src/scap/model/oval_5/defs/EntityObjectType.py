@@ -171,8 +171,10 @@ class EntityObjectType(Model):
     def from_xml(self, parent, el):
         super(EntityObjectType, self).from_xml(parent, el)
 
-        if self.datatype in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS \
-        and self.operation not in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS[self.datatype]:
+        if (
+            self.datatype in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS
+            and self.operation not in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS[self.datatype]
+        ):
             raise ValueError('Invalid operation ' + self.operation + ' on datatype ' + self.datatype + ' for ' + self.__class__.__name__)
 
         if el.text is not None:
@@ -189,8 +191,10 @@ class EntityObjectType(Model):
 
     def to_xml(self):
         el =  super(EntityObjectType, self).to_xml()
-        if self.datatype in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS \
-        and self.operation not in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS[self.datatype]:
+        if (
+            self.datatype in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS
+            and self.operation not in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS[self.datatype]
+        ):
             raise ValueError('Invalid operation ' + self.operation + ' on datatype ' + self.datatype + ' for ' + self.__class__.__name__)
 
         if self.datatype in EntityObjectType.DATATYPE_CLASS_MAPPING:
