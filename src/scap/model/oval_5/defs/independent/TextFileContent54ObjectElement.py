@@ -26,19 +26,13 @@ from scap.model.oval_5.sc.independent.TextFileContentItemElement import TextFile
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='behaviors', cls='Textfilecontent54Behaviors', min=0, max=1)
+@element(local_name='filepath', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='path', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='filename', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='pattern', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='instance', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
 class TextFileContent54ObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'textfilecontent54_object',
-        'elements': [
-            {'tag_name': 'behaviors', 'class': 'Textfilecontent54Behaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'pattern', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'instance', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-    }
-
     def collect_items_for_args(self, host, args):
         if 'behaviors' in args and args['behaviors'] is not None:
             behaviors = args['behaviors']

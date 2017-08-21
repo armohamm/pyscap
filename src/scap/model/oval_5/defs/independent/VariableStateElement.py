@@ -22,11 +22,7 @@ from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='var_ref', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1, value_pattern=r'(oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*){0,}')
+@element(local_name='value', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1)
 class VariableStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'variable_state',
-        'elements': [
-            {'tag_name': 'var_ref', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1, 'value_pattern': r'(oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*){0,}'},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

@@ -22,9 +22,6 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='scope', enum=['BASE', 'ONE', 'SUBTREE'], default='BASE')
 class LdapBehaviors(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'scope': {'enum': ['BASE', 'ONE', 'SUBTREE'], 'default': 'BASE'},
-        }
-    }
+    pass

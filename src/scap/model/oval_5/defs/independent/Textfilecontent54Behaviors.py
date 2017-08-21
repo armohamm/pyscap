@@ -22,11 +22,8 @@ from scap.model.oval_5.defs.independent.FileBehaviors import FileBehaviors
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='ignore_case', type='BooleanType', default=False)
+@attribute(local_name='multiline', type='BooleanType', default=True)
+@attribute(local_name='singleline', type='BooleanType', default=False)
 class Textfilecontent54Behaviors(FileBehaviors):
-    MODEL_MAP = {
-        'attributes': {
-            'ignore_case': {'type': 'BooleanType', 'default': False},
-            'multiline': {'type': 'BooleanType', 'default': True},
-            'singleline': {'type': 'BooleanType', 'default': False},
-        }
-    }
+    pass

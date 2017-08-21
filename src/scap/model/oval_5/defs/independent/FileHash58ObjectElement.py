@@ -28,18 +28,12 @@ from scap.model.oval_5.sc.independent.FileHash58ItemElement import FileHash58Ite
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
+@element(local_name='behaviors', cls='FileBehaviors', min=0, max=1)
+@element(local_name='filepath', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='path', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='filename', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='hash_type', cls='scap.model.oval_5.defs.EntityObjectTypescap.model.oval_5.defs.EntityObjectType', min=0, value_enum=HASH_TYPE_ENUMERATION)
 class FileHash58ObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'filehash58_object',
-        'elements': [
-            {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'hash_type', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'value_enum': HASH_TYPE_ENUMERATION},
-        ],
-    }
-
     HASH_TYPES = [
         'MD5',
         'SHA-1',

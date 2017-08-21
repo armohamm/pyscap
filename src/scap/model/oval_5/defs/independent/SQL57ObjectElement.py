@@ -23,13 +23,9 @@ from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='engine', cls='scap.model.oval_5.defs.EntityObjectType', min=0, value_enum=DATABASE_ENGINE_ENUMERATION)
+@element(local_name='version', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='connection_string', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='sql', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
 class SQL57ObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'sql57_object',
-        'elements': [
-            {'tag_name': 'engine', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'value_enum': DATABASE_ENGINE_ENUMERATION},
-            {'tag_name': 'version', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'connection_string', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'sql', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-    }
+    pass

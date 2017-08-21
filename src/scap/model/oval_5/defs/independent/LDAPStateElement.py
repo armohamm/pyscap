@@ -23,15 +23,11 @@ from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='suffix', cls='scap.model.oval_5.defs.EntityStateType', min=0)
+@element(local_name='relative_dn', cls='scap.model.oval_5.defs.EntityStateType', min=0)
+@element(local_name='attribute', cls='scap.model.oval_5.defs.EntityStateType', min=0)
+@element(local_name='object_class', cls='scap.model.oval_5.defs.EntityStateType', min=0)
+@element(local_name='ldaptype', cls='scap.model.oval_5.defs.EntityStateType', min=0, value_enum=LDAP_TYPE_ENUMERATION)
+@element(local_name='value', cls='scap.model.oval_5.defs.EntityStateType', min=0)
 class LDAPStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'ldap_state',
-        'elements': [
-            {'tag_name': 'suffix', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'relative_dn', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'attribute', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'object_class', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'ldaptype', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': LDAP_TYPE_ENUMERATION},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-        ],
-    }
+    pass

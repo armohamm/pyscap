@@ -25,17 +25,11 @@ from scap.model.oval_5.sc.independent.FileHashItemElement import FileHashItemEle
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='behaviors', cls='FileBehaviors', min=0)
+@element(local_name='filepath', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='path', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='filename', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
 class FileHashObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'filehash_object',
-        'elements': [
-            {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-    }
-
     def collect_items_for_args(self, host, args):
         if 'behaviors' in args and args['behaviors'] is not None:
             behaviors = args['behaviors']

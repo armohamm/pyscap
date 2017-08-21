@@ -23,14 +23,10 @@ from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='path', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1)
+@element(local_name='filename', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1)
+@element(local_name='line', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1)
+@element(local_name='subexpression', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1)
+@element(local_name='windows_view', cls='scap.model.oval_5.defs.EntityStateType', min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
 class TextFileContentStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'textfilecontent_state',
-        'elements': [
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'line', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'subexpression', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'windows_view', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': WINDOWS_VIEW_ENUMERATION},
-        ],
-    }
+    pass

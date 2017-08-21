@@ -23,15 +23,11 @@ from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='filepath', cls='scap.model.oval_5.defs.EntityStateType', min=0)
+@element(local_name='path', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1)
+@element(local_name='filename', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1)
+@element(local_name='md5', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1)
+@element(local_name='sha1', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1)
+@element(local_name='windows_view', cls='scap.model.oval_5.defs.EntityStateType', min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
 class FileHashStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'filehash_state',
-        'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'md5', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'sha1', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'windows_view', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': WINDOWS_VIEW_ENUMERATION},
-        ],
-    }
+    pass

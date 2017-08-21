@@ -23,6 +23,4 @@ from scap.model.oval_5.defs.independent.TestType import TestType
 logger = logging.getLogger(__name__)
 
 class TextFileContent54TestElement(TestType):
-    MODEL_MAP = {
-        'tag_name': 'textfilecontent54_test',
-    }
+    pass
