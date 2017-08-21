@@ -19,10 +19,11 @@ import logging
 
 from scap.model.decorators import *
 from scap.model.oval_5 import FAMILY_ENUMERATION
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='family', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1, value_enum=FAMILY_ENUMERATION)
+@element(local_name='family', cls=EntityStateType, min=0, max=1, value_enum=FAMILY_ENUMERATION)
 class FamilyStateElement(StateType):
     pass

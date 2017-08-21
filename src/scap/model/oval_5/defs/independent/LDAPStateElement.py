@@ -19,15 +19,16 @@ import logging
 
 from scap.model.decorators import *
 from scap.model.oval_5 import LDAP_TYPE_ENUMERATION
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='suffix', cls='scap.model.oval_5.defs.EntityStateType', min=0)
-@element(local_name='relative_dn', cls='scap.model.oval_5.defs.EntityStateType', min=0)
-@element(local_name='attribute', cls='scap.model.oval_5.defs.EntityStateType', min=0)
-@element(local_name='object_class', cls='scap.model.oval_5.defs.EntityStateType', min=0)
-@element(local_name='ldaptype', cls='scap.model.oval_5.defs.EntityStateType', min=0, value_enum=LDAP_TYPE_ENUMERATION)
-@element(local_name='value', cls='scap.model.oval_5.defs.EntityStateType', min=0)
+@element(local_name='suffix', cls=EntityStateType, min=0)
+@element(local_name='relative_dn', cls=EntityStateType, min=0)
+@element(local_name='attribute', cls=EntityStateType, min=0)
+@element(local_name='object_class', cls=EntityStateType, min=0)
+@element(local_name='ldaptype', cls=EntityStateType, min=0, value_enum=LDAP_TYPE_ENUMERATION)
+@element(local_name='value', cls=EntityStateType, min=0)
 class LDAPStateElement(StateType):
     pass

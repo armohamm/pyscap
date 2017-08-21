@@ -18,11 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='var_ref', cls='scap.model.oval_5.defs.EntityObjectType',
+@element(local_name='var_ref', cls=EntityObjectType,
     min=0, value_pattern=r'(oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*){0,}')
 class VariableObjectElement(ObjectType):
     pass

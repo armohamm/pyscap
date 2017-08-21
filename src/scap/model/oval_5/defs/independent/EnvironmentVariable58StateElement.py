@@ -18,12 +18,13 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
 
 @element(local_name='pid', cls='scap.model.oval_5.defs.EntityObjectType', min=0, max=1)
 @element(local_name='name', cls='scap.model.oval_5.defs.EntityObjectType', min=0, max=1)
-@element(local_name='value', cls='scap.model.oval_5.defs.EntityStateType', min=0, max=1)
+@element(local_name='value', cls=EntityStateType, min=0, max=1)
 class EnvironmentVariable58StateElement(StateType):
     pass

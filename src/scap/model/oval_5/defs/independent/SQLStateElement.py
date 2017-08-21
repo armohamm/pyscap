@@ -19,14 +19,15 @@ import logging
 
 from scap.model.decorators import *
 from scap.model.oval_5 import DATABASE_ENGINE_ENUMERATION
+from scap.model.oval_5.defs.EntityStateType import EntityStateType
 from scap.model.oval_5.defs.independent.StateType import StateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='engine', cls='scap.model.oval_5.defs.EntityStateType', min=0, value_enum=DATABASE_ENGINE_ENUMERATION)
-@element(local_name='version', cls='scap.model.oval_5.defs.EntityStateType', min=0)
-@element(local_name='connection_string', cls='scap.model.oval_5.defs.EntityStateType', min=0)
-@element(local_name='sql', cls='scap.model.oval_5.defs.EntityStateType', min=0)
-@element(local_name='result', cls='scap.model.oval_5.defs.EntityStateType', min=0)
+@element(local_name='engine', cls=EntityStateType, min=0, value_enum=DATABASE_ENGINE_ENUMERATION)
+@element(local_name='version', cls=EntityStateType, min=0)
+@element(local_name='connection_string', cls=EntityStateType, min=0)
+@element(local_name='sql', cls=EntityStateType, min=0)
+@element(local_name='result', cls=EntityStateType, min=0)
 class SQLStateElement(StateType):
     pass
