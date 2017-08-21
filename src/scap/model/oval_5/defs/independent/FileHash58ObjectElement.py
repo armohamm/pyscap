@@ -19,6 +19,7 @@ import logging
 
 from scap.model.decorators import *
 from scap.model.oval_5 import HASH_TYPE_ENUMERATION
+from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 from scap.model.oval_5.defs.independent.FileBehaviors import FileBehaviors
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
@@ -29,9 +30,9 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 @element(local_name='behaviors', cls='FileBehaviors', min=0, max=1)
-@element(local_name='filepath', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
-@element(local_name='path', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
-@element(local_name='filename', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='filepath', cls=EntityObjectType, min=0)
+@element(local_name='path', cls=EntityObjectType, min=0)
+@element(local_name='filename', cls=EntityObjectType, min=0)
 @element(local_name='hash_type', cls='scap.model.oval_5.defs.EntityObjectTypescap.model.oval_5.defs.EntityObjectType', min=0, value_enum=HASH_TYPE_ENUMERATION)
 class FileHash58ObjectElement(ObjectType):
     HASH_TYPES = [

@@ -18,13 +18,14 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
 from scap.model.oval_5.sc.independent.EnvironmentVariableItemElement import EnvironmentVariableItemElement
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='name', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='name', cls=EntityObjectType, min=0)
 class EnvironmentVariableObjectElement(ObjectType):
     def collect_items_for_args(self, host, args):
         env_var = None

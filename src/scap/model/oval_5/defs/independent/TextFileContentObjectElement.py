@@ -18,13 +18,14 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 from scap.model.oval_5.defs.independent.ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
 
 @element(local_name='behaviors', cls='FileBehaviors', min=0, max=1)
-@element(local_name='path', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
-@element(local_name='filename', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
-@element(local_name='line', cls='scap.model.oval_5.defs.EntityObjectType', min=0)
+@element(local_name='path', cls=EntityObjectType, min=0)
+@element(local_name='filename', cls=EntityObjectType, min=0)
+@element(local_name='line', cls=EntityObjectType, min=0)
 class TextFileContentObjectElement(ObjectType):
     pass
