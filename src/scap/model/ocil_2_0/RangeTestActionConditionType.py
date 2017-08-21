@@ -21,9 +21,10 @@ from scap.model.decorators import *
 from scap.Model import Model
 
 from .TestActionConditionType import TestActionConditionType
+from .RangeType import RangeType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='range', list='ranges', cls='RangeType', min=1, max=None)
+@element(local_name='range', list='ranges', cls=RangeType, min=1, max=None)
 class RangeTestActionConditionType(TestActionConditionType):
     pass

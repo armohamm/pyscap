@@ -18,12 +18,14 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.NormalizedStringType import NormalizedStringType
+from scap.model.xs.StringType import StringType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='title', type='NormalizedStringType', min=1, max=1)
-@element(local_name='description', list='descriptions', type='NormalizedStringType', min=0, max=None)
-@element(local_name='notice', list='notices', type='StringType', min=0, max=None)
+@element(local_name='title', type=NormalizedStringType, min=1, max=1)
+@element(local_name='description', list='descriptions', type=NormalizedStringType, min=0, max=None)
+@element(local_name='notice', list='notices', type=StringType, min=0, max=None)
 class DocumentType(Model):
     pass

@@ -20,9 +20,10 @@ import logging
 from scap.model.decorators import *
 
 from .SetExpressionBaseType import SetExpressionBaseType
+from .ChoiceIDPattern import ChoiceIDPattern
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='choice_ref', type='ChoiceIDPattern', required=True)
+@attribute(local_name='choice_ref', type=ChoiceIDPattern, required=True)
 class SetExpressionChoiceType(SetExpressionBaseType):
     pass

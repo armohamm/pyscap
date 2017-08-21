@@ -20,10 +20,13 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .UserType import UserType
+from .SystemTargetType import SystemTargetType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='user', list='targets', cls='UserType', min=0, max=None)
-@element(local_name='system', list='targets', cls='SystemTargetType', min=0, max=None)
+@element(local_name='user', list='targets', cls=UserType, min=0, max=None)
+@element(local_name='system', list='targets', cls=SystemTargetType, min=0, max=None)
 class TargetsType(Model):
     #TODO: at least one of .targets[]
     pass

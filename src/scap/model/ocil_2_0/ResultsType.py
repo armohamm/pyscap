@@ -18,17 +18,25 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.DateTimeType import DateTimeType
 from scap.Model import Model
+
+from .TextType import TextType
+from .QuestionnaireResultsType import QuestionnaireResultsType
+from .TestActionResultsType import TestActionResultsType
+from .QuestionResultsType import QuestionResultsType
+from .ArtifactResultsType import ArtifactResultsType
+from .TargetsType import TargetsType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='start_time', type='DateTimeType')
-@attribute(local_name='end_time', type='DateTimeType')
-@element(local_name='title', cls='TextType', min=0, max=1)
-@element(local_name='questionnaire_results', cls='QuestionnaireResultsType', min=0, max=1)
-@element(local_name='test_action_results', cls='TestActionResultsType', min=0, max=1)
-@element(local_name='question_results', cls='QuestionResultsType', min=0, max=1)
-@element(local_name='artifact_results', cls='ArtifactResultsType', min=0, max=1)
-@element(local_name='targets', cls='TargetsType', min=0, max=1)
+@attribute(local_name='start_time', type=DateTimeType)
+@attribute(local_name='end_time', type=DateTimeType)
+@element(local_name='title', cls=TextType, min=0, max=1)
+@element(local_name='questionnaire_results', cls=QuestionnaireResultsType, min=0, max=1)
+@element(local_name='test_action_results', cls=TestActionResultsType, min=0, max=1)
+@element(local_name='question_results', cls=QuestionResultsType, min=0, max=1)
+@element(local_name='artifact_results', cls=ArtifactResultsType, min=0, max=1)
+@element(local_name='targets', cls=TargetsType, min=0, max=1)
 class ResultsType(Model):
     pass

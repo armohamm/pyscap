@@ -20,11 +20,14 @@ import logging
 from scap.model.decorators import *
 
 from .QuestionType import QuestionType
+from .ChoiceIDPattern import ChoiceIDPattern
+from .ChoiceType import ChoiceType
+from .ChoiceGroupIDPattern import ChoiceGroupIDPattern
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='default_answer_ref', type='ChoiceIDPattern')
-@element(local_name='choice', list='choices', cls='ChoiceType', min=0, max=None)
-@element(local_name='choice_group_ref', list='choice_group_refs', type='ChoiceGroupIDPattern', min=0, max=None)
+@attribute(local_name='default_answer_ref', type=ChoiceIDPattern)
+@element(local_name='choice', list='choices', cls=ChoiceType, min=0, max=None)
+@element(local_name='choice_group_ref', list='choice_group_refs', type=ChoiceGroupIDPattern, min=0, max=None)
 class ChoiceQuestionType(QuestionType):
     pass

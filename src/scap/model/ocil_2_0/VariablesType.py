@@ -20,11 +20,15 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .ConstantVariableElement import ConstantVariableElement
+from .LocalVariableElement import LocalVariableElement
+from .ExternalVariableElement import ExternalVariableElement
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='constant_variable', list='variables', cls='ConstantVariableElement', min=0, max=None)
-@element(local_name='local_variable', list='variables', cls='LocalVariableElement', min=0, max=None)
-@element(local_name='external_variable', list='variables', cls='ExternalVariableElement', min=0, max=None)
+@element(local_name='constant_variable', list='variables', cls=ConstantVariableElement, min=0, max=None)
+@element(local_name='local_variable', list='variables', cls=LocalVariableElement, min=0, max=None)
+@element(local_name='external_variable', list='variables', cls=ExternalVariableElement, min=0, max=None)
 class VariablesType(Model):
     #TODO: at least one *_variable
     pass

@@ -18,13 +18,15 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.NormalizedStringType import NormalizedStringType
+from scap.model.xs.Token import Token
 
 from .NamedItemBaseType import NamedItemBaseType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='organization', list='organization', type='NormalizedStringType', min=0, max=None)
-@element(local_name='position', list='positions', type='NormalizedStringType', min=0, max=None)
-@element(local_name='email', list='emails', type='Token', min=0, max=None)
+@element(local_name='organization', list='organization', type=NormalizedStringType, min=0, max=None)
+@element(local_name='position', list='positions', type=NormalizedStringType, min=0, max=None)
+@element(local_name='email', list='emails', type=Token, min=0, max=None)
 class UserType(NamedItemBaseType):
     pass

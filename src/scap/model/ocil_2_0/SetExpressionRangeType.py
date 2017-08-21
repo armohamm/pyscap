@@ -18,12 +18,13 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.DecimalType import DecimalType
 
 from .SetExpressionBaseType import SetExpressionBaseType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='min', type='DecimalType', required=True)
-@attribute(local_name='max', type='DecimalType', required=True)
+@attribute(local_name='min', type=DecimalType, required=True)
+@attribute(local_name='max', type=DecimalType, required=True)
 class SetExpressionRangeType(SetExpressionBaseType):
     pass

@@ -20,12 +20,17 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .BooleanQuestionResultType import BooleanQuestionResultType
+from .ChoiceQuestionResultType import ChoiceQuestionResultType
+from .NumericQuestionResultType import NumericQuestionResultType
+from .StringQuestionResultType import
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='boolean_question_result', list='question_results', cls='BooleanQuestionResultType', min=0, max=None)
-@element(local_name='choice_question_result', list='question_results', cls='ChoiceQuestionResultType', min=0, max=None)
-@element(local_name='numeric_question_result', list='question_results', cls='NumericQuestionResultType', min=0, max=None)
-@element(local_name='string_question_result', list='question_results', cls='StringQuestionResultType', min=0, max=None)
+@element(local_name='boolean_question_result', list='question_results', cls=BooleanQuestionResultType, min=0, max=None)
+@element(local_name='choice_question_result', list='question_results', cls=ChoiceQuestionResultType, min=0, max=None)
+@element(local_name='numeric_question_result', list='question_results', cls=NumericQuestionResultType, min=0, max=None)
+@element(local_name='string_question_result', list='question_results', cls=StringQuestionResultType, min=0, max=None)
 class QuestionResultsType(Model):
     # TODO at least one question_results
     pass

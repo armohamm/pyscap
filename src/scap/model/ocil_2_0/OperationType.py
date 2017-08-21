@@ -18,12 +18,15 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 from scap.Model import Model
+
+from .TestActionRefType import TestActionRefType
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='operation', enum=['AND', 'OR'], default='AND')
-@attribute(local_name='negate', type='BooleanType', default=False)
-@element(local_name='test_action_ref', list='test_action_refs', cls='TestActionRefType', min=1, max=None)
+@attribute(local_name='negate', type=BooleanType, default=False)
+@element(local_name='test_action_ref', list='test_action_refs', cls=TestActionRefType, min=1, max=None)
 class OperationType(Model):
     pass

@@ -18,11 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.StringType import StringType
 
 from .SetExpressionBaseType import SetExpressionBaseType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='pattern', type='StringType', required=True)
+@attribute(local_name='pattern', type=StringType, required=True)
 class SetExpressionPatternType(SetExpressionBaseType):
     pass

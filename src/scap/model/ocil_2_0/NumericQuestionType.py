@@ -18,11 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.DecimalType import DecimalType
 
 from .QuestionType import QuestionType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='default_answer', type='DecimalType')
+@attribute(local_name='default_answer', type=DecimalType)
 class NumericQuestionType(QuestionType):
     pass

@@ -18,12 +18,13 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 
 from .QuestionType import QuestionType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='default_answer', type='BooleanType')
+@attribute(local_name='default_answer', type=BooleanType)
 @attribute(local_name='model', enum=['MODEL_YES_NO', 'MODEL_TRUE_FALSE'])
 class BooleanQuestionType(QuestionType):
     pass

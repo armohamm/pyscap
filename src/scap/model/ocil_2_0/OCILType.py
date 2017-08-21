@@ -20,15 +20,24 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .GeneratorType import GeneratorType
+from .DocumentType import DocumentType
+from .QuestionnairesType import QuestionnairesType
+from .TestActionsType import TestActionsType
+from .QuestionsType import QuestionsType
+from .ArtifactsType import ArtifactsType
+from .VariablesType import VariablesType
+from .ResultsElement import ResultsElement
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='generator', cls='GeneratorType', min=1, max=1)
-@element(local_name='document', cls='DocumentType', min=0, max=1)
-@element(local_name='questionnaires', cls='QuestionnairesType', min=1, max=1)
-@element(local_name='test_actions', cls='TestActionsType', min=1, max=1)
-@element(local_name='questions', cls='QuestionsType', min=1, max=1)
-@element(local_name='artifacts', cls='ArtifactsType', min=0, max=1)
-@element(local_name='variables', cls='VariablesType', min=0, max=1)
-@element(local_name='results', cls='ResultsElement', min=0, max=1)
+@element(local_name='generator', cls=GeneratorType, min=1, max=1)
+@element(local_name='document', cls=DocumentType, min=0, max=1)
+@element(local_name='questionnaires', cls=QuestionnairesType, min=1, max=1)
+@element(local_name='test_actions', cls=TestActionsType, min=1, max=1)
+@element(local_name='questions', cls=QuestionsType, min=1, max=1)
+@element(local_name='artifacts', cls=ArtifactsType, min=0, max=1)
+@element(local_name='variables', cls=VariablesType, min=0, max=1)
+@element(local_name='results', cls=ResultsElement, min=0, max=1)
 class OCILType(Model):
     pass

@@ -20,9 +20,12 @@ import logging
 from scap.model.decorators import *
 from scap.model.xs.NormalizedStringType import NormalizedStringType
 
+from .ChoiceIDPattern import ChoiceIDPattern
+from .VariableIdPattern import VariableIdPattern
+
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='id', type='ChoiceIDPattern', required=True)
-@attribute(local_name='var_ref', type='VariableIdPattern')
+@attribute(local_name='id', type=ChoiceIDPattern, required=True)
+@attribute(local_name='var_ref', type=VariableIdPattern)
 class ChoiceType(NormalizedStringType):
     pass

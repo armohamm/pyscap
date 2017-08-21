@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .QuestionnaireType import QuestionnaireType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='questionnaire', list='questionnaires', cls='QuestionnaireType', min=1, max=None)
+@element(local_name='questionnaire', list='questionnaires', cls=QuestionnaireType, min=1, max=None)
 class QuestionnairesType(Model):
     pass

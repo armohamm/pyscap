@@ -20,10 +20,14 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .TestActionRefValuePattern import TestActionRefValuePattern
+from .ResultType import ResultType
+from .ArtifactRefsType import ArtifactRefsType
+
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='test_action_ref', type='TestActionRefValuePattern', required=True)
-@attribute(local_name='result', cls='ResultType', required=True)
-@element(local_name='artifact_results', cls='ArtifactRefsType', min=0, max=1)
+@attribute(local_name='test_action_ref', type=TestActionRefValuePattern, required=True)
+@attribute(local_name='result', cls=ResultType, required=True)
+@element(local_name='artifact_results', cls=ArtifactRefsType, min=0, max=1)
 class TestActionResultType(Model):
     pass

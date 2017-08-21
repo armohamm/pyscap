@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .TestActionResultType import TestActionResultType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='test_action_result', list='test_action_results', cls='TestActionResultType', min=1, max=None)
+@element(local_name='test_action_result', list='test_action_results', cls=TestActionResultType, min=1, max=None)
 class TestActionResultsType(Model):
     pass

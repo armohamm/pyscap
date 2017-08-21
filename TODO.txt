@@ -7,3 +7,5 @@ Use zip() to iterate through a pair of lists
 make decorators link to classes instead of strs
 fix class name abbreviations to caps
 alphabetize imports
+remove wildcard imports
+http://docs.quantifiedcode.com/python-anti-patterns

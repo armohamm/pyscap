@@ -21,9 +21,10 @@ from scap.model.decorators import *
 from scap.Model import Model
 
 from .TestActionConditionType import TestActionConditionType
+from .PatternType import PatternType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='pattern', list='patterns', cls='PatternType', min=1, max=None)
+@element(local_name='pattern', list='patterns', cls=PatternType, min=1, max=None)
 class PatternTestActionConditionType(TestActionConditionType):
     pass

@@ -21,11 +21,14 @@ from scap.model.decorators import *
 from scap.Model import Model
 
 from .ItemBaseType import ItemBaseType
+from .QuestionIDPattern import QuestionIDPattern
+from .QuestionTextType import QuestionTextType
+from .InstructionsType import InstructionsType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='id', type='QuestionIDPattern', required=True)
-@element(local_name='question_text', list='question_texts', cls='QuestionTextType', min=1, max=None)
-@element(local_name='instructions', cls='InstructionsType', min=0, max=1)
+@attribute(local_name='id', type=QuestionIDPattern, required=True)
+@element(local_name='question_text', list='question_texts', cls=QuestionTextType, min=1, max=None)
+@element(local_name='instructions', cls=InstructionsType, min=0, max=1)
 class QuestionType(ItemBaseType):
     pass

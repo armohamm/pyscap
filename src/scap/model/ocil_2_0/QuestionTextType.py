@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .SubstitutionTextType import SubstitutionTextType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='sub', cls='SubstitutionTextType', min=0, max=None)
+@element(local_name='sub', cls=SubstitutionTextType, min=0, max=None)
 class QuestionTextType(Model):
     pass

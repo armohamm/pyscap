@@ -18,11 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 
 from .TestActionRefValuePattern import TestActionRefValuePattern
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='negate', type='BooleanType', default=False)
+@attribute(local_name='negate', type=BooleanType, default=False)
 class TestActionRefType(TestActionRefValuePattern):
     pass

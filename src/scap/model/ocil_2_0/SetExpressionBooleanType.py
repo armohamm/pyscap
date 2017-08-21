@@ -18,11 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 
 from .SetExpressionBaseType import SetExpressionBaseType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='value', type='BooleanType', required=True)
+@attribute(local_name='value', type=BooleanType, required=True)
 class SetExpressionBooleanType(SetExpressionBaseType):
     pass

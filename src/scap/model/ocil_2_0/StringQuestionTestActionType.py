@@ -20,9 +20,10 @@ import logging
 from scap.model.decorators import *
 
 from .QuestionTestActionType import QuestionTestActionType
+from .PatternTestActionConditionType import PatternTestActionConditionType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='when_pattern', list='when_patterns', cls='PatternTestActionConditionType', min=1, max=None)
+@element(local_name='when_pattern', list='when_patterns', cls=PatternTestActionConditionType, min=1, max=None)
 class StringQuestionTestActionType(QuestionTestActionType):
     pass

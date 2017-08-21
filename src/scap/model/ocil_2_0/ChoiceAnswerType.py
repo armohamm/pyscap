@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .ChoiceIDPattern import ChoiceIDPattern
+
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='choice_ref', type='ChoiceIDPattern')
+@attribute(local_name='choice_ref', type=ChoiceIDPattern)
 class ChoiceAnswerType(Model):
     pass

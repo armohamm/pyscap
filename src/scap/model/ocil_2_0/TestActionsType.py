@@ -20,12 +20,17 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .BooleanQuestionTestActionElement import BooleanQuestionTestActionElement
+from .ChoiceQuestionTestActionElement import ChoiceQuestionTestActionElement
+from .NumericQuestionTestActionElement import NumericQuestionTestActionElement
+from .StringQuestionTestActionElement import StringQuestionTestActionElement
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='boolean_question_test_action', list='test_actions', cls='BooleanQuestionTestActionElement', min=0, max=None)
-@element(local_name='choice_question_test_action', list='test_actions', cls='ChoiceQuestionTestActionElement', min=0, max=None)
-@element(local_name='numeric_question_test_action', list='test_actions', cls='NumericQuestionTestActionElement', min=0, max=None)
-@element(local_name='string_question_test_action', list='test_actions', cls='StringQuestionTestActionElement', min=0, max=None)
+@element(local_name='boolean_question_test_action', list='test_actions', cls=BooleanQuestionTestActionElement, min=0, max=None)
+@element(local_name='choice_question_test_action', list='test_actions', cls=ChoiceQuestionTestActionElement, min=0, max=None)
+@element(local_name='numeric_question_test_action', list='test_actions', cls=NumericQuestionTestActionElement, min=0, max=None)
+@element(local_name='string_question_test_action', list='test_actions', cls=StringQuestionTestActionElement, min=0, max=None)
 class TestActionsType(Model):
     # TODO: min 1 of test_actions
     pass

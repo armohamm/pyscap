@@ -20,10 +20,12 @@ import logging
 from scap.model.decorators import *
 
 from .QuestionTestActionType import QuestionTestActionType
+from .EqualsTestActionConditionType import EqualsTestActionConditionType
+from .RangeTestActionConditionType import RangeTestActionConditionType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='when_equals', list='when_equals', cls='EqualsTestActionConditionType', min=0, max=None)
-@element(local_name='when_range', list='when_ranges', cls='RangeTestActionConditionType', min=0, max=None)
+@element(local_name='when_equals', list='when_equals', cls=EqualsTestActionConditionType, min=0, max=None)
+@element(local_name='when_range', list='when_ranges', cls=RangeTestActionConditionType, min=0, max=None)
 class NumericQuestionTestActionType(QuestionTestActionType):
     pass

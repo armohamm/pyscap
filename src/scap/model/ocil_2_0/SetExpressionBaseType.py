@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .SetExpressionValueType import SetExpressionValueType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='value', cls='SetExpressionValueType')
+@element(local_name='value', cls=SetExpressionValueType)
 class SetExpressionBaseType(Model):
     pass

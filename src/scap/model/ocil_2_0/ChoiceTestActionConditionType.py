@@ -20,9 +20,10 @@ import logging
 from scap.model.decorators import *
 
 from .TestActionConditionType import TestActionConditionType
+from .ChoiceIDPattern import ChoiceIDPattern
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='choice_ref', list='choice_refs', type='ChoiceIDPattern', max=None)
+@element(local_name='choice_ref', list='choice_refs', type=ChoiceIDPattern, max=None)
 class ChoiceTestActionConditionType(TestActionConditionType):
     pass

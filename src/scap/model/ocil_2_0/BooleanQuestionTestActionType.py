@@ -18,11 +18,13 @@
 import logging
 
 from scap.model.decorators import *
+
 from .QuestionTestActionType import QuestionTestActionType
+from .TestActionConditionType import TestActionConditionType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='when_true', cls='TestActionConditionType', min=1, max=1)
-@element(local_name='when_false', cls='TestActionConditionType', min=1, max=1)
+@element(local_name='when_true', cls=TestActionConditionType, min=1, max=1)
+@element(local_name='when_false', cls=TestActionConditionType, min=1, max=1)
 class BooleanQuestionTestActionType(QuestionTestActionType):
     pass

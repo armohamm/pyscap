@@ -18,11 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.StringType import StringType
 
 from .QuestionResultType import QuestionResultType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='answer', type='StringType', max=1)
+@element(local_name='answer', type=StringType, max=1)
 class StringQuestionResultType(QuestionResultType):
     pass

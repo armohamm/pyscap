@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .VariableIdPattern import VariableIdPattern
+
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='var_ref', type='VariableIdPattern', required=True)
+@attribute(local_name='var_ref', type=VariableIdPattern, required=True)
 class SubstitutionTextType(Model):
     pass

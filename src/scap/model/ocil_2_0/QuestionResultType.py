@@ -20,9 +20,11 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .QuestionIDPattern import QuestionIDPattern
+
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='question_ref', type='QuestionIDPattern', required=True)
+@attribute(local_name='question_ref', type=QuestionIDPattern, required=True)
 @attribute(local_name='response', enum=['UNKNOWN', 'ERROR', 'NOT_TESTED', 'NOT_APPLICABLE', 'ANSWERED'], default='ANSWERED')
 class QuestionResultType(Model):
     pass

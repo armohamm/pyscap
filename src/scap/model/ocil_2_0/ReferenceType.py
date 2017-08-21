@@ -18,11 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.AnyUriType import AnyUriType
 
 from .TextType import TextType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='href', type='AnyUriType')
+@attribute(local_name='href', type=AnyUriType)
 class ReferenceType(TextType):
     pass

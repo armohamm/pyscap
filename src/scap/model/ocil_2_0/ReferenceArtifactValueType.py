@@ -18,13 +18,16 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 
 from .ArtifactValueType import ArtifactValueType
+from .ArtifactIDPattern import ArtifactIDPattern
+from .ReferenceType import ReferenceType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='id', type='ArtifactIDPattern', required=True)
-@attribute(local_name='persistent', type='BooleanType', default=True)
-@element(local_name='reference', cls='ReferenceType')
+@attribute(local_name='id', type=ArtifactIDPattern, required=True)
+@attribute(local_name='persistent', type=BooleanType, default=True)
+@element(local_name='reference', cls=ReferenceType)
 class ReferenceArtifactValueType(ArtifactValueType):
     pass

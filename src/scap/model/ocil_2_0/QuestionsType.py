@@ -20,13 +20,19 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .BooleanQuestionElement import BooleanQuestionElement
+from .ChoiceQuestionElement import ChoiceQuestionElement
+from .NumericQuestionElement import NumericQuestionElement
+from .StringQuestionElement import StringQuestionElement
+from .ChoiceGroupType import ChoiceGroupType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='boolean_question', list='questions', cls='BooleanQuestionElement', min=0, max=None)
-@element(local_name='choice_question', list='questions', cls='ChoiceQuestionElement', min=0, max=None)
-@element(local_name='numeric_question', list='questions', cls='NumericQuestionElement', min=0, max=None)
-@element(local_name='string_question', list='questions', cls='StringQuestionElement', min=0, max=None)
-@element(local_name='choice_group', list='questions', cls='ChoiceGroupType', min=0, max=None)
+@element(local_name='boolean_question', list='questions', cls=BooleanQuestionElement, min=0, max=None)
+@element(local_name='choice_question', list='questions', cls=ChoiceQuestionElement, min=0, max=None)
+@element(local_name='numeric_question', list='questions', cls=NumericQuestionElement, min=0, max=None)
+@element(local_name='string_question', list='questions', cls=StringQuestionElement, min=0, max=None)
+@element(local_name='choice_group', list='questions', cls=ChoiceGroupType, min=0, max=None)
 class QuestionsType(Model):
-    #TODO: at least one of the following *_question elements
+    #TODO: questions contains at least one
     pass

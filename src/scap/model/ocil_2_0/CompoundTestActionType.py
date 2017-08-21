@@ -21,12 +21,15 @@ from scap.model.decorators import *
 from scap.Model import Model
 
 from .ItemBaseType import ItemBaseType
+from .TextType import TextType
+from .ReferencesType import ReferencesType
+from .OperationType import OperationType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='title', cls='TextType', min=0, max=1)
-@element(local_name='description', cls='TextType', min=0, max=1)
-@element(local_name='references', cls='ReferencesType', min=0, max=1)
-@element(local_name='actions', cls='OperationType', min=1, max=1)
+@element(local_name='title', cls=TextType, min=0, max=1)
+@element(local_name='description', cls=TextType, min=0, max=1)
+@element(local_name='references', cls=ReferencesType, min=0, max=1)
+@element(local_name='actions', cls=OperationType, min=1, max=1)
 class CompoundTestActionType(ItemBaseType):
     pass

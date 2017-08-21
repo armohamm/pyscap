@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .ReferenceType import ReferenceType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='reference', list='references', cls='ReferenceType', min=1, max=None)
+@element(local_name='reference', list='references', cls=ReferenceType, min=1, max=None)
 class ReferencesType(Model):
     pass

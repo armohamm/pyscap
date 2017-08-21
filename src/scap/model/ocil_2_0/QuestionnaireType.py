@@ -18,12 +18,14 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 
 from .CompoundTestActionType import CompoundTestActionType
+from .QuestionIDPattern import QuestionIDPattern
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='id', type='QuestionIDPattern', required=True)
-@attribute(local_name='child_only', type='BooleanType', default=False)
+@attribute(local_name='id', type=QuestionIDPattern, required=True)
+@attribute(local_name='child_only', type=BooleanType, default=False)
 class QuestionnaireType(CompoundTestActionType):
     pass

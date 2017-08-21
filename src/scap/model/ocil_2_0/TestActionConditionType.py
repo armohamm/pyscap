@@ -20,11 +20,15 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .ResultType import ResultType
+from .TestActionRefType import TestActionRefType
+from .ArtifactRefsType import ArtifactRefsType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='result', cls='ResultType', min=0, max=1)
-@element(local_name='test_action_ref', cls='TestActionRefType', min=0, max=1)
-@element(local_name='artifact_refs', cls='ArtifactRefsType', min=0, max=1)
+@element(local_name='result', cls=ResultType, min=0, max=1)
+@element(local_name='test_action_ref', cls=TestActionRefType, min=0, max=1)
+@element(local_name='artifact_refs', cls=ArtifactRefsType, min=0, max=1)
 class TestActionConditionType(Model):
     # TODO: at least one result or test_action_ref
     pass

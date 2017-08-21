@@ -18,10 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+
 from .QuestionResultType import QuestionResultType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='answer', type='BooleanType', max=1)
+@element(local_name='answer', type=BooleanType, max=1)
 class BooleanQuestionResultType(QuestionResultType):
     pass

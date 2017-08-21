@@ -18,11 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.StringType import StringType
 
 from .VariableType import VariableType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='value', type='StringType', min=1, max=1)
+@element(local_name='value', type=StringType, min=1, max=1)
 class ConstantVariableType(VariableType):
     pass

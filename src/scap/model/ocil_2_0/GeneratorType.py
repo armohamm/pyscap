@@ -18,15 +18,21 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.NormalizedStringType import NormalizedStringType
+from scap.model.xs.DecimalType import DecimalType
+from scap.model.xs.DateTimeType import DateTimeType
 from scap.Model import Model
+
+from .UserType import UserType
+from .ExtensionContainerType import ExtensionContainerType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='product_name', type='NormalizedStringType', min=0, max=1)
-@element(local_name='product_version', type='NormalizedStringType', min=0, max=1)
-@element(local_name='author', list='authors', cls='UserType', min=0, max=None)
-@element(local_name='schema_version', type='DecimalType', min=1, max=1)
-@element(local_name='timestamp', type='DateTimeType', min=1, max=1)
-@element(local_name='additional_data', cls='ExtensionContainerType', min=0)
+@element(local_name='product_name', type=NormalizedStringType, min=0, max=1)
+@element(local_name='product_version', type=NormalizedStringType, min=0, max=1)
+@element(local_name='author', list='authors', cls=UserType, min=0, max=None)
+@element(local_name='schema_version', type=DecimalType, min=1, max=1)
+@element(local_name='timestamp', type=DateTimeType, min=1, max=1)
+@element(local_name='additional_data', cls=ExtensionContainerType, min=0)
 class GeneratorType(Model):
     pass

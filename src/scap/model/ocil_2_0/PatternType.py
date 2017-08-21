@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.model.xs.StringType import StringType
 
+from .VariableIdPattern import VariableIdPattern
+
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='var_ref', type='VariableIdPattern')
+@attribute(local_name='var_ref', type=VariableIdPattern)
 class PatternType(StringType):
     pass

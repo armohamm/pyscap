@@ -20,9 +20,10 @@ import logging
 from scap.model.decorators import *
 
 from .QuestionResultType import QuestionResultType
+from .ChoiceAnswerType import ChoiceAnswerType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='answer', cls='ChoiceAnswerType', max=1)
+@element(local_name='answer', cls=ChoiceAnswerType, max=1)
 class ChoiceQuestionResultType(QuestionResultType):
     pass

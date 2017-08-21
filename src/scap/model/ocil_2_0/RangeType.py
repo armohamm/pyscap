@@ -20,9 +20,11 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .RangeValueType import RangeValueType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='min', cls='RangeValueType', min=0, max=1)
-@element(local_name='max', cls='RangeValueType', min=0, max=1)
+@element(local_name='min', cls=RangeValueType, min=0, max=1)
+@element(local_name='max', cls=RangeValueType, min=0, max=1)
 class RangeType(Model):
     pass

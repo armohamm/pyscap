@@ -18,11 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.StringType import StringType
 
 from .EmbeddedArtifactValueType import EmbeddedArtifactValueType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='data', type='StringType')
+@element(local_name='data', type=StringType)
 class TextArtifactValueType(EmbeddedArtifactValueType):
     pass
