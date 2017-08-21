@@ -18,22 +18,35 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
 from scap.Model import Model
+
+from .CircuitType import CircuitType
+from .ComputingDeviceType import ComputingDeviceType
+from .DataType import DataType
+from .DatabaseType import DatabaseType
+from .NetworkType import NetworkType
+from .OrganizationType import OrganizationType
+from .PersonType import PersonType
+from .ServiceType import ServiceType
+from .SoftwareType import SoftwareType
+from .SystemType import SystemType
+from .WebsiteType import WebsiteType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='id', type='NCNameType', required=True)
+@attribute(local_name='id', type=NCNameType, required=True)
 @attribute(namespace='*', local_name='*')
-@element(local_name='circuit', into='asset', cls='CircuitType')
-@element(local_name='computing-device', into='asset', cls='ComputingDeviceType')
-@element(local_name='data', into='asset', cls='DataType')
-@element(local_name='database', into='asset', cls='DatabaseType')
-@element(local_name='network', into='asset', cls='NetworkType')
-@element(local_name='organization', into='asset', cls='OrganizationType')
-@element(local_name='person', into='asset', cls='PersonType')
-@element(local_name='service', into='asset', cls='ServiceType')
-@element(local_name='software', into='asset', cls='SoftwareType')
-@element(local_name='system', into='asset', cls='SystemType')
-@element(local_name='website', into='asset', cls='WebsiteType')
+@element(local_name='circuit', into='asset', cls=CircuitType)
+@element(local_name='computing-device', into='asset', cls=ComputingDeviceType)
+@element(local_name='data', into='asset', cls=DataType)
+@element(local_name='database', into='asset', cls=DatabaseType)
+@element(local_name='network', into='asset', cls=NetworkType)
+@element(local_name='organization', into='asset', cls=OrganizationType)
+@element(local_name='person', into='asset', cls=PersonType)
+@element(local_name='service', into='asset', cls=ServiceType)
+@element(local_name='software', into='asset', cls=SoftwareType)
+@element(local_name='system', into='asset', cls=SystemType)
+@element(local_name='website', into='asset', cls=WebsiteType)
 class AssetsAssetElement(Model):
     pass

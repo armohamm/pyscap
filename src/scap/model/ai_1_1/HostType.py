@@ -20,9 +20,12 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .FQDNType import FQDNType
+from .IPAddressType import IPAddressType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='fqdn', cls='FQDNType')
-@element(local_name='ip-address', cls='IPAddressType')
+@element(local_name='fqdn', cls=FQDNType)
+@element(local_name='ip-address', cls=IPAddressType)
 class HostType(Model):
     pass

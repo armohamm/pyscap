@@ -20,11 +20,14 @@ import logging
 from scap.model.decorators import *
 
 from .ITAssetType import ITAssetType
+from .InstallationIDType import InstallationIDType
+from .CPEType import CPEType
+from .LicenseType import LicenseType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='installation-id', cls='InstallationIDType', min=0)
-@element(local_name='cpe', cls='CPEType', min=0)
-@element(local_name='license', cls='LicenseType', min=0, max=None)
+@element(local_name='installation-id', cls=InstallationIDType, min=0)
+@element(local_name='cpe', cls=CPEType, min=0)
+@element(local_name='license', cls=LicenseType, min=0, max=None)
 class SoftwareType(ITAssetType):
     pass

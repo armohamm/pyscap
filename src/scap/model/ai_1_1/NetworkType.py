@@ -20,11 +20,14 @@ import logging
 from scap.model.decorators import *
 
 from .ITAssetType import ITAssetType
+from .NetworkNameType import NetworkNameType
+from .IPNetRangeType import IPNetRangeType
+from .NetworkCIDRType import NetworkCIDRType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='network-name', cls='NetworkNameType', min=0)
-@element(local_name='ip-net-range', cls='IPNetRangeType', min=0)
-@element(local_name='cidr', cls='NetworkCIDRType', min=0)
+@element(local_name='network-name', cls=NetworkNameType, min=0)
+@element(local_name='ip-net-range', cls=IPNetRangeType, min=0)
+@element(local_name='cidr', cls=NetworkCIDRType, min=0)
 class NetworkType(ITAssetType):
     pass

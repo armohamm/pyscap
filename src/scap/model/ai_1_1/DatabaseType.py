@@ -20,9 +20,10 @@ import logging
 from scap.model.decorators import *
 
 from .ITAssetType import ITAssetType
+from .InstanceNameType import InstanceNameType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='instance-name', cls='InstanceNameType', min=0)
+@element(local_name='instance-name', cls=InstanceNameType, min=0)
 class DatabaseType(ITAssetType):
     pass

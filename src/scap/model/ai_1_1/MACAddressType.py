@@ -20,10 +20,13 @@ import logging
 from scap.model.decorators import *
 from scap.model.xs.TokenType import TokenType
 
+from .Source import Source
+from .Timestamp import Timestamp
+
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='source', type='Source')
-@attribute(local_name='timestamp', type='Timestamp')
+@attribute(local_name='source', type=Source)
+@attribute(local_name='timestamp', type=Timestamp)
 @attribute(namespace='*', local_name='*')
 @content(regex=r'([0-9a-fA-F]{2}:){5}[0-9a-fA-F]{2}')
 class MACAddressType(TokenType):

@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .NetworkInterfaceType import NetworkInterfaceType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='connection', list='connections', cls='NetworkInterfaceType', max=None)
+@element(local_name='connection', list='connections', cls=NetworkInterfaceType, max=None)
 class ConnectionsType(Model):
     pass

@@ -20,12 +20,16 @@ import logging
 from scap.model.decorators import *
 
 from .ITAssetType import ITAssetType
+from .HostType import HostType
+from .ServicePortType import ServicePortType
+from .PortRangeType import PortRangeType
+from .ProtocolType import ProtocolType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='host', cls='HostType', min=0)
-@element(local_name='port', list='ports', cls='ServicePortType', min=0, max=None)
-@element(local_name='port-range', list='port_ranges', cls='PortRangeType', min=0, max=None)
-@element(local_name='protocol', cls='ProtocolType', min=0)
+@element(local_name='host', cls=HostType, min=0)
+@element(local_name='port', list='ports', cls=ServicePortType, min=0, max=None)
+@element(local_name='port-range', list='port_ranges', cls=PortRangeType, min=0, max=None)
+@element(local_name='protocol', cls=ProtocolType, min=0)
 class ServiceType(ITAssetType):
     pass

@@ -20,11 +20,13 @@ import logging
 from scap.model.decorators import *
 
 from .IPv6Type import IPv6Type
+from .Source import Source
+from .Timestamp import Timestamp
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='source', type='Source')
-@attribute(local_name='timestamp', type='Timestamp')
+@attribute(local_name='source', type=Source)
+@attribute(local_name='timestamp', type=Timestamp)
 @attribute(namespace='*', local_name='*')
 class IPAddressIPv6Type(IPv6Type):
     pass

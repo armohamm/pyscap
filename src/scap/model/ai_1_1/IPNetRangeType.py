@@ -20,9 +20,11 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .IPAddressType import IPAddressType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='ip-net-range-start', cls='IPAddressType')
-@element(local_name='ip-net-range-end', cls='IPAddressType')
+@element(local_name='ip-net-range-start', cls=IPAddressType)
+@element(local_name='ip-net-range-end', cls=IPAddressType)
 class IPNetRangeType(Model):
     pass

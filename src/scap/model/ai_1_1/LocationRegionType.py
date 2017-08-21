@@ -21,10 +21,11 @@ from scap.model.decorators import *
 from scap.model.xs.NormalizedStringType import NormalizedStringType
 
 from .LocationType import LocationType
+from .Source import Source
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='source', type='Source')
+@attribute(local_name='source', type=Source)
 @attribute(local_name='timestamp', type='Timestamp')
 @attribute(namespace='*', local_name='*')
 class LocationRegionType(LocationType, NormalizedStringType):

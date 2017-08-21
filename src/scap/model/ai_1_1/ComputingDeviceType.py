@@ -20,15 +20,21 @@ import logging
 from scap.model.decorators import *
 
 from .ITAssetType import ITAssetType
+from .DistinguishedNameType import DistinguishedNameType
+from .CPEType import CPEType
+from .ConnectionsType import ConnectionsType
+from .FQDNType import FQDNType
+from .ComputingDeviceHostnameType import ComputingDeviceHostnameType
+from .MotherboardGUIDType import MotherboardGUIDType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='distinguished-name', cls='DistinguishedNameType', min=0)
-@element(local_name='cpe', list='cpes', cls='CPEType', min=0, max=None)
-@element(local_name='connections', cls='ConnectionsType', min=0)
-@element(local_name='fqdn', cls='FQDNType', min=0)
-@element(local_name='hostname', cls='ComputingDeviceHostnameType', min=0)
-@element(local_name='motherboard-guid', cls='MotherboardGUIDType', min=0)
+@element(local_name='distinguished-name', cls=DistinguishedNameType, min=0)
+@element(local_name='cpe', list='cpes', cls=CPEType, min=0, max=None)
+@element(local_name='connections', cls=ConnectionsType, min=0)
+@element(local_name='fqdn', cls=FQDNType, min=0)
+@element(local_name='hostname', cls=ComputingDeviceHostnameType, min=0)
+@element(local_name='motherboard-guid', cls=MotherboardGUIDType, min=0)
 class ComputingDeviceType(ITAssetType):
     #TODO: cpes as fs_string
     pass

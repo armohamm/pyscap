@@ -20,12 +20,16 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .PortType import PortType
+from .Source import Source
+from .Timestamp import Timestamp
+
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='lower-bound', cls='PortType', required=True)
-@attribute(local_name='upper-bound', cls='PortType', required=True)
-@attribute(local_name='source', type='Source')
-@attribute(local_name='timestamp', type='Timestamp')
+@attribute(local_name='lower-bound', cls=PortType, required=True)
+@attribute(local_name='upper-bound', cls=PortType, required=True)
+@attribute(local_name='source', type=Source)
+@attribute(local_name='timestamp', type=Timestamp)
 @attribute(namespace='*', local_name='*')
 class PortRangeType(Model):
     pass

@@ -20,10 +20,14 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .LocationAddressType import LocationAddressType
+from .LocationPointType import LocationPointType
+from .LocationRegionType import LocationRegionType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='location-address', list='locations', cls='LocationAddressType', min=0, max=None)
-@element(local_name='location-point', list='locations', cls='LocationPointType', min=0, max=None)
-@element(local_name='location-region', list='locations', cls='LocationRegionType', min=0, max=None)
+@element(local_name='location-address', list='locations', cls=LocationAddressType, min=0, max=None)
+@element(local_name='location-point', list='locations', cls=LocationPointType, min=0, max=None)
+@element(local_name='location-region', list='locations', cls=LocationRegionType, min=0, max=None)
 class LocationsType(Model):
     pass

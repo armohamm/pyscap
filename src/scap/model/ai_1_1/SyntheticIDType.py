@@ -18,11 +18,13 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.AnyUriType import AnyUriType
+from scap.model.xs.TokenType import TokenType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='resource', type='AnyUriType', required=True)
-@attribute(local_name='id', type='Token', required=True)
+@attribute(local_name='resource', type=AnyUriType, required=True)
+@attribute(local_name='id', type=TokenType, required=True)
 class SyntheticIDType(Model):
     pass

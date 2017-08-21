@@ -20,9 +20,10 @@ import logging
 from scap.model.decorators import *
 
 from .ITAssetType import ITAssetType
+from .CircuitNameType import CircuitNameType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='circuit-name', cls='CircuitNameType', min=0)
+@element(local_name='circuit-name', cls=CircuitNameType, min=0)
 class CircuitType(ITAssetType):
     pass

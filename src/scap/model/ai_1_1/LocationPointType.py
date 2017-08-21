@@ -18,17 +18,20 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.DoubleType import DoubleType
 
 from .LocationType import LocationType
+from .Source import Source
+from .Timestamp import Timestamp
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='latitude', required=True, type='DoubleType')
-@attribute(local_name='longitude', required=True, type='DoubleType')
-@attribute(local_name='elevation', type='DoubleType')
-@attribute(local_name='radius', type='DoubleType')
-@attribute(local_name='source', type='Source')
-@attribute(local_name='timestamp', type='Timestamp')
+@attribute(local_name='latitude', required=True, type=DoubleType)
+@attribute(local_name='longitude', required=True, type=DoubleType)
+@attribute(local_name='elevation', type=DoubleType)
+@attribute(local_name='radius', type=DoubleType)
+@attribute(local_name='source', type=Source)
+@attribute(local_name='timestamp', type=Timestamp)
 @attribute(namespace='*', local_name='*')
 class LocationPointType(LocationType):
     pass

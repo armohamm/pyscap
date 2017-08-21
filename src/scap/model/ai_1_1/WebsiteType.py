@@ -20,10 +20,12 @@ import logging
 from scap.model.decorators import *
 
 from .ITAssetType import ITAssetType
+from .DocumentRootType import DocumentRootType
+from .WebsiteLocaleType import WebsiteLocaleType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='document-root', cls='DocumentRootType', min=0)
-@element(local_name='locale', cls='WebsiteLocaleType', min=0)
+@element(local_name='document-root', cls=DocumentRootType, min=0)
+@element(local_name='locale', cls=WebsiteLocaleType, min=0)
 class WebsiteType(ITAssetType):
     pass
