@@ -20,10 +20,13 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .TextType import TextType
+from .LogicalTestType import LogicalTestType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='title', list='titles', cls='TextType', min=0, max=None)
-@element(local_name='remark', list='remarks', cls='TextType', min=0, max=None)
-@element(local_name='logical-test', cls='LogicalTestType', min=1, max=1)
+@element(local_name='title', list='titles', cls=TextType, min=0, max=None)
+@element(local_name='remark', list='remarks', cls=TextType, min=0, max=None)
+@element(local_name='logical-test', cls=LogicalTestType, min=1, max=1)
 class PlatformBaseType(Model):
     pass

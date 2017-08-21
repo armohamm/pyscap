@@ -18,12 +18,15 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.cpe_lang_2_3.FactRefType import FactRefType
+from scap.model.xs.AnyUriType import AnyUriType
+from scap.model.xs.TokenType import TokenType
+
+from .FactRefType import FactRefType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='system', type='AnyUriType', required=True)
-@attribute(local_name='href', type='AnyUriType', required=True)
-@attribute(local_name='id-ref', type='Token', required=True)
+@attribute(local_name='system', type=AnyUriType, required=True)
+@attribute(local_name='href', type=AnyUriType, required=True)
+@attribute(local_name='id-ref', type=TokenType, required=True)
 class CheckFactRefType(FactRefType):
     pass

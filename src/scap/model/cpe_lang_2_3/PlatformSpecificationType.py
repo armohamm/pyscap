@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .PlatformType import PlatformType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='platform', list='platforms', cls='PlatformType', min=1, max=None)
+@element(local_name='platform', list='platforms', cls=PlatformType, min=1, max=None)
 class PlatformSpecificationType(Model):
     pass

@@ -18,10 +18,12 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.cpe_lang_2_3.FactRefType import FactRefType
+
+from .FactRefType import FactRefType
+from .NamePattern import NamePattern
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='name', type='NamePattern', required=True)
+@attribute(local_name='name', type=NamePattern, required=True)
 class CPEFactRefType(FactRefType):
     pass
