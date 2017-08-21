@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ai_1_1.AssetIdentificationType import AssetIdentificationType
+
+from .AssetIdentificationType import AssetIdentificationType
 
 logger = logging.getLogger(__name__)
 

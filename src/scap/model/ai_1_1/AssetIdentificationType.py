@@ -18,11 +18,12 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ai_1_1.AssetsType import AssetsType
-from scap.model.xs import *
+from scap.model.xs.NCNameType import NCNameType
+
+from .AssetsType import AssetsType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='asset-ref', type='NCNameType', required=True)
+@attribute(local_name='asset-ref', type=NCNameType, required=True)
 class AssetIdentificationType(AssetsType):
     pass

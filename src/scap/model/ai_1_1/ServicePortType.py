@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ai_1_1.PortType import PortType
+
+from .PortType import PortType
 
 logger = logging.getLogger(__name__)
 
