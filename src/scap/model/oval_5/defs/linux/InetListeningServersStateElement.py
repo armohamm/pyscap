@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
 class InetListeningServersStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'inetlisteningservers_state',

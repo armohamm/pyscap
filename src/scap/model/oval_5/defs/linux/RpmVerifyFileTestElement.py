@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from .TestType import TestType
 
 logger = logging.getLogger(__name__)
+
 class RpmVerifyFileTestElement(TestType):
     MODEL_MAP = {
         'tag_name': 'rpmverifyfile_test',

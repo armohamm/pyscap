@@ -22,13 +22,10 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='name', cls=EntityStateType, min=0, max=1)
+@element(local_name='version', cls=EntityStateType, min=0, max=1)
+@element(local_name='architecture', cls=EntityStateType, min=0, max=1)
+@element(local_name='revision', cls=EntityStateType, min=0, max=1)
 class SlackwarePkgInfoStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'slackwarepkginfo_state',
-        'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'version', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'architecture', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'revision', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

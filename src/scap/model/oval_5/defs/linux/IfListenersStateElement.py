@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
 class IfListenersStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'iflisteners_state',

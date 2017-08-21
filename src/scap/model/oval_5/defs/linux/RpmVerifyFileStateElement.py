@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
 class RpmVerifyFileStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'rpmverifyfile_state',

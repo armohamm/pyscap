@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
 class ReleaseElement(EntityStateType):
     MODEL_MAP = {
         'tag_name': 'release',

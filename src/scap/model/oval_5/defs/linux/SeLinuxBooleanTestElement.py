@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from .TestType import TestType
 
 logger = logging.getLogger(__name__)
+
 class SeLinuxBooleanTestElement(TestType):
     MODEL_MAP = {
         'tag_name': 'selinuxboolean_test',

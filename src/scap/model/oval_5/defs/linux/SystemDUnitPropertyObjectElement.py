@@ -20,13 +20,11 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='unit', cls=EntityObjectType, min=0)
+@element(local_name='property', cls=EntityObjectType, min=0)
 class SystemDUnitPropertyObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'systemdunitproperty_object',
-        'elements': [
-            {'tag_name': 'unit', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'property', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-    }
+    pass

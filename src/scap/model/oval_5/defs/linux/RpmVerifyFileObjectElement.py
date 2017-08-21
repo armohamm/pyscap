@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
+
 class RpmVerifyFileObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'rpmverifyfile_object',

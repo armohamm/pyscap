@@ -22,10 +22,7 @@ from scap.model.decorators import *
 from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='datatype', enum=['string', 'version'], default='string')
 class VersionElement(EntityStateType):
-    MODEL_MAP = {
-        'tag_name': 'version',
-        'attributes': {
-            'datatype': {'enum': ['string', 'version'], 'default': 'string'},
-        }
-    }
+    pass

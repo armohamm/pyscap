@@ -22,7 +22,6 @@ from scap.model.decorators import *
 from .TestType import TestType
 
 logger = logging.getLogger(__name__)
+
 class SlackwarePkgInfoTestElement(TestType):
-    MODEL_MAP = {
-        'tag_name': 'slackwarepkginfo_test',
-    }
+    pass

@@ -22,7 +22,6 @@ from scap.model.decorators import *
 from .TestType import TestType
 
 logger = logging.getLogger(__name__)
+
 class SystemDUnitPropertyTestElement(TestType):
-    MODEL_MAP = {
-        'tag_name': 'systemdunitproperty_test',
-    }
+    pass

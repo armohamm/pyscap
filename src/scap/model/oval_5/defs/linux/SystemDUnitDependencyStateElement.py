@@ -20,13 +20,11 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='unit', cls=EntityStateType, min=0, max=1)
+@element(local_name='dependency', cls=EntityStateType, min=0, max=1)
 class SystemDUnitDependencyStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'systemdunitdependency_state',
-        'elements': [
-            {'tag_name': 'unit', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'dependency', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
+
 class PartitionObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'partition_object',
