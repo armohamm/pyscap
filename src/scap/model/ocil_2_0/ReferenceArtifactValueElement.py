@@ -19,9 +19,9 @@ import logging
 
 from scap.model.decorators import *
 
-from .ArtifactValueType import ArtifactValueType
+from .ReferenceArtifactValueType import ReferenceArtifactValueType
 
 logger = logging.getLogger(__name__)
 
-class ReferenceArtifactValueType(ArtifactValueType):
+class ReferenceArtifactValueElement(ReferenceArtifactValueType):
     pass

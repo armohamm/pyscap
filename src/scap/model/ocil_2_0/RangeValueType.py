@@ -21,11 +21,11 @@ from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
 from scap.model.xs.DecimalType import DecimalType
 
-from .VariableIdPattern import VariableIdPattern
+from .VariableIDPattern import VariableIDPattern
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='inclusive', type=BooleanType, default=True)
-@attribute(local_name='var_ref', type=VariableIdPattern)
+@attribute(local_name='var_ref', type=VariableIDPattern)
 class RangeValueType(DecimalType):
     pass

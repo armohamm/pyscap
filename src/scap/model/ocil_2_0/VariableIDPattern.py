@@ -23,5 +23,5 @@ from scap.model.xs.TokenType import TokenType
 logger = logging.getLogger(__name__)
 
 @content(regex=r'ocil:[A-Za-z0-9_\-\.]+:variable:[1-9][0-9]*')
-class VariableIdPattern(TokenType):
+class VariableIDPattern(TokenType):
     pass

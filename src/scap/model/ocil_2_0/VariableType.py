@@ -20,12 +20,12 @@ import logging
 from scap.model.decorators import *
 
 from .ItemBaseType import ItemBaseType
-from .VariableIdPattern import VariableIdPattern
+from .VariableIDPattern import VariableIDPattern
 from .TextType import TextType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='id', type=VariableIdPattern, required=True)
+@attribute(local_name='id', type=VariableIDPattern, required=True)
 @attribute(local_name='datatype', enum=['TEXT', 'NUMERIC'], required=True)
 @element(local_name='description', cls=TextType, min=0, max=1)
 class VariableType(ItemBaseType):

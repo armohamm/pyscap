@@ -21,11 +21,11 @@ from scap.model.decorators import *
 from scap.model.xs.DecimalType import DecimalType
 
 from .TestActionConditionType import TestActionConditionType
-from .VariableIdPattern import VariableIdPattern
+from .VariableIDPattern import VariableIDPattern
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='var_ref', type=VariableIdPattern)
+@attribute(local_name='var_ref', type=VariableIDPattern)
 @element(local_name='value', list='values', type=DecimalType, min=1, max=None)
 class EqualsTestActionConditionType(TestActionConditionType):
     pass

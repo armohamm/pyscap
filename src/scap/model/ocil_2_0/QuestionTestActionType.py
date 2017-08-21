@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 @attribute(local_name='question_ref', type=QuestionIDPattern, required=True)
 @attribute(local_name='id', type=QuestionTestActionIDPattern, required=True)
-@element(local_name='title', cls=, min=0, max=1)
+@element(local_name='title', cls=TextType, min=0, max=1)
 @element(local_name='when_unknown', cls=TestActionConditionType, min=0)
 @element(local_name='when_not_tested', cls=TestActionConditionType, min=0)
 @element(local_name='when_not_applicable', cls=TestActionConditionType, min=0)

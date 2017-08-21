@@ -23,5 +23,5 @@ from .SetExpressionRangeType import SetExpressionRangeType
 
 logger = logging.getLogger(__name__)
 
-class WhenChoiceElement(SetExpressionRangeType):
+class WhenRangeElement(SetExpressionRangeType):
     pass

@@ -23,7 +23,7 @@ from scap.Model import Model
 from .BooleanQuestionResultType import BooleanQuestionResultType
 from .ChoiceQuestionResultType import ChoiceQuestionResultType
 from .NumericQuestionResultType import NumericQuestionResultType
-from .StringQuestionResultType import
+from .StringQuestionResultType import StringQuestionResultType
 
 logger = logging.getLogger(__name__)
 

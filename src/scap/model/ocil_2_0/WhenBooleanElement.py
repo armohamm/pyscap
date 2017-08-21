@@ -23,5 +23,5 @@ from .SetExpressionBooleanType import SetExpressionBooleanType
 
 logger = logging.getLogger(__name__)
 
-class WhenChoiceElement(SetExpressionBooleanType):
+class WhenBooleanElement(SetExpressionBooleanType):
     pass

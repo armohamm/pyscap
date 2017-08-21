@@ -23,7 +23,6 @@ from scap.Model import Model
 
 from .TextType import TextType
 from .ReferenceType import ReferenceType
-from .StepType import StepType
 
 logger = logging.getLogger(__name__)
 
@@ -31,6 +30,8 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='is_required', type=BooleanType, default=True)
 @element(local_name='description', cls=TextType, min=0, max=1)
 @element(local_name='reference', list='references', cls=ReferenceType, min=0, max=None)
-@element(local_name='step', list='steps', cls=StepType, min=0, max=None)
-class StepType(object):
+class StepType(Model):
     pass
+
+# have to unwrap the decorator to prevent circular reference
+element(local_name='step', list='steps', cls=StepType, min=0, max=None).__call__(StepType)
