@@ -1,0 +1,7 @@
+lowercase package & module names
+rename exceptions that are errors
+remove bare excepts
+perm vs forgiveness
+use namedtuples
+Use zip() to iterate through a pair of lists
+make decorators link to classes instead of strs
