@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.NamedItemBaseType import NamedItemBaseType
+
+from .NamedItemBaseType import NamedItemBaseType
 
 logger = logging.getLogger(__name__)
 

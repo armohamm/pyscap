@@ -18,10 +18,12 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.EmbeddedArtifactValueType import EmbeddedArtifactValueType
+from scap.model.xs.Base64Binary import Base64BinaryType
+
+from .EmbeddedArtifactValueType import EmbeddedArtifactValueType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='data', type='Base64Binary')
+@element(local_name='data', type=Base64BinaryType)
 class BinaryArtifactValueType(EmbeddedArtifactValueType):
     pass

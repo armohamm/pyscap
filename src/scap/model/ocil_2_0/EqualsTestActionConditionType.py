@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.TestActionConditionType import TestActionConditionType
+
+from .TestActionConditionType import TestActionConditionType
 
 logger = logging.getLogger(__name__)
 

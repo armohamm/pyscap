@@ -20,8 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
+from .ArtifactRefType import ArtifactRefType
+
 logger = logging.getLogger(__name__)
 
-@element(local_name='artifact_ref', list='artifact_refs', cls='ArtifactRefType', max=None)
+@element(local_name='artifact_ref', list='artifact_refs', cls=ArtifactRefType, max=None)
 class ArtifactRefsType(Model):
     pass

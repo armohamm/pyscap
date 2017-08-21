@@ -18,11 +18,14 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 from scap.Model import Model
+
+from .ArtifactIDPattern import ArtifactIDPattern
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='idref', type='ArtifactIDPattern')
-@attribute(local_name='required', type='BooleanType', default=False)
+@attribute(local_name='idref', type=ArtifactIDPattern)
+@attribute(local_name='required', type=BooleanType, default=False)
 class ArtifactRefType(Model):
     pass

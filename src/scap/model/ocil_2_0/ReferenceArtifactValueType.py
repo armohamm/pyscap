@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.ArtifactValueType import ArtifactValueType
+
+from .ArtifactValueType import ArtifactValueType
 
 logger = logging.getLogger(__name__)
 

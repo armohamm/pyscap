@@ -18,13 +18,17 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.ItemBaseType import ItemBaseType
+from scap.model.xs.BooleanType import BooleanType
+
+from .ItemBaseType import ItemBaseType
+from .ArtifactIDPattern import ArtifactIDPattern
+from .TextType import TextType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='id', type='ArtifactIDPattern', required=True)
-@attribute(local_name='persistent', type='BooleanType', default=True)
-@element(local_name='title', cls='TextType', min=1, max=1)
-@element(local_name='description', cls='TextType', min=1, max=1)
+@attribute(local_name='id', type=ArtifactIDPattern, required=True)
+@attribute(local_name='persistent', type=BooleanType, default=True)
+@element(local_name='title', cls=TextType, min=1, max=1)
+@element(local_name='description', cls=TextType, min=1, max=1)
 class ArtifactType(ItemBaseType):
     pass

@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.ExternalVariableType import ExternalVariableType
+
+from .ExternalVariableType import ExternalVariableType
 
 logger = logging.getLogger(__name__)
 

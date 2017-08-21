@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.SetExpressionChoiceType import SetExpressionChoiceType
+
+from .SetExpressionChoiceType import SetExpressionChoiceType
 
 logger = logging.getLogger(__name__)
 

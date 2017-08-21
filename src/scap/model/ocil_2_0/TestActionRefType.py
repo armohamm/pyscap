@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.TestActionRefValuePattern import TestActionRefValuePattern
+
+from .TestActionRefValuePattern import TestActionRefValuePattern
 
 logger = logging.getLogger(__name__)
 

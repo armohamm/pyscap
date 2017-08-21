@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.QuestionResultType import QuestionResultType
+
+from .QuestionResultType import QuestionResultType
 
 logger = logging.getLogger(__name__)
 

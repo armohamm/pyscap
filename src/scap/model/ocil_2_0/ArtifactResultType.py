@@ -18,16 +18,24 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.DateTimeType import DateTimeType
 from scap.Model import Model
+
+from .ArtifactIDPattern import ArtifactIDPattern
+from .TextArtifactValueElement import TextArtifactValueElement
+from .BinaryArtifactValueElement import BinaryArtifactValueElement
+from .ReferenceArtifactValueElement import ReferenceArtifactValueElement
+from .ProviderValuePattern import ProviderValuePattern
+from .UserType import UserType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='artifact_ref', type='ArtifactIDPattern', required=True)
-@attribute(local_name='timestamp', type='DateTimeType', required=True)
-@element(local_name='text_artifact_value', cls='TextArtifactValueElement', min=0, max=1)
-@element(local_name='binary_artifact_value', cls='BinaryArtifactValueElement', min=0, max=1)
-@element(local_name='reference_artifact_value', cls='ReferenceArtifactValueElement', min=0, max=1)
-@element(local_name='provider', type='ProviderValuePattern', min=1, max=1)
-@element(local_name='submitter', cls='UserType', min=1, max=1)
+@attribute(local_name='artifact_ref', type=ArtifactIDPattern, required=True)
+@attribute(local_name='timestamp', type=DateTimeType, required=True)
+@element(local_name='text_artifact_value', cls=TextArtifactValueElement, min=0, max=1)
+@element(local_name='binary_artifact_value', cls=BinaryArtifactValueElement, min=0, max=1)
+@element(local_name='reference_artifact_value', cls=ReferenceArtifactValueElement, min=0, max=1)
+@element(local_name='provider', type=ProviderValuePattern, min=1, max=1)
+@element(local_name='submitter', cls=UserType, min=1, max=1)
 class ArtifactResultType(Model):
     pass

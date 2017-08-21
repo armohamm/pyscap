@@ -18,8 +18,9 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.QuestionTestActionType import QuestionTestActionType
 from scap.Model import Model
+
+from .QuestionTestActionType import QuestionTestActionType
 
 logger = logging.getLogger(__name__)
 

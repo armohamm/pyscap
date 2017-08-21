@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.CompoundTestActionType import CompoundTestActionType
+
+from .CompoundTestActionType import CompoundTestActionType
 
 logger = logging.getLogger(__name__)
 

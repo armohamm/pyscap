@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.UserType import UserType
+
+from .UserType import UserType
 
 logger = logging.getLogger(__name__)
 

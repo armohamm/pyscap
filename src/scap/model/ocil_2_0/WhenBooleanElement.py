@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.SetExpressionBooleanType import SetExpressionBooleanType
+
+from .SetExpressionBooleanType import SetExpressionBooleanType
 
 logger = logging.getLogger(__name__)
 

@@ -18,7 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.ocil_2_0.ChoiceQuestionResultType import ChoiceQuestionResultType
+
+from .ChoiceQuestionResultType import ChoiceQuestionResultType
 
 logger = logging.getLogger(__name__)
 
