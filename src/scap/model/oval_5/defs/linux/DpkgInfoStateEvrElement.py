@@ -23,10 +23,6 @@ from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='datatype', enum=['evr_string', 'debian_evr_string'], required=True)
 class DpkgInfoStateEvrElement(EntityStateType):
-    MODEL_MAP = {
-        'tag_name': 'evr',
-        'attributes': {
-            'datatype': {'enum': ['evr_string', 'debian_evr_string'], 'required': True},
-        }
-    }
+    pass

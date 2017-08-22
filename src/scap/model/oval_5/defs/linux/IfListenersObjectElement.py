@@ -20,13 +20,10 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='interface_name', cls=EntityObjectType, min=0)
 class IfListenersObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'iflisteners_object',
-        'elements': [
-            {'tag_name': 'interface_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-    }
+    pass

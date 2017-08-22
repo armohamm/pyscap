@@ -24,6 +24,4 @@ from .TestType import TestType
 logger = logging.getLogger(__name__)
 
 class IfListenersTestElement(TestType):
-    MODEL_MAP = {
-        'tag_name': 'iflisteners_test',
-    }
+    pass

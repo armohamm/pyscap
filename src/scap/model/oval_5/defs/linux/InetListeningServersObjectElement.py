@@ -20,15 +20,12 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='protocol', cls=EntityObjectType, min=0)
+@element(local_name='local_address', cls=EntityObjectType, min=0)
+@element(local_name='local_port', cls=EntityObjectType, min=0)
 class InetListeningServersObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'inetlisteningservers_object',
-        'elements': [
-            {'tag_name': 'protocol', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'local_address', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'local_port', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-    }
+    pass

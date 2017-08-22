@@ -23,10 +23,6 @@ from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='datatype', enum=['string', 'int'], default='string')
 class EpochElement(EntityStateType):
-    MODEL_MAP = {
-        'tag_name': 'epoch',
-        'attributes': {
-            'datatype': {'enum': ['string', 'int'], 'default': 'string'},
-        }
-    }
+    pass

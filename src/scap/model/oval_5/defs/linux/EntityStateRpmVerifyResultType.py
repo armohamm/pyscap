@@ -24,9 +24,6 @@ from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=RPM_VERIFY_RESULT_ENUMERATION)
 class EntityStateRpmVerifyResultType(EntityStateType):
-    MODEL_MAP = {
-    }
-
-    def get_value_enum(self):
-        return RPM_VERIFY_RESULT_ENUMERATION
+    pass

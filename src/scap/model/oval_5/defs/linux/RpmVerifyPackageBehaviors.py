@@ -18,16 +18,14 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-class RpmVerifyBehaviors(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'nodeps': {'type': 'BooleanType', 'default': False},
-            'nodigest': {'type': 'BooleanType', 'default': False},
-            'noscripts': {'type': 'BooleanType', 'default': False},
-            'nosignature': {'type': 'BooleanType', 'default': False},
-        }
-    }
+@attribute(local_name='nodeps', type=BooleanType, default=False)
+@attribute(local_name='nodigest', type=BooleanType, default=False)
+@attribute(local_name='noscripts', type=BooleanType, default=False)
+@attribute(local_name='nosignature', type=BooleanType, default=False)
+class RpmVerifyPackageBehaviors(Model):
+    pass

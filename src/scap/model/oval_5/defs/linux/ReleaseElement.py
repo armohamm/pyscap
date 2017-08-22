@@ -23,10 +23,6 @@ from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='datatype', enum=['string', 'version'], default='string')
 class ReleaseElement(EntityStateType):
-    MODEL_MAP = {
-        'tag_name': 'release',
-        'attributes': {
-            'datatype': {'enum': ['string', 'version'], 'default': 'string'},
-        }
-    }
+    pass

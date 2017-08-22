@@ -24,9 +24,6 @@ from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=LINUX_PROTOCOL_ENUMERATION)
 class EntityStateProtocolType(EntityStateType):
-    MODEL_MAP = {
-    }
-
-    def get_value_enum(self):
-        return LINUX_PROTOCOL_ENUMERATION
+    pass

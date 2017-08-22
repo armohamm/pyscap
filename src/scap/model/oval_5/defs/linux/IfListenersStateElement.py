@@ -20,18 +20,16 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from .EntityStateProtocolType import EntityStateProtocolType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='interface_name', cls=EntityStateType, min=0, max=1)
+@element(local_name='protocol', cls=EntityStateProtocolType, min=0, max=1)
+@element(local_name='hw_address', cls=EntityStateType, min=0, max=1)
+@element(local_name='program_name', cls=EntityStateType, min=0, max=1)
+@element(local_name='pid', cls=EntityStateType, min=0, max=1)
+@element(local_name='user_id', cls=EntityStateType, min=0, max=1)
 class IfListenersStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'iflisteners_state',
-        'elements': [
-            {'tag_name': 'interface_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'protocol', 'class': 'EntityStateProtocolType', 'min': 0, 'max': 1},
-            {'tag_name': 'hw_address', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'program_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'user_id', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

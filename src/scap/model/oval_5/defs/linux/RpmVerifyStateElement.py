@@ -20,28 +20,26 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from .EntityStateRpmVerifyResultType import EntityStateRpmVerifyResultType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='name', cls=EntityStateType, min=0, max=1)
+@element(local_name='filepath', cls=EntityStateType, min=0, max=1)
+@element(local_name='size_differs', cls=EntityStateRpmVerifyResultType, min=0, max=1)
+@element(local_name='mode_differs', cls=EntityStateRpmVerifyResultType, min=0, max=1)
+@element(local_name='md5_differs', cls=EntityStateRpmVerifyResultType, min=0, max=1)
+@element(local_name='device_differs', cls=EntityStateRpmVerifyResultType, min=0, max=1)
+@element(local_name='link_mismatch', cls=EntityStateRpmVerifyResultType, min=0, max=1)
+@element(local_name='ownership_differs', cls=EntityStateRpmVerifyResultType, min=0, max=1)
+@element(local_name='group_differs', cls=EntityStateRpmVerifyResultType, min=0, max=1)
+@element(local_name='mtime_differs', cls=EntityStateRpmVerifyResultType, min=0, max=1)
+@element(local_name='capabilities_differ', cls=EntityStateRpmVerifyResultType, min=0, max=1)
+@element(local_name='configuration_file', cls=EntityStateType, min=0, max=1)
+@element(local_name='documentation_file', cls=EntityStateType, min=0, max=1)
+@element(local_name='ghost_file', cls=EntityStateType, min=0, max=1)
+@element(local_name='license_file', cls=EntityStateType, min=0, max=1)
+@element(local_name='readme_file', cls=EntityStateType, min=0, max=1)
 class RpmVerifyStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'rpmverify_state',
-        'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'size_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
-            {'tag_name': 'mode_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
-            {'tag_name': 'md5_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
-            {'tag_name': 'device_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
-            {'tag_name': 'link_mismatch', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
-            {'tag_name': 'ownership_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
-            {'tag_name': 'group_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
-            {'tag_name': 'mtime_differs', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
-            {'tag_name': 'capabilities_differ', 'class': 'EntityStateRpmVerifyResultType', 'min': 0, 'max': 1},
-            {'tag_name': 'configuration_file', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'documentation_file', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'ghost_file', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'license_file', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'readme_file', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

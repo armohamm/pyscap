@@ -20,19 +20,20 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from .RpmVerifyFileBehaviors import RpmVerifyFileBehaviors
+from .EpochElement import EpochElement
+from .VersionElement import VersionElement
+from .ReleaseElement import ReleaseElement
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='behaviors', cls=RpmVerifyFileBehaviors, min=0, max=1)
+@element(local_name='name', cls=EntityObjectType, min=0, max=1)
+@element(local_name='epoch', cls=EpochElement, min=0, max=1)
+@element(local_name='version', cls=VersionElement, min=0, max=1)
+@element(local_name='release', cls=ReleaseElement, min=0, max=1)
+@element(local_name='arch', cls=EntityObjectType, min=0, max=1)
+@element(local_name='filepath', cls=EntityObjectType, min=0, max=1)
 class RpmVerifyFileObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'rpmverifyfile_object',
-        'elements': [
-            {'tag_name': 'behaviors', 'class': 'RpmVerifyFileBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'max': 1},
-            {'tag_name': 'epoch', 'class': 'EpochElement', 'min': 0, 'max': 1},
-            {'tag_name': 'version', 'class': 'VersionElement', 'min': 0, 'max': 1},
-            {'tag_name': 'release', 'class': 'ReleaseElement', 'min': 0, 'max': 1},
-            {'tag_name': 'arch', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

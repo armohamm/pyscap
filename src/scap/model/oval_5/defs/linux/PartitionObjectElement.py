@@ -20,13 +20,10 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='mount_point', cls='EntityObjectType', min=0)
 class PartitionObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'partition_object',
-        'elements': [
-            {'tag_name': 'mount_point', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-    }
+    pass

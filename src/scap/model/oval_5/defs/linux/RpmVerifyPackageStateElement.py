@@ -20,22 +20,22 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from .EpochElement import EpochElement
+from .VersionElement import VersionElement
+from .ReleaseElement import ReleaseElement
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='name', cls=EntityStateType, min=0, max=1)
+@element(local_name='epoch', cls=EpochElement, min=0, max=1)
+@element(local_name='version', cls=VersionElement, min=0, max=1)
+@element(local_name='release', cls=ReleaseElement, min=0, max=1)
+@element(local_name='arch', cls=EntityStateType, min=0, max=1)
+@element(local_name='extended_name', cls=EntityStateType, min=0, max=1)
+@element(local_name='dependency_check_passed', cls=EntityStateType, min=0, max=1)
+@element(local_name='digest_check_passed', cls=EntityStateType, min=0, max=1)
+@element(local_name='verification_script_successful', cls=EntityStateType, min=0, max=1)
+@element(local_name='signature_check_passed', cls=EntityStateType, min=0, max=1)
 class RpmVerifyPackageStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'rpmverifypackage_state',
-        'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'epoch', 'class': 'EpochElement', 'min': 0, 'max': 1},
-            {'tag_name': 'version', 'class': 'VersionElement', 'min': 0, 'max': 1},
-            {'tag_name': 'release', 'class': 'ReleaseElement', 'min': 0, 'max': 1},
-            {'tag_name': 'arch', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'extended_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'dependency_check_passed', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'digest_check_passed', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'verification_script_successful', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'signature_check_passed', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

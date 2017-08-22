@@ -20,19 +20,19 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from .EpochElement import EpochElement
+from .ReleaseElement import ReleaseElement
+from .VersionElement import VersionElement
+from .DpkgInfoStateEvrElement import DpkgInfoStateEvrElement
 from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='name', cls=EntityStateType', 'min': 0, 'max': None},
+@element(local_name='arch', cls=EntityStateType', 'min': 0, 'max': None},
+@element(local_name='epoch', cls=EpochElement', 'min': 0, 'max': None},
+@element(local_name='release', cls=ReleaseElement', 'min': 0, 'max': None},
+@element(local_name='version', cls=VersionElement', 'min': 0, 'max': None},
+@element(local_name='evr', cls=DpkgInfoStateEvrElement', 'min': 0, 'max': None},
 class DpkgInfoStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'dpkginfo_state',
-        'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': None},
-            {'tag_name': 'arch', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': None},
-            {'tag_name': 'epoch', 'class': 'EpochElement', 'min': 0, 'max': None},
-            {'tag_name': 'release', 'class': 'ReleaseElement', 'min': 0, 'max': None},
-            {'tag_name': 'version', 'class': 'VersionElement', 'min': 0, 'max': None},
-            {'tag_name': 'evr', 'class': 'DpkgInfoStateEvrElement', 'min': 0, 'max': None},
-        ],
-    }
+    pass

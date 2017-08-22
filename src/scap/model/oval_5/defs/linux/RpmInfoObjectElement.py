@@ -20,14 +20,12 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from .RpmInfoBehaviors import RpmInfoBehaviors
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='behaviors', cls=RpmInfoBehaviors, min=0, max=1)
+@element(local_name='name', cls=EntityObjectType, min=0)
 class RpmInfoObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'rpminfo_object',
-        'elements': [
-            {'tag_name': 'behaviors', 'class': 'RpmInfoBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-    }
+    pass

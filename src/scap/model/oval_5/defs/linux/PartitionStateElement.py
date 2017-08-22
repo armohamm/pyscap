@@ -20,20 +20,17 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='mount_point', cls=EntityStateType, min=0, max=1)
+@element(local_name='device', cls=EntityStateType, min=0, max=1)
+@element(local_name='uuid', cls=EntityStateType, min=0, max=1)
+@element(local_name='fs_type', cls=EntityStateType, min=0, max=1)
+@element(local_name='mount_options', cls=EntityStateType, min=0, max=1)
+@element(local_name='total_space', cls=EntityStateType, min=0, max=1)
+@element(local_name='space_used', cls=EntityStateType, min=0, max=1)
+@element(local_name='space_left', cls=EntityStateType, min=0, max=1)
 class PartitionStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'partition_state',
-        'elements': [
-            {'tag_name': 'mount_point', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'device', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'uuid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'fs_type', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'mount_options', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'total_space', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'space_used', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'space_left', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

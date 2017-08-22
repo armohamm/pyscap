@@ -18,24 +18,22 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
-class RpmVerifyBehaviors(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'nolinkto': {'type': 'BooleanType', 'default': False},
-            'nomd5': {'type': 'BooleanType', 'default': False},
-            'nosize': {'type': 'BooleanType', 'default': False},
-            'nouser': {'type': 'BooleanType', 'default': False},
-            'nogroup': {'type': 'BooleanType', 'default': False},
-            'nomtime': {'type': 'BooleanType', 'default': False},
-            'nomode': {'type': 'BooleanType', 'default': False},
-            'nordev': {'type': 'BooleanType', 'default': False},
-            'noconfigfiles': {'type': 'BooleanType', 'default': False},
-            'noghostfiles': {'type': 'BooleanType', 'default': False},
-            'nofiledigest': {'type': 'BooleanType', 'default': False},
-            'nocaps': {'type': 'BooleanType', 'default': False},
-        }
-    }
+@attribute(local_name='nolinkto', type=BooleanType, default=False)
+@attribute(local_name='nomd5', type=BooleanType, default=False)
+@attribute(local_name='nosize', type=BooleanType, default=False)
+@attribute(local_name='nouser', type=BooleanType, default=False)
+@attribute(local_name='nogroup', type=BooleanType, default=False)
+@attribute(local_name='nomtime', type=BooleanType, default=False)
+@attribute(local_name='nomode', type=BooleanType, default=False)
+@attribute(local_name='nordev', type=BooleanType, default=False)
+@attribute(local_name='noconfigfiles', type=BooleanType, default=False)
+@attribute(local_name='noghostfiles', type=BooleanType, default=False)
+@attribute(local_name='nofiledigest', type=BooleanType, default=False)
+@attribute(local_name='nocaps', type=BooleanType, default=False)
+class RpmVerifyFileBehaviors(Model):
+    pass

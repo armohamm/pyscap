@@ -24,6 +24,4 @@ from .TestType import TestType
 logger = logging.getLogger(__name__)
 
 class InetListeningServersTestElement(TestType):
-    MODEL_MAP = {
-        'tag_name': 'inetlisteningservers_test',
-    }
+    pass

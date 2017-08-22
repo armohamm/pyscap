@@ -20,15 +20,13 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from .RpmVerifyBehaviors import RpmVerifyBehaviors
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='behaviors', cls=RpmVerifyBehaviors, min=0, max=1)
+@element(local_name='name', cls=EntityObjectType, min=0)
+@element(local_name='filepath', cls=EntityObjectType, min=0)
 class RpmVerifyObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'rpmverify_object',
-        'elements': [
-            {'tag_name': 'behaviors', 'class': 'RpmVerifyBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-    }
+    pass

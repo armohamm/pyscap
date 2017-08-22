@@ -18,27 +18,25 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='nodeps', type=BooleanType, default=False)
+@attribute(local_name='nodigest', type=BooleanType, default=False)
+@attribute(local_name='nofiles', type=BooleanType, default=False)
+@attribute(local_name='noscripts', type=BooleanType, default=False)
+@attribute(local_name='nosignature', type=BooleanType, default=False)
+@attribute(local_name='nolinkto', type=BooleanType, default=False)
+@attribute(local_name='nomd5', type=BooleanType, default=False)
+@attribute(local_name='nosize', type=BooleanType, default=False)
+@attribute(local_name='nouser', type=BooleanType, default=False)
+@attribute(local_name='nogroup', type=BooleanType, default=False)
+@attribute(local_name='nomtime', type=BooleanType, default=False)
+@attribute(local_name='nomode', type=BooleanType, default=False)
+@attribute(local_name='nordev', type=BooleanType, default=False)
+@attribute(local_name='noconfigfiles', type=BooleanType, default=False)
+@attribute(local_name='noghostfiles', type=BooleanType, default=False)
 class RpmVerifyBehaviors(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'nodeps': {'type': 'BooleanType', 'default': False},
-            'nodigest': {'type': 'BooleanType', 'default': False},
-            'nofiles': {'type': 'BooleanType', 'default': False},
-            'noscripts': {'type': 'BooleanType', 'default': False},
-            'nosignature': {'type': 'BooleanType', 'default': False},
-            'nolinkto': {'type': 'BooleanType', 'default': False},
-            'nomd5': {'type': 'BooleanType', 'default': False},
-            'nosize': {'type': 'BooleanType', 'default': False},
-            'nouser': {'type': 'BooleanType', 'default': False},
-            'nogroup': {'type': 'BooleanType', 'default': False},
-            'nomtime': {'type': 'BooleanType', 'default': False},
-            'nomode': {'type': 'BooleanType', 'default': False},
-            'nordev': {'type': 'BooleanType', 'default': False},
-            'noconfigfiles': {'type': 'BooleanType', 'default': False},
-            'noghostfiles': {'type': 'BooleanType', 'default': False},
-        }
-    }
+    pass
