@@ -23,16 +23,10 @@ from scap.model.oval_5 import UNIX_ROUTING_TABLE_FLAGS_ENUMERATION
 from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class EntityStateRoutingTableFlagsType(EntityStateType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
 
-    def get_value_enum(self):
-        return UNIX_ROUTING_TABLE_FLAGS_ENUMERATION
+@content(enum=UNIX_ROUTING_TABLE_FLAGS_ENUMERATION)
+class EntityStateRoutingTableFlagsType(EntityStateType):
+    pass
 
     # Name                           Linux    Solaris    HPUX    Mac OS    FreeBSD    AIX
     # UP                             U        U          U       U         U          U

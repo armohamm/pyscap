@@ -22,17 +22,13 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='protocol', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='service_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='server_program', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='server_arguments', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='endpoint_type', cls=EntityStateEndpointType, min=0, max=1)
+@element(local_name='exec_as_user', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='wait_status', cls=EntityStateWaitStatusType, min=0, max=1)
 class DnsCacheStateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'protocol', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'server_program', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'server_arguments', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'endpoint_type', 'class': 'EntityStateEndpointType', 'min': 0, 'max': 1},
-            {'tag_name': 'exec_as_user', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'wait_status', 'class': 'EntityStateWaitStatusType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass

@@ -22,23 +22,19 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='protocol', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='service_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='flags', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='no_access', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='only_from', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='port', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='server', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='server_arguments', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='socket_type', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='type', cls=EntityStateXinetdTypeStatusType, min=0, max=1)
+@element(local_name='user', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='wait', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='disabled', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
 class XinetdStateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'protocol', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'flags', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'no_access', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'only_from', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'port', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'server', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'server_arguments', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'socket_type', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'type', 'class': 'EntityStateXinetdTypeStatusType', 'min': 0, 'max': 1},
-            {'tag_name': 'user', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'wait', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'disabled', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass

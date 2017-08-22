@@ -22,12 +22,8 @@ from scap.model.decorators import *
 from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='key', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='source', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0)
 class GconfObjectElement(ObjectType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'source', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
-        ],
-        'attributes': {
-        },
-    }
+    pass

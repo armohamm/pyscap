@@ -22,12 +22,8 @@ from scap.model.decorators import *
 from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='command_line', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='pid', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
 class Process58ObjectElement(ObjectType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'command_line', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-        'attributes': {
-        },
-    }
+    pass

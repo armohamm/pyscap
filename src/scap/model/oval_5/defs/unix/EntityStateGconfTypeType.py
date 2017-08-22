@@ -23,13 +23,7 @@ from scap.model.oval_5 import GCONF_TYPE_ENUMERATION
 from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class EntityStateGconfTypeType(EntityStateType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
 
-    def get_value_enum(self):
-        return GCONF_TYPE_ENUMERATION
+@content(enum=GCONF_TYPE_ENUMERATION)
+class EntityStateGconfTypeType(EntityStateType):
+    pass

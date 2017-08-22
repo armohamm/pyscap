@@ -22,6 +22,6 @@ from scap.model.decorators import *
 from .TestType import TestType
 
 logger = logging.getLogger(__name__)
+
 class XinetdTestElement(TestType):
-    MODEL_MAP = {
-    }
+    pass

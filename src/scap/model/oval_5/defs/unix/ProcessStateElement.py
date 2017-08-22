@@ -22,20 +22,16 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='command', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='exec_time', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='pid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='ppid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='priority', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='ruid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='scheduling_class', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='start_time', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='tty', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='user_id', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
 class ProcessStateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'command', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'exec_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'ppid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'priority', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'ruid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'scheduling_class', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'start_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'tty', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'user_id', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass

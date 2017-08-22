@@ -22,11 +22,7 @@ from scap.model.decorators import *
 from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='domain_name', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
 class DnsCacheObjectElement(ObjectType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'domain_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-        'attributes': {
-        },
-    }
+    pass

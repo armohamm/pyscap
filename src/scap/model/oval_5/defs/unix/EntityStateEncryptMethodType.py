@@ -23,13 +23,7 @@ from scap.model.oval_5 import UNIX_ENCRYPT_METHOD_ENUMERATION
 from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class EntityStateEncryptMethodType(EntityStateType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
 
-    def get_value_enum(self):
-        return UNIX_ENCRYPT_METHOD_ENUMERATION
+@content(enum=UNIX_ENCRYPT_METHOD_ENUMERATION)
+class EntityStateEncryptMethodType(EntityStateType):
+    pass

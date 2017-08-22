@@ -22,16 +22,12 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='machine_class', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='node_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='os_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='os_release', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='os_version', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='processor_type', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
 class UnameStateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'machine_class', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'node_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'os_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'os_release', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'os_version', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'processor_type', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass

@@ -22,18 +22,14 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='source', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='type', cls=EntityStateGconfTypeType, min=0, max=1)
+@element(local_name='is_writable', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='mod_user', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='mod_time', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='is_default', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
 class GconfStateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'source', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'type', 'class': 'EntityStateGconfTypeType', 'min': 0, 'max': 1},
-            {'tag_name': 'is_writable', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'mod_user', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'mod_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'is_default', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass

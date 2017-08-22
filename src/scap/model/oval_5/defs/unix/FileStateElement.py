@@ -22,33 +22,29 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='path', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='filename', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='type', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='group_id', cls=EntityStateType, min=0, max=1)
+@element(local_name='user_id', cls=EntityStateType, min=0, max=1)
+@element(local_name='a_time', cls=EntityStateType, min=0, max=1)
+@element(local_name='c_time', cls=EntityStateType, min=0, max=1)
+@element(local_name='m_time', cls=EntityStateType, min=0, max=1)
+@element(local_name='size', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='suid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='sgid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='sticky', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='uread', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='uwrite', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='uexec', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='gread', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='gwrite', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='gexec', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='oread', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='owrite', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='oexec', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='has_extended_acl', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
 class FileStateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'type', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'group_id', 'class': 'EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'user_id', 'class': 'EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'a_time', 'class': 'EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'c_time', 'class': 'EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'm_time', 'class': 'EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'size', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'suid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'sgid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'sticky', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'uread', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'uwrite', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'uexec', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'gread', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'gwrite', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'gexec', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'oread', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'owrite', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'oexec', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'has_extended_acl', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass

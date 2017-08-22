@@ -22,25 +22,21 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='command_line', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='exec_time', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='pid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='ppid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='priority', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='ruid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='scheduling_class', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='start_time', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='tty', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='user_id', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='exec_shield', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='loginuid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='posix_capability', cls=EntityStateCapabilityType, min=0, max=1)
+@element(local_name='selinux_domain_label', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='session_id', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
 class Process58StateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'command_line', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'exec_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'ppid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'priority', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'ruid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'scheduling_class', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'start_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'tty', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'user_id', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'exec_shield', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'loginuid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'posix_capability', 'class': 'EntityStateCapabilityType', 'min': 0, 'max': 1},
-            {'tag_name': 'selinux_domain_label', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'session_id', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass

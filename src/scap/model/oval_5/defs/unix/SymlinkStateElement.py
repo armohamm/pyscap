@@ -22,12 +22,8 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='canonical_path', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
 class SymlinkStateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'canonical_path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass

@@ -22,14 +22,10 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='service_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='runlevel', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='start', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='kill', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
 class RunLevelStateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'runlevel', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'start', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'kill', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass

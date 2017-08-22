@@ -24,8 +24,8 @@ from scap.model.decorators import *
 from .TestType import TestType
 
 logger = logging.getLogger(__name__)
+
 class ShadowTestElement(TestType):
-    MODEL_MAP = {
-    }
+    pass
 
 # The weed of crime bears bitter fruit. Crime does not pay...The Shadow knows!

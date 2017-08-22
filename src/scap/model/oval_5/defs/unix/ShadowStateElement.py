@@ -24,22 +24,18 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='username', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='password', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='chg_lst', cls=EntityStateType, min=0, max=1)
+@element(local_name='chg_allow', cls=EntityStateType, min=0, max=1)
+@element(local_name='chg_req', cls=EntityStateType, min=0, max=1)
+@element(local_name='exp_warn', cls=EntityStateType, min=0, max=1)
+@element(local_name='exp_inact', cls=EntityStateType, min=0, max=1)
+@element(local_name='exp_date', cls=EntityStateType, min=0, max=1)
+@element(local_name='flag', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='encrypt_method', cls=EntityStateEncryptMethodType, min=0, max=1)
 class ShadowStateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'username', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'password', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'chg_lst', 'class': 'EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'chg_allow', 'class': 'EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'chg_req', 'class': 'EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'exp_warn', 'class': 'EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'exp_inact', 'class': 'EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'exp_date', 'class': 'EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'flag', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'encrypt_method', 'class': 'EntityStateEncryptMethodType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass
 
 # The weed of crime bears bitter fruit. Crime does not pay...The Shadow knows!

@@ -22,20 +22,16 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='path', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='filename', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='module_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='module_type', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='release', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='level', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='branch', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='sequence', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='what_string', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
 class SccsStateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'module_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'module_type', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'release', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'level', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'branch', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'sequence', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'what_string', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass

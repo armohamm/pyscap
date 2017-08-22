@@ -23,13 +23,7 @@ from scap.model.oval_5 import XINETD_TYPE_STATUS_ENUMERATION
 from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class EntityStateXinetdTypeStatusType(EntityStateType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
 
-    def get_value_enum(self):
-        return XINETD_TYPE_STATUS_ENUMERATION
+@content(enum=XINETD_TYPE_STATUS_ENUMERATION)
+class EntityStateXinetdTypeStatusType(EntityStateType):
+    pass

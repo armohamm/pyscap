@@ -22,12 +22,8 @@ from scap.model.decorators import *
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
 class SysctlStateElement(StateType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-        },
-    }
+    pass

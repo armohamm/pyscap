@@ -23,13 +23,7 @@ from scap.model.oval_5 import UNIX_INTERFACE_TYPE_ENUMERATION
 from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class EntityStateInterfaceType(EntityStateType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
 
-    def get_value_enum(self):
-        return UNIX_INTERFACE_TYPE_ENUMERATION
+@content(enum=UNIX_INTERFACE_TYPE_ENUMERATION)
+class EntityStateInterfaceType(EntityStateType):
+    pass

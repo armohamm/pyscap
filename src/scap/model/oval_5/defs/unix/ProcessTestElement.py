@@ -22,6 +22,6 @@ from scap.model.decorators import *
 from .TestType import TestType
 
 logger = logging.getLogger(__name__)
+
 class ProcessTestElement(TestType):
-    MODEL_MAP = {
-    }
+    pass

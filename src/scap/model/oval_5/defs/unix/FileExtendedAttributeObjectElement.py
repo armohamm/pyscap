@@ -22,15 +22,11 @@ from scap.model.decorators import *
 from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='behaviors', cls=FileBehaviors, min=0, max=1)
+@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='path', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='filename', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0)
+@element(local_name='attribute_name', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
 class FileExtendedAttributeObjectElement(ObjectType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
-            {'tag_name': 'attribute_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-        ],
-        'attributes': {
-        },
-    }
+    pass

@@ -22,12 +22,9 @@ from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name=max_depth, type=Integer, default=-1)
+@attribute(local_name=recurse, enum=['none', 'files', 'directories', 'files and directories', 'symlinks', 'symlinks and directories'], default='symlinks and directories')
+@attribute(local_name=recurse_direction, enum=['none', 'up', 'down'], default='none')
+@attribute(local_name=recurse_file_system, enum=['all', 'local', 'defined'], default='all')
 class FileBehaviors(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'max_depth': {'type': 'Integer', 'default': -1},
-            'recurse': {'enum': ['none', 'files', 'directories', 'files and directories', 'symlinks', 'symlinks and directories'], 'default': 'symlinks and directories'},
-            'recurse_direction': {'enum': ['none', 'up', 'down'], 'default': 'none'},
-            'recurse_file_system': {'enum': ['all', 'local', 'defined'], 'default': 'all'},
-        }
-    }
+    pass
