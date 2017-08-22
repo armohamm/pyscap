@@ -24,6 +24,4 @@ from .TestType import TestType
 logger = logging.getLogger(__name__)
 
 class SeLinuxSecurityContextTestElement(TestType):
-    MODEL_MAP = {
-        'tag_name': 'selinuxsecuritycontext_test',
-    }
+    pass

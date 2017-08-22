@@ -24,6 +24,4 @@ from .TestType import TestType
 logger = logging.getLogger(__name__)
 
 class RpmVerifyTestElement(TestType):
-    MODEL_MAP = {
-        'tag_name': 'rpmverify_test',
-    }
+    pass

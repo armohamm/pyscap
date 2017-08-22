@@ -20,27 +20,24 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='filepath', cls=EntityStateType, min=0, max=1)
+@element(local_name='path', cls=EntityStateType, min=0, max=1)
+@element(local_name='filename', cls=EntityStateType, min=0, max=1)
+@element(local_name='pid', cls=EntityStateType, min=0, max=1)
+@element(local_name='user', cls=EntityStateType, min=0, max=1)
+@element(local_name='role', cls=EntityStateType, min=0, max=1)
+@element(local_name='type', cls=EntityStateType, min=0, max=1)
+@element(local_name='low_sensitivity', cls=EntityStateType, min=0, max=1)
+@element(local_name='low_category', cls=EntityStateType, min=0, max=1)
+@element(local_name='high_sensitivity', cls=EntityStateType, min=0, max=1)
+@element(local_name='high_category', cls=EntityStateType, min=0, max=1)
+@element(local_name='rawlow_sensitivity', cls=EntityStateType, min=0, max=1)
+@element(local_name='rawlow_category', cls=EntityStateType, min=0, max=1)
+@element(local_name='rawhigh_sensitivity', cls=EntityStateType, min=0, max=1)
+@element(local_name='rawhigh_category', cls=EntityStateType, min=0, max=1)
 class SeLinuxSecurityContextStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'selinuxsecuritycontext_state',
-        'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'user', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'role', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'type', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'low_sensitivity', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'low_category', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'high_sensitivity', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'high_category', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'rawlow_sensitivity', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'rawlow_category', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'rawhigh_sensitivity', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'rawhigh_category', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

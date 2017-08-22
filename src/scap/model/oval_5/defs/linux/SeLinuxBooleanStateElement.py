@@ -20,15 +20,12 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='name', cls=EntityStateType, min=0)
+@element(local_name='current_status', cls=EntityStateType, min=0)
+@element(local_name='pending_status', cls=EntityStateType, min=0)
 class SeLinuxBooleanStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'selinuxboolean_state',
-        'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'current_status', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'pending_status', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-        ],
-    }
+    pass

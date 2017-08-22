@@ -20,17 +20,15 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from .FileBehaviors import FileBehaviors
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='behaviors', cls=FileBehaviors, min=0)
+@element(local_name='filepath', cls=EntityObjectType, min=0)
+@element(local_name='path', cls=EntityObjectType, min=0)
+@element(local_name='filename', cls=EntityObjectType, nillable=True, min=0)
+@element(local_name='pid', cls=EntityObjectType, nillable=True, min=0)
 class SeLinuxSecurityContextObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'selinuxsecuritycontext_object',
-        'elements': [
-            {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
-        ],
-    }
+    pass
