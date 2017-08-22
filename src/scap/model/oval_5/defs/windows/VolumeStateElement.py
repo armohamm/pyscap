@@ -24,31 +24,31 @@ class VolumeStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'volume_state',
         'elements': [
-            {'tag_name': 'rootpath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_system', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'drive_type', 'class': 'EntityStateDriveTypeType', 'min': 0},
-            {'tag_name': 'volume_max_component_length', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'serial_number', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_case_sensitive_search', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_case_preserved_names', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_unicode_on_disk', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_persistent_acls', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_file_compression', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_volume_quotas', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_supports_sparse_files', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_supports_reparse_points', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_supports_remote_storage', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_volume_is_compressed', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_supports_object_ids', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_supports_encryption', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_named_streams', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_read_only_volume', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_sequential_write_once', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_supports_transactions', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_supports_hard_links', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_supports_extended_attributes', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_supports_open_by_file_id', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_supports_usn_journal', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='rootpath', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_system', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='drive_type', cls=EntityStateDriveTypeType, min=0)
+@element(local_name='volume_max_component_length', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='serial_number', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_case_sensitive_search', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_case_preserved_names', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_unicode_on_disk', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_persistent_acls', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_file_compression', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_volume_quotas', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_supports_sparse_files', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_supports_reparse_points', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_supports_remote_storage', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_volume_is_compressed', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_supports_object_ids', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_supports_encryption', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_named_streams', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_read_only_volume', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_sequential_write_once', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_supports_transactions', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_supports_hard_links', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_supports_extended_attributes', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_supports_open_by_file_id', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_supports_usn_journal', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

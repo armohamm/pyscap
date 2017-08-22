@@ -24,8 +24,8 @@ class Wmi57StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'wmi57_state',
         'elements': [
-            {'tag_name': 'namespace', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'wql', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'result', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='namespace', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='wql', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='result', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

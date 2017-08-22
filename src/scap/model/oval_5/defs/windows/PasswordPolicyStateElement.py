@@ -24,11 +24,11 @@ class PasswordPolicyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'passwordpolicy_state',
         'elements': [
-            {'tag_name': 'max_passwd_age', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'min_passwd_age', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'min_passwd_len', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'password_hist_len', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'password_complexity', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'reversible_encryption', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='max_passwd_age', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='min_passwd_age', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='min_passwd_len', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='password_hist_len', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='password_complexity', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='reversible_encryption', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

@@ -24,9 +24,9 @@ class LockoutPolicyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'lockoutpolicy_state',
         'elements': [
-            {'tag_name': 'force_logoff', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'lockout_duration', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'lockout_observation_window', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'lockout_threshold', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='force_logoff', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='lockout_duration', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='lockout_observation_window', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='lockout_threshold', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

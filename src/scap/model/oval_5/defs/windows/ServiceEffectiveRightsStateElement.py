@@ -24,23 +24,23 @@ class ServiceEffectiveRightsStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'serviceeffectiverights_state',
         'elements': [
-            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_delete', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_read_control', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_write_dac', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_write_owner', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_read', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_write', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_execute', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'service_query_conf', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'service_change_conf', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'service_query_stat', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'service_enum_dependents', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'service_start', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'service_stop', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'service_pause', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'service_interrogate', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'service_user_defined', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='service_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_delete', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_read_control', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_write_dac', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_write_owner', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_read', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_write', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_execute', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='service_query_conf', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='service_change_conf', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='service_query_stat', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='service_enum_dependents', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='service_start', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='service_stop', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='service_pause', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='service_interrogate', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='service_user_defined', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

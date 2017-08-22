@@ -24,9 +24,9 @@ class PeHeaderObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'peheader_object',
         'elements': [
-            {'tag_name': 'behaviors', 'class': 'FileBehaviors', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='behaviors', cls=FileBehaviors, min=0, max=1)
+@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='path', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='filename', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

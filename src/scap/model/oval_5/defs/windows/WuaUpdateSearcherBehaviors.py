@@ -23,7 +23,6 @@ logger = logging.getLogger(__name__)
 
 class WuaUpdateSearcherBehaviors(Model):
     MODEL_MAP = {
-        'attributes': {
-            'include_superseded_updates': {'type': 'BooleanType', 'default': True},
+        'attributes': {@attribute(local_name='include_superseded_updates', type=BooleanType, default=True),
         }
     }

@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 class AccesstokenBehaviors(Model):
     MODEL_MAP = {
         'attributes': {
-            'include_group': {'type': 'BooleanType', 'default': True},
-            'resolve_group': {'type': 'BooleanType', 'default': False},
+@attribute(local_name=''include_group'', type=BooleanType, default=True)
+@attribute(local_name=''resolve_group'', type=BooleanType, default=False)
         }
     }

@@ -24,8 +24,8 @@ class PrinterEffectiveRightsObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'printereffectiverights_object',
         'elements': [
-            {'tag_name': 'behaviors', 'class': 'PrinterEffectiveRightsBehaviors', 'min': 0},
-            {'tag_name': 'printer_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='behaviors', cls=PrinterEffectiveRightsBehaviors, min=0)
+@element(local_name='printer_name', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

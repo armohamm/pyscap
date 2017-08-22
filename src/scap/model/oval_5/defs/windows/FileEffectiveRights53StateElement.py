@@ -25,29 +25,29 @@ class FileEffectiveRights53StateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'fileeffectiverights53_state',
         'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_delete', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_read_control', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_write_dac', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_write_owner', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_synchronize', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'access_system_security', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_read', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_write', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_execute', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_all', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_read_data', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_write_data', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_append_data', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_read_ea', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_write_ea', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_execute', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_delete_child', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_read_attributes', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'file_write_attributes', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'windows_view', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': WINDOWS_VIEW_ENUMERATION},
+@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='path', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='filename', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_delete', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_read_control', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_write_dac', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_write_owner', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_synchronize', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='access_system_security', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_read', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_write', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_execute', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_all', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_read_data', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_write_data', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_append_data', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_read_ea', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_write_ea', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_execute', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_delete_child', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_read_attributes', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='file_write_attributes', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
         ],
     }

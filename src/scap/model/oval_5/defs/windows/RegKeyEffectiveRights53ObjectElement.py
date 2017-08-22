@@ -24,9 +24,9 @@ class RegKeyEffectiveRights53ObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'regkeyeffectiverights53_object',
         'elements': [
-            {'tag_name': 'behaviors', 'class': 'RegkeyEffectiveRights53Behaviors', 'min': 0},
-            {'tag_name': 'hive', 'class': 'EntityObjectRegistryHiveType', 'min': 0},
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='behaviors', cls=RegkeyEffectiveRights53Behaviors, min=0)
+@element(local_name='hive', cls=EntityObjectRegistryHiveType, min=0)
+@element(local_name='key', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0)
+@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

@@ -24,17 +24,17 @@ class ServiceStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'service_state',
         'elements': [
-            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'display_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'description', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'service_type', 'class': 'EntityStateServiceTypeType', 'min': 0},
-            {'tag_name': 'start_type', 'class': 'EntityStateServiceStartTypeType', 'min': 0},
-            {'tag_name': 'current_state', 'class': 'EntityStateServiceCurrentStateType', 'min': 0},
-            {'tag_name': 'controls_accepted', 'class': 'EntityStateServiceControlsAcceptedType', 'min': 0},
-            {'tag_name': 'start_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'service_flag', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'dependencies', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='service_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='display_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='description', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='service_type', cls=EntityStateServiceTypeType, min=0)
+@element(local_name='start_type', cls=EntityStateServiceStartTypeType, min=0)
+@element(local_name='current_state', cls=EntityStateServiceCurrentStateType, min=0)
+@element(local_name='controls_accepted', cls=EntityStateServiceControlsAcceptedType, min=0)
+@element(local_name='start_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='path', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='pid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='service_flag', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='dependencies', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

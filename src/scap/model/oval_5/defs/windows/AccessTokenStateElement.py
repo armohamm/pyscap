@@ -25,52 +25,52 @@ class AccessTokenStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'accesstoken_state',
         'elements': [
-            {'tag_name': 'security_principle', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seassignprimarytokenprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seauditprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sebackupprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sechangenotifyprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'secreateglobalprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'secreatepagefileprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'secreatepermanentprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'secreatesymboliclinkprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'secreatetokenprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sedebugprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seenabledelegationprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seimpersonateprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seincreasebasepriorityprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seincreasequotaprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seincreaseworkingsetprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seloaddriverprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'selockmemoryprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'semachineaccountprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'semanagevolumeprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seprofilesingleprocessprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'serelabelprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seremoteshutdownprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'serestoreprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sesecurityprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seshutdownprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sesyncagentprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sesystemenvironmentprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sesyncagentprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sesystemprofileprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sesystemtimeprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'setakeownershipprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'setcbprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'setimezoneprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seundockprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seunsolicitedinputprivilege', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sebatchlogonright', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seinteractivelogonright', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'senetworklogonright', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seremoteinteractivelogonright', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'seservicelogonright', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sedenybatchLogonright', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sedenyinteractivelogonright', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sedenynetworklogonright', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sedenyremoteInteractivelogonright', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sedenyservicelogonright', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'setrustedcredmanaccessnameright', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='security_principle', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seassignprimarytokenprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seauditprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sebackupprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sechangenotifyprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='secreateglobalprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='secreatepagefileprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='secreatepermanentprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='secreatesymboliclinkprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='secreatetokenprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sedebugprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seenabledelegationprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seimpersonateprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seincreasebasepriorityprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seincreasequotaprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seincreaseworkingsetprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seloaddriverprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='selockmemoryprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='semachineaccountprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='semanagevolumeprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seprofilesingleprocessprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='serelabelprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seremoteshutdownprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='serestoreprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sesecurityprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seshutdownprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sesyncagentprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sesystemenvironmentprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sesyncagentprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sesystemprofileprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sesystemtimeprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='setakeownershipprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='setcbprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='setimezoneprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seundockprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seunsolicitedinputprivilege', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sebatchlogonright', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seinteractivelogonright', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='senetworklogonright', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seremoteinteractivelogonright', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='seservicelogonright', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sedenybatchLogonright', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sedenyinteractivelogonright', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sedenynetworklogonright', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sedenyremoteInteractivelogonright', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sedenyservicelogonright', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='setrustedcredmanaccessnameright', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

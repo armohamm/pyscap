@@ -24,7 +24,7 @@ class ServiceEffectiveRightsObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'serviceeffectiverights_object',
         'elements': [
-            {'tag_name': 'service_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='service_name', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

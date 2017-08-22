@@ -24,8 +24,8 @@ class UserSidStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'user_sid_state',
         'elements': [
-            {'tag_name': 'user', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'enabled', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'group', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='user', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='enabled', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='group', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

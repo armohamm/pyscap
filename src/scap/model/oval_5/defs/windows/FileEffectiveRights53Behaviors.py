@@ -23,8 +23,6 @@ logger = logging.getLogger(__name__)
 
 class FileEffectiveRights53Behaviors(FileBehaviors):
     MODEL_MAP = {
-        'attributes': {
-            'include_group': {'type': 'BooleanType', 'default': True},
-            'resolve_group': {'type': 'BooleanType', 'default': False},
+        'attributes': {@attribute(local_name='include_group', type=BooleanType, default=True),@attribute(local_name='resolve_group', type=BooleanType, default=False),
         }
     }

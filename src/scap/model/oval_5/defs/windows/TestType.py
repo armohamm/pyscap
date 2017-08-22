@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class TestType(oval_def_5_TestType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'object', 'class': 'scap.model.oval_5.defs.ObjectRefType'},
-            {'tag_name': 'state', 'list': 'states', 'class': 'scap.model.oval_5.defs.StateRefType', 'min': 0, 'max': None},
+@element(local_name='object', cls=scap.model.oval_5.defs.ObjectRefType)
+@element(local_name='state', 'list': 'states', cls=scap.model.oval_5.defs.StateRefType, min=0, max=None)
         ],
     }

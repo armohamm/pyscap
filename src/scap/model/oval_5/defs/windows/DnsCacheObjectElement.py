@@ -24,6 +24,6 @@ class DnsCacheObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'dnscache_object',
         'elements': [
-            {'tag_name': 'domain_name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='domain_name', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

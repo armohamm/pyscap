@@ -24,6 +24,6 @@ class InterfaceObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'interface_object',
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='name', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

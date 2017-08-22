@@ -24,18 +24,18 @@ class SharedResourceStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'sharedresource_state',
         'elements': [
-            {'tag_name': 'netname', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'shared_type', 'class': 'EntityStateSharedResourceTypeType', 'min': 0},
-            {'tag_name': 'max_uses', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'current_uses', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'local_path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'access_read_permission', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'access_write_permission', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'access_create_permission', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'access_exec_permission', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'access_delete_permission', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'access_atrib_permission', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'access_perm_permission', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'access_all_permission', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='netname', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='shared_type', cls=EntityStateSharedResourceTypeType, min=0)
+@element(local_name='max_uses', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='current_uses', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='local_path', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='access_read_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='access_write_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='access_create_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='access_exec_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='access_delete_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='access_atrib_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='access_perm_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='access_all_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

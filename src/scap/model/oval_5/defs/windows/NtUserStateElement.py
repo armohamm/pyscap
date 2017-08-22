@@ -24,18 +24,18 @@ class NtUserStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'ntuser_state',
         'elements': [
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'sid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'username', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'account_type', 'class': 'EntityStateNTUserAccountTypeType', 'min': 0},
-            {'tag_name': 'logged_on', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'enabled', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'date_modified', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'days_since_modified', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'last_write_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'type', 'class': 'scap.model.oval_5.defs.EntityStateRegistryTypeType', 'min': 0},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='username', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='account_type', cls=EntityStateNTUserAccountTypeType, min=0)
+@element(local_name='logged_on', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='enabled', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='date_modified', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='days_since_modified', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='last_write_time', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='type', cls=scap.model.oval_5.defs.EntityStateRegistryTypeType, min=0)
+@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

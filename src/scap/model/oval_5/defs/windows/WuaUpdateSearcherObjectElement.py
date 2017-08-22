@@ -25,7 +25,7 @@ class WuaUpdateSearcherObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'wuaupdatesearcher_object',
         'elements': [
-            {'tag_name': 'behaviors', 'class': 'WuaUpdateSearcherBehaviors', 'min': 0},
-            {'tag_name': 'search_criteria', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='behaviors', cls=WuaUpdateSearcherBehaviors, min=0)
+@element(local_name='search_criteria', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

@@ -24,11 +24,11 @@ class MetabaseStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'metabase_state',
         'elements': [
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'id', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'user_type', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'data_type', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'data', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='id', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='user_type', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='data_type', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='data', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

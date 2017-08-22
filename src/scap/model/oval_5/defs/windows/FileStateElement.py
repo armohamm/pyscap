@@ -25,24 +25,24 @@ class FileStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'file_state',
         'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'owner', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'size', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'a_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'c_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'm_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'ms_checksum', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'version', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'type', 'class': 'EntityStateFileTypeType', 'min': 0},
-            {'tag_name': 'development_class', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'company', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'internal_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'language', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'original_filename', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'product_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'product_version', 'class': 'EntityStateType', 'min': 0},
-            {'tag_name': 'windows_view', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': WINDOWS_VIEW_ENUMERATION},
+@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='path', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='filename', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='owner', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='size', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='a_time', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='c_time', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='m_time', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='ms_checksum', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='version', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='type', cls=EntityStateFileTypeType, min=0)
+@element(local_name='development_class', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='company', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='internal_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='language', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='original_filename', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='product_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='product_version', cls=EntityStateType, min=0)
+@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
         ],
     }

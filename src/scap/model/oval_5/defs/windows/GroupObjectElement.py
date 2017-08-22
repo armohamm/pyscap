@@ -24,6 +24,6 @@ class GroupObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'group_object',
         'elements': [
-            {'tag_name': 'group', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='group', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

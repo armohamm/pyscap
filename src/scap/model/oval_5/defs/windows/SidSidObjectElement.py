@@ -24,7 +24,7 @@ class SidSidObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'sid_sid_object',
         'elements': [
-            {'tag_name': 'behaviors', 'class': 'SidSidBehaviors', 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='behaviors', cls=SidSidBehaviors, min=0)
+@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

@@ -24,6 +24,6 @@ class UserSidObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'user_sid_object',
         'elements': [
-            {'tag_name': 'user', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='user', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

@@ -24,17 +24,17 @@ class SharedResourceAuditedPermissionsStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'sharedresourceauditedpermissions_state',
         'elements': [
-            {'tag_name': 'netname', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_delete', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'standard_read_control', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'standard_write_dac', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'standard_write_owner', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'standard_synchronize', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'access_system_security', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_read', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_write', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_execute', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_all', 'class': 'EntityStateAuditType', 'min': 0},
+@element(local_name='netname', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_delete', cls=EntityStateAuditType, min=0)
+@element(local_name='standard_read_control', cls=EntityStateAuditType, min=0)
+@element(local_name='standard_write_dac', cls=EntityStateAuditType, min=0)
+@element(local_name='standard_write_owner', cls=EntityStateAuditType, min=0)
+@element(local_name='standard_synchronize', cls=EntityStateAuditType, min=0)
+@element(local_name='access_system_security', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_read', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_write', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_execute', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_all', cls=EntityStateAuditType, min=0)
         ],
     }

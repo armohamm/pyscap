@@ -24,11 +24,11 @@ class PortStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'port_state',
         'elements': [
-            {'tag_name': 'local_address', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'local_port', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'protocol', 'class': 'EntityStateProtocolType', 'min': 0},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'foreign_address', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'foreign_port', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+@element(local_name='local_address', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='local_port', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='protocol', cls=EntityStateProtocolType, min=0)
+@element(local_name='pid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='foreign_address', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='foreign_port', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
         ],
     }

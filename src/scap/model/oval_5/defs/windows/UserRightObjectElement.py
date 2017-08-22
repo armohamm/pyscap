@@ -24,6 +24,6 @@ class UserRightObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'userright_object',
         'elements': [
-            {'tag_name': 'userright', 'class': 'EntityObjectUserRightType', 'min': 0, 'max': 1},
+@element(local_name='userright', cls=EntityObjectUserRightType, min=0, max=1)
         ],
     }

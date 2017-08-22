@@ -23,10 +23,6 @@ logger = logging.getLogger(__name__)
 
 class FileEffectiveRightsBehaviors(FileBehaviors):
     MODEL_MAP = {
-        'attributes': {
-            'include_default': {'type': 'BooleanType', 'default': False},
-            'max_depth': {'type': 'Integer', 'default': -1},
-            'recurse_direction': {'enum': ['none', 'up', 'down'], 'default': 'none'},
-            'windows_view': {'enum': ['32_bit', '64_bit'], 'default': '64_bit'},
+        'attributes': {@attribute(local_name='include_default', type=BooleanType, default=False),@attribute(local_name='max_depth', type=Integer, default=-1),@attribute(local_name='recurse_direction', 'enum': ['none', 'up', 'down'], default='none'),@attribute(local_name='windows_view', 'enum': ['32_bit', '64_bit'], default='64_bit'),
         }
     }

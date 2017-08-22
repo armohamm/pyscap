@@ -26,12 +26,12 @@ class RegistryStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'registry_state',
         'elements': [
-            {'tag_name': 'hive', 'class': 'EntityStateRegistryHiveType', 'min': 0},
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'last_write_time', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'type', 'class': 'EntityStateRegistryTypeType', 'min': 0},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'windows_view', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': WINDOWS_VIEW_ENUMERATION},
+@element(local_name='hive', cls=EntityStateRegistryHiveType, min=0)
+@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='last_write_time', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='type', cls=EntityStateRegistryTypeType, min=0)
+@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
         ],
     }

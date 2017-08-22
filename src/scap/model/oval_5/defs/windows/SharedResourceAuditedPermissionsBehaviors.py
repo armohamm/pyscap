@@ -23,7 +23,6 @@ logger = logging.getLogger(__name__)
 
 class SharedResourceAuditedPermissionsBehaviors(Model):
     MODEL_MAP = {
-        'attributes': {
-            'include_group': {'type': 'BooleanType', 'default': True},
+        'attributes': {@attribute(local_name='include_group', type=BooleanType, default=True),
         }
     }

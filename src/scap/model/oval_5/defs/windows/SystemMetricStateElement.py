@@ -24,7 +24,7 @@ class SystemMetricStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'systemmetric_state',
         'elements': [
-            {'tag_name': 'index', 'class': 'EntityStateSystemMetricIndexType', 'min': 0},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='index', cls=EntityStateSystemMetricIndexType, min=0)
+@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

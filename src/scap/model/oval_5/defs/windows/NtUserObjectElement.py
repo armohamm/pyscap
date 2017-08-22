@@ -24,8 +24,8 @@ class NtUserObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'ntuser_object',
         'elements': [
-            {'tag_name': 'behaviors', 'class': 'NTUserBehaviors', 'min': 0},
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
+@element(local_name='behaviors', cls=NTUserBehaviors, min=0)
+@element(local_name='key', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='name', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0)
         ],
     }

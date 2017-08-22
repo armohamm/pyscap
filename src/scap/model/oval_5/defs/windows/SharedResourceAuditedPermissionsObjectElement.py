@@ -24,8 +24,8 @@ class SharedResourceAuditedPermissionsObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'sharedresourceauditedpermissions_object',
         'elements': [
-            {'tag_name': 'behaviors', 'class': 'SharedResourceAuditedPermissionsBehaviors', 'min': 0},
-            {'tag_name': 'netname', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='behaviors', cls=SharedResourceAuditedPermissionsBehaviors, min=0)
+@element(local_name='netname', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

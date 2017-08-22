@@ -25,8 +25,8 @@ class ActiveDirectoryObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'activedirectory_object',
         'elements': [
-            {'tag_name': 'naming_context', 'class': 'EntityObjectNamingContextType', 'min': 0},
-            {'tag_name': 'relative_dn', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
-            {'tag_name': 'attribute', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'nillable': True, 'min': 0},
+@element(local_name='naming_context', cls=EntityObjectNamingContextType, min=0)
+@element(local_name='relative_dn', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0)
+@element(local_name='attribute', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0)
         ],
     }

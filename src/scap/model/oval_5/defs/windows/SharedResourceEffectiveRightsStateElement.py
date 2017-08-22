@@ -24,17 +24,17 @@ class SharedResourceEffectiveRightsStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'sharedresourceeffectiverights_state',
         'elements': [
-            {'tag_name': 'netname', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_delete', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_read_control', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_write_dac', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_write_owner', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_synchronize', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'access_system_security', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_read', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_write', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_execute', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_all', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='netname', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_delete', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_read_control', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_write_dac', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_write_owner', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_synchronize', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='access_system_security', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_read', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_write', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_execute', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_all', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

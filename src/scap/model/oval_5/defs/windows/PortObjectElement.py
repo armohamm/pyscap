@@ -24,8 +24,8 @@ class PortObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'port_object',
         'elements': [
-            {'tag_name': 'local_address', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'local_port', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
-            {'tag_name': 'protocol', 'class': 'EntityObjectProtocolType', 'min': 0},
+@element(local_name='local_address', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='local_port', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='protocol', cls=EntityObjectProtocolType, min=0)
         ],
     }

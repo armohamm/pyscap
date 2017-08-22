@@ -25,28 +25,28 @@ class FileAuditedpermissionsStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'fileauditedpermissions_state',
         'elements': [
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_delete', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'standard_read_control', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'standard_write_dac', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'standard_write_owner', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'standard_synchronize', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'access_system_security', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_read', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_write', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_execute', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_all', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'file_read_data', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'file_write_data', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'file_append_data', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'file_read_ea', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'file_write_ea', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'file_execute', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'file_delete_child', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'file_read_attributes', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'file_write_attributes', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'windows_view', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': WINDOWS_VIEW_ENUMERATION},
+@element(local_name='path', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='filename', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='trustee_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_delete', cls=EntityStateAuditType, min=0)
+@element(local_name='standard_read_control', cls=EntityStateAuditType, min=0)
+@element(local_name='standard_write_dac', cls=EntityStateAuditType, min=0)
+@element(local_name='standard_write_owner', cls=EntityStateAuditType, min=0)
+@element(local_name='standard_synchronize', cls=EntityStateAuditType, min=0)
+@element(local_name='access_system_security', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_read', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_write', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_execute', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_all', cls=EntityStateAuditType, min=0)
+@element(local_name='file_read_data', cls=EntityStateAuditType, min=0)
+@element(local_name='file_write_data', cls=EntityStateAuditType, min=0)
+@element(local_name='file_append_data', cls=EntityStateAuditType, min=0)
+@element(local_name='file_read_ea', cls=EntityStateAuditType, min=0)
+@element(local_name='file_write_ea', cls=EntityStateAuditType, min=0)
+@element(local_name='file_execute', cls=EntityStateAuditType, min=0)
+@element(local_name='file_delete_child', cls=EntityStateAuditType, min=0)
+@element(local_name='file_read_attributes', cls=EntityStateAuditType, min=0)
+@element(local_name='file_write_attributes', cls=EntityStateAuditType, min=0)
+@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
         ],
     }

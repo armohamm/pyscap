@@ -25,28 +25,28 @@ class RegKeyAuditedPermissionsStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'regkeyauditedpermissions_state',
         'elements': [
-            {'tag_name': 'hive', 'class': 'EntityStateRegistryHiveType', 'min': 0},
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_delete', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'standard_read_control', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'standard_write_owner', 'class': 'EntityStateAuditType'},
-            {'tag_name': 'standard_write_dac', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'standard_synchronize', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'access_system_security', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_read', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_write', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_execute', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'generic_all', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'key_query_value', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'key_set_value', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'key_create_sub_key', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'key_enumerate_sub_keys', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'key_notify', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'key_create_link', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'key_wow64_64key', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'key_wow64_32key', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'key_wow64_res', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'windows_view', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': WINDOWS_VIEW_ENUMERATION},
+@element(local_name='hive', cls=EntityStateRegistryHiveType, min=0)
+@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='trustee_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_delete', cls=EntityStateAuditType, min=0)
+@element(local_name='standard_read_control', cls=EntityStateAuditType, min=0)
+@element(local_name='standard_write_owner', cls=EntityStateAuditType)
+@element(local_name='standard_write_dac', cls=EntityStateAuditType, min=0)
+@element(local_name='standard_synchronize', cls=EntityStateAuditType, min=0)
+@element(local_name='access_system_security', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_read', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_write', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_execute', cls=EntityStateAuditType, min=0)
+@element(local_name='generic_all', cls=EntityStateAuditType, min=0)
+@element(local_name='key_query_value', cls=EntityStateAuditType, min=0)
+@element(local_name='key_set_value', cls=EntityStateAuditType, min=0)
+@element(local_name='key_create_sub_key', cls=EntityStateAuditType, min=0)
+@element(local_name='key_enumerate_sub_keys', cls=EntityStateAuditType, min=0)
+@element(local_name='key_notify', cls=EntityStateAuditType, min=0)
+@element(local_name='key_create_link', cls=EntityStateAuditType, min=0)
+@element(local_name='key_wow64_64key', cls=EntityStateAuditType, min=0)
+@element(local_name='key_wow64_32key', cls=EntityStateAuditType, min=0)
+@element(local_name='key_wow64_res', cls=EntityStateAuditType, min=0)
+@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
         ],
     }

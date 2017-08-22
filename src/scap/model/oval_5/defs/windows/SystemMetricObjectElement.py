@@ -24,6 +24,6 @@ class SystemMetricObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'systemmetric_object',
         'elements': [
-            {'tag_name': 'index', 'class': 'EntityObjectSystemMetricIndexType', 'min': 0},
+@element(local_name='index', cls=EntityObjectSystemMetricIndexType, min=0)
         ],
     }

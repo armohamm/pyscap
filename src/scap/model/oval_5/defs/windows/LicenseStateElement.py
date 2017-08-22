@@ -24,8 +24,8 @@ class LicenseStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'license_state',
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'type', 'class': 'EntityStateRegistryTypeType', 'min': 0},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='type', cls=EntityStateRegistryTypeType, min=0)
+@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

@@ -25,14 +25,14 @@ class AuditEventPolicyStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'auditeventpolicy_state',
         'elements': [
-            {'tag_name': 'account_logon', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'account_management', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'detailed_tracking', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'directory_service_access', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'logon', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'object_access', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'policy_change', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'privilege_use', 'class': 'EntityStateAuditType', 'min': 0},
-            {'tag_name': 'system', 'class': 'EntityStateAuditType', 'min': 0},
+@element(local_name='account_logon', cls=EntityStateAuditType, min=0)
+@element(local_name='account_management', cls=EntityStateAuditType, min=0)
+@element(local_name='detailed_tracking', cls=EntityStateAuditType, min=0)
+@element(local_name='directory_service_access', cls=EntityStateAuditType, min=0)
+@element(local_name='logon', cls=EntityStateAuditType, min=0)
+@element(local_name='object_access', cls=EntityStateAuditType, min=0)
+@element(local_name='policy_change', cls=EntityStateAuditType, min=0)
+@element(local_name='privilege_use', cls=EntityStateAuditType, min=0)
+@element(local_name='system', cls=EntityStateAuditType, min=0)
         ],
     }

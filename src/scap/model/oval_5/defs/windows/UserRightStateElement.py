@@ -24,7 +24,7 @@ class UserRightStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'userright_state',
         'elements': [
-            {'tag_name': 'userright', 'class': 'EntityStateUserRightType', 'min': 0, 'max': 1},
-            {'tag_name': 'trustee_sid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+@element(local_name='userright', cls=EntityStateUserRightType, min=0, max=1)
+@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
         ],
     }

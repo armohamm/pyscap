@@ -25,7 +25,7 @@ class AccessTokenObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'accesstoken_object',
         'elements': [
-            {'tag_name': 'behaviors', 'class': 'AccesstokenBehaviors', 'min': 0},
-            {'tag_name': 'security_principle', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='behaviors', cls=AccesstokenBehaviors, min=0)
+@element(local_name='security_principle', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

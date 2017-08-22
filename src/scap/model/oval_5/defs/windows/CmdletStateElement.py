@@ -25,13 +25,13 @@ class CmdletStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'cmdlet_state',
         'elements': [
-            {'tag_name': 'module_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'module_id', 'class': 'EntityStateGUIDType', 'min': 0, 'max': 1},
-            {'tag_name': 'module_version', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'verb', 'class': 'EntityStateCmdletVerbType', 'min': 0, 'max': 1},
-            {'tag_name': 'noun', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'parameters', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'select', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'max': 1},
+@element(local_name='module_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='module_id', cls=EntityStateGUIDType, min=0, max=1)
+@element(local_name='module_version', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='verb', cls=EntityStateCmdletVerbType, min=0, max=1)
+@element(local_name='noun', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='parameters', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='select', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
         ],
     }

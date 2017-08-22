@@ -23,9 +23,6 @@ logger = logging.getLogger(__name__)
 
 class RegistryBehaviors(Model):
     MODEL_MAP = {
-        'attributes': {
-            'max_depth': {'type': 'Integer', 'default': -1},
-            'recurse_direction': {'enum': ['none', 'up', 'down'], 'default': 'none'},
-            'windows_view': {'enum': ['32_bit', '64_bit'], 'default': '64_bit'},
+        'attributes': {@attribute(local_name='max_depth', type=Integer, default=-1),@attribute(local_name='recurse_direction', 'enum': ['none', 'up', 'down'], default='none'),@attribute(local_name='windows_view', 'enum': ['32_bit', '64_bit'], default='64_bit'),
         }
     }

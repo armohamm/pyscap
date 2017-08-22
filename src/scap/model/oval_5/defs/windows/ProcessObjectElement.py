@@ -24,6 +24,6 @@ class ProcessObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'process_object',
         'elements': [
-            {'tag_name': 'command_line', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='command_line', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }

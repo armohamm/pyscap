@@ -24,14 +24,14 @@ class UacStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'uac_state',
         'elements': [
-            {'tag_name': 'admin_approval_mode', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'elevation_prompt_admin', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'elevation_prompt_standard', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'detect_installations', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'elevate_signed_executables', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'elevate_uiaccess', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'run_admins_aam', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'secure_desktop', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'virtualize_write_failures', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='admin_approval_mode', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='elevation_prompt_admin', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='elevation_prompt_standard', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='detect_installations', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='elevate_signed_executables', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='elevate_uiaccess', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='run_admins_aam', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='secure_desktop', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='virtualize_write_failures', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

@@ -24,11 +24,11 @@ class ProcessStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'process_state',
         'elements': [
-            {'tag_name': 'command_line', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'ppid', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'priority', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'image_path', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'current_dir', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
+@element(local_name='command_line', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='pid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='ppid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='priority', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='image_path', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='current_dir', cls=scap.model.oval_5.defs.EntityStateType, min=0)
         ],
     }

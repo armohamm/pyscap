@@ -25,28 +25,28 @@ class RegKeyEffectiveRightsStateElement(StateType):
     MODEL_MAP = {
         'tag_name': 'regkeyeffectiverights_state',
         'elements': [
-            {'tag_name': 'hive', 'class': 'EntityStateRegistryHiveType', 'min': 0},
-            {'tag_name': 'key', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'trustee_name', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_delete', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_read_control', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_write_dac', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_write_owner', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'standard_synchronize', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'access_system_security', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_read', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_write', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_execute', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'generic_all', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'key_query_value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'key_set_value', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'key_create_sub_key', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'key_enumerate_sub_keys', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'key_notify', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'key_create_link', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'key_wow64_64key', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'key_wow64_32key', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'key_wow64_res', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0},
-            {'tag_name': 'windows_view', 'class': 'scap.model.oval_5.defs.EntityStateType', 'min': 0, 'value_enum': WINDOWS_VIEW_ENUMERATION},
+@element(local_name='hive', cls=EntityStateRegistryHiveType, min=0)
+@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='trustee_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_delete', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_read_control', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_write_dac', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_write_owner', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='standard_synchronize', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='access_system_security', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_read', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_write', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_execute', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='generic_all', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key_query_value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key_set_value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key_create_sub_key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key_enumerate_sub_keys', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key_notify', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key_create_link', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key_wow64_64key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key_wow64_32key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key_wow64_res', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
         ],
     }

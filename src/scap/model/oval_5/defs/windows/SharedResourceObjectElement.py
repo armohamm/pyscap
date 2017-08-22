@@ -24,6 +24,6 @@ class SharedResourceObjectElement(ObjectType):
     MODEL_MAP = {
         'tag_name': 'sharedresource_object',
         'elements': [
-            {'tag_name': 'netname', 'class': 'scap.model.oval_5.defs.EntityObjectType', 'min': 0},
+@element(local_name='netname', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
         ],
     }
