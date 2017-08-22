@@ -17,8 +17,10 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import UNIX_INTERFACE_TYPE_ENUMERATION
-from scap.model.oval_5.defs.EntityStateType import EntityStateType
+
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 class EntityStateInterfaceType(EntityStateType):

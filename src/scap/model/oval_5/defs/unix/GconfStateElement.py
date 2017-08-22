@@ -17,7 +17,9 @@
 
 import logging
 
-from scap.model.oval_5.defs.unix.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
 
 logger = logging.getLogger(__name__)
 class GconfStateElement(StateType):
