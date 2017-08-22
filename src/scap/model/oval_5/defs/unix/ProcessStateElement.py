@@ -20,18 +20,19 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='command', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='exec_time', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='pid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='ppid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='priority', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='ruid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='scheduling_class', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='start_time', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='tty', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='user_id', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='command', cls=EntityStateType, min=0, max=1)
+@element(local_name='exec_time', cls=EntityStateType, min=0, max=1)
+@element(local_name='pid', cls=EntityStateType, min=0, max=1)
+@element(local_name='ppid', cls=EntityStateType, min=0, max=1)
+@element(local_name='priority', cls=EntityStateType, min=0, max=1)
+@element(local_name='ruid', cls=EntityStateType, min=0, max=1)
+@element(local_name='scheduling_class', cls=EntityStateType, min=0, max=1)
+@element(local_name='start_time', cls=EntityStateType, min=0, max=1)
+@element(local_name='tty', cls=EntityStateType, min=0, max=1)
+@element(local_name='user_id', cls=EntityStateType, min=0, max=1)
 class ProcessStateElement(StateType):
     pass

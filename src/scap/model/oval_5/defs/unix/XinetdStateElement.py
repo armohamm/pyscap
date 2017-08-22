@@ -20,21 +20,23 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from .EntityStateXinetdTypeStatusType import EntityStateXinetdTypeStatusType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='protocol', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='service_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='flags', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='no_access', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='only_from', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='port', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='server', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='server_arguments', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='socket_type', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='protocol', cls=EntityStateType, min=0, max=1)
+@element(local_name='service_name', cls=EntityStateType, min=0, max=1)
+@element(local_name='flags', cls=EntityStateType, min=0, max=1)
+@element(local_name='no_access', cls=EntityStateType, min=0, max=1)
+@element(local_name='only_from', cls=EntityStateType, min=0, max=1)
+@element(local_name='port', cls=EntityStateType, min=0, max=1)
+@element(local_name='server', cls=EntityStateType, min=0, max=1)
+@element(local_name='server_arguments', cls=EntityStateType, min=0, max=1)
+@element(local_name='socket_type', cls=EntityStateType, min=0, max=1)
 @element(local_name='type', cls=EntityStateXinetdTypeStatusType, min=0, max=1)
-@element(local_name='user', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='wait', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='disabled', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='user', cls=EntityStateType, min=0, max=1)
+@element(local_name='wait', cls=EntityStateType, min=0, max=1)
+@element(local_name='disabled', cls=EntityStateType, min=0, max=1)
 class XinetdStateElement(StateType):
     pass

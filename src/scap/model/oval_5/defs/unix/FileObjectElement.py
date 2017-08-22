@@ -20,12 +20,14 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from .FileBehaviors import FileBehaviors
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
 @element(local_name='behaviors', cls=FileBehaviors, min=0, max=1)
-@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-@element(local_name='path', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-@element(local_name='filename', cls=scap.model.oval_5.defs.EntityObjectType, 'nillable': True, min=0)
+@element(local_name='filepath', cls=EntityObjectType, min=0)
+@element(local_name='path', cls=EntityObjectType, min=0)
+@element(local_name='filename', cls=EntityObjectType, nillable=True, min=0)
 class FileObjectElement(ObjectType):
     pass

@@ -22,18 +22,20 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from .EntityStateEncryptMethodType import EntityStateEncryptMethodType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='username', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='password', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='username', cls=EntityStateType, min=0, max=1)
+@element(local_name='password', cls=EntityStateType, min=0, max=1)
 @element(local_name='chg_lst', cls=EntityStateType, min=0, max=1)
 @element(local_name='chg_allow', cls=EntityStateType, min=0, max=1)
 @element(local_name='chg_req', cls=EntityStateType, min=0, max=1)
 @element(local_name='exp_warn', cls=EntityStateType, min=0, max=1)
 @element(local_name='exp_inact', cls=EntityStateType, min=0, max=1)
 @element(local_name='exp_date', cls=EntityStateType, min=0, max=1)
-@element(local_name='flag', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='flag', cls=EntityStateType, min=0, max=1)
 @element(local_name='encrypt_method', cls=EntityStateEncryptMethodType, min=0, max=1)
 class ShadowStateElement(StateType):
     pass

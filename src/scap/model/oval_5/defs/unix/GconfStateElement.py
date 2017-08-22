@@ -20,16 +20,18 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from .EntityStateGconfTypeType import EntityStateGconfTypeType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='source', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='key', cls=EntityStateType, min=0, max=1)
+@element(local_name='source', cls=EntityStateType, min=0, max=1)
 @element(local_name='type', cls=EntityStateGconfTypeType, min=0, max=1)
-@element(local_name='is_writable', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='mod_user', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='mod_time', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='is_default', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='is_writable', cls=EntityStateType, min=0, max=1)
+@element(local_name='mod_user', cls=EntityStateType, min=0, max=1)
+@element(local_name='mod_time', cls=EntityStateType, min=0, max=1)
+@element(local_name='is_default', cls=EntityStateType, min=0, max=1)
+@element(local_name='value', cls=EntityStateType, min=0, max=1)
 class GconfStateElement(StateType):
     pass

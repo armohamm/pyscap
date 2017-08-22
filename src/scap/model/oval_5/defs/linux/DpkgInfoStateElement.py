@@ -28,11 +28,11 @@ from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='name', cls=EntityStateType', 'min': 0, 'max': None},
-@element(local_name='arch', cls=EntityStateType', 'min': 0, 'max': None},
-@element(local_name='epoch', cls=EpochElement', 'min': 0, 'max': None},
-@element(local_name='release', cls=ReleaseElement', 'min': 0, 'max': None},
-@element(local_name='version', cls=VersionElement', 'min': 0, 'max': None},
-@element(local_name='evr', cls=DpkgInfoStateEvrElement', 'min': 0, 'max': None},
+@element(local_name='name', cls=EntityStateType, min=0, max=None)
+@element(local_name='arch', cls=EntityStateType, min=0, max=None)
+@element(local_name='epoch', cls=EpochElement, min=0, max=None)
+@element(local_name='release', cls=ReleaseElement, min=0, max=None)
+@element(local_name='version', cls=VersionElement, min=0, max=None)
+@element(local_name='evr', cls=DpkgInfoStateEvrElement, min=0, max=None)
 class DpkgInfoStateElement(StateType):
     pass

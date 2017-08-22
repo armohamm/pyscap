@@ -20,15 +20,17 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from .EntityStateInterfaceType import EntityStateInterfaceType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='name', cls=EntityStateType, min=0, max=1)
 @element(local_name='type', cls=EntityStateInterfaceType, min=0, max=1)
-@element(local_name='hardware_addr', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='inet_addr', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='broadcast_addr', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='netmask', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='flag', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='hardware_addr', cls=EntityStateType, min=0, max=1)
+@element(local_name='inet_addr', cls=EntityStateType, min=0, max=1)
+@element(local_name='broadcast_addr', cls=EntityStateType, min=0, max=1)
+@element(local_name='netmask', cls=EntityStateType, min=0, max=1)
+@element(local_name='flag', cls=EntityStateType, min=0, max=1)
 class InterfaceStateElement(StateType):
     pass

@@ -20,16 +20,17 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='username', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='password', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='username', cls=EntityStateType, min=0, max=1)
+@element(local_name='password', cls=EntityStateType, min=0, max=1)
 @element(local_name='user_id', cls=EntityStateType, min=0, max=1)
 @element(local_name='group_id', cls=EntityStateType, min=0, max=1)
-@element(local_name='gcos', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='home_dir', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='login_shell', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='last_login', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='gcos', cls=EntityStateType, min=0, max=1)
+@element(local_name='home_dir', cls=EntityStateType, min=0, max=1)
+@element(local_name='login_shell', cls=EntityStateType, min=0, max=1)
+@element(local_name='last_login', cls=EntityStateType, min=0, max=1)
 class PasswordStateElement(StateType):
     pass

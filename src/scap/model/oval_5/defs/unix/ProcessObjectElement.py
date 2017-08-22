@@ -20,9 +20,10 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='command', cls=scap.model.oval_5.defs.EntityObjectType')
+@element(local_name='command', cls=EntityObjectType)
 class ProcessObjectElement(ObjectType):
     pass

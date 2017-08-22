@@ -20,10 +20,11 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='key', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-@element(local_name='source', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0)
+@element(local_name='key', cls=EntityObjectType, min=0)
+@element(local_name='source', cls=EntityObjectType, nillable=True, min=0)
 class GconfObjectElement(ObjectType):
     pass

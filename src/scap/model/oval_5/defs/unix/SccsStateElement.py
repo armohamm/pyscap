@@ -20,18 +20,19 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='path', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='filename', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='module_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='module_type', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='release', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='level', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='branch', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='sequence', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='what_string', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='filepath', cls=EntityStateType, min=0, max=1)
+@element(local_name='path', cls=EntityStateType, min=0, max=1)
+@element(local_name='filename', cls=EntityStateType, min=0, max=1)
+@element(local_name='module_name', cls=EntityStateType, min=0, max=1)
+@element(local_name='module_type', cls=EntityStateType, min=0, max=1)
+@element(local_name='release', cls=EntityStateType, min=0, max=1)
+@element(local_name='level', cls=EntityStateType, min=0, max=1)
+@element(local_name='branch', cls=EntityStateType, min=0, max=1)
+@element(local_name='sequence', cls=EntityStateType, min=0, max=1)
+@element(local_name='what_string', cls=EntityStateType, min=0, max=1)
 class SccsStateElement(StateType):
     pass

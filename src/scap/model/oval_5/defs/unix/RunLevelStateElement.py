@@ -20,12 +20,13 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='service_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='runlevel', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='start', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='kill', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='service_name', cls=EntityStateType, min=0, max=1)
+@element(local_name='runlevel', cls=EntityStateType, min=0, max=1)
+@element(local_name='start', cls=EntityStateType, min=0, max=1)
+@element(local_name='kill', cls=EntityStateType, min=0, max=1)
 class RunLevelStateElement(StateType):
     pass

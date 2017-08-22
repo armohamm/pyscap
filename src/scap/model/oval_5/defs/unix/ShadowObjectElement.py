@@ -22,10 +22,11 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='username', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
+@element(local_name='username', cls=EntityObjectType, min=0)
 class ShadowObjectElement(ObjectType):
     pass
 

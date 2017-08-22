@@ -20,23 +20,25 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from .EntityStateCapabilityType import EntityStateCapabilityType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='command_line', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='exec_time', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='pid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='ppid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='priority', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='ruid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='scheduling_class', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='start_time', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='tty', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='user_id', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='exec_shield', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='loginuid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='command_line', cls=EntityStateType, min=0, max=1)
+@element(local_name='exec_time', cls=EntityStateType, min=0, max=1)
+@element(local_name='pid', cls=EntityStateType, min=0, max=1)
+@element(local_name='ppid', cls=EntityStateType, min=0, max=1)
+@element(local_name='priority', cls=EntityStateType, min=0, max=1)
+@element(local_name='ruid', cls=EntityStateType, min=0, max=1)
+@element(local_name='scheduling_class', cls=EntityStateType, min=0, max=1)
+@element(local_name='start_time', cls=EntityStateType, min=0, max=1)
+@element(local_name='tty', cls=EntityStateType, min=0, max=1)
+@element(local_name='user_id', cls=EntityStateType, min=0, max=1)
+@element(local_name='exec_shield', cls=EntityStateType, min=0, max=1)
+@element(local_name='loginuid', cls=EntityStateType, min=0, max=1)
 @element(local_name='posix_capability', cls=EntityStateCapabilityType, min=0, max=1)
-@element(local_name='selinux_domain_label', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='session_id', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='selinux_domain_label', cls=EntityStateType, min=0, max=1)
+@element(local_name='session_id', cls=EntityStateType, min=0, max=1)
 class Process58StateElement(StateType):
     pass

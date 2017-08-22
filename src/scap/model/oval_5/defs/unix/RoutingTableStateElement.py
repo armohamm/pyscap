@@ -20,12 +20,14 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from .EntityStateRoutingTableFlagsType import EntityStateRoutingTableFlagsType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='destination', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='gateway', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='destination', cls=EntityStateType, min=0, max=1)
+@element(local_name='gateway', cls=EntityStateType, min=0, max=1)
 @element(local_name='flags', cls=EntityStateRoutingTableFlagsType, min=0, max=1)
-@element(local_name='interface_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='interface_name', cls=EntityStateType, min=0, max=1)
 class RoutingTableStateElement(StateType):
     pass

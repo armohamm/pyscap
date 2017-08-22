@@ -20,14 +20,15 @@ import logging
 from scap.model.decorators import *
 
 from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='machine_class', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='node_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='os_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='os_release', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='os_version', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='processor_type', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='machine_class', cls=EntityStateType, min=0, max=1)
+@element(local_name='node_name', cls=EntityStateType, min=0, max=1)
+@element(local_name='os_name', cls=EntityStateType, min=0, max=1)
+@element(local_name='os_release', cls=EntityStateType, min=0, max=1)
+@element(local_name='os_version', cls=EntityStateType, min=0, max=1)
+@element(local_name='processor_type', cls=EntityStateType, min=0, max=1)
 class UnameStateElement(StateType):
     pass
