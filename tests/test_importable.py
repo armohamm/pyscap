@@ -16,14 +16,15 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import importlib
+import logging
 import pkgutil
 import sys
 
 import scap
 
 def iter_packages(pkg):
-    if sys.platform != 'win32' and 'windows' in pkg.__name__.lower():
-        # windows modules frequently fail to import on non-windows
+    if sys.platform != 'win32' and 'collector.windows' in pkg.__name__.lower():
+        # windows collector modules usually fail to import on non-windows
         return
 
     for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
