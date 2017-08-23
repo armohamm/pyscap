@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemType import EntityItemType
+from ..EntityItemIPAddressStringType import EntityItemIPAddressStringType
 
 logger = logging.getLogger(__name__)
 
@@ -29,11 +30,11 @@ class InetListeningServerItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
 @element(local_name='protocol', cls=EntityItemType, min=0, max=1)
-@element(local_name='local_address', cls=scap.model.oval_5.sc.EntityItemIPAddressStringType, min=0, max=1)
+@element(local_name='local_address', cls=EntityItemIPAddressStringType, min=0, max=1)
 @element(local_name='local_port', cls=EntityItemType, min=0, max=1)
 @element(local_name='local_full_address', cls=EntityItemType, min=0, max=1)
 @element(local_name='program_name', cls=EntityItemType, min=0, max=1)
-@element(local_name='foreign_address', cls=scap.model.oval_5.sc.EntityItemIPAddressStringType, min=0, max=1)
+@element(local_name='foreign_address', cls=EntityItemIPAddressStringType, min=0, max=1)
 @element(local_name='foreign_port', cls=EntityItemType, min=0, max=1)
 @element(local_name='foreign_full_address', cls=EntityItemType, min=0, max=1)
 @element(local_name='pid', cls=EntityItemType, min=0, max=1)

@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemType import EntityItemType
+from ..EntityItemIPAddressStringType import EntityItemIPAddressStringType
 
 logger = logging.getLogger(__name__)
 
@@ -31,7 +32,7 @@ class XinetdItemElement(ItemType):
 @element(local_name='service_name', min=0, cls=EntityItemType, max=1)
             {list='flagss', 'tag_name': 'flags', min=0, cls=EntityItemType, max=None},
             {list='no_accesss', 'tag_name': 'no_access', min=0, cls=EntityItemType, max=None},
-            {list='only_froms', 'tag_name': 'only_from', min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressStringType, max=None},
+            {list='only_froms', 'tag_name': 'only_from', min=0, cls=EntityItemIPAddressStringType, max=None},
 @element(local_name='port', min=0, cls=EntityItemType, max=1)
 @element(local_name='server', min=0, cls=EntityItemType, max=1)
 @element(local_name='server_arguments', min=0, cls=EntityItemType, max=1)
