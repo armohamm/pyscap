@@ -20,7 +20,8 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.oval_5 import DATABASE_ENGINE_ENUMERATION
-from scap.model.oval_5.sc.EntityItemType import EntityItemType
+
+from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
