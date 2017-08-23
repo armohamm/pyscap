@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
 class SchemaVersionPattern(StringType):
     # <xsd:pattern value="[0-9]+\.[0-9]+(\.[0-9]+)?(:[0-9]+\.[0-9]+(\.[0-9]+)?)?"/>
     def get_value_pattern(self):

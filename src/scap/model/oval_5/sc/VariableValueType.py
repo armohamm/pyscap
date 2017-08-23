@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
+
 class VariableValueType(AnySimpleType):
     MODEL_MAP = {
         'attributes': {

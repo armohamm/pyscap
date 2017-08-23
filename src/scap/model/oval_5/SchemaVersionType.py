@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.oval_5.SchemaVersionPattern import SchemaVersionPattern
 
 logger = logging.getLogger(__name__)
+
 class SchemaVersionType(SchemaVersionPattern):
     MODEL_MAP = {
         'attributes': {

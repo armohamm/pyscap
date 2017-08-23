@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
 class StateIdPattern(StringType):
     #<xsd:pattern value="oval:[A-Za-z0-9_\-\.]+:ste:[1-9][0-9]*"/>
     def get_value_pattern(self):

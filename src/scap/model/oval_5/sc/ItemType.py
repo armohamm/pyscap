@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from scap.model.oval_5 import EXISTENCE_RESULT_ENUMERATION
 
 logger = logging.getLogger(__name__)
+
 class ItemType(Model):
     MODEL_MAP = {
         'elements': [

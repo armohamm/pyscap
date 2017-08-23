@@ -23,6 +23,7 @@ from scap.model.xs.AnySimpleType import AnySimpleType
 from scap.model.oval_5 import DATATYPE_ENUMERATION, EXISTENCE_RESULT_ENUMERATION
 
 logger = logging.getLogger(__name__)
+
 class EntityItemFieldType(AnySimpleType):
     MODEL_MAP = {
         'attributes': {

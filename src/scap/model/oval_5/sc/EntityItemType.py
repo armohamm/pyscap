@@ -27,6 +27,7 @@ from scap.model.xs.IntegerType import IntegerType
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
 class EntityItemType(Model):
     MODEL_MAP = {
         'elements': [

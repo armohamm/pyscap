@@ -23,6 +23,7 @@ from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
+
 class EntityItemWindowsViewType(EntityItemType):
     MODEL_MAP = {
         'elements': [

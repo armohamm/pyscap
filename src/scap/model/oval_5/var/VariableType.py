@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from scap.model.oval_5 import SIMPLE_DATATYPE_ENUMERATION
 
 logger = logging.getLogger(__name__)
+
 class VariableType(Model):
     MODEL_MAP = {
         'elements': [

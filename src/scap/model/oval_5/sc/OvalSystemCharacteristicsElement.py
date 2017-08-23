@@ -21,6 +21,7 @@ from scap.Model import Model
 from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
+
 class OvalDefinitionsElement(Model):
     MODEL_MAP = {
         'tag_name' : 'oval_system_characteristics',

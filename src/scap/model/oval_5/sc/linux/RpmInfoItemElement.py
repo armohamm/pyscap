@@ -22,6 +22,7 @@ from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
 logger = logging.getLogger(__name__)
+
 class RpmInfoItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
