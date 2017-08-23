@@ -20,24 +20,26 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class SharedResourceItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='netname', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='netname', max=1, min=0, cls=EntityItemType)
 @element(local_name='shared_type', max=1, min=0, cls=EntityItemSharedResourceTypeType)
-@element(local_name='max_uses', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='current_uses', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='local_path', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='access_read_permission', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='access_write_permission', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='access_create_permission', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='access_exec_permission', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='access_delete_permission', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='access_atrib_permission', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='access_perm_permission', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='access_all_permission', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='max_uses', max=1, min=0, cls=EntityItemType)
+@element(local_name='current_uses', max=1, min=0, cls=EntityItemType)
+@element(local_name='local_path', max=1, min=0, cls=EntityItemType)
+@element(local_name='access_read_permission', max=1, min=0, cls=EntityItemType)
+@element(local_name='access_write_permission', max=1, min=0, cls=EntityItemType)
+@element(local_name='access_create_permission', max=1, min=0, cls=EntityItemType)
+@element(local_name='access_exec_permission', max=1, min=0, cls=EntityItemType)
+@element(local_name='access_delete_permission', max=1, min=0, cls=EntityItemType)
+@element(local_name='access_atrib_permission', max=1, min=0, cls=EntityItemType)
+@element(local_name='access_perm_permission', max=1, min=0, cls=EntityItemType)
+@element(local_name='access_all_permission', max=1, min=0, cls=EntityItemType)
         ],
         'attributes': {
         },

@@ -20,13 +20,15 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class UserRightItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
 @element(local_name='userright', max=1, min=0, cls=EntityItemUserRightType)
-@element(local_name='trustee_sid', max=None, list='trustee_sids', min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='trustee_sid', max=None, list='trustee_sids', min=0, cls=EntityItemType)
         ],
         'attributes': {
         },

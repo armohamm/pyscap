@@ -20,26 +20,28 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class Process58ItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='command_line', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='exec_time', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='pid', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='ppid', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='priority', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='ruid', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='scheduling_class', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='start_time', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='tty', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='user_id', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='exec_shield', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='loginuid', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='command_line', min=0, cls=EntityItemType, max=1)
+@element(local_name='exec_time', min=0, cls=EntityItemType, max=1)
+@element(local_name='pid', min=0, cls=EntityItemType, max=1)
+@element(local_name='ppid', min=0, cls=EntityItemType, max=1)
+@element(local_name='priority', min=0, cls=EntityItemType, max=1)
+@element(local_name='ruid', min=0, cls=EntityItemType, max=1)
+@element(local_name='scheduling_class', min=0, cls=EntityItemType, max=1)
+@element(local_name='start_time', min=0, cls=EntityItemType, max=1)
+@element(local_name='tty', min=0, cls=EntityItemType, max=1)
+@element(local_name='user_id', min=0, cls=EntityItemType, max=1)
+@element(local_name='exec_shield', min=0, cls=EntityItemType, max=1)
+@element(local_name='loginuid', min=0, cls=EntityItemType, max=1)
             {list='posix_capabilitys', 'tag_name': 'posix_capability', min=0, cls=EntityItemCapabilityType, max=None},
-            {list='selinux_domain_labels', 'tag_name': 'selinux_domain_label', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=None},
-@element(local_name='session_id', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+            {list='selinux_domain_labels', 'tag_name': 'selinux_domain_label', min=0, cls=EntityItemType, max=None},
+@element(local_name='session_id', min=0, cls=EntityItemType, max=1)
         ],
         'attributes': {
         },

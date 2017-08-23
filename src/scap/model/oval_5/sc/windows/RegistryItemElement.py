@@ -20,17 +20,19 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class RegistryItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
 @element(local_name='hive', max=1, min=0, cls=EntityItemRegistryHiveType)
-@element(local_name='key', max=1, 'nillable': True, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='name', max=1, 'nillable': True, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='last_write_time', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='key', max=1, 'nillable': True, min=0, cls=EntityItemType)
+@element(local_name='name', max=1, 'nillable': True, min=0, cls=EntityItemType)
+@element(local_name='last_write_time', max=1, min=0, cls=EntityItemType)
 @element(local_name='type', max=1, min=0, cls=EntityItemRegistryTypeType)
-@element(local_name='value', max=None, list='values', min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='value', max=None, list='values', min=0, cls=EntityItemType)
 @element(local_name='windows_view', max=1, min=0, cls=EntityItemWindowsViewType)
         ],
         'attributes': {

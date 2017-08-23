@@ -20,15 +20,17 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class RunLevelItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='service_name', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='runlevel', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='start', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='kill', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='service_name', min=0, cls=EntityItemType, max=1)
+@element(local_name='runlevel', min=0, cls=EntityItemType, max=1)
+@element(local_name='start', min=0, cls=EntityItemType, max=1)
+@element(local_name='kill', min=0, cls=EntityItemType, max=1)
         ],
         'attributes': {
         },

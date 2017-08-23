@@ -20,37 +20,39 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class VolumeItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='rootpath', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_system', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='name', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='rootpath', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_system', max=1, min=0, cls=EntityItemType)
+@element(local_name='name', max=1, min=0, cls=EntityItemType)
 @element(local_name='drive_type', max=1, min=0, cls=EntityItemDriveTypeType)
-@element(local_name='volume_max_component_length', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='serial_number', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_case_sensitive_search', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_case_preserved_names', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_unicode_on_disk', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_persistent_acls', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_file_compression', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_volume_quotas', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_supports_sparse_files', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_supports_reparse_points', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_supports_remote_storage', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_volume_is_compressed', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_supports_object_ids', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_supports_encryption', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_named_streams', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_read_only_volume', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_sequential_write_once', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_supports_transactions', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_supports_hard_links', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_supports_extended_attributes', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_supports_open_by_file_id', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='file_supports_usn_journal', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='volume_max_component_length', max=1, min=0, cls=EntityItemType)
+@element(local_name='serial_number', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_case_sensitive_search', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_case_preserved_names', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_unicode_on_disk', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_persistent_acls', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_file_compression', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_volume_quotas', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_supports_sparse_files', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_supports_reparse_points', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_supports_remote_storage', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_volume_is_compressed', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_supports_object_ids', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_supports_encryption', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_named_streams', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_read_only_volume', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_sequential_write_once', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_supports_transactions', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_supports_hard_links', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_supports_extended_attributes', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_supports_open_by_file_id', max=1, min=0, cls=EntityItemType)
+@element(local_name='file_supports_usn_journal', max=1, min=0, cls=EntityItemType)
         ],
         'attributes': {
         },

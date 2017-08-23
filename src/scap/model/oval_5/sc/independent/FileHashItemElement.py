@@ -21,16 +21,18 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class FileHashItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='filepath', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='path', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='filename', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='md5', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='sha1', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='filepath', cls=EntityItemType, min=0, max=1)
+@element(local_name='path', cls=EntityItemType, min=0, max=1)
+@element(local_name='filename', cls=EntityItemType, min=0, max=1)
+@element(local_name='md5', cls=EntityItemType, min=0, max=1)
+@element(local_name='sha1', cls=EntityItemType, min=0, max=1)
 @element(local_name='windows_view', cls=EntityItemWindowsViewType, min=0)
         ],
         'attributes': {

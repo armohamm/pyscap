@@ -20,23 +20,25 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class ServiceItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='service_name', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='display_name', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='description', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='service_name', max=1, min=0, cls=EntityItemType)
+@element(local_name='display_name', max=1, min=0, cls=EntityItemType)
+@element(local_name='description', max=1, min=0, cls=EntityItemType)
 @element(local_name='service_type', max=None, list='service_types', min=0, cls=EntityItemServiceTypeType)
 @element(local_name='start_type', max=1, min=0, cls=EntityItemServiceStartTypeType)
 @element(local_name='current_state', max=1, min=0, cls=EntityItemServiceCurrentStateType)
 @element(local_name='controls_accepted', max=None, list='controls_accepteds', min=0, cls=EntityItemServiceControlsAcceptedType)
-@element(local_name='start_name', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='path', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='pid', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='service_flag', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='dependencies', max=None, list='dependenciess', min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='start_name', max=1, min=0, cls=EntityItemType)
+@element(local_name='path', max=1, min=0, cls=EntityItemType)
+@element(local_name='pid', max=1, min=0, cls=EntityItemType)
+@element(local_name='service_flag', max=1, min=0, cls=EntityItemType)
+@element(local_name='dependencies', max=None, list='dependenciess', min=0, cls=EntityItemType)
         ],
         'attributes': {
         },

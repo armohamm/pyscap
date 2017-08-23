@@ -21,16 +21,18 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class IfListenersItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='interface_name', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='interface_name', cls=EntityItemType, min=0, max=1)
 @element(local_name='protocol', cls=EntityItemProtocolType, min=0, max=1)
-@element(local_name='hw_address', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='program_name', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='pid', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='user_id', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='hw_address', cls=EntityItemType, min=0, max=1)
+@element(local_name='program_name', cls=EntityItemType, min=0, max=1)
+@element(local_name='pid', cls=EntityItemType, min=0, max=1)
+@element(local_name='user_id', cls=EntityItemType, min=0, max=1)
         ],
     }

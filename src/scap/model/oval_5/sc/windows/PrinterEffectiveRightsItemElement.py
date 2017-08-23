@@ -20,27 +20,29 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class PrinterEffectiveRightsItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='printer_name', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='trustee_sid', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='standard_delete', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='standard_read_control', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='standard_write_dac', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='standard_write_owner', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='standard_synchronize', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='access_system_security', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='generic_read', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='generic_write', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='generic_execute', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='generic_all', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='printer_access_administer', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='printer_access_use', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='job_access_administer', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='job_access_read', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='printer_name', max=1, min=0, cls=EntityItemType)
+@element(local_name='trustee_sid', max=1, min=0, cls=EntityItemType)
+@element(local_name='standard_delete', max=1, min=0, cls=EntityItemType)
+@element(local_name='standard_read_control', max=1, min=0, cls=EntityItemType)
+@element(local_name='standard_write_dac', max=1, min=0, cls=EntityItemType)
+@element(local_name='standard_write_owner', max=1, min=0, cls=EntityItemType)
+@element(local_name='standard_synchronize', max=1, min=0, cls=EntityItemType)
+@element(local_name='access_system_security', max=1, min=0, cls=EntityItemType)
+@element(local_name='generic_read', max=1, min=0, cls=EntityItemType)
+@element(local_name='generic_write', max=1, min=0, cls=EntityItemType)
+@element(local_name='generic_execute', max=1, min=0, cls=EntityItemType)
+@element(local_name='generic_all', max=1, min=0, cls=EntityItemType)
+@element(local_name='printer_access_administer', max=1, min=0, cls=EntityItemType)
+@element(local_name='printer_access_use', max=1, min=0, cls=EntityItemType)
+@element(local_name='job_access_administer', max=1, min=0, cls=EntityItemType)
+@element(local_name='job_access_read', max=1, min=0, cls=EntityItemType)
         ],
         'attributes': {
         },

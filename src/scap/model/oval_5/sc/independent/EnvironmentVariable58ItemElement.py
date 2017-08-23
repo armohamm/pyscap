@@ -21,14 +21,16 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class EnvironmentVariable58ItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='pid', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='name', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='value', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='pid', cls=EntityItemType, min=0, max=1)
+@element(local_name='name', cls=EntityItemType, min=0, max=1)
+@element(local_name='value', cls=EntityItemType, min=0, max=1)
         ],
         'attributes': {
         }

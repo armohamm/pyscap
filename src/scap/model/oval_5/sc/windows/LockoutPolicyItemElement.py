@@ -20,15 +20,17 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class LockoutPolicyItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='force_logoff', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='lockout_duration', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='lockout_observation_window', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='lockout_threshold', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='force_logoff', max=1, min=0, cls=EntityItemType)
+@element(local_name='lockout_duration', max=1, min=0, cls=EntityItemType)
+@element(local_name='lockout_observation_window', max=1, min=0, cls=EntityItemType)
+@element(local_name='lockout_threshold', max=1, min=0, cls=EntityItemType)
         ],
         'attributes': {
         },

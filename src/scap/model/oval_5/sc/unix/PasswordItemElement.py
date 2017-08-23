@@ -20,19 +20,21 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class PasswordItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='username', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='password', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='user_id', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='group_id', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='gcos', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='home_dir', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='login_shell', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='last_login', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='username', min=0, cls=EntityItemType, max=1)
+@element(local_name='password', min=0, cls=EntityItemType, max=1)
+@element(local_name='user_id', min=0, cls=EntityItemType, max=1)
+@element(local_name='group_id', min=0, cls=EntityItemType, max=1)
+@element(local_name='gcos', min=0, cls=EntityItemType, max=1)
+@element(local_name='home_dir', min=0, cls=EntityItemType, max=1)
+@element(local_name='login_shell', min=0, cls=EntityItemType, max=1)
+@element(local_name='last_login', min=0, cls=EntityItemType, max=1)
         ],
         'attributes': {
         },

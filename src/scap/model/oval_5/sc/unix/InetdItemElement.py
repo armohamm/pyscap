@@ -20,17 +20,19 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class InetdItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='protocol', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='service_name', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='server_program', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='server_arguments', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='protocol', min=0, cls=EntityItemType, max=1)
+@element(local_name='service_name', min=0, cls=EntityItemType, max=1)
+@element(local_name='server_program', min=0, cls=EntityItemType, max=1)
+@element(local_name='server_arguments', min=0, cls=EntityItemType, max=1)
 @element(local_name='endpoint_type', min=0, cls=EntityItemEndpointType, max=1)
-@element(local_name='exec_as_user', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='exec_as_user', min=0, cls=EntityItemType, max=1)
 @element(local_name='wait_status', min=0, cls=EntityItemWaitStatusType, max=1)
         ],
         'attributes': {

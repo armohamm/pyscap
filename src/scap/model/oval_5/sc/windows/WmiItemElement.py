@@ -20,14 +20,16 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class WmiItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='namespace', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='wql', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='result', max=None, list='results', min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='namespace', max=1, min=0, cls=EntityItemType)
+@element(local_name='wql', max=1, min=0, cls=EntityItemType)
+@element(local_name='result', max=None, list='results', min=0, cls=EntityItemType)
         ],
         'attributes': {
         },

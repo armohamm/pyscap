@@ -20,13 +20,15 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class SymlinkItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='filepath', min=1, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='canonical_path', min=1, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='filepath', min=1, cls=EntityItemType, max=1)
+@element(local_name='canonical_path', min=1, cls=EntityItemType, max=1)
         ],
         'attributes': {
         },

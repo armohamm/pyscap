@@ -20,29 +20,31 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class FileItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='filepath', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='path', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='filename', max=1, 'nillable': True, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='owner', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='size', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='a_time', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='c_time', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='m_time', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='ms_checksum', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='version', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='filepath', max=1, min=0, cls=EntityItemType)
+@element(local_name='path', max=1, min=0, cls=EntityItemType)
+@element(local_name='filename', max=1, 'nillable': True, min=0, cls=EntityItemType)
+@element(local_name='owner', max=1, min=0, cls=EntityItemType)
+@element(local_name='size', max=1, min=0, cls=EntityItemType)
+@element(local_name='a_time', max=1, min=0, cls=EntityItemType)
+@element(local_name='c_time', max=1, min=0, cls=EntityItemType)
+@element(local_name='m_time', max=1, min=0, cls=EntityItemType)
+@element(local_name='ms_checksum', max=1, min=0, cls=EntityItemType)
+@element(local_name='version', max=1, min=0, cls=EntityItemType)
 @element(local_name='type', max=1, min=0, cls=EntityItemFileTypeType)
-@element(local_name='development_class', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='company', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='internal_name', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='language', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='original_filename', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='product_name', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='product_version', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='development_class', max=1, min=0, cls=EntityItemType)
+@element(local_name='company', max=1, min=0, cls=EntityItemType)
+@element(local_name='internal_name', max=1, min=0, cls=EntityItemType)
+@element(local_name='language', max=1, min=0, cls=EntityItemType)
+@element(local_name='original_filename', max=1, min=0, cls=EntityItemType)
+@element(local_name='product_name', max=1, min=0, cls=EntityItemType)
+@element(local_name='product_version', max=1, min=0, cls=EntityItemType)
 @element(local_name='windows_view', max=1, min=0, cls=EntityItemWindowsViewType)
         ],
         'attributes': {

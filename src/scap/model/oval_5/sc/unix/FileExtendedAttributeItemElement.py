@@ -20,16 +20,18 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class FileExtendedAttributeItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='filepath', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='path', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='filename', min=0, cls=scap.model.oval_5.sc.EntityItemType, 'nillable': True, max=1)
-@element(local_name='attribute_name', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='value', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='filepath', min=0, cls=EntityItemType, max=1)
+@element(local_name='path', min=0, cls=EntityItemType, max=1)
+@element(local_name='filename', min=0, cls=EntityItemType, 'nillable': True, max=1)
+@element(local_name='attribute_name', min=0, cls=EntityItemType, max=1)
+@element(local_name='value', min=0, cls=EntityItemType, max=1)
         ],
         'attributes': {
         },

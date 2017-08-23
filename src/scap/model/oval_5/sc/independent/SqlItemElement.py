@@ -21,16 +21,18 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class SqlItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
 @element(local_name='engine', cls=EntityItemEngineType, min=0, max=1)
-@element(local_name='version', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
-@element(local_name='connection_string', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
-@element(local_name='sql', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='result', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
+@element(local_name='version', cls=EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='connection_string', cls=EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='sql', cls=EntityItemType, min=0, max=1)
+@element(local_name='result', cls=EntityItemType, min=0, max=None)
         ],
         'attributes': {
         }

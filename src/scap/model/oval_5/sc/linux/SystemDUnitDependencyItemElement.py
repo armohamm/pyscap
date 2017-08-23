@@ -21,12 +21,14 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class SystemDUnitDependencyItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='unit', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='dependency', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
+@element(local_name='unit', cls=EntityItemType, min=0, max=1)
+@element(local_name='dependency', cls=EntityItemType, min=0, max=None)
         ],
     }

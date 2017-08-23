@@ -20,13 +20,15 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class WuaUpdateSearcherItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='search_criteria', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='update_id', max=None, list='update_ids', min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='search_criteria', max=1, min=0, cls=EntityItemType)
+@element(local_name='update_id', max=None, list='update_ids', min=0, cls=EntityItemType)
         ],
         'attributes': {
         },

@@ -21,18 +21,20 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class PartitionItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='mount_point', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='device', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='uuid', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='fs_type', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='mount_options', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='total_space', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='space_used', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='space_left', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='mount_point', cls=EntityItemType, min=0, max=1)
+@element(local_name='device', cls=EntityItemType, min=0, max=1)
+@element(local_name='uuid', cls=EntityItemType, min=0, max=1)
+@element(local_name='fs_type', cls=EntityItemType, min=0, max=1)
+@element(local_name='mount_options', cls=EntityItemType, min=0, max=1)
+@element(local_name='total_space', cls=EntityItemType, min=0, max=1)
+@element(local_name='space_used', cls=EntityItemType, min=0, max=1)
+@element(local_name='space_left', cls=EntityItemType, min=0, max=1)
         ],
     }

@@ -20,20 +20,22 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class UacItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='admin_approval_mode', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='elevation_prompt_admin', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='elevation_prompt_standard', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='detect_installations', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='elevate_signed_executables', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='elevate_uiaccess', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='run_admins_aam', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='secure_desktop', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='virtualize_write_failures', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='admin_approval_mode', max=1, min=0, cls=EntityItemType)
+@element(local_name='elevation_prompt_admin', max=1, min=0, cls=EntityItemType)
+@element(local_name='elevation_prompt_standard', max=1, min=0, cls=EntityItemType)
+@element(local_name='detect_installations', max=1, min=0, cls=EntityItemType)
+@element(local_name='elevate_signed_executables', max=1, min=0, cls=EntityItemType)
+@element(local_name='elevate_uiaccess', max=1, min=0, cls=EntityItemType)
+@element(local_name='run_admins_aam', max=1, min=0, cls=EntityItemType)
+@element(local_name='secure_desktop', max=1, min=0, cls=EntityItemType)
+@element(local_name='virtualize_write_failures', max=1, min=0, cls=EntityItemType)
         ],
         'attributes': {
         },

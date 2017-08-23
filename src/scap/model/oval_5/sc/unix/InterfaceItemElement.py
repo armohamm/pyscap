@@ -20,18 +20,20 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class InterfaceItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='name', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='name', min=0, cls=EntityItemType, max=1)
 @element(local_name='type', min=0, cls=EntityItemInterfaceType, max=1)
-@element(local_name='hardware_addr', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='hardware_addr', min=0, cls=EntityItemType, max=1)
 @element(local_name='inet_addr', min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressStringType, max=1)
 @element(local_name='broadcast_addr', min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressStringType, max=1)
 @element(local_name='netmask', min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressStringType, max=1)
-            {list='flags', 'tag_name': 'flag', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=None},
+            {list='flags', 'tag_name': 'flag', min=0, cls=EntityItemType, max=None},
         ],
         'attributes': {
         },

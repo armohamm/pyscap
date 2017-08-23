@@ -21,18 +21,20 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class RpmVerifyFileItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='name', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='epoch', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='name', cls=EntityItemType, min=0, max=1)
+@element(local_name='epoch', cls=EntityItemType, min=0, max=1)
 @element(local_name='version', cls=EntityItemType, min=0, max=1)
 @element(local_name='release', cls=EntityItemType, min=0, max=1)
-@element(local_name='arch', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='filepath', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='extended_name', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='arch', cls=EntityItemType, min=0, max=1)
+@element(local_name='filepath', cls=EntityItemType, min=0, max=1)
+@element(local_name='extended_name', cls=EntityItemType, min=0, max=1)
 @element(local_name='size_differs', cls=EntityItemRpmVerifyResultType, min=0, max=1)
 @element(local_name='mode_differs', cls=EntityItemRpmVerifyResultType, min=0, max=1)
 @element(local_name='md5_differs', cls=EntityItemRpmVerifyResultType, min=0, max=1)
@@ -43,10 +45,10 @@ class RpmVerifyFileItemElement(ItemType):
 @element(local_name='group_differs', cls=EntityItemRpmVerifyResultType, min=0, max=1)
 @element(local_name='mtime_differs', cls=EntityItemRpmVerifyResultType, min=0, max=1)
 @element(local_name='capabilities_differ', cls=EntityItemRpmVerifyResultType, min=0, max=1)
-@element(local_name='configuration_file', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='documentation_file', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='ghost_file', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='license_file', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='readme_file', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='configuration_file', cls=EntityItemType, min=0, max=1)
+@element(local_name='documentation_file', cls=EntityItemType, min=0, max=1)
+@element(local_name='ghost_file', cls=EntityItemType, min=0, max=1)
+@element(local_name='license_file', cls=EntityItemType, min=0, max=1)
+@element(local_name='readme_file', cls=EntityItemType, min=0, max=1)
         ],
     }

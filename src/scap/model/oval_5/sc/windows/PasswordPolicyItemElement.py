@@ -20,17 +20,19 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class PasswordPolicyItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='max_passwd_age', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='min_passwd_age', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='min_passwd_len', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='password_hist_len', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='password_complexity', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
-@element(local_name='reversible_encryption', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='max_passwd_age', max=1, min=0, cls=EntityItemType)
+@element(local_name='min_passwd_age', max=1, min=0, cls=EntityItemType)
+@element(local_name='min_passwd_len', max=1, min=0, cls=EntityItemType)
+@element(local_name='password_hist_len', max=1, min=0, cls=EntityItemType)
+@element(local_name='password_complexity', max=1, min=0, cls=EntityItemType)
+@element(local_name='reversible_encryption', max=1, min=0, cls=EntityItemType)
         ],
         'attributes': {
         },

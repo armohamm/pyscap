@@ -20,13 +20,15 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class DnsCacheItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='domain_name', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
-@element(local_name='ttl', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='domain_name', min=0, cls=EntityItemType, max=1)
+@element(local_name='ttl', min=0, cls=EntityItemType, max=1)
             {list='ip_addresss', 'tag_name': 'ip_address', min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressStringType, max=None},
         ],
         'attributes': {

@@ -21,17 +21,19 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from ..EntityItemType import EntityItemType
+
 logger = logging.getLogger(__name__)
 
 class Ldap57ItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-@element(local_name='suffix', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
-@element(local_name='relative_dn', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
-@element(local_name='attribute', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
-@element(local_name='object_class', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='suffix', cls=EntityItemType, min=0, max=1)
+@element(local_name='relative_dn', cls=EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='attribute', cls=EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='object_class', cls=EntityItemType, min=0, max=1)
 @element(local_name='ldaptype', cls=EntityItemLdaptypeType, min=0, max=1)
-@element(local_name='value', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
+@element(local_name='value', cls=EntityItemType, min=0, max=None)
         ],
         'attributes': {
         }
