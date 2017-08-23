@@ -20,11 +20,13 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 
+from ..ItemIdPattern import ItemIdPattern
+
 logger = logging.getLogger(__name__)
 
 class ReferenceType(Model):
     MODEL_MAP = {
         'attributes': {
-@attribute(local_name='item_ref', type=scap.model.oval_5.ItemIdPattern, required=True)
+@attribute(local_name='item_ref', type=ItemIdPattern, required=True)
         }
     }

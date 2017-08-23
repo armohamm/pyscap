@@ -19,17 +19,20 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
-from scap.model.oval_5 import EXISTENCE_RESULT_ENUMERATION
+
+from .. import EXISTENCE_RESULT_ENUMERATION
+from ..MessageType import MessageType
+from ..ItemIdPattern import ItemIdPattern
 
 logger = logging.getLogger(__name__)
 
 class ItemType(Model):
     MODEL_MAP = {
         'elements': [
-@element(local_name='message', list='messages', cls=scap.model.oval_5.MessageType, min=0, max=50)
+@element(local_name='message', list='messages', cls=MessageType, min=0, max=50)
         ],
         'attributes': {
-@attribute(local_name='id', type=scap.model.oval_5.ItemIdPattern, required=True)
+@attribute(local_name='id', type=ItemIdPattern, required=True)
 @attribute(local_name='status', enum=EXISTENCE_RESULT_ENUMERATION, default='exists')
         }
     }

@@ -21,11 +21,13 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.xs.AnySimpleType import AnySimpleType
 
+from ..VariableIdPattern import VariableIdPattern
+
 logger = logging.getLogger(__name__)
 
 class VariableValueType(AnySimpleType):
     MODEL_MAP = {
         'attributes': {
-@attribute(local_name='variable_id', type=scap.model.oval_5.VariableIdPattern, required=True)
+@attribute(local_name='variable_id', type=VariableIdPattern, required=True)
         }
     }

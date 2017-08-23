@@ -20,13 +20,15 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 
+from ..GeneratorType import GeneratorType
+
 logger = logging.getLogger(__name__)
 
 class OvalDefinitionsElement(Model):
     MODEL_MAP = {
         'tag_name' : 'oval_system_characteristics',
         'elements': [
-@element(local_name='generator', cls=scap.model.oval_5.GeneratorType)
+@element(local_name='generator', cls=GeneratorType)
 @element(local_name='system_info', cls=SystemInfoType)
 @element(local_name='_collected_objects', cls=CollectedObjectsType, min=0, max=1)
 @element(local_name='system_data', cls=SystemDataType, min=0, max=1)
