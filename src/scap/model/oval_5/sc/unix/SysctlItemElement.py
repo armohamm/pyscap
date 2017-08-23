@@ -24,12 +24,7 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class SysctlItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='name', min=0, cls=EntityItemType, max=1)
-            {list='values', 'tag_name': 'value', min=0, cls=EntityItemType, max=None},
-        ],
-        'attributes': {
-        },
-    }
+@element(local_name='value', list='values', min=0, cls=EntityItemType, max=None)
+class SysctlItemElement(ItemType):
+    pass

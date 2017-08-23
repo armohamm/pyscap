@@ -25,12 +25,9 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class SlackwarePkgInfoItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='name', cls=EntityItemType, min=0, max=1)
 @element(local_name='version', cls=EntityItemType, min=0, max=1)
 @element(local_name='architecture', cls=EntityItemType, min=0, max=1)
 @element(local_name='revision', cls=EntityItemType, min=0, max=1)
-        ],
-    }
+class SlackwarePkgInfoItemElement(ItemType):
+    pass

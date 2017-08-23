@@ -22,9 +22,6 @@ from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 
-class VariablesType(Model):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='variable', list='variables', cls=VariableType, min=1, max=None)
-        ],
-    }
+class VariablesType(Model):
+    pass

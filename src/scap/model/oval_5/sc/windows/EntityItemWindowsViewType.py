@@ -23,17 +23,12 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        '32_bit',
+        '64_bit',
+        '',
+    ]
+)
 class EntityItemWindowsViewType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            '32_bit',
-            '64_bit',
-            '',
-        ]
+    pass

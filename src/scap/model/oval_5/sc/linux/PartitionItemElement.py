@@ -25,9 +25,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class PartitionItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='mount_point', cls=EntityItemType, min=0, max=1)
 @element(local_name='device', cls=EntityItemType, min=0, max=1)
 @element(local_name='uuid', cls=EntityItemType, min=0, max=1)
@@ -36,5 +33,5 @@ class PartitionItemElement(ItemType):
 @element(local_name='total_space', cls=EntityItemType, min=0, max=1)
 @element(local_name='space_used', cls=EntityItemType, min=0, max=1)
 @element(local_name='space_left', cls=EntityItemType, min=0, max=1)
-        ],
-    }
+class PartitionItemElement(ItemType):
+    pass

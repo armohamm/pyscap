@@ -22,13 +22,10 @@ from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 
-class GeneratorType(Model):
-    MODEL_MAP = {
-        'elements': [
 @element(namespace='http://oval.mitre.org/XMLSchema/oval-common-5', local_name='product_name', type=StringType, min=0, max=1)
 @element(namespace='http://oval.mitre.org/XMLSchema/oval-common-5', local_name='product_version', type=StringType, min=0, max=1)
 @element(namespace='http://oval.mitre.org/XMLSchema/oval-common-5', local_name='schema_version', list='schema_versions', cls=SchemaVersionType, max=None)
 @element(namespace='http://oval.mitre.org/XMLSchema/oval-common-5', local_name='timestamp', type=DateTimeType)
 @element(local_name='*', min=0, max=None)
-        ],
-    }
+class GeneratorType(Model):
+    pass

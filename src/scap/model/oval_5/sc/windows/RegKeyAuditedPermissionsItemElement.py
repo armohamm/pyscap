@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class RegKeyAuditedPermissionsItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='hive', max=1, min=0, cls=EntityItemRegistryHiveType)
 @element(local_name='key', max=1, 'nillable': True, min=0, cls=EntityItemType)
 @element(local_name='trustee_sid', max=1, min=0, cls=EntityItemType)
@@ -51,7 +48,5 @@ class RegKeyAuditedPermissionsItemElement(ItemType):
 @element(local_name='key_wow64_32key', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='key_wow64_res', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='windows_view', max=1, min=0, cls=EntityItemWindowsViewType)
-        ],
-        'attributes': {
-        },
-    }
+class RegKeyAuditedPermissionsItemElement(ItemType):
+    pass

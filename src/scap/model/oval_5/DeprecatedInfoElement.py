@@ -23,6 +23,4 @@ from scap.model.oval_5.DeprecatedInfoType import DeprecatedInfoType
 logger = logging.getLogger(__name__)
 
 class DeprecatedInfoElement(DeprecatedInfoType):
-    MODEL_MAP = {
-        'tag_name' : 'deprecated_info'
-    }
+    pass

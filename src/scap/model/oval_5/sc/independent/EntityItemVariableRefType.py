@@ -24,13 +24,6 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(regex=r'oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*')
 class EntityItemVariableRefType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_pattern(self):
-        return r'oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*'
+    pass

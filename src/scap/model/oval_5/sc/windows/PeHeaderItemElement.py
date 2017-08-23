@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class PeHeaderItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='filepath', max=1, min=0, cls=EntityItemType)
 @element(local_name='path', max=1, min=0, cls=EntityItemType)
 @element(local_name='filename', max=1, min=0, cls=EntityItemType)
@@ -82,7 +79,5 @@ class PeHeaderItemElement(ItemType):
 @element(local_name='loader_flags', max=1, min=0, cls=EntityItemType)
 @element(local_name='number_of_rva_and_sizes', max=1, min=0, cls=EntityItemType)
 @element(local_name='real_number_of_directory_entries', max=1, min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class PeHeaderItemElement(ItemType):
+    pass

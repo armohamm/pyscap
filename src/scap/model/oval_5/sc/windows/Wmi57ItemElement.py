@@ -24,13 +24,8 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class Wmi57ItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='namespace', max=1, min=0, cls=EntityItemType)
 @element(local_name='wql', max=1, min=0, cls=EntityItemType)
 @element(local_name='result', max=None, list='results', min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class Wmi57ItemElement(ItemType):
+    pass

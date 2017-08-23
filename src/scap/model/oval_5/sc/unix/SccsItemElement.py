@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class SccsItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='filepath', min=0, cls=EntityItemType, max=1)
 @element(local_name='path', min=0, cls=EntityItemType, max=1)
 @element(local_name='filename', min=0, cls=EntityItemType, max=1)
@@ -37,7 +34,5 @@ class SccsItemElement(ItemType):
 @element(local_name='branch', min=0, cls=EntityItemType, max=1)
 @element(local_name='sequence', min=0, cls=EntityItemType, max=1)
 @element(local_name='what_string', min=0, cls=EntityItemType, max=1)
-        ],
-        'attributes': {
-        },
-    }
+class SccsItemElement(ItemType):
+    pass

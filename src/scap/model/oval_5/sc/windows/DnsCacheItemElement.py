@@ -25,13 +25,8 @@ from ..EntityItemIPAddressStringType import EntityItemIPAddressStringType
 
 logger = logging.getLogger(__name__)
 
-class DnsCacheItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='domain_name', max=1, min=0, cls=EntityItemType)
 @element(local_name='ttl', max=1, min=0, cls=EntityItemType)
 @element(local_name='ip_address', max=None, list='ip_addresss', min=0, cls=EntityItemIPAddressStringType)
-        ],
-        'attributes': {
-        },
-    }
+class DnsCacheItemElement(ItemType):
+    pass

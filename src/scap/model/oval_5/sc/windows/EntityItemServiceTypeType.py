@@ -23,20 +23,15 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'SERVICE_FILE_SYSTEM_DRIVER',
+        'SERVICE_KERNEL_DRIVER',
+        'SERVICE_WIN32_OWN_PROCESS',
+        'SERVICE_WIN32_SHARE_PROCESS',
+        'SERVICE_INTERACTIVE_PROCESS',
+        '',
+    ]
+)
 class EntityItemServiceTypeType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'SERVICE_FILE_SYSTEM_DRIVER',
-            'SERVICE_KERNEL_DRIVER',
-            'SERVICE_WIN32_OWN_PROCESS',
-            'SERVICE_WIN32_SHARE_PROCESS',
-            'SERVICE_INTERACTIVE_PROCESS',
-            '',
-        ]
+    pass

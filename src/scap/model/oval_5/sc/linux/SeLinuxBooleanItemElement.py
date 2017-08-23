@@ -25,11 +25,8 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class SeLinuxBooleanItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='name', cls=EntityItemType, min=0, max=1)
 @element(local_name='current_status', cls=EntityItemType, min=0, max=1)
 @element(local_name='pending_status', cls=EntityItemType, min=0, max=1)
-        ],
-    }
+class SeLinuxBooleanItemElement(ItemType):
+    pass

@@ -25,9 +25,6 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=LINUX_PROTOCOL_ENUMERATION)
 class EntityItemType(EntityItemType):
-    MODEL_MAP = {
-    }
-
-    def get_value_enum(self):
-        return LINUX_PROTOCOL_ENUMERATION
+    pass

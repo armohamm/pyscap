@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class VolumeItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='rootpath', max=1, min=0, cls=EntityItemType)
 @element(local_name='file_system', max=1, min=0, cls=EntityItemType)
 @element(local_name='name', max=1, min=0, cls=EntityItemType)
@@ -53,7 +50,5 @@ class VolumeItemElement(ItemType):
 @element(local_name='file_supports_extended_attributes', max=1, min=0, cls=EntityItemType)
 @element(local_name='file_supports_open_by_file_id', max=1, min=0, cls=EntityItemType)
 @element(local_name='file_supports_usn_journal', max=1, min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class VolumeItemElement(ItemType):
+    pass

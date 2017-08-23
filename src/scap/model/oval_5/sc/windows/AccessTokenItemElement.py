@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class AccessTokenItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='security_principle', max=1, min=0, cls=EntityItemType)
 @element(local_name='seassignprimarytokenprivilege', max=1, min=0, cls=EntityItemType)
 @element(local_name='seauditprivilege', max=1, min=0, cls=EntityItemType)
@@ -73,7 +70,5 @@ class AccessTokenItemElement(ItemType):
 @element(local_name='sedenyremoteInteractivelogonright', max=1, min=0, cls=EntityItemType)
 @element(local_name='sedenyservicelogonright', max=1, min=0, cls=EntityItemType)
 @element(local_name='setrustedcredmanaccessnameright', max=1, min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class AccessTokenItemElement(ItemType):
+    pass

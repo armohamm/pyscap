@@ -24,9 +24,6 @@ from ..ItemIdPattern import ItemIdPattern
 
 logger = logging.getLogger(__name__)
 
-class ReferenceType(Model):
-    MODEL_MAP = {
-        'attributes': {
 @attribute(local_name='item_ref', type=ItemIdPattern, required=True)
-        }
-    }
+class ReferenceType(Model):
+    pass

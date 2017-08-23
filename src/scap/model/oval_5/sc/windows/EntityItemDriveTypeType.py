@@ -23,22 +23,17 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'DRIVE_UNKNOWN',
+        'DRIVE_NO_ROOT_DIR',
+        'DRIVE_REMOVABLE',
+        'DRIVE_FIXED',
+        'DRIVE_REMOTE',
+        'DRIVE_CDROM',
+        'DRIVE_RAMDISK',
+        '',
+    ]
+)
 class EntityItemDriveTypeType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'DRIVE_UNKNOWN',
-            'DRIVE_NO_ROOT_DIR',
-            'DRIVE_REMOVABLE',
-            'DRIVE_FIXED',
-            'DRIVE_REMOTE',
-            'DRIVE_CDROM',
-            'DRIVE_RAMDISK',
-            '',
-        ]
+    pass

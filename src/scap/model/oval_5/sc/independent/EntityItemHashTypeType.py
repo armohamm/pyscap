@@ -25,13 +25,6 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=HASH_TYPE_ENUMERATION)
 class EntityItemHashTypeType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return HASH_TYPE_ENUMERATION
+    pass

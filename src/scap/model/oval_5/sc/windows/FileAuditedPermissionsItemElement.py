@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class FileAuditedPermissionsItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='filepath', max=1, min=0, cls=EntityItemType)
 @element(local_name='path', max=1, min=0, cls=EntityItemType)
 @element(local_name='filename', max=1, 'nillable': True, min=0, cls=EntityItemType)
@@ -52,7 +49,5 @@ class FileAuditedPermissionsItemElement(ItemType):
 @element(local_name='file_read_attributes', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='file_write_attributes', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='windows_view', max=1, min=0, cls=EntityItemWindowsViewType)
-        ],
-        'attributes': {
-        },
-    }
+class FileAuditedPermissionsItemElement(ItemType):
+    pass

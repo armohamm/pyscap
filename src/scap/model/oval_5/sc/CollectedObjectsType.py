@@ -22,9 +22,6 @@ from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 
-class CollectedObjectsType(Model):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='object', list='objects', cls=ObjectType, min=1, max=None)
-        ],
-    }
+class CollectedObjectsType(Model):
+    pass

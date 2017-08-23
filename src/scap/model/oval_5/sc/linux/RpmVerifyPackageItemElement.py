@@ -25,9 +25,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class RpmVerifyPackageItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='name', cls=EntityItemType, min=0, max=1)
 @element(local_name='epoch', cls=EntityItemType, min=0, max=1)
 @element(local_name='version', cls=EntityItemType, min=0, max=1)
@@ -39,5 +36,5 @@ class RpmVerifyPackageItemElement(ItemType):
 @element(local_name='digest_check_passed', cls=EntityItemType, min=0, max=1)
 @element(local_name='verification_script_successful', cls=EntityItemType, min=0, max=1)
 @element(local_name='signature_check_passed', cls=EntityItemType, min=0, max=1)
-        ],
-    }
+class RpmVerifyPackageItemElement(ItemType):
+    pass

@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class ShadowItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='username', min=0, cls=EntityItemType, max=1)
 @element(local_name='password', min=0, cls=EntityItemType, max=1)
 @element(local_name='chg_lst', min=0, cls=EntityItemType, max=1)
@@ -37,7 +34,5 @@ class ShadowItemElement(ItemType):
 @element(local_name='exp_date', min=0, cls=EntityItemType, max=1)
 @element(local_name='flag', min=0, cls=EntityItemType, max=1)
 @element(local_name='encrypt_method', min=0, cls=EntityItemEncryptMethodType, max=1)
-        ],
-        'attributes': {
-        },
-    }
+class ShadowItemElement(ItemType):
+    pass

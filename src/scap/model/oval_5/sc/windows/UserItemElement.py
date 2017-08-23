@@ -24,14 +24,9 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class UserItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='user', max=1, min=0, cls=EntityItemType)
 @element(local_name='enabled', max=1, min=0, cls=EntityItemType)
 @element(local_name='group', max=None, list='groups', min=0, cls=EntityItemType)
 @element(local_name='last_logon', max=1, min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class UserItemElement(ItemType):
+    pass

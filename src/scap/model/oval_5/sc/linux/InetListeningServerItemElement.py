@@ -26,9 +26,6 @@ from ..EntityItemIPAddressStringType import EntityItemIPAddressStringType
 
 logger = logging.getLogger(__name__)
 
-class InetListeningServerItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='protocol', cls=EntityItemType, min=0, max=1)
 @element(local_name='local_address', cls=EntityItemIPAddressStringType, min=0, max=1)
 @element(local_name='local_port', cls=EntityItemType, min=0, max=1)
@@ -39,5 +36,5 @@ class InetListeningServerItemElement(ItemType):
 @element(local_name='foreign_full_address', cls=EntityItemType, min=0, max=1)
 @element(local_name='pid', cls=EntityItemType, min=0, max=1)
 @element(local_name='user_id', cls=EntityItemType, min=0, max=1)
-        ],
-    }
+class InetListeningServerItemElement(ItemType):
+    pass

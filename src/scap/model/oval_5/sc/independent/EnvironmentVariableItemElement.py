@@ -25,12 +25,7 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class EnvironmentVariableItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='name', cls=EntityItemType, min=0, max=1)
 @element(local_name='value', cls=EntityItemType, min=0, max=1)
-        ],
-        'attributes': {
-        }
-    }
+class EnvironmentVariableItemElement(ItemType):
+    pass

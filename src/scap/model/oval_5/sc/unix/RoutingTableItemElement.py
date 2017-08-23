@@ -25,14 +25,9 @@ from ..EntityItemIPAddressStringType import EntityItemIPAddressStringType
 
 logger = logging.getLogger(__name__)
 
-class RoutingTableItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='destination', min=0, cls=EntityItemIPAddressType, max=1)
 @element(local_name='gateway', min=0, cls=EntityItemIPAddressType, max=1)
-            {list='flagss', 'tag_name': 'flags', min=0, cls=EntityItemRoutingTableFlagsType, max=None},
+@element(local_name='flags', list='flagss', min=0, cls=EntityItemRoutingTableFlagsType, max=None)
 @element(local_name='interface_name', min=0, cls=EntityItemType, max=1)
-        ],
-        'attributes': {
-        },
-    }
+class RoutingTableItemElement(ItemType):
+    pass

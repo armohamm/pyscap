@@ -23,22 +23,17 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'MIB_IF_TYPE_ETHERNET',
+        'MIB_IF_TYPE_FDDI',
+        'MIB_IF_TYPE_LOOPBACK',
+        'MIB_IF_TYPE_OTHER',
+        'MIB_IF_TYPE_PPP',
+        'MIB_IF_TYPE_SLIP',
+        'MIB_IF_TYPE_TOKENRING',
+        '',
+    ]
+)
 class EntityItemInterfaceTypeType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'MIB_IF_TYPE_ETHERNET',
-            'MIB_IF_TYPE_FDDI',
-            'MIB_IF_TYPE_LOOPBACK',
-            'MIB_IF_TYPE_OTHER',
-            'MIB_IF_TYPE_PPP',
-            'MIB_IF_TYPE_SLIP',
-            'MIB_IF_TYPE_TOKENRING',
-            '',
-        ]
+    pass

@@ -23,6 +23,4 @@ from scap.model.oval_5.NotesType import NotesType
 logger = logging.getLogger(__name__)
 
 class NotesElement(NotesType):
-    MODEL_MAP = {
-        'tag_name' : 'notes'
-    }
+    pass

@@ -23,22 +23,17 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'SERVICE_CONTINUE_PENDING',
+        'SERVICE_PAUSE_PENDING',
+        'SERVICE_PAUSED',
+        'SERVICE_RUNNING',
+        'SERVICE_START_PENDING',
+        'SERVICE_STOP_PENDING',
+        'SERVICE_STOPPED',
+        '',
+    ]
+)
 class EntityItemServiceCurrentStateType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'SERVICE_CONTINUE_PENDING',
-            'SERVICE_PAUSE_PENDING',
-            'SERVICE_PAUSED',
-            'SERVICE_RUNNING',
-            'SERVICE_START_PENDING',
-            'SERVICE_STOP_PENDING',
-            'SERVICE_STOPPED',
-            '',
-        ]
+    pass

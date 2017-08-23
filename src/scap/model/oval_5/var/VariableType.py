@@ -23,15 +23,10 @@ from scap.model.oval_5 import SIMPLE_DATATYPE_ENUMERATION
 
 logger = logging.getLogger(__name__)
 
-class VariableType(Model):
-    MODEL_MAP = {
-        'elements': [
-@element(local_name='value', list='values', type=anySimpleType, min=1, max=None)
-@element(local_name='notes', cls=scap.model.oval_5.NotesType, min=0, max=1)
-        ],
-        'attributes': {
 @attribute(local_name='id', type=scap.model.oval_5.VariableIdPattern, required=True)
 @attribute(local_name='datatype', enum=SIMPLE_DATATYPE_ENUMERATION, required=True)
 @attribute(local_name='comment', type=StringType, required=True)
-        }
-    }
+@element(local_name='value', list='values', type=anySimpleType, min=1, max=None)
+@element(local_name='notes', cls=scap.model.oval_5.NotesType, min=0, max=1)
+class VariableType(Model):
+    pass

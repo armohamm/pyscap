@@ -22,9 +22,6 @@ from scap.model.oval_5.sc.ItemType import ItemType
 
 logger = logging.getLogger(__name__)
 
-class AuditEventPolicySubCategoriesItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='credential_validation', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='kerberos_authentication_service', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='kerberos_service_ticket_operations', max=1, min=0, cls=EntityItemAuditType)
@@ -82,7 +79,5 @@ class AuditEventPolicySubCategoriesItemElement(ItemType):
 @element(local_name='security_state_change', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='security_system_extension', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='system_integrity', max=1, min=0, cls=EntityItemAuditType)
-        ],
-        'attributes': {
-        },
-    }
+class AuditEventPolicySubCategoriesItemElement(ItemType):
+    pass

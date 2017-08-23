@@ -24,13 +24,8 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class GroupSidItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='group_sid', max=1, min=0, cls=EntityItemType)
 @element(local_name='user_sid', max=None, list='user_sids', min=0, cls=EntityItemType)
 @element(local_name='subgroup_sid', max=None, list='subgroup_sids', min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class GroupSidItemElement(ItemType):
+    pass

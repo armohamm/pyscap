@@ -22,9 +22,6 @@ from scap.model.oval_5.sc.ItemType import ItemType
 
 logger = logging.getLogger(__name__)
 
-class AuditEventPolicyItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='account_logon', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='account_management', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='detailed_tracking', max=1, min=0, cls=EntityItemAuditType)
@@ -34,7 +31,5 @@ class AuditEventPolicyItemElement(ItemType):
 @element(local_name='policy_change', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='privilege_use', max=1, min=0, cls=EntityItemAuditType)
 @element(local_name='system', max=1, min=0, cls=EntityItemAuditType)
-        ],
-        'attributes': {
-        },
-    }
+class AuditEventPolicyItemElement(ItemType):
+    pass

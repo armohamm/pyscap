@@ -22,12 +22,9 @@ from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 
-class ElementMapType(Model):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='test', cls=ElementMapItemType, min=1)
 @element(local_name='object', cls=ElementMapItemType, min=0)
 @element(local_name='state', cls=ElementMapItemType, min=0)
 @element(local_name='item', cls=ElementMapItemType, min=0)
-        ],
-    }
+class ElementMapType(Model):
+    pass

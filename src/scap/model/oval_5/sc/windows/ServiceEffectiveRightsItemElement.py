@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class ServiceEffectiveRightsItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='service_name', max=1, min=0, cls=EntityItemType)
 @element(local_name='trustee_sid', max=1, min=0, cls=EntityItemType)
 @element(local_name='standard_delete', max=1, min=0, cls=EntityItemType)
@@ -45,7 +42,5 @@ class ServiceEffectiveRightsItemElement(ItemType):
 @element(local_name='service_pause', max=1, min=0, cls=EntityItemType)
 @element(local_name='service_interrogate', max=1, min=0, cls=EntityItemType)
 @element(local_name='service_user_defined', max=1, min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class ServiceEffectiveRightsItemElement(ItemType):
+    pass

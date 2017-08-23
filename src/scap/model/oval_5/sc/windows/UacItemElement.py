@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class UacItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='admin_approval_mode', max=1, min=0, cls=EntityItemType)
 @element(local_name='elevation_prompt_admin', max=1, min=0, cls=EntityItemType)
 @element(local_name='elevation_prompt_standard', max=1, min=0, cls=EntityItemType)
@@ -36,7 +33,5 @@ class UacItemElement(ItemType):
 @element(local_name='run_admins_aam', max=1, min=0, cls=EntityItemType)
 @element(local_name='secure_desktop', max=1, min=0, cls=EntityItemType)
 @element(local_name='virtualize_write_failures', max=1, min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class UacItemElement(ItemType):
+    pass

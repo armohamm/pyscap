@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class NtUserItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='key', max=1, min=0, cls=EntityItemType)
 @element(local_name='name', max=1, 'nillable': True, min=0, cls=EntityItemType)
 @element(local_name='sid', max=1, min=0, cls=EntityItemType)
@@ -40,7 +37,5 @@ class NtUserItemElement(ItemType):
 @element(local_name='last_write_time', max=1, min=0, cls=EntityItemType)
 @element(local_name='type', max=1, min=0, cls=EntityItemRegistryTypeType)
 @element(local_name='value', max=None, list='values', min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class NtUserItemElement(ItemType):
+    pass

@@ -23,22 +23,17 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'GCONF_VALUE_STRING',
+        'GCONF_VALUE_INT',
+        'GCONF_VALUE_FLOAT',
+        'GCONF_VALUE_BOOL',
+        'GCONF_VALUE_SCHEMA',
+        'GCONF_VALUE_LIST',
+        'GCONF_VALUE_PAIR',
+        '',
+    ]
+)
 class EntityItemGconfTypeType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'GCONF_VALUE_STRING',
-            'GCONF_VALUE_INT',
-            'GCONF_VALUE_FLOAT',
-            'GCONF_VALUE_BOOL',
-            'GCONF_VALUE_SCHEMA',
-            'GCONF_VALUE_LIST',
-            'GCONF_VALUE_PAIR',
-            '',
-        ]
+    pass

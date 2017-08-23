@@ -25,14 +25,11 @@ from ..EntityItemIPAddressStringType import EntityItemIPAddressStringType
 
 logger = logging.getLogger(__name__)
 
-class XinetdItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='protocol', min=0, cls=EntityItemType, max=1)
 @element(local_name='service_name', min=0, cls=EntityItemType, max=1)
-            {list='flagss', 'tag_name': 'flags', min=0, cls=EntityItemType, max=None},
-            {list='no_accesss', 'tag_name': 'no_access', min=0, cls=EntityItemType, max=None},
-            {list='only_froms', 'tag_name': 'only_from', min=0, cls=EntityItemIPAddressStringType, max=None},
+@element(local_name='flags', list='flagss', min=0, cls=EntityItemType, max=None)
+@element(local_name='no_access', list='no_accesss', min=0, cls=EntityItemType, max=None)
+@element(local_name='only_from', list='only_froms', min=0, cls=EntityItemIPAddressStringType, max=None)
 @element(local_name='port', min=0, cls=EntityItemType, max=1)
 @element(local_name='server', min=0, cls=EntityItemType, max=1)
 @element(local_name='server_arguments', min=0, cls=EntityItemType, max=1)
@@ -41,7 +38,5 @@ class XinetdItemElement(ItemType):
 @element(local_name='user', min=0, cls=EntityItemType, max=1)
 @element(local_name='wait', min=0, cls=EntityItemType, max=1)
 @element(local_name='disabled', min=0, cls=EntityItemType, max=1)
-        ],
-        'attributes': {
-        },
-    }
+class XinetdItemElement(ItemType):
+    pass

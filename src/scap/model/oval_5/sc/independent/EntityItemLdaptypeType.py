@@ -25,13 +25,6 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=LDAP_TYPE_ENUMERATION)
 class EntityItemLdaptypeType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return LDAP_TYPE_ENUMERATION
+    pass

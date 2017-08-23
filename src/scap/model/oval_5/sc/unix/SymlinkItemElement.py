@@ -24,12 +24,7 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class SymlinkItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='filepath', min=1, cls=EntityItemType, max=1)
 @element(local_name='canonical_path', min=1, cls=EntityItemType, max=1)
-        ],
-        'attributes': {
-        },
-    }
+class SymlinkItemElement(ItemType):
+    pass

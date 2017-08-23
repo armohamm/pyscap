@@ -25,9 +25,6 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=RPM_VERIFY_RESULT_ENUMERATION)
 class EntityItemType(EntityItemType):
-    MODEL_MAP = {
-    }
-
-    def get_value_enum(self):
-        return RPM_VERIFY_RESULT_ENUMERATION
+    pass

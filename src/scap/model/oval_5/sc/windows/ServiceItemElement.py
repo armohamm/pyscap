@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class ServiceItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='service_name', max=1, min=0, cls=EntityItemType)
 @element(local_name='display_name', max=1, min=0, cls=EntityItemType)
 @element(local_name='description', max=1, min=0, cls=EntityItemType)
@@ -39,7 +36,5 @@ class ServiceItemElement(ItemType):
 @element(local_name='pid', max=1, min=0, cls=EntityItemType)
 @element(local_name='service_flag', max=1, min=0, cls=EntityItemType)
 @element(local_name='dependencies', max=None, list='dependenciess', min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class ServiceItemElement(ItemType):
+    pass

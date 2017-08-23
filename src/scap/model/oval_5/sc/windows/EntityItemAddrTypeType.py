@@ -23,20 +23,15 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'MIB_IPADDR_DELETED',
+        'MIB_IPADDR_DISCONNECTED',
+        'MIB_IPADDR_DYNAMIC',
+        'MIB_IPADDR_PRIMARY',
+        'MIB_IPADDR_TRANSIENT',
+        '',
+    ]
+)
 class EntityItemAddrTypeType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'MIB_IPADDR_DELETED',
-            'MIB_IPADDR_DISCONNECTED',
-            'MIB_IPADDR_DYNAMIC',
-            'MIB_IPADDR_PRIMARY',
-            'MIB_IPADDR_TRANSIENT',
-            '',
-        ]
+    pass

@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class SharedResourceItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='netname', max=1, min=0, cls=EntityItemType)
 @element(local_name='shared_type', max=1, min=0, cls=EntityItemSharedResourceTypeType)
 @element(local_name='max_uses', max=1, min=0, cls=EntityItemType)
@@ -40,7 +37,5 @@ class SharedResourceItemElement(ItemType):
 @element(local_name='access_atrib_permission', max=1, min=0, cls=EntityItemType)
 @element(local_name='access_perm_permission', max=1, min=0, cls=EntityItemType)
 @element(local_name='access_all_permission', max=1, min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class SharedResourceItemElement(ItemType):
+    pass

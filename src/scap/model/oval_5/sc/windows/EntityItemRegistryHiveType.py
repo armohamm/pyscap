@@ -23,20 +23,15 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'HKEY_CLASSES_ROOT',
+        'HKEY_CURRENT_CONFIG',
+        'HKEY_CURRENT_USER',
+        'HKEY_LOCAL_MACHINE',
+        'HKEY_USERS',
+        '',
+    ]
+)
 class EntityItemRegistryHiveType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'HKEY_CLASSES_ROOT',
-            'HKEY_CURRENT_CONFIG',
-            'HKEY_CURRENT_USER',
-            'HKEY_LOCAL_MACHINE',
-            'HKEY_USERS',
-            '',
-        ]
+    pass

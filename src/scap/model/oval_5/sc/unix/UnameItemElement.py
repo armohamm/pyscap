@@ -24,16 +24,11 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class UnameItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='machine_class', min=0, cls=EntityItemType, max=1)
 @element(local_name='node_name', min=0, cls=EntityItemType, max=1)
 @element(local_name='os_name', min=0, cls=EntityItemType, max=1)
 @element(local_name='os_release', min=0, cls=EntityItemType, max=1)
 @element(local_name='os_version', min=0, cls=EntityItemType, max=1)
 @element(local_name='processor_type', min=0, cls=EntityItemType, max=1)
-        ],
-        'attributes': {
-        },
-    }
+class UnameItemElement(ItemType):
+    pass

@@ -23,32 +23,27 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'Approve',
+        'Assert',
+        'Compare',
+        'Confirm',
+        'Find',
+        'Get',
+        'Import',
+        'Measure',
+        'Read',
+        'Request',
+        'Resolve',
+        'Search',
+        'Select',
+        'Show',
+        'Test',
+        'Trace',
+        'Watch',
+        '',
+    ]
+)
 class EntityItemCmdletVerbType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'Approve',
-            'Assert',
-            'Compare',
-            'Confirm',
-            'Find',
-            'Get',
-            'Import',
-            'Measure',
-            'Read',
-            'Request',
-            'Resolve',
-            'Search',
-            'Select',
-            'Show',
-            'Test',
-            'Trace',
-            'Watch',
-            '',
-        ]
+    pass

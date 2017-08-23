@@ -25,16 +25,11 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class Ldap57ItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='suffix', cls=EntityItemType, min=0, max=1)
 @element(local_name='relative_dn', cls=EntityItemType, min=0, max=1, 'nillable': True)
 @element(local_name='attribute', cls=EntityItemType, min=0, max=1, 'nillable': True)
 @element(local_name='object_class', cls=EntityItemType, min=0, max=1)
 @element(local_name='ldaptype', cls=EntityItemLdaptypeType, min=0, max=1)
 @element(local_name='value', cls=EntityItemType, min=0, max=None)
-        ],
-        'attributes': {
-        }
-    }
+class Ldap57ItemElement(ItemType):
+    pass

@@ -25,11 +25,8 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class SystemDUnitPropertyItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='unit', cls=EntityItemType, min=0, max=1)
 @element(local_name='property', cls=EntityItemType, min=0, max=1)
 @element(local_name='value', cls=EntityItemType, min=0, max=None)
-        ],
-    }
+class SystemDUnitPropertyItemElement(ItemType):
+    pass

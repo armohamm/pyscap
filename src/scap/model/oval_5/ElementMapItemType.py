@@ -22,9 +22,6 @@ from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
 
-class ElementMapItemType(NCNameType):
-    MODEL_MAP = {
-        'attributes': {
 @attribute(local_name='target_namespace', type=AnyUriType)
-        }
-    }
+class ElementMapItemType(NCNameType):
+    pass

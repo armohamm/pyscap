@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class GconfItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='key', min=0, cls=EntityItemType, max=1)
 @element(local_name='source', min=0, cls=EntityItemType, 'nillable': True, max=1)
 @element(local_name='type', min=0, cls=EntityItemGconfTypeType, max=1)
@@ -34,8 +31,6 @@ class GconfItemElement(ItemType):
 @element(local_name='mod_user', min=0, cls=EntityItemType, max=1)
 @element(local_name='mod_time', min=0, cls=EntityItemType, max=1)
 @element(local_name='is_default', min=0, cls=EntityItemType, max=1)
-            {list='values', 'tag_name': 'value', min=0, cls=EntityItemType, max=None},
-        ],
-        'attributes': {
-        },
-    }
+@element(local_name='value', list='values', min=0, cls=EntityItemType, max=None)
+class GconfItemElement(ItemType):
+    pass

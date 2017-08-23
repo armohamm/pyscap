@@ -24,12 +24,7 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class WuaUpdateSearcherItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='search_criteria', max=1, min=0, cls=EntityItemType)
 @element(local_name='update_id', max=None, list='update_ids', min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class WuaUpdateSearcherItemElement(ItemType):
+    pass

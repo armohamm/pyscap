@@ -28,18 +28,11 @@ from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 
-class EntityItemType(Model):
-    MODEL_MAP = {
-        'elements': [
-@element(local_name='field', list='fields', cls=EntityItemFieldType, min=0, max=None)
-        ],
-        'attributes': {
 @attribute(local_name='datatype', enum=DATATYPE_ENUMERATION, default='string')
 @attribute(local_name='mask', type=BooleanType, default=False)
 @attribute(local_name='status', enum=EXISTENCE_RESULT_ENUMERATION, default='exists')
-        },
-    }
-
+@element(local_name='field', list='fields', cls=EntityItemFieldType, min=0, max=None)
+class EntityItemType(Model):
     def __str__(self):
         return super(EntityItemType, self).__str__() + ' = ' + str(self.get_value())
 

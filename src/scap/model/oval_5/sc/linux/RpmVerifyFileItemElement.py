@@ -25,9 +25,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class RpmVerifyFileItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='name', cls=EntityItemType, min=0, max=1)
 @element(local_name='epoch', cls=EntityItemType, min=0, max=1)
 @element(local_name='version', cls=EntityItemType, min=0, max=1)
@@ -50,5 +47,5 @@ class RpmVerifyFileItemElement(ItemType):
 @element(local_name='ghost_file', cls=EntityItemType, min=0, max=1)
 @element(local_name='license_file', cls=EntityItemType, min=0, max=1)
 @element(local_name='readme_file', cls=EntityItemType, min=0, max=1)
-        ],
-    }
+class RpmVerifyFileItemElement(ItemType):
+    pass

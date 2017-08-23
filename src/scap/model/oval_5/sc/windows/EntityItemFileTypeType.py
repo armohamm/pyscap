@@ -23,21 +23,16 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'FILE_ATTRIBUTE_DIRECTORY',
+        'FILE_TYPE_CHAR',
+        'FILE_TYPE_DISK',
+        'FILE_TYPE_PIPE',
+        'FILE_TYPE_REMOTE',
+        'FILE_TYPE_UNKNOWN',
+        '',
+    ]
+)
 class EntityItemFileTypeType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'FILE_ATTRIBUTE_DIRECTORY',
-            'FILE_TYPE_CHAR',
-            'FILE_TYPE_DISK',
-            'FILE_TYPE_PIPE',
-            'FILE_TYPE_REMOTE',
-            'FILE_TYPE_UNKNOWN',
-            '',
-        ]
+    pass

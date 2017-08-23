@@ -25,14 +25,11 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class DpkgInfoItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='name', cls=EntityItemType, min=0, max=1)
 @element(local_name='arch', cls=EntityItemType, min=0, max=1)
 @element(local_name='epoch', cls=EntityItemType, min=0, max=1)
 @element(local_name='release', cls=EntityItemType, min=0, max=1)
 @element(local_name='version', cls=EntityItemType, min=0, max=1)
 @element(local_name='evr', cls=EntityItemType, min=0, max=1)
-        ],
-    }
+class DpkgInfoItemElement(ItemType):
+    pass

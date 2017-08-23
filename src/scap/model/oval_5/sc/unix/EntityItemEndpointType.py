@@ -23,22 +23,17 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'stream',
+        'dgram',
+        'raw',
+        'seqpacket',
+        'tli',
+        'sunrpc_tcp',
+        'sunrpc_udp',
+        '',
+    ]
+)
 class EntityItemEndpointType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'stream',
-            'dgram',
-            'raw',
-            'seqpacket',
-            'tli',
-            'sunrpc_tcp',
-            'sunrpc_udp',
-            '',
-        ]
+    pass

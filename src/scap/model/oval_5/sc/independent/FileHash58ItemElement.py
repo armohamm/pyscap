@@ -25,16 +25,11 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class FileHash58ItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='filepath', cls=EntityItemType, min=0, max=1)
 @element(local_name='path', cls=EntityItemType, min=0, max=1)
 @element(local_name='filename', cls=EntityItemType, min=0, max=1)
 @element(local_name='hash_type', cls=EntityItemHashTypeType, min=0, max=1)
 @element(local_name='hash', cls=EntityItemType, min=0, max=1)
 @element(local_name='windows_view', cls=EntityItemWindowsViewType, min=0)
-        ],
-        'attributes': {
-        }
-    }
+class FileHash58ItemElement(ItemType):
+    pass

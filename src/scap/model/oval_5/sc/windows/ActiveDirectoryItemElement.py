@@ -24,16 +24,11 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class ActiveDirectoryItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='naming_context', max=1, min=0, cls=EntityItemNamingContextType)
 @element(local_name='relative_dn', max=1, 'nillable': True, min=0, cls=EntityItemType)
 @element(local_name='attribute', max=1, 'nillable': True, min=0, cls=EntityItemType)
 @element(local_name='object_class', max=1, min=0, cls=EntityItemType)
 @element(local_name='adstype', max=1, min=0, cls=EntityItemAdsTypeType)
 @element(local_name='value', max=None, list='values', min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class ActiveDirectoryItemElement(ItemType):
+    pass

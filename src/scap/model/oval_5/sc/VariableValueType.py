@@ -25,9 +25,6 @@ from ..VariableIdPattern import VariableIdPattern
 
 logger = logging.getLogger(__name__)
 
-class VariableValueType(AnySimpleType):
-    MODEL_MAP = {
-        'attributes': {
 @attribute(local_name='variable_id', type=VariableIdPattern, required=True)
-        }
-    }
+class VariableValueType(AnySimpleType):
+    pass

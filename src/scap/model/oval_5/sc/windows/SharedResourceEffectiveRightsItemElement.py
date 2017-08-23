@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class SharedResourceEffectiveRightsItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='netname', max=1, min=0, cls=EntityItemType)
 @element(local_name='trustee_sid', max=1, min=0, cls=EntityItemType)
 @element(local_name='standard_delete', max=1, min=0, cls=EntityItemType)
@@ -39,7 +36,5 @@ class SharedResourceEffectiveRightsItemElement(ItemType):
 @element(local_name='generic_write', max=1, min=0, cls=EntityItemType)
 @element(local_name='generic_execute', max=1, min=0, cls=EntityItemType)
 @element(local_name='generic_all', max=1, min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class SharedResourceEffectiveRightsItemElement(ItemType):
+    pass

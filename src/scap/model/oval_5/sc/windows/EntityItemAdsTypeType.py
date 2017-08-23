@@ -23,44 +23,39 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'ADSTYPE_INVALID',
+        'ADSTYPE_DN_STRING',
+        'ADSTYPE_CASE_EXACT_STRING',
+        'ADSTYPE_CASE_IGNORE_STRING',
+        'ADSTYPE_PRINTABLE_STRING',
+        'ADSTYPE_NUMERIC_STRING',
+        'ADSTYPE_BOOLEAN',
+        'ADSTYPE_INTEGER',
+        'ADSTYPE_OCTET_STRING',
+        'ADSTYPE_UTC_TIME',
+        'ADSTYPE_LARGE_INTEGER',
+        'ADSTYPE_PROV_SPECIFIC',
+        'ADSTYPE_OBJECT_CLASS',
+        'ADSTYPE_CASEIGNORE_LIST',
+        'ADSTYPE_OCTET_LIST',
+        'ADSTYPE_PATH',
+        'ADSTYPE_POSTALADDRESS',
+        'ADSTYPE_TIMESTAMP',
+        'ADSTYPE_BACKLINK',
+        'ADSTYPE_TYPEDNAME',
+        'ADSTYPE_HOLD',
+        'ADSTYPE_NETADDRESS',
+        'ADSTYPE_REPLICAPOINTER',
+        'ADSTYPE_FAXNUMBER',
+        'ADSTYPE_EMAIL',
+        'ADSTYPE_NT_SECURITY_DESCRIPTOR',
+        'ADSTYPE_UNKNOWN',
+        'ADSTYPE_DN_WITH_BINARY',
+        'ADSTYPE_DN_WITH_STRING',
+        '',
+    ]
+)
 class EntityItemAdsTypeType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'ADSTYPE_INVALID',
-            'ADSTYPE_DN_STRING',
-            'ADSTYPE_CASE_EXACT_STRING',
-            'ADSTYPE_CASE_IGNORE_STRING',
-            'ADSTYPE_PRINTABLE_STRING',
-            'ADSTYPE_NUMERIC_STRING',
-            'ADSTYPE_BOOLEAN',
-            'ADSTYPE_INTEGER',
-            'ADSTYPE_OCTET_STRING',
-            'ADSTYPE_UTC_TIME',
-            'ADSTYPE_LARGE_INTEGER',
-            'ADSTYPE_PROV_SPECIFIC',
-            'ADSTYPE_OBJECT_CLASS',
-            'ADSTYPE_CASEIGNORE_LIST',
-            'ADSTYPE_OCTET_LIST',
-            'ADSTYPE_PATH',
-            'ADSTYPE_POSTALADDRESS',
-            'ADSTYPE_TIMESTAMP',
-            'ADSTYPE_BACKLINK',
-            'ADSTYPE_TYPEDNAME',
-            'ADSTYPE_HOLD',
-            'ADSTYPE_NETADDRESS',
-            'ADSTYPE_REPLICAPOINTER',
-            'ADSTYPE_FAXNUMBER',
-            'ADSTYPE_EMAIL',
-            'ADSTYPE_NT_SECURITY_DESCRIPTOR',
-            'ADSTYPE_UNKNOWN',
-            'ADSTYPE_DN_WITH_BINARY',
-            'ADSTYPE_DN_WITH_STRING',
-            '',
-        ]
+    pass

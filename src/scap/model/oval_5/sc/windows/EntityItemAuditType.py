@@ -23,19 +23,14 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'AUDIT_FAILURE',
+        'AUDIT_NONE',
+        'AUDIT_SUCCESS',
+        'AUDIT_SUCCESS_FAILURE',
+        '',
+    ]
+)
 class EntityItemAuditType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'AUDIT_FAILURE',
-            'AUDIT_NONE',
-            'AUDIT_SUCCESS',
-            'AUDIT_SUCCESS_FAILURE',
-            '',
-        ]
+    pass

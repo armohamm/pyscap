@@ -23,11 +23,6 @@ from scap.model.oval_5.sc.ItemType import ItemType
 
 logger = logging.getLogger(__name__)
 
-class FamilyItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='family', cls=EntityItemFamilyType, min=0, max=1)
-        ],
-        'attributes': {
-        }
-    }
+class FamilyItemElement(ItemType):
+    pass

@@ -25,9 +25,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class RpmInfoItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='name', cls=EntityItemType, min=0, max=1)
 @element(local_name='arch', cls=EntityItemType, min=0, max=1)
 @element(local_name='epoch', cls=EntityItemType, min=0, max=1)
@@ -37,5 +34,5 @@ class RpmInfoItemElement(ItemType):
 @element(local_name='signature_keyid', cls=EntityItemType, min=0, max=1)
 @element(local_name='extended_name', cls=EntityItemType, min=0, max=1)
 @element(local_name='filepath', cls=EntityItemType, min=0, max=None)
-        ],
-    }
+class RpmInfoItemElement(ItemType):
+    pass

@@ -22,9 +22,6 @@ from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 
-class NotesType(Model):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='note', list='notes', type=StringType, min=0, max=None)
-        ],
-    }
+class NotesType(Model):
+    pass

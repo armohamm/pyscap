@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class PasswordItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='username', min=0, cls=EntityItemType, max=1)
 @element(local_name='password', min=0, cls=EntityItemType, max=1)
 @element(local_name='user_id', min=0, cls=EntityItemType, max=1)
@@ -35,7 +32,5 @@ class PasswordItemElement(ItemType):
 @element(local_name='home_dir', min=0, cls=EntityItemType, max=1)
 @element(local_name='login_shell', min=0, cls=EntityItemType, max=1)
 @element(local_name='last_login', min=0, cls=EntityItemType, max=1)
-        ],
-        'attributes': {
-        },
-    }
+class PasswordItemElement(ItemType):
+    pass

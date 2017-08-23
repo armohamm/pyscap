@@ -23,26 +23,21 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'SERVICE_ACCEPT_NETBINDCHANGE',
+        'SERVICE_ACCEPT_PARAMCHANGE',
+        'SERVICE_ACCEPT_PAUSE_CONTINUE',
+        'SERVICE_ACCEPT_PRESHUTDOWN',
+        'SERVICE_ACCEPT_SHUTDOWN',
+        'SERVICE_ACCEPT_STOP',
+        'SERVICE_ACCEPT_HARDWAREPROFILECHANGE',
+        'SERVICE_ACCEPT_POWEREVENT',
+        'SERVICE_ACCEPT_SESSIONCHANGE',
+        'SERVICE_ACCEPT_TIMECHANGE',
+        'SERVICE_ACCEPT_TRIGGEREVENT',
+        '',
+    ]
+)
 class EntityItemServiceControlsAcceptedType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'SERVICE_ACCEPT_NETBINDCHANGE',
-            'SERVICE_ACCEPT_PARAMCHANGE',
-            'SERVICE_ACCEPT_PAUSE_CONTINUE',
-            'SERVICE_ACCEPT_PRESHUTDOWN',
-            'SERVICE_ACCEPT_SHUTDOWN',
-            'SERVICE_ACCEPT_STOP',
-            'SERVICE_ACCEPT_HARDWAREPROFILECHANGE',
-            'SERVICE_ACCEPT_POWEREVENT',
-            'SERVICE_ACCEPT_SESSIONCHANGE',
-            'SERVICE_ACCEPT_TIMECHANGE',
-            'SERVICE_ACCEPT_TRIGGEREVENT',
-            '',
-        ]
+    pass

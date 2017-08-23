@@ -23,22 +23,17 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'ARPHRD_ETHER',
+        'ARPHRD_FDDI',
+        'ARPHRD_LOOPBACK',
+        'ARPHRD_VOID',
+        'ARPHRD_PPP',
+        'ARPHRD_SLIP',
+        'ARPHRD_PRONET',
+        '',
+    ]
+)
 class EntityItemInterfaceType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'ARPHRD_ETHER',
-            'ARPHRD_FDDI',
-            'ARPHRD_LOOPBACK',
-            'ARPHRD_VOID',
-            'ARPHRD_PPP',
-            'ARPHRD_SLIP',
-            'ARPHRD_PRONET',
-            '',
-        ]
+    pass

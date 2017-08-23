@@ -9,6 +9,7 @@ fix class name abbreviations to caps
 alphabetize imports
 remove wildcard imports
 http://docs.quantifiedcode.com/python-anti-patterns
+check oval_5.sc.*.EntityItem* for duplicated enums
 
 
 from scap.model.decorators import *

@@ -25,9 +25,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class SeLinuxSecurityContextItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='filepath', cls=EntityItemType, min=0, max=1)
 @element(local_name='path', cls=EntityItemType, min=0, max=1)
 @element(local_name='filename', cls=EntityItemType, min=0, max=1, 'nillable': True)
@@ -43,5 +40,5 @@ class SeLinuxSecurityContextItemElement(ItemType):
 @element(local_name='rawlow_category', cls=EntityItemType, min=0, max=1)
 @element(local_name='rawhigh_sensitivity', cls=EntityItemType, min=0, max=1)
 @element(local_name='rawhigh_category', cls=EntityItemType, min=0, max=1)
-        ],
-    }
+class SeLinuxSecurityContextItemElement(ItemType):
+    pass

@@ -23,17 +23,12 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'wait',
+        'nowait',
+        '',
+    ]
+)
 class EntityItemWaitStatusType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'wait',
-            'nowait',
-            '',
-        ]
+    pass

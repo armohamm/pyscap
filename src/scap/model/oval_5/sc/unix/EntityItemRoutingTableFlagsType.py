@@ -23,43 +23,38 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'UP',
+        'GATEWAY',
+        'HOST',
+        'REINSTATE',
+        'DYNAMIC',
+        'MODIFIED',
+        'ADDRCONF',
+        'CACHE',
+        'REJECT',
+        'REDUNDANT',
+        'SETSRC',
+        'BROADCAST',
+        'LOCAL',
+        'PROTOCOL_1',
+        'PROTOCOL_2',
+        'PROTOCOL_3',
+        'BLACK_HOLE',
+        'CLONING',
+        'PROTOCOL_CLONING',
+        'INTERFACE_SCOPE',
+        'LINK_LAYER',
+        'MULTICAST',
+        'STATIC',
+        'WAS_CLONED',
+        'XRESOLVE',
+        'USABLE',
+        'PINNED',
+        'ACTIVE_DEAD_GATEWAY_DETECTION',
+        '',
+    ]
+)
 class EntityItemRoutingTableFlagsType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'UP',
-            'GATEWAY',
-            'HOST',
-            'REINSTATE',
-            'DYNAMIC',
-            'MODIFIED',
-            'ADDRCONF',
-            'CACHE',
-            'REJECT',
-            'REDUNDANT',
-            'SETSRC',
-            'BROADCAST',
-            'LOCAL',
-            'PROTOCOL_1',
-            'PROTOCOL_2',
-            'PROTOCOL_3',
-            'BLACK_HOLE',
-            'CLONING',
-            'PROTOCOL_CLONING',
-            'INTERFACE_SCOPE',
-            'LINK_LAYER',
-            'MULTICAST',
-            'STATIC',
-            'WAS_CLONED',
-            'XRESOLVE',
-            'USABLE',
-            'PINNED',
-            'ACTIVE_DEAD_GATEWAY_DETECTION',
-            '',
-        ]
+    pass

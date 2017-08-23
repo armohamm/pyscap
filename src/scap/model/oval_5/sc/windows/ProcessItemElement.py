@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class ProcessItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='command_line', max=1, min=0, cls=EntityItemType)
 @element(local_name='pid', max=1, min=0, cls=EntityItemType)
 @element(local_name='ppid', max=1, min=0, cls=EntityItemType)
@@ -37,7 +34,5 @@ class ProcessItemElement(ItemType):
 @element(local_name='dep_enabled', max=1, min=0, cls=EntityItemType)
 @element(local_name='primary_window_text', max=1, min=0, cls=EntityItemType)
 @element(local_name='name', max=1, min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class ProcessItemElement(ItemType):
+    pass

@@ -23,22 +23,17 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'DES',
+        'BSDi',
+        'MD5',
+        'Blowfish',
+        'Sun MD5',
+        'SHA-256',
+        'SHA-512',
+        '',
+    ]
+)
 class EntityItemEncryptMethodType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'DES',
-            'BSDi',
-            'MD5',
-            'Blowfish',
-            'Sun MD5',
-            'SHA-256',
-            'SHA-512',
-            '',
-        ]
+    pass

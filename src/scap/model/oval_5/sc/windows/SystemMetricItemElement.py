@@ -24,12 +24,7 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class SystemMetricItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='index', max=1, min=0, cls=EntityItemSystemMetricIndexType)
 @element(local_name='value', max=1, min=0, cls=EntityItemType)
-        ],
-        'attributes': {
-        },
-    }
+class SystemMetricItemElement(ItemType):
+    pass

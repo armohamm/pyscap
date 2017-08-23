@@ -25,9 +25,6 @@ from ..EntityItemIPAddressStringType import EntityItemIPAddressStringType
 
 logger = logging.getLogger(__name__)
 
-class InterfaceItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='name', max=1, min=0, cls=EntityItemType)
 @element(local_name='index', max=1, min=0, cls=EntityItemType)
 @element(local_name='type', max=1, min=0, cls=EntityItemInterfaceTypeType)
@@ -36,7 +33,5 @@ class InterfaceItemElement(ItemType):
 @element(local_name='broadcast_addr', max=1, min=0, cls=EntityItemIPAddressStringType)
 @element(local_name='netmask', max=1, min=0, cls=EntityItemIPAddressStringType)
 @element(local_name='addr_type', max=None, list='addr_types', min=0, cls=EntityItemAddrTypeType)
-        ],
-        'attributes': {
-        },
-    }
+class InterfaceItemElement(ItemType):
+    pass

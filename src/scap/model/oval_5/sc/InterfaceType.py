@@ -22,11 +22,8 @@ from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 
-class InterfaceType(Model):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='interface_name', type=StringType)
 @element(local_name='ip_address', type=StringType)
 @element(local_name='mac_address', type=StringType)
-        ],
-    }
+class InterfaceType(Model):
+    pass

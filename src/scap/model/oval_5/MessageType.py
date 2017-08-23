@@ -23,9 +23,6 @@ from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 
-class MessageType(StringType):
-    MODEL_MAP = {
-        'attributes': {
 @attribute(local_name='level', enum=MESSAGE_LEVEL_ENUMERATION, default='info')
-        }
-    }
+class MessageType(StringType):
+    pass

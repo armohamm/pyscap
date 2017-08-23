@@ -25,13 +25,6 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=FAMILY_ENUMERATION)
 class EntityItemFamilyType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return FAMILY_ENUMERATION
+    pass

@@ -23,29 +23,24 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'reg_binary',
+        'reg_dword',
+        'reg_dword_little_endian',
+        'reg_dword_big_endian',
+        'reg_expand_sz',
+        'reg_link',
+        'reg_multi_sz',
+        'reg_none',
+        'reg_qword',
+        'reg_qword_little_endian',
+        'reg_sz',
+        'reg_resource_list',
+        'reg_full_resource_descriptor',
+        'reg_resource_requirements_list',
+        '',
+    ]
+)
 class EntityItemRegistryTypeType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'reg_binary',
-            'reg_dword',
-            'reg_dword_little_endian',
-            'reg_dword_big_endian',
-            'reg_expand_sz',
-            'reg_link',
-            'reg_multi_sz',
-            'reg_none',
-            'reg_qword',
-            'reg_qword_little_endian',
-            'reg_sz',
-            'reg_resource_list',
-            'reg_full_resource_descriptor',
-            'reg_resource_requirements_list',
-            '',
-        ]
+    pass

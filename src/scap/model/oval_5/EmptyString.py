@@ -22,5 +22,6 @@ from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 
+@content(regex=r'^$')
 class EmptyStringType(StringType):
     pass

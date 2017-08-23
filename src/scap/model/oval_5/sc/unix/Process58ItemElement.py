@@ -24,9 +24,6 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-class Process58ItemElement(ItemType):
-    MODEL_MAP = {
-        'elements': [
 @element(local_name='command_line', min=0, cls=EntityItemType, max=1)
 @element(local_name='exec_time', min=0, cls=EntityItemType, max=1)
 @element(local_name='pid', min=0, cls=EntityItemType, max=1)
@@ -39,10 +36,8 @@ class Process58ItemElement(ItemType):
 @element(local_name='user_id', min=0, cls=EntityItemType, max=1)
 @element(local_name='exec_shield', min=0, cls=EntityItemType, max=1)
 @element(local_name='loginuid', min=0, cls=EntityItemType, max=1)
-            {list='posix_capabilitys', 'tag_name': 'posix_capability', min=0, cls=EntityItemCapabilityType, max=None},
-            {list='selinux_domain_labels', 'tag_name': 'selinux_domain_label', min=0, cls=EntityItemType, max=None},
+@element(local_name='posix_capability', list='posix_capabilitys', min=0, cls=EntityItemCapabilityType, max=None)
+@element(local_name='selinux_domain_label', list='selinux_domain_labels', min=0, cls=EntityItemType, max=None)
 @element(local_name='session_id', min=0, cls=EntityItemType, max=1)
-        ],
-        'attributes': {
-        },
-    }
+class Process58ItemElement(ItemType):
+    pass

@@ -23,20 +23,15 @@ from ..EntityItemType import EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
+@content(
+    enum=[
+        'SERVICE_AUTO_START',
+        'SERVICE_BOOT_START',
+        'SERVICE_DEMAND_START',
+        'SERVICE_DISABLED',
+        'SERVICE_SYSTEM_START',
+        '',
+    ]
+)
 class EntityItemServiceStartTypeType(EntityItemType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-        },
-    }
-
-    def get_value_enum(self):
-        return [
-            'SERVICE_AUTO_START',
-            'SERVICE_BOOT_START',
-            'SERVICE_DEMAND_START',
-            'SERVICE_DISABLED',
-            'SERVICE_SYSTEM_START',
-            '',
-        ]
+    pass
