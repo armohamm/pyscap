@@ -21,6 +21,8 @@ from scap.model.decorators import *
 
 from .StateType import StateType
 from .EntityStateRegistryTypeType import EntityStateRegistryTypeType
+from .EntityStateNTUserAccountTypeType import EntityStateNTUserAccountTypeType
+from .EntityStateRegistryTypeType import EntityStateRegistryTypeType
 from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)

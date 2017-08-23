@@ -20,6 +20,8 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from .RegkeyAuditPermissionsBehaviors import RegkeyAuditPermissionsBehaviors
+from .EntityObjectRegistryHiveType import EntityObjectRegistryHiveType
 from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)

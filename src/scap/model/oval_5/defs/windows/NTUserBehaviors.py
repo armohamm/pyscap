@@ -19,14 +19,14 @@ import logging
 
 from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
-
-from .FileBehaviors import FileBehaviors
+from scap.model.xs.IntegerType import IntegerType
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='include_default', type=BooleanType, default=False)
-@attribute(local_name='max_depth', type=Integer, default=-1)
-@attribute(local_name='recurse_direction', 'enum': ['none', 'up', 'down'], default='none')
-@attribute(local_name='windows_view', 'enum': ['32_bit', '64_bit'], default='64_bit')
-class FileEffectiveRightsBehaviors(FileBehaviors):
+@attribute(local_name='max_depth', type=IntegerType, default=-1)
+@attribute(local_name='recurse_direction', enum=['none', 'up', 'down'], default='none')
+@attribute(local_name='windows_view', enum=['32_bit', '64_bit'], default='64_bit')
+class NTUserBehaviors(Model):
     pass

@@ -20,6 +20,7 @@ import logging
 from scap.model.decorators import *
 
 from .ObjectType import ObjectType
+from .EntityObjectSystemMetricIndexType import EntityObjectSystemMetricIndexType
 
 logger = logging.getLogger(__name__)
 

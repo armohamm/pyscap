@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
 
 from .StateType import StateType
+from .EntityStateFileTypeType import EntityStateFileTypeType
 from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
