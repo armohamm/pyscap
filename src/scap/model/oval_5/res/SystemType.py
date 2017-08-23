@@ -18,13 +18,15 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+
+from .DefinitionsType import DefinitionsType
+from .TestsType import TestsType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='definitions', cls=DefinitionsType, min=0, max=1)
+@element(local_name='tests', cls=TestsType, min=0, max=1)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-system-characteristics-5', local_name='oval_system_characteristics')
 class SystemType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'definitions', 'class': 'DefinitionsType', 'min': 0, 'max': 1},
-            {'tag_name': 'tests', 'class': 'TestsType', 'min': 0, 'max': 1},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-system-characteristics-5', 'tag_name': 'oval_system_characteristics'},
-        ],
-    }
+    pass

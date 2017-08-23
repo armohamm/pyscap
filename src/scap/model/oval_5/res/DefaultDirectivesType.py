@@ -18,12 +18,13 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5.res.DirectivesType import DirectivesType
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+
+from .DirectivesType import DirectivesType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='include_source_definitions', type=BooleanType, default=True)
 class DefaultDirectivesType(DirectivesType):
-    MODEL_MAP = {
-        'attributes': {
-            'include_source_definitions': {'type': 'BooleanType', 'default': True},
-        },
-    }
+    pass

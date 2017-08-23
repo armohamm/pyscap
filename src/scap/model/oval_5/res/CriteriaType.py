@@ -18,20 +18,20 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import OPERATOR_ENUMERATION, RESULT_ENUMERATION
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+
+from .. import OPERATOR_ENUMERATION
+from .. import RESULT_ENUMERATION
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='applicability_check', type=BooleanType)
+@attribute(local_name='operator', enum=OPERATOR_ENUMERATION, required=True)
+@attribute(local_name='negate', type=BooleanType, default=False)
+@attribute(local_name='result', enum=RESULT_ENUMERATION, required=True)
+@element(local_name='criteria', list='criteria', cls='CriteriaType', min=0, max=None)
+@element(local_name='criterion', list='criteria', cls='CriterionType', min=0, max=None)
+@element(local_name='extend_definition', list='criteria', cls='ExtendDefinitionType', min=0, max=None)
 class CriteriaType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'criteria', 'list': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': None},
-            {'tag_name': 'criterion', 'list': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': None},
-            {'tag_name': 'extend_definition', 'list': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'applicability_check': {'type': 'BooleanType'},
-            'operator': {'enum': OPERATOR_ENUMERATION, 'required': True},
-            'negate': {'type': 'BooleanType', 'default': False},
-            'result': {'enum': RESULT_ENUMERATION, 'required': True},
-        }
-    }
+    pass

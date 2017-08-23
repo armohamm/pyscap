@@ -9,3 +9,26 @@ fix class name abbreviations to caps
 alphabetize imports
 remove wildcard imports
 http://docs.quantifiedcode.com/python-anti-patterns
+
+
+from scap.model.decorators import *
+
+logger
+
+ {12}'(\{(.*?)\})?(.*?)': \{(.*?)\},?
+@attribute(namespace='$2', local_name='$3', $4)
+
+ {12}\{('xmlns': '([^']+)', )?'tag_name': '(.*?)'(, .*?)?\},?
+@element(namespace='$2', local_name='$3'$4)
+
+'(enum|default|min|max|list|dict|required)':
+$1=
+
+'in':
+into=
+
+'type': '([^']+)'
+type=$1
+
+'class': '([^']+)'
+cls=$1

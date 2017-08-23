@@ -18,11 +18,12 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+
+from .TestType import TestType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='test', list='tests', cls=TestType, min=1, max=None)
 class TestsType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'test', 'list': 'tests', 'class': 'TestType', 'min': 1, 'max': None},
-        ],
-    }
+    pass

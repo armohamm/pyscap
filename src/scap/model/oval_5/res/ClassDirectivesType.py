@@ -18,13 +18,13 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import CLASS_ENUMERATION
-from scap.model.oval_5.res.DirectivesType import DirectivesType
+from scap.model.decorators import *
+
+from .. import CLASS_ENUMERATION
+from .DirectivesType import DirectivesType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='class', enum=CLASS_ENUMERATION, required=True)
 class ClassDirectivesType(DirectivesType):
-    MODEL_MAP = {
-        'attributes': {
-            'class': {'enum': CLASS_ENUMERATION, 'required': True},
-        },
-    }
+    pass

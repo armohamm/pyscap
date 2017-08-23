@@ -18,12 +18,12 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='reported', type=BooleanType, required=True)
+@attribute(local_name='content', enum=['thin', 'full'], default='full')
 class DirectiveType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'reported': {'type': 'BooleanType', 'required': True},
-            'content': {'enum': [ 'thin', 'full', ], 'default': 'full'},
-        },
-    }
+    pass

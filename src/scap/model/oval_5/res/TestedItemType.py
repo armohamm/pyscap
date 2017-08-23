@@ -18,16 +18,15 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import RESULT_ENUMERATION
+from scap.model.decorators import *
+
+from .. import RESULT_ENUMERATION
+from ..ItemIdPattern import ItemIdPattern
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='item_id', type=ItemIdPattern, required=True)
+@attribute(local_name='result', enum=RESULT_ENUMERATION, required=True)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-system-characteristics-5', local_name='message', list='messages', min=0, max=None)
 class TestedItemType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-system-characteristics-5', 'tag_name': 'message', 'list': 'messages', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'item_id': {'type': 'scap.model.oval_5.ItemIdPattern', 'required': True},
-            'result': {'enum': RESULT_ENUMERATION, 'required': True},
-        }
-    }
+    pass

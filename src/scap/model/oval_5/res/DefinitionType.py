@@ -18,20 +18,22 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import CLASS_ENUMERATION, RESULT_ENUMERATION
+from scap.model.decorators import *
+from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
+
+from .. import CLASS_ENUMERATION
+from .. import RESULT_ENUMERATION
+from ..DefinitionIdPattern import DefinitionIdPattern
+from .CriteriaType import CriteriaType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='definition_id', type=DefinitionIdPattern, required=True)
+@attribute(local_name='version', type=NonNegativeIntegerType, required=True)
+@attribute(local_name='variable_instance', type=NonNegativeIntegerType, default=1)
+@attribute(local_name='class', enum=CLASS_ENUMERATION, into='class_')
+@attribute(local_name='result', enum=RESULT_ENUMERATION, required=True)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-system-characteristics-5', local_name='message', list='messages', min=0, max=None)
+@element(local_name='criteria', cls=CriteriaType, min=0, max=1)
 class DefinitionType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-system-characteristics-5', 'tag_name': 'message', 'list': 'messages', 'min': 0, 'max': None},
-            {'tag_name': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'definition_id': {'type': 'scap.model.oval_5.DefinitionIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeIntegerType', 'required': True},
-            'variable_instance': {'type': 'NonNegativeIntegerType', 'default': 1},
-            'class': {'enum': CLASS_ENUMERATION, 'in': 'class_'},
-            'result': {'enum': RESULT_ENUMERATION, 'required': True},
-        }
-    }
+    pass

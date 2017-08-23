@@ -18,17 +18,21 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+
+from ..GeneratorType import GeneratorType
+from ..defs.OvalDefinitionsElement import OvalDefinitionsElement
+from .DefaultDirectivesType import DefaultDirectivesType
+from .ClassDirectivesType import ClassDirectivesType
+from .ResultsType import ResultsType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='generator', cls=GeneratorType)
+@element(local_name='directives', cls=DefaultDirectivesType)
+@element(local_name='class_directives', cls=ClassDirectivesType, min=0, max=5)
+@element(local_name='oval_definitions', cls=OvalDefinitionsElement, min=0, max=1)
+@element(local_name='results', cls=ResultsType)
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
 class OvalResultsElement(Model):
-    MODEL_MAP = {
-        'tag_name' : 'oval_results',
-        'elements': [
-            {'tag_name': 'generator', 'class': 'scap.model.oval_5.GeneratorType'},
-            {'tag_name': 'directives', 'class': 'DefaultDirectivesType'},
-            {'tag_name': 'class_directives', 'class': 'ClassDirectivesType', 'min': 0, 'max': 5},
-            {'tag_name': 'oval_definitions', 'class': 'scap.model.oval_5.defs.OvalDefinitionsElement', 'min': 0, 'max': 1},
-            {'tag_name': 'results', 'class': 'ResultsType'},
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

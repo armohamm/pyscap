@@ -18,16 +18,17 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+
+from .DirectiveType import DirectiveType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='definition_true', cls=DirectiveType)
+@element(local_name='definition_false', cls=DirectiveType)
+@element(local_name='definition_unknown', cls=DirectiveType)
+@element(local_name='definition_error', cls=DirectiveType)
+@element(local_name='definition_not_evaluated', cls=DirectiveType)
+@element(local_name='definition_not_applicable', cls=DirectiveType)
 class DirectivesType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'definition_true', 'class': 'DirectiveType'},
-            {'tag_name': 'definition_false', 'class': 'DirectiveType'},
-            {'tag_name': 'definition_unknown', 'class': 'DirectiveType'},
-            {'tag_name': 'definition_error', 'class': 'DirectiveType'},
-            {'tag_name': 'definition_not_evaluated', 'class': 'DirectiveType'},
-            {'tag_name': 'definition_not_applicable', 'class': 'DirectiveType'},
-        ],
-    }
+    pass

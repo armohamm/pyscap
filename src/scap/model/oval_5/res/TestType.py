@@ -18,23 +18,28 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import EXISTENCE_ENUMERATION, CHECK_ENUMERATION, OPERATOR_ENUMERATION, RESULT_ENUMERATION
+from scap.model.decorators import *
+from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
+
+from .. import EXISTENCE_ENUMERATION
+from .. import CHECK_ENUMERATION
+from .. import OPERATOR_ENUMERATION
+from .. import RESULT_ENUMERATION
+from ..TestIdPattern import TestIdPattern
+from .TestedItemType import TestedItemType
+from .TestedVariableType import TestedVariableType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='test_id', type=TestIdPattern, required=True)
+@attribute(local_name='version', type=NonNegativeIntegerType, required=True)
+@attribute(local_name='variable_instance', type=NonNegativeIntegerType, default=1)
+@attribute(local_name='check_existence', enum=EXISTENCE_ENUMERATION, default='at_least_one_exists')
+@attribute(local_name='check', enum=CHECK_ENUMERATION, required=True)
+@attribute(local_name='state_operator', enum=OPERATOR_ENUMERATION, default='AND')
+@attribute(local_name='result', enum=RESULT_ENUMERATION, required=True)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-system-characteristics-5', local_name='message', list='messages', min=0, max=None)
+@element(local_name='tested_item', list='tested_items', cls=TestedItemType, min=0, max=None)
+@element(local_name='tested_variable', list='tested_variables', cls=TestedVariableType, min=0, max=None)
 class TestType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-system-characteristics-5', 'tag_name': 'message', 'list': 'messages', 'min': 0, 'max': None},
-            {'tag_name': 'tested_item', 'list': 'tested_items', 'class': 'TestedItemType', 'min': 0, 'max': None},
-            {'tag_name': 'tested_variable', 'list': 'tested_variables', 'class': 'TestedVariableType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'test_id': {'type': 'scap.model.oval_5.TestIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeIntegerType', 'required': True},
-            'variable_instance': {'type': 'NonNegativeIntegerType', 'default': 1},
-            'check_existence': {'enum': EXISTENCE_ENUMERATION, 'default': 'at_least_one_exists'},
-            'check': {'enum': CHECK_ENUMERATION, 'required': True},
-            'state_operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
-            'result': {'enum': RESULT_ENUMERATION, 'required': True},
-        }
-    }
+    pass

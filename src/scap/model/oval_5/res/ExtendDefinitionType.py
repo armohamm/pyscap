@@ -18,17 +18,20 @@
 import logging
 
 from scap.Model import Model
-from scap.model.oval_5 import RESULT_ENUMERATION
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
+
+from .. import RESULT_ENUMERATION
+from ..DefinitionIdPattern import DefinitionIdPattern
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='applicability_check', type=BooleanType)
+@attribute(local_name='definition_ref', type=DefinitionIdPattern, required=True)
+@attribute(local_name='version', type=NonNegativeIntegerType, required=True)
+@attribute(local_name='variable_instance', type=NonNegativeIntegerType, default=1)
+@attribute(local_name='negate', type=BooleanType, default=False)
+@attribute(local_name='result', enum=RESULT_ENUMERATION, required=True)
 class ExtendDefinitionType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'applicability_check': {'type': 'BooleanType'},
-            'definition_ref': {'type': 'scap.model.oval_5.DefinitionIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeIntegerType', 'required': True},
-            'variable_instance': {'type': 'NonNegativeIntegerType', 'default': 1},
-            'negate': {'type': 'BooleanType', 'default': False},
-            'result': {'enum': RESULT_ENUMERATION, 'required': True},
-        }
-    }
+    pass
