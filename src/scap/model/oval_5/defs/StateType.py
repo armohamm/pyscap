@@ -22,6 +22,7 @@ from scap.Model import Model
 from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
 from scap.model.xs.BooleanType import BooleanType
 
+from .NotesType import NotesType
 from .. import OPERATOR_ENUMERATION
 from ..StateIdPattern import StateIdPattern
 from ..NonEmptyString import NonEmptyString

@@ -19,12 +19,12 @@ import logging
 
 from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.xs.Int import Int
+from scap.model.xs.IntType import IntType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='substring_start', type=Int, required=True)
-@attribute(local_name='substring_length', type=Int, required=True)
+@attribute(local_name='substring_start', type=IntType, required=True)
+@attribute(local_name='substring_length', type=IntType, required=True)
 @element(local_name='object_component', list='components', cls='ObjectComponentType')
 @element(local_name='variable_component', list='components', cls='VariableComponentType')
 @element(local_name='literal_component', list='components', cls='LiteralComponentType')

@@ -20,7 +20,6 @@ import logging
 from scap.model.decorators import *
 from scap.Model import Model
 
-from .SetElement import SetElement
 from .FilterElement import FilterElement
 from .. import SET_OPERATOR_ENUMERATION
 from ..ObjectIdPattern import ObjectIdPattern
@@ -28,7 +27,7 @@ from ..ObjectIdPattern import ObjectIdPattern
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='set_operator', enum=SET_OPERATOR_ENUMERATION, default='UNION')
-@element(local_name='set', list='sets', cls=SetElement, min=0, max=2)
+@element(local_name='set', list='sets', cls='SetElement', min=0, max=2)
 @element(local_name='object_reference', list='object_references', type=ObjectIdPattern, min=0, max=2)
 @element(local_name='filter', list='filters', cls=FilterElement, min=0, max=None)
 class SetElement(Model):

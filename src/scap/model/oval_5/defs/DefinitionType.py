@@ -28,10 +28,11 @@ from ..NotesType import NotesType
 from .. import DefinitionIdPattern
 from .. import CLASS_ENUMERATION
 from ..res.DefinitionType import DefinitionType as res_DefinitionType
+from ..DefinitionIdPattern import DefinitionIdPattern
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='id', type=scap.model.oval_5.DefinitionIdPattern, required=True)
+@attribute(local_name='id', type=DefinitionIdPattern, required=True)
 @attribute(local_name='version', type=NonNegativeIntegerType, required=True)
 @attribute(local_name='class', enum=CLASS_ENUMERATION, into='class_', required=True)
 @attribute(local_name='deprecated', type=BooleanType, default=False)
