@@ -22,8 +22,6 @@ from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemType import EntityItemType
 
-from ..EntityItemType import EntityItemType
-
 logger = logging.getLogger(__name__)
 
 class FileAuditedPermissionsItemElement(ItemType):
