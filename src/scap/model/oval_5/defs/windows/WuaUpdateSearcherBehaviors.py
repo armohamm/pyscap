@@ -17,12 +17,12 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='include_superseded_updates', type=BooleanType, default=True)
 class WuaUpdateSearcherBehaviors(Model):
-    MODEL_MAP = {
-        'attributes': {@attribute(local_name='include_superseded_updates', type=BooleanType, default=True),
-        }
-    }
+    pass

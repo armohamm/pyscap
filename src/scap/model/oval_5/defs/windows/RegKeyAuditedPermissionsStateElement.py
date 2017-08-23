@@ -17,17 +17,17 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
-from scap.model.oval_5.defs.windows.StateType import StateType
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class RegKeyAuditedPermissionsStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'regkeyauditedpermissions_state',
-        'elements': [
+
 @element(local_name='hive', cls=EntityStateRegistryHiveType, min=0)
-@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='trustee_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key', cls=EntityStateType, min=0)
+@element(local_name='trustee_name', cls=EntityStateType, min=0)
 @element(local_name='standard_delete', cls=EntityStateAuditType, min=0)
 @element(local_name='standard_read_control', cls=EntityStateAuditType, min=0)
 @element(local_name='standard_write_owner', cls=EntityStateAuditType)
@@ -47,6 +47,6 @@ class RegKeyAuditedPermissionsStateElement(StateType):
 @element(local_name='key_wow64_64key', cls=EntityStateAuditType, min=0)
 @element(local_name='key_wow64_32key', cls=EntityStateAuditType, min=0)
 @element(local_name='key_wow64_res', cls=EntityStateAuditType, min=0)
-@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
-        ],
-    }
+@element(local_name='windows_view', cls=EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
+class RegKeyAuditedPermissionsStateElement(StateType):
+    pass

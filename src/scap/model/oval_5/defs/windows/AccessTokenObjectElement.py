@@ -17,15 +17,14 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
-class AccessTokenObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'accesstoken_object',
-        'elements': [
 @element(local_name='behaviors', cls=AccesstokenBehaviors, min=0)
-@element(local_name='security_principle', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-        ],
-    }
+@element(local_name='security_principle', cls=EntityObjectType, min=0)
+class AccessTokenObjectElement(ObjectType):
+    pass

@@ -17,14 +17,13 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import PE_SUBSYSTEM_ENUMERATION
-from scap.model.oval_5.defs.EntityStateType import EntityStateType
+
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=PE_SUBSYSTEM_ENUMERATION)
 class EntityStatePeSubsystemType(EntityStateType):
-    MODEL_MAP = {
-    }
-
-    def get_value_enum(self):
-        return PE_SUBSYSTEM_ENUMERATION
+    pass

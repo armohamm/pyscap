@@ -17,14 +17,13 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import ADSTYPE_ENUMERATION
-from scap.model.oval_5.defs.EntityStateType import EntityStateType
+
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=ADSTYPE_ENUMERATION)
 class EntityStateAdstypeType(EntityStateType):
-    MODEL_MAP = {
-    }
-
-    def get_value_enum(self):
-        return ADSTYPE_ENUMERATION
+    pass

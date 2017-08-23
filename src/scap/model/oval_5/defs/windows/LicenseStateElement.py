@@ -17,15 +17,15 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class LicenseStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'license_state',
-        'elements': [
-@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+
+@element(local_name='name', cls=EntityStateType, min=0)
 @element(local_name='type', cls=EntityStateRegistryTypeType, min=0)
-@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+@element(local_name='value', cls=EntityStateType, min=0)
+class LicenseStateElement(StateType):
+    pass

@@ -17,21 +17,20 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
-from scap.model.oval_5.defs.windows.StateType import StateType
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-class RegistryStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'registry_state',
-        'elements': [
 @element(local_name='hive', cls=EntityStateRegistryHiveType, min=0)
-@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='last_write_time', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key', cls=EntityStateType, min=0)
+@element(local_name='name', cls=EntityStateType, min=0)
+@element(local_name='last_write_time', cls=EntityStateType, min=0)
 @element(local_name='type', cls=EntityStateRegistryTypeType, min=0)
-@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
-        ],
-    }
+@element(local_name='value', cls=EntityStateType, min=0)
+@element(local_name='windows_view', cls=EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
+class RegistryStateElement(StateType):
+    pass

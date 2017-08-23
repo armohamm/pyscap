@@ -17,14 +17,12 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
 
 logger = logging.getLogger(__name__)
 
-class AuditEventPolicyStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'auditeventpolicy_state',
-        'elements': [
 @element(local_name='account_logon', cls=EntityStateAuditType, min=0)
 @element(local_name='account_management', cls=EntityStateAuditType, min=0)
 @element(local_name='detailed_tracking', cls=EntityStateAuditType, min=0)
@@ -34,5 +32,5 @@ class AuditEventPolicyStateElement(StateType):
 @element(local_name='policy_change', cls=EntityStateAuditType, min=0)
 @element(local_name='privilege_use', cls=EntityStateAuditType, min=0)
 @element(local_name='system', cls=EntityStateAuditType, min=0)
-        ],
-    }
+class AuditEventPolicyStateElement(StateType):
+    pass

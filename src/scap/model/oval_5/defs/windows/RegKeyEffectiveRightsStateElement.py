@@ -17,36 +17,36 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
-from scap.model.oval_5.defs.windows.StateType import StateType
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class RegKeyEffectiveRightsStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'regkeyeffectiverights_state',
-        'elements': [
+
 @element(local_name='hive', cls=EntityStateRegistryHiveType, min=0)
-@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='trustee_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_delete', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_read_control', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_write_dac', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_write_owner', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_synchronize', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='access_system_security', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_read', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_write', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_execute', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_all', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='key_query_value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='key_set_value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='key_create_sub_key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='key_enumerate_sub_keys', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='key_notify', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='key_create_link', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='key_wow64_64key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='key_wow64_32key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='key_wow64_res', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
-        ],
-    }
+@element(local_name='key', cls=EntityStateType, min=0)
+@element(local_name='trustee_name', cls=EntityStateType, min=0)
+@element(local_name='standard_delete', cls=EntityStateType, min=0)
+@element(local_name='standard_read_control', cls=EntityStateType, min=0)
+@element(local_name='standard_write_dac', cls=EntityStateType, min=0)
+@element(local_name='standard_write_owner', cls=EntityStateType, min=0)
+@element(local_name='standard_synchronize', cls=EntityStateType, min=0)
+@element(local_name='access_system_security', cls=EntityStateType, min=0)
+@element(local_name='generic_read', cls=EntityStateType, min=0)
+@element(local_name='generic_write', cls=EntityStateType, min=0)
+@element(local_name='generic_execute', cls=EntityStateType, min=0)
+@element(local_name='generic_all', cls=EntityStateType, min=0)
+@element(local_name='key_query_value', cls=EntityStateType, min=0)
+@element(local_name='key_set_value', cls=EntityStateType, min=0)
+@element(local_name='key_create_sub_key', cls=EntityStateType, min=0)
+@element(local_name='key_enumerate_sub_keys', cls=EntityStateType, min=0)
+@element(local_name='key_notify', cls=EntityStateType, min=0)
+@element(local_name='key_create_link', cls=EntityStateType, min=0)
+@element(local_name='key_wow64_64key', cls=EntityStateType, min=0)
+@element(local_name='key_wow64_32key', cls=EntityStateType, min=0)
+@element(local_name='key_wow64_res', cls=EntityStateType, min=0)
+@element(local_name='windows_view', cls=EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
+class RegKeyEffectiveRightsStateElement(StateType):
+    pass

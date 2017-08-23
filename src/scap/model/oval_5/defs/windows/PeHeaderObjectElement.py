@@ -17,16 +17,16 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
-class PeHeaderObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'peheader_object',
-        'elements': [
+
 @element(local_name='behaviors', cls=FileBehaviors, min=0, max=1)
-@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-@element(local_name='path', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-@element(local_name='filename', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-        ],
-    }
+@element(local_name='filepath', cls=EntityObjectType, min=0)
+@element(local_name='path', cls=EntityObjectType, min=0)
+@element(local_name='filename', cls=EntityObjectType, min=0)
+class PeHeaderObjectElement(ObjectType):
+    pass

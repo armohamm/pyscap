@@ -17,15 +17,15 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='namespace', cls=EntityStateType, min=0)
+@element(local_name='wql', cls=EntityStateType, min=0)
+@element(local_name='result', cls=EntityStateType, min=0)
 class Wmi57StateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'wmi57_state',
-        'elements': [
-@element(local_name='namespace', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='wql', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='result', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+    pass

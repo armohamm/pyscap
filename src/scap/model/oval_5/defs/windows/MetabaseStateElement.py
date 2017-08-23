@@ -17,18 +17,18 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='key', cls=EntityStateType, min=0)
+@element(local_name='id', cls=EntityStateType, min=0)
+@element(local_name='name', cls=EntityStateType, min=0)
+@element(local_name='user_type', cls=EntityStateType, min=0)
+@element(local_name='data_type', cls=EntityStateType, min=0)
+@element(local_name='data', cls=EntityStateType, min=0)
 class MetabaseStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'metabase_state',
-        'elements': [
-@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='id', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='user_type', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='data_type', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='data', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+    pass

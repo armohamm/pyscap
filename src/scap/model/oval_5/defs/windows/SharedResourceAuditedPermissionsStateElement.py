@@ -17,15 +17,15 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class SharedResourceAuditedPermissionsStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'sharedresourceauditedpermissions_state',
-        'elements': [
-@element(local_name='netname', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+
+@element(local_name='netname', cls=EntityStateType, min=0)
+@element(local_name='trustee_sid', cls=EntityStateType, min=0)
 @element(local_name='standard_delete', cls=EntityStateAuditType, min=0)
 @element(local_name='standard_read_control', cls=EntityStateAuditType, min=0)
 @element(local_name='standard_write_dac', cls=EntityStateAuditType, min=0)
@@ -36,5 +36,5 @@ class SharedResourceAuditedPermissionsStateElement(StateType):
 @element(local_name='generic_write', cls=EntityStateAuditType, min=0)
 @element(local_name='generic_execute', cls=EntityStateAuditType, min=0)
 @element(local_name='generic_all', cls=EntityStateAuditType, min=0)
-        ],
-    }
+class SharedResourceAuditedPermissionsStateElement(StateType):
+    pass

@@ -17,12 +17,13 @@
 
 import logging
 
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='include_group', type=BooleanType, default=True)
 class SharedResourceAuditedPermissionsBehaviors(Model):
-    MODEL_MAP = {
-        'attributes': {@attribute(local_name='include_group', type=BooleanType, default=True),
-        }
-    }
+    pass

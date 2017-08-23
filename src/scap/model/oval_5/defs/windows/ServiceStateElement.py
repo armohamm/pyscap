@@ -17,24 +17,24 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class ServiceStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'service_state',
-        'elements': [
-@element(local_name='service_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='display_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='description', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+
+@element(local_name='service_name', cls=EntityStateType, min=0)
+@element(local_name='display_name', cls=EntityStateType, min=0)
+@element(local_name='description', cls=EntityStateType, min=0)
 @element(local_name='service_type', cls=EntityStateServiceTypeType, min=0)
 @element(local_name='start_type', cls=EntityStateServiceStartTypeType, min=0)
 @element(local_name='current_state', cls=EntityStateServiceCurrentStateType, min=0)
 @element(local_name='controls_accepted', cls=EntityStateServiceControlsAcceptedType, min=0)
-@element(local_name='start_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='path', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='pid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='service_flag', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='dependencies', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+@element(local_name='start_name', cls=EntityStateType, min=0)
+@element(local_name='path', cls=EntityStateType, min=0)
+@element(local_name='pid', cls=EntityStateType, min=0)
+@element(local_name='service_flag', cls=EntityStateType, min=0)
+@element(local_name='dependencies', cls=EntityStateType, min=0)
+class ServiceStateElement(StateType):
+    pass

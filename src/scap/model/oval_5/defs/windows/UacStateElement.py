@@ -17,21 +17,21 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='admin_approval_mode', cls=EntityStateType, min=0)
+@element(local_name='elevation_prompt_admin', cls=EntityStateType, min=0)
+@element(local_name='elevation_prompt_standard', cls=EntityStateType, min=0)
+@element(local_name='detect_installations', cls=EntityStateType, min=0)
+@element(local_name='elevate_signed_executables', cls=EntityStateType, min=0)
+@element(local_name='elevate_uiaccess', cls=EntityStateType, min=0)
+@element(local_name='run_admins_aam', cls=EntityStateType, min=0)
+@element(local_name='secure_desktop', cls=EntityStateType, min=0)
+@element(local_name='virtualize_write_failures', cls=EntityStateType, min=0)
 class UacStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'uac_state',
-        'elements': [
-@element(local_name='admin_approval_mode', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='elevation_prompt_admin', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='elevation_prompt_standard', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='detect_installations', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='elevate_signed_executables', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='elevate_uiaccess', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='run_admins_aam', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='secure_desktop', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='virtualize_write_failures', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+    pass

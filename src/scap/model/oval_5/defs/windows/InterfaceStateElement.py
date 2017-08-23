@@ -17,20 +17,20 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class InterfaceStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'interface_state',
-        'elements': [
-@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='index', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+
+@element(local_name='name', cls=EntityStateType, min=0)
+@element(local_name='index', cls=EntityStateType, min=0)
 @element(local_name='type', cls=EntityStateInterfaceTypeType, min=0)
-@element(local_name='hardware_addr', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='inet_addr', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='broadcast_addr', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='netmask', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='hardware_addr', cls=EntityStateType, min=0)
+@element(local_name='inet_addr', cls=EntityStateType, min=0)
+@element(local_name='broadcast_addr', cls=EntityStateType, min=0)
+@element(local_name='netmask', cls=EntityStateType, min=0)
 @element(local_name='addr_type', cls=EntityStateAddrTypeType, min=0)
-        ],
-    }
+class InterfaceStateElement(StateType):
+    pass

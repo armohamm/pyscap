@@ -17,15 +17,15 @@
 
 import logging
 
-from scap.model.oval_5.defs.TestType import TestType
+from scap.model.decorators import *
+
+from ..TestType import TestType
+from ..ObjectRefType import ObjectRefType
+from ..StateRefType import StateRefType
 
 logger = logging.getLogger(__name__)
 
+@element(local_name='object', cls=ObjectRefType)
+@element(local_name='state', list='states', cls=StateRefType, min=0, max=None)
 class AuditEventPolicySubcategoriesTestElement(TestType):
-    MODEL_MAP = {
-        'tag_name': 'auditeventpolicysubcategories_test',
-        'elements': [
-@element(local_name='object', cls=scap.model.oval_5.defs.ObjectRefType)
-@element(local_name='state', 'list': 'states', cls=scap.model.oval_5.defs.StateRefType, min=0, max=None)
-        ],
-    }
+    pass

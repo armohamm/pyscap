@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class UserRightStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'userright_state',
-        'elements': [
+
 @element(local_name='userright', cls=EntityStateUserRightType, min=0, max=1)
-@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-        ],
-    }
+@element(local_name='trustee_sid', cls=EntityStateType, min=0, max=1)
+class UserRightStateElement(StateType):
+    pass

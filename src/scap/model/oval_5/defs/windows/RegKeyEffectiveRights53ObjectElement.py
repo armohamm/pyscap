@@ -17,16 +17,16 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
-class RegKeyEffectiveRights53ObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'regkeyeffectiverights53_object',
-        'elements': [
+
 @element(local_name='behaviors', cls=RegkeyEffectiveRights53Behaviors, min=0)
 @element(local_name='hive', cls=EntityObjectRegistryHiveType, min=0)
-@element(local_name='key', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0)
-@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-        ],
-    }
+@element(local_name='key', cls=EntityObjectType, nillable=True, min=0)
+@element(local_name='trustee_sid', cls=EntityObjectType, min=0)
+class RegKeyEffectiveRights53ObjectElement(ObjectType):
+    pass

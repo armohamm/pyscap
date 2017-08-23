@@ -17,12 +17,13 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='include_group', type=BooleanType, default=True)
+@attribute(local_name='resolve_group', type=BooleanType, default=False)
 class SidBehaviors(Model):
-    MODEL_MAP = {
-        'attributes': {@attribute(local_name='include_group', type=BooleanType, default=True),@attribute(local_name='resolve_group', type=BooleanType, default=False),
-        }
-    }
+    pass

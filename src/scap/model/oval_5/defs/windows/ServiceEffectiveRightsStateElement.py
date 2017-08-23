@@ -17,30 +17,30 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='service_name', cls=EntityStateType, min=0)
+@element(local_name='trustee_sid', cls=EntityStateType, min=0)
+@element(local_name='standard_delete', cls=EntityStateType, min=0)
+@element(local_name='standard_read_control', cls=EntityStateType, min=0)
+@element(local_name='standard_write_dac', cls=EntityStateType, min=0)
+@element(local_name='standard_write_owner', cls=EntityStateType, min=0)
+@element(local_name='generic_read', cls=EntityStateType, min=0)
+@element(local_name='generic_write', cls=EntityStateType, min=0)
+@element(local_name='generic_execute', cls=EntityStateType, min=0)
+@element(local_name='service_query_conf', cls=EntityStateType, min=0)
+@element(local_name='service_change_conf', cls=EntityStateType, min=0)
+@element(local_name='service_query_stat', cls=EntityStateType, min=0)
+@element(local_name='service_enum_dependents', cls=EntityStateType, min=0)
+@element(local_name='service_start', cls=EntityStateType, min=0)
+@element(local_name='service_stop', cls=EntityStateType, min=0)
+@element(local_name='service_pause', cls=EntityStateType, min=0)
+@element(local_name='service_interrogate', cls=EntityStateType, min=0)
+@element(local_name='service_user_defined', cls=EntityStateType, min=0)
 class ServiceEffectiveRightsStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'serviceeffectiverights_state',
-        'elements': [
-@element(local_name='service_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_delete', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_read_control', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_write_dac', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_write_owner', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_read', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_write', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_execute', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='service_query_conf', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='service_change_conf', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='service_query_stat', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='service_enum_dependents', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='service_start', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='service_stop', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='service_pause', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='service_interrogate', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='service_user_defined', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+    pass

@@ -17,17 +17,17 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
-from scap.model.oval_5.defs.windows.StateType import StateType
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class RegKeyEffectiveRights53StateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'regkeyeffectiverights53_state',
-        'elements': [
+
 @element(local_name='hive', cls=EntityStateRegistryHiveType, min=0)
-@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='key', cls=EntityStateType, min=0)
+@element(local_name='trustee_sid', cls=EntityStateType, min=0)
 @element(local_name='standard_delete', cls=EntityStateType, min=0)
 @element(local_name='standard_read_control', cls=EntityStateType, min=0)
 @element(local_name='standard_write_dac', cls=EntityStateType, min=0)
@@ -47,6 +47,6 @@ class RegKeyEffectiveRights53StateElement(StateType):
 @element(local_name='key_wow64_64key', cls=EntityStateType, min=0)
 @element(local_name='key_wow64_32key', cls=EntityStateType, min=0)
 @element(local_name='key_wow64_res', cls=EntityStateType, min=0)
-@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
-        ],
-    }
+@element(local_name='windows_view', cls=EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
+class RegKeyEffectiveRights53StateElement(StateType):
+    pass

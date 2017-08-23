@@ -17,20 +17,19 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
-class CmdletObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'cmdlet_object',
-        'elements': [
-@element(local_name='module_name', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0, max=1)
+@element(local_name='module_name', cls=EntityObjectType, nillable=True, min=0, max=1)
 @element(local_name='module_id', cls=EntityObjectGUIDType, nillable=True, min=0, max=1)
 @element(local_name='module_version', cls=EntityObjectType, nillable=True, min=0, max=1)
 @element(local_name='verb', cls=EntityObjectCmdletVerbType, nillable=True, min=0, max=1)
-@element(local_name='noun', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0, max=1)
-@element(local_name='parameters', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0)
-@element(local_name='select', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0)
-        ],
-    }
+@element(local_name='noun', cls=EntityObjectType, nillable=True, min=0, max=1)
+@element(local_name='parameters', cls=EntityObjectType, nillable=True, min=0)
+@element(local_name='select', cls=EntityObjectType, nillable=True, min=0)
+class CmdletObjectElement(ObjectType):
+    pass

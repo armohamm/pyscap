@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
-class SidObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'sid_object',
-        'elements': [
+
 @element(local_name='behaviors', cls=SidBehaviors, min=0)
-@element(local_name='trustee_name', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-        ],
-    }
+@element(local_name='trustee_name', cls=EntityObjectType, min=0)
+class SidObjectElement(ObjectType):
+    pass

@@ -17,32 +17,32 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
-from scap.model.oval_5.defs.windows.StateType import StateType
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class FileStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'file_state',
-        'elements': [
-@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='path', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='filename', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='owner', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='size', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='a_time', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='c_time', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='m_time', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='ms_checksum', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='version', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+
+@element(local_name='filepath', cls=EntityStateType, min=0)
+@element(local_name='path', cls=EntityStateType, min=0)
+@element(local_name='filename', cls=EntityStateType, min=0)
+@element(local_name='owner', cls=EntityStateType, min=0)
+@element(local_name='size', cls=EntityStateType, min=0)
+@element(local_name='a_time', cls=EntityStateType, min=0)
+@element(local_name='c_time', cls=EntityStateType, min=0)
+@element(local_name='m_time', cls=EntityStateType, min=0)
+@element(local_name='ms_checksum', cls=EntityStateType, min=0)
+@element(local_name='version', cls=EntityStateType, min=0)
 @element(local_name='type', cls=EntityStateFileTypeType, min=0)
-@element(local_name='development_class', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='company', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='internal_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='language', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='original_filename', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='product_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='development_class', cls=EntityStateType, min=0)
+@element(local_name='company', cls=EntityStateType, min=0)
+@element(local_name='internal_name', cls=EntityStateType, min=0)
+@element(local_name='language', cls=EntityStateType, min=0)
+@element(local_name='original_filename', cls=EntityStateType, min=0)
+@element(local_name='product_name', cls=EntityStateType, min=0)
 @element(local_name='product_version', cls=EntityStateType, min=0)
-@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
-        ],
-    }
+@element(local_name='windows_view', cls=EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
+class FileStateElement(StateType):
+    pass

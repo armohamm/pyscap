@@ -17,15 +17,15 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='trustee_sid', cls=EntityStateType, min=0)
+@element(local_name='trustee_name', cls=EntityStateType, min=0)
+@element(local_name='trustee_domain', cls=EntityStateType, min=0)
 class SidSidStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'sid_sid_state',
-        'elements': [
-@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='trustee_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='trustee_domain', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+    pass

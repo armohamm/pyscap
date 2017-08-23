@@ -17,14 +17,13 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import PE_TARGET_MACHINE_ENUMERATION
-from scap.model.oval_5.defs.EntityStateType import EntityStateType
+
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=PE_TARGET_MACHINE_ENUMERATION)
 class EntityStatePeTargetMachineType(EntityStateType):
-    MODEL_MAP = {
-    }
-
-    def get_value_enum(self):
-        return PE_TARGET_MACHINE_ENUMERATION
+    pass

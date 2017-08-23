@@ -17,18 +17,18 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class PortStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'port_state',
-        'elements': [
-@element(local_name='local_address', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='local_port', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+
+@element(local_name='local_address', cls=EntityStateType, min=0)
+@element(local_name='local_port', cls=EntityStateType, min=0)
 @element(local_name='protocol', cls=EntityStateProtocolType, min=0)
-@element(local_name='pid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='foreign_address', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='foreign_port', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-        ],
-    }
+@element(local_name='pid', cls=EntityStateType, min=0)
+@element(local_name='foreign_address', cls=EntityStateType, min=0, max=1)
+@element(local_name='foreign_port', cls=EntityStateType, min=0, max=1)
+class PortStateElement(StateType):
+    pass

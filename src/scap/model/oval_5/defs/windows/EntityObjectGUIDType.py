@@ -17,13 +17,12 @@
 
 import logging
 
-from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
+from scap.model.decorators import *
+
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
+@content(regex=r'(\{[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}){0,}')
 class EntityObjectGUIDType(EntityObjectType):
-    MODEL_MAP = {
-    }
-
-    def get_value_pattern(self):
-        return r'(\{[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}){0,}'
+    pass

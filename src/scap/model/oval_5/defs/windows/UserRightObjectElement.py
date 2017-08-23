@@ -17,13 +17,12 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
-class UserRightObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'userright_object',
-        'elements': [
+
 @element(local_name='userright', cls=EntityObjectUserRightType, min=0, max=1)
-        ],
-    }
+class UserRightObjectElement(ObjectType):
+    pass

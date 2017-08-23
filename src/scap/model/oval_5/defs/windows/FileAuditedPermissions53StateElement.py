@@ -17,18 +17,18 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
-from scap.model.oval_5.defs.windows.StateType import StateType
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class FileAuditedPermissions53StateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'fileauditedpermissions53_state',
-        'elements': [
-@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='path', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='filename', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+
+@element(local_name='filepath', cls=EntityStateType, min=0)
+@element(local_name='path', cls=EntityStateType, min=0)
+@element(local_name='filename', cls=EntityStateType, min=0)
+@element(local_name='trustee_sid', cls=EntityStateType, min=0)
 @element(local_name='standard_delete', cls=EntityStateAuditType, min=0)
 @element(local_name='standard_read_control', cls=EntityStateAuditType, min=0)
 @element(local_name='standard_write_dac', cls=EntityStateAuditType, min=0)
@@ -48,6 +48,6 @@ class FileAuditedPermissions53StateElement(StateType):
 @element(local_name='file_delete_child', cls=EntityStateAuditType, min=0)
 @element(local_name='file_read_attributes', cls=EntityStateAuditType, min=0)
 @element(local_name='file_write_attributes', cls=EntityStateAuditType, min=0)
-@element(local_name='windows_view', cls=scap.model.oval_5.defs.EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
-        ],
-    }
+@element(local_name='windows_view', cls=EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
+class FileAuditedPermissions53StateElement(StateType):
+    pass

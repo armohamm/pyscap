@@ -17,21 +17,20 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-class CmdletStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'cmdlet_state',
-        'elements': [
-@element(local_name='module_name', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='module_name', cls=EntityStateType, min=0, max=1)
 @element(local_name='module_id', cls=EntityStateGUIDType, min=0, max=1)
-@element(local_name='module_version', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
+@element(local_name='module_version', cls=EntityStateType, min=0, max=1)
 @element(local_name='verb', cls=EntityStateCmdletVerbType, min=0, max=1)
-@element(local_name='noun', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='parameters', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='select', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0, max=1)
-        ],
-    }
+@element(local_name='noun', cls=EntityStateType, min=0, max=1)
+@element(local_name='parameters', cls=EntityStateType, min=0, max=1)
+@element(local_name='select', cls=EntityStateType, min=0, max=1)
+@element(local_name='value', cls=EntityStateType, min=0, max=1)
+class CmdletStateElement(StateType):
+    pass

@@ -17,10 +17,11 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.TestType import TestType
+from scap.model.decorators import *
+
+from .TestType import TestType
 
 logger = logging.getLogger(__name__)
+
 class SidSidTestElement(TestType):
-    MODEL_MAP = {
-        'tag_name': 'sid_sid_test',
-    }
+    pass

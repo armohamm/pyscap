@@ -17,17 +17,17 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
-class FileAuditedPermissions53ObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'fileauditedpermissions53_object',
-        'elements': [
+
 @element(local_name='behaviors', cls=FileAuditPermissions53Behaviors, min=0)
-@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-@element(local_name='path', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-@element(local_name='filename', cls=scap.model.oval_5.defs.EntityObjectType, nillable=True, min=0)
-@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-        ],
-    }
+@element(local_name='filepath', cls=EntityObjectType, min=0)
+@element(local_name='path', cls=EntityObjectType, min=0)
+@element(local_name='filename', cls=EntityObjectType, nillable=True, min=0)
+@element(local_name='trustee_sid', cls=EntityObjectType, min=0)
+class FileAuditedPermissions53ObjectElement(ObjectType):
+    pass

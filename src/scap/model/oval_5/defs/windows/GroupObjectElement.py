@@ -17,13 +17,13 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='group', cls=EntityObjectType, min=0)
 class GroupObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'group_object',
-        'elements': [
-@element(local_name='group', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-        ],
-    }
+    pass

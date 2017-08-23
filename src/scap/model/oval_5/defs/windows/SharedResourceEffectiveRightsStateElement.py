@@ -17,24 +17,24 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='netname', cls=EntityStateType, min=0)
+@element(local_name='trustee_sid', cls=EntityStateType, min=0)
+@element(local_name='standard_delete', cls=EntityStateType, min=0)
+@element(local_name='standard_read_control', cls=EntityStateType, min=0)
+@element(local_name='standard_write_dac', cls=EntityStateType, min=0)
+@element(local_name='standard_write_owner', cls=EntityStateType, min=0)
+@element(local_name='standard_synchronize', cls=EntityStateType, min=0)
+@element(local_name='access_system_security', cls=EntityStateType, min=0)
+@element(local_name='generic_read', cls=EntityStateType, min=0)
+@element(local_name='generic_write', cls=EntityStateType, min=0)
+@element(local_name='generic_execute', cls=EntityStateType, min=0)
+@element(local_name='generic_all', cls=EntityStateType, min=0)
 class SharedResourceEffectiveRightsStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'sharedresourceeffectiverights_state',
-        'elements': [
-@element(local_name='netname', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_delete', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_read_control', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_write_dac', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_write_owner', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_synchronize', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='access_system_security', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_read', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_write', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_execute', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_all', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+    pass

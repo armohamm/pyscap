@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='namespace', cls=EntityObjectType, min=0)
+@element(local_name='wql', cls=EntityObjectType, min=0)
 class Wmi57ObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'wmi57_object',
-        'elements': [
-@element(local_name='namespace', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-@element(local_name='wql', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-        ],
-    }
+    pass

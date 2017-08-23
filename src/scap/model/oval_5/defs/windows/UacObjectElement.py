@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
 class UacObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'uac_object',
-    }
+    pass

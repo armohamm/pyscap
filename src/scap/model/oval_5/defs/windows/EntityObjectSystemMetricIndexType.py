@@ -17,14 +17,13 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import WINDOWS_SYSTEM_METRIC_INDEX_ENUMERATION
-from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
+
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=WINDOWS_SYSTEM_METRIC_INDEX_ENUMERATION)
 class EntityObjectSystemMetricIndexType(EntityObjectType):
-    MODEL_MAP = {
-    }
-
-    def get_value_enum(self):
-        return WINDOWS_SYSTEM_METRIC_INDEX_ENUMERATION
+    pass

@@ -17,10 +17,11 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.TestType import TestType
+from scap.model.decorators import *
+
+from .TestType import TestType
 
 logger = logging.getLogger(__name__)
+
 class ProcessTestElement(TestType):
-    MODEL_MAP = {
-        'tag_name': 'process_test',
-    }
+    pass

@@ -17,13 +17,13 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='service_name', cls=EntityObjectType, min=0)
 class ServiceObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'service_object',
-        'elements': [
-@element(local_name='service_name', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-        ],
-    }
+    pass

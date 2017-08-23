@@ -17,14 +17,13 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5 import WINDOWS_REGISTRY_TYPE_ENUMERATION
-from scap.model.oval_5.defs.EntityStateType import EntityStateType
+
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
+@content(enum=WINDOWS_REGISTRY_TYPE_ENUMERATION)
 class EntityStateRegistryTypeType(EntityStateType):
-    MODEL_MAP = {
-    }
-
-    def get_value_enum(self):
-        return WINDOWS_REGISTRY_TYPE_ENUMERATION
+    pass

@@ -17,12 +17,14 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.FileBehaviors import FileBehaviors
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+
+from .FileBehaviors import FileBehaviors
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='include_group', type=BooleanType, default=True)
+@attribute(local_name='resolve_group', type=BooleanType, default=False)
 class FileEffectiveRightsBehaviors(FileBehaviors):
-    MODEL_MAP = {
-        'attributes': {@attribute(local_name='include_group', type=BooleanType, default=True),@attribute(local_name='resolve_group', type=BooleanType, default=False),
-        }
-    }
+    pass

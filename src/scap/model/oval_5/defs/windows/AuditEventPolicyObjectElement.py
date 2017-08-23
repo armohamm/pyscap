@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
 
 class AuditEventPolicyObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'auditeventpolicy_object',
-    }
+    pass

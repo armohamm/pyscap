@@ -17,10 +17,11 @@
 
 import logging
 
-from scap.model.oval_5.defs.ObjectType import ObjectType as oval_def_5_ObjectType
+from scap.model.decorators import *
+
+from ..ObjectType import ObjectType as oval_def_5_ObjectType
 
 logger = logging.getLogger(__name__)
+
 class ObjectType(oval_def_5_ObjectType):
-    # abstract
-    MODEL_MAP = {
-    }
+    pass

@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class SystemMetricStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'systemmetric_state',
-        'elements': [
+
 @element(local_name='index', cls=EntityStateSystemMetricIndexType, min=0)
-@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+@element(local_name='value', cls=EntityStateType, min=0)
+class SystemMetricStateElement(StateType):
+    pass

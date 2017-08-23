@@ -17,18 +17,18 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='command_line', cls=EntityStateType, min=0)
+@element(local_name='pid', cls=EntityStateType, min=0)
+@element(local_name='ppid', cls=EntityStateType, min=0)
+@element(local_name='priority', cls=EntityStateType, min=0)
+@element(local_name='image_path', cls=EntityStateType, min=0)
+@element(local_name='current_dir', cls=EntityStateType, min=0)
 class ProcessStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'process_state',
-        'elements': [
-@element(local_name='command_line', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='pid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='ppid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='priority', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='image_path', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='current_dir', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+    pass

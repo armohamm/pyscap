@@ -17,25 +17,26 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from .EntityStateRegistryTypeType import EntityStateRegistryTypeType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class NtUserStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'ntuser_state',
-        'elements': [
-@element(local_name='key', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='username', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+
+@element(local_name='key', cls=EntityStateType, min=0)
+@element(local_name='name', cls=EntityStateType, min=0)
+@element(local_name='sid', cls=EntityStateType, min=0)
+@element(local_name='username', cls=EntityStateType, min=0)
 @element(local_name='account_type', cls=EntityStateNTUserAccountTypeType, min=0)
-@element(local_name='logged_on', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='enabled', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='date_modified', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='days_since_modified', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='filepath', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='last_write_time', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='type', cls=scap.model.oval_5.defs.EntityStateRegistryTypeType, min=0)
-@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+@element(local_name='logged_on', cls=EntityStateType, min=0)
+@element(local_name='enabled', cls=EntityStateType, min=0)
+@element(local_name='date_modified', cls=EntityStateType, min=0)
+@element(local_name='days_since_modified', cls=EntityStateType, min=0)
+@element(local_name='filepath', cls=EntityStateType, min=0)
+@element(local_name='last_write_time', cls=EntityStateType, min=0)
+@element(local_name='type', cls=EntityStateRegistryTypeType, min=0)
+@element(local_name='value', cls=EntityStateType, min=0)
+class NtUserStateElement(StateType):
+    pass

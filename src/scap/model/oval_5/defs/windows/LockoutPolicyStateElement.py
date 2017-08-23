@@ -17,16 +17,16 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='force_logoff', cls=EntityStateType, min=0)
+@element(local_name='lockout_duration', cls=EntityStateType, min=0)
+@element(local_name='lockout_observation_window', cls=EntityStateType, min=0)
+@element(local_name='lockout_threshold', cls=EntityStateType, min=0)
 class LockoutPolicyStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'lockoutpolicy_state',
-        'elements': [
-@element(local_name='force_logoff', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='lockout_duration', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='lockout_observation_window', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='lockout_threshold', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+    pass

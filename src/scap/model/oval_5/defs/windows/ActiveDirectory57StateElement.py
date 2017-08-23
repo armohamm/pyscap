@@ -17,19 +17,18 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-class ActiveDirectory57StateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'activedirectory57_state',
-        'elements': [
 @element(local_name='naming_context', cls=EntityStateNamingContextType, min=0)
-@element(local_name='relative_dn', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='attribute', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='object_class', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+@element(local_name='relative_dn', cls=EntityStateType, min=0)
+@element(local_name='attribute', cls=EntityStateType, min=0)
+@element(local_name='object_class', cls=EntityStateType, min=0)
 @element(local_name='adstype', cls=EntityStateAdstypeType, min=0)
-@element(local_name='value', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+@element(local_name='value', cls=EntityStateType, min=0)
+class ActiveDirectory57StateElement(StateType):
+    pass

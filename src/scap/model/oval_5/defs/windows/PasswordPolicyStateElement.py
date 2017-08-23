@@ -17,18 +17,18 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='max_passwd_age', cls=EntityStateType, min=0)
+@element(local_name='min_passwd_age', cls=EntityStateType, min=0)
+@element(local_name='min_passwd_len', cls=EntityStateType, min=0)
+@element(local_name='password_hist_len', cls=EntityStateType, min=0)
+@element(local_name='password_complexity', cls=EntityStateType, min=0)
+@element(local_name='reversible_encryption', cls=EntityStateType, min=0)
 class PasswordPolicyStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'passwordpolicy_state',
-        'elements': [
-@element(local_name='max_passwd_age', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='min_passwd_age', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='min_passwd_len', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='password_hist_len', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='password_complexity', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='reversible_encryption', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+    pass

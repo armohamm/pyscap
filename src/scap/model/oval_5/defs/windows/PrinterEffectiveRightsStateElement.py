@@ -17,28 +17,28 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='printer_name', cls=EntityStateType, min=0)
+@element(local_name='trustee_sid', cls=EntityStateType, min=0)
+@element(local_name='standard_delete', cls=EntityStateType, min=0)
+@element(local_name='standard_read_control', cls=EntityStateType, min=0)
+@element(local_name='standard_write_dac', cls=EntityStateType, min=0)
+@element(local_name='standard_write_owner', cls=EntityStateType, min=0)
+@element(local_name='standard_synchronize', cls=EntityStateType, min=0)
+@element(local_name='access_system_security', cls=EntityStateType, min=0)
+@element(local_name='generic_read', cls=EntityStateType, min=0)
+@element(local_name='generic_write', cls=EntityStateType, min=0)
+@element(local_name='generic_execute', cls=EntityStateType, min=0)
+@element(local_name='generic_all', cls=EntityStateType, min=0)
+@element(local_name='printer_access_administer', cls=EntityStateType, min=0)
+@element(local_name='printer_access_use', cls=EntityStateType, min=0)
+@element(local_name='job_access_administer', cls=EntityStateType, min=0)
+@element(local_name='job_access_read', cls=EntityStateType, min=0)
 class PrinterEffectiveRightsStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'printereffectiverights_state',
-        'elements': [
-@element(local_name='printer_name', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='trustee_sid', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_delete', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_read_control', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_write_dac', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_write_owner', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='standard_synchronize', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='access_system_security', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_read', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_write', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_execute', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='generic_all', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='printer_access_administer', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='printer_access_use', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='job_access_administer', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='job_access_read', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+    pass

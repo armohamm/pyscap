@@ -17,15 +17,14 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
+from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
-class WuaUpdateSearcherObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'wuaupdatesearcher_object',
-        'elements': [
 @element(local_name='behaviors', cls=WuaUpdateSearcherBehaviors, min=0)
-@element(local_name='search_criteria', cls=scap.model.oval_5.defs.EntityObjectType, min=0)
-        ],
-    }
+@element(local_name='search_criteria', cls=EntityObjectType, min=0)
+class WuaUpdateSearcherObjectElement(ObjectType):
+    pass

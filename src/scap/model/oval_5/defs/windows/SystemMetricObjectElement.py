@@ -17,13 +17,12 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.ObjectType import ObjectType
+from scap.model.decorators import *
+
+from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
-class SystemMetricObjectElement(ObjectType):
-    MODEL_MAP = {
-        'tag_name': 'systemmetric_object',
-        'elements': [
+
 @element(local_name='index', cls=EntityObjectSystemMetricIndexType, min=0)
-        ],
-    }
+class SystemMetricObjectElement(ObjectType):
+    pass

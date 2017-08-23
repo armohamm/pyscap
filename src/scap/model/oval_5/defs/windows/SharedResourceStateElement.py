@@ -17,25 +17,25 @@
 
 import logging
 
-from scap.model.oval_5.defs.windows.StateType import StateType
+from scap.model.decorators import *
+
+from .StateType import StateType
+from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
-class SharedResourceStateElement(StateType):
-    MODEL_MAP = {
-        'tag_name': 'sharedresource_state',
-        'elements': [
-@element(local_name='netname', cls=scap.model.oval_5.defs.EntityStateType, min=0)
+
+@element(local_name='netname', cls=EntityStateType, min=0)
 @element(local_name='shared_type', cls=EntityStateSharedResourceTypeType, min=0)
-@element(local_name='max_uses', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='current_uses', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='local_path', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='access_read_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='access_write_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='access_create_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='access_exec_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='access_delete_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='access_atrib_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='access_perm_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-@element(local_name='access_all_permission', cls=scap.model.oval_5.defs.EntityStateType, min=0)
-        ],
-    }
+@element(local_name='max_uses', cls=EntityStateType, min=0)
+@element(local_name='current_uses', cls=EntityStateType, min=0)
+@element(local_name='local_path', cls=EntityStateType, min=0)
+@element(local_name='access_read_permission', cls=EntityStateType, min=0)
+@element(local_name='access_write_permission', cls=EntityStateType, min=0)
+@element(local_name='access_create_permission', cls=EntityStateType, min=0)
+@element(local_name='access_exec_permission', cls=EntityStateType, min=0)
+@element(local_name='access_delete_permission', cls=EntityStateType, min=0)
+@element(local_name='access_atrib_permission', cls=EntityStateType, min=0)
+@element(local_name='access_perm_permission', cls=EntityStateType, min=0)
+@element(local_name='access_all_permission', cls=EntityStateType, min=0)
+class SharedResourceStateElement(StateType):
+    pass

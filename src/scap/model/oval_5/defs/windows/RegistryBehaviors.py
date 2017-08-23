@@ -17,12 +17,13 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='max_depth', type=Integer, default=-1)
+@attribute(local_name='recurse_direction', 'enum': ['none', 'up', 'down'], default='none')
+@attribute(local_name='windows_view', 'enum': ['32_bit', '64_bit'], default='64_bit')
 class RegistryBehaviors(Model):
-    MODEL_MAP = {
-        'attributes': {@attribute(local_name='max_depth', type=Integer, default=-1),@attribute(local_name='recurse_direction', 'enum': ['none', 'up', 'down'], default='none'),@attribute(local_name='windows_view', 'enum': ['32_bit', '64_bit'], default='64_bit'),
-        }
-    }
+    pass
