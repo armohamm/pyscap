@@ -17,31 +17,33 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.oval_5 import EXISTENCE_ENUMERATION, CHECK_ENUMERATION, OPERATOR_ENUMERATION, EXISTENCE_RESULT_ENUMERATION
-from scap.model.oval_5.res.TestType import TestType as res_TestType
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
+
+from .NotesType import NotesType
+from .. import EXISTENCE_ENUMERATION
+from .. import CHECK_ENUMERATION
+from .. import OPERATOR_ENUMERATION
+from .. import EXISTENCE_RESULT_ENUMERATION
+from ..res.TestType import TestType as res_TestType
+from ..NonEmptyString import NonEmptyString
+from ..TestIdPattern import TestIdPattern
+
 
 logger = logging.getLogger(__name__)
 
+@attribute(local_name='id', type=TestIdPattern, required=True)
+@attribute(local_name='version', type=NonNegativeIntegerType, required=True)
+@attribute(local_name='check_existence', enum=EXISTENCE_ENUMERATION, default='at_least_one_exists')
+@attribute(local_name='check', enum=CHECK_ENUMERATION, required=True)
+@attribute(local_name='state_operator', enum=OPERATOR_ENUMERATION, default='AND')
+@attribute(local_name='comment', type=NonEmptyString) # required in the spec
+@attribute(local_name='deprecated', type=BooleanType, default=False)
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-common-5', local_name='notes', cls=NotesType, min=0, max=1)
 class TestType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
-            #{'tag_name': 'object', 'class': 'ObjectRefType'},
-            #{'tag_name': 'state', 'list': 'states', 'class': 'StateRefType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'id': {'type': 'scap.model.oval_5.TestIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeIntegerType', 'required': True},
-            'check_existence': {'enum': EXISTENCE_ENUMERATION, 'default': 'at_least_one_exists'},
-            'check': {'enum': CHECK_ENUMERATION, 'required': True},
-            'state_operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
-            'comment': {'type': 'scap.model.oval_5.NonEmptyString'}, # required in the spec
-            'deprecated': {'type': 'BooleanType', 'default': False},
-        },
-    }
-
     def check(self, content, host, imports, export_names):
         # set up result
         res = res_TestType()

@@ -17,27 +17,30 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
+from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
+from scap.model.xs.BooleanType import BooleanType
+
+from .EntityObjectType import EntityObjectType
+from .SetElement import SetElement
+from .FilterElement import FilterElement
+from ..ObjectIdPattern import ObjectIdPattern
+from ..NonEmptyString  import NonEmptyString
+from ..NotesType import NotesType
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
-class ObjectType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
-            {'tag_name': 'notes', 'class': 'scap.model.oval_5.NotesType', 'min': 0, 'max': 1},
-            {'tag_name': 'set', 'class': 'SetElement', 'min': 0},
-            {'tag_name': 'filter', 'list': 'filters', 'class': 'FilterElement', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'id': {'type': 'scap.model.oval_5.ObjectIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeIntegerType', 'required': True},
-            'comment': {'type': 'scap.model.oval_5.NonEmptyString'}, # required in the spec, not always seen in the wild
-            'deprecated': {'type': 'BooleanType', 'default': False},
-        },
-    }
 
+@attribute(local_name='id', type=ObjectIdPattern, required=True)
+@attribute(local_name='version', type=NonNegativeIntegerType, required=True)
+@attribute(local_name='comment', type=NonEmptyString) # required in the spec, not always seen in the wild
+@attribute(local_name='deprecated', type=BooleanType, default=False)
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
+@element(local_name='notes', cls=NotesType, min=0, max=1)
+@element(local_name='set', cls=SetElement, min=0)
+@element(local_name='filter', list='filters', cls=FilterElement, min=0, max=None)
+class ObjectType(Model):
     def _iter_arg(self, arg, values, counters, arg_order):
         argsets = []
         i = arg_order.index(arg)

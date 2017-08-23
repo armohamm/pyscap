@@ -17,12 +17,13 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
 
+from ..ObjectIdPattern import ObjectIdPattern
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='object_ref', type=ObjectIdPattern, required=True)
 class ObjectRefType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'object_ref': {'type': 'scap.model.oval_5.ObjectIdPattern', 'required': True},
-        }
-    }
+    pass

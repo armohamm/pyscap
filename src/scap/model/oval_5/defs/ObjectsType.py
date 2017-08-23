@@ -17,16 +17,14 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', local_name='*', into='objects', min=0)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', local_name='*', into='objects', min=0)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', local_name='*', into='objects', min=0)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5#unix', local_name='*', into='objects', min=0)
 class ObjectsType(Model):
-    MODEL_MAP = {
-        'tag_name' : 'objects',
-        'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'tag_name': '*', 'in': 'objects', 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#linux', 'tag_name': '*', 'in': 'objects', 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#windows', 'tag_name': '*', 'in': 'objects', 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5#unix', 'tag_name': '*', 'in': 'objects', 'min': 0},
-        ],
-    }
+    pass

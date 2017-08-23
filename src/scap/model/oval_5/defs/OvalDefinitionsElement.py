@@ -17,24 +17,26 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
 
-logger = logging.getLogger(__name__)
-class OvalDefinitionsElement(Model):
-    MODEL_MAP = {
-        'tag_name' : 'oval_definitions',
-        'elements': [
-            # TODO one of the following exists
-            {'tag_name': 'generator', 'class': 'scap.model.oval_5.GeneratorType', 'min': 1, 'max': 1},
-            {'tag_name': 'definitions', 'class': 'DefinitionsType', 'in': '_definitions', 'min': 0, 'max': 1},
-            {'tag_name': 'tests', 'class': 'TestsType', 'in': '_tests', 'min': 0, 'max': 1},
-            {'tag_name': 'objects', 'class': 'ObjectsType', 'in': '_objects', 'min': 0, 'max': 1},
-            {'tag_name': 'states', 'class': 'StatesType', 'in': '_states', 'min': 0, 'max': 1},
-            {'tag_name': 'variables', 'class': 'VariablesType', 'in': '_variables', 'min': 0, 'max': 1},
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
-        ],
-    }
+from .DefinitionsType import DefinitionsType
+from .TestsType import TestsType
+from .ObjectsType import ObjectsType
+from .StatesType import StatesType
+from .VariablesType import VariablesType
+from ..GeneratorType import GeneratorType
 
+logger = logging.getLogger(__name__)
+
+@element(local_name='generator', cls=GeneratorType, min=1, max=1)
+@element(local_name='definitions', cls=DefinitionsType, into='_definitions', min=0, max=1)
+@element(local_name='tests', cls=TestsType, into='_tests', min=0, max=1)
+@element(local_name='objects', cls=ObjectsType, into='_objects', min=0, max=1)
+@element(local_name='states', cls=StatesType, into='_states', min=0, max=1)
+@element(local_name='variables', cls=VariablesType, into='_variables', min=0, max=1)
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
+class OvalDefinitionsElement(Model):
     def from_xml(self, parent, el):
         super(OvalDefinitionsElement, self).from_xml(parent, el)
 

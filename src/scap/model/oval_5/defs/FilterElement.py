@@ -17,18 +17,12 @@
 
 import logging
 
-from scap.model.oval_5 import *
-from scap.model.oval_5.defs import *
-from scap.model.oval_5.StateIdPattern import StateIdPattern
+from scap.model.decorators import *
+from ..StateIdPattern import StateIdPattern
 
 logger = logging.getLogger(__name__)
-class FilterElement(StateIdPattern):
-    MODEL_MAP = {
-        'tag_name': 'filter',
-        'attributes': {
-            'action': {'enum': [ 'exclude', 'include', ], 'default': 'exclude'},
-        }
-    }
 
+@attribute(local_name='action', enum=['exclude', 'include'], default='exclude')
+class FilterElement(StateIdPattern):
     def filter(self, results):
         raise NotImplementedError('Not implemented')

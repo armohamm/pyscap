@@ -17,17 +17,17 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.oval_5 import OPERATOR_ENUMERATION
+from scap.model.xs.StringType import StringType
+
+from .RestrictionType import RestrictionType
+from .. import OPERATOR_ENUMERATION
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='operator', enum=OPERATOR_ENUMERATION, default='AND')
+@attribute(local_name='hint', type=StringType, required=True)
+@element(local_name='restriction', list='restrictions', cls=RestrictionType, min=1, max=None)
 class PossibleRestrictionType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'restriction', 'list': 'restrictions', 'class': 'RestrictionType', 'min': 1, 'max': None},
-        ],
-        'attributes': {
-            'operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
-            'hint': {'type': 'StringType', 'required': True},
-        },
-    }
+    pass

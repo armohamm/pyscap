@@ -17,25 +17,22 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.oval_5 import SIMPLE_DATATYPE_ENUMERATION
+
+from .. import SIMPLE_DATATYPE_ENUMERATION
+from .NotesType import NotesType
 
 logger = logging.getLogger(__name__)
-class VariableType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'id': {'type': 'scap.model.oval_5.VariableIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeIntegerType', 'required': True},
-            'datatype': {'enum': SIMPLE_DATATYPE_ENUMERATION, 'required': True},
-            'comment': {'type': 'scap.model.oval_5.NonEmptyString'}, # required in the spec
-            'deprecated': {'type': 'BooleanType', 'default': False},
-        },
-    }
 
+@attribute(local_name='id', type=scap.model.oval_5.VariableIdPattern, required=True)
+@attribute(local_name='version', type=NonNegativeIntegerType, required=True)
+@attribute(local_name='datatype', enum=SIMPLE_DATATYPE_ENUMERATION, required=True)
+@attribute(local_name='comment', type=scap.model.oval_5.NonEmptyString) # required in the spec
+@attribute(local_name='deprecated', type=BooleanType, default=False)
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-common-5', local_name='notes', cls=NotesType, min=0, max=1)
+class VariableType(Model):
     def resolve_values(self, content, imports, export_names, var_check):
         raise NotImplementedError('not implemented')
         # values, datatype, operation, mask

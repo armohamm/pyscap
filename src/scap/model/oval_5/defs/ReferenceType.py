@@ -17,14 +17,15 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.xs.StringType import StringType
+from scap.model.xs.AnyUriType import AnyUriType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='source', type=StringType, required=True)
+@attribute(local_name='ref_id', type=StringType, required=True)
+@attribute(local_name='ref_url', type=AnyUriType)
 class ReferenceType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'source': {'type': 'StringType', 'required': True},
-            'ref_id': {'type': 'StringType', 'required': True},
-            'ref_url': {'type': 'AnyUriType'},
-        }
-    }
+    pass

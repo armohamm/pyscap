@@ -17,20 +17,21 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.oval_5.res.ExtendDefinitionType import ExtendDefinitionType as res_ExtendDefinitionType
+from scap.model.xs.BooleanType import BooleanType
+
+from ..res.ExtendDefinitionType import ExtendDefinitionType as res_ExtendDefinitionType
+from ..DefinitionIdPattern import DefinitionIdPattern
+from ..NonEmptyString import NonEmptyString
 
 logger = logging.getLogger(__name__)
-class ExtendDefinitionType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'applicability_check': {'type': 'BooleanType'},
-            'definition_ref': {'type': 'scap.model.oval_5.DefinitionIdPattern', 'required': True},
-            'negate': {'type': 'BooleanType', 'default': False},
-            'comment': {'type': 'scap.model.oval_5.NonEmptyString'},
-        }
-    }
 
+@attribute(local_name='applicability_check', type=BooleanType)
+@attribute(local_name='definition_ref', type=DefinitionIdPattern, required=True)
+@attribute(local_name='negate', type=BooleanType, default=False)
+@attribute(local_name='comment', type=NonEmptyString)
+class ExtendDefinitionType(Model):
     def check(self, content, host, imports, export_names):
         # set up result
         res = res_ExtendDefinitionType()

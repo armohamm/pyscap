@@ -17,9 +17,10 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.xs.AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
+
 class ValueType(AnySimpleType):
-    MODEL_MAP = {
-    }
+    pass

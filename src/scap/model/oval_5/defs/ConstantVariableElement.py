@@ -17,13 +17,13 @@
 
 import logging
 
-from scap.model.oval_5.defs.VariableType import VariableType
+from scap.model.decorators import *
+
+from .VariableType import VariableType
+from .ValueType import ValueType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='value', list='values', cls=ValueType, min=1, max=None)
 class ConstantVariableElement(VariableType):
-    MODEL_MAP = {
-        'tag_name': 'constant_variable',
-        'elements': [
-            {'tag_name': 'value', 'list': 'values', 'class': 'ValueType', 'min': 1, 'max': None},
-        ],
-    }
+    pass

@@ -17,20 +17,21 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.oval_5.res.CriterionType import CriterionType as res_CriterionType
+from scap.model.xs.BooleanType import BooleanType
+
+from ..NonEmptyString import NonEmptyString
+from ..TestIdPattern import TestIdPattern
+from ..res.CriterionType import CriterionType as res_CriterionType
 
 logger = logging.getLogger(__name__)
-class CriterionType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'applicability_check': {'type': 'BooleanType'},
-            'test_ref': {'type': 'scap.model.oval_5.TestIdPattern', 'required': True},
-            'negate': {'type': 'BooleanType', 'default': False},
-            'comment': {'type': 'scap.model.oval_5.NonEmptyString'},
-        }
-    }
 
+@attribute(local_name='applicability_check', type=BooleanType)
+@attribute(local_name='test_ref', type=TestIdPattern, required=True)
+@attribute(local_name='negate', type=BooleanType, default=False)
+@attribute(local_name='comment', type=NonEmptyString)
+class CriterionType(Model):
     def check(self, content, host, imports, export_names):
         # set up result
         res = res_CriterionType()

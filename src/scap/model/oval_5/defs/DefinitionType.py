@@ -17,27 +17,29 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.oval_5 import CLASS_ENUMERATION
-from scap.model.oval_5.res.DefinitionType import DefinitionType as res_DefinitionType
+from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
+from scap.model.xs.BooleanType import BooleanType
+
+from .MetadataType import MetadataType
+from .CriteriaType import CriteriaType
+from ..NotesType import NotesType
+from .. import DefinitionIdPattern
+from .. import CLASS_ENUMERATION
+from ..res.DefinitionType import DefinitionType as res_DefinitionType
 
 logger = logging.getLogger(__name__)
-class DefinitionType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
-            {'tag_name': 'metadata', 'class': 'MetadataType'},
-            {'tag_name': 'notes', 'class': 'scap.model.oval_5.NotesType', 'min': 0, 'max': 1},
-            {'tag_name': 'criteria', 'class': 'CriteriaType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'id': {'type': 'scap.model.oval_5.DefinitionIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeIntegerType', 'required': True},
-            'class': {'enum': CLASS_ENUMERATION, 'in': 'class_', 'required': True},
-            'deprecated': {'type': 'BooleanType', 'default': False},
-        }
-    }
 
+@attribute(local_name='id', type=scap.model.oval_5.DefinitionIdPattern, required=True)
+@attribute(local_name='version', type=NonNegativeIntegerType, required=True)
+@attribute(local_name='class', enum=CLASS_ENUMERATION, into='class_', required=True)
+@attribute(local_name='deprecated', type=BooleanType, default=False)
+@element(local_name='metadata', cls=MetadataType)
+@element(local_name='notes', cls=NotesType, min=0, max=1)
+@element(local_name='criteria', cls=CriteriaType, min=0, max=1)
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
+class DefinitionType(Model):
     def check(self, content, host, imports, export_names):
         # set up result
         res = res_DefinitionType()

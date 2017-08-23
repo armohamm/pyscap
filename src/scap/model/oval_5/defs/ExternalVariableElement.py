@@ -17,15 +17,15 @@
 
 import logging
 
-from scap.model.oval_5.defs.VariableType import VariableType
+from scap.model.decorators import *
+
+from .VariableType import VariableType
+from .PossibleRestrictionType import PossibleRestrictionType
+from .PossibleValueType import PossibleValueType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='possible_restriction', list='possible_restrictions', cls=PossibleRestrictionType, min=0, max=None)
+@element(local_name='possible_value', list='possible_values', cls=PossibleValueType, min=0, max=None)
 class ExternalVariableElement(VariableType):
-    MODEL_MAP = {
-        'tag_name': 'external_variable',
-        'elements': [
-            # TODO: minOccurs="0" maxOccurs="unbounded"
-            {'tag_name': 'possible_value', 'list': 'possible_values', 'class': 'PossibleValueType', 'min': 0, 'max': None},
-            {'tag_name': 'possible_restriction', 'list': 'possible_restrictions', 'class': 'PossibleRestrictionType', 'min': 0, 'max': None},
-        ],
-    }
+    pass

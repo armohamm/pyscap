@@ -17,13 +17,13 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
 
+from .DefinitionElement import DefinitionElement
+
 logger = logging.getLogger(__name__)
+
+@element(local_name='definition', dict='definitions', cls=DefinitionElement, min=1, max=None)
 class DefinitionsType(Model):
-    MODEL_MAP = {
-        'tag_name' : 'definitions',
-        'elements': [
-            {'tag_name': 'definition', 'dict': 'definitions', 'class': 'DefinitionElement', 'min': 1, 'max': None},
-        ],
-    }
+    pass

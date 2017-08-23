@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.oval_5.defs.DefinitionType import DefinitionType
+from scap.model.decorators import *
+from .DefinitionType import DefinitionType
 
 logger = logging.getLogger(__name__)
+
 class DefinitionElement(DefinitionType):
-    MODEL_MAP = {
-        'tag_name' : 'definition',
-    }
+    pass

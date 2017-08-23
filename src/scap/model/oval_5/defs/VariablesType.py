@@ -17,16 +17,18 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
 
+from .ExternalVariableElement import ExternalVariableElement
+from .ConstantVariableElement import ConstantVariableElement
+from .LocalVariableElement import LocalVariableElement
+
 logger = logging.getLogger(__name__)
+
+@element(local_name='external_variable', dict='variables', cls=ExternalVariableElement, min=0, max=None)
+@element(local_name='constant_variable', dict='variables', cls=ConstantVariableElement, min=0, max=None)
+@element(local_name='local_variable', dict='variables', cls=LocalVariableElement, min=0, max=None)
 class VariablesType(Model):
-    MODEL_MAP = {
-        'tag_name' : 'variables',
-        'elements': [
-            # TODO: minOccurs="1" maxOccurs="unbounded"
-            {'tag_name': 'external_variable', 'dict': 'variables', 'class': 'ExternalVariableElement', 'min': 0, 'max': None},
-            {'tag_name': 'constant_variable', 'dict': 'variables', 'class': 'ConstantVariableElement', 'min': 0, 'max': None},
-            {'tag_name': 'local_variable', 'dict': 'variables', 'class': 'LocalVariableElement', 'min': 0, 'max': None},
-        ],
-    }
+    # TODO min 1 variables
+    pass

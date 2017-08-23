@@ -17,16 +17,19 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.xs.StringType import StringType
+
+from .AffectedType import AffectedType
+from .ReferenceType import ReferenceType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='title', type=StringType)
+@element(local_name='affected', list='affecteds', cls=AffectedType, min=0, max=None)
+@element(local_name='reference', list='references', cls=ReferenceType, min=0, max=None)
+@element(local_name='description', type=StringType)
+@element(namespace='*', local_name='*', min=0)
 class MetadataType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'title', 'type': 'StringType'},
-            {'tag_name': 'affected', 'list': 'affecteds', 'class': 'AffectedType', 'min': 0, 'max': None},
-            {'tag_name': 'reference', 'list': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
-            {'tag_name': 'description', 'type': 'StringType'},
-            {'tag_name': '*', 'min': 0},
-        ],
-    }
+    pass

@@ -17,34 +17,32 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.oval_5 import CHECK_ENUMERATION
-from scap.model.oval_5 import DATATYPE_ENUMERATION
-from scap.model.oval_5 import EXISTENCE_ENUMERATION
-from scap.model.oval_5 import OPERATION_ENUMERATION
 from scap.model.xs.BooleanType import BooleanType
 from scap.model.xs.FloatType import FloatType
 from scap.model.xs.HexBinaryType import HexBinaryType
 from scap.model.xs.IntegerType import IntegerType
 from scap.model.xs.StringType import StringType
 
-logger = logging.getLogger(__name__)
-class EntityStateType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'field', 'list': 'fields', 'class': 'EntityObjectFieldType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
-            'operation': {'enum': OPERATION_ENUMERATION, 'default': 'equals'},
-            'mask': {'type': 'BooleanType', 'default': False},
-            'var_ref': {'type': 'scap.model.oval_5.VariableIdPattern'},
-            'var_check': {'enum': CHECK_ENUMERATION},
-            'entity_check': {'enum': CHECK_ENUMERATION, 'default': 'all'},
-            'check_existence': {'enum': EXISTENCE_ENUMERATION, 'default': 'at_least_one_exists'},
-        }
-    }
+from .EntityObjectFieldType import EntityObjectFieldType
+from .. import CHECK_ENUMERATION
+from .. import DATATYPE_ENUMERATION
+from .. import EXISTENCE_ENUMERATION
+from .. import OPERATION_ENUMERATION
+from ..VariableIdPattern import VariableIdPattern
 
+logger = logging.getLogger(__name__)
+
+@attribute(local_name='datatype', enum=DATATYPE_ENUMERATION, default='string')
+@attribute(local_name='operation', enum=OPERATION_ENUMERATION, default='equals')
+@attribute(local_name='mask', type=BooleanType, default=False)
+@attribute(local_name='var_ref', type=VariableIdPattern)
+@attribute(local_name='var_check', enum=CHECK_ENUMERATION)
+@attribute(local_name='entity_check', enum=CHECK_ENUMERATION, default='all')
+@attribute(local_name='check_existence', enum=EXISTENCE_ENUMERATION, default='at_least_one_exists')
+@element(local_name='field', list='fields', cls=EntityObjectFieldType, min=0, max=None)
+class EntityStateType(Model):
     def __str__(self):
         return super(EntityStateType, self).__str__() + ' = ' + str(self.get_value())
 

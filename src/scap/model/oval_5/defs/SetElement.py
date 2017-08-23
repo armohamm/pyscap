@@ -17,23 +17,21 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.oval_5 import SET_OPERATOR_ENUMERATION
+
+from .SetElement import SetElement
+from .FilterElement import FilterElement
+from .. import SET_OPERATOR_ENUMERATION
+from ..ObjectIdPattern import ObjectIdPattern
 
 logger = logging.getLogger(__name__)
-class SetElement(Model):
-    MODEL_MAP = {
-        'tag_name': 'set',
-        'elements': [
-            {'tag_name': 'set', 'list': 'sets', 'class': 'SetElement', 'min': 0, 'max': 2},
-            {'tag_name': 'object_reference', 'list': 'object_references', 'type': 'scap.model.oval_5.ObjectIdPattern', 'min': 0, 'max': 2},
-            {'tag_name': 'filter', 'list': 'filters', 'class': 'FilterElement', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'set_operator': {'enum': SET_OPERATOR_ENUMERATION, 'default': 'UNION'},
-        }
-    }
 
+@attribute(local_name='set_operator', enum=SET_OPERATOR_ENUMERATION, default='UNION')
+@element(local_name='set', list='sets', cls=SetElement, min=0, max=2)
+@element(local_name='object_reference', list='object_references', type=ObjectIdPattern, min=0, max=2)
+@element(local_name='filter', list='filters', cls=FilterElement, min=0, max=None)
+class SetElement(Model):
     def set_operator_complement(self, item_sets):
         ''' include only the elements from the first set that are not found in the second. '''
         items = item_sets[0].copy()

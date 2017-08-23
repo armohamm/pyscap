@@ -18,25 +18,3 @@
 TAG_MAP = {
     '{http://oval.mitre.org/XMLSchema/oval-definitions-5}oval_definitions': 'OvalDefinitionsElement',
 }
-
-ELEMENT_GROUP_FUNCTION = [
-    {'tag_name': 'arithmetic', 'list': 'components', 'class': 'ArithmeticFunctionType'},
-    {'tag_name': 'begin', 'list': 'components', 'class': 'BeginFunctionType'},
-    {'tag_name': 'concat', 'list': 'components', 'class': 'ConcatFunctionType'},
-    {'tag_name': 'count', 'list': 'components', 'class': 'CountFunctionType'},
-    {'tag_name': 'end', 'list': 'components', 'class': 'EndFunctionType'},
-    {'tag_name': 'escape_regex', 'list': 'components', 'class': 'EscapeRegexFunctionType'},
-    {'tag_name': 'split', 'list': 'components', 'class': 'SplitFunctionType'},
-    {'tag_name': 'substring', 'list': 'components', 'class': 'SubstringFunctionType'},
-    {'tag_name': 'time_difference', 'list': 'components', 'class': 'TimeDifferenceFunctionType'},
-    {'tag_name': 'unique', 'list': 'components', 'class': 'UniqueFunctionType'},
-    {'tag_name': 'regex_capture', 'list': 'components', 'class': 'RegexCaptureFunctionType'},
-    {'tag_name': 'glob_to_regex', 'list': 'components', 'class': 'GlobToRegexFunctionType'},
-]
-
-ELEMENT_GROUP_COMPONENT = [
-    {'tag_name': 'object_component', 'list': 'components', 'class': 'ObjectComponentType'},
-    {'tag_name': 'variable_component', 'list': 'components', 'class': 'VariableComponentType'},
-    {'tag_name': 'literal_component', 'list': 'components', 'class': 'LiteralComponentType'},
-]
-ELEMENT_GROUP_COMPONENT.extend(ELEMENT_GROUP_FUNCTION)

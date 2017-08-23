@@ -17,16 +17,14 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.xs.AnySimpleType import AnySimpleType
-from scap.model.oval_5 import OPERATION_ENUMERATION
+
+from .. import OPERATION_ENUMERATION
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='operation', enum=OPERATION_ENUMERATION, required=True)
+@element(local_name='restriction', list='restrictions', cls='RestrictionType', min=1, max=None)
 class RestrictionType(AnySimpleType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'restriction', 'list': 'restrictions', 'class': 'RestrictionType', 'min': 1, 'max': None},
-        ],
-        'attributes': {
-            'operation': {'enum': OPERATION_ENUMERATION, 'required': True},
-        },
-    }
+    pass

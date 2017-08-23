@@ -17,17 +17,15 @@
 
 import logging
 
+from scap.model.decorators import *
+from .. import FAMILY_ENUMERATION
+from scap.model.xs.StringType import StringType
 from scap.Model import Model
-from scap.model.oval_5 import FAMILY_ENUMERATION
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='family', enum=FAMILY_ENUMERATION, required=True)
+@element(local_name='platform', list='platforms', type=StringType, min=0, max=None)
+@element(local_name='product', list='products', type=StringType, min=0, max=None)
 class AffectedType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'platform', 'list': 'platforms', 'type': 'StringType', 'min': 0, 'max': None},
-            {'tag_name': 'product', 'list': 'products', 'type': 'StringType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'family': {'enum': FAMILY_ENUMERATION, 'required': True},
-        }
-    }
+    pass

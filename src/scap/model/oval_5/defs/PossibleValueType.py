@@ -17,12 +17,12 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='hint', type=StringType, required=True)
 class PossibleValueType(AnySimpleType):
-    MODEL_MAP = {
-        'attributes': {
-            'hint': {'type': 'StringType', 'required': True},
-        },
-    }
+    pass

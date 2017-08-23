@@ -17,13 +17,13 @@
 
 import logging
 
-from scap.model.oval_5 import SIMPLE_DATATYPE_ENUMERATION
+from scap.model.decorators import *
 from scap.model.xs.AnySimpleType import AnySimpleType
 
+from .. import SIMPLE_DATATYPE_ENUMERATION
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='datatype', enum=SIMPLE_DATATYPE_ENUMERATION, default='string')
 class LiteralComponentType(AnySimpleType):
-    MODEL_MAP = {
-        'attributes': {
-            'datatype': {'enum': SIMPLE_DATATYPE_ENUMERATION, 'default': 'string'},
-        },
-    }
+    pass

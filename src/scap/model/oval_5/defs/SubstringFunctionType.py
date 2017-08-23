@@ -17,17 +17,28 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.oval_5.defs import ELEMENT_GROUP_COMPONENT
+from scap.model.xs.Int import Int
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='substring_start', type=Int, required=True)
+@attribute(local_name='substring_length', type=Int, required=True)
+@element(local_name='object_component', list='components', cls='ObjectComponentType')
+@element(local_name='variable_component', list='components', cls='VariableComponentType')
+@element(local_name='literal_component', list='components', cls='LiteralComponentType')
+@element(local_name='arithmetic', list='components', cls='ArithmeticFunctionType')
+@element(local_name='begin', list='components', cls='BeginFunctionType')
+@element(local_name='concat', list='components', cls='ConcatFunctionType')
+@element(local_name='count', list='components', cls='CountFunctionType')
+@element(local_name='end', list='components', cls='EndFunctionType')
+@element(local_name='escape_regex', list='components', cls='EscapeRegexFunctionType')
+@element(local_name='split', list='components', cls='SplitFunctionType')
+@element(local_name='substring', list='components', cls='SubstringFunctionType')
+@element(local_name='time_difference', list='components', cls='TimeDifferenceFunctionType')
+@element(local_name='unique', list='components', cls='UniqueFunctionType')
+@element(local_name='regex_capture', list='components', cls='RegexCaptureFunctionType')
+@element(local_name='glob_to_regex', list='components', cls='GlobToRegexFunctionType')
 class SubstringFunctionType(Model):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-            'substring_start': {'type': 'Int', 'required': True},
-            'substring_length': {'type': 'Int', 'required': True},
-        }
-    }
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_COMPONENT)
+    pass

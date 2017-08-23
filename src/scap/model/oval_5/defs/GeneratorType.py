@@ -17,9 +17,11 @@
 
 import logging
 
-from scap.model.oval_5.GeneratorType import GeneratorType as oval_5_GeneratorType
+from scap.model.decorators import *
+
+from ..GeneratorType import GeneratorType as oval_5_GeneratorType
 
 logger = logging.getLogger(__name__)
+
 class GeneratorType(oval_5_GeneratorType):
-    MODEL_MAP = {
-    }
+    pass

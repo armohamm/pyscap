@@ -17,21 +17,23 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.oval_5 import OPERATOR_ENUMERATION
+from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
+from scap.model.xs.BooleanType import BooleanType
+
+from .. import OPERATOR_ENUMERATION
+from ..StateIdPattern import StateIdPattern
+from ..NonEmptyString import NonEmptyString
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', type=StateIdPattern, required=True)
+@attribute(local_name='version', type=NonNegativeIntegerType, required=True)
+@attribute(local_name='operator', enum=OPERATOR_ENUMERATION, default='AND')
+@attribute(local_name='comment', type=NonEmptyString) # required in the spec
+@attribute(local_name='deprecated', type=BooleanType, default=False)
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-common-5', local_name='notes', cls=NotesType, min=0, max=1)
 class StateType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'notes', 'class': 'NotesType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'id': {'type': 'scap.model.oval_5.StateIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeIntegerType', 'required': True},
-            'operator': {'enum': OPERATOR_ENUMERATION, 'default': 'AND'},
-            'comment': {'type': 'scap.model.oval_5.NonEmptyString'}, # required in the spec
-            'deprecated': {'type': 'BooleanType', 'default': False},
-        }
-    }
+    pass
