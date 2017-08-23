@@ -25,6 +25,6 @@ logger = logging.getLogger(__name__)
 class SystemDataType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'item', 'list': 'items', 'class': 'ItemType', 'min': 1, 'max': None},
+@element(local_name='item', list='items', cls=ItemType, min=1, max=None)
         ],
     }

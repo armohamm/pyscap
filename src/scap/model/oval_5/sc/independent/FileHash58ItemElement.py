@@ -26,12 +26,12 @@ logger = logging.getLogger(__name__)
 class FileHash58ItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'hash_type', 'class': 'EntityItemHashTypeType', 'min': 0, 'max': 1},
-            {'tag_name': 'hash', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'windows_view', 'class': 'EntityItemWindowsViewType', 'min': 0},
+@element(local_name='filepath', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='path', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='filename', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='hash_type', cls=EntityItemHashTypeType, min=0, max=1)
+@element(local_name='hash', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='windows_view', cls=EntityItemWindowsViewType, min=0)
         ],
         'attributes': {
         }

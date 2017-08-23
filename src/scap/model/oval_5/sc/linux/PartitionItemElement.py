@@ -26,13 +26,13 @@ logger = logging.getLogger(__name__)
 class PartitionItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'mount_point', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'device', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'uuid', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'fs_type', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'mount_options', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'total_space', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'space_used', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'space_left', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+@element(local_name='mount_point', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='device', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='uuid', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='fs_type', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='mount_options', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='total_space', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='space_used', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='space_left', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
         ],
     }

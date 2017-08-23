@@ -25,11 +25,11 @@ logger = logging.getLogger(__name__)
 class SystemInfoType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'os_name', 'type': 'StringType'},
-            {'tag_name': 'os_version', 'type': 'StringType'},
-            {'tag_name': 'architecture', 'type': 'StringType'},
-            {'tag_name': 'primary_host_name', 'type': 'StringType'},
-            {'tag_name': '_interfaces', 'class': 'InterfacesType'},
-            {'tag_name': '*', 'min': 0, 'max': None},
+@element(local_name='os_name', type=StringType)
+@element(local_name='os_version', type=StringType)
+@element(local_name='architecture', type=StringType)
+@element(local_name='primary_host_name', type=StringType)
+@element(local_name='_interfaces', cls=InterfacesType)
+@element(local_name='*', min=0, max=None)
         ],
     }

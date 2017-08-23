@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 class FamilyItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'family', 'class': 'EntityItemFamilyType', 'min': 0, 'max': 1},
+@element(local_name='family', cls=EntityItemFamilyType, min=0, max=1)
         ],
         'attributes': {
         }

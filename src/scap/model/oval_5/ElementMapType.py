@@ -25,9 +25,9 @@ logger = logging.getLogger(__name__)
 class ElementMapType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'test', 'class': 'ElementMapItemType', 'min': 1},
-            {'tag_name': 'object', 'class': 'ElementMapItemType', 'min': 0},
-            {'tag_name': 'state', 'class': 'ElementMapItemType', 'min': 0},
-            {'tag_name': 'item', 'class': 'ElementMapItemType', 'min': 0},
+@element(local_name='test', cls=ElementMapItemType, min=1)
+@element(local_name='object', cls=ElementMapItemType, min=0)
+@element(local_name='state', cls=ElementMapItemType, min=0)
+@element(local_name='item', cls=ElementMapItemType, min=0)
         ],
     }

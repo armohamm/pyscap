@@ -25,8 +25,8 @@ logger = logging.getLogger(__name__)
 class WuaUpdateSearcherItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'search_criteria', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'update_id', 'max': None, 'list': 'update_ids', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+@element(local_name='search_criteria', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='update_id', max=None, list='update_ids', min=0, cls=scap.model.oval_5.sc.EntityItemType)
         ],
         'attributes': {
         },

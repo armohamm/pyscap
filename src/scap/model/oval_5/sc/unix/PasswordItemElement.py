@@ -25,14 +25,14 @@ logger = logging.getLogger(__name__)
 class PasswordItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'username', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'password', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'user_id', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'group_id', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'gcos', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'home_dir', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'login_shell', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'last_login', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+@element(local_name='username', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='password', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='user_id', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='group_id', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='gcos', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='home_dir', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='login_shell', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='last_login', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
         ],
         'attributes': {
         },

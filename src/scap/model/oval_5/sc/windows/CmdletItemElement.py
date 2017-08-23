@@ -25,14 +25,14 @@ logger = logging.getLogger(__name__)
 class CmdletItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'module_name', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'module_id', 'max': 1, 'nillable': True, 'min': 0, 'class': 'EntityItemGUIDType'},
-            {'tag_name': 'module_version', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'verb', 'max': 1, 'min': 0, 'class': 'EntityItemCmdletVerbType'},
-            {'tag_name': 'noun', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'parameters', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'select', 'max': 1, 'nillable': True, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'value', 'max': None, 'list': 'values', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+@element(local_name='module_name', max=1, 'nillable': True, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='module_id', max=1, 'nillable': True, min=0, cls=EntityItemGUIDType)
+@element(local_name='module_version', max=1, 'nillable': True, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='verb', max=1, min=0, cls=EntityItemCmdletVerbType)
+@element(local_name='noun', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='parameters', max=1, 'nillable': True, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='select', max=1, 'nillable': True, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='value', max=None, list='values', min=0, cls=scap.model.oval_5.sc.EntityItemType)
         ],
         'attributes': {
         },

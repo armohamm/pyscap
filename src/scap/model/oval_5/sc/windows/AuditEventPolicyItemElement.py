@@ -25,15 +25,15 @@ logger = logging.getLogger(__name__)
 class AuditEventPolicyItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'account_logon', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},
-            {'tag_name': 'account_management', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},
-            {'tag_name': 'detailed_tracking', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},
-            {'tag_name': 'directory_service_access', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},
-            {'tag_name': 'logon', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},
-            {'tag_name': 'object_access', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},
-            {'tag_name': 'policy_change', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},
-            {'tag_name': 'privilege_use', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},
-            {'tag_name': 'system', 'max': 1, 'min': 0, 'class': 'EntityItemAuditType'},
+@element(local_name='account_logon', max=1, min=0, cls=EntityItemAuditType)
+@element(local_name='account_management', max=1, min=0, cls=EntityItemAuditType)
+@element(local_name='detailed_tracking', max=1, min=0, cls=EntityItemAuditType)
+@element(local_name='directory_service_access', max=1, min=0, cls=EntityItemAuditType)
+@element(local_name='logon', max=1, min=0, cls=EntityItemAuditType)
+@element(local_name='object_access', max=1, min=0, cls=EntityItemAuditType)
+@element(local_name='policy_change', max=1, min=0, cls=EntityItemAuditType)
+@element(local_name='privilege_use', max=1, min=0, cls=EntityItemAuditType)
+@element(local_name='system', max=1, min=0, cls=EntityItemAuditType)
         ],
         'attributes': {
         },

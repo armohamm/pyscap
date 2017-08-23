@@ -25,6 +25,6 @@ logger = logging.getLogger(__name__)
 class ReferenceType(Model):
     MODEL_MAP = {
         'attributes': {
-            'item_ref': {'type': 'scap.model.oval_5.ItemIdPattern', 'required': True},
+@attribute(local_name='item_ref', type=scap.model.oval_5.ItemIdPattern, required=True)
         }
     }

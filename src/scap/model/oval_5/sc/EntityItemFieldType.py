@@ -27,9 +27,9 @@ logger = logging.getLogger(__name__)
 class EntityItemFieldType(AnySimpleType):
     MODEL_MAP = {
         'attributes': {
-            'name': {'type': 'StringType', 'required': True, 'pattern': '[^A-Z]+'},
-            'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
-            'mask': {'type': 'BooleanType', 'default': False},
-            'status': {'enum': EXISTENCE_RESULT_ENUMERATION, 'default': 'exists'},
+@attribute(local_name='name', type=StringType, required=True, 'pattern': '[^A-Z]+')
+@attribute(local_name='datatype', enum=DATATYPE_ENUMERATION, default='string')
+@attribute(local_name='mask', type=BooleanType, default=False)
+@attribute(local_name='status', enum=EXISTENCE_RESULT_ENUMERATION, default='exists')
         },
     }

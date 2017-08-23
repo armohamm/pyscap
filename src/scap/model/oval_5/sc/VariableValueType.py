@@ -26,6 +26,6 @@ logger = logging.getLogger(__name__)
 class VariableValueType(AnySimpleType):
     MODEL_MAP = {
         'attributes': {
-            'variable_id': {'type': 'scap.model.oval_5.VariableIdPattern', 'required': True},
+@attribute(local_name='variable_id', type=scap.model.oval_5.VariableIdPattern, required=True)
         }
     }

@@ -25,12 +25,12 @@ logger = logging.getLogger(__name__)
 class PortItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'local_address', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType'},
-            {'tag_name': 'local_port', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'protocol', 'max': 1, 'min': 0, 'class': 'EntityItemProtocolType'},
-            {'tag_name': 'pid', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'foreign_address', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType'},
-            {'tag_name': 'foreign_port', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+@element(local_name='local_address', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressStringType)
+@element(local_name='local_port', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='protocol', max=1, min=0, cls=EntityItemProtocolType)
+@element(local_name='pid', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='foreign_address', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressStringType)
+@element(local_name='foreign_port', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
         ],
         'attributes': {
         },

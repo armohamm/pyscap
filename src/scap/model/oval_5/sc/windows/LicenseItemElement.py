@@ -25,9 +25,9 @@ logger = logging.getLogger(__name__)
 class LicenseItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'type', 'max': 1, 'min': 0, 'class': 'EntityItemRegistryTypeType'},
-            {'tag_name': 'value', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+@element(local_name='name', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='type', max=1, min=0, cls=EntityItemRegistryTypeType)
+@element(local_name='value', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
         ],
         'attributes': {
         },

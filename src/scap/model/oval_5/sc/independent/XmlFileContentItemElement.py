@@ -26,12 +26,12 @@ logger = logging.getLogger(__name__)
 class XmlFileContentItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
-            {'tag_name': 'xpath', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
-            {'tag_name': 'value_of', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
-            {'tag_name': 'windows_view', 'class': 'EntityItemWindowsViewType', 'min': 0},
+@element(local_name='filepath', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='path', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
+@element(local_name='filename', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
+@element(local_name='xpath', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
+@element(local_name='value_of', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
+@element(local_name='windows_view', cls=EntityItemWindowsViewType, min=0)
         ],
         'attributes': {
         }

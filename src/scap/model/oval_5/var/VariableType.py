@@ -26,12 +26,12 @@ logger = logging.getLogger(__name__)
 class VariableType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'value', 'list': 'values', 'type': 'anySimpleType', 'min': 1, 'max': None},
-            {'tag_name': 'notes', 'class': 'scap.model.oval_5.NotesType', 'min': 0, 'max': 1},
+@element(local_name='value', list='values', type=anySimpleType, min=1, max=None)
+@element(local_name='notes', cls=scap.model.oval_5.NotesType, min=0, max=1)
         ],
         'attributes': {
-            'id': {'type': 'scap.model.oval_5.VariableIdPattern', 'required': True},
-            'datatype': {'enum': SIMPLE_DATATYPE_ENUMERATION, 'required': True},
-            'comment': {'type': 'StringType', 'required': True},
+@attribute(local_name='id', type=scap.model.oval_5.VariableIdPattern, required=True)
+@attribute(local_name='datatype', enum=SIMPLE_DATATYPE_ENUMERATION, required=True)
+@attribute(local_name='comment', type=StringType, required=True)
         }
     }

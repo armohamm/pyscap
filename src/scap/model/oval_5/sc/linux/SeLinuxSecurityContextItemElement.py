@@ -26,20 +26,20 @@ logger = logging.getLogger(__name__)
 class SeLinuxSecurityContextItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'user', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'role', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'type', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'low_sensitivity', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'low_category', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'high_sensitivity', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'high_category', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'rawlow_sensitivity', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'rawlow_category', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'rawhigh_sensitivity', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'rawhigh_category', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+@element(local_name='filepath', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='path', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='filename', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='pid', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='user', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='role', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='type', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='low_sensitivity', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='low_category', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='high_sensitivity', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='high_category', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='rawlow_sensitivity', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='rawlow_category', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='rawhigh_sensitivity', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='rawhigh_category', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
         ],
     }

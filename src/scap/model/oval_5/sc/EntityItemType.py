@@ -31,12 +31,12 @@ logger = logging.getLogger(__name__)
 class EntityItemType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'field', 'list': 'fields', 'class': 'EntityItemFieldType', 'min': 0, 'max': None}
+@element(local_name='field', list='fields', cls=EntityItemFieldType, min=0, max=None)
         ],
         'attributes': {
-            'datatype': {'enum': DATATYPE_ENUMERATION, 'default': 'string'},
-            'mask': {'type': 'BooleanType', 'default': False},
-            'status': {'enum': EXISTENCE_RESULT_ENUMERATION, 'default': 'exists'},
+@attribute(local_name='datatype', enum=DATATYPE_ENUMERATION, default='string')
+@attribute(local_name='mask', type=BooleanType, default=False)
+@attribute(local_name='status', enum=EXISTENCE_RESULT_ENUMERATION, default='exists')
         },
     }
 

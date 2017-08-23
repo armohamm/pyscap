@@ -26,8 +26,8 @@ logger = logging.getLogger(__name__)
 class SystemDUnitPropertyItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'unit', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'property', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
+@element(local_name='unit', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='property', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='value', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
         ],
     }

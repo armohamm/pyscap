@@ -25,8 +25,8 @@ logger = logging.getLogger(__name__)
 class DeprecatedInfoType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'version', 'type': 'SchemaVersionPattern'},
-            {'tag_name': 'reason', 'type': 'StringType'},
-            {'tag_name': 'comment', 'type': 'StringType', 'min': 0, 'max': 1},
+@element(local_name='version', type=SchemaVersionPattern)
+@element(local_name='reason', type=StringType)
+@element(local_name='comment', type=StringType, min=0, max=1)
         ],
     }

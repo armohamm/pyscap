@@ -25,14 +25,14 @@ logger = logging.getLogger(__name__)
 class GconfItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'key', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'source', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'nillable': True, 'max': 1},
-            {'tag_name': 'type', 'min': 0, 'class': 'EntityItemGconfTypeType', 'max': 1},
-            {'tag_name': 'is_writable', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'mod_user', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'mod_time', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'is_default', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'list': 'values', 'tag_name': 'value', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': None},
+@element(local_name='key', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='source', min=0, cls=scap.model.oval_5.sc.EntityItemType, 'nillable': True, max=1)
+@element(local_name='type', min=0, cls=EntityItemGconfTypeType, max=1)
+@element(local_name='is_writable', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='mod_user', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='mod_time', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='is_default', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+            {list='values', 'tag_name': 'value', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=None},
         ],
         'attributes': {
         },

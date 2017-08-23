@@ -25,6 +25,6 @@ logger = logging.getLogger(__name__)
 class CollectedObjectsType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'object', 'list': 'objects', 'class': 'ObjectType', 'min': 1, 'max': None},
+@element(local_name='object', list='objects', cls=ObjectType, min=1, max=None)
         ],
     }

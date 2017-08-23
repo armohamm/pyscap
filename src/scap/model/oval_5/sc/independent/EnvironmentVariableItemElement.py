@@ -26,8 +26,8 @@ logger = logging.getLogger(__name__)
 class EnvironmentVariableItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+@element(local_name='name', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='value', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
         ],
         'attributes': {
         }

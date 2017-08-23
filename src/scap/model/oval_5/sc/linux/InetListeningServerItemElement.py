@@ -26,15 +26,15 @@ logger = logging.getLogger(__name__)
 class InetListeningServerItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'protocol', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'local_address', 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'local_port', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'local_full_address', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'program_name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'foreign_address', 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType', 'min': 0, 'max': 1},
-            {'tag_name': 'foreign_port', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'foreign_full_address', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'user_id', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+@element(local_name='protocol', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='local_address', cls=scap.model.oval_5.sc.EntityItemIPAddressStringType, min=0, max=1)
+@element(local_name='local_port', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='local_full_address', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='program_name', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='foreign_address', cls=scap.model.oval_5.sc.EntityItemIPAddressStringType, min=0, max=1)
+@element(local_name='foreign_port', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='foreign_full_address', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='pid', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='user_id', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
         ],
     }

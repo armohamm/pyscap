@@ -25,10 +25,10 @@ logger = logging.getLogger(__name__)
 class GeneratorType(Model):
     MODEL_MAP = {
         'elements': [
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'product_name', 'type': 'StringType', 'min': 0, 'max': 1},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'product_version', 'type': 'StringType', 'min': 0, 'max': 1},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'schema_version', 'list': 'schema_versions', 'class': 'SchemaVersionType', 'max': None},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-common-5', 'tag_name': 'timestamp', 'type': 'DateTimeType'},
-            {'tag_name': '*', 'min': 0, 'max': None},
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-common-5', local_name='product_name', type=StringType, min=0, max=1)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-common-5', local_name='product_version', type=StringType, min=0, max=1)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-common-5', local_name='schema_version', list='schema_versions', cls=SchemaVersionType, max=None)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-common-5', local_name='timestamp', type=DateTimeType)
+@element(local_name='*', min=0, max=None)
         ],
     }

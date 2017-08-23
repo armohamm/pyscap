@@ -15,16 +15,22 @@ from scap.model.decorators import *
 
 logger
 
- {12}'(\{(.*?)\})?(.*?)': \{(.*?)\},?
-@attribute(namespace='$2', local_name='$3', $4)
+\s{12}'\{([^}]*?)\}([^']*?)': \{([^}]*?)\},?
+@attribute(namespace='$1', local_name='$2', $3)
 
- {12}\{('xmlns': '([^']+)', )?'tag_name': '(.*?)'(, .*?)?\},?
-@element(namespace='$2', local_name='$3'$4)
+\s{12}'([^']*?)': \{([^}]*?)\},?
+@attribute(local_name='$1', $2)
 
-'(enum|default|min|max|list|dict|required)':
+\s{12}\{'xmlns': '([^']+)', 'tag_name': '(.*?)'(, .*?)?\},?
+@element(namespace='$1', local_name='$2'$3)
+
+\s{12}\{'tag_name': '(.*?)'(, .*?)?\},?
+@element(local_name='$1'$2)
+
+'(enum|default|min|max|list|dict|required)':\s
 $1=
 
-'in':
+'in':\s
 into=
 
 'type': '([^']+)'

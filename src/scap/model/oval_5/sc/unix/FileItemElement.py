@@ -25,29 +25,29 @@ logger = logging.getLogger(__name__)
 class FileItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'filepath', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'path', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'filename', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'nillable': True, 'max': 1},
-            {'tag_name': 'type', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'group_id', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'user_id', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'a_time', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'c_time', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'm_time', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'size', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'suid', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'sgid', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'sticky', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'uread', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'uwrite', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'uexec', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'gread', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'gwrite', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'gexec', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'oread', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'owrite', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'oexec', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'has_extended_acl', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+@element(local_name='filepath', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='path', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='filename', min=0, cls=scap.model.oval_5.sc.EntityItemType, 'nillable': True, max=1)
+@element(local_name='type', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='group_id', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='user_id', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='a_time', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='c_time', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='m_time', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='size', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='suid', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='sgid', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='sticky', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='uread', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='uwrite', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='uexec', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='gread', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='gwrite', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='gexec', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='oread', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='owrite', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='oexec', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='has_extended_acl', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
         ],
         'attributes': {
         },

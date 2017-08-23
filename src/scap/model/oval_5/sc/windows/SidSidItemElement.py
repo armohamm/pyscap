@@ -25,9 +25,9 @@ logger = logging.getLogger(__name__)
 class SidSidItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'trustee_sid', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'trustee_name', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'trustee_domain', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+@element(local_name='trustee_sid', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='trustee_name', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='trustee_domain', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
         ],
         'attributes': {
         },

@@ -25,8 +25,8 @@ logger = logging.getLogger(__name__)
 class SystemMetricItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'index', 'max': 1, 'min': 0, 'class': 'EntityItemSystemMetricIndexType'},
-            {'tag_name': 'value', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
+@element(local_name='index', max=1, min=0, cls=EntityItemSystemMetricIndexType)
+@element(local_name='value', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
         ],
         'attributes': {
         },

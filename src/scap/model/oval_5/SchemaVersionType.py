@@ -25,6 +25,6 @@ logger = logging.getLogger(__name__)
 class SchemaVersionType(SchemaVersionPattern):
     MODEL_MAP = {
         'attributes': {
-            'platform': {'type': 'AnyUriType'},
+@attribute(local_name='platform', type=AnyUriType)
         }
     }

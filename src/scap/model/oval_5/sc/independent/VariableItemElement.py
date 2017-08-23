@@ -26,8 +26,8 @@ logger = logging.getLogger(__name__)
 class VariableItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'var_ref', 'class': 'EntityItemVariableRefType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
+@element(local_name='var_ref', cls=EntityItemVariableRefType, min=0, max=1)
+@element(local_name='value', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
         ],
         'attributes': {
         }

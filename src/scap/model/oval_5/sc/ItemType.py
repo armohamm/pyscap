@@ -26,11 +26,11 @@ logger = logging.getLogger(__name__)
 class ItemType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'message', 'list': 'messages', 'class': 'scap.model.oval_5.MessageType', 'min': 0, 'max': 50},
+@element(local_name='message', list='messages', cls=scap.model.oval_5.MessageType, min=0, max=50)
         ],
         'attributes': {
-            'id': {'type': 'scap.model.oval_5.ItemIdPattern', 'required': True},
-            'status': {'enum': EXISTENCE_RESULT_ENUMERATION, 'default': 'exists'},
+@attribute(local_name='id', type=scap.model.oval_5.ItemIdPattern, required=True)
+@attribute(local_name='status', enum=EXISTENCE_RESULT_ENUMERATION, default='exists')
         }
     }
 

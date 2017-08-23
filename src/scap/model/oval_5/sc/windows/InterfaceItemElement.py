@@ -25,14 +25,14 @@ logger = logging.getLogger(__name__)
 class InterfaceItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'index', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'type', 'max': 1, 'min': 0, 'class': 'EntityItemInterfaceTypeType'},
-            {'tag_name': 'hardware_addr', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType'},
-            {'tag_name': 'inet_addr', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType'},
-            {'tag_name': 'broadcast_addr', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType'},
-            {'tag_name': 'netmask', 'max': 1, 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressStringType'},
-            {'tag_name': 'addr_type', 'max': None, 'list': 'addr_types', 'min': 0, 'class': 'EntityItemAddrTypeType'},
+@element(local_name='name', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='index', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='type', max=1, min=0, cls=EntityItemInterfaceTypeType)
+@element(local_name='hardware_addr', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemType)
+@element(local_name='inet_addr', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressStringType)
+@element(local_name='broadcast_addr', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressStringType)
+@element(local_name='netmask', max=1, min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressStringType)
+@element(local_name='addr_type', max=None, list='addr_types', min=0, cls=EntityItemAddrTypeType)
         ],
         'attributes': {
         },

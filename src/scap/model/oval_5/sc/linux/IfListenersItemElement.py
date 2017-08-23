@@ -26,11 +26,11 @@ logger = logging.getLogger(__name__)
 class IfListenersItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'interface_name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'protocol', 'class': 'EntityItemProtocolType', 'min': 0, 'max': 1},
-            {'tag_name': 'hw_address', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'program_name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'pid', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'user_id', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
+@element(local_name='interface_name', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='protocol', cls=EntityItemProtocolType, min=0, max=1)
+@element(local_name='hw_address', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='program_name', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='pid', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='user_id', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
         ],
     }

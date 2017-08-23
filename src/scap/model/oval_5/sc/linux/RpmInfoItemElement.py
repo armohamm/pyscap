@@ -26,14 +26,14 @@ logger = logging.getLogger(__name__)
 class RpmInfoItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'arch', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'epoch', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'release', 'class': 'EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'version', 'class': 'EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'evr', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'signature_keyid', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'extended_name', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
+@element(local_name='name', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='arch', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='epoch', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='release', cls=EntityItemType, min=0, max=1)
+@element(local_name='version', cls=EntityItemType, min=0, max=1)
+@element(local_name='evr', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='signature_keyid', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='extended_name', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='filepath', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
         ],
     }

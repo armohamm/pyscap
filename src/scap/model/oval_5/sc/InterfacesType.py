@@ -25,6 +25,6 @@ logger = logging.getLogger(__name__)
 class InterfacesType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'interface', 'list': 'interfaces', 'class': 'InterfacesType', 'min': 0, 'max': None},
+@element(local_name='interface', list='interfaces', cls=InterfacesType, min=0, max=None)
         ],
     }

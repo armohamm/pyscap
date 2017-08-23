@@ -26,8 +26,8 @@ class OvalVariablesElement(Model):
     MODEL_MAP = {
         'tag_name' : 'oval_variables',
         'elements': [
-            {'tag_name': 'generator', 'class': 'scap.model.oval_5.GeneratorType'},
-            {'tag_name': 'variables', 'class': 'VariablesType', 'min': 0, 'max': 1},
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
+@element(local_name='generator', cls=scap.model.oval_5.GeneratorType)
+@element(local_name='variables', cls=VariablesType, min=0, max=1)
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
         ],
     }

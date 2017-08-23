@@ -26,11 +26,11 @@ logger = logging.getLogger(__name__)
 class SqlItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'engine', 'class': 'EntityItemEngineType', 'min': 0, 'max': 1},
-            {'tag_name': 'version', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'connection_string', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'sql', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'result', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
+@element(local_name='engine', cls=EntityItemEngineType, min=0, max=1)
+@element(local_name='version', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='connection_string', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='sql', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='result', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
         ],
         'attributes': {
         }

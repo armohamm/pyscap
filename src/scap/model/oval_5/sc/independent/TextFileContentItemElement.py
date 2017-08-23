@@ -26,15 +26,15 @@ logger = logging.getLogger(__name__)
 class TextFileContentItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'filepath', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'path', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'filename', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'pattern', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'instance', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'line', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'text', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'subexpression', 'list': 'subexpressions', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
-            {'tag_name': 'windows_view', 'class': 'EntityItemWindowsViewType', 'min': 0},
+@element(local_name='filepath', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='path', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='filename', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='pattern', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='instance', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='line', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='text', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='subexpression', list='subexpressions', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
+@element(local_name='windows_view', cls=EntityItemWindowsViewType, min=0)
         ],
         'attributes': {
 

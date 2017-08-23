@@ -26,10 +26,10 @@ class OvalDefinitionsElement(Model):
     MODEL_MAP = {
         'tag_name' : 'oval_system_characteristics',
         'elements': [
-            {'tag_name': 'generator', 'class': 'scap.model.oval_5.GeneratorType'},
-            {'tag_name': 'system_info', 'class': 'SystemInfoType'},
-            {'tag_name': '_collected_objects', 'class': 'CollectedObjectsType', 'min': 0, 'max': 1},
-            {'tag_name': 'system_data', 'class': 'SystemDataType', 'min': 0, 'max': 1},
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'min': 0, 'max': 1},
+@element(local_name='generator', cls=scap.model.oval_5.GeneratorType)
+@element(local_name='system_info', cls=SystemInfoType)
+@element(local_name='_collected_objects', cls=CollectedObjectsType, min=0, max=1)
+@element(local_name='system_data', cls=SystemDataType, min=0, max=1)
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
         ],
     }

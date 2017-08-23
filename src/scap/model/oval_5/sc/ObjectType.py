@@ -25,15 +25,15 @@ logger = logging.getLogger(__name__)
 class ObjectType(Model):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'message', 'list': 'messages', 'class': 'scap.model.oval_5.MessageType', 'min': 0, 'max': None},
-            {'tag_name': 'variable_value', 'list': 'variable_values', 'class': 'VariableValueType', 'min': 0, 'max': None},
-            {'tag_name': 'reference', 'list': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
+@element(local_name='message', list='messages', cls=scap.model.oval_5.MessageType, min=0, max=None)
+@element(local_name='variable_value', list='variable_values', cls=VariableValueType, min=0, max=None)
+@element(local_name='reference', list='references', cls=ReferenceType, min=0, max=None)
         ],
         'attributes': {
-            'id': {'type': 'scap.model.oval_5.ObjectIdPattern', 'required': True},
-            'version': {'type': 'NonNegativeIntegerType', 'required': True},
-            'variable_instance': {'type': 'NonNegativeIntegerType', 'default': 1},
-            'comment': {'type': 'StringType'},
-            'flag': {'enum': [ 'error', 'complete', 'incomplete', 'does not exist', 'not collected', 'not applicable', ], 'required': True},
+@attribute(local_name='id', type=scap.model.oval_5.ObjectIdPattern, required=True)
+@attribute(local_name='version', type=NonNegativeIntegerType, required=True)
+@attribute(local_name='variable_instance', type=NonNegativeIntegerType, default=1)
+@attribute(local_name='comment', type=StringType)
+@attribute(local_name='flag', enum=[ 'error', 'complete', 'incomplete', 'does not exist', 'not collected', 'not applicable', ], required=True)
         }
     }

@@ -25,10 +25,10 @@ logger = logging.getLogger(__name__)
 class RoutingTableItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'destination', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressType', 'max': 1},
-            {'tag_name': 'gateway', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemIPAddressType', 'max': 1},
-            {'list': 'flagss', 'tag_name': 'flags', 'min': 0, 'class': 'EntityItemRoutingTableFlagsType', 'max': None},
-            {'tag_name': 'interface_name', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
+@element(local_name='destination', min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressType, max=1)
+@element(local_name='gateway', min=0, cls=scap.model.oval_5.sc.EntityItemIPAddressType, max=1)
+            {list='flagss', 'tag_name': 'flags', min=0, cls=EntityItemRoutingTableFlagsType, max=None},
+@element(local_name='interface_name', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
         ],
         'attributes': {
         },

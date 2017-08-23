@@ -25,16 +25,16 @@ logger = logging.getLogger(__name__)
 class ShadowItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'username', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'password', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'chg_lst', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'chg_allow', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'chg_req', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'exp_warn', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'exp_inact', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'exp_date', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'flag', 'min': 0, 'class': 'scap.model.oval_5.sc.EntityItemType', 'max': 1},
-            {'tag_name': 'encrypt_method', 'min': 0, 'class': 'EntityItemEncryptMethodType', 'max': 1},
+@element(local_name='username', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='password', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='chg_lst', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='chg_allow', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='chg_req', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='exp_warn', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='exp_inact', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='exp_date', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='flag', min=0, cls=scap.model.oval_5.sc.EntityItemType, max=1)
+@element(local_name='encrypt_method', min=0, cls=EntityItemEncryptMethodType, max=1)
         ],
         'attributes': {
         },

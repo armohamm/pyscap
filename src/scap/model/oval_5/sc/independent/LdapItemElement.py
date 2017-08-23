@@ -26,12 +26,12 @@ logger = logging.getLogger(__name__)
 class LdapItemElement(ItemType):
     MODEL_MAP = {
         'elements': [
-            {'tag_name': 'suffix', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'relative_dn', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'attribute', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1, 'nillable': True},
-            {'tag_name': 'object_class', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': 1},
-            {'tag_name': 'ldaptype', 'class': 'EntityItemLdaptypeType', 'min': 0, 'max': 1},
-            {'tag_name': 'value', 'class': 'scap.model.oval_5.sc.EntityItemType', 'min': 0, 'max': None},
+@element(local_name='suffix', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='relative_dn', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='attribute', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='object_class', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=1)
+@element(local_name='ldaptype', cls=EntityItemLdaptypeType, min=0, max=1)
+@element(local_name='value', cls=scap.model.oval_5.sc.EntityItemType, min=0, max=None)
         ],
         'attributes': {
         }
