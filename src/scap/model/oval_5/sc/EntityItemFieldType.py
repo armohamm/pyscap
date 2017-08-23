@@ -18,6 +18,7 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
 from scap.model.xs.AnySimpleType import AnySimpleType
 from scap.model.oval_5 import DATATYPE_ENUMERATION, EXISTENCE_RESULT_ENUMERATION
 

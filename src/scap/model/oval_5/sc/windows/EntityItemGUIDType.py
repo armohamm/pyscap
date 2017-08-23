@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
@@ -30,4 +31,3 @@ class EntityItemGUIDType(EntityItemType):
 
     def get_value_pattern(self):
         return r'(\{[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}){0,}'
-

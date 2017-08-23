@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
@@ -60,4 +61,3 @@ class EntityItemRoutingTableFlagsType(EntityItemType):
             'ACTIVE_DEAD_GATEWAY_DETECTION',
             '',
         ]
-

@@ -17,6 +17,7 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
@@ -45,4 +46,3 @@ class EntityItemPeSubsystemType(EntityItemType):
             'IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION',
             '',
         ]
-

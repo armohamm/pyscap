@@ -18,6 +18,7 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
 from scap.model.oval_5 import RPM_VERIFY_RESULT_ENUMERATION
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
 

@@ -18,6 +18,7 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 class SystemInfoType(Model):
