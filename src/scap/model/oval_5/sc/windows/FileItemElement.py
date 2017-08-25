@@ -22,6 +22,7 @@ from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemType import EntityItemType
 from .EntityItemWindowsViewType import EntityItemWindowsViewType
+from .EntityItemFileTypeType import EntityItemFileTypeType
 
 logger = logging.getLogger(__name__)
 

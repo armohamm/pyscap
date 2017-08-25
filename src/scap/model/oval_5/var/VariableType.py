@@ -20,13 +20,18 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.oval_5 import SIMPLE_DATATYPE_ENUMERATION
+from scap.model.xs.StringType import StringType
+from scap.model.xs.AnySimpleType import AnySimpleType
+
+from ..VariableIdPattern import VariableIdPattern
+from ..NotesType import NotesType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='id', type=scap.model.oval_5.VariableIdPattern, required=True)
+@attribute(local_name='id', type=VariableIdPattern, required=True)
 @attribute(local_name='datatype', enum=SIMPLE_DATATYPE_ENUMERATION, required=True)
 @attribute(local_name='comment', type=StringType, required=True)
-@element(local_name='value', list='values', type=anySimpleType, min=1, max=None)
-@element(local_name='notes', cls=scap.model.oval_5.NotesType, min=0, max=1)
+@element(local_name='value', list='values', type=AnySimpleType, min=1, max=None)
+@element(local_name='notes', cls=NotesType, min=0, max=1)
 class VariableType(Model):
     pass

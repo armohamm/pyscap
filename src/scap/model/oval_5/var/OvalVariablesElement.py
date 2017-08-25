@@ -19,10 +19,12 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
+from ..GeneratorType import GeneratorType
+from .VariablesType import VariablesType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='generator', cls=scap.model.oval_5.GeneratorType)
+@element(local_name='generator', cls=GeneratorType)
 @element(local_name='variables', cls=VariablesType, min=0, max=1)
 @element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
 class OvalVariablesElement(Model):

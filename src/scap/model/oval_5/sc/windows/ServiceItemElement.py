@@ -21,6 +21,10 @@ from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemType import EntityItemType
+from .EntityItemServiceTypeType import EntityItemServiceTypeType
+from .EntityItemServiceStartTypeType import EntityItemServiceStartTypeType
+from .EntityItemServiceCurrentStateType import EntityItemServiceCurrentStateType
+from .EntityItemServiceControlsAcceptedType import EntityItemServiceControlsAcceptedType
 
 logger = logging.getLogger(__name__)
 
