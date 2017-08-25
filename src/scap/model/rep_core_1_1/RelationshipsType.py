@@ -17,13 +17,13 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.Model import Model
 
+from .RelationshipType import RelationshipType
+
 logger = logging.getLogger(__name__)
+
+@element(local_name='relationship', list='relationships', cls=RelationshipType)
 class RelationshipsType(Model):
-    MODEL_MAP = {
-        'tag_name': 'relationships',
-        'elements': [
-            {'tag_name': 'relationship', 'list': 'relationships', 'class': 'RelationshipType'},
-        ],
-    }
+    pass

@@ -18,18 +18,18 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.QNameType import QNameType
+from scap.model.xs.NCNameType import NCNameType
+
+from .RefElement import RefElement
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='type', type=QNameType, required=True)
+@attribute(local_name='scope', enum=['inclusive', 'exclusive'], default='inclusive')
+@attribute(local_name='subject', type=NCNameType, required=True)
+@attribute(namespace='*', local_name='*')
+@element(local_name='ref', list='refs', cls=RefElement)
 class RelationshipType(Model):
-    MODEL_MAP = {
-        'tag_name': 'relationship',
-        'elements': [
-            {'tag_name': 'ref', 'list': 'refs', 'class': 'RefElement'},
-        ],
-        'attributes': {
-            'type': {'type': 'QNameType', 'required': True},
-            'scope': {'enum': ['inclusive', 'exclusive'], 'default': 'inclusive'},
-            'subject': {'type': 'NCNameType', 'required': True},
-            '*': {},
-        },
-    }
+    pass

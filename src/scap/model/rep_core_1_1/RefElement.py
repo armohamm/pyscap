@@ -17,10 +17,10 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
+
 class RefElement(NCNameType):
-    MODEL_MAP = {
-        'tag_name': 'ref',
-    }
+    pass
