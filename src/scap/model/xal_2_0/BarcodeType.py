@@ -15,16 +15,15 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='Code', ) # from grPostal
+@attribute(local_name='*', )
 class BarcodeType(Model):
-    MODEL_MAP = {
-        'tag_name': 'Barcode',
-        'attributes': {
-            'Type': {},
-            'Code': {}, # from grPostal
-            '*': {},
-        }
-    }
+    pass

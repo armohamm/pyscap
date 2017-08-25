@@ -15,25 +15,29 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .PostalCodeType import PostalCodeType
+from .PostBoxType import PostBoxType
+from .PostalRouteType import PostalRouteType
+from .PostOfficeNumberType import PostOfficeNumberType
+from .PostOfficeNameType import PostOfficeNameType
+from .AddressLineType import AddressLineType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='Indicator', )
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='PostOfficeName', list='post_office_names', cls=PostOfficeNameType)
+@element(local_name='PostOfficeNumber', into='post_office_number', cls=PostOfficeNumberType)
+@element(local_name='PostalRoute', into='postal_route', cls=PostalRouteType)
+@element(local_name='PostBox', into='post_box', cls=PostBoxType)
+@element(local_name='PostalCode', into='postal_code', cls=PostalCodeType)
+@element(local_name='*')
 class PostOfficeType(Model):
-    MODEL_MAP = {
-        'tag_name': 'PostOffice',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'PostOfficeName', 'list': 'post_office_names', 'class': 'PostOfficeNameType'},
-            {'tag_name': 'PostOfficeNumber', 'in': 'post_office_number', 'class': 'PostOfficeNumberType'},
-            {'tag_name': 'PostalRoute', 'in': 'postal_route', 'class': 'PostalRouteType'},
-            {'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
-            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Type': {},
-            'Indicator': {},
-            '*': {},
-        }
-    }
+    pass

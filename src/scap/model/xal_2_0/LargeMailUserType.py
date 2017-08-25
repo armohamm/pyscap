@@ -15,26 +15,31 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressLineType import AddressLineType
+from .LargeMailUserNameType import LargeMailUserNameType
+from .LargeMailUserIdentifierType import LargeMailUserIdentifierType
+from .BuildingNameType import BuildingNameType
+from .DepartmentType import DepartmentType
+from .PostBoxType import PostBoxType
+from .PostalCodeType import PostalCodeType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='LargeMailUserName', list='large_mail_user_names', cls=LargeMailUserNameType)
+@element(local_name='LargeMailUserIdentifier', into='large_mail_user_identifier', cls=LargeMailUserIdentifierType)
+@element(local_name='BuildingName', list='building_names', cls=BuildingNameType)
+@element(local_name='Department', into='department', cls=DepartmentType)
+@element(local_name='PostBox', into='post_box', cls=PostBoxType)
+@element(local_name='Thoroughfare', into='thoroughfare', cls=defer_class_load('scap.model.xal_2_0.ThoroughfareType', 'ThoroughfareType'))
+@element(local_name='PostalCode', into='postal_code', cls=PostalCodeType)
+@element(local_name='*')
 class LargeMailUserType(Model):
-    MODEL_MAP = {
-        'tag_name': 'LargeMailUser',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'LargeMailUserName', 'list': 'large_mail_user_names', 'class': 'LargeMailUserNameType'},
-            {'tag_name': 'LargeMailUserIdentifier', 'in': 'large_mail_user_identifier', 'class': 'LargeMailUserIdentifierType'},
-            {'tag_name': 'BuildingName', 'list': 'building_names', 'class': 'BuildingNameType'},
-            {'tag_name': 'Department', 'in': 'department', 'class': 'DepartmentType'},
-            {'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
-            {'tag_name': 'Thoroughfare', 'in': 'thoroughfare', 'class': 'ThoroughfareType'},
-            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Type': {},
-            '*': {},
-        }
-    }
+    pass

@@ -15,16 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.StringType import StringType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', type=StringType)
+@attribute(local_name='Code', type=StringType)
+@attribute(local_name='*', )
 class LargeMailUserNameType(Model):
-    MODEL_MAP = {
-        'tag_name': 'LargeMailUserName',
-        'attributes': {
-            'Type': {'type': 'StringType'},
-            'Code': {'type': 'StringType'},
-            '*': {},
-        }
-    }
+    pass

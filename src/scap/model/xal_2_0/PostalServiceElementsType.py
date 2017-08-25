@@ -15,28 +15,36 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressIdentifierType import AddressIdentifierType
+from .EndorsementLineCodeType import EndorsementLineCodeType
+from .KeyLineCodeType import KeyLineCodeType
+from .BarcodeType import BarcodeType
+from .SortingCodeType import SortingCodeType
+from .AddressLatitudeType import AddressLatitudeType
+from .AddressLatitudeDirectionType import AddressLatitudeDirectionType
+from .AddressLongitudeType import AddressLongitudeType
+from .AddressLongitudeDirectionType import AddressLongitudeDirectionType
+from .SupplementaryPostalServiceDataType import SupplementaryPostalServiceDataType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='*', )
+@element(local_name='AddressIdentifier', list='address_identifiers', cls=AddressIdentifierType)
+@element(local_name='EndorsementLineCode', cls=EndorsementLineCodeType)
+@element(local_name='KeyLineCode', cls=KeyLineCodeType)
+@element(local_name='Barcode', cls=BarcodeType)
+@element(local_name='SortingCode', cls=SortingCodeType)
+@element(local_name='AddressLatitude', cls=AddressLatitudeType)
+@element(local_name='AddressLatitudeDirection', cls=AddressLatitudeDirectionType)
+@element(local_name='AddressLongitude', cls=AddressLongitudeType)
+@element(local_name='AddressLongitudeDirection', cls=AddressLongitudeDirectionType)
+@element(local_name='SupplementaryPostalServiceData', cls=SupplementaryPostalServiceDataType)
+@element(local_name='*')
 class PostalServiceElementsType(Model):
-    MODEL_MAP = {
-        'tag_name': 'PostalServiceElements',
-        'elements': [
-            {'tag_name': 'AddressIdentifier', 'list': 'address_identifiers', 'class': 'AddressIdentifierType'},
-            {'tag_name': 'EndorsementLineCode', 'class': 'EndorsementLineCodeType'},
-            {'tag_name': 'KeyLineCode', 'class': 'KeyLineCodeType'},
-            {'tag_name': 'Barcode', 'class': 'BarcodeType'},
-            {'tag_name': 'SortingCode', 'class': 'SortingCodeType'},
-            {'tag_name': 'AddressLatitude', 'class': 'AddressLatitudeType'},
-            {'tag_name': 'AddressLatitudeDirection', 'class': 'AddressLatitudeDirectionType'},
-            {'tag_name': 'AddressLongitude', 'class': 'AddressLongitudeType'},
-            {'tag_name': 'AddressLongitudeDirection', 'class': 'AddressLongitudeDirectionType'},
-            {'tag_name': 'SupplementaryPostalServiceData', 'class': 'SupplementaryPostalServiceDataType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Type': {},
-            '*': {},
-        }
-    }
+    pass

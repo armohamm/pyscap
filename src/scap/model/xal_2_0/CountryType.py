@@ -15,23 +15,27 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressLineType import AddressLineType
+from .CountryNameCodeType import CountryNameCodeType
+from .CountryNameType import CountryNameType
+from .AdministrativeAreaType import AdministrativeAreaType
+from .LocalityType import LocalityType
+from .ThoroughfareType import ThoroughfareType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='CountryNameCode', list='country_codes', cls=CountryNameCodeType)
+@element(local_name='CountryName', list='countries', cls=CountryNameType)
+@element(local_name='AdministrativeArea', into='administrative_area', cls=AdministrativeAreaType)
+@element(local_name='Locality', into='locality', cls=LocalityType)
+@element(local_name='Thoroughfare', into='thoroughfare', cls=ThoroughfareType)
+@element(local_name='*')
 class CountryType(Model):
-    MODEL_MAP = {
-        'tag_name': 'Country',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'CountryNameCode', 'list': 'country_codes', 'class': 'CountryNameCodeType'},
-            {'tag_name': 'CountryName', 'list': 'countries', 'class': 'CountryNameType'},
-            {'tag_name': 'AdministrativeArea', 'in': 'administrative_area', 'class': 'AdministrativeAreaType'},
-            {'tag_name': 'Locality', 'in': 'locality', 'class': 'LocalityType'},
-            {'tag_name': 'Thoroughfare', 'in': 'thoroughfare', 'class': 'ThoroughfareType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            '*': {},
-        }
-    }
+    pass

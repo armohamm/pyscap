@@ -15,30 +15,35 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .PostalServiceElementsType import PostalServiceElementsType
+from .AddressType import AddressType
+from .AddressLinesType import AddressLinesType
+from .CountryType import CountryType
+from .AdministrativeAreaType import AdministrativeAreaType
+from .LocalityType import LocalityType
+from .ThoroughfareType import ThoroughfareType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='AddressType', )
+@attribute(local_name='CurrentStatus', )
+@attribute(local_name='ValidFromDate', )
+@attribute(local_name='ValidToDate', )
+@attribute(local_name='Usage', )
+@attribute(local_name='Code', ) # from grPostal
+@attribute(local_name='AddressDetailsKey', )
+@attribute(local_name='*', )
+@element(local_name='PostalServiceElements', cls=PostalServiceElementsType)
+@element(local_name='Address', cls=AddressType)
+@element(local_name='AddressLines', cls=AddressLinesType)
+@element(local_name='Country', cls=CountryType)
+@element(local_name='AdministrativeArea', cls=AdministrativeAreaType)
+@element(local_name='Locality', cls=LocalityType)
+@element(local_name='Thoroughfare', cls=ThoroughfareType)
 class AddressDetailsType(Model):
-    MODEL_MAP = {
-        'tag_name': 'AddressDetails',
-        'elements': [
-            {'tag_name': 'PostalServiceElements', 'class': 'PostalServiceElementsType'},
-            {'tag_name': 'Address', 'class': 'AddressType'},
-            {'tag_name': 'AddressLines', 'class': 'AddressLinesType'},
-            {'tag_name': 'Country', 'class': 'CountryType'},
-            {'tag_name': 'AdministrativeArea', 'class': 'AdministrativeAreaType'},
-            {'tag_name': 'Locality', 'class': 'LocalityType'},
-            {'tag_name': 'Thoroughfare', 'class': 'ThoroughfareType'},
-        ],
-        'attributes': {
-            'AddressType': {},
-            'CurrentStatus': {},
-            'ValidFromDate': {},
-            'ValidToDate': {},
-            'Usage': {},
-            'Code': {}, # from grPostal
-            'AddressDetailsKey': {},
-            '*': {},
-        }
-    }
+    pass

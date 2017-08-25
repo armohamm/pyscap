@@ -15,21 +15,21 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .PostTownSuffixType import PostTownSuffixType
+from .AddressLineType import AddressLineType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='PostTownName', list='post_town_names', cls=defer_class_load('scap.model.xal_2_0.PostTownType', 'PostTownType'))
+@element(local_name='PostTownSuffix', into='post_town_suffix', cls=PostTownSuffixType)
+@element(local_name='*')
 class PostTownType(Model):
-    MODEL_MAP = {
-        'tag_name': 'PostTown',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'PostTownName', 'list': 'post_town_names', 'class': 'PostTownType'},
-            {'tag_name': 'PostTownSuffix', 'in': 'post_town_suffix', 'class': 'PostTownSuffixType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Type': {},
-            '*': {},
-        }
-    }
+    pass

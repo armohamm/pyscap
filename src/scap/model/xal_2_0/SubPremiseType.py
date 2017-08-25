@@ -15,29 +15,37 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressLineType import AddressLineType
+from .SubPremiseNameType import SubPremiseNameType
+from .SubPremiseLocationType import SubPremiseLocationType
+from .SubPremiseNumberType import SubPremiseNumberType
+from .SubPremiseNumberPrefixType import SubPremiseNumberPrefixType
+from .SubPremiseNumberSuffixType import SubPremiseNumberSuffixType
+from .BuildingNameType import BuildingNameType
+from .FirmType import FirmType
+from .MailStopType import MailStopType
+from .PostalCodeType import PostalCodeType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='SubPremiseName', list='sub_premise_names', cls=SubPremiseNameType)
+@element(local_name='SubPremiseLocation', into='sub_premise_location', cls=SubPremiseLocationType)
+@element(local_name='SubPremiseNumber', list='sub_premise_numbers', cls=SubPremiseNumberType)
+@element(local_name='SubPremiseNumberPrefix', list='sub_premise_number_prefixes', cls=SubPremiseNumberPrefixType)
+@element(local_name='SubPremiseNumberSuffix', list='sub_premise_number_suffixes', cls=SubPremiseNumberSuffixType)
+@element(local_name='BuildingName', list='building_names', cls=BuildingNameType)
+@element(local_name='Firm', into='firm', cls=FirmType)
+@element(local_name='MailStop', into='firm', cls=MailStopType)
+@element(local_name='PostalCode', into='postal_code', cls=PostalCodeType)
+@element(local_name='SubPremise', list='sub_premises', cls=defer_class_load('scap.model.xal_2_0.SubPremiseType', 'SubPremiseType'))
+@element(local_name='*')
 class SubPremiseType(Model):
-    MODEL_MAP = {
-        'tag_name': 'SubPremise',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'SubPremiseName', 'list': 'sub_premise_names', 'class': 'SubPremiseNameType'},
-            {'tag_name': 'SubPremiseLocation', 'in': 'sub_premise_location', 'class': 'SubPremiseLocationType'},
-            {'tag_name': 'SubPremiseNumber', 'list': 'sub_premise_numbers', 'class': 'SubPremiseNumberType'},
-            {'tag_name': 'SubPremiseNumberPrefix', 'list': 'sub_premise_number_prefixes', 'class': 'SubPremiseNumberPrefixType'},
-            {'tag_name': 'SubPremiseNumberSuffix', 'list': 'sub_premise_number_suffixes', 'class': 'SubPremiseNumberSuffixType'},
-            {'tag_name': 'BuildingName', 'list': 'building_names', 'class': 'BuildingNameType'},
-            {'tag_name': 'Firm', 'in': 'firm', 'class': 'FirmType'},
-            {'tag_name': 'MailStop', 'in': 'firm', 'class': 'MailStopType'},
-            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
-            {'tag_name': 'SubPremise', 'list': 'sub_premises', 'class': 'SubPremiseType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Type': {},
-            '*': {},
-        },
-    }
+    pass

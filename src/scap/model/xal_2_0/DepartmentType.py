@@ -15,21 +15,23 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressLineType import AddressLineType
+from .DepartmentNameType import DepartmentNameType
+from .MailStopType import MailStopType
+from .PostalCodeType import PostalCodeType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='DepartmentName', list='department_names', cls=DepartmentNameType)
+@element(local_name='MailStop', into='mail_stop', cls=MailStopType)
+@element(local_name='PostalCode', into='postal_code', cls=PostalCodeType)
 class DepartmentType(Model):
-    MODEL_MAP = {
-        'tag_name': 'Department',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'DepartmentName', 'list': 'department_names', 'class': 'DepartmentNameType'},
-            {'tag_name': 'MailStop', 'in': 'mail_stop', 'class': 'MailStopType'},
-            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
-        ],
-        'attributes': {
-            'Type': {},
-            '*': {},
-        }
-    }
+    pass

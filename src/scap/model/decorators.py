@@ -70,15 +70,6 @@ class content(object):
         cls._model_content = self._kwargs
         return cls
 
-# The following Copyright rPath, Inc., 2006
-# Available under the python license
-# """ Defines an on-demand importer that only actually loads modules when their
-#     attributes are accessed.  NOTE: if the ondemand module is viewed using
-#     introspection, like dir(), isinstance, etc, it will appear as a
-#     ModuleProxy, not a module, and will not have the correct attributes.
-#     Barring introspection, however, the module will behave as normal.
-# """
-
 def defer_class_load(module, class_name):
     def _load_class():
         # use cached copy of module if possible
@@ -89,3 +80,5 @@ def defer_class_load(module, class_name):
             mod = sys.modules[module]
 
         return setattr(mod, class_name)
+
+    return _load_class

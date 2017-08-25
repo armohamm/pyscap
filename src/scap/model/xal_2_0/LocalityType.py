@@ -15,30 +15,38 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressLineType import AddressLineType
+from .LocalityNameType import LocalityNameType
+from .PostBoxType import PostBoxType
+from .LargeMailUserType import LargeMailUserType
+from .PostOfficeType import PostOfficeType
+from .PostalRouteType import PostalRouteType
+from .ThoroughfareType import ThoroughfareType
+from .PremiseType import PremiseType
+from .DependentLocalityType import DependentLocalityType
+from .PostalCodeType import PostalCodeType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='UsageType', )
+@attribute(local_name='Indicator', )
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='LocalityName', list='address_lines', cls=LocalityNameType)
+@element(local_name='PostBox', into='post_box', cls=PostBoxType)
+@element(local_name='LargeMailUser', into='large_mail_user', cls=LargeMailUserType)
+@element(local_name='PostOffice', into='post_office', cls=PostOfficeType)
+@element(local_name='PostalRoute', into='post_route', cls=PostalRouteType)
+@element(local_name='Thoroughfare', into='thoroughfare', cls=ThoroughfareType)
+@element(local_name='Premise', into='premise', cls=PremiseType)
+@element(local_name='DependentLocality', into='premise', cls=DependentLocalityType)
+@element(local_name='PostalCode', into='postal_code', cls=PostalCodeType)
+@element(local_name='*')
 class LocalityType(Model):
-    MODEL_MAP = {
-        'tag_name': 'Locality',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'LocalityName', 'list': 'address_lines', 'class': 'LocalityNameType'},
-            {'tag_name': 'PostBox', 'in': 'post_box', 'class': 'PostBoxType'},
-            {'tag_name': 'LargeMailUser', 'in': 'large_mail_user', 'class': 'LargeMailUserType'},
-            {'tag_name': 'PostOffice', 'in': 'post_office', 'class': 'PostOfficeType'},
-            {'tag_name': 'PostalRoute', 'in': 'post_route', 'class': 'PostalRouteType'},
-            {'tag_name': 'Thoroughfare', 'in': 'thoroughfare', 'class': 'ThoroughfareType'},
-            {'tag_name': 'Premise', 'in': 'premise', 'class': 'PremiseType'},
-            {'tag_name': 'DependentLocality', 'in': 'premise', 'class': 'DependentLocalityType'},
-            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Type': {},
-            'UsageType': {},
-            'Indicator': {},
-            '*': {},
-        }
-    }
+    pass

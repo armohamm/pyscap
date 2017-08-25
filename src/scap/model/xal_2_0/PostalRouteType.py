@@ -15,21 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressLineType import AddressLineType
+from .PostalRouteNameType import PostalRouteNameType
+from .PostalRouteNumberType import PostalRouteNumberType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='PostalRouteName', list='postal_route_names', cls=PostalRouteNameType)
+@element(local_name='PostalRouteNumber', into='postal_route_number', cls=PostalRouteNumberType)
+@element(local_name='*')
 class PostalRouteType(Model):
-    MODEL_MAP = {
-        'tag_name': 'PostalRoute',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'PostalRouteName', 'list': 'postal_route_names', 'class': 'PostalRouteNameType'},
-            {'tag_name': 'PostalRouteNumber', 'in': 'postal_route_number', 'class': 'PostalRouteNumberType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Type': {},
-            '*': {},
-        }
-    }
+    pass

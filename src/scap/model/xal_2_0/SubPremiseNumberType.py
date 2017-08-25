@@ -15,20 +15,19 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Indicator', )
+@attribute(local_name='IndicatorOccurrence', enum=['Before', 'After'])
+@attribute(local_name='NumberTypeOccurrence', enum=['Before', 'After'])
+@attribute(local_name='PremiseNumberSeparator', )
+@attribute(local_name='Type', )
+@attribute(local_name='Code', ) # from grPostal
+@attribute(local_name='*', )
 class SubPremiseNumberType(Model):
-    MODEL_MAP = {
-        'tag_name': 'SubPremiseNumber',
-        'attributes': {
-            'Indicator': {},
-            'IndicatorOccurrence': {'enum': ['Before', 'After']},
-            'NumberTypeOccurrence': {'enum': ['Before', 'After']},
-            'PremiseNumberSeparator': {},
-            'Type': {},
-            'Code': {}, # from grPostal
-            '*': {},
-        }
-    }
+    pass

@@ -15,19 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressDetailsType import AddressDetailsType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Version', )
+@attribute(local_name='*', )
+@element(local_name='AddressDetails', list='address_details', cls=AddressDetailsType)
+@element(local_name='*')
 class XALType(Model):
-    MODEL_MAP = {
-        'tag_name': 'xAL',
-        'elements': [
-            {'tag_name': 'AddressDetails', 'list': 'address_details', 'class': 'AddressDetailsType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Version': {},
-            '*': {},
-        },
-    }
+    pass

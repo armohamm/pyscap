@@ -15,17 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.StringType import StringType
 import logging
 
+from scap.model.xs.StringType import StringType
+from scap.model.decorators import *
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='NumberPrefixSeparator', )
+@attribute(local_name='Type', )
+@attribute(local_name='Code', ) # from grPostal
+@attribute(local_name='*', )
 class SubPremiseNumberPrefixType(StringType):
-    MODEL_MAP = {
-        'tag_name': 'SubPremiseNumberPrefix',
-        'attributes': {
-            'NumberPrefixSeparator': {},
-            'Type': {},
-            'Code': {}, # from grPostal
-            '*': {},
-        }
-    }
+    pass

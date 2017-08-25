@@ -15,24 +15,28 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressLineType import AddressLineType
+from .ThoroughfarePreDirectionType import ThoroughfarePreDirectionType
+from .ThoroughfareLeadingTypeType import ThoroughfareLeadingTypeType
+from .ThoroughfareNameType import ThoroughfareNameType
+from .ThoroughfareTrailingTypeType import ThoroughfareTrailingTypeType
+from .ThoroughfarePostDirectionType import ThoroughfarePostDirectionType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='ThoroughfarePreDirection', into='thoroughfare_pre_direction', cls=ThoroughfarePreDirectionType)
+@element(local_name='ThoroughfareLeadingType', into='thoroughfare_leading_type', cls=ThoroughfareLeadingTypeType)
+@element(local_name='ThoroughfareName', list='thoroughfare_names', cls=ThoroughfareNameType)
+@element(local_name='ThoroughfareTrailingType', into='thoroughfare_trailing_type', cls=ThoroughfareTrailingTypeType)
+@element(local_name='ThoroughfarePostDirection', into='thoroughfare_post_direction', cls=ThoroughfarePostDirectionType)
+@element(local_name='*')
 class DependentThoroughfareType(Model):
-    MODEL_MAP = {
-        'tag_name': 'DependentThoroughfare',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'ThoroughfarePreDirection', 'in': 'thoroughfare_pre_direction', 'class': 'ThoroughfarePreDirectionType'},
-            {'tag_name': 'ThoroughfareLeadingType', 'in': 'thoroughfare_leading_type', 'class': 'ThoroughfareLeadingTypeType'},
-            {'tag_name': 'ThoroughfareName', 'list': 'thoroughfare_names', 'class': 'ThoroughfareNameType'},
-            {'tag_name': 'ThoroughfareTrailingType', 'in': 'thoroughfare_trailing_type', 'class': 'ThoroughfareTrailingTypeType'},
-            {'tag_name': 'ThoroughfarePostDirection', 'in': 'thoroughfare_post_direction', 'class': 'ThoroughfarePostDirectionType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Type': {},
-            '*': {},
-        }
-    }
+    pass

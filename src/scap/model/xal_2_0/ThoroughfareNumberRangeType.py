@@ -15,26 +15,27 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressLineType import AddressLineType
+from .ThoroughfareNumberFromType import ThoroughfareNumberFromType
+from .ThoroughfareNumberToType import ThoroughfareNumberToType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='RangeType', enum=['Odd', 'Even'])
+@attribute(local_name='Indicator', )
+@attribute(local_name='Separator', )
+@attribute(local_name='IndicatorOccurrence', enum=['Before', 'After'])
+@attribute(local_name='NumberRangeOccurrence', enum=['BeforeName', 'AfterName', 'BeforeType', 'AfterType'])
+@attribute(local_name='Type', )
+@attribute(local_name='Code', ) # from grPostal
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='ThoroughfareNumberFrom', into='thoroughfare_number_from', cls=ThoroughfareNumberFromType)
+@element(local_name='ThoroughfareNumberTo', into='thoroughfare_number_to', cls=ThoroughfareNumberToType)
 class ThoroughfareNumberRangeType(Model):
-    MODEL_MAP = {
-        'tag_name': 'ThoroughfareNumberRange',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'ThoroughfareNumberFrom', 'in': 'thoroughfare_number_from', 'class': 'ThoroughfareNumberFromType'},
-            {'tag_name': 'ThoroughfareNumberTo', 'in': 'thoroughfare_number_to', 'class': 'ThoroughfareNumberToType'},
-        ],
-        'attributes': {
-            'RangeType': {'enum': ['Odd', 'Even']},
-            'Indicator': {},
-            'Separator': {},
-            'IndicatorOccurrence': {'enum': ['Before', 'After']},
-            'NumberRangeOccurrence': {'enum': ['BeforeName', 'AfterName', 'BeforeType', 'AfterType']},
-            'Type': {},
-            'Code': {}, # from grPostal
-            '*': {},
-        },
-    }
+    pass

@@ -15,26 +15,30 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressLineType import AddressLineType
+from .AdministrativeAreaNameType import AdministrativeAreaNameType
+from .SubAdministrativeAreaNameType import SubAdministrativeAreaNameType
+from .LocalityType import LocalityType
+from .PostOfficeType import PostOfficeType
+from .PostalCodeType import PostalCodeType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='UsageType', )
+@attribute(local_name='Indicator', )
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='AdministrativeAreaName', list='administrative_areas', cls=AdministrativeAreaNameType)
+@element(local_name='SubAdministrativeArea', into='sub_administrative_area', cls=SubAdministrativeAreaNameType)
+@element(local_name='Locality', into='locality', cls=LocalityType)
+@element(local_name='PostOffice', into='post_office', cls=PostOfficeType)
+@element(local_name='PostalCode', into='postal_code', cls=PostalCodeType)
+@element(local_name='*')
 class AdministrativeAreaType(Model):
-    MODEL_MAP = {
-        'tag_name': 'AdministrativeArea',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'AdministrativeAreaName', 'list': 'administrative_areas', 'class': 'AdministrativeAreaNameType'},
-            {'tag_name': 'SubAdministrativeArea', 'in': 'sub_administrative_area', 'class': 'SubAdministrativeAreaNameType'},
-            {'tag_name': 'Locality', 'in': 'locality', 'class': 'LocalityType'},
-            {'tag_name': 'PostOffice', 'in': 'post_office', 'class': 'PostOfficeType'},
-            {'tag_name': 'PostalCode', 'in': 'postal_code', 'class': 'PostalCodeType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Type': {},
-            'UsageType': {},
-            'Indicator': {},
-            '*': {},
-        }
-    }
+    pass

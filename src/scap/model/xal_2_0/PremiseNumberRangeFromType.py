@@ -15,17 +15,21 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .PremiseNumberSuffixType import PremiseNumberSuffixType
+from .PremiseNumberType import PremiseNumberType
+from .PremiseNumberPrefixType import PremiseNumberPrefixType
+from .AddressLineType import AddressLineType
+
 logger = logging.getLogger(__name__)
-class PremiseNumberFromType(Model):
-    MODEL_MAP = {
-        'tag_name': 'PremiseNumberFrom',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'PremiseNumberPrefix', 'list': 'premise_number_prefixes', 'class': 'PremiseNumberPrefixType'},
-            {'tag_name': 'PremiseNumber', 'list': 'premise_numbers', 'class': 'PremiseNumberType'},
-            {'tag_name': 'PremiseNumberSuffix', 'list': 'premise_number_suffixes', 'class': 'PremiseNumberSuffixType'},
-        ],
-    }
+
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='PremiseNumberPrefix', list='premise_number_prefixes', cls=PremiseNumberPrefixType)
+@element(local_name='PremiseNumber', list='premise_numbers', cls=PremiseNumberType)
+@element(local_name='PremiseNumberSuffix', list='premise_number_suffixes', cls=PremiseNumberSuffixType)
+class PremiseNumberRangeFromType(Model):
+    pass

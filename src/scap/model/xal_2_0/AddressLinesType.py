@@ -15,15 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressLineType import AddressLineType
+
 logger = logging.getLogger(__name__)
+
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='*')
 class AddressLinesType(Model):
-    MODEL_MAP = {
-        'tag_name': 'AddressLines',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': '*'},
-        ],
-    }
+    pass

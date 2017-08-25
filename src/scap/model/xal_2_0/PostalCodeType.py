@@ -15,22 +15,24 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AddressLineType import AddressLineType
+from .PostCodeNumberType import PostCodeNumberType
+from .PostalCodeNumberExtensionType import PostalCodeNumberExtensionType
+from .PostTownType import PostTownType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='*', )
+@element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
+@element(local_name='PostalCodeNumber', list='postal_code_numbers', cls=PostCodeNumberType)
+@element(local_name='PostalCodeNumberExtension', list='postal_code_number_extensions', cls=PostalCodeNumberExtensionType)
+@element(local_name='PostTown', into='post_town', cls=PostTownType)
+@element(local_name='*')
 class PostalCodeType(Model):
-    MODEL_MAP = {
-        'tag_name': 'PostalCode',
-        'elements': [
-            {'tag_name': 'AddressLine', 'list': 'address_lines', 'class': 'AddressLineType'},
-            {'tag_name': 'PostalCodeNumber', 'list': 'postal_code_numbers', 'class': 'PostCodeNumberType'},
-            {'tag_name': 'PostalCodeNumberExtension', 'list': 'postal_code_number_extensions', 'class': 'PostalCodeNumberExtensionType'},
-            {'tag_name': 'PostTown', 'in': 'post_town', 'class': 'PostTownType'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'Type': {},
-            '*': {},
-        }
-    }
+    pass
