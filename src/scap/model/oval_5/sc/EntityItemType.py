@@ -26,6 +26,8 @@ from scap.model.xs.HexBinaryType import HexBinaryType
 from scap.model.xs.IntegerType import IntegerType
 from scap.model.xs.StringType import StringType
 
+from .EntityItemFieldType import EntityItemFieldType
+
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='datatype', enum=DATATYPE_ENUMERATION, default='string')

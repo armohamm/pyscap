@@ -19,9 +19,13 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
+from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
+from scap.model.xs.StringType import StringType
 
 from ..MessageType import MessageType
 from ..ObjectIdPattern import ObjectIdPattern
+from .ReferenceType import ReferenceType
+from .VariableValueType import VariableValueType
 
 logger = logging.getLogger(__name__)
 

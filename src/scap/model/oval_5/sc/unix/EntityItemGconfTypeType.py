@@ -18,22 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import GCONF_TYPE_ENUMERATION
 
-from ..EntityItemType import EntityItemType import EntityItemType
+from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'GCONF_VALUE_STRING',
-        'GCONF_VALUE_INT',
-        'GCONF_VALUE_FLOAT',
-        'GCONF_VALUE_BOOL',
-        'GCONF_VALUE_SCHEMA',
-        'GCONF_VALUE_LIST',
-        'GCONF_VALUE_PAIR',
-        '',
-    ]
-)
+@content(enum=GCONF_TYPE_ENUMERATION)
 class EntityItemGconfTypeType(EntityItemType):
     pass

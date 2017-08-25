@@ -24,13 +24,13 @@ from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='module_name', max=1, 'nillable': True, min=0, cls=EntityItemType)
-@element(local_name='module_id', max=1, 'nillable': True, min=0, cls=EntityItemGUIDType)
-@element(local_name='module_version', max=1, 'nillable': True, min=0, cls=EntityItemType)
+@element(local_name='module_name', max=1, nillable=True, min=0, cls=EntityItemType)
+@element(local_name='module_id', max=1, nillable=True, min=0, cls=EntityItemGUIDType)
+@element(local_name='module_version', max=1, nillable=True, min=0, cls=EntityItemType)
 @element(local_name='verb', max=1, min=0, cls=EntityItemCmdletVerbType)
 @element(local_name='noun', max=1, min=0, cls=EntityItemType)
-@element(local_name='parameters', max=1, 'nillable': True, min=0, cls=EntityItemType)
-@element(local_name='select', max=1, 'nillable': True, min=0, cls=EntityItemType)
+@element(local_name='parameters', max=1, nillable=True, min=0, cls=EntityItemType)
+@element(local_name='select', max=1, nillable=True, min=0, cls=EntityItemType)
 @element(local_name='value', max=None, list='values', min=0, cls=EntityItemType)
 class CmdletItemElement(ItemType):
     pass

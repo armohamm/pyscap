@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='operator', enum=OPERATOR_ENUMERATION, default='AND')
 @attribute(local_name='negate', type=BooleanType, default=False)
 @attribute(local_name='comment', type=NonEmptyString)
-@element(local_name='criteria', list='criteria', cls='CriteriaType', min=0, max=None)
+@element(local_name='criteria', list='criteria', cls=defer_class_load('scap.model.oval_5.defs.CriteriaType', 'CriteriaType'), min=0, max=None)
 @element(local_name='criterion', list='criteria', cls=CriterionType, min=0, max=None)
 @element(local_name='extend_definition', list='criteria', cls=ExtendDefinitionType, min=0, max=None)
 class CriteriaType(Model):

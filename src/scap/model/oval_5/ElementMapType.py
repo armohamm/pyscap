@@ -20,6 +20,8 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 
+from .ElementMapItemType import ElementMapItemType
+
 logger = logging.getLogger(__name__)
 
 @element(local_name='test', cls=ElementMapItemType, min=1)

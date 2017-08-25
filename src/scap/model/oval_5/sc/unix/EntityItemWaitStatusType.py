@@ -18,17 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import UNIX_WAIT_STATUS_ENUMERATION
 
-from ..EntityItemType import EntityItemType import EntityItemType
+from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'wait',
-        'nowait',
-        '',
-    ]
-)
+@content(enum=UNIX_WAIT_STATUS_ENUMERATION)
 class EntityItemWaitStatusType(EntityItemType):
     pass

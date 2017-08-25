@@ -18,43 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import UNIX_ROUTING_TABLE_FLAGS_ENUMERATION
 
-from ..EntityItemType import EntityItemType import EntityItemType
+from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'UP',
-        'GATEWAY',
-        'HOST',
-        'REINSTATE',
-        'DYNAMIC',
-        'MODIFIED',
-        'ADDRCONF',
-        'CACHE',
-        'REJECT',
-        'REDUNDANT',
-        'SETSRC',
-        'BROADCAST',
-        'LOCAL',
-        'PROTOCOL_1',
-        'PROTOCOL_2',
-        'PROTOCOL_3',
-        'BLACK_HOLE',
-        'CLONING',
-        'PROTOCOL_CLONING',
-        'INTERFACE_SCOPE',
-        'LINK_LAYER',
-        'MULTICAST',
-        'STATIC',
-        'WAS_CLONED',
-        'XRESOLVE',
-        'USABLE',
-        'PINNED',
-        'ACTIVE_DEAD_GATEWAY_DETECTION',
-        '',
-    ]
-)
+@content(enum=UNIX_ROUTING_TABLE_FLAGS_ENUMERATION)
 class EntityItemRoutingTableFlagsType(EntityItemType):
     pass

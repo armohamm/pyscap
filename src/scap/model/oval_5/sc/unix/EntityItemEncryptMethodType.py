@@ -18,22 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import UNIX_ENCRYPT_METHOD_ENUMERATION
 
-from ..EntityItemType import EntityItemType import EntityItemType
+from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'DES',
-        'BSDi',
-        'MD5',
-        'Blowfish',
-        'Sun MD5',
-        'SHA-256',
-        'SHA-512',
-        '',
-    ]
-)
+@content(enum=UNIX_ENCRYPT_METHOD_ENUMERATION)
 class EntityItemEncryptMethodType(EntityItemType):
     pass

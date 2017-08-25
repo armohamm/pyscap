@@ -22,12 +22,13 @@ from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemType import EntityItemType
+from .EntityItemEngineType import EntityItemEngineType
 
 logger = logging.getLogger(__name__)
 
 @element(local_name='engine', cls=EntityItemEngineType, min=0, max=1)
-@element(local_name='version', cls=EntityItemType, min=0, max=1, 'nillable': True)
-@element(local_name='connection_string', cls=EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='version', cls=EntityItemType, min=0, max=1, nillable=True)
+@element(local_name='connection_string', cls=EntityItemType, min=0, max=1, nillable=True)
 @element(local_name='sql', cls=EntityItemType, min=0, max=1)
 @element(local_name='result', cls=EntityItemType, min=0, max=None)
 class SqlItemElement(ItemType):

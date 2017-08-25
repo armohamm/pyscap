@@ -25,7 +25,7 @@ from ..EntityItemType import EntityItemType
 logger = logging.getLogger(__name__)
 
 @element(local_name='key', max=1, min=0, cls=EntityItemType)
-@element(local_name='id', max=1, 'nillable': True, min=0, cls=EntityItemType)
+@element(local_name='id', max=1, nillable=True, min=0, cls=EntityItemType)
 @element(local_name='name', max=1, min=0, cls=EntityItemType)
 @element(local_name='user_type', max=1, min=0, cls=EntityItemType)
 @element(local_name='data_type', max=1, min=0, cls=EntityItemType)

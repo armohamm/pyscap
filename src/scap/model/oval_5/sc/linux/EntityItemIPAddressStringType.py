@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.oval_5 import RPM_VERIFY_RESULT_ENUMERATION
+
+from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='Version')
-@attribute(namespace='*', local_name='*')
-@element(namespace='urn:oasis:names:tc:ciq:xsdschema:xAL:2.0', local_name='AddressDetails', list='address_details')
-@element(namespace='*', local_name='*')
-class XALType(Model):
+@content(enum=RPM_VERIFY_RESULT_ENUMERATION)
+class EntityItemIPAddressStringType(EntityItemType):
     pass

@@ -25,7 +25,7 @@ from ..EntityItemType import EntityItemType
 logger = logging.getLogger(__name__)
 
 @element(local_name='key', min=0, cls=EntityItemType, max=1)
-@element(local_name='source', min=0, cls=EntityItemType, 'nillable': True, max=1)
+@element(local_name='source', min=0, cls=EntityItemType, nillable=True, max=1)
 @element(local_name='type', min=0, cls=EntityItemGconfTypeType, max=1)
 @element(local_name='is_writable', min=0, cls=EntityItemType, max=1)
 @element(local_name='mod_user', min=0, cls=EntityItemType, max=1)

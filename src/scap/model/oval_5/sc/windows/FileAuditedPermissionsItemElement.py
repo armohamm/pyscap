@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 @element(local_name='filepath', max=1, min=0, cls=EntityItemType)
 @element(local_name='path', max=1, min=0, cls=EntityItemType)
-@element(local_name='filename', max=1, 'nillable': True, min=0, cls=EntityItemType)
+@element(local_name='filename', max=1, nillable=True, min=0, cls=EntityItemType)
 @element(local_name='trustee_sid', max=1, min=0, cls=EntityItemType)
 @element(local_name='trustee_name', max=1, min=0, cls=EntityItemType)
 @element(local_name='standard_delete', max=1, min=0, cls=EntityItemAuditType)

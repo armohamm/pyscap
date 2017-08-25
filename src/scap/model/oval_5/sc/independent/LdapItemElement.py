@@ -22,12 +22,13 @@ from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemType import EntityItemType
+from .EntityItemLdaptypeType import EntityItemLdaptypeType
 
 logger = logging.getLogger(__name__)
 
 @element(local_name='suffix', cls=EntityItemType, min=0, max=1)
-@element(local_name='relative_dn', cls=EntityItemType, min=0, max=1, 'nillable': True)
-@element(local_name='attribute', cls=EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='relative_dn', cls=EntityItemType, min=0, max=1, nillable=True)
+@element(local_name='attribute', cls=EntityItemType, min=0, max=1, nillable=True)
 @element(local_name='object_class', cls=EntityItemType, min=0, max=1)
 @element(local_name='ldaptype', cls=EntityItemLdaptypeType, min=0, max=1)
 @element(local_name='value', cls=EntityItemType, min=0, max=None)

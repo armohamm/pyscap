@@ -15,6 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+import importlib
+import logging
+import os
+import sys
+import types
+
+logger = logging.getLogger(__name__)
+
 class attribute(object):
     def __init__(self, **kwargs):
         if 'local_name' not in kwargs:
@@ -61,3 +69,23 @@ class content(object):
     def __call__(self, cls):
         cls._model_content = self._kwargs
         return cls
+
+# The following Copyright rPath, Inc., 2006
+# Available under the python license
+# """ Defines an on-demand importer that only actually loads modules when their
+#     attributes are accessed.  NOTE: if the ondemand module is viewed using
+#     introspection, like dir(), isinstance, etc, it will appear as a
+#     ModuleProxy, not a module, and will not have the correct attributes.
+#     Barring introspection, however, the module will behave as normal.
+# """
+
+def defer_class_load(module, class_name):
+    def _load_class():
+        # use cached copy of module if possible
+        if module not in sys.modules:
+            logger.debug('Loading module ' + module)
+            mod = importlib.import_module(module)
+        else:
+            mod = sys.modules[module]
+
+        return setattr(mod, class_name)

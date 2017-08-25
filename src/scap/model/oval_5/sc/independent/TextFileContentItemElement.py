@@ -22,12 +22,13 @@ from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemType import EntityItemType
+from .EntityItemWindowsViewType import EntityItemWindowsViewType
 
 logger = logging.getLogger(__name__)
 
 @element(local_name='filepath', cls=EntityItemType, min=0, max=1)
-@element(local_name='path', cls=EntityItemType, min=0, max=1, 'nillable': True)
-@element(local_name='filename', cls=EntityItemType, min=0, max=1, 'nillable': True)
+@element(local_name='path', cls=EntityItemType, min=0, max=1, nillable=True)
+@element(local_name='filename', cls=EntityItemType, min=0, max=1, nillable=True)
 @element(local_name='pattern', cls=EntityItemType, min=0, max=1)
 @element(local_name='instance', cls=EntityItemType, min=0, max=1)
 @element(local_name='line', cls=EntityItemType, min=0, max=1)

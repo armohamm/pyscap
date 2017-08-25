@@ -28,7 +28,7 @@ logger
 \s{12}\{'tag_name': '(.*?)'(, .*?)?\},?
 @element(local_name='$1'$2)
 
-'(enum|default|min|max|list|dict|required)':\s
+'(enum|default|min|max|list|dict|required|nillable)':\s
 $1=
 
 'in':\s

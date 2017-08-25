@@ -18,20 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import XINETD_TYPE_STATUS_ENUMERATION
 
-from ..EntityItemType import EntityItemType import EntityItemType
+from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'INTERNAL',
-        'RPC',
-        'UNLISTED',
-        'TCPMUX',
-        'TCPMUXPLUS',
-        '',
-    ]
-)
+@content(enum=XINETD_TYPE_STATUS_ENUMERATION)
 class EntityItemXinetdTypeStatusType(EntityItemType):
     pass

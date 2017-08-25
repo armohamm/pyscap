@@ -18,22 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import UNIX_INTERFACE_TYPE_ENUMERATION
 
-from ..EntityItemType import EntityItemType import EntityItemType
+from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'ARPHRD_ETHER',
-        'ARPHRD_FDDI',
-        'ARPHRD_LOOPBACK',
-        'ARPHRD_VOID',
-        'ARPHRD_PPP',
-        'ARPHRD_SLIP',
-        'ARPHRD_PRONET',
-        '',
-    ]
-)
+@content(enum=UNIX_INTERFACE_TYPE_ENUMERATION)
 class EntityItemInterfaceType(EntityItemType):
     pass

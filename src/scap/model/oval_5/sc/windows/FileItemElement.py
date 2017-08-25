@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 @element(local_name='filepath', max=1, min=0, cls=EntityItemType)
 @element(local_name='path', max=1, min=0, cls=EntityItemType)
-@element(local_name='filename', max=1, 'nillable': True, min=0, cls=EntityItemType)
+@element(local_name='filename', max=1, nillable=True, min=0, cls=EntityItemType)
 @element(local_name='owner', max=1, min=0, cls=EntityItemType)
 @element(local_name='size', max=1, min=0, cls=EntityItemType)
 @element(local_name='a_time', max=1, min=0, cls=EntityItemType)

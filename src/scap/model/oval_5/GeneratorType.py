@@ -19,6 +19,10 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
+from scap.model.xs.StringType import StringType
+from scap.model.xs.DateTimeType import DateTimeType
+
+from .SchemaVersionType import SchemaVersionType
 
 logger = logging.getLogger(__name__)
 

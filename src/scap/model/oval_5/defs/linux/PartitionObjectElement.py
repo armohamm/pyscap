@@ -24,6 +24,6 @@ from ..EntityObjectType import EntityObjectType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='mount_point', cls='EntityObjectType', min=0)
+@element(local_name='mount_point', cls=EntityObjectType, min=0)
 class PartitionObjectElement(ObjectType):
     pass

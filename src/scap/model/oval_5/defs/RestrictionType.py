@@ -25,6 +25,6 @@ from .. import OPERATION_ENUMERATION
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='operation', enum=OPERATION_ENUMERATION, required=True)
-@element(local_name='restriction', list='restrictions', cls='RestrictionType', min=1, max=None)
+@element(local_name='restriction', list='restrictions', cls=defer_class_load('scap.model.oval_5.defs.RestrictionType', 'RestrictionType'), min=1, max=None)
 class RestrictionType(AnySimpleType):
     pass

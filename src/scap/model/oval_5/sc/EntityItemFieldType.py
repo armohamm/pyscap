@@ -20,11 +20,13 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs.StringType import StringType
+from scap.model.xs.BooleanType import BooleanType
 from scap.model.oval_5 import DATATYPE_ENUMERATION, EXISTENCE_RESULT_ENUMERATION
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='name', type=StringType, required=True, 'pattern': '[^A-Z]+')
+@attribute(local_name='name', type=StringType, required=True, value_pattern=r'[^A-Z]+')
 @attribute(local_name='datatype', enum=DATATYPE_ENUMERATION, default='string')
 @attribute(local_name='mask', type=BooleanType, default=False)
 @attribute(local_name='status', enum=EXISTENCE_RESULT_ENUMERATION, default='exists')
