@@ -18,20 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_SERVICE_TYPE_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'SERVICE_FILE_SYSTEM_DRIVER',
-        'SERVICE_KERNEL_DRIVER',
-        'SERVICE_WIN32_OWN_PROCESS',
-        'SERVICE_WIN32_SHARE_PROCESS',
-        'SERVICE_INTERACTIVE_PROCESS',
-        '',
-    ]
-)
+@content(enum=WINDOWS_SERVICE_TYPE_ENUMERATION)
 class EntityItemServiceTypeType(EntityItemType):
     pass

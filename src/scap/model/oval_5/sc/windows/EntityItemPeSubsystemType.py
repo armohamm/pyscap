@@ -18,28 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import PE_SUBSYSTEM_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'IMAGE_SUBSYSTEM_UNKNOWN',
-        'IMAGE_SUBSYSTEM_NATIVE',
-        'IMAGE_SUBSYSTEM_WINDOWS_GUI',
-        'IMAGE_SUBSYSTEM_WINDOWS_CUI',
-        'IMAGE_SUBSYSTEM_OS2_CUI',
-        'IMAGE_SUBSYSTEM_POSIX_CUI',
-        'IMAGE_SUBSYSTEM_WINDOWS_CE_GUI',
-        'IMAGE_SUBSYSTEM_EFI_APPLICATION',
-        'IMAGE_SUBSYSTEM_EFI_BOOT_SERVICE_DRIVER',
-        'IMAGE_SUBSYSTEM_EFI_RUNTIME_DRIVER',
-        'IMAGE_SUBSYSTEM_EFI_ROM',
-        'IMAGE_SUBSYSTEM_XBOX',
-        'IMAGE_SUBSYSTEM_WINDOWS_BOOT_APPLICATION',
-        '',
-    ]
-)
+@content(enum=PE_SUBSYSTEM_ENUMERATION)
 class EntityItemPeSubsystemType(EntityItemType):
     pass

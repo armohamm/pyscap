@@ -18,32 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import PE_TARGET_MACHINE_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'IMAGE_FILE_MACHINE_UNKNOWN',
-        'IMAGE_FILE_MACHINE_ALPHA',
-        'IMAGE_FILE_MACHINE_ARM',
-        'IMAGE_FILE_MACHINE_ALPHA64',
-        'IMAGE_FILE_MACHINE_I386',
-        'IMAGE_FILE_MACHINE_IA64',
-        'IMAGE_FILE_MACHINE_M68K',
-        'IMAGE_FILE_MACHINE_MIPS16',
-        'IMAGE_FILE_MACHINE_MIPSFPU',
-        'IMAGE_FILE_MACHINE_MIPSFPU16',
-        'IMAGE_FILE_MACHINE_POWERPC',
-        'IMAGE_FILE_MACHINE_R3000',
-        'IMAGE_FILE_MACHINE_R4000',
-        'IMAGE_FILE_MACHINE_R10000',
-        'IMAGE_FILE_MACHINE_SH3',
-        'IMAGE_FILE_MACHINE_SH4',
-        'IMAGE_FILE_MACHINE_THUMB',
-        '',
-    ]
-)
+@content(enum=PE_TARGET_MACHINE_ENUMERATION)
 class EntityItemPeTargetMachineType(EntityItemType):
     pass

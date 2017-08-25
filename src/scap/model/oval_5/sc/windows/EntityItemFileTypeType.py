@@ -18,21 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_FILE_TYPE_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'FILE_ATTRIBUTE_DIRECTORY',
-        'FILE_TYPE_CHAR',
-        'FILE_TYPE_DISK',
-        'FILE_TYPE_PIPE',
-        'FILE_TYPE_REMOTE',
-        'FILE_TYPE_UNKNOWN',
-        '',
-    ]
-)
+@content(enum=WINDOWS_FILE_TYPE_ENUMERATION)
 class EntityItemFileTypeType(EntityItemType):
     pass

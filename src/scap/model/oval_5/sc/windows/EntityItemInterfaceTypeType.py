@@ -18,22 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_INTERFACE_TYPE_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'MIB_IF_TYPE_ETHERNET',
-        'MIB_IF_TYPE_FDDI',
-        'MIB_IF_TYPE_LOOPBACK',
-        'MIB_IF_TYPE_OTHER',
-        'MIB_IF_TYPE_PPP',
-        'MIB_IF_TYPE_SLIP',
-        'MIB_IF_TYPE_TOKENRING',
-        '',
-    ]
-)
+@content(enum=WINDOWS_INTERFACE_TYPE_ENUMERATION)
 class EntityItemInterfaceTypeType(EntityItemType):
     pass

@@ -18,29 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_REGISTRY_TYPE_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'reg_binary',
-        'reg_dword',
-        'reg_dword_little_endian',
-        'reg_dword_big_endian',
-        'reg_expand_sz',
-        'reg_link',
-        'reg_multi_sz',
-        'reg_none',
-        'reg_qword',
-        'reg_qword_little_endian',
-        'reg_sz',
-        'reg_resource_list',
-        'reg_full_resource_descriptor',
-        'reg_resource_requirements_list',
-        '',
-    ]
-)
+@content(enum=WINDOWS_REGISTRY_TYPE_ENUMERATION)
 class EntityItemRegistryTypeType(EntityItemType):
     pass

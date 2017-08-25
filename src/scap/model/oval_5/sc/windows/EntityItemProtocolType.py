@@ -18,17 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import IP_PROTOCOL_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'TCP',
-        'UDP',
-        '',
-    ]
-)
+@content(enum=IP_PROTOCOL_ENUMERATION)
 class EntityItemProtocolType(EntityItemType):
     pass

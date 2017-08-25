@@ -18,20 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_ADDR_TYPE_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'MIB_IPADDR_DELETED',
-        'MIB_IPADDR_DISCONNECTED',
-        'MIB_IPADDR_DYNAMIC',
-        'MIB_IPADDR_PRIMARY',
-        'MIB_IPADDR_TRANSIENT',
-        '',
-    ]
-)
+@content(enum=WINDOWS_ADDR_TYPE_ENUMERATION)
 class EntityItemAddrTypeType(EntityItemType):
     pass

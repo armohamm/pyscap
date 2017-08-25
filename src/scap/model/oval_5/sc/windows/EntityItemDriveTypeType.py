@@ -18,22 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_DRIVE_TYPE_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'DRIVE_UNKNOWN',
-        'DRIVE_NO_ROOT_DIR',
-        'DRIVE_REMOVABLE',
-        'DRIVE_FIXED',
-        'DRIVE_REMOTE',
-        'DRIVE_CDROM',
-        'DRIVE_RAMDISK',
-        '',
-    ]
-)
+@content(enum=WINDOWS_DRIVE_TYPE_ENUMERATION)
 class EntityItemDriveTypeType(EntityItemType):
     pass

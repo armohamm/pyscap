@@ -18,20 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_SERVICE_START_TYPE_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'SERVICE_AUTO_START',
-        'SERVICE_BOOT_START',
-        'SERVICE_DEMAND_START',
-        'SERVICE_DISABLED',
-        'SERVICE_SYSTEM_START',
-        '',
-    ]
-)
+@content(enum=WINDOWS_SERVICE_START_TYPE_ENUMERATION)
 class EntityItemServiceStartTypeType(EntityItemType):
     pass

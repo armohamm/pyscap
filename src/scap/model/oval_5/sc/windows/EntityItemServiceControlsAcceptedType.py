@@ -18,26 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_SERVICE_CONTROLS_ACCEPTED_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'SERVICE_ACCEPT_NETBINDCHANGE',
-        'SERVICE_ACCEPT_PARAMCHANGE',
-        'SERVICE_ACCEPT_PAUSE_CONTINUE',
-        'SERVICE_ACCEPT_PRESHUTDOWN',
-        'SERVICE_ACCEPT_SHUTDOWN',
-        'SERVICE_ACCEPT_STOP',
-        'SERVICE_ACCEPT_HARDWAREPROFILECHANGE',
-        'SERVICE_ACCEPT_POWEREVENT',
-        'SERVICE_ACCEPT_SESSIONCHANGE',
-        'SERVICE_ACCEPT_TIMECHANGE',
-        'SERVICE_ACCEPT_TRIGGEREVENT',
-        '',
-    ]
-)
+@content(enum=WINDOWS_SERVICE_CONTROLS_ACCEPTED_ENUMERATION)
 class EntityItemServiceControlsAcceptedType(EntityItemType):
     pass

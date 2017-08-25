@@ -18,31 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_SHARED_RESOURCE_TYPE_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'STYPE_DISKTREE',
-        'STYPE_DISKTREE_SPECIAL',
-        'STYPE_DISKTREE_TEMPORARY',
-        'STYPE_DISKTREE_SPECIAL_TEMPORARY',
-        'STYPE_PRINTQ',
-        'STYPE_PRINTQ_SPECIAL',
-        'STYPE_PRINTQ_TEMPORARY',
-        'STYPE_PRINTQ_SPECIAL_TEMPORARY',
-        'STYPE_DEVICE',
-        'STYPE_DEVICE_SPECIAL',
-        'STYPE_DEVICE_TEMPORARY',
-        'STYPE_DEVICE_SPECIAL_TEMPORARY',
-        'STYPE_IPC',
-        'STYPE_IPC_SPECIAL',
-        'STYPE_IPC_TEMPORARY',
-        'STYPE_IPC_SPECIAL_TEMPORARY',
-        '',
-    ]
-)
+@content(enum=WINDOWS_SHARED_RESOURCE_TYPE_ENUMERATION)
 class EntityItemSharedResourceTypeType(EntityItemType):
     pass

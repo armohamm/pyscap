@@ -18,17 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        '32_bit',
-        '64_bit',
-        '',
-    ]
-)
+@content(enum=WINDOWS_VIEW_ENUMERATION)
 class EntityItemWindowsViewType(EntityItemType):
     pass

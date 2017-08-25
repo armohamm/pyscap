@@ -18,20 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_REGISTRY_HIVE_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'HKEY_CLASSES_ROOT',
-        'HKEY_CURRENT_CONFIG',
-        'HKEY_CURRENT_USER',
-        'HKEY_LOCAL_MACHINE',
-        'HKEY_USERS',
-        '',
-    ]
-)
+@content(enum=WINDOWS_REGISTRY_HIVE_ENUMERATION)
 class EntityItemRegistryHiveType(EntityItemType):
     pass

@@ -18,19 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import WINDOWS_AUDIT_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'AUDIT_FAILURE',
-        'AUDIT_NONE',
-        'AUDIT_SUCCESS',
-        'AUDIT_SUCCESS_FAILURE',
-        '',
-    ]
-)
+@content(enum=WINDOWS_AUDIT_ENUMERATION)
 class EntityItemAuditType(EntityItemType):
     pass

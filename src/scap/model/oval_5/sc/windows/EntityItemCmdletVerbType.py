@@ -18,32 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import CMDLET_VERB_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'Approve',
-        'Assert',
-        'Compare',
-        'Confirm',
-        'Find',
-        'Get',
-        'Import',
-        'Measure',
-        'Read',
-        'Request',
-        'Resolve',
-        'Search',
-        'Select',
-        'Show',
-        'Test',
-        'Trace',
-        'Watch',
-        '',
-    ]
-)
+@content(enum=CMDLET_VERB_ENUMERATION)
 class EntityItemCmdletVerbType(EntityItemType):
     pass

@@ -18,17 +18,12 @@
 import logging
 
 from scap.model.decorators import *
+from scap.model.oval_5 import NTUSER_ACCOUNT_TYPE_ENUMERATION
 
 from ..EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 
-@content(
-    enum=[
-        'local',
-        'domain',
-        '',
-    ]
-)
+@content(enum=NTUSER_ACCOUNT_TYPE_ENUMERATION)
 class EntityItemNTUserAccountTypeType(EntityItemType):
     pass
