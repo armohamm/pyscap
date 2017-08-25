@@ -18,22 +18,23 @@
 import logging
 
 from scap.Model import Model
-from scap.model.scap_source_1_2 import USE_CASE_ENUMERATION, SCAP_VERSION_ENUMERATION
+from scap.model.decorators import *
+from scap.model.xs.DateTimeType import DateTimeType
+
+from . import USE_CASE_ENUMERATION
+from . import SCAP_VERSION_ENUMERATION
+from .DataStreamIDPattern import DataStreamIDPattern
+from .RefListType import RefListType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', required=True, type=DataStreamIDPattern)
+@attribute(local_name='use-case', required=True, enum=USE_CASE_ENUMERATION) # TODO: spec also allows Token
+@attribute(local_name='scap-version', required=True, enum=SCAP_VERSION_ENUMERATION) # TODO: spec also allows Token
+@attribute(local_name='timestamp', required=True, type=DateTimeType)
+@element(local_name='dictionaries',  cls=RefListType, min=0 )
+@element(local_name='checklists',  cls=RefListType, min=0 )
+@element(local_name='checks',  cls=RefListType )
+@element(local_name='extended-components', min=0, cls=RefListType )
 class DataStreamElement(Model):
-    MODEL_MAP = {
-        'tag_name': 'data-stream',
-        'elements': [
-            {'tag_name': 'dictionaries',  'class': 'RefListType', 'min': 0 },
-            {'tag_name': 'checklists',  'class': 'RefListType', 'min': 0 },
-            {'tag_name': 'checks',  'class': 'RefListType' },
-            {'tag_name': 'extended-components', 'min': 0, 'class': 'RefListType' },
-        ],
-        'attributes': {
-            'id': {'required': True, 'type': 'DataStreamIDPattern'},
-            'use-case': {'required': True, 'enum': USE_CASE_ENUMERATION}, # TODO: spec also allows Token
-            'scap-version': {'required': True, 'enum': SCAP_VERSION_ENUMERATION}, # TODO: spec also allows Token
-            'timestamp': {'required': True, 'type': 'DateTimeType'},
-        },
-    }
+    pass

@@ -17,15 +17,14 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.xlink.Simple import Simple
 
+from .ComponentRefIDPattern import ComponentRefIDPattern
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', required=True, type=ComponentRefIDPattern)
+@element(namespace='urn:oasis:names:tc:entity:xmlns:xml:catalog', local_name='catalog', min=0)
 class ComponentRefElement(Simple):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'urn:oasis:names:tc:entity:xmlns:xml:catalog', 'tag_name': 'catalog', 'class': 'Catalog', 'min': 0},
-        ],
-        'attributes': {
-            'id': {'required': True, 'type': 'ComponentRefIDPattern'},
-        },
-    }
+    pass

@@ -19,15 +19,14 @@ import logging
 import collections.abc
 
 from scap.Model import Model
+from scap.model.decorators import *
+
+from .ComponentRefElement import ComponentRefElement
 
 logger = logging.getLogger(__name__)
-class RefListType(Model, collections.abc.MutableMapping):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'component-ref', 'dict': 'component_refs', 'class': 'ComponentRefElement'},
-        ],
-    }
 
+@element(local_name='component-ref', dict='component_refs', cls=ComponentRefElement)
+class RefListType(Model, collections.abc.MutableMapping):
     def __delitem__(self, key):
         del self.component_refs[key]
 

@@ -18,19 +18,21 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.TokenType import TokenType
+
+from .DataStreamCollectionIDPattern import DataStreamCollectionIDPattern
+from .DataStreamElement import DataStreamElement
+from .ComponentElement import ComponentElement
+from .ExtendedComponentElement import ExtendedComponentElement
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', required=True, type=DataStreamCollectionIDPattern)
+@attribute(local_name='schematron-version', type=TokenType, required=True)
+@element(local_name='data-stream', max=None, cls=DataStreamElement, dict='data_streams')
+@element(local_name='component', max=None, cls=ComponentElement, dict='components' )
+@element(local_name='extended-component', max=None, min=0, cls=ExtendedComponentElement, dict='components' )
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', max=None, min=0)
 class DataStreamCollectionElement(Model):
-    MODEL_MAP = {
-        'tag_name': 'data-stream-collection',
-        'elements': [
-            {'tag_name': 'data-stream', 'max': None, 'class': 'DataStreamElement', 'dict': 'data_streams'},
-            {'tag_name': 'component', 'max': None, 'class': 'ComponentElement', 'dict': 'components' },
-            {'tag_name': 'extended-component', 'max': None, 'min': 0, 'class': 'ExtendedComponentElement', 'dict': 'components' },
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': 'Signature', 'max': None, 'min': 0},
-        ],
-        'attributes': {
-            'id': {'required': True, 'type': 'DataStreamCollectionIDPattern'},
-            'schematron-version':{'type': 'Token', 'required': True},
-        },
-    }
+    pass

@@ -18,19 +18,19 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.DateTimeType import DateTimeType
+
+from .ComponentIDPattern import ComponentIDPattern
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', required=True, type=ComponentIDPattern)
+@attribute(local_name='timestamp', type=DateTimeType)
+@element(namespace='http://checklists.nist.gov/xccdf/1.2', local_name='Benchmark',  into='model', min=0)
+@element(namespace='http://scap.nist.gov/schema/ocil/2.0', local_name='ocil', into='model', min=0)
+@element(namespace='http://oval.mitre.org/XMLSchema/oval-definitions-5', local_name='oval_definitions', into='model', min=0)
+@element(namespace='http://cpe.mitre.org/dictionary/2.0', local_name='cpe-list', into='model', min=0)
+@element(namespace='http://checklists.nist.gov/xccdf/1.2', local_name='Tailoring', into='model', min=0)
 class ComponentElement(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'Benchmark',  'class': 'BenchmarkType', 'in': 'model', 'min': 0},
-            {'xmlns': 'http://scap.nist.gov/schema/ocil/2.0', 'tag_name': 'ocil', 'class': 'OCILType', 'in': 'model', 'min': 0},
-            {'xmlns': 'http://oval.mitre.org/XMLSchema/oval-definitions-5', 'tag_name': 'scap.model.oval_definitions', 'class': 'OVALDefinitionsElement', 'in': 'model', 'min': 0},
-            {'xmlns': 'http://cpe.mitre.org/dictionary/2.0', 'tag_name': 'cpe-list', 'in': 'model', 'min': 0},
-            {'xmlns': 'http://checklists.nist.gov/xccdf/1.2', 'tag_name': 'Tailoring', 'in': 'model', 'min': 0},
-        ],
-        'attributes': {
-            'id': {'required': True, 'type': 'ComponentIDPattern'},
-            'timestamp': {'type': 'DateTimeType'},
-        },
-    }
+    pass

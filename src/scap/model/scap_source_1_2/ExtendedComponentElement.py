@@ -18,15 +18,15 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.DateTimeType import DateTimeType
+
+from .ExtendedComponentIDPattern import ExtendedComponentIDPattern
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', required=True, type=ExtendedComponentIDPattern)
+@attribute(local_name='timestamp', type=DateTimeType, required=True)
+@element(namespace='*', local_name='*')
 class ExtendedComponentElement(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': '*'}
-        ],
-        'attributes': {
-            'id': {'required': True, 'type': 'ExtendedComponentIDPattern'},
-            'timestamp': {'type': 'DateTimeType', 'required': True}
-        },
-    }
+    pass

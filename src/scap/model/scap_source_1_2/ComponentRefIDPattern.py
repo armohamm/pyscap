@@ -17,10 +17,11 @@
 
 import logging
 
+from scap.model.decorators import *
 from scap.model.xs.IdType import IdType
 
 logger = logging.getLogger(__name__)
+
+@content(regex=r'scap_[^_]+_cref_.+')
 class ComponentRefIDPattern(IdType):
-    # scap_[^_]+_cref_.+
-    def get_value_pattern(self):
-        return r'scap_[^_]+_cref_.+'
+    pass
