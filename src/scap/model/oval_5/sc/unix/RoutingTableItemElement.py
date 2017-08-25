@@ -22,11 +22,12 @@ from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemType import EntityItemType
 from ..EntityItemIPAddressStringType import EntityItemIPAddressStringType
+from .EntityItemRoutingTableFlagsType import EntityItemRoutingTableFlagsType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='destination', min=0, cls=EntityItemIPAddressType, max=1)
-@element(local_name='gateway', min=0, cls=EntityItemIPAddressType, max=1)
+@element(local_name='destination', min=0, cls=EntityItemIPAddressStringType, max=1)
+@element(local_name='gateway', min=0, cls=EntityItemIPAddressStringType, max=1)
 @element(local_name='flags', list='flagss', min=0, cls=EntityItemRoutingTableFlagsType, max=None)
 @element(local_name='interface_name', min=0, cls=EntityItemType, max=1)
 class RoutingTableItemElement(ItemType):

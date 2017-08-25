@@ -22,6 +22,8 @@ from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemType import EntityItemType
 from ..EntityItemIPAddressStringType import EntityItemIPAddressStringType
+from .EntityItemInterfaceTypeType import EntityItemInterfaceTypeType
+from .EntityItemAddrTypeType import EntityItemAddrTypeType
 
 logger = logging.getLogger(__name__)
 

@@ -21,7 +21,7 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.oval_5 import RPM_VERIFY_RESULT_ENUMERATION
 
-from ..EntityItemType import EntityItemType
+from .EntityItemType import EntityItemType
 
 logger = logging.getLogger(__name__)
 

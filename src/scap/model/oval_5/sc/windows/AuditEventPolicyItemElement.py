@@ -20,6 +20,8 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
+from .EntityItemAuditType import EntityItemAuditType
+
 logger = logging.getLogger(__name__)
 
 @element(local_name='account_logon', max=1, min=0, cls=EntityItemAuditType)
