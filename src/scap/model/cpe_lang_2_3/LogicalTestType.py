@@ -28,8 +28,6 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='operator', enum=['AND', 'OR'], required=True)
 @attribute(local_name='negate', type=BooleanType, required=True)
 @element(local_name='fact-ref', list='fact_refs', cls=FactRefType, min=0, max=None)
+@element(local_name='logical-test', list='logical_tests', cls=defer_class_load('scap.model.cpe_lang_2_3.LogicalTestType', 'LogicalTestType'), min=0, max=None)
 class LogicalTestType(Model):
     pass
-
-# unwrap decorator to prevent ciruclar reference
-element(local_name='logical-test', list='logical_tests', cls=LogicalTestType, min=0, max=None).__call__(LogicalTestType)
