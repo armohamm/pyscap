@@ -360,21 +360,21 @@ FIX_SYSTEM_ENUMERATION = [
 
 IDENT_SCHEME_ENUMERATION = [
     'http://cve.mitre.org/',
-    # MITRE’s Common Vulnerabilities and Exposures – the identifier value
+    # MITRE's Common Vulnerabilities and Exposures the identifier value
     # should be a CVE number or CVE candidate number.
     'http://cce.mitre.org/',
     # This specifies the Common Configuration Enumeration identifier scheme.
     'http://www.cert.org/',
-    # CERT Coordination Center – the identifier value should be a CERT
-    # advisory identifier (e.g. “CA-2004-02”).
+    # CERT Coordination Center the identifier value should be a CERT
+    # advisory identifier (e.g. CA-2004-02�).
     'http://www.us-cert.gov/cas/techalerts/',
-    # US-CERT technical cyber security alerts – the identifier value should
-    # be a technical cyber security alert ID (e.g. “TA05-189A”)
+    # US-CERT technical cyber security alerts the identifier value should
+    # be a technical cyber security alert ID (e.g. TA05-189A�)
     'http://www.kb.cert.org/',
-    # US-CERT vulnerability notes database – the identifier values should be
-    # a vulnerability note number (e.g. “709220”).
+    # US-CERT vulnerability notes database the identifier values should be
+    # a vulnerability note number (e.g. 709220�).
     'http://iase.disa.mil/IAalerts/',
-    # DISA Information Assurance Vulnerability Alerts (IAVA) – the
+    # DISA Information Assurance Vulnerability Alerts (IAVA) the
     # identifier value should be a DOD IAVA identifier.
 ]
 
