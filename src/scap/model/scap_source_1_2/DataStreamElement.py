@@ -21,8 +21,8 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.xs.DateTimeType import DateTimeType
 
-from . import USE_CASE_ENUMERATION
 from . import SCAP_VERSION_ENUMERATION
+from . import USE_CASE_ENUMERATION
 from .DataStreamIDPattern import DataStreamIDPattern
 from .RefListType import RefListType
 

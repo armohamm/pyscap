@@ -21,9 +21,9 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.xs.TokenType import TokenType
 
+from .ComponentElement import ComponentElement
 from .DataStreamCollectionIDPattern import DataStreamCollectionIDPattern
 from .DataStreamElement import DataStreamElement
-from .ComponentElement import ComponentElement
 from .ExtendedComponentElement import ExtendedComponentElement
 
 logger = logging.getLogger(__name__)
