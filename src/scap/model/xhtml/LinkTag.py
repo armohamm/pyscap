@@ -17,20 +17,34 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='charset', type=defer_class_load('scap.model.xhtml.CharsetType', 'CharsetType'))
+@attribute(local_name='href', type=defer_class_load('scap.model.xhtml.UriType', 'UriType'))
+@attribute(local_name='hreflang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+@attribute(local_name='type', type=defer_class_load('scap.model.xhtml.ContentType', 'ContentType'))
+@attribute(local_name='rel', type=defer_class_load('scap.model.xhtml.LinkTypesType', 'LinkTypesType'))
+@attribute(local_name='rev', type=defer_class_load('scap.model.xhtml.LinkTypesType', 'LinkTypesType'))
+@attribute(local_name='rev', type=defer_class_load('scap.model.xhtml.MediaDescType', 'MediaDescType'))
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='class', type=NMTokens)
+@attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
+@attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+# xml:lang is defined in scap.model.Model
+@attribute(local_name='dir', enum=['ltr', 'rtl'])
+@attribute(local_name='onclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousedown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseover', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousemove', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseout', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeypress', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeydown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeyup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 class LinkTag(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'charset': {'type': 'CharsetType'},
-            'href': {'type': 'UriType'},
-            'hreflang': {'type': 'LanguageCodeType'},
-            'type': {'type': 'ContentType'},
-            'rel': {'type': 'LinkTypesType'},
-            'rev': {'type': 'LinkTypesType'},
-            'rev': {'type': 'MediaDescType'},
-        },
-    }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
+    pass

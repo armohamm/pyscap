@@ -17,18 +17,16 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='charset', type=defer_class_load('scap.model.xhtml.CharsetType', 'CharsetType'))
+@attribute(local_name='type', type=defer_class_load('scap.model.xhtml.ContentTypeType', 'ContentTypeType'), required=True)
+@attribute(local_name='src', type=defer_class_load('scap.model.xhtml.UriType', 'UriType'))
+@attribute(local_name='defer', enum=['defer'])
+@attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='space', enum=['preserve'])
 class ScriptTag(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'type': 'ID'},
-            'charset': {'type': 'CharsetType'},
-            'type': {'type': 'ContentTypeType', 'required': True},
-            'src': {'type': 'UriType'},
-            'defer': {'enum': ['defer']},
-            '{http://www.w3.org/XML/1998/namespace}space': {'enum': ['preserve']},
-        },
-    }
+    pass

@@ -17,15 +17,28 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='class', type=NMTokens)
+@attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
+@attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+# xml:lang is defined in scap.model.Model
+@attribute(local_name='dir', enum=['ltr', 'rtl'])
+@attribute(local_name='onclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute('ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousedown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseover', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousemove', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseout', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeypress', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeydown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeyup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@element(local_name='li', list='_elements', cls=defer_class_load('scap.model.xhtml.LiTag', 'LiTag'), max=None)
 class UlTag(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'li', 'list': '_elements', 'class': 'LiTag', 'max': None},
-        ],
-        'attributes': {},
-    }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
+    pass

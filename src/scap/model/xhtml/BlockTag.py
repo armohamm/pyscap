@@ -17,13 +17,11 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='*', min=0)
 class BlockTag(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': '*', 'min': 0},
-        ],
-    }
+    pass

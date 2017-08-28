@@ -17,12 +17,10 @@
 
 import logging
 
-from scap.model.xhtml import *
-from scap.Model import Model
+from scap.model.decorators import *
+from .HTag import HTag
 
 logger = logging.getLogger(__name__)
-class H1Tag(Model):
-    MODEL_MAP = {
-        'attributes': {},
-    }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
+
+class H1Tag(HTag):
+    pass

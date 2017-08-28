@@ -17,20 +17,34 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='src', type=defer_class_load('scap.model.xhtml.UriType', 'UriType'), required=True)
+@attribute(local_name='alt', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'), required=True)
+@attribute(local_name='longdesc', type=defer_class_load('scap.model.xhtml.UriType', 'UriType'))
+@attribute(local_name='height', type=defer_class_load('scap.model.xhtml.LengthType', 'LengthType'))
+@attribute(local_name='width', type=defer_class_load('scap.model.xhtml.LengthType', 'LengthType'))
+@attribute(local_name='usemap', type=defer_class_load('scap.model.xhtml.UriType', 'UriType'))
+@attribute(local_name='ismap', enum=['ismap'])
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='class', type=NMTokens)
+@attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
+@attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+# xml:lang is defined in scap.model.Model
+@attribute(local_name='dir', enum=['ltr', 'rtl'])
+@attribute(local_name='onclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute('ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousedown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseover', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousemove', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseout', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeypress', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeydown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeyup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 class ImgTag(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'src': {'type': 'UriType', 'required': True},
-            'alt': {'type': 'TextType', 'required': True},
-            'longdesc': {'type': 'UriType'},
-            'height': {'type': 'LengthType'},
-            'width': {'type': 'LengthType'},
-            'usemap': {'type': 'UriType'},
-            'ismap': {'enum': ['ismap']},
-        },
-    }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
+    pass

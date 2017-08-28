@@ -17,18 +17,18 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='type', type=defer_class_load('scap.model.xhtml.ContentTypeType', 'ContentTypeType'), required=True)
+@attribute(local_name='media', type=defer_class_load('scap.model.xhtml.MediaDescType', 'MediaDescType'))
+@attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='space', enum=['preserve'])
+@attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+# xml:lang is defined in scap.model.Model
+@attribute(local_name='dir', enum=['ltr', 'rtl'])
 class StyleTag(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'type': 'ID'},
-            'type': {'type': 'ContentTypeType', 'required': True},
-            'media': {'type': 'MediaDescType'},
-            'title': {'type': 'TextType'},
-            '{http://www.w3.org/XML/1998/namespace}space': {'enum': ['preserve']},
-        },
-    }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_i18n)
+    pass

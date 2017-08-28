@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
 
 logger = logging.getLogger(__name__)
+
 class NumberType(NonNegativeIntegerType):
-    MODEL_MAP = {
-    }
+    pass

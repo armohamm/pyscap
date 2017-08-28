@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.model.xs.AnyUriType import AnyUriType
 
 logger = logging.getLogger(__name__)
+
 class UriType(AnyUriType):
-    MODEL_MAP = {
-    }
+    pass

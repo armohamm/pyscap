@@ -17,14 +17,12 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='href', type=defer_class_load('scap.model.xhtml.UriType', 'UriType'))
+@attribute(local_name='id', type=IdType)
 class BaseTag(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'href': {'type': 'UriType'},
-            'id': {'type': 'ID'},
-        },
-    }
+    pass

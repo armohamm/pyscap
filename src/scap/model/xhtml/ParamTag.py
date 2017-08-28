@@ -17,17 +17,15 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='name', type=StringType)
+@attribute(local_name='value', type=StringType)
+@attribute(local_name='valuetype', enum=['data', 'ref', 'object'], default='data')
+@attribute(local_name='type', type=defer_class_load('scap.model.xhtml.ContentTypeType', 'ContentTypeType'))
 class ParamTag(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'type': 'ID'},
-            'name': {'type': 'StringType'},
-            'value': {'type': 'StringType'},
-            'valuetype': {'enum': ['data', 'ref', 'object'], 'default': 'data'},
-            'type': {'type': 'ContentTypeType'},
-        },
-    }
+    pass

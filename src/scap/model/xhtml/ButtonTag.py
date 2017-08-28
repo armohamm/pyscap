@@ -17,18 +17,35 @@
 
 import logging
 
-from scap.model.xhtml import *
-from scap.model.xhtml.ButtonContentType import ButtonContentType
+from scap.model.decorators import *
+from .ButtonContentType import ButtonContentType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='name', type=StringType)
+@attribute(local_name='value', type=StringType)
+@attribute(local_name='type', enum=['button', 'submit', 'reset'], default='submit')
+@attribute(local_name='disabled', enum=['disabled'])
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='class', type=NMTokens)
+@attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
+@attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+# xml:lang is defined in scap.model.Model
+@attribute(local_name='dir', enum=['ltr', 'rtl'])
+@attribute(local_name='onclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute('ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousedown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseover', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousemove', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseout', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeypress', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeydown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeyup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='accesskey', type=defer_class_load('scap.model.xhtml.CharacterType', 'CharacterType'))
+@attribute(local_name='tabindex', type=defer_class_load('scap.model.xhtml.TabIndexNumberType', 'TabIndexNumberType'))
+@attribute(local_name='onfocus', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onblur', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 class ButtonTag(ButtonContentType):
-    MODEL_MAP = {
-        'attributes': {
-            'name': {'type': 'StringType'},
-            'value': {'type': 'StringType'},
-            'type': {'enum': ['button', 'submit', 'reset'], 'default': 'submit'},
-            'disabled': {'enum': ['disabled']},
-        },
-    }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_focus)
+    pass

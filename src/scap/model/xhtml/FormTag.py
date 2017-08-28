@@ -17,21 +17,38 @@
 
 import logging
 
-from scap.model.xhtml import *
-from scap.model.xhtml.FormContentType import FormContentType
+from scap.model.decorators import *
+from .FormContentType import FormContentType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='action', type=defer_class_load('scap.model.xhtml.UriType', 'UriType'), required=True)
+@attribute(local_name='method', enum=['get', 'post'], default='get')
+@attribute(local_name='enctype', type=defer_class_load('scap.model.xhtml.ContentTypeType', 'ContentTypeType'), default='application/x-www-form-urlencoded')
+@attribute(local_name='onsubmit', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onreset', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='accept', type=defer_class_load('scap.model.xhtml.ContentTypesType', 'ContentTypesType'))
+@attribute(local_name='accept-charset', type=defer_class_load('scap.model.xhtml.CharsetsType', 'CharsetsType'))
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='class', type=NMTokens)
+@attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
+@attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+# xml:lang is defined in scap.model.Model
+@attribute(local_name='dir', enum=['ltr', 'rtl'])
+@attribute(local_name='onclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute('ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousedown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseover', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousemove', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseout', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeypress', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeydown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeyup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='accesskey', type=defer_class_load('scap.model.xhtml.CharacterType', 'CharacterType'))
+@attribute(local_name='tabindex', type=defer_class_load('scap.model.xhtml.TabIndexNumberType', 'TabIndexNumberType'))
+@attribute(local_name='onfocus', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onblur', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 class FormTag(FormContentType):
-    MODEL_MAP = {
-        'attributes': {
-            'action': {'type': 'UriType', 'required': True},
-            'method': {'enum': ['get', 'post'], 'default': 'get'},
-            'enctype': {'type': 'ContentTypeType', 'default': 'application/x-www-form-urlencoded'},
-            'onsubmit': {'type': 'ScriptType'},
-            'onreset': {'type': 'ScriptType'},
-            'accept': {'type': 'ContentTypesType'},
-            'accept-charset': {'type': 'CharsetsType'},
-        },
-    }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_focus)
+    pass

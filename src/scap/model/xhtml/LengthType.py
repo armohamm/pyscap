@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@content(regex=r'[-+]?(\d+|\d+(\.\d+)?%)')
 class LengthType(StringType):
-    MODEL_MAP = {
-    }
-    # TODO pattern [-+]?(\d+|\d+(\.\d+)?%)
+    pass

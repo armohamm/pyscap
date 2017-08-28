@@ -17,30 +17,41 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='summary', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(local_name='width', type=defer_class_load('scap.model.xhtml.LengthType', 'LengthType'))
+@attribute(local_name='border', type=defer_class_load('scap.model.xhtml.PixelsType', 'PixelsType'))
+@attribute(local_name='frame', enum=T_FRAME_ENUMERATION)
+@attribute(local_name='rules', enum=T_RULES_ENUMERATION)
+@attribute(local_name='cellspacing', type=defer_class_load('scap.model.xhtml.LengthType', 'LengthType'))
+@attribute(local_name='cellpadding', type=defer_class_load('scap.model.xhtml.LengthType', 'LengthType'))
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='class', type=NMTokens)
+@attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
+@attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+# xml:lang is defined in scap.model.Model
+@attribute(local_name='dir', enum=['ltr', 'rtl'])
+@attribute(local_name='onclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute('ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousedown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseover', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousemove', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseout', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeypress', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeydown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeyup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@element(local_name='caption', type=defer_class_load('scap.model.xhtml.CaptionTag', 'CaptionTag'), min=0)
+@element(local_name='col', type=defer_class_load('scap.model.xhtml.ColTag', 'ColTag'), min=0, max=None)
+@element(local_name='colgroup', type=defer_class_load('scap.model.xhtml.ColGroupTag', 'ColGroupTag'), min=0, max=None)
+@element(local_name='thead', type=defer_class_load('scap.model.xhtml.THeadTag', 'THeadTag'), min=0)
+@element(local_name='tfoot', type=defer_class_load('scap.model.xhtml.TFootTag', 'TFootTag'), min=0)
+@element(local_name='tbody', type=defer_class_load('scap.model.xhtml.TBodyTag', 'TBodyTag'), min=0, max=None)
+@element(local_name='tr', type=defer_class_load('scap.model.xhtml.TRTag', 'TRTag'), min=0, max=None)
 class TableTag(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'caption', 'type': 'CaptionTag', 'min': 0},
-            {'tag_name': 'col', 'type': 'ColTag', 'min': 0, 'max': None},
-            {'tag_name': 'colgroup', 'type': 'ColGroupTag', 'min': 0, 'max': None},
-            {'tag_name': 'thead', 'type': 'THeadTag', 'min': 0},
-            {'tag_name': 'tfoot', 'type': 'TFootTag', 'min': 0},
-            # choice
-            {'tag_name': 'tbody', 'type': 'TBodyTag', 'min': 0, 'max': None},
-            {'tag_name': 'tr', 'type': 'TRTag', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'summary': {'type': 'TextType'},
-            'width': {'type': 'LengthType'},
-            'border': {'type': 'PixelsType'},
-            'frame': {'enum': T_FRAME_ENUMERATION},
-            'rules': {'enum': T_RULES_ENUMERATION},
-            'cellspacing': {'type': 'LengthType'},
-            'cellpadding': {'type': 'LengthType'},
-        },
-    }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
+    pass

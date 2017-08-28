@@ -17,13 +17,14 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='class', type=NMTokens)
+@attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
+@attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
 class BrTag(Model):
-    MODEL_MAP = {
-        'attributes': {
-        },
-    }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_coreattrs)
+    pass

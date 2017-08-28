@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.model.xs.DateTimeType import DateTimeType
 
 logger = logging.getLogger(__name__)
+
 class DateTimeType(DateTimeType):
-    MODEL_MAP = {
-    }
+    pass

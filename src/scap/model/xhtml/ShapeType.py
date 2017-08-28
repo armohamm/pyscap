@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
+
+@content(enum=SHAPE_ENUMERATION)
 class ShapeType(TokenType):
-    MODEL_MAP = {
-    }
-    # TODO enum ShapeEnumeration
+    pass

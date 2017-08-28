@@ -17,18 +17,16 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+# xml:lang is defined in scap.model.Model
+@attribute(local_name='dir', enum=['ltr', 'rtl'])
+@element(local_name='head', cls=defer_class_load('scap.model.xhtml.HeadTag', 'HeadTag'))
+@element(local_name='body', cls=defer_class_load('scap.model.xhtml.BodyTag', 'BodyTag'))
 class HtmlTag(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'head', 'class': 'HeadTag'},
-            {'tag_name': 'body', 'class': 'BodyTag'},
-        ],
-        'attributes': {
-            'id': {'type': 'ID'},
-        }
-    }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_i18n)
+    pass

@@ -17,21 +17,40 @@
 
 import logging
 
-from scap.model.xhtml import *
-from scap.model.xhtml.FlowType import FlowType
+from scap.model.decorators import *
+from .FlowType import FlowType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='abbr', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(local_name='axis', type=StringType)
+@attribute(local_name='headers', type=defer_class_load('scap.model.xhtml.IDREFS', 'IDREFS'))
+@attribute(local_name='scope', enum=SCOPE_ENUMERATION)
+@attribute(local_name='rowspan', type=defer_class_load('scap.model.xhtml.NumberType', 'NumberType'), default=1)
+@attribute(local_name='colspan', type=defer_class_load('scap.model.xhtml.NumberType', 'NumberType'), default=1)
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='class', type=NMTokens)
+@attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
+@attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+# xml:lang is defined in scap.model.Model
+@attribute(local_name='dir', enum=['ltr', 'rtl'])
+@attribute(local_name='onclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute('ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousedown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseover', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmousemove', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onmouseout', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeypress', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeydown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onkeyup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='align', enum=CELL_H_ALIGN_ENUMERATION)
+@attribute(local_name='char', type=defer_class_load('scap.model.xhtml.CharacterType', 'CharacterType'))
+@attribute(local_name='charoff', type=defer_class_load('scap.model.xhtml.LengthType', 'LengthType'))
+@attribute(local_name='valign', enum=CELL_V_ALIGN_ENUMERATION)
+@attribute(local_name='tabindex', type=defer_class_load('scap.model.xhtml.TabIndexNumberType', 'TabIndexNumberType'))
+@attribute(local_name='onfocus', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='onblur', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 class TDTag(FlowType):
-    MODEL_MAP = {
-        'attributes': {
-            'abbr': {'type': 'TextType'},
-            'axis': {'type': 'StringType'},
-            'headers': {'type': 'IDREFS'},
-            'scope': {'enum': SCOPE_ENUMERATION},
-            'rowspan': {'type': 'NumberType', 'default': 1},
-            'colspan': {'type': 'NumberType', 'default': 1},
-        },
-    }
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_attrs)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_cellhalign)
-    MODEL_MAP['attributes'].update(ATTRIBUTE_GROUP_cellvalign)
+    pass

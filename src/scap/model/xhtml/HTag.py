@@ -18,7 +18,7 @@
 import logging
 
 from scap.model.decorators import *
-from .InlineType import InlineType
+from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 
@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 # xml:lang is defined in scap.model.Model
 @attribute(local_name='dir', enum=['ltr', 'rtl'])
 @attribute(local_name='onclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
-@attribute('ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 @attribute(local_name='onmousedown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 @attribute(local_name='onmouseup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 @attribute(local_name='onmouseover', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
@@ -39,5 +39,5 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='onkeypress', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 @attribute(local_name='onkeydown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 @attribute(local_name='onkeyup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
-class PTag(InlineType):
+class HTag(Model):
     pass

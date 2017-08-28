@@ -17,17 +17,31 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class FormContentType(Model):
-    MODEL_MAP = {
-        'elements': [],
-    }
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_block)
-    MODEL_MAP['elements'].extend(ELEMENT_GROUP_misc)
 
-    for el in MODEL_MAP['elements']:
-        el['min'] = 0
-        el['max'] = None
+@element(local_name='p', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.PTag', 'PTag'))
+@element(local_name='h1', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.H1Tag', 'H1Tag'))
+@element(local_name='h2', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.H2Tag', 'H2Tag'))
+@element(local_name='h3', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.H3Tag', 'H3Tag'))
+@element(local_name='h4', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.H4Tag', 'H4Tag'))
+@element(local_name='h5', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.H5Tag', 'H5Tag'))
+@element(local_name='h6', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.H6Tag', 'H6Tag'))
+@element(local_name='div', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.DivTag', 'DivTag'))
+@element(local_name='ul', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.UlTag', 'UlTag'))
+@element(local_name='ol', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.OlTag', 'OlTag'))
+@element(local_name='dl', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.DlTag', 'DlTag'))
+@element(local_name='pre', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.PreTag', 'PreTag'))
+@element(local_name='hr', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.HrTag', 'HrTag'))
+@element(local_name='blockquote', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.BlockQuoteTag', 'BlockQuoteTag'))
+@element(local_name='address', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.AddressTag', 'AddressTag'))
+@element(local_name='fieldset', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.FieldSetTag', 'FieldSetTag'))
+@element(local_name='table', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.TableTag', 'TableTag'))
+@element(local_name='noscript', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.NoScriptTag', 'NoScriptTag'))
+@element(local_name='ins', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.InsTag', 'InsTag'))
+@element(local_name='del', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.DelTag', 'DelTag'))
+@element(local_name='script', list='_elements', min=0, max=None, cls=defer_class_load('scap.model.xhtml.ScriptTag', 'ScriptTag'))
+class FormContentType(Model):
+    pass

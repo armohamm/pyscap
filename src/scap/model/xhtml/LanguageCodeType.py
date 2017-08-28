@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.xhtml import *
+from scap.model.decorators import *
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
 class LanguageCodeType(StringType):
-    MODEL_MAP = {
-    }
+    pass

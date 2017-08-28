@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.xhtml import *
-from scap.model.xhtml.NumberType import NumberType
+from scap.model.decorators import *
+from .NumberType import NumberType
 
 logger = logging.getLogger(__name__)
+
+@content(min=0, max=32767)
 class TabIndexNumberType(NumberType):
-    MODEL_MAP = {
-    }
-    # TODO value between 0 & 32767
+    pass
