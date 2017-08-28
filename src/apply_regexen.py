@@ -20,7 +20,7 @@ subs = (
         r"@element(local_name='\1'\2)",
     ),
     (
-        r"'(enum|default|min|max|list|dict|required|nillable)':\s",
+        r"'(enum|default|min|max|list|dict|required|nillable|key)':\s",
         r'\1=',
     ),
     (
@@ -42,13 +42,20 @@ subs = (
 )
 
 def regex_file(path):
+    in_defs = False
     with open(path, 'r') as f:
         with open(path+'.new', 'w') as g:
             for line in f:
-                g_line = line
-                for pattern, repl in subs:
-                    g_line = re.sub(pattern, repl, g_line)
-                g.write(g_line)
+                if re.fullmatch('\s+def'):
+                    in_defs = True
+
+                if not in_defs:
+                    g_line = line
+                    for pattern, repl in subs:
+                        g_line = re.sub(pattern, repl, g_line)
+                    g.write(g_line)
+                else:
+                    g.write(line)
     os.remove(path)
     os.rename(path+'.new', path)
 
