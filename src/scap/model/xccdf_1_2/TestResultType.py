@@ -19,6 +19,24 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
+from .TestResultIdPattern import TestResultIdPattern
+from scap.model.xs.DateTimeType import DateTimeType
+from scap.model.xs.StringType import StringType
+from scap.model.xs.IdType import IdType
+from .BenchmarkReferenceType import BenchmarkReferenceType
+from .TailoringReferenceType import TailoringReferenceType
+from .TextType import TextType
+from .IdentityType import IdentityType
+from .IdRefType import IdRefType
+from .TargetFactsType import TargetFactsType
+from .TargetIdRefType import TargetIdRefType
+from .Cpe2IdRefType import Cpe2IdRefType
+from .ProfileSetValueType import ProfileSetValueType
+from .ProfileSetComplexValueType import ProfileSetComplexValueType
+from .RuleResultType import RuleResultType
+from .ScoreType import ScoreType
+from .MetadataType import MetadataType
+from .SignatureType import SignatureType
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +45,7 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='end-time', type=DateTimeType)
 @attribute(local_name='test-system', type=StringType)
 @attribute(local_name='version', type=StringType)
-@attribute(local_name='Id', type=ID)
+@attribute(local_name='Id', type=IdType)
 @element(local_name='benchmark', cls=BenchmarkReferenceType, min=0, max=1)
 @element(local_name='tailoring-file', cls=TailoringReferenceType, min=0, max=1)
 @element(local_name='title', cls=TextType, list='titles', min=0, max=None)
@@ -38,7 +56,7 @@ logger = logging.getLogger(__name__)
 @element(local_name='target', type=StringType, list='targets', min=1, max=None)
 @element(local_name='target-address', type=StringType, list='target_addresses', min=0, max=None)
 @element(local_name='target-facts', cls=TargetFactsType, list='target_facts', min=0, max=None)
-@element(local_name='target-id-ref', cls=TargetIdRefType, list='target_id_refs', min=0, max=None){'tag_name': '*', min=0, max=None},
+@element(local_name='target-id-ref', cls=TargetIdRefType, list='target_id_refs', min=0, max=None)
 @element(local_name='platform', cls=Cpe2IdRefType, list='platforms', min=0, max=None)
 @element(local_name='set-value', cls=ProfileSetValueType, dict='set_values', key='idref', min=0, max=None)
 @element(local_name='set-complex-value', cls=ProfileSetComplexValueType, dict='set_values', key='idref', min=0, max=None)
@@ -46,6 +64,7 @@ logger = logging.getLogger(__name__)
 @element(local_name='score', cls=ScoreType, list='scores', min=1, max=None)
 @element(local_name='metadata', cls=MetadataType, list='metadata', min=0, max=None)
 @element(local_name='signature', cls=SignatureType, min=0, max=1)
+@element(local_name='*', min=0, max=None)
 class TestResultType(Model):
     @staticmethod
     def generate_id():

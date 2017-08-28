@@ -19,11 +19,20 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
+from .TailoringIdPattern import TailoringIdPattern
+from scap.model.xs.IdType import IdType
+from .TailoringBenchmarkReferenceType import TailoringBenchmarkReferenceType
+from .StatusType import StatusType
+from .DcStatusType import DcStatusType
+from .TailoringVersionType import TailoringVersionType
+from .MetadataType import MetadataType
+from .ProfileType import ProfileType
+from .SignatureType import SignatureType
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='id', type=TailoringIdPattern, required=True)
-@attribute(local_name='Id', type=ID)
+@attribute(local_name='Id', type=IdType)
 @element(local_name='benchmark', cls=TailoringBenchmarkReferenceType, min=0, max=1)
 @element(local_name='status', cls=StatusType, list='statuses', min=0, max=None)
 @element(local_name='dc-status', cls=DcStatusType, list='dc_statuses', min=0, max=None)

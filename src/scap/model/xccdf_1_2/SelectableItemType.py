@@ -19,14 +19,20 @@ import logging
 
 from .ItemType import ItemType
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+from .WeightType import WeightType
+from .HtmlTextWithSubType import HtmlTextWithSubType
+from .OverrideableCpe2IdRefType import OverrideableCpe2IdRefType
+from .IdRefListType import IdRefListType
+from .IdRefType import IdRefType
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='selected', type=BooleanType, default=True)
-@attribute(local_name='weight', type=Weight, default=1.0)
+@attribute(local_name='weight', type=WeightType, default=1.0)
 @element(local_name='rationale', list='rationales', min=0, max=None, cls=HtmlTextWithSubType)
 @element(local_name='platform', list='platforms', min=0, max=None, cls=OverrideableCpe2IdRefType)
-@element(local_name='requires', list='requires', min=0, max=None, cls=IDRefListType)
+@element(local_name='requires', list='requires', min=0, max=None, cls=IdRefListType)
 @element(local_name='conflicts', list='conflicts', min=0, max=None, cls=IdRefType)
 class SelectableItemType(ItemType):
     def _require_one_item(self, benchmark, item_ids):

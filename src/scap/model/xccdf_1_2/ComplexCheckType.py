@@ -20,13 +20,17 @@ import logging
 from scap.Model import Model
 from . import CHECK_OPERATOR_ENUMERATION
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+from .CheckType import CheckType
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='operator', enum=CHECK_OPERATOR_ENUMERATION, required=True)
 @attribute(local_name='negate', type=BooleanType, default=False)
 @element(local_name='check', cls=CheckType, min=0, max=None, list='checks')
-@element(local_name='complex-check', cls=ComplexCheckType, min=0, max=None, list='checks')
+@element(local_name='complex-check',
+    cls=defer_class_load('scap.model.xccdf_1_2.ComplexCheckType', 'ComplexCheckType'),
+    min=0, max=None, list='checks')
 class ComplexCheckType(Model):
     def check(self, benchmark, host):
         if len(self.checks) < 1:

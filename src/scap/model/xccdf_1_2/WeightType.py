@@ -22,5 +22,5 @@ from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 
-class Weight(DecimalType):
+class WeightType(DecimalType):
     pass

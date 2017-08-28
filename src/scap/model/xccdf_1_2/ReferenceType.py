@@ -19,6 +19,8 @@ import logging
 
 from scap.model.xs.StringType import StringType
 from scap.model.decorators import *
+from scap.model.xs.AnyUriType import AnyUriType
+from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
 

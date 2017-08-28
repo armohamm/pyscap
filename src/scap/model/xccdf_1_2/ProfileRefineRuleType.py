@@ -18,13 +18,18 @@
 import logging
 
 from scap.Model import Model
-from . import SEVERITY_ENUMERATION, ROLE_ENUMERATION
+from . import SEVERITY_ENUMERATION
+from . import ROLE_ENUMERATION
 from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
+from .WeightType import WeightType
+from scap.model.xs.StringType import StringType
+from .TextType import TextType
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='idref', type=NCNameType, required=True)
-@attribute(local_name='weight', type=Weight)
+@attribute(local_name='weight', type=WeightType)
 @attribute(local_name='selector', type=StringType)
 @attribute(local_name='severity', enum=SEVERITY_ENUMERATION)
 @attribute(local_name='role', enum=ROLE_ENUMERATION)

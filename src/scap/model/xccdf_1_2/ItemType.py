@@ -19,6 +19,19 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.IdType import IdType
+from scap.model.xs.StringType import StringType
+from .StatusType import StatusType
+from .DcStatusType import DcStatusType
+from .VersionType import VersionType
+from .TextWithSubType import TextWithSubType
+from .HtmlTextWithSubType import HtmlTextWithSubType
+from .WarningType import WarningType
+from .TextType import TextType
+from .ReferenceType import ReferenceType
+from .MetadataType import MetadataType
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +40,7 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='extends', type=NCNameType)
 @attribute(local_name='hidden', type=BooleanType, default=False)
 @attribute(local_name='prohibitChanges', type=BooleanType, default=False)
-@attribute(local_name='Id', type=ID)
+@attribute(local_name='Id', type=IdType)
 @element(local_name='status', cls=StatusType, list='statuses', min=0, max=None)
 @element(local_name='dc-status', cls=DcStatusType, list='dc_statuses', min=0, max=None)
 @element(local_name='version', cls=VersionType, min=0, max=1)

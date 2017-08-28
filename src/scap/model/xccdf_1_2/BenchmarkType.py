@@ -19,16 +19,37 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
+from .BenchmarkIdPattern import BenchmarkIdPattern
+from scap.model.xs.IdType import IdType
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.StringType import StringType
+from scap.model.xs.AnyUriType import AnyUriType
+from .StatusType import StatusType
+from .TextType import TextType
+from .HtmlTextWithSubType import HtmlTextWithSubType
+from .NoticeType import NoticeType
+from .ReferenceType import ReferenceType
+from .PlainTextType import PlainTextType
+from .Cpe2IdRefType import Cpe2IdRefType
+from .VersionType import VersionType
+from .MetadataType import MetadataType
+from .ModelType import ModelType
+from .ProfileType import ProfileType
+from .ValueType import ValueType
+from .GroupType import GroupType
+from .RuleType import RuleType
+from .TestResultType import TestResultType
+from .SignatureType import SignatureType
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='id', required=True, type=BenchmarkIdPattern)
-@attribute(local_name='Id', type=ID)
+@attribute(local_name='Id', type=IdType)
 @attribute(local_name='resolved', type=BooleanType, default=False)
 @attribute(local_name='style', type=StringType)
 @attribute(local_name='style-href', type=AnyUriType)
 @element(local_name='status', list='statuses', cls=StatusType, min=1, max=None)
-@element(namespace='http://purl.org/dc/elements/1.1/', local_name='dc-status', list='dc_statuses', cls=DcStatusType, min=0, max=None)
+@element(namespace='http://purl.org/dc/elements/1.1/', local_name='dc-status', list='dc_statuses', min=0, max=None)
 @element(local_name='title', list='titles', cls=TextType, min=0, max=None)
 @element(local_name='description', list='descriptions', cls=HtmlTextWithSubType, min=0, max=None)
 @element(local_name='notice', dict='notices', cls=NoticeType, min=0, max=None)
@@ -36,7 +57,7 @@ logger = logging.getLogger(__name__)
 @element(local_name='rear-matter', list='rear_matter', cls=HtmlTextWithSubType, min=0, max=None)
 @element(local_name='reference', list='references', cls=ReferenceType, min=0, max=None)
 @element(local_name='plain-text', list='plain_texts', cls=PlainTextType, min=0, max=None)
-@element(namespace='http://cpe.mitre.org/language/2.0', local_name='platform-specification', cls=scap.model.cpe_lang_2_3.PlatformSpecificationType, min=0, max=1)
+@element(namespace='http://cpe.mitre.org/language/2.0', local_name='platform-specification', min=0, max=1)
 @element(local_name='platform', cls=Cpe2IdRefType, min=0, max=None)
 @element(local_name='version', cls=VersionType, min=1, max=1)
 @element(local_name='metadata', list='metadata', cls=MetadataType, min=0, max=None)

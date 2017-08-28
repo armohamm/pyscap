@@ -19,10 +19,11 @@ import logging
 
 from scap.model.xs.StringType import StringType
 from scap.model.decorators import *
+from scap.model.xs.AnyUriType import AnyUriType
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='system', type=AnyUriType, required=True)
-@attribute(local_name='*', )
+@attribute(local_name='*')
 class IdentType(StringType):
     pass

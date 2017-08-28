@@ -17,9 +17,19 @@
 
 import logging
 
-from . import VALUE_TYPE_ENUMERATION, VALUE_OPERATOR_ENUMERATION, INTERFACE_HINT_ENUMERATION
+from . import VALUE_TYPE_ENUMERATION
+from . import VALUE_OPERATOR_ENUMERATION
+from . import INTERFACE_HINT_ENUMERATION
 from .ItemType import ItemType
 from scap.model.decorators import *
+from .ValueIdPattern import ValueIdPattern
+from scap.model.xs.BooleanType import BooleanType
+from .SelStringType import SelStringType
+from .SelComplexValueType import SelComplexValueType
+from .SelNumType import SelNumType
+from .SelChoicesType import SelChoicesType
+from .UriRefType import UriRefType
+from .SignatureType import SignatureType
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +46,7 @@ logger = logging.getLogger(__name__)
 @element(local_name='lower-bound', cls=SelNumType, dict='lower_bounds', key='selector', min=0, max=None)
 @element(local_name='upper-bound', cls=SelNumType, dict='upper_bounds', key='selector', min=0, max=None)
 @element(local_name='choices', cls=SelChoicesType, dict='choices', key='selector', min=0, max=None)
-@element(local_name='source', cls=URIRefType, list='sources', min=0, max=None)
+@element(local_name='source', cls=UriRefType, list='sources', min=0, max=None)
 @element(local_name='signature', cls=SignatureType, min=0, max=None)
 class ValueType(ItemType):
     def __init__(self, *args, **kwargs):

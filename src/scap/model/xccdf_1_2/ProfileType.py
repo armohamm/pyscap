@@ -19,6 +19,24 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
+from .ProfileIdPattern import ProfileIdPattern
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.IdType import IdType
+from .StatusType import StatusType
+from .DcStatusType import DcStatusType
+from .VersionType import VersionType
+from .TextWithSubType import TextWithSubType
+from .HtmlTextWithSubType import HtmlTextWithSubType
+from .ReferenceType import ReferenceType
+from .OverrideableCpe2IdRefType import OverrideableCpe2IdRefType
+from .ProfileSelectType import ProfileSelectType
+from .ProfileSetComplexValueType import ProfileSetComplexValueType
+from .ProfileSetValueType import ProfileSetValueType
+from .ProfileRefineValueType import ProfileRefineValueType
+from .ProfileRefineRuleType import ProfileRefineRuleType
+from .MetadataType import MetadataType
+from .SignatureType import SignatureType
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +45,7 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='abstract', type=BooleanType, default=False)
 @attribute(local_name='note-tag', type=NCNameType)
 @attribute(local_name='extends', type=NCNameType)
-@attribute(local_name='Id', type=ID)
+@attribute(local_name='Id', type=IdType)
 @element(local_name='status', cls=StatusType, list='statuses', min=0, max=None)
 @element(local_name='dc-status', cls=DcStatusType, list='dc_statuses', min=0, max=None)
 @element(local_name='version', cls=VersionType, min=0, max=1)

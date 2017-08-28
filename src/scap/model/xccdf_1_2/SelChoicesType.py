@@ -19,12 +19,15 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.StringType import StringType
+from .ComplexValueType import ComplexValueType
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='mustMatch', type=BooleanType)
 @attribute(local_name='selector', type=StringType, default='')
-@element(local_name='choice', cls=scap.model.xs.String, list='choices', min=0, max=None)
+@element(local_name='choice', cls=StringType, list='choices', min=0, max=None)
 @element(local_name='complex-choice', cls=ComplexValueType, min=0, max=1)
 class SelChoicesType(Model):
     pass

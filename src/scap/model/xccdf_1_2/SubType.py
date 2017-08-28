@@ -24,6 +24,6 @@ from scap.model.decorators import *
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='use', enum=SUB_USE_ENUMERATION, default='value')
-@element(local_name='sub', cls=SubType, list='subs')
+@element(local_name='sub', cls=defer_class_load('scap.model.xccdf_1_2.SubType', 'SubType'), list='subs')
 class SubType(IdRefType):
     pass

@@ -18,8 +18,22 @@
 import logging
 
 from scap.Model import Model
-from . import ROLE_ENUMERATION, SEVERITY_ENUMERATION, RESULT_ENUMERATION
+from . import ROLE_ENUMERATION
+from . import SEVERITY_ENUMERATION
+from . import RESULT_ENUMERATION
 from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.DateTimeType import DateTimeType
+from scap.model.xs.StringType import StringType
+from .WeightType import WeightType
+from .OverrideType import OverrideType
+from .IdentType import IdentType
+from .MetadataType import MetadataType
+from .MessageType import MessageType
+from .InstanceResultType import InstanceResultType
+from .FixType import FixType
+from .CheckType import CheckType
+from .ComplexCheckType import ComplexCheckType
 
 logger = logging.getLogger(__name__)
 
@@ -28,7 +42,7 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='severity', enum=SEVERITY_ENUMERATION)
 @attribute(local_name='time', type=DateTimeType)
 @attribute(local_name='version', type=StringType)
-@attribute(local_name='weight', type=Weight)
+@attribute(local_name='weight', type=WeightType)
 @element(local_name='result', enum=RESULT_ENUMERATION, min=1, max=1)
 @element(local_name='override', cls=OverrideType, list='overrides', min=0, max=None)
 @element(local_name='ident', cls=IdentType, list='idents', min=0, max=None)
