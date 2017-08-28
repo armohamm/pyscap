@@ -46,7 +46,7 @@ def regex_file(path):
     with open(path, 'r') as f:
         with open(path+'.new', 'w') as g:
             for line in f:
-                if re.fullmatch('\s+def'):
+                if re.fullmatch('\s+def', line):
                     in_defs = True
 
                 if not in_defs:
