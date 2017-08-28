@@ -18,15 +18,16 @@
 import logging
 
 from scap.Model import Model
-from .MessageType import MessageType
 from scap.model.decorators import *
 from scap.model.xs.AnyUriType import AnyUriType
 from scap.model.xs.NCNameType import NCNameType
 from scap.model.xs.StringType import StringType
-from .CheckImportType import CheckImportType
-from .CheckExportType import CheckExportType
+
 from .CheckContentRefType import CheckContentRefType
 from .CheckContentType import CheckContentType
+from .CheckExportType import CheckExportType
+from .CheckImportType import CheckImportType
+from .MessageType import MessageType
 
 logger = logging.getLogger(__name__)
 

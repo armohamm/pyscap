@@ -17,9 +17,10 @@
 
 import logging
 
-from .UriIdrefType import UriIdrefType
 from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
+
+from .UriIdrefType import UriIdrefType
 
 logger = logging.getLogger(__name__)
 

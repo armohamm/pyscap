@@ -23,22 +23,22 @@ import sys
 
 from scap.Model import Model
 from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.StringType import StringType
 
 from . import ROLE_ENUMERATION
 from . import SEVERITY_ENUMERATION
 from .CheckType import CheckType
+from .ComplexCheckType import ComplexCheckType
 from .FixType import FixType
+from .FixtextType import FixtextType
 from .IdentType import IdentType
 from .InstanceResultType import InstanceResultType
 from .MessageType import MessageType
 from .OverrideType import OverrideType
+from .ProfileNoteType import ProfileNoteType
 from .RuleResultType import RuleResultType
 from .SelectableItemType import SelectableItemType
-from scap.model.xs.BooleanType import BooleanType
-from scap.model.xs.StringType import StringType
-from .ProfileNoteType import ProfileNoteType
-from .FixtextType import FixtextType
-from .ComplexCheckType import ComplexCheckType
 from .SignatureType import SignatureType
 
 logger = logging.getLogger(__name__)

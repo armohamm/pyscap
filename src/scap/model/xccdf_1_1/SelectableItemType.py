@@ -18,14 +18,15 @@
 import logging
 import re
 
-from .ItemType import ItemType
 from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
-from .WeightType import WeightType
+
 from .HtmlTextWithSubType import HtmlTextWithSubType
-from .OverrideableUriIdrefType import OverrideableUriIdrefType
 from .IdrefListType import IdrefListType
 from .IdrefType import IdrefType
+from .ItemType import ItemType
+from .OverrideableUriIdrefType import OverrideableUriIdrefType
+from .WeightType import WeightType
 
 logger = logging.getLogger(__name__)
 

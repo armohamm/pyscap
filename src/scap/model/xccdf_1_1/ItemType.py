@@ -17,19 +17,20 @@
 
 import logging
 
-from .Extendable import Extendable
 from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
 from scap.model.xs.BooleanType import BooleanType
 from scap.model.xs.IdType import IdType
+from scap.model.xs.NCNameType import NCNameType
 from scap.model.xs.StringType import StringType
-from .StatusType import StatusType
-from .VersionType import VersionType
-from .TextWithSubType import TextWithSubType
+
+from .Extendable import Extendable
 from .HtmlTextWithSubType import HtmlTextWithSubType
-from .WarningType import WarningType
-from .TextType import TextType
 from .ReferenceType import ReferenceType
+from .StatusType import StatusType
+from .TextType import TextType
+from .TextWithSubType import TextWithSubType
+from .VersionType import VersionType
+from .WarningType import WarningType
 
 logger = logging.getLogger(__name__)
 

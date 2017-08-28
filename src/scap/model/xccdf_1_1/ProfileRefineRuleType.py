@@ -18,13 +18,14 @@
 import logging
 
 from scap.Model import Model
-from . import SEVERITY_ENUMERATION
-from . import ROLE_ENUMERATION
 from scap.model.decorators import *
 from scap.model.xs.NCNameType import NCNameType
-from .WeightType import WeightType
 from scap.model.xs.StringType import StringType
+
+from . import ROLE_ENUMERATION
+from . import SEVERITY_ENUMERATION
 from .TextType import TextType
+from .WeightType import WeightType
 
 logger = logging.getLogger(__name__)
 

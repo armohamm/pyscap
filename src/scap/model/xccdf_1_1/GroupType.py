@@ -18,11 +18,12 @@
 import logging
 
 from scap.Model import Model
-from .SelectableItemType import SelectableItemType
 from scap.model.decorators import *
-from .ValueType import ValueType
+
 from .RuleType import RuleType
+from .SelectableItemType import SelectableItemType
 from .SignatureType import SignatureType
+from .ValueType import ValueType
 
 logger = logging.getLogger(__name__)
 

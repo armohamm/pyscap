@@ -18,22 +18,23 @@
 import logging
 
 from scap.Model import Model
-from .Extendable import Extendable
 from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
 from scap.model.xs.BooleanType import BooleanType
 from scap.model.xs.IdType import IdType
-from .StatusType import StatusType
-from .VersionType import VersionType
-from .TextWithSubType import TextWithSubType
+from scap.model.xs.NCNameType import NCNameType
+
+from .Extendable import Extendable
 from .HtmlTextWithSubType import HtmlTextWithSubType
-from .ReferenceType import ReferenceType
-from .UriIdrefType import UriIdrefType
+from .ProfileRefineRuleType import ProfileRefineRuleType
+from .ProfileRefineValueType import ProfileRefineValueType
 from .ProfileSelectType import ProfileSelectType
 from .ProfileSetValueType import ProfileSetValueType
-from .ProfileRefineValueType import ProfileRefineValueType
-from .ProfileRefineRuleType import ProfileRefineRuleType
+from .ReferenceType import ReferenceType
 from .SignatureType import SignatureType
+from .StatusType import StatusType
+from .TextWithSubType import TextWithSubType
+from .UriIdrefType import UriIdrefType
+from .VersionType import VersionType
 
 logger = logging.getLogger(__name__)
 

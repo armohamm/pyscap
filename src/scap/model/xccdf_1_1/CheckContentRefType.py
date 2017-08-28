@@ -18,10 +18,11 @@
 import logging
 
 from scap.Model import Model
-from ..exceptions import *
 from scap.model.decorators import *
 from scap.model.xs.AnyUriType import AnyUriType
 from scap.model.xs.StringType import StringType
+
+from ..exceptions import *
 
 logger = logging.getLogger(__name__)
 

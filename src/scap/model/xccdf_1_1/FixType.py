@@ -18,12 +18,13 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.AnyUriType import AnyUriType
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.NCNameType import NCNameType
+
 from . import FIX_STRATEGY_ENUMERATION
 from . import RATING_ENUMERATION
-from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
-from scap.model.xs.BooleanType import BooleanType
-from scap.model.xs.AnyUriType import AnyUriType
 from .IdrefType import IdrefType
 from .InstanceFixType import InstanceFixType
 

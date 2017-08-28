@@ -17,17 +17,18 @@
 
 import logging
 
-from . import VALUE_TYPE_ENUMERATION
-from . import VALUE_OPERATOR_ENUMERATION
-from . import INTERFACE_HINT_ENUMERATION
-from .ItemType import ItemType
 from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
-from .SelStringType import SelStringType
-from .SelNumType import SelNumType
+
+from . import INTERFACE_HINT_ENUMERATION
+from . import VALUE_OPERATOR_ENUMERATION
+from . import VALUE_TYPE_ENUMERATION
+from .ItemType import ItemType
 from .SelChoicesType import SelChoicesType
-from .UriRefType import UriRefType
+from .SelNumType import SelNumType
+from .SelStringType import SelStringType
 from .SignatureType import SignatureType
+from .UriRefType import UriRefType
 
 logger = logging.getLogger(__name__)
 

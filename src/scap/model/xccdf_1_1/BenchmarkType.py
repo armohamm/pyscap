@@ -15,33 +15,34 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import logging
 import datetime
+import logging
 
 from scap.Model import Model
-from .ModelType import ModelType
 from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
-from scap.model.xs.IdType import IdType
-from scap.model.xs.BooleanType import BooleanType
 from scap.model.xs.AnyUriType import AnyUriType
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.IdType import IdType
+from scap.model.xs.NCNameType import NCNameType
 from scap.model.xs.StringType import StringType
-from .StatusElement import StatusElement
-from .TextType import TextType
+
+from .GroupType import GroupType
 from .HtmlTextWithSubType import HtmlTextWithSubType
-from .NoticeType import NoticeType
-from .ReferenceType import ReferenceType
-from .PlainTextType import PlainTextType
-from .UriIdrefType import UriIdrefType
-from .VersionType import VersionType
 from .MetadataType import MetadataType
 from .ModelType import ModelType
+from .ModelType import ModelType
+from .NoticeType import NoticeType
+from .PlainTextType import PlainTextType
 from .ProfileType import ProfileType
-from .ValueType import ValueType
-from .GroupType import GroupType
+from .ReferenceType import ReferenceType
 from .RuleType import RuleType
-from .TestResultType import TestResultType
 from .SignatureType import SignatureType
+from .StatusElement import StatusElement
+from .TestResultType import TestResultType
+from .TextType import TextType
+from .UriIdrefType import UriIdrefType
+from .ValueType import ValueType
+from .VersionType import VersionType
 
 logger = logging.getLogger(__name__)
 

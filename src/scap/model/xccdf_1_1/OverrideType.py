@@ -18,10 +18,11 @@
 import logging
 
 from scap.Model import Model
-from . import RESULT_ENUMERATION
 from scap.model.decorators import *
 from scap.model.xs.DateTimeType import DateTimeType
 from scap.model.xs.StringType import StringType
+
+from . import RESULT_ENUMERATION
 from .TextType import TextType
 
 logger = logging.getLogger(__name__)

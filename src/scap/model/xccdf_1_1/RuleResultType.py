@@ -18,20 +18,21 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.DateTimeType import DateTimeType
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.StringType import StringType
+
 from . import RESULT_ENUMERATION
 from . import ROLE_ENUMERATION
 from . import SEVERITY_ENUMERATION
-from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
-from scap.model.xs.DateTimeType import DateTimeType
-from scap.model.xs.StringType import StringType
-from .WeightType import WeightType
-from .OverrideType import OverrideType
-from .IdentType import IdentType
-from .MessageType import MessageType
-from .InstanceResultType import InstanceResultType
-from .FixType import FixType
 from .CheckType import CheckType
+from .FixType import FixType
+from .IdentType import IdentType
+from .InstanceResultType import InstanceResultType
+from .MessageType import MessageType
+from .OverrideType import OverrideType
+from .WeightType import WeightType
 
 logger = logging.getLogger(__name__)
 

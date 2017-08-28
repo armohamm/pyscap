@@ -20,20 +20,21 @@ import uuid
 
 from scap.Model import Model
 from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
 from scap.model.xs.DateTimeType import DateTimeType
-from scap.model.xs.StringType import StringType
 from scap.model.xs.IdType import IdType
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.StringType import StringType
+
 from .BenchmarkReferenceType import BenchmarkReferenceType
-from .TextType import TextType
 from .IdentityType import IdentityType
 from .IdrefType import IdrefType
-from .TargetFactsType import TargetFactsType
-from .UriIdrefType import UriIdrefType
 from .ProfileSetValueType import ProfileSetValueType
 from .RuleResultType import RuleResultType
 from .ScoreType import ScoreType
 from .SignatureType import SignatureType
+from .TargetFactsType import TargetFactsType
+from .TextType import TextType
+from .UriIdrefType import UriIdrefType
 
 logger = logging.getLogger(__name__)
 

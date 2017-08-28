@@ -18,10 +18,11 @@
 import logging
 
 from scap.Model import Model
-from . import VALUE_OPERATOR_ENUMERATION
 from scap.model.decorators import *
 from scap.model.xs.NCNameType import NCNameType
 from scap.model.xs.StringType import StringType
+
+from . import VALUE_OPERATOR_ENUMERATION
 from .TextType import TextType
 
 logger = logging.getLogger(__name__)

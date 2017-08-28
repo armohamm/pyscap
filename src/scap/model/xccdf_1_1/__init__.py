@@ -366,13 +366,13 @@ IDENT_SCHEME_ENUMERATION = [
     # This specifies the Common Configuration Enumeration identifier scheme.
     'http://www.cert.org/',
     # CERT Coordination Center the identifier value should be a CERT
-    # advisory identifier (e.g. CA-2004-02ù).
+    # advisory identifier (e.g. CA-2004-02).
     'http://www.us-cert.gov/cas/techalerts/',
     # US-CERT technical cyber security alerts the identifier value should
-    # be a technical cyber security alert ID (e.g. TA05-189Aù)
+    # be a technical cyber security alert ID (e.g. TA05-189A)
     'http://www.kb.cert.org/',
     # US-CERT vulnerability notes database the identifier values should be
-    # a vulnerability note number (e.g. 709220ù).
+    # a vulnerability note number (e.g. 709220).
     'http://iase.disa.mil/IAalerts/',
     # DISA Information Assurance Vulnerability Alerts (IAVA) the
     # identifier value should be a DOD IAVA identifier.
