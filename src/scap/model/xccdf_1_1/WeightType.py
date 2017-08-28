@@ -18,11 +18,9 @@
 import logging
 
 from scap.model.xs.DecimalType import DecimalType
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
+
 class WeightType(DecimalType):
-    MODEL_MAP = {
-        # TODO restrictions
-        # min inclusive 0.0
-        # total digits 3
-    }
+    pass

@@ -18,14 +18,12 @@
 import logging
 
 from scap.model.xs.StringType import StringType
+from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', required=True, type=NCNameType)
+@element(namespace='http://www.w3.org/1999/xhtml', local_name='*', min=0, max=None)
 class NoticeType(StringType):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'id': {'required': True, 'type': 'NCNameType'},
-        },
-    }
+    pass

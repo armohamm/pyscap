@@ -18,11 +18,11 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from .FactType import FactType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='fact', list='facts', cls=FactType, min=0, max=None)
 class TargetFactsType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'fact', 'list': 'facts', 'class': 'FactType', 'min': 0, 'max': None},
-        ],
-    }
+    pass

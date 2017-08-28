@@ -18,18 +18,18 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_1 import RESULT_ENUMERATION
+from . import RESULT_ENUMERATION
+from scap.model.decorators import *
+from scap.model.xs.DateTimeType import DateTimeType
+from scap.model.xs.StringType import StringType
+from .TextType import TextType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='time', type=DateTimeType, required=True)
+@attribute(local_name='authority', type=StringType, required=True)
+@element(local_name='old-result', enum=RESULT_ENUMERATION, min=1, max=1)
+@element(local_name='new-result', enum=RESULT_ENUMERATION, min=1, max=1)
+@element(local_name='remark', cls=TextType, min=1, max=1)
 class OverrideType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'old-result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
-            {'tag_name': 'new-result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
-            {'tag_name': 'remark', 'class': 'TextType', 'min': 1, 'max': 1},
-        ],
-        'attributes': {
-            'time': {'type': 'DateTimeType', 'required': True},
-            'authority': {'type': 'StringType', 'required': True},
-        },
-    }
+    pass

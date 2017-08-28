@@ -18,11 +18,11 @@
 import logging
 
 from scap.model.xs.StringType import StringType
+from scap.model.decorators import *
+from scap.model.xs.AnyUriType import AnyUriType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='uri', type=AnyUriType, required=True)
 class UriRefType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'uri': {'type': 'AnyUriType', 'required': True},
-        }
-    }
+    pass

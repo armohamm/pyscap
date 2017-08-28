@@ -19,12 +19,12 @@ import getpass
 import logging
 
 from scap.model.xs.StringType import StringType
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='authenticated', type=BooleanType, required=True)
+@attribute(local_name='privileged', type=BooleanType, required=True)
 class IdentityType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'authenticated': {'type': 'BooleanType', 'required': True},
-            'privileged': {'type': 'BooleanType', 'required': True},
-        }
-    }
+    pass

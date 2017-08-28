@@ -18,23 +18,21 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_1 import VALUE_OPERATOR_ENUMERATION
+from . import VALUE_OPERATOR_ENUMERATION
+from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.StringType import StringType
+from .TextType import TextType
 
 logger = logging.getLogger(__name__)
-class ProfileRefineValueType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'remark', 'type': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'idref': {'type': 'NCNameType', 'required': True},
-            'selector': {'type': 'StringType'},
-            'operator': {'enum': VALUE_OPERATOR_ENUMERATION},
-        },
-    }
 
+@attribute(local_name='idref', type=NCNameType, required=True)
+@attribute(local_name='selector', type=StringType)
+@attribute(local_name='operator', enum=VALUE_OPERATOR_ENUMERATION)
+@element(local_name='remark', type=TextType, list='remarks', min=0, max=None)
+class ProfileRefineValueType(Model):
     def apply(self, item):
-        from scap.model.xccdf_1_1.ValueType import ValueType
+        from .ValueType import ValueType
         if not isinstance(item, ValueType):
             raise ValueError('Trying to set value (' + self.idref + ') on an item of the wrong type: ' + item.__class__.__name__)
 

@@ -18,11 +18,10 @@
 import logging
 
 from scap.model.xs.StringType import StringType
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='import-name', type=StringType, required=True)
 class CheckImportType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'import-name': {'type': 'StringType', 'required': True},
-        },
-    }
+    pass

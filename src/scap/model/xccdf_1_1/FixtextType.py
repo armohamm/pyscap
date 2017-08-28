@@ -17,17 +17,19 @@
 
 import logging
 
-from scap.model.xccdf_1_1 import FIX_STRATEGY_ENUMERATION, RATING_ENUMERATION
-from scap.model.xccdf_1_1.HtmlTextWithSubType import HtmlTextWithSubType
+from . import FIX_STRATEGY_ENUMERATION
+from . import RATING_ENUMERATION
+from .HtmlTextWithSubType import HtmlTextWithSubType
+from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='fixref', type=NCNameType)
+@attribute(local_name='reboot', type=BooleanType, default=False)
+@attribute(local_name='strategy', enum=FIX_STRATEGY_ENUMERATION, default='unknown')
+@attribute(local_name='disruption', enum=RATING_ENUMERATION, default='unknown')
+@attribute(local_name='complexity', enum=RATING_ENUMERATION, default='unknown')
 class FixtextType(HtmlTextWithSubType):
-    MODEL_MAP = {
-        'attributes': {
-            'fixref': {'type': 'NCNameType'},
-            'reboot': {'type': 'BooleanType', 'default': False},
-            'strategy': {'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
-            'disruption': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
-            'complexity': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
-        },
-    }
+    pass

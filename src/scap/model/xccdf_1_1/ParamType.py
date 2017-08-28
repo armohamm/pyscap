@@ -18,11 +18,11 @@
 import logging
 
 from scap.model.xs.StringType import StringType
+from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='name', type=NCNameType, required=True)
 class ParamType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'name': {'type': 'NCNameType', 'required': True},
-        }
-    }
+    pass

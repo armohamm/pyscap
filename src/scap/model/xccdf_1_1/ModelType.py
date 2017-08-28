@@ -18,22 +18,18 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.AnyUriType import AnyUriType
+from .ParamType import ParamType
 
 logger = logging.getLogger(__name__)
-class ModelType(Model):
-    MODEL_MAP = {
-        'tag_name': 'model',
-        'elements': [
-            {'tag_name': 'param', 'class': 'ParamType', 'dict': 'params', 'key': 'name', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'system': {'type': 'AnyUriType', 'required': True},
-        },
-    }
 
+@attribute(local_name='system', type=AnyUriType, required=True)
+@element(local_name='param', cls=ParamType, dict='params', key='name', min=0, max=None)
+class ModelType(Model):
     def score(self, host, benchmark, profile_id):
-        from scap.model.xccdf_1_1.GroupType import GroupType
-        from scap.model.xccdf_1_1.RuleType import RuleType
+        from .GroupType import GroupType
+        from .RuleType import RuleType
 
         if self.system == 'urn:xccdf:scoring:default':
             ### Score.Group.Init

@@ -18,15 +18,14 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+from .IdrefType import IdrefType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='override', type=BooleanType, default=False)
+@element(local_name='sub', cls=IdrefType, list='subs', min=0, max=None)
+@element(namespace='http://www.w3.org/1999/xhtml', local_name='*', min=0, max=None)
 class HtmlTextWithSubType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'sub', 'class': 'IdrefType', 'list': 'subs', 'min': 0, 'max': None},
-            {'xmlns': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'override': {'type': 'BooleanType', 'default': False},
-        },
-    }
+    pass

@@ -19,16 +19,15 @@ import logging
 
 from scap.Model import Model
 from ..exceptions import *
+from scap.model.decorators import *
+from scap.model.xs.AnyUriType import AnyUriType
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class CheckContentRefType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'href': {'type': 'AnyUriType', 'required': True},
-            'name': {'type': 'StringType'},
-        },
-    }
 
+@attribute(local_name='href', type=AnyUriType, required=True)
+@attribute(local_name='name', type=StringType)
+class CheckContentRefType(Model):
     def check(self, benchmark, host, exports, import_names):
         content = Model.find_content(self.href)
         if content is None:

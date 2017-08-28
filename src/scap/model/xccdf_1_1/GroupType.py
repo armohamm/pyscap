@@ -18,19 +18,19 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_1.SelectableItemType import SelectableItemType
+from .SelectableItemType import SelectableItemType
+from scap.model.decorators import *
+from .ValueType import ValueType
+from .RuleType import RuleType
+from .SignatureType import SignatureType
 
 logger = logging.getLogger(__name__)
-class GroupType(SelectableItemType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'Value', 'class': 'ValueType', 'dict': 'items', 'min': 0, 'max': None},
-            {'tag_name': 'Group', 'class': 'GroupType', 'dict': 'items', 'min': 0, 'max': None},
-            {'tag_name': 'Rule', 'class': 'RuleType', 'dict': 'items', 'min': 0, 'max': None},
-            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
-        ],
-    }
 
+@element(local_name='Value', cls=ValueType, dict='items', min=0, max=None)
+@element(local_name='Group', cls=defer_class_load('scap.model.xccdf_1_1.GroupType', 'GroupType'), dict='items', min=0, max=None)
+@element(local_name='Rule', cls=RuleType, dict='items', min=0, max=None)
+@element(local_name='signature', cls=SignatureType, min=0, max=1)
+class GroupType(SelectableItemType):
     def resolve(self, benchmark):
         ### Loading.Resolve.Items
 
@@ -117,7 +117,7 @@ class GroupType(SelectableItemType):
         # TODO result retention
 
     def score(self, host, benchmark, profile_id, model_system):
-        from scap.model.xccdf_1_1.RuleType import RuleType
+        from .RuleType import RuleType
 
         if model_system == 'urn:xccdf:scoring:default':
             ### Score.Group.Init

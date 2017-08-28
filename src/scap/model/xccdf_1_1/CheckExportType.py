@@ -18,16 +18,15 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class CheckExportType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'value-id': {'type': 'NCNameType', 'required': True},
-            'export-name': {'type': 'StringType', 'required': True},
-        },
-    }
 
+@attribute(local_name='value-id', type=NCNameType, required=True)
+@attribute(local_name='export-name', type=StringType, required=True)
+class CheckExportType(Model):
     def map(self, benchmark):
         # go through benchmark till we find value referenced by
         # check_export.value_id

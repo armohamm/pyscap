@@ -22,37 +22,39 @@ import shutil
 import sys
 
 from scap.Model import Model
+from scap.model.decorators import *
 
-from scap.model.xccdf_1_1 import ROLE_ENUMERATION, SEVERITY_ENUMERATION
-from scap.model.xccdf_1_1.CheckType import CheckType
-from scap.model.xccdf_1_1.FixType import FixType
-from scap.model.xccdf_1_1.IdentType import IdentType
-from scap.model.xccdf_1_1.InstanceResultType import InstanceResultType
-from scap.model.xccdf_1_1.MessageType import MessageType
-from scap.model.xccdf_1_1.OverrideType import OverrideType
-from scap.model.xccdf_1_1.RuleResultType import RuleResultType
-from scap.model.xccdf_1_1.SelectableItemType import SelectableItemType
+from . import ROLE_ENUMERATION
+from . import SEVERITY_ENUMERATION
+from .CheckType import CheckType
+from .FixType import FixType
+from .IdentType import IdentType
+from .InstanceResultType import InstanceResultType
+from .MessageType import MessageType
+from .OverrideType import OverrideType
+from .RuleResultType import RuleResultType
+from .SelectableItemType import SelectableItemType
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.StringType import StringType
+from .ProfileNoteType import ProfileNoteType
+from .FixtextType import FixtextType
+from .ComplexCheckType import ComplexCheckType
+from .SignatureType import SignatureType
 
 logger = logging.getLogger(__name__)
-class RuleType(SelectableItemType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'ident', 'list': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
-            {'tag_name': 'impact-metric', 'min': 0, 'max': 1, 'type': 'StringType'},
-            {'tag_name': 'profile-note', 'list': 'profile_notes', 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
-            {'tag_name': 'fixtext', 'class': 'FixtextType', 'min': 0, 'max': None, 'list': 'fixtexts'},
-            {'tag_name': 'fix', 'class': 'FixType', 'min': 0, 'max': None, 'list': 'fixes'},# choice
-            {'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'dict': 'checks', 'key': 'selector'},
-            {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': 1},
-            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'role': {'enum': ROLE_ENUMERATION, 'default': 'full'},
-            'severity': {'enum': SEVERITY_ENUMERATION, 'default': 'unknown'},
-            'multiple': {'type': 'BooleanType', 'default': False},
-        },
-    }
 
+@attribute(local_name='role', enum=ROLE_ENUMERATION, default='full')
+@attribute(local_name='severity', enum=SEVERITY_ENUMERATION, default='unknown')
+@attribute(local_name='multiple', type=BooleanType, default=False)
+@element(local_name='ident', list='idents', min=0, max=None, cls=IdentType)
+@element(local_name='impact-metric', min=0, max=1, type=StringType)
+@element(local_name='profile-note', list='profile_notes', min=0, max=None, cls=ProfileNoteType)
+@element(local_name='fixtext', cls=FixtextType, min=0, max=None, list='fixtexts')
+@element(local_name='fix', cls=FixType, min=0, max=None, list='fixes')# choice
+@element(local_name='check', cls=CheckType, min=0, max=None, dict='checks', key='selector')
+@element(local_name='complex-check', cls=ComplexCheckType, min=0, max=1)
+@element(local_name='signature', cls=SignatureType, min=0, max=1)
+class RuleType(SelectableItemType):
     def __init__(self, *args, **kwargs):
         super(RuleType, self).__init__(*args, **kwargs)
 

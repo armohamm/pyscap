@@ -18,26 +18,27 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_1 import FIX_STRATEGY_ENUMERATION, RATING_ENUMERATION
+from . import FIX_STRATEGY_ENUMERATION
+from . import RATING_ENUMERATION
+from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.AnyUriType import AnyUriType
+from .IdrefType import IdrefType
+from .InstanceFixType import InstanceFixType
 
 logger = logging.getLogger(__name__)
-class FixType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'sub', 'list': 'subs', 'min': 0, 'max': None, 'class': 'IdrefType'},
-            {'tag_name': 'instance', 'list': 'instance', 'min': 0, 'max': None, 'class': 'InstanceFixType'},
-        ],
-        'attributes': {
-            'id': {'type': 'NCNameType'},
-            'reboot': {'type': 'BooleanType'},
-            'strategy': {'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
-            'disruption': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
-            'complexity': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
-            'system': {'type': 'AnyUriType'},
-            'platform': {'type': 'AnyUriType'},
-        },
-    }
 
+@attribute(local_name='id', type=NCNameType)
+@attribute(local_name='reboot', type=BooleanType)
+@attribute(local_name='strategy', enum=FIX_STRATEGY_ENUMERATION, default='unknown')
+@attribute(local_name='disruption', enum=RATING_ENUMERATION, default='unknown')
+@attribute(local_name='complexity', enum=RATING_ENUMERATION, default='unknown')
+@attribute(local_name='system', type=AnyUriType)
+@attribute(local_name='platform', type=AnyUriType)
+@element(local_name='sub', list='subs', min=0, max=None, cls=IdrefType)
+@element(local_name='instance', list='instance', min=0, max=None, cls=InstanceFixType)
+class FixType(Model):
     def __str__(self):
         s = 'FixType '
         if self.system is not None:

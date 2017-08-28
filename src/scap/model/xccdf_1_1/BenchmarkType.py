@@ -19,47 +19,65 @@ import logging
 import datetime
 
 from scap.Model import Model
-from scap.model.xccdf_1_1.ModelType import ModelType
+from .ModelType import ModelType
+from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.IdType import IdType
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.AnyUriType import AnyUriType
+from scap.model.xs.StringType import StringType
+from .StatusElement import StatusElement
+from .TextType import TextType
+from .HtmlTextWithSubType import HtmlTextWithSubType
+from .NoticeType import NoticeType
+from .ReferenceType import ReferenceType
+from .PlainTextType import PlainTextType
+from .UriIdrefType import UriIdrefType
+from .VersionType import VersionType
+from .MetadataType import MetadataType
+from .ModelType import ModelType
+from .ProfileType import ProfileType
+from .ValueType import ValueType
+from .GroupType import GroupType
+from .RuleType import RuleType
+from .TestResultType import TestResultType
+from .SignatureType import SignatureType
 
 logger = logging.getLogger(__name__)
-class BenchmarkType(Model):
-    MODEL_MAP = {
-        'tag_name': 'Benchmark',
-        'elements': [
-            {'tag_name': 'status', 'list': 'statuses', 'class': 'StatusElement', 'min': 1, 'max': None},
-            {'tag_name': 'title', 'list': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
-            {'tag_name': 'description', 'list': 'descriptions', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
-            {'tag_name': 'notice', 'dict': 'notices', 'class': 'NoticeType', 'min': 0, 'max': None},
-            {'tag_name': 'front-matter', 'list': 'front_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
-            {'tag_name': 'rear-matter', 'list': 'rear_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
-            {'tag_name': 'reference', 'list': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
-            {'tag_name': 'plain-text', 'list': 'plain_texts', 'class': 'PlainTextType', 'min': 0, 'max': None},
-            # TODO choice of one of the following
-            # CIS Platform schema, compatibility with XCCDF 1.0
-            {'xmlns': 'http://www.cisecurity.org/xccdf/platform/0.2.3', 'tag_name': 'platform-definitions', 'class': 'PlatformDefinitionsType', 'min': 0, 'max': 1},# XCCDF-P 1.0 schema, compatibility with XCCDF 1.1
-            {'xmlns': 'http://checklists.nist.gov/xccdf-p/1.1', 'tag_name': 'Platform-Specification', 'class': 'PlatformSpecificationType', 'min': 0, 'max': 1},# CPE 1.0 schema, compatibility with XCCDF 1.1.3
-            {'xmlns': 'http://cpe.mitre.org/XMLSchema/cpe/1.0', 'tag_name': 'cpe-list', 'class': 'CpeListType', 'min': 0, 'max': 1},# CPE 2.0 language schema, for SCAP 1.0 conformance
-            {'xmlns': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'platform-specification', 'class': 'PlatformSpecificationType', 'min': 0, 'max': 1},
-            {'tag_name': 'platform', 'class': 'UriIdrefType', 'min': 0, 'max': None},
-            {'tag_name': 'version', 'class': 'VersionType', 'min': 1, 'max': 1},
-            {'tag_name': 'metadata', 'list': 'metadata', 'class': 'MetadataType', 'min': 0, 'max': None},
-            {'tag_name': 'model', 'list': 'models', 'class': 'ModelType', 'min': 0, 'max': None},
-            {'tag_name': 'Profile', 'class': 'ProfileType', 'min': 0, 'max': None, 'dict': 'profiles'},
-            {'tag_name': 'Value', 'class': 'ValueType', 'min': 0, 'max': None, 'dict': 'items'},
-            {'tag_name': 'Group', 'class': 'GroupType', 'min': 0, 'max': None, 'dict': 'items'},
-            {'tag_name': 'Rule', 'class': 'RuleType', 'min': 0, 'max': None, 'dict': 'items'},
-            {'tag_name': 'TestResult', 'class': 'TestResultType', 'min': 0, 'max': None, 'dict': 'test_results'},
-            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'id': {'required': True, 'type': 'NCNameType'},
-            'Id': {'type': 'ID'},
-            'resolved': {'type': 'BooleanType', 'default': False},
-            'style': {'type': 'StringType'},
-            'style-href': {'type': 'AnyUriType'},
-        },
-    }
 
+@attribute(local_name='id', required=True, type=NCNameType)
+@attribute(local_name='Id', type=IdType)
+@attribute(local_name='resolved', type=BooleanType, default=False)
+@attribute(local_name='style', type=StringType)
+@attribute(local_name='style-href', type=AnyUriType)
+@element(local_name='status', list='statuses', cls=StatusElement, min=1, max=None)
+@element(local_name='title', list='titles', cls=TextType, min=0, max=None)
+@element(local_name='description', list='descriptions', cls=HtmlTextWithSubType, min=0, max=None)
+@element(local_name='notice', dict='notices', cls=NoticeType, min=0, max=None)
+@element(local_name='front-matter', list='front_matter', cls=HtmlTextWithSubType, min=0, max=None)
+@element(local_name='rear-matter', list='rear_matter', cls=HtmlTextWithSubType, min=0, max=None)
+@element(local_name='reference', list='references', cls=ReferenceType, min=0, max=None)
+@element(local_name='plain-text', list='plain_texts', cls=PlainTextType, min=0, max=None)
+# TODO choice of one of the following
+# CIS Platform schema, compatibility with XCCDF 1.0
+@element(namespace='http://www.cisecurity.org/xccdf/platform/0.2.3', local_name='platform-definitions', min=0, max=1)
+# XCCDF-P 1.0 schema, compatibility with XCCDF 1.1
+@element(namespace='http://checklists.nist.gov/xccdf-p/1.1', local_name='Platform-Specification', min=0, max=1)
+# CPE 1.0 schema, compatibility with XCCDF 1.1.3
+@element(namespace='http://cpe.mitre.org/XMLSchema/cpe/1.0', local_name='cpe-list', min=0, max=1)
+# CPE 2.0 language schema, for SCAP 1.0 conformance
+@element(namespace='http://cpe.mitre.org/language/2.0', local_name='platform-specification', min=0, max=1)
+@element(local_name='platform', cls=UriIdrefType, min=0, max=None)
+@element(local_name='version', cls=VersionType, min=1, max=1)
+@element(local_name='metadata', list='metadata', cls=MetadataType, min=0, max=None)
+@element(local_name='model', list='models', cls=ModelType, min=0, max=None)
+@element(local_name='Profile', cls=ProfileType, min=0, max=None, dict='profiles')
+@element(local_name='Value', cls=ValueType, min=0, max=None, dict='items')
+@element(local_name='Group', cls=GroupType, min=0, max=None, dict='items')
+@element(local_name='Rule', cls=RuleType, min=0, max=None, dict='items')
+@element(local_name='TestResult', cls=TestResultType, min=0, max=None, dict='test_results')
+@element(local_name='signature', cls=SignatureType, min=0, max=1)
+class BenchmarkType(Model):
     def noticing(self):
         ### Loading.Noticing
 

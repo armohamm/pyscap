@@ -18,11 +18,11 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='context', type=StringType, default='undefined')
 class InstanceFixType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'context': {'type': 'StringType', 'default': 'undefined'}
-        }
-    }
+    pass

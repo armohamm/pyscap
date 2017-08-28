@@ -18,14 +18,12 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='override', type=BooleanType, default=False, min=0, max=None)
+@element(namespace='http://www.w3.org/1999/xhtml', local_name='*', min=0, max=None)
 class HtmlTextType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'override': {'type': 'BooleanType', 'default': False, 'min': 0, 'max': None},
-        },
-    }
+    pass

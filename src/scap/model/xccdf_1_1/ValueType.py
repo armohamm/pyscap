@@ -17,33 +17,33 @@
 
 import logging
 
-from scap.model.xccdf_1_1 import VALUE_TYPE_ENUMERATION, VALUE_OPERATOR_ENUMERATION, INTERFACE_HINT_ENUMERATION
-from scap.model.xccdf_1_1.ItemType import ItemType
+from . import VALUE_TYPE_ENUMERATION
+from . import VALUE_OPERATOR_ENUMERATION
+from . import INTERFACE_HINT_ENUMERATION
+from .ItemType import ItemType
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+from .SelStringType import SelStringType
+from .SelNumType import SelNumType
+from .SelChoicesType import SelChoicesType
+from .UriRefType import UriRefType
+from .SignatureType import SignatureType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='type', enum=VALUE_TYPE_ENUMERATION, default='string')
+@attribute(local_name='operator', enum=VALUE_OPERATOR_ENUMERATION, default='equals')
+@attribute(local_name='interactive', type=BooleanType)
+@attribute(local_name='interfaceHint', enum=INTERFACE_HINT_ENUMERATION)
+@element(local_name='value', cls=SelStringType, dict='values', key='selector', min=1, max=None)
+@element(local_name='default', cls=SelStringType, dict='defaults', key='selector', min=0, max=None)
+@element(local_name='match', cls=SelStringType, dict='matches', key='selector', min=0, max=None)
+@element(local_name='lower-bound', cls=SelNumType, dict='lower_bounds', key='selector', min=0, max=None)
+@element(local_name='upper-bound', cls=SelNumType, dict='upper_bounds', key='selector', min=0, max=None)
+@element(local_name='choices', cls=SelChoicesType, dict='choice_selections', key='selector', min=0, max=None)
+@element(local_name='source', cls=UriRefType, list='sources', min=0, max=None)
+@element(local_name='signature', cls=SignatureType, min=0, max=1)
 class ValueType(ItemType):
-    MODEL_MAP = {
-        'elements': [
-            # TODO: at least one value
-            # TODO: since order matters in xml (and for values) we might need a list vs. dict here
-
-            {'tag_name': 'value', 'class': 'SelStringType', 'dict': 'values', 'key': 'selector', 'min': 1, 'max': None},
-            {'tag_name': 'default', 'class': 'SelStringType', 'dict': 'defaults', 'key': 'selector', 'min': 0, 'max': None},
-            {'tag_name': 'match', 'class': 'SelStringType', 'dict': 'matches', 'key': 'selector', 'min': 0, 'max': None},
-            {'tag_name': 'lower-bound', 'class': 'SelNumType', 'dict': 'lower_bounds', 'key': 'selector', 'min': 0, 'max': None},
-            {'tag_name': 'upper-bound', 'class': 'SelNumType', 'dict': 'upper_bounds', 'key': 'selector', 'min': 0, 'max': None},
-            {'tag_name': 'choices', 'class': 'SelChoicesType', 'dict': 'choice_selections', 'key': 'selector', 'min': 0, 'max': None},
-            {'tag_name': 'source', 'class': 'UriRefType', 'list': 'sources', 'min': 0, 'max': None},
-            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'string'},
-            'operator': {'enum': VALUE_OPERATOR_ENUMERATION, 'default': 'equals'},
-            'interactive': {'type': 'BooleanType'},
-            'interfaceHint': {'enum': INTERFACE_HINT_ENUMERATION},
-        },
-    }
-
     def __init__(self, *args, **kwargs):
         super(ValueType, self).__init__(*args, **kwargs)
 

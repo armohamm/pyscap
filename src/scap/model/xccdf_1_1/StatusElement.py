@@ -17,12 +17,12 @@
 
 import logging
 
-from scap.model.xccdf_1_1.StatusType import StatusType
+from .StatusType import StatusType
+from scap.model.decorators import *
+from scap.model.xs.DateType import DateType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='date', type=DateType)
 class StatusElement(StatusType):
-    MODEL_MAP = {
-        'attributes': {
-            'date': {'type': 'DateType'},
-        }
-    }
+    pass

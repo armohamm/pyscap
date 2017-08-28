@@ -17,12 +17,12 @@
 
 import logging
 
-from scap.model.xccdf_1_1.IdrefType import IdrefType
+from .IdrefType import IdrefType
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='override', type=BooleanType, default=False)
 class OverrideableIdrefType(IdrefType):
-    MODEL_MAP = {
-        'attributes': {
-            'override': {'type': 'BooleanType', 'default': False},
-        }
-    }
+    pass

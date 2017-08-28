@@ -18,15 +18,14 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from .IdrefType import IdrefType
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='sub', cls=IdrefType, list='subs', min=0, max=None)
+@element(namespace='http://www.w3.org/1999/xhtml', local_name='*', min=0, max=None)
+@attribute(local_name='tag', type=NCNameType, required=True)
 class ProfileNoteType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'sub', 'class': 'IdrefType', 'list': 'subs', 'min': 0, 'max': None},
-            {'xmlns': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'tag': {'type': 'NCNameType', 'required': True},
-        },
-    }
+    pass

@@ -17,32 +17,37 @@
 
 import logging
 
-from scap.model.xccdf_1_1.Extendable import Extendable
+from .Extendable import Extendable
+from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.IdType import IdType
+from scap.model.xs.StringType import StringType
+from .StatusType import StatusType
+from .VersionType import VersionType
+from .TextWithSubType import TextWithSubType
+from .HtmlTextWithSubType import HtmlTextWithSubType
+from .WarningType import WarningType
+from .TextType import TextType
+from .ReferenceType import ReferenceType
 
 logger = logging.getLogger(__name__)
-class ItemType(Extendable):
-    MODEL_MAP = {
-        # abstract
-        'elements': [
-            {'tag_name': 'status', 'class': 'StatusType', 'list': 'statuses', 'min': 0, 'max': None},
-            {'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
-            {'tag_name': 'title', 'list': 'titles', 'class': 'TextWithSubType', 'min': 0, 'max': None},
-            {'tag_name': 'description', 'list': 'descriptions', 'min': 0, 'max': None, 'class': 'HtmlTextWithSubType'},
-            {'tag_name': 'warning', 'class': 'WarningType', 'min': 0, 'max': None, 'type': 'StringType', 'list': 'warnings'},
-            {'tag_name': 'question', 'list': 'questions', 'class': 'TextType', 'min': 0, 'max': None},
-            {'tag_name': 'reference', 'list': 'references', 'min': 0, 'max': None, 'class': 'ReferenceType'},
-        ],
-        'attributes': {
-            'id': {'type': 'NCNameType', 'required': True},
-            'abstract': {'type': 'BooleanType', 'default': False},
-            'cluster-id': {'type': 'NCNameType'},
-            'extends': {'type': 'NCNameType'},
-            'hidden': {'type': 'BooleanType', 'default': False},
-            'prohibitChanges': {'type': 'BooleanType', 'default': False},
-            'Id': {'type': 'ID'},
-        },
-    }
 
+@attribute(local_name='id', type=NCNameType, required=True)
+@attribute(local_name='abstract', type=BooleanType, default=False)
+@attribute(local_name='cluster-id', type=NCNameType)
+@attribute(local_name='extends', type=NCNameType)
+@attribute(local_name='hidden', type=BooleanType, default=False)
+@attribute(local_name='prohibitChanges', type=BooleanType, default=False)
+@attribute(local_name='Id', type=IdType)
+@element(local_name='status', cls=StatusType, list='statuses', min=0, max=None)
+@element(local_name='version', cls=VersionType, min=0, max=1)
+@element(local_name='title', list='titles', cls=TextWithSubType, min=0, max=None)
+@element(local_name='description', list='descriptions', min=0, max=None, cls=HtmlTextWithSubType)
+@element(local_name='warning', cls=WarningType, min=0, max=None, type=StringType, list='warnings')
+@element(local_name='question', list='questions', cls=TextType, min=0, max=None)
+@element(local_name='reference', list='references', min=0, max=None, cls=ReferenceType)
+class ItemType(Extendable):
     def __str__(self):
         return self.__class__.__name__ + ' # ' + self.id
 

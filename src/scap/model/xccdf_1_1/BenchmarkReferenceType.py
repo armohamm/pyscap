@@ -18,11 +18,11 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.AnyUriType import AnyUriType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='href', type=AnyUriType, required=True)
 class BenchmarkReferenceType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'href': {'type': 'AnyUriType', 'required': True},
-        },
-    }
+    pass

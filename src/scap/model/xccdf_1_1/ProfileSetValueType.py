@@ -18,17 +18,15 @@
 import logging
 
 from scap.model.xs.StringType import StringType
+from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
-class ProfileSetValueType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'idref': {'type': 'NCNameType', 'required': True},
-        }
-    }
 
+@attribute(local_name='idref', type=NCNameType, required=True)
+class ProfileSetValueType(StringType):
     def apply(self, item):
-        from scap.model.xccdf_1_1.ValueType import ValueType
+        from .ValueType import ValueType
         if not isinstance(item, ValueType):
             raise ValueError('Trying to set value (' + self.idref + ') on an item of the wrong type: ' + item.__class__.__name__)
 

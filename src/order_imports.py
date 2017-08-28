@@ -8,11 +8,14 @@ def do_file(path):
     from_imports = []
     one_dot_imports = []
     two_dot_imports = []
+    in_class = False
 
     with open(path, 'r') as f:
         with open(path+'.new', 'w') as g:
             for line in f:
-                if line.startswith('import '):
+                if in_class:
+                    g.write(line)
+                elif line.startswith('import '):
                     in_imports = True
                     lib_imports.append(line)
                 elif line.startswith('from ..'):
@@ -42,6 +45,9 @@ def do_file(path):
                             g.write('\n')
                         in_imports = False
 
+                        g.write(line)
+                    elif line.startswith('class '):
+                        in_class = True
                         g.write(line)
                     else:
                         g.write(line)

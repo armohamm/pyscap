@@ -18,11 +18,10 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
+
+@element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='*', min=1, max=1)
 class SignatureType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://www.w3.org/2000/09/xmldsig#', 'tag_name': '*', 'min': 1, 'max': 1},
-        ],
-    }
+    pass

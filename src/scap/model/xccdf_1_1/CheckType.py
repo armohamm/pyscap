@@ -18,24 +18,26 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_1.MessageType import MessageType
+from .MessageType import MessageType
+from scap.model.decorators import *
+from scap.model.xs.AnyUriType import AnyUriType
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.StringType import StringType
+from .CheckImportType import CheckImportType
+from .CheckExportType import CheckExportType
+from .CheckContentRefType import CheckContentRefType
+from .CheckContentType import CheckContentType
 
 logger = logging.getLogger(__name__)
-class CheckType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'check-import', 'class': 'CheckImportType', 'list': 'check_imports', 'min': 0, 'max': None},
-            {'tag_name': 'check-export', 'class': 'CheckExportType', 'list': 'check_exports', 'min': 0, 'max': None},
-            {'tag_name': 'check-content-ref', 'class': 'CheckContentRefType', 'list': 'check_content_refs', 'min': 0, 'max': None},
-            {'tag_name': 'check-content', 'class': 'CheckContentType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'system': {'type': 'AnyUriType', 'required': True},
-            'id': {'type': 'NCNameType'},
-            'selector': {'default': '', 'type': 'StringType'},
-        },
-    }
 
+@attribute(local_name='system', type=AnyUriType, required=True)
+@attribute(local_name='id', type=NCNameType)
+@attribute(local_name='selector', default='', type=StringType)
+@element(local_name='check-import', cls=CheckImportType, list='check_imports', min=0, max=None)
+@element(local_name='check-export', cls=CheckExportType, list='check_exports', min=0, max=None)
+@element(local_name='check-content-ref', cls=CheckContentRefType, list='check_content_refs', min=0, max=None)
+@element(local_name='check-content', cls=CheckContentType, min=0, max=1)
+class CheckType(Model):
     def __str__(self):
         s = self.__class__.__name__ + ' '
 

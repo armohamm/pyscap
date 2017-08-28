@@ -18,11 +18,11 @@
 import logging
 
 from scap.model.xs.StringType import StringType
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='override', type=BooleanType, default=False)
 class TextType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'override': {'type': 'BooleanType', 'default': False},
-        }
-    }
+    pass

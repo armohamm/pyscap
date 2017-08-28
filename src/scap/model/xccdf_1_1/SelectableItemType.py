@@ -18,23 +18,24 @@
 import logging
 import re
 
-from scap.model.xccdf_1_1.ItemType import ItemType
+from .ItemType import ItemType
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
+from .WeightType import WeightType
+from .HtmlTextWithSubType import HtmlTextWithSubType
+from .OverrideableUriIdrefType import OverrideableUriIdrefType
+from .IdrefListType import IdrefListType
+from .IdrefType import IdrefType
 
 logger = logging.getLogger(__name__)
-class SelectableItemType(ItemType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'rationale', 'list': 'rationales', 'min': 0, 'max': None, 'class': 'HtmlTextWithSubType'},
-            {'tag_name': 'platform', 'list': 'platforms', 'min': 0, 'max': None, 'class': 'OverrideableUriIdrefType'},
-            {'tag_name': 'requires', 'list': 'requires', 'min': 0, 'max': None, 'class': 'IdrefListType'},
-            {'tag_name': 'conflicts', 'list': 'conflicts', 'min': 0, 'max': None, 'class': 'IdrefType'},
-        ],
-        'attributes': {
-            'selected': {'type': 'BooleanType', 'default': True},
-            'weight': {'type': 'WeightType', 'default': 1.0},
-        },
-    }
 
+@attribute(local_name='selected', type=BooleanType, default=True)
+@attribute(local_name='weight', type=WeightType, default=1.0)
+@element(local_name='rationale', list='rationales', min=0, max=None, cls=HtmlTextWithSubType)
+@element(local_name='platform', list='platforms', min=0, max=None, cls=OverrideableUriIdrefType)
+@element(local_name='requires', list='requires', min=0, max=None, cls=IdrefListType)
+@element(local_name='conflicts', list='conflicts', min=0, max=None, cls=IdrefType)
+class SelectableItemType(ItemType):
     def _require_one_item(self, benchmark, item_ids):
         for item_id in item_ids:
             item = benchmark.items[item_id]

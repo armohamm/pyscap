@@ -18,13 +18,11 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
-class Extendable(Model):
-    MODEL_MAP = {
-        # abstract
-    }
 
+class Extendable(Model):
     PROCESSING_MAP = {
         'abstract': 'none',
         'cluster_id': 'none',

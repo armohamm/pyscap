@@ -18,11 +18,11 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.NMTokensType import NMTokensType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='idref', type=NMTokensType, required=True)
 class IdrefListType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'idref': {'type': 'NMTokensType', 'required': True},
-        }
-    }
+    pass

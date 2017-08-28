@@ -18,13 +18,12 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
+
+# TODO at least 1 element must be used
+@element(namespace='http://purl.org/dc/elements/1.1/', local_name='*', min=0, max=None)
+@element(namespace='http://checklists.nist.gov/sccf/0.1', local_name='*', min=0, max=None)
 class MetadataType(Model):
-    MODEL_MAP = {
-        'elements': [
-            # TODO at least 1 element must be used
-            {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 0, 'max': None},
-            {'xmlns': 'http://checklists.nist.gov/sccf/0.1', 'tag_name': '*', 'min': 0, 'max': None},
-        ],
-    }
+    pass

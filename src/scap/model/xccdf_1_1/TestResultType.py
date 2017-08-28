@@ -19,36 +19,45 @@ import logging
 import uuid
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.DateTimeType import DateTimeType
+from scap.model.xs.StringType import StringType
+from scap.model.xs.IdType import IdType
+from .BenchmarkReferenceType import BenchmarkReferenceType
+from .TextType import TextType
+from .IdentityType import IdentityType
+from .IdrefType import IdrefType
+from .TargetFactsType import TargetFactsType
+from .UriIdrefType import UriIdrefType
+from .ProfileSetValueType import ProfileSetValueType
+from .RuleResultType import RuleResultType
+from .ScoreType import ScoreType
+from .SignatureType import SignatureType
 
 logger = logging.getLogger(__name__)
-class TestResultType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'benchmark', 'class': 'BenchmarkReferenceType', 'min': 0, 'max': 1},
-            {'tag_name': 'title', 'list': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
-            {'tag_name': 'remark', 'list': 'remarks', 'class': 'TextType', 'min': 0, 'max': None},
-            {'tag_name': 'organization', 'list': 'organizations', 'type': 'StringType', 'min': 0, 'max': None},
-            {'tag_name': 'identity', 'class': 'IdentityType', 'min': 0, 'max': 1},
-            {'tag_name': 'profile', 'class': 'IdrefType', 'min': 0, 'max': 1},
-            {'tag_name': 'target', 'list': 'targets', 'type': 'StringType', 'min': 1, 'max': None},
-            {'tag_name': 'target-address', 'list': 'target_addresses', 'type': 'StringType', 'min': 0, 'max': None},
-            {'tag_name': 'target-facts', 'class': 'TargetFactsType', 'min': 0, 'max': 1},
-            {'tag_name': 'platform', 'list': 'platforms', 'class': 'UriIdrefType', 'min': 0, 'max': None},
-            {'tag_name': 'set-value', 'dict': 'set_values', 'class': 'ProfileSetValueType', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'rule-result', 'dict': 'rule_results', 'class': 'RuleResultType', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'score', 'list': 'scores', 'class': 'ScoreType', 'min': 1, 'max': None},
-            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'id': {'type': 'NCNameType', 'required': True},
-            'start-time': {'type': 'DateTimeType'},
-            'end-time': {'type': 'DateTimeType', 'required': True},
-            'test-system': {'type': 'StringType'},
-            'version': {'type': 'StringType'},
-            'Id': {'type': 'ID'},
-        },
-    }
 
+@attribute(local_name='id', type=NCNameType, required=True)
+@attribute(local_name='start-time', type=DateTimeType)
+@attribute(local_name='end-time', type=DateTimeType, required=True)
+@attribute(local_name='test-system', type=StringType)
+@attribute(local_name='version', type=StringType)
+@attribute(local_name='Id', type=IdType)
+@element(local_name='benchmark', cls=BenchmarkReferenceType, min=0, max=1)
+@element(local_name='title', list='titles', cls=TextType, min=0, max=None)
+@element(local_name='remark', list='remarks', cls=TextType, min=0, max=None)
+@element(local_name='organization', list='organizations', type=StringType, min=0, max=None)
+@element(local_name='identity', cls=IdentityType, min=0, max=1)
+@element(local_name='profile', cls=IdrefType, min=0, max=1)
+@element(local_name='target', list='targets', type=StringType, min=1, max=None)
+@element(local_name='target-address', list='target_addresses', type=StringType, min=0, max=None)
+@element(local_name='target-facts', cls=TargetFactsType, min=0, max=1)
+@element(local_name='platform', list='platforms', cls=UriIdrefType, min=0, max=None)
+@element(local_name='set-value', dict='set_values', cls=ProfileSetValueType, key='idref', min=0, max=None)
+@element(local_name='rule-result', dict='rule_results', cls=RuleResultType, key='idref', min=0, max=None)
+@element(local_name='score', list='scores', cls=ScoreType, min=1, max=None)
+@element(local_name='signature', cls=SignatureType, min=0, max=1)
+class TestResultType(Model):
     @staticmethod
     def generate_id():
         return 'xccdf_biz.jaymes_testresult_' + uuid.uuid4().hex

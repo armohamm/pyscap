@@ -18,15 +18,12 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
-class CheckContentType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': '*', 'max': None},
-        ],
-    }
 
+@element(local_name='*', max=None)
+class CheckContentType(Model):
     def check(self, benchmark, host, exports, import_names):
         # TODO check if content is supported
 

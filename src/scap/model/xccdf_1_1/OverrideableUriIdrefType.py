@@ -17,12 +17,12 @@
 
 import logging
 
-from scap.model.xccdf_1_1.UriIdrefType import UriIdrefType
+from .UriIdrefType import UriIdrefType
+from scap.model.decorators import *
+from scap.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='override', type=BooleanType, default=False)
 class OverrideableUriIdrefType(UriIdrefType):
-    MODEL_MAP = {
-        'attributes': {
-            'override': {'type': 'BooleanType', 'default': False},
-        }
-    }
+    pass

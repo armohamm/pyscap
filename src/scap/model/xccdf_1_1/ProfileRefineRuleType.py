@@ -18,25 +18,25 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_1 import SEVERITY_ENUMERATION, ROLE_ENUMERATION
+from . import SEVERITY_ENUMERATION
+from . import ROLE_ENUMERATION
+from scap.model.decorators import *
+from scap.model.xs.NCNameType import NCNameType
+from .WeightType import WeightType
+from scap.model.xs.StringType import StringType
+from .TextType import TextType
 
 logger = logging.getLogger(__name__)
-class ProfileRefineRuleType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'remark', 'type': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'idref': {'type': 'NCNameType', 'required': True},
-            'weight': {'type': 'WeightType'},
-            'selector': {'type': 'StringType'},
-            'severity': {'enum': SEVERITY_ENUMERATION},
-            'role': {'enum': ROLE_ENUMERATION},
-        },
-    }
 
+@attribute(local_name='idref', type=NCNameType, required=True)
+@attribute(local_name='weight', type=WeightType)
+@attribute(local_name='selector', type=StringType)
+@attribute(local_name='severity', enum=SEVERITY_ENUMERATION)
+@attribute(local_name='role', enum=ROLE_ENUMERATION)
+@element(local_name='remark', type=TextType, list='remarks', min=0, max=None)
+class ProfileRefineRuleType(Model):
     def apply(self, item):
-        from scap.model.xccdf_1_1.RuleType import RuleType
+        from .RuleType import RuleType
         if not isinstance(item, RuleType):
             raise ValueError('Trying to refine rule (' + self.idref + ') on an item of the wrong type: ' + item.__class__.__name__)
 
