@@ -10,8 +10,8 @@ def do_file(path):
     two_dot_imports = []
     in_class = False
 
-    with open(path, 'r') as f:
-        with open(path+'.new', 'w') as g:
+    with open(path, 'r', encoding='utf-8') as f:
+        with open(path+'.new', 'w', encoding='utf-8') as g:
             for line in f:
                 if in_class:
                     g.write(line)

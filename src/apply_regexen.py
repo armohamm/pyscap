@@ -43,8 +43,8 @@ subs = (
 
 def regex_file(path):
     in_defs = False
-    with open(path, 'r') as f:
-        with open(path+'.new', 'w') as g:
+    with open(path, 'r', encoding='utf-8') as f:
+        with open(path+'.new', 'w', encoding='utf-8') as g:
             for line in f:
                 if re.fullmatch('\s+def', line):
                     in_defs = True
