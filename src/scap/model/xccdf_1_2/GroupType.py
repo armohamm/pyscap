@@ -17,7 +17,8 @@
 
 import logging
 
-from scap.model.xccdf_1_2.SelectableItemType import SelectableItemType
+from .SelectableItemType import SelectableItemType
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

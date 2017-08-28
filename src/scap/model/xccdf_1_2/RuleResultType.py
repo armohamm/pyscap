@@ -18,7 +18,8 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import ROLE_ENUMERATION, SEVERITY_ENUMERATION, RESULT_ENUMERATION
+from . import ROLE_ENUMERATION, SEVERITY_ENUMERATION, RESULT_ENUMERATION
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

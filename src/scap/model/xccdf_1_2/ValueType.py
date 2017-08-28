@@ -17,8 +17,9 @@
 
 import logging
 
-from scap.model.xccdf_1_2 import VALUE_TYPE_ENUMERATION, VALUE_OPERATOR_ENUMERATION, INTERFACE_HINT_ENUMERATION
-from scap.model.xccdf_1_2.ItemType import ItemType
+from . import VALUE_TYPE_ENUMERATION, VALUE_OPERATOR_ENUMERATION, INTERFACE_HINT_ENUMERATION
+from .ItemType import ItemType
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

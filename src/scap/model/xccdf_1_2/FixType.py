@@ -18,7 +18,8 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xccdf_1_2 import FIX_STRATEGY_ENUMERATION, RATING_ENUMERATION, FIX_SYSTEM_ENUMERATION
+from . import FIX_STRATEGY_ENUMERATION, RATING_ENUMERATION, FIX_SYSTEM_ENUMERATION
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

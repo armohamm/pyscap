@@ -17,8 +17,9 @@
 
 import logging
 
-from scap.model.xccdf_1_2 import RESULT_ENUMERATION
+from . import RESULT_ENUMERATION
 from scap.model.xs.DecimalType import DecimalType
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

@@ -17,8 +17,9 @@
 
 import logging
 
-from scap.model.xccdf_1_2 import SUB_USE_ENUMERATION
-from scap.model.xccdf_1_2.IdRefType import IdRefType
+from . import SUB_USE_ENUMERATION
+from .IdRefType import IdRefType
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

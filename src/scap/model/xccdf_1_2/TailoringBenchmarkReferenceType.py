@@ -17,7 +17,8 @@
 
 import logging
 
-from scap.model.xccdf_1_2.BenchmarkReferenceType import BenchmarkReferenceType
+from .BenchmarkReferenceType import BenchmarkReferenceType
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

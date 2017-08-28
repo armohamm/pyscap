@@ -17,7 +17,8 @@
 
 import logging
 
-from scap.model.xccdf_1_2.ComplexValueType import ComplexValueType
+from .ComplexValueType import ComplexValueType
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

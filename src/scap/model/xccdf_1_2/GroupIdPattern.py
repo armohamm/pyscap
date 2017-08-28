@@ -18,6 +18,7 @@
 import logging
 
 from scap.model.xs.NCNameType import NCNameType
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 
