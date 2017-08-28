@@ -20,9 +20,7 @@ import logging
 from scap.model.xccdf_1_2.ComplexValueType import ComplexValueType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='selector', type=StringType)
 class SelComplexValueType(ComplexValueType):
-    MODEL_MAP = {
-        'attributes': {
-            'selector': {'type': 'StringType'}
-        }
-    }
+    pass

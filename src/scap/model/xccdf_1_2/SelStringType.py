@@ -20,9 +20,7 @@ import logging
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='selector', type=StringType, default='')
 class SelStringType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'selector': {'type': 'StringType', 'default': ''},
-        }
-    }
+    pass

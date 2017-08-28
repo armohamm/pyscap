@@ -20,5 +20,6 @@ import logging
 from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
+
 class TestResultIdPattern(NCNameType):
     pass

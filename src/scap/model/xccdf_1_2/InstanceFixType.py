@@ -20,9 +20,7 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='context', type=StringType, default='undefined')
 class InstanceFixType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'context': {'type': 'StringType', 'default': 'undefined'}
-        }
-    }
+    pass

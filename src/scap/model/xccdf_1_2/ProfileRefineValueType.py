@@ -21,18 +21,12 @@ from scap.Model import Model
 from scap.model.xccdf_1_2 import VALUE_OPERATOR_ENUMERATION
 
 logger = logging.getLogger(__name__)
-class ProfileRefineValueType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'remark', 'type': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'idref': {'type': 'NCNameType', 'required': True},
-            'selector': {'type': 'StringType'},
-            'operator': {'enum': VALUE_OPERATOR_ENUMERATION},
-        },
-    }
 
+@attribute(local_name='idref', type=NCNameType, required=True)
+@attribute(local_name='selector', type=StringType)
+@attribute(local_name='operator', enum=VALUE_OPERATOR_ENUMERATION)
+@element(local_name='remark', type=TextType, list='remarks', min=0, max=None)
+class ProfileRefineValueType(Model):
     def apply(self, item):
         from scap.model.xccdf_1_1.ValueType import ValueType
         if not isinstance(item, ValueType):

@@ -20,19 +20,15 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', type=TailoringIdPattern, required=True)
+@attribute(local_name='Id', type=ID)
+@element(local_name='benchmark', cls=TailoringBenchmarkReferenceType, min=0, max=1)
+@element(local_name='status', cls=StatusType, list='statuses', min=0, max=None)
+@element(local_name='dc-status', cls=DcStatusType, list='dc_statuses', min=0, max=None)
+@element(local_name='version', cls=TailoringVersionType, min=1, max=1)
+@element(local_name='metadata', cls=MetadataType, list='metadata', min=0, max=None)
+@element(local_name='Profile', cls=ProfileType, list='profiles', min=1, max=None)
+@element(local_name='signature', cls=SignatureType, min=0, max=None)
 class TailoringType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'type': 'TailoringIdPattern', 'required': True},
-            'Id': {'type': 'ID'},
-        },
-        'elements': [
-            {'tag_name': 'benchmark', 'class': 'TailoringBenchmarkReferenceType', 'min': 0, 'max': 1},
-            {'tag_name': 'status', 'class': 'StatusType', 'list': 'statuses', 'min': 0, 'max': None},
-            {'tag_name': 'dc-status', 'class': 'DcStatusType', 'list': 'dc_statuses', 'min': 0, 'max': None},
-            {'tag_name': 'version', 'class': 'TailoringVersionType', 'min': 1, 'max': 1},
-            {'tag_name': 'metadata', 'class': 'MetadataType', 'list': 'metadata', 'min': 0, 'max': None},
-            {'tag_name': 'Profile', 'class': 'ProfileType', 'list': 'profiles', 'min': 1, 'max': None},
-            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': None},
-        ],
-    }
+    pass

@@ -20,13 +20,9 @@ import logging
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='href', type=AnyUriType)
+@attribute(local_name='override', type=BooleanType)
+@element(namespace='http://purl.org/dc/elements/1.1/', local_name='*', min=0, max=None)
 class ReferenceType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'href': {'type': 'AnyUriType'},
-            'override': {'type': 'BooleanType'},
-        },
-        'elements': [
-            {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 0, 'max': None},
-        ],
-    }
+    pass

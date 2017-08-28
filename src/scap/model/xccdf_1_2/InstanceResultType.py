@@ -20,10 +20,8 @@ import logging
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='context', default='undefined', type=StringType)
+@attribute(local_name='parentContext', type=StringType)
 class InstanceResultType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'context': {'default': 'undefined', 'type': 'StringType'},
-            'parentContext': {'type': 'StringType'},
-        }
-    }
+    pass

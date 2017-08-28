@@ -21,13 +21,11 @@ from scap.model.xccdf_1_2 import FIX_STRATEGY_ENUMERATION, RATING_ENUMERATION
 from scap.model.xccdf_1_2.HtmlTextWithSubType import HtmlTextWithSubType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='fixref', type=NCNameType)
+@attribute(local_name='reboot', type=BooleanType)
+@attribute(local_name='strategy', enum=FIX_STRATEGY_ENUMERATION, default='unknown')
+@attribute(local_name='disruption', enum=RATING_ENUMERATION, default='unknown')
+@attribute(local_name='complexity', enum=RATING_ENUMERATION, default='unknown')
 class FixtextType(HtmlTextWithSubType):
-    MODEL_MAP = {
-        'attributes': {
-            'fixref': {'type': 'NCNameType'},
-            'reboot': {'type': 'BooleanType'},
-            'strategy': {'enum': FIX_STRATEGY_ENUMERATION, 'default': 'unknown'},
-            'disruption': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
-            'complexity': {'enum': RATING_ENUMERATION, 'default': 'unknown'},
-        },
-    }
+    pass

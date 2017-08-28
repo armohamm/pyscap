@@ -20,17 +20,11 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class ProfileSelectType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'idref': {'type': 'NCNameType', 'required': True},
-            'selected': {'type': 'BooleanType', 'required': True},
-        },
-        'elements': [
-            {'tag_name': 'remark', 'class': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
-        ],
-    }
 
+@attribute(local_name='idref', type=NCNameType, required=True)
+@attribute(local_name='selected', type=BooleanType, required=True)
+@element(local_name='remark', cls=TextType, list='remarks', min=0, max=None)
+class ProfileSelectType(Model):
     def apply(self, item):
         if self.selected:
             logger.debug('Selecting item ' + str(item))

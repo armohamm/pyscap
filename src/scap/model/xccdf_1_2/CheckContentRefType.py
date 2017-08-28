@@ -21,14 +21,10 @@ from scap.Model import Model
 from ..exceptions import *
 
 logger = logging.getLogger(__name__)
-class CheckContentRefType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'href': {'type': 'AnyUriType', 'requird': True},
-            'name': {'type': 'StringType'},
-        },
-    }
 
+@attribute(local_name='href', type=AnyUriType, 'requird': True)
+@attribute(local_name='name', type=StringType)
+class CheckContentRefType(Model):
     def check(self, benchmark, host, exports, import_names):
         content = Model.find_content(self.href)
         if content is None:

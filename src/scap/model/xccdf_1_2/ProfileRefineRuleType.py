@@ -21,20 +21,14 @@ from scap.Model import Model
 from scap.model.xccdf_1_2 import SEVERITY_ENUMERATION, ROLE_ENUMERATION
 
 logger = logging.getLogger(__name__)
-class ProfileRefineRuleType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'remark', 'type': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'idref': {'type': 'NCNameType', 'required': True},
-            'weight': {'type': 'Weight'},
-            'selector': {'type': 'StringType'},
-            'severity': {'enum': SEVERITY_ENUMERATION},
-            'role': {'enum': ROLE_ENUMERATION},
-        },
-    }
 
+@attribute(local_name='idref', type=NCNameType, required=True)
+@attribute(local_name='weight', type=Weight)
+@attribute(local_name='selector', type=StringType)
+@attribute(local_name='severity', enum=SEVERITY_ENUMERATION)
+@attribute(local_name='role', enum=ROLE_ENUMERATION)
+@element(local_name='remark', type=TextType, list='remarks', min=0, max=None)
+class ProfileRefineRuleType(Model):
     def apply(self, item):
         from scap.model.xccdf_1_1.RuleType import RuleType
         if not isinstance(item, RuleType):

@@ -20,16 +20,10 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class ModelType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'system': {'required': True, 'type': 'AnyUriType'},
-        },
-        'elements': [
-            {'tag_name': 'param', 'class': 'ParamType', 'dict': 'params', 'key': 'name', 'min': 0, 'max': None},
-        ],
-    }
 
+@attribute(local_name='system', required=True, type=AnyUriType)
+@element(local_name='param', cls=ParamType, dict='params', key='name', min=0, max=None)
+class ModelType(Model):
     def score(self, host, benchmark, profile_id):
         from scap.model.xccdf_1_1.GroupType import GroupType
         from scap.model.xccdf_1_1.RuleType import RuleType

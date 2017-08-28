@@ -21,19 +21,12 @@ from scap.Model import Model
 from scap.model.xccdf_1_2 import CHECK_OPERATOR_ENUMERATION
 
 logger = logging.getLogger(__name__)
-class ComplexCheckType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'operator': {'enum': CHECK_OPERATOR_ENUMERATION, 'required': True},
-            'negate': {'type': 'BooleanType', 'default': False},
-        },
-        'elements': [
-            # TODO: ensure checks has at least 1
-            {'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'list': 'checks'},
-            {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': None, 'list': 'checks'},
-        ],
-    }
 
+@attribute(local_name='operator', enum=CHECK_OPERATOR_ENUMERATION, required=True)
+@attribute(local_name='negate', type=BooleanType, default=False)
+@element(local_name='check', cls=CheckType, min=0, max=None, list='checks')
+@element(local_name='complex-check', cls=ComplexCheckType, min=0, max=None, list='checks')
+class ComplexCheckType(Model):
     def check(self, benchmark, host):
         if len(self.checks) < 1:
             raise ValueError('No sub-checks with complex-check')

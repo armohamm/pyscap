@@ -20,10 +20,8 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='href', type=AnyUriType)
+@attribute(local_name='id', type=NCNameType)
 class BenchmarkReferenceType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'href': {'type': 'AnyUriType'},
-            'id': {'type': 'NCNameType'},
-        },
-    }
+    pass

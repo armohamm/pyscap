@@ -20,19 +20,13 @@ import logging
 from scap.model.xccdf_1_2.SelectableItemType import SelectableItemType
 
 logger = logging.getLogger(__name__)
-class GroupType(SelectableItemType):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'required': True, 'type': 'GroupIdPattern'},
-        },
-        'elements': [
-            {'tag_name': 'Value', 'class': 'ValueType', 'dict': 'values', 'min': 0, 'max': None},
-            {'tag_name': 'Group', 'class': 'GroupType', 'dict': 'groups', 'min': 0, 'max': None},
-            {'tag_name': 'Rule', 'class': 'RuleType', 'dict': 'rules', 'min': 0, 'max': None},
-            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
-        ],
-    }
 
+@attribute(local_name='id', required=True, type=GroupIdPattern)
+@element(local_name='Value', cls=ValueType, dict='values', min=0, max=None)
+@element(local_name='Group', cls=GroupType, dict='groups', min=0, max=None)
+@element(local_name='Rule', cls=RuleType, dict='rules', min=0, max=None)
+@element(local_name='signature', cls=SignatureType, min=0, max=1)
+class GroupType(SelectableItemType):
     def resolve(self, benchmark):
         ### Loading.Resolve.Items
 

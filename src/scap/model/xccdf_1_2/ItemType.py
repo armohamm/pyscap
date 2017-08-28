@@ -20,30 +20,23 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class ItemType(Model):
-    MODEL_MAP = {
-        # abstract
-        'attributes': {
-            'abstract': {'type': 'BooleanType', 'default': False},
-            'cluster-id': {'type': 'NCNameType'},
-            'extends': {'type': 'NCNameType'},
-            'hidden': {'type': 'BooleanType', 'default': False},
-            'prohibitChanges': {'type': 'BooleanType', 'default': False},
-            'Id': {'type': 'ID'},
-        },
-        'elements': [
-            {'tag_name': 'status', 'class': 'StatusType', 'list': 'statuses', 'min': 0, 'max': None},
-            {'tag_name': 'dc-status', 'class': 'DcStatusType', 'list': 'dc_statuses', 'min': 0, 'max': None},
-            {'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
-            {'tag_name': 'title', 'list': 'titles', 'class': 'TextWithSubType', 'min': 0, 'max': None},
-            {'tag_name': 'description', 'list': 'descriptions', 'min': 0, 'max': None, 'class': 'HtmlTextWithSubType'},
-            {'tag_name': 'warning', 'class': 'WarningType', 'min': 0, 'max': None, 'type': 'StringType', 'list': 'warnings'},
-            {'tag_name': 'question', 'list': 'questions', 'class': 'TextType', 'min': 0, 'max': None},
-            {'tag_name': 'reference', 'list': 'references', 'min': 0, 'max': None, 'class': 'ReferenceType'},
-            {'tag_name': 'metadata', 'list': 'metadata', 'min': 0, 'max': None, 'class': 'MetadataType'},
-        ],
-    }
 
+@attribute(local_name='abstract', type=BooleanType, default=False)
+@attribute(local_name='cluster-id', type=NCNameType)
+@attribute(local_name='extends', type=NCNameType)
+@attribute(local_name='hidden', type=BooleanType, default=False)
+@attribute(local_name='prohibitChanges', type=BooleanType, default=False)
+@attribute(local_name='Id', type=ID)
+@element(local_name='status', cls=StatusType, list='statuses', min=0, max=None)
+@element(local_name='dc-status', cls=DcStatusType, list='dc_statuses', min=0, max=None)
+@element(local_name='version', cls=VersionType, min=0, max=1)
+@element(local_name='title', list='titles', cls=TextWithSubType, min=0, max=None)
+@element(local_name='description', list='descriptions', min=0, max=None, cls=HtmlTextWithSubType)
+@element(local_name='warning', cls=WarningType, min=0, max=None, type=StringType, list='warnings')
+@element(local_name='question', list='questions', cls=TextType, min=0, max=None)
+@element(local_name='reference', list='references', min=0, max=None, cls=ReferenceType)
+@element(local_name='metadata', list='metadata', min=0, max=None, cls=MetadataType)
+class ItemType(Model):
     def __str__(self):
         return self.__class__.__name__ + ' # ' + self.id
 

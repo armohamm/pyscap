@@ -20,39 +20,33 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class BenchmarkType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'status', 'list': 'statuses', 'class': 'StatusType', 'min': 1, 'max': None},
-            {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': 'dc-status', 'list': 'dc_statuses', 'class': 'DcStatusType', 'min': 0, 'max': None},
-            {'tag_name': 'title', 'list': 'titles', 'class': 'TextType', 'min': 0, 'max': None},
-            {'tag_name': 'description', 'list': 'descriptions', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
-            {'tag_name': 'notice', 'dict': 'notices', 'class': 'NoticeType', 'min': 0, 'max': None},
-            {'tag_name': 'front-matter', 'list': 'front_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
-            {'tag_name': 'rear-matter', 'list': 'rear_matter', 'class': 'HtmlTextWithSubType', 'min': 0, 'max': None},
-            {'tag_name': 'reference', 'list': 'references', 'class': 'ReferenceType', 'min': 0, 'max': None},
-            {'tag_name': 'plain-text', 'list': 'plain_texts', 'class': 'PlainTextType', 'min': 0, 'max': None},
-            {'xmlns': 'http://cpe.mitre.org/language/2.0', 'tag_name': 'platform-specification', 'class': 'scap.model.cpe_lang_2_3.PlatformSpecificationType', 'min': 0, 'max': 1},
-            {'tag_name': 'platform', 'class': 'Cpe2IdRefType', 'min': 0, 'max': None},
-            {'tag_name': 'version', 'class': 'VersionType', 'min': 1, 'max': 1},
-            {'tag_name': 'metadata', 'list': 'metadata', 'class': 'MetadataType', 'min': 0, 'max': None},
-            {'tag_name': 'model', 'list': 'models', 'class': 'ModelType', 'min': 0, 'max': None},
-            {'tag_name': 'Profile', 'class': 'ProfileType', 'min': 0, 'max': None, 'dict': 'profiles'},
-            {'tag_name': 'Value', 'class': 'ValueType', 'min': 0, 'max': None, 'dict': 'values'},
-            {'tag_name': 'Group', 'class': 'GroupType', 'min': 0, 'max': None, 'dict': 'groups'},
-            {'tag_name': 'Rule', 'class': 'RuleType', 'min': 0, 'max': None, 'dict': 'rules'},
-            {'tag_name': 'TestResult', 'class': 'TestResultType', 'min': 0, 'max': None, 'dict': 'tests'},
-            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'id': {'required': True, 'type': 'BenchmarkIdPattern'},
-            'Id': {'type': 'ID'},
-            'resolved': {'type': 'BooleanType', 'default': False},
-            'style': {'type': 'StringType'},
-            'style-href': {'type': 'AnyUriType'},
-        },
-    }
 
+@attribute(local_name='id', required=True, type=BenchmarkIdPattern)
+@attribute(local_name='Id', type=ID)
+@attribute(local_name='resolved', type=BooleanType, default=False)
+@attribute(local_name='style', type=StringType)
+@attribute(local_name='style-href', type=AnyUriType)
+@element(local_name='status', list='statuses', cls=StatusType, min=1, max=None)
+@element(namespace='http://purl.org/dc/elements/1.1/', local_name='dc-status', list='dc_statuses', cls=DcStatusType, min=0, max=None)
+@element(local_name='title', list='titles', cls=TextType, min=0, max=None)
+@element(local_name='description', list='descriptions', cls=HtmlTextWithSubType, min=0, max=None)
+@element(local_name='notice', dict='notices', cls=NoticeType, min=0, max=None)
+@element(local_name='front-matter', list='front_matter', cls=HtmlTextWithSubType, min=0, max=None)
+@element(local_name='rear-matter', list='rear_matter', cls=HtmlTextWithSubType, min=0, max=None)
+@element(local_name='reference', list='references', cls=ReferenceType, min=0, max=None)
+@element(local_name='plain-text', list='plain_texts', cls=PlainTextType, min=0, max=None)
+@element(namespace='http://cpe.mitre.org/language/2.0', local_name='platform-specification', cls=scap.model.cpe_lang_2_3.PlatformSpecificationType, min=0, max=1)
+@element(local_name='platform', cls=Cpe2IdRefType, min=0, max=None)
+@element(local_name='version', cls=VersionType, min=1, max=1)
+@element(local_name='metadata', list='metadata', cls=MetadataType, min=0, max=None)
+@element(local_name='model', list='models', cls=ModelType, min=0, max=None)
+@element(local_name='Profile', cls=ProfileType, min=0, max=None, dict='profiles')
+@element(local_name='Value', cls=ValueType, min=0, max=None, dict='values')
+@element(local_name='Group', cls=GroupType, min=0, max=None, dict='groups')
+@element(local_name='Rule', cls=RuleType, min=0, max=None, dict='rules')
+@element(local_name='TestResult', cls=TestResultType, min=0, max=None, dict='tests')
+@element(local_name='signature', cls=SignatureType, min=0, max=1)
+class BenchmarkType(Model):
     def noticing(self):
         ### Loading.Noticing
 

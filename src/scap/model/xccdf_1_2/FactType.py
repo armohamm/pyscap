@@ -21,10 +21,8 @@ from scap.model.xccdf_1_2 import VALUE_TYPE_ENUMERATION
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='name', type=AnyUriType, required=True)
+@attribute(local_name='type', enum=VALUE_TYPE_ENUMERATION, default='boolean')
 class FactType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'name': {'type': 'AnyUriType', 'required': True},
-            'type': {'enum': VALUE_TYPE_ENUMERATION, 'default': 'boolean'},
-        }
-    }
+    pass

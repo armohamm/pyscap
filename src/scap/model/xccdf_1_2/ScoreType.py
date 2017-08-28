@@ -20,10 +20,8 @@ import logging
 from scap.model.xs.DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='system', type=AnyUriType)
+@attribute(local_name='maximum', type=DecimalType)
 class ScoreType(DecimalType):
-    MODEL_MAP = {
-        'attributes': {
-            'system': {'type': 'AnyUriType'},
-            'maximum': {'type': 'DecimalType'}
-        }
-    }
+    pass

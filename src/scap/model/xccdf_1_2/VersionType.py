@@ -20,10 +20,8 @@ import logging
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='time', type=DateTimeType)
+@attribute(local_name='update', type=AnyUriType)
 class VersionType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'time': {'type': 'DateTimeType'},
-            'update': {'type': 'AnyUriType'},
-        }
-    }
+    pass

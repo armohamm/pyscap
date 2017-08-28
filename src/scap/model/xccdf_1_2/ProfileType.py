@@ -20,34 +20,28 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class ProfileType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'status', 'class': 'StatusType', 'list': 'statuses', 'min': 0, 'max': None},
-            {'tag_name': 'dc-status', 'class': 'DcStatusType', 'list': 'dc_statuses', 'min': 0, 'max': None},
-            {'tag_name': 'version', 'class': 'VersionType', 'min': 0, 'max': 1},
-            {'tag_name': 'title', 'class': 'TextWithSubType', 'list': 'titles', 'min': 1, 'max': None},
-            {'tag_name': 'description', 'class': 'HtmlTextWithSubType', 'list': 'descriptions', 'min': 0, 'max': None},
-            {'tag_name': 'reference', 'class': 'ReferenceType', 'list': 'references', 'min': 0, 'max': None},
-            {'tag_name': 'platform', 'class': 'OverrideableCpe2IdRefType', 'list': 'platforms', 'min': 0, 'max': None},
-            {'tag_name': 'select', 'class': 'ProfileSelectType', 'dict': 'selects', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'set-complex-value', 'class': 'ProfileSetComplexValueType', 'dict': 'set_complex_values', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'set-value', 'class': 'ProfileSetValueType', 'dict': 'set_values', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'refine-value', 'class': 'ProfileRefineValueType', 'dict': 'refine_values', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'refine-rule', 'class': 'ProfileRefineRuleType', 'dict': 'refine_rules', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'metadata', 'class': 'MetadataType', 'list': 'metadata', 'min': 0, 'max': None},
-            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
-        ],
-        'attributes': {
-            'id': {'required': True, 'type': 'ProfileIdPattern'},
-            'prohibitChanges': {'type': 'BooleanType', 'default': False},
-            'abstract': {'type': 'BooleanType', 'default': False},
-            'note-tag': {'type': 'NCNameType'},
-            'extends': {'type': 'NCNameType'},
-            'Id': {'type': 'ID'},
-        },
-    }
 
+@attribute(local_name='id', required=True, type=ProfileIdPattern)
+@attribute(local_name='prohibitChanges', type=BooleanType, default=False)
+@attribute(local_name='abstract', type=BooleanType, default=False)
+@attribute(local_name='note-tag', type=NCNameType)
+@attribute(local_name='extends', type=NCNameType)
+@attribute(local_name='Id', type=ID)
+@element(local_name='status', cls=StatusType, list='statuses', min=0, max=None)
+@element(local_name='dc-status', cls=DcStatusType, list='dc_statuses', min=0, max=None)
+@element(local_name='version', cls=VersionType, min=0, max=1)
+@element(local_name='title', cls=TextWithSubType, list='titles', min=1, max=None)
+@element(local_name='description', cls=HtmlTextWithSubType, list='descriptions', min=0, max=None)
+@element(local_name='reference', cls=ReferenceType, list='references', min=0, max=None)
+@element(local_name='platform', cls=OverrideableCpe2IdRefType, list='platforms', min=0, max=None)
+@element(local_name='select', cls=ProfileSelectType, dict='selects', key='idref', min=0, max=None)
+@element(local_name='set-complex-value', cls=ProfileSetComplexValueType, dict='set_complex_values', key='idref', min=0, max=None)
+@element(local_name='set-value', cls=ProfileSetValueType, dict='set_values', key='idref', min=0, max=None)
+@element(local_name='refine-value', cls=ProfileRefineValueType, dict='refine_values', key='idref', min=0, max=None)
+@element(local_name='refine-rule', cls=ProfileRefineRuleType, dict='refine_rules', key='idref', min=0, max=None)
+@element(local_name='metadata', cls=MetadataType, list='metadata', min=0, max=None)
+@element(local_name='signature', cls=SignatureType, min=0, max=1)
+class ProfileType(Model):
     def __str__(self):
         return self.__class__.__name__ + ' # ' + self.id
 

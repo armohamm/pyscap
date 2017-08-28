@@ -20,15 +20,10 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='mustMatch', type=BooleanType)
+@attribute(local_name='selector', type=StringType, default='')
+@element(local_name='choice', cls=scap.model.xs.String, list='choices', min=0, max=None)
+@element(local_name='complex-choice', cls=ComplexValueType, min=0, max=1)
 class SelChoicesType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'mustMatch': {'type': 'BooleanType'},
-            'selector': {'type': 'StringType', 'default': ''},
-        },
-        'elements': [
-            # TODO at least one choice/complex-choice
-            {'tag_name': 'choice', 'class': 'scap.model.xs.String', 'list': 'choices', 'min': 0, 'max': None},
-            {'tag_name': 'complex-choice', 'class': 'ComplexValueType', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

@@ -20,11 +20,9 @@ import logging
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='system', type=AnyUriType, required=True)
+@attribute(local_name='href', type=StringType, required=True)
+@attribute(local_name='name', type=StringType)
 class TargetIdRefType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'system': {'type': 'AnyUriType', 'required': True},
-            'href': {'type': 'StringType', 'required': True},
-            'name': {'type': 'StringType'}
-        },
-    }
+    pass

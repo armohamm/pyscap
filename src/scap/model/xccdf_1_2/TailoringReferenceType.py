@@ -20,12 +20,10 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='href', type=AnyUriType, required=True)
+@attribute(local_name='id', type=NCNameType, required=True)
+@attribute(local_name='version', type=StringType, required=True)
+@attribute(local_name='time', type=DateTimeType, required=True)
 class TailoringReferenceType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'href': {'type': 'AnyUriType', 'required': True},
-            'id': {'type': 'NCNameType', 'required': True},
-            'version': {'type': 'StringType', 'required': True},
-            'time': {'type': 'DateTimeType', 'required': True},
-        }
-    }
+    pass

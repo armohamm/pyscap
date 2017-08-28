@@ -20,6 +20,6 @@ import logging
 from scap.model.xs.DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
+
 class Weight(DecimalType):
-    MODEL_MAP = {
-    }
+    pass

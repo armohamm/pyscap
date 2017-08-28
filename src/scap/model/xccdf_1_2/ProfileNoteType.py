@@ -20,13 +20,9 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='tag', type=NCNameType)
+@element(local_name='sub', cls=SubType, list='subs', min=0, max=None)
+@element(namespace='http://www.w3.org/1999/xhtml', local_name='*', min=0, max=None)
 class ProfileNoteType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'sub', 'class': 'SubType', 'list': 'subs', 'min': 0, 'max': None},
-            {'xmlns': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'tag': {'type': 'NCNameType'},
-        },
-    }
+    pass

@@ -20,9 +20,7 @@ import logging
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='time', type=DateTimeType, required=True)
 class TailoringVersionType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'time': {'type': 'DateTimeType', 'required': True},
-        }
-    }
+    pass

@@ -20,9 +20,7 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='item', cls=StringType, list='items', min=0, max=None)
 class ComplexValueType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'item', 'class': 'StringType', 'list': 'items', 'min': 0, 'max': None},
-        ],
-    }
+    pass

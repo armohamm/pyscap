@@ -20,13 +20,9 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='import-name', type=StringType, required=True)
+@attribute(local_name='import-xpath', type=StringType)
+@element(local_name='*', min=0)
 class CheckImportType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'import-name': {'type': 'StringType', 'required': True},
-            'import-xpath': {'type': 'StringType'}
-        },
-        'elements': [
-            {'tag_name': '*', 'min': 0},
-        ],
-    }
+    pass

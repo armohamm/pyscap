@@ -20,23 +20,17 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class CheckType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'system': {'type': 'AnyUriType', 'required': True},
-            'negate': {'type': 'BooleanType', 'default': False},
-            'id': {'type': 'NCNameType'},
-            'selector': {'default': None, 'type': 'StringType'},
-            'multi-check': {'type': 'BooleanType', 'default': False},
-        },
-        'elements': [
-            {'tag_name': 'check-import', 'class': 'CheckImportType', 'list': 'check_imports', 'min': 0, 'max': None},
-            {'tag_name': 'check-export', 'class': 'CheckExportType', 'list': 'check_exports', 'min': 0, 'max': None},
-            {'tag_name': 'check-content-ref', 'class': 'CheckContentRefType', 'list': 'check_content_refs', 'min': 0, 'max': None},
-            {'tag_name': 'check-content', 'class': 'CheckContentType', 'min': 0, 'max': 1},
-        ],
-    }
 
+@attribute(local_name='system', type=AnyUriType, required=True)
+@attribute(local_name='negate', type=BooleanType, default=False)
+@attribute(local_name='id', type=NCNameType)
+@attribute(local_name='selector', default=None, type=StringType)
+@attribute(local_name='multi-check', type=BooleanType, default=False)
+@element(local_name='check-import', cls=CheckImportType, list='check_imports', min=0, max=None)
+@element(local_name='check-export', cls=CheckExportType, list='check_exports', min=0, max=None)
+@element(local_name='check-content-ref', cls=CheckContentRefType, list='check_content_refs', min=0, max=None)
+@element(local_name='check-content', cls=CheckContentType, min=0, max=1)
+class CheckType(Model):
     def __str__(self):
         s = self.__class__.__name__ + ' '
 

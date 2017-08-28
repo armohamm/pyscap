@@ -20,9 +20,7 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@element(namespace='http://purl.org/dc/elements/1.1/', local_name='*', min=1, max=None)
 class DcStatusType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'xmlns': 'http://purl.org/dc/elements/1.1/', 'tag_name': '*', 'min': 1, 'max': None},
-        ],
-    }
+    pass

@@ -20,5 +20,6 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
 class ResultType(Model):
     pass

@@ -20,6 +20,6 @@ import logging
 from scap.model.xccdf_1_2.BenchmarkReferenceType import BenchmarkReferenceType
 
 logger = logging.getLogger(__name__)
+
 class TailoringBenchmarkReferenceType(BenchmarkReferenceType):
-    MODEL_MAP = {
-    }
+    pass

@@ -21,25 +21,21 @@ from scap.Model import Model
 from scap.model.xccdf_1_2 import ROLE_ENUMERATION, SEVERITY_ENUMERATION, RESULT_ENUMERATION
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='idref', type=NCNameType, required=True)
+@attribute(local_name='role', enum=ROLE_ENUMERATION)
+@attribute(local_name='severity', enum=SEVERITY_ENUMERATION)
+@attribute(local_name='time', type=DateTimeType)
+@attribute(local_name='version', type=StringType)
+@attribute(local_name='weight', type=Weight)
+@element(local_name='result', enum=RESULT_ENUMERATION, min=1, max=1)
+@element(local_name='override', cls=OverrideType, list='overrides', min=0, max=None)
+@element(local_name='ident', cls=IdentType, list='idents', min=0, max=None)
+@element(local_name='metadata', cls=MetadataType, list='metadata', min=0, max=None)
+@element(local_name='message', cls=MessageType, list='messages', min=0, max=None)
+@element(local_name='instance', cls=InstanceResultType, list='instances', min=0, max=None)
+@element(local_name='fix', cls=FixType, list='fixes', min=0, max=None)
+@element(local_name='check', cls=CheckType, list='checks', min=0, max=None)
+@element(local_name='complex-check', cls=ComplexCheckType, min=0, max=1)
 class RuleResultType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'idref': {'type': 'NCNameType', 'required': True},
-            'role': {'enum': ROLE_ENUMERATION},
-            'severity': {'enum': SEVERITY_ENUMERATION},
-            'time': {'type': 'DateTimeType'},
-            'version': {'type': 'StringType'},
-            'weight': {'type': 'Weight'},
-        },
-        'elements': [
-            {'tag_name': 'result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
-            {'tag_name': 'override', 'class': 'OverrideType', 'list': 'overrides', 'min': 0, 'max': None},
-            {'tag_name': 'ident', 'class': 'IdentType', 'list': 'idents', 'min': 0, 'max': None},
-            {'tag_name': 'metadata', 'class': 'MetadataType', 'list': 'metadata', 'min': 0, 'max': None},
-            {'tag_name': 'message', 'class': 'MessageType', 'list': 'messages', 'min': 0, 'max': None},
-            {'tag_name': 'instance', 'class': 'InstanceResultType', 'list': 'instances', 'min': 0, 'max': None},
-            {'tag_name': 'fix', 'class': 'FixType', 'list': 'fixes', 'min': 0, 'max': None},
-            {'tag_name': 'check', 'class': 'CheckType', 'list': 'checks', 'min': 0, 'max': None},
-            {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': 1},
-        ],
-    }
+    pass

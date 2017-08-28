@@ -21,15 +21,11 @@ from scap.model.xccdf_1_2 import RESULT_ENUMERATION
 from scap.model.xs.DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='time', type=DateTimeType, required=True)
+@attribute(local_name='authority', type=StringType, required=True)
+@element(local_name='old-result', enum=RESULT_ENUMERATION, min=1, max=1)
+@element(local_name='new-result', enum=RESULT_ENUMERATION, min=1, max=1)
+@element(local_name='remark', cls=TextType, min=1, max=1)
 class OverrideType(DecimalType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'old-result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
-            {'tag_name': 'new-result', 'enum': RESULT_ENUMERATION, 'min': 1, 'max': 1},
-            {'tag_name': 'remark', 'class': 'TextType', 'min': 1, 'max': 1},
-        ],
-        'attributes': {
-            'time': {'type': 'DateTimeType', 'required': True},
-            'authority': {'type': 'StringType', 'required': True},
-        },
-    }
+    pass

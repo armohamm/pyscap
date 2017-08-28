@@ -22,26 +22,20 @@ from scap.model.xccdf_1_2 import ROLE_ENUMERATION, SEVERITY_ENUMERATION
 from scap.model.xccdf_1_2.SelectableItemType import SelectableItemType
 
 logger = logging.getLogger(__name__)
-class RuleType(SelectableItemType):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'required': True, 'type': 'RuleIdPattern'},
-            'role': {'enum': ROLE_ENUMERATION, 'default': 'full'},
-            'severity': {'enum': SEVERITY_ENUMERATION, 'default': 'unknown'},
-            'multiple': {'type': 'BooleanType', 'default': False},
-        },
-        'elements': [
-            {'tag_name': 'ident', 'list': 'idents', 'min': 0, 'max': None, 'class': 'IdentType'},
-            {'tag_name': 'impact-metric', 'min': 0, 'max': 1, 'type': 'StringType'},
-            {'tag_name': 'profile-note', 'list': 'profile_notes', 'min': 0, 'max': None, 'class': 'ProfileNoteType'},
-            {'tag_name': 'fix', 'class': 'FixType', 'min': 0, 'max': None, 'list': 'fixes'},
-            {'tag_name': 'fixtext', 'class': 'FixtextType', 'min': 0, 'max': None, 'list': 'fixtexts'},
-            {'tag_name': 'check', 'class': 'CheckType', 'min': 0, 'max': None, 'dict': 'checks', 'key': 'selector'},
-            {'tag_name': 'complex-check', 'class': 'ComplexCheckType', 'min': 0, 'max': 1},
-            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
-        ],
-    }
 
+@attribute(local_name='id', required=True, type=RuleIdPattern)
+@attribute(local_name='role', enum=ROLE_ENUMERATION, default='full')
+@attribute(local_name='severity', enum=SEVERITY_ENUMERATION, default='unknown')
+@attribute(local_name='multiple', type=BooleanType, default=False)
+@element(local_name='ident', list='idents', min=0, max=None, cls=IdentType)
+@element(local_name='impact-metric', min=0, max=1, type=StringType)
+@element(local_name='profile-note', list='profile_notes', min=0, max=None, cls=ProfileNoteType)
+@element(local_name='fix', cls=FixType, min=0, max=None, list='fixes')
+@element(local_name='fixtext', cls=FixtextType, min=0, max=None, list='fixtexts')
+@element(local_name='check', cls=CheckType, min=0, max=None, dict='checks', key='selector')
+@element(local_name='complex-check', cls=ComplexCheckType, min=0, max=1)
+@element(local_name='signature', cls=SignatureType, min=0, max=1)
+class RuleType(SelectableItemType):
     def __init__(self, *args, **kwargs):
         super(RuleType, self).__init__(*args, **kwargs)
 

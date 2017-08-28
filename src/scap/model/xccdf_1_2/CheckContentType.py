@@ -21,13 +21,9 @@ from scap.Model import Model
 from scap.model.xccdf_1_2.MessageType import MessageType
 
 logger = logging.getLogger(__name__)
-class CheckContentType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': '*', 'min': 0, 'max': None}
-        ],
-    }
 
+@element(local_name='*', min=0, max=None)
+class CheckContentType(Model):
     def check(self, benchmark, host, exports, import_names):
         # TODO apply content
         return {'result': 'error', 'messages': [

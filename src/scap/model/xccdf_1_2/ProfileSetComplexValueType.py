@@ -20,9 +20,7 @@ import logging
 from scap.model.xccdf_1_2.ComplexValueType import ComplexValueType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='idref', type=NCNameType, required=True)
 class ProfileSetComplexValueType(ComplexValueType):
-    MODEL_MAP = {
-        'attributes': {
-            'idref': {'type': 'NCNameType', 'required': True},
-        }
-    }
+    pass

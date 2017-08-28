@@ -20,9 +20,7 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@element(local_name='*', min=1, max=None)
 class MetadataType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': '*', 'min': 1, 'max': None},
-        ],
-    }
+    pass

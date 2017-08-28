@@ -20,9 +20,7 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='idref', type=StringType, required=True)
 class Cpe2IdRefType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'idref': {'type': 'StringType', 'required': True},
-        }
-    }
+    pass

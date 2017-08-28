@@ -20,12 +20,8 @@ import logging
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', required=True, type=NCNameType)
+@element(namespace='http://www.w3.org/1999/xhtml', local_name='*', min=0, max=None)
 class NoticeType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'required': True, 'type': 'NCNameType'},
-        },
-        'elements': [
-            {'xmlns': 'http://www.w3.org/1999/xhtml', 'tag_name': '*', 'min': 0, 'max': None},
-        ],
-    }
+    pass

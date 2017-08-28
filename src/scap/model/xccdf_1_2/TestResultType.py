@@ -20,38 +20,32 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
-class TestResultType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'required': True, 'type': 'TestResultIdPattern'},
-            'start-time': {'type': 'DateTimeType'},
-            'end-time': {'type': 'DateTimeType'},
-            'test-system': {'type': 'StringType'},
-            'version': {'type': 'StringType'},
-            'Id': {'type': 'ID'},
-        },
-        'elements': [
-            {'tag_name': 'benchmark', 'class': 'BenchmarkReferenceType', 'min': 0, 'max': 1},
-            {'tag_name': 'tailoring-file', 'class': 'TailoringReferenceType', 'min': 0, 'max': 1},
-            {'tag_name': 'title', 'class': 'TextType', 'list': 'titles', 'min': 0, 'max': None},
-            {'tag_name': 'remark', 'class': 'TextType', 'list': 'remarks', 'min': 0, 'max': None},
-            {'tag_name': 'organization', 'type': 'StringType', 'list': 'organizations', 'min': 0, 'max': None},
-            {'tag_name': 'identity', 'class': 'IdentityType', 'min': 0, 'max': 1},
-            {'tag_name': 'profile', 'class': 'IdRefType', 'min': 0, 'max': 1},
-            {'tag_name': 'target', 'type': 'StringType', 'list': 'targets', 'min': 1, 'max': None},
-            {'tag_name': 'target-address', 'type': 'StringType', 'list': 'target_addresses', 'min': 0, 'max': None},
-            {'tag_name': 'target-facts', 'class': 'TargetFactsType', 'list': 'target_facts', 'min': 0, 'max': None},
-            {'tag_name': 'target-id-ref', 'class': 'TargetIdRefType', 'list': 'target_id_refs', 'min': 0, 'max': None},{'tag_name': '*', 'min': 0, 'max': None},
-            {'tag_name': 'platform', 'class': 'Cpe2IdRefType', 'list': 'platforms', 'min': 0, 'max': None},
-            {'tag_name': 'set-value', 'class': 'ProfileSetValueType', 'dict': 'set_values', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'set-complex-value', 'class': 'ProfileSetComplexValueType', 'dict': 'set_values', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'rule-result', 'class': 'RuleResultType', 'dict': 'rule_results', 'key': 'idref', 'min': 0, 'max': None},
-            {'tag_name': 'score', 'class': 'ScoreType', 'list': 'scores', 'min': 1, 'max': None},
-            {'tag_name': 'metadata', 'class': 'MetadataType', 'list': 'metadata', 'min': 0, 'max': None},
-            {'tag_name': 'signature', 'class': 'SignatureType', 'min': 0, 'max': 1},
-        ],
-    }
 
+@attribute(local_name='id', required=True, type=TestResultIdPattern)
+@attribute(local_name='start-time', type=DateTimeType)
+@attribute(local_name='end-time', type=DateTimeType)
+@attribute(local_name='test-system', type=StringType)
+@attribute(local_name='version', type=StringType)
+@attribute(local_name='Id', type=ID)
+@element(local_name='benchmark', cls=BenchmarkReferenceType, min=0, max=1)
+@element(local_name='tailoring-file', cls=TailoringReferenceType, min=0, max=1)
+@element(local_name='title', cls=TextType, list='titles', min=0, max=None)
+@element(local_name='remark', cls=TextType, list='remarks', min=0, max=None)
+@element(local_name='organization', type=StringType, list='organizations', min=0, max=None)
+@element(local_name='identity', cls=IdentityType, min=0, max=1)
+@element(local_name='profile', cls=IdRefType, min=0, max=1)
+@element(local_name='target', type=StringType, list='targets', min=1, max=None)
+@element(local_name='target-address', type=StringType, list='target_addresses', min=0, max=None)
+@element(local_name='target-facts', cls=TargetFactsType, list='target_facts', min=0, max=None)
+@element(local_name='target-id-ref', cls=TargetIdRefType, list='target_id_refs', min=0, max=None){'tag_name': '*', min=0, max=None},
+@element(local_name='platform', cls=Cpe2IdRefType, list='platforms', min=0, max=None)
+@element(local_name='set-value', cls=ProfileSetValueType, dict='set_values', key='idref', min=0, max=None)
+@element(local_name='set-complex-value', cls=ProfileSetComplexValueType, dict='set_values', key='idref', min=0, max=None)
+@element(local_name='rule-result', cls=RuleResultType, dict='rule_results', key='idref', min=0, max=None)
+@element(local_name='score', cls=ScoreType, list='scores', min=1, max=None)
+@element(local_name='metadata', cls=MetadataType, list='metadata', min=0, max=None)
+@element(local_name='signature', cls=SignatureType, min=0, max=1)
+class TestResultType(Model):
     @staticmethod
     def generate_id():
         return 'xccdf_biz.jaymes_testresult_' + uuid.uuid4().hex

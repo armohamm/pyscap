@@ -21,13 +21,9 @@ from scap.model.xccdf_1_2 import MESSAGE_SEVERITY_ENUMERATION
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
-class MessageType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'severity': {'enum': MESSAGE_SEVERITY_ENUMERATION, 'required': True},
-        }
-    }
 
+@attribute(local_name='severity', enum=MESSAGE_SEVERITY_ENUMERATION, required=True)
+class MessageType(StringType):
     def __init__(self, severity=None, *args, **kwargs):
         super(StringType, self).__init__(*args, **kwargs)
 

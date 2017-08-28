@@ -20,9 +20,7 @@ import logging
 from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', required=True, type=NCNameType)
 class PlainTextType(StringType):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'required': True, 'type': 'NCNameType'},
-        }
-    }
+    pass

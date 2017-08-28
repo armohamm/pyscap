@@ -20,12 +20,8 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='override', type=BooleanType, default=False)
+@element(local_name='sub', cls=SubType, list='subs', min=0, max=None)
 class TextWithSubType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'override': {'type': 'BooleanType', 'default': False},
-        },
-        'elements': [
-            {'tag_name': 'sub', 'class': 'SubType', 'list': 'subs', 'min': 0, 'max': None},
-        ],
-    }
+    pass

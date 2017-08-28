@@ -20,6 +20,7 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
 class Extendable(Model):
     MODEL_MAP = {
         # abstract

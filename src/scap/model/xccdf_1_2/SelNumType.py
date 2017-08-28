@@ -20,9 +20,7 @@ import logging
 from scap.model.xs.DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='selector', type=StringType, default='')
 class SelNumType(DecimalType):
-    MODEL_MAP = {
-        'attributes': {
-            'selector': {'type': 'StringType', 'default': ''},
-        }
-    }
+    pass

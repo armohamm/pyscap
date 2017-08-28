@@ -21,12 +21,8 @@ from scap.model.xccdf_1_2 import SUB_USE_ENUMERATION
 from scap.model.xccdf_1_2.IdRefType import IdRefType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='use', enum=SUB_USE_ENUMERATION, default='value')
+@element(local_name='sub', cls=SubType, list='subs')
 class SubType(IdRefType):
-    MODEL_MAP = {
-        'attributes': {
-            'use': {'enum': SUB_USE_ENUMERATION, 'default': 'value'},
-        },
-        'elements': [
-            {'tag_name': 'sub', 'class': 'SubType', 'list': 'subs'},
-        ],
-    }
+    pass

@@ -20,9 +20,7 @@ import logging
 from scap.Model import Model
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='idref', type=NMTokensType, required=True)
 class IdRefListType(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'idref': {'type': 'NMTokensType', 'required': True},
-        }
-    }
+    pass
