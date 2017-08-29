@@ -18,6 +18,7 @@
 import logging
 
 from scap.model.decorators import *
+
 from .HTag import HTag
 
 logger = logging.getLogger(__name__)

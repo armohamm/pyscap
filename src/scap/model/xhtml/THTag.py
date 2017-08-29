@@ -18,14 +18,15 @@
 import logging
 
 from scap.model.decorators import *
-from .FlowType import FlowType
+from scap.model.xs.IdRefsType import IdRefsType
 from scap.model.xs.IdType import IdType
 from scap.model.xs.NMTokensType import NMTokensType
 from scap.model.xs.StringType import StringType
-from scap.model.xs.IdRefsType import IdRefsType
+
 from . import CELL_H_ALIGN_ENUMERATION
 from . import CELL_V_ALIGN_ENUMERATION
 from . import SCOPE_ENUMERATION
+from .FlowType import FlowType
 
 logger = logging.getLogger(__name__)
 

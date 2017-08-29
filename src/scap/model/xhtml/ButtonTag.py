@@ -18,10 +18,11 @@
 import logging
 
 from scap.model.decorators import *
-from .ButtonContentType import ButtonContentType
 from scap.model.xs.IdType import IdType
 from scap.model.xs.NMTokensType import NMTokensType
 from scap.model.xs.StringType import StringType
+
+from .ButtonContentType import ButtonContentType
 
 logger = logging.getLogger(__name__)
 

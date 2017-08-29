@@ -17,10 +17,11 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 from scap.model.xs.IdType import IdType
 from scap.model.xs.NMTokensType import NMTokensType
+
 from . import T_FRAME_ENUMERATION
 from . import T_RULES_ENUMERATION
 

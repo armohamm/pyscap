@@ -18,10 +18,11 @@
 import logging
 
 from scap.model.decorators import *
-from .AContentType import AContentType
 from scap.model.xs.IdType import IdType
-from scap.model.xs.NMTokensType import NMTokensType
 from scap.model.xs.NMTokenType import NMTokenType
+from scap.model.xs.NMTokensType import NMTokensType
+
+from .AContentType import AContentType
 
 logger = logging.getLogger(__name__)
 

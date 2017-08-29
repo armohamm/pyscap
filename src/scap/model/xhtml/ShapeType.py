@@ -19,6 +19,7 @@ import logging
 
 from scap.model.decorators import *
 from scap.model.xs.TokenType import TokenType
+
 from . import SHAPE_ENUMERATION
 
 logger = logging.getLogger(__name__)

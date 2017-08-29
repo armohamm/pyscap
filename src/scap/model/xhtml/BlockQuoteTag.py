@@ -18,9 +18,10 @@
 import logging
 
 from scap.model.decorators import *
-from .BlockType import BlockType
 from scap.model.xs.IdType import IdType
 from scap.model.xs.NMTokensType import NMTokensType
+
+from .BlockType import BlockType
 
 logger = logging.getLogger(__name__)
 

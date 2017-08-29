@@ -18,9 +18,10 @@
 import logging
 
 from scap.model.decorators import *
-from .FormContentType import FormContentType
 from scap.model.xs.IdType import IdType
 from scap.model.xs.NMTokensType import NMTokensType
+
+from .FormContentType import FormContentType
 
 logger = logging.getLogger(__name__)
 
