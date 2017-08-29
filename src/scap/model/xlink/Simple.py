@@ -19,25 +19,21 @@ import logging
 import sys
 import urllib.request
 import xml.etree.ElementTree as ET
+from scap.model.decorators import *
 
-from scap.model.xlink.Model import Model
+from .Base import Base
 
 logger = logging.getLogger(__name__)
-class Simple(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': '*', 'min': 0},
-        ],
-        'attributes': {
-            '{http://www.w3.org/1999/xlink}type': {'enum': ['simple']},
-        },
-    }
 
+@attribute(local_name='type', enum=['simple'])
+@element(local_name='*', min=0)
+class Simple(Base):
     def from_xml(self, parent, el):
         super(Model, self).from_xml(parent, el)
 
         try:
             with urllib.request.urlopen(self.href) as r:
+                # TODO
                 sub_el = ET.parse(r).getroot()
                 self._parse_element(sub_el)
         except:

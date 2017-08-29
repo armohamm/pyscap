@@ -17,16 +17,14 @@
 
 import logging
 
-from scap.model.xlink.Model import Model
+from .Base import Base
+from scap.model.decorators import *
+from .TitleEltType import TitleEltType
 
 logger = logging.getLogger(__name__)
-class ArcType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'title', 'list': 'titles', 'class': 'TitleEltType', 'min': 0, 'max': None},
-            {'tag_name': '*', 'min': 0},
-        ],
-        'attributes': {
-            '{http://www.w3.org/1999/xlink}type': {'enum': ['arc'], 'required': True},
-        },
-    }
+
+@attribute(local_name='type', enum=['arc'], required=True)
+@element(local_name='title', list='titles', cls=TitleEltType, min=0, max=None)
+@element(local_name='*', min=0)
+class ArcType(Base):
+    pass

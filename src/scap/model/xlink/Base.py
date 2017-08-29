@@ -17,16 +17,23 @@
 
 import logging
 
-from .Base import Base
+from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.xs.AnyUriType import AnyUriType
-from .TitleEltType import TitleEltType
+from scap.model.xs.StringType import StringType
+from scap.model.xs.NCNameType import NCNameType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='type', enum=['locator'], required=True)
-@attribute(local_name='href', type=AnyUriType, required=True)
-@element(local_name='title', list='titles', cls=TitleEltType, min=0, max=None)
-@element(local_name='*', min=0)
-class LocatorType(Base):
+@attribute(local_name='type', enum=['simple', 'extended', 'locator', 'arc', 'resource', 'title', 'none'])
+@attribute(local_name='href', type=AnyUriType)
+@attribute(local_name='role', type=AnyUriType) # min length = 1
+@attribute(local_name='arcrole', type=AnyUriType) # min length = 1
+@attribute(local_name='title', type=StringType)
+@attribute(local_name='show', enum=['new', 'replace', 'embed', 'other', 'none'])
+@attribute(local_name='actuate', enum=['onLoad', 'onRequest', 'other', 'none'])
+@attribute(local_name='label', type=NCNameType)
+@attribute(local_name='from', type=NCNameType)
+@attribute(local_name='to', type=NCNameType)
+class Base(Model):
     pass

@@ -17,19 +17,20 @@
 
 import logging
 
-from scap.model.xlink.Model import Model
+from .Base import Base
+from scap.model.decorators import *
+from .TitleEltType import TitleEltType
+from .ResourceType import ResourceType
+from .LocatorType import LocatorType
+from .ArcType import ArcType
 
 logger = logging.getLogger(__name__)
-class Extended(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'title', 'list': 'titles', 'class': 'TitleEltType', 'min': 0, 'max': None},
-            {'tag_name': 'resource', 'list': 'resources', 'class': 'ResourceType', 'min': 0, 'max': None},
-            {'tag_name': 'locator', 'list': 'locators', 'class': 'LocatorType', 'min': 0, 'max': None},
-            {'tag_name': 'arc', 'list': 'arcs', 'class': 'ArcType', 'min': 0, 'max': None},
-            {'tag_name': '*', 'min': 0},
-        ],
-        'attributes': {
-            '{http://www.w3.org/1999/xlink}type': {'enum': ['extended'], 'required': True},
-        },
-    }
+
+@attribute(local_name='type', enum=['extended'], required=True)
+@element(local_name='title', list='titles', cls=TitleEltType, min=0, max=None)
+@element(local_name='resource', list='resources', cls=ResourceType, min=0, max=None)
+@element(local_name='locator', list='locators', cls=LocatorType, min=0, max=None)
+@element(local_name='arc', list='arcs', cls=ArcType, min=0, max=None)
+@element(local_name='*', min=0)
+class Extended(Base):
+    pass

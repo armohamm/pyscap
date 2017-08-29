@@ -17,15 +17,12 @@
 
 import logging
 
-from scap.model.xlink.Model import Model
+from .Base import Base
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
-class TitleEltType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': '*', 'min': 0},
-        ],
-        'attributes': {
-            '{http://www.w3.org/1999/xlink}type': {'enum': ['title'], 'required': True},
-        },
-    }
+
+@attribute(local_name='type', enum=['title'], required=True)
+@element(local_name='*', min=0)
+class TitleEltType(Base):
+    pass
