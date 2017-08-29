@@ -19,6 +19,7 @@ import logging
 import sys
 import urllib.request
 import xml.etree.ElementTree as ET
+
 from scap.model.decorators import *
 
 from .Base import Base

@@ -17,9 +17,10 @@
 
 import logging
 
-from .Base import Base
 from scap.model.decorators import *
 from scap.model.xs.AnyUriType import AnyUriType
+
+from .Base import Base
 from .TitleEltType import TitleEltType
 
 logger = logging.getLogger(__name__)

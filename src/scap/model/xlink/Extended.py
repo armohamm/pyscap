@@ -17,12 +17,13 @@
 
 import logging
 
-from .Base import Base
 from scap.model.decorators import *
-from .TitleEltType import TitleEltType
-from .ResourceType import ResourceType
-from .LocatorType import LocatorType
+
 from .ArcType import ArcType
+from .Base import Base
+from .LocatorType import LocatorType
+from .ResourceType import ResourceType
+from .TitleEltType import TitleEltType
 
 logger = logging.getLogger(__name__)
 

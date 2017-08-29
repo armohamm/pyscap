@@ -20,8 +20,8 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.xs.AnyUriType import AnyUriType
-from scap.model.xs.StringType import StringType
 from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 
