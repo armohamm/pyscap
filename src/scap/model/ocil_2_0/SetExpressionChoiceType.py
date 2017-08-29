@@ -19,8 +19,8 @@ import logging
 
 from scap.model.decorators import *
 
-from .SetExpressionBaseType import SetExpressionBaseType
 from .ChoiceIDPattern import ChoiceIDPattern
+from .SetExpressionBaseType import SetExpressionBaseType
 
 logger = logging.getLogger(__name__)
 

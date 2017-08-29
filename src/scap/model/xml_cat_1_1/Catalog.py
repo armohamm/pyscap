@@ -19,23 +19,17 @@ from collections.abc import MutableMapping
 import logging
 
 from scap.Model import Model
+from scap.model.xs.IdType import IdType
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', type=IdType)
+@attribute(local_name='prefer', enum=['system', 'public'])
+@attribute(local_name='*')
+@element(local_name='uri', dict='entries', key='name', 'value_attr': 'uri', type=StringType)
+@element(local_name='*', min=0)
 class Catalog(Model, MutableMapping):
-    MODEL_MAP = {
-        'tag_name': 'catalog',
-        'attributes': {
-            'id': {'type': 'ID'},
-            'prefer': {'enum': ['system', 'public']},
-            '*': {}
-        },
-        'elements': [
-            {'tag_name': 'uri', 'dict': 'entries', 'key': 'name', 'value_attr': 'uri', 'type': 'StringType'},
-            {'tag_name': '*', 'min': 0},
-        ],
-    }
-
-
     def __delitem__(self, key):
         del self.entries[key]
 

@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 from scap.model.xs.StringType import StringType
 
 from .AffectedType import AffectedType

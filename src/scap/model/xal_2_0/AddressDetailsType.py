@@ -20,12 +20,12 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 
-from .PostalServiceElementsType import PostalServiceElementsType
-from .AddressType import AddressType
 from .AddressLinesType import AddressLinesType
-from .CountryType import CountryType
+from .AddressType import AddressType
 from .AdministrativeAreaType import AdministrativeAreaType
+from .CountryType import CountryType
 from .LocalityType import LocalityType
+from .PostalServiceElementsType import PostalServiceElementsType
 from .ThoroughfareType import ThoroughfareType
 
 logger = logging.getLogger(__name__)

@@ -19,9 +19,9 @@ import logging
 
 from scap.model.decorators import *
 
-from ..TestType import TestType as oval_def_5_TestType
 from ..ObjectRefType import ObjectRefType
 from ..StateRefType import StateRefType
+from ..TestType import TestType as oval_def_5_TestType
 
 logger = logging.getLogger(__name__)
 

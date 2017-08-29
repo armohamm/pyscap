@@ -21,9 +21,9 @@ from scap.Model import Model
 from scap.model.decorators import *
 
 from .AddressLineType import AddressLineType
+from .AdministrativeAreaType import AdministrativeAreaType
 from .CountryNameCodeType import CountryNameCodeType
 from .CountryNameType import CountryNameType
-from .AdministrativeAreaType import AdministrativeAreaType
 from .LocalityType import LocalityType
 from .ThoroughfareType import ThoroughfareType
 

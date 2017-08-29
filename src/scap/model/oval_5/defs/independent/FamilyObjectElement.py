@@ -18,8 +18,8 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.oval_5.sc.independent.FamilyItemElement import FamilyItemElement
 from scap.model.oval_5.sc.independent.EntityItemFamilyType import EntityItemFamilyType
+from scap.model.oval_5.sc.independent.FamilyItemElement import FamilyItemElement
 
 from .ObjectType import ObjectType
 

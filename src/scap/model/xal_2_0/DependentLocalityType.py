@@ -21,13 +21,13 @@ from scap.Model import Model
 from scap.model.decorators import *
 
 from .AddressLineType import AddressLineType
-from .LocalityNameType import LocalityNameType
 from .DependentLocalityNumberType import DependentLocalityNumberType
-from .PostBoxType import PostBoxType
 from .LargeMailUserType import LargeMailUserType
+from .LocalityNameType import LocalityNameType
+from .PostBoxType import PostBoxType
 from .PostOfficeType import PostOfficeType
-from .PostalRouteType import PostalRouteType
 from .PostalCodeType import PostalCodeType
+from .PostalRouteType import PostalRouteType
 
 logger = logging.getLogger(__name__)
 

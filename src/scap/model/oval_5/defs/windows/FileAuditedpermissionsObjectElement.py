@@ -19,9 +19,10 @@ import logging
 
 from scap.model.decorators import *
 
-from .ObjectType import ObjectType
-from .FileAuditPermissionsBehaviors import FileAuditPermissionsBehaviors
 from ..EntityObjectType import EntityObjectType
+
+from .FileAuditPermissionsBehaviors import FileAuditPermissionsBehaviors
+from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
 

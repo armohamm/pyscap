@@ -17,13 +17,13 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
 
-from ..res.ExtendDefinitionType import ExtendDefinitionType as res_ExtendDefinitionType
 from ..DefinitionIdPattern import DefinitionIdPattern
 from ..NonEmptyString import NonEmptyString
+from ..res.ExtendDefinitionType import ExtendDefinitionType as res_ExtendDefinitionType
 
 logger = logging.getLogger(__name__)
 

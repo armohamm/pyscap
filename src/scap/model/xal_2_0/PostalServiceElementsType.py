@@ -21,14 +21,14 @@ from scap.Model import Model
 from scap.model.decorators import *
 
 from .AddressIdentifierType import AddressIdentifierType
+from .AddressLatitudeDirectionType import AddressLatitudeDirectionType
+from .AddressLatitudeType import AddressLatitudeType
+from .AddressLongitudeDirectionType import AddressLongitudeDirectionType
+from .AddressLongitudeType import AddressLongitudeType
+from .BarcodeType import BarcodeType
 from .EndorsementLineCodeType import EndorsementLineCodeType
 from .KeyLineCodeType import KeyLineCodeType
-from .BarcodeType import BarcodeType
 from .SortingCodeType import SortingCodeType
-from .AddressLatitudeType import AddressLatitudeType
-from .AddressLatitudeDirectionType import AddressLatitudeDirectionType
-from .AddressLongitudeType import AddressLongitudeType
-from .AddressLongitudeDirectionType import AddressLongitudeDirectionType
 from .SupplementaryPostalServiceDataType import SupplementaryPostalServiceDataType
 
 logger = logging.getLogger(__name__)

@@ -19,8 +19,8 @@ import logging
 
 from scap.model.decorators import *
 
-from .TestActionConditionType import TestActionConditionType
 from .ChoiceIDPattern import ChoiceIDPattern
+from .TestActionConditionType import TestActionConditionType
 
 logger = logging.getLogger(__name__)
 

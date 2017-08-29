@@ -19,10 +19,10 @@ import logging
 
 from scap.model.decorators import *
 
-from .QuestionType import QuestionType
+from .ChoiceGroupIDPattern import ChoiceGroupIDPattern
 from .ChoiceIDPattern import ChoiceIDPattern
 from .ChoiceType import ChoiceType
-from .ChoiceGroupIDPattern import ChoiceGroupIDPattern
+from .QuestionType import QuestionType
 
 logger = logging.getLogger(__name__)
 

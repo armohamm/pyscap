@@ -23,6 +23,7 @@ from scap.model.oval_5.sc.EntityItemType import EntityItemType
 from scap.model.oval_5.sc.independent.TextFileContentItemElement import TextFileContentItemElement
 
 from ..EntityObjectType import EntityObjectType
+
 from .ObjectType import ObjectType
 from .Textfilecontent54Behaviors import Textfilecontent54Behaviors
 

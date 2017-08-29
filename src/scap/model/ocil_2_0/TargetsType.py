@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
-from .UserType import UserType
 from .SystemTargetType import SystemTargetType
+from .UserType import UserType
 
 logger = logging.getLogger(__name__)
 

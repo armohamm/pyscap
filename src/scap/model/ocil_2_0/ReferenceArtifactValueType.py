@@ -20,8 +20,8 @@ import logging
 from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
 
-from .ArtifactValueType import ArtifactValueType
 from .ArtifactIDPattern import ArtifactIDPattern
+from .ArtifactValueType import ArtifactValueType
 from .ReferenceType import ReferenceType
 
 logger = logging.getLogger(__name__)

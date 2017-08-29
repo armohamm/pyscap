@@ -19,10 +19,11 @@ import logging
 
 from scap.model.decorators import *
 
-from .StateType import StateType
-from .EntityStateGUIDType import EntityStateGUIDType
-from .EntityStateCmdletVerbType import EntityStateCmdletVerbType
 from ..EntityStateType import EntityStateType
+
+from .EntityStateCmdletVerbType import EntityStateCmdletVerbType
+from .EntityStateGUIDType import EntityStateGUIDType
+from .StateType import StateType
 
 logger = logging.getLogger(__name__)
 

@@ -17,15 +17,16 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
+
+from ..GeneratorType import GeneratorType
 
 from .DefinitionsType import DefinitionsType
-from .TestsType import TestsType
 from .ObjectsType import ObjectsType
 from .StatesType import StatesType
+from .TestsType import TestsType
 from .VariablesType import VariablesType
-from ..GeneratorType import GeneratorType
 
 logger = logging.getLogger(__name__)
 

@@ -17,17 +17,18 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
+from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
 
-from .EntityObjectType import EntityObjectType
-from .SetElement import SetElement
-from .FilterElement import FilterElement
-from ..ObjectIdPattern import ObjectIdPattern
 from ..NonEmptyString  import NonEmptyString
 from ..NotesType import NotesType
+from ..ObjectIdPattern import ObjectIdPattern
+
+from .EntityObjectType import EntityObjectType
+from .FilterElement import FilterElement
+from .SetElement import SetElement
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

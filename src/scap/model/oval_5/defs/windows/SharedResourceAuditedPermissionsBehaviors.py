@@ -17,10 +17,9 @@
 
 import logging
 
+from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
-
-from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 

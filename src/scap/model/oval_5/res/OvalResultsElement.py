@@ -22,8 +22,9 @@ from scap.model.decorators import *
 
 from ..GeneratorType import GeneratorType
 from ..defs.OvalDefinitionsElement import OvalDefinitionsElement
-from .DefaultDirectivesType import DefaultDirectivesType
+
 from .ClassDirectivesType import ClassDirectivesType
+from .DefaultDirectivesType import DefaultDirectivesType
 from .ResultsType import ResultsType
 
 logger = logging.getLogger(__name__)

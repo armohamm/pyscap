@@ -22,6 +22,7 @@ from scap.model.oval_5 import HASH_TYPE_ENUMERATION
 from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
 
 from ..EntityStateType import EntityStateType
+
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)

@@ -20,8 +20,8 @@ import logging
 from scap.model.decorators import *
 
 from .ItemBaseType import ItemBaseType
-from .VariableIDPattern import VariableIDPattern
 from .TextType import TextType
+from .VariableIDPattern import VariableIDPattern
 
 logger = logging.getLogger(__name__)
 

@@ -21,9 +21,10 @@ from scap.Model import Model
 from scap.model.decorators import *
 
 from ..GeneratorType import GeneratorType
-from .SystemInfoType import SystemInfoType
+
 from .CollectedObjectsType import CollectedObjectsType
 from .SystemDataType import SystemDataType
+from .SystemInfoType import SystemInfoType
 
 logger = logging.getLogger(__name__)
 

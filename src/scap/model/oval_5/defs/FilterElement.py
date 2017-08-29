@@ -18,6 +18,7 @@
 import logging
 
 from scap.model.decorators import *
+
 from ..StateIdPattern import StateIdPattern
 
 logger = logging.getLogger(__name__)

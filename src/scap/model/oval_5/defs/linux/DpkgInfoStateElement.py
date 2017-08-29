@@ -19,12 +19,13 @@ import logging
 
 from scap.model.decorators import *
 
-from .StateType import StateType
+from ..EntityStateType import EntityStateType
+
+from .DpkgInfoStateEvrElement import DpkgInfoStateEvrElement
 from .EpochElement import EpochElement
 from .ReleaseElement import ReleaseElement
+from .StateType import StateType
 from .VersionElement import VersionElement
-from .DpkgInfoStateEvrElement import DpkgInfoStateEvrElement
-from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 

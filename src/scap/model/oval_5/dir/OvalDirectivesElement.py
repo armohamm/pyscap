@@ -17,12 +17,12 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
 from ..GeneratorType import GeneratorType
-from ..res.DefaultDirectivesType import DefaultDirectivesType
 from ..res.ClassDirectivesType import ClassDirectivesType
+from ..res.DefaultDirectivesType import DefaultDirectivesType
 
 logger = logging.getLogger(__name__)
 

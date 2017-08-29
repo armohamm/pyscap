@@ -18,6 +18,7 @@
 import logging
 
 from scap.model.decorators import *
+
 from .VariableType import VariableType
 
 logger = logging.getLogger(__name__)

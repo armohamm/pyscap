@@ -17,10 +17,11 @@
 
 import logging
 
-from scap.model.decorators import *
-from .. import FAMILY_ENUMERATION
-from scap.model.xs.StringType import StringType
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.StringType import StringType
+
+from .. import FAMILY_ENUMERATION
 
 logger = logging.getLogger(__name__)
 

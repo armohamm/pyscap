@@ -20,8 +20,9 @@ import logging
 from scap.model.decorators import *
 
 from ..EntityObjectType import EntityObjectType
-from .ObjectType import ObjectType
+
 from .FileBehaviors import FileBehaviors
+from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
 

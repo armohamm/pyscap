@@ -24,9 +24,10 @@ from scap.model.oval_5.sc.independent.EntityItemHashTypeType import EntityItemHa
 from scap.model.oval_5.sc.independent.FileHash58ItemElement import FileHash58ItemElement
 
 from ..EntityObjectType import EntityObjectType
+
+from .FileBehaviors import FileBehaviors
 from .FileBehaviors import FileBehaviors
 from .ObjectType import ObjectType
-from .FileBehaviors import FileBehaviors
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)

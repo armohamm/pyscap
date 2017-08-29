@@ -22,6 +22,7 @@ from scap.model.oval_5 import DATABASE_ENGINE_ENUMERATION
 
 from ..EntityObjectType import EntityObjectType
 from ..EntityStateType import EntityStateType
+
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)

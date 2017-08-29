@@ -19,13 +19,13 @@ import logging
 
 from scap.model.decorators import *
 from scap.model.xs.AnySimpleType import AnySimpleType
-from scap.model.xs.StringType import StringType
 from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.StringType import StringType
 
-from ..VariableIdPattern import VariableIdPattern
+from .. import CHECK_ENUMERATION
 from .. import DATATYPE_ENUMERATION
 from .. import OPERATION_ENUMERATION
-from .. import CHECK_ENUMERATION
+from ..VariableIdPattern import VariableIdPattern
 
 logger = logging.getLogger(__name__)
 

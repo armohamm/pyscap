@@ -20,8 +20,9 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
-from ..EntityItemType import EntityItemType
 from ..EntityItemIPAddressStringType import EntityItemIPAddressStringType
+from ..EntityItemType import EntityItemType
+
 from .EntityItemInterfaceType import EntityItemInterfaceType
 
 logger = logging.getLogger(__name__)

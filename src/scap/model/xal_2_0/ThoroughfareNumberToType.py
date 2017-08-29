@@ -22,8 +22,8 @@ from scap.model.decorators import *
 
 from .AddressLineType import AddressLineType
 from .ThoroughfareNumberPrefixType import ThoroughfareNumberPrefixType
-from .ThoroughfareNumberType import ThoroughfareNumberType
 from .ThoroughfareNumberSuffixType import ThoroughfareNumberSuffixType
+from .ThoroughfareNumberType import ThoroughfareNumberType
 
 logger = logging.getLogger(__name__)
 

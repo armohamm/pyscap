@@ -21,10 +21,10 @@ from scap.Model import Model
 from scap.model.decorators import *
 
 from .AddressLineType import AddressLineType
-from .LargeMailUserNameType import LargeMailUserNameType
-from .LargeMailUserIdentifierType import LargeMailUserIdentifierType
 from .BuildingNameType import BuildingNameType
 from .DepartmentType import DepartmentType
+from .LargeMailUserIdentifierType import LargeMailUserIdentifierType
+from .LargeMailUserNameType import LargeMailUserNameType
 from .PostBoxType import PostBoxType
 from .PostalCodeType import PostalCodeType
 

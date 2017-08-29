@@ -21,11 +21,11 @@ from scap.Model import Model
 from scap.model.decorators import *
 
 from .AddressLineType import AddressLineType
-from .PostBoxNumberType import PostBoxNumberType
+from .FirmType import FirmType
+from .PostBoxNumberExtensionType import PostBoxNumberExtensionType
 from .PostBoxNumberPrefixType import PostBoxNumberPrefixType
 from .PostBoxNumberSuffixType import PostBoxNumberSuffixType
-from .PostBoxNumberExtensionType import PostBoxNumberExtensionType
-from .FirmType import FirmType
+from .PostBoxNumberType import PostBoxNumberType
 from .PostalCodeType import PostalCodeType
 
 logger = logging.getLogger(__name__)

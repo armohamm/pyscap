@@ -20,8 +20,8 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 
-from .PostTownSuffixType import PostTownSuffixType
 from .AddressLineType import AddressLineType
+from .PostTownSuffixType import PostTownSuffixType
 
 logger = logging.getLogger(__name__)
 

@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
-from .ExternalVariableElement import ExternalVariableElement
 from .ConstantVariableElement import ConstantVariableElement
+from .ExternalVariableElement import ExternalVariableElement
 from .LocalVariableElement import LocalVariableElement
 
 logger = logging.getLogger(__name__)

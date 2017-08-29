@@ -21,17 +21,17 @@ from scap.Model import Model
 from scap.model.decorators import *
 
 from .AddressLineType import AddressLineType
-from .PremiseNameType import PremiseNameType
-from .PremiseLocationType import PremiseLocationType
-from .PremiseNumberType import PremiseNumberType
-from .PremiseNumberRangeType import PremiseNumberRangeType
-from .PremiseNumberPrefixType import PremiseNumberPrefixType
-from .PremiseNumberSuffixType import PremiseNumberSuffixType
 from .BuildingNameType import BuildingNameType
-from .SubPremiseType import SubPremiseType
 from .FirmType import FirmType
 from .MailStopType import MailStopType
 from .PostalCodeType import PostalCodeType
+from .PremiseLocationType import PremiseLocationType
+from .PremiseNameType import PremiseNameType
+from .PremiseNumberPrefixType import PremiseNumberPrefixType
+from .PremiseNumberRangeType import PremiseNumberRangeType
+from .PremiseNumberSuffixType import PremiseNumberSuffixType
+from .PremiseNumberType import PremiseNumberType
+from .SubPremiseType import SubPremiseType
 
 logger = logging.getLogger(__name__)
 

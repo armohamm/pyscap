@@ -19,9 +19,10 @@ import logging
 
 from scap.model.decorators import *
 
-from .ObjectType import ObjectType
-from .NTUserBehaviors import NTUserBehaviors
 from ..EntityObjectType import EntityObjectType
+
+from .NTUserBehaviors import NTUserBehaviors
+from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)
 

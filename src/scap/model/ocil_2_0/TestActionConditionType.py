@@ -17,12 +17,12 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
+from .ArtifactRefsType import ArtifactRefsType
 from .ResultType import ResultType
 from .TestActionRefType import TestActionRefType
-from .ArtifactRefsType import ArtifactRefsType
 
 logger = logging.getLogger(__name__)
 

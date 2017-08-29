@@ -20,9 +20,10 @@ import logging
 from scap.model.decorators import *
 from scap.model.oval_5 import WINDOWS_VIEW_ENUMERATION
 
-from .StateType import StateType
-from .EntityStateRegistryHiveType import EntityStateRegistryHiveType
 from ..EntityStateType import EntityStateType
+
+from .EntityStateRegistryHiveType import EntityStateRegistryHiveType
+from .StateType import StateType
 
 logger = logging.getLogger(__name__)
 

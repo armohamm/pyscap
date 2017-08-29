@@ -17,15 +17,16 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
-from .. import OPERATOR_ENUMERATION
+from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
+
+from .. import OPERATOR_ENUMERATION
+from ..NonEmptyString import NonEmptyString
+from ..res.CriteriaType import CriteriaType as res_CriteriaType
 
 from .CriterionType import CriterionType
 from .ExtendDefinitionType import ExtendDefinitionType
-from ..res.CriteriaType import CriteriaType as res_CriteriaType
-from ..NonEmptyString import NonEmptyString
 
 logger = logging.getLogger(__name__)
 

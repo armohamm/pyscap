@@ -21,11 +21,12 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
 
-from .. import EXISTENCE_ENUMERATION
 from .. import CHECK_ENUMERATION
+from .. import EXISTENCE_ENUMERATION
 from .. import OPERATOR_ENUMERATION
 from .. import RESULT_ENUMERATION
 from ..TestIdPattern import TestIdPattern
+
 from .TestedItemType import TestedItemType
 from .TestedVariableType import TestedVariableType
 

@@ -19,8 +19,8 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
-from scap.model.xs.QNameType import QNameType
 from scap.model.xs.NCNameType import NCNameType
+from scap.model.xs.QNameType import QNameType
 
 from .RefElement import RefElement
 

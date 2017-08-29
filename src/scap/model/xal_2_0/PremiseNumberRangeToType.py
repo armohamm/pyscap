@@ -20,10 +20,10 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 
+from .AddressLineType import AddressLineType
+from .PremiseNumberPrefixType import PremiseNumberPrefixType
 from .PremiseNumberSuffixType import PremiseNumberSuffixType
 from .PremiseNumberType import PremiseNumberType
-from .PremiseNumberPrefixType import PremiseNumberPrefixType
-from .AddressLineType import AddressLineType
 
 logger = logging.getLogger(__name__)
 

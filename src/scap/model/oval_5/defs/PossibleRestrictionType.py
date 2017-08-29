@@ -17,12 +17,13 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 from scap.model.xs.StringType import StringType
 
-from .RestrictionType import RestrictionType
 from .. import OPERATOR_ENUMERATION
+
+from .RestrictionType import RestrictionType
 
 logger = logging.getLogger(__name__)
 

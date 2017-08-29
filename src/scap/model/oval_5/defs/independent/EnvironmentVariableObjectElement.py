@@ -22,6 +22,7 @@ from scap.model.oval_5.sc.EntityItemType import EntityItemType
 from scap.model.oval_5.sc.independent.EnvironmentVariableItemElement import EnvironmentVariableItemElement
 
 from ..EntityObjectType import EntityObjectType
+
 from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)

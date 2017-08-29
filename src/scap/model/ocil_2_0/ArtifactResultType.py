@@ -17,15 +17,15 @@
 
 import logging
 
+from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.xs.DateTimeType import DateTimeType
-from scap.Model import Model
 
 from .ArtifactIDPattern import ArtifactIDPattern
-from .TextArtifactValueElement import TextArtifactValueElement
 from .BinaryArtifactValueElement import BinaryArtifactValueElement
-from .ReferenceArtifactValueElement import ReferenceArtifactValueElement
 from .ProviderValuePattern import ProviderValuePattern
+from .ReferenceArtifactValueElement import ReferenceArtifactValueElement
+from .TextArtifactValueElement import TextArtifactValueElement
 from .UserType import UserType
 
 logger = logging.getLogger(__name__)

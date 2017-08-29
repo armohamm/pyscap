@@ -19,12 +19,13 @@ import logging
 
 from scap.model.decorators import *
 
-from .ObjectType import ObjectType
-from .RpmVerifyFileBehaviors import RpmVerifyFileBehaviors
-from .EpochElement import EpochElement
-from .VersionElement import VersionElement
-from .ReleaseElement import ReleaseElement
 from ..EntityObjectType import EntityObjectType
+
+from .EpochElement import EpochElement
+from .ObjectType import ObjectType
+from .ReleaseElement import ReleaseElement
+from .RpmVerifyFileBehaviors import RpmVerifyFileBehaviors
+from .VersionElement import VersionElement
 
 logger = logging.getLogger(__name__)
 

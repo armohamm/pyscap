@@ -20,21 +20,21 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 
-from .PostalCodeType import PostalCodeType
-from .FirmType import FirmType
-from .PremiseType import PremiseType
+from .AddressLineType import AddressLineType
 from .DependentLocalityType import DependentLocalityType
 from .DependentThoroughfareType import DependentThoroughfareType
-from .ThoroughfarePostDirectionType import ThoroughfarePostDirectionType
-from .ThoroughfareTrailingTypeType import ThoroughfareTrailingTypeType
-from .ThoroughfareNameType import ThoroughfareNameType
+from .FirmType import FirmType
+from .PostalCodeType import PostalCodeType
+from .PremiseType import PremiseType
 from .ThoroughfareLeadingTypeType import ThoroughfareLeadingTypeType
-from .ThoroughfarePreDirectionType import ThoroughfarePreDirectionType
-from .ThoroughfareNumberSuffixType import ThoroughfareNumberSuffixType
+from .ThoroughfareNameType import ThoroughfareNameType
 from .ThoroughfareNumberPrefixType import ThoroughfareNumberPrefixType
 from .ThoroughfareNumberRangeType import ThoroughfareNumberRangeType
+from .ThoroughfareNumberSuffixType import ThoroughfareNumberSuffixType
 from .ThoroughfareNumberType import ThoroughfareNumberType
-from .AddressLineType import AddressLineType
+from .ThoroughfarePostDirectionType import ThoroughfarePostDirectionType
+from .ThoroughfarePreDirectionType import ThoroughfarePreDirectionType
+from .ThoroughfareTrailingTypeType import ThoroughfareTrailingTypeType
 
 logger = logging.getLogger(__name__)
 

@@ -17,10 +17,10 @@
 
 import logging
 
+from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
 from scap.model.xs.StringType import StringType
-from scap.Model import Model
 
 logger = logging.getLogger(__name__)
 

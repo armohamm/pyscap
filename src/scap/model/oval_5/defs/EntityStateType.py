@@ -17,20 +17,21 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
 from scap.model.xs.FloatType import FloatType
 from scap.model.xs.HexBinaryType import HexBinaryType
 from scap.model.xs.IntegerType import IntegerType
 from scap.model.xs.StringType import StringType
 
-from .EntityObjectFieldType import EntityObjectFieldType
 from .. import CHECK_ENUMERATION
 from .. import DATATYPE_ENUMERATION
 from .. import EXISTENCE_ENUMERATION
 from .. import OPERATION_ENUMERATION
 from ..VariableIdPattern import VariableIdPattern
+
+from .EntityObjectFieldType import EntityObjectFieldType
 
 logger = logging.getLogger(__name__)
 

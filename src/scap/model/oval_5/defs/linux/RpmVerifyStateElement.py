@@ -19,9 +19,10 @@ import logging
 
 from scap.model.decorators import *
 
-from .StateType import StateType
-from .EntityStateRpmVerifyResultType import EntityStateRpmVerifyResultType
 from ..EntityStateType import EntityStateType
+
+from .EntityStateRpmVerifyResultType import EntityStateRpmVerifyResultType
+from .StateType import StateType
 
 logger = logging.getLogger(__name__)
 

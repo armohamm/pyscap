@@ -22,8 +22,8 @@ from scap.model.decorators import *
 
 from .AddressLineType import AddressLineType
 from .PostCodeNumberType import PostCodeNumberType
-from .PostalCodeNumberExtensionType import PostalCodeNumberExtensionType
 from .PostTownType import PostTownType
+from .PostalCodeNumberExtensionType import PostalCodeNumberExtensionType
 
 logger = logging.getLogger(__name__)
 

@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
 from .BooleanQuestionElement import BooleanQuestionElement
+from .ChoiceGroupType import ChoiceGroupType
 from .ChoiceQuestionElement import ChoiceQuestionElement
 from .NumericQuestionElement import NumericQuestionElement
 from .StringQuestionElement import StringQuestionElement
-from .ChoiceGroupType import ChoiceGroupType
 
 logger = logging.getLogger(__name__)
 

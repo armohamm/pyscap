@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
 from .ItemBaseType import ItemBaseType
 from .QuestionIDPattern import QuestionIDPattern
 from .QuestionTestActionIDPattern import QuestionTestActionIDPattern
-from .TextType import TextType
 from .TestActionConditionType import TestActionConditionType
+from .TextType import TextType
 
 logger = logging.getLogger(__name__)
 

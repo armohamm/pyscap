@@ -19,10 +19,10 @@ import logging
 
 from scap.Model import Model
 from scap.model.decorators import *
-from scap.model.xs.AnySimpleType import AnySimpleType
-from scap.model.xs.StringType import StringType
-from scap.model.xs.BooleanType import BooleanType
 from scap.model.oval_5 import DATATYPE_ENUMERATION, EXISTENCE_RESULT_ENUMERATION
+from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 

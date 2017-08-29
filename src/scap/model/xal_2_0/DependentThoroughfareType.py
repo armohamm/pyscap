@@ -21,11 +21,11 @@ from scap.Model import Model
 from scap.model.decorators import *
 
 from .AddressLineType import AddressLineType
-from .ThoroughfarePreDirectionType import ThoroughfarePreDirectionType
 from .ThoroughfareLeadingTypeType import ThoroughfareLeadingTypeType
 from .ThoroughfareNameType import ThoroughfareNameType
-from .ThoroughfareTrailingTypeType import ThoroughfareTrailingTypeType
 from .ThoroughfarePostDirectionType import ThoroughfarePostDirectionType
+from .ThoroughfarePreDirectionType import ThoroughfarePreDirectionType
+from .ThoroughfareTrailingTypeType import ThoroughfareTrailingTypeType
 
 logger = logging.getLogger(__name__)
 

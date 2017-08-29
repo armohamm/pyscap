@@ -24,6 +24,7 @@ from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
 from .. import CLASS_ENUMERATION
 from .. import RESULT_ENUMERATION
 from ..DefinitionIdPattern import DefinitionIdPattern
+
 from .CriteriaType import CriteriaType
 
 logger = logging.getLogger(__name__)

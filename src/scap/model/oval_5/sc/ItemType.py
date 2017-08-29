@@ -21,8 +21,8 @@ from scap.Model import Model
 from scap.model.decorators import *
 
 from .. import EXISTENCE_RESULT_ENUMERATION
-from ..MessageType import MessageType
 from ..ItemIdPattern import ItemIdPattern
+from ..MessageType import MessageType
 
 logger = logging.getLogger(__name__)
 

@@ -17,12 +17,13 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
-from .FilterElement import FilterElement
 from .. import SET_OPERATOR_ENUMERATION
 from ..ObjectIdPattern import ObjectIdPattern
+
+from .FilterElement import FilterElement
 
 logger = logging.getLogger(__name__)
 

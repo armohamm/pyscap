@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.NormalizedStringType import NormalizedStringType
-from scap.model.xs.DecimalType import DecimalType
-from scap.model.xs.DateTimeType import DateTimeType
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.xs.DateTimeType import DateTimeType
+from scap.model.xs.DecimalType import DecimalType
+from scap.model.xs.NormalizedStringType import NormalizedStringType
 
-from .UserType import UserType
 from .ExtensionContainerType import ExtensionContainerType
+from .UserType import UserType
 
 logger = logging.getLogger(__name__)
 

@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemType import EntityItemType
+
 from .EntityItemNTUserAccountTypeType import EntityItemNTUserAccountTypeType
 from .EntityItemRegistryTypeType import EntityItemRegistryTypeType
 

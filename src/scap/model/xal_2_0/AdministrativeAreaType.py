@@ -22,10 +22,10 @@ from scap.model.decorators import *
 
 from .AddressLineType import AddressLineType
 from .AdministrativeAreaNameType import AdministrativeAreaNameType
-from .SubAdministrativeAreaNameType import SubAdministrativeAreaNameType
 from .LocalityType import LocalityType
 from .PostOfficeType import PostOfficeType
 from .PostalCodeType import PostalCodeType
+from .SubAdministrativeAreaNameType import SubAdministrativeAreaNameType
 
 logger = logging.getLogger(__name__)
 

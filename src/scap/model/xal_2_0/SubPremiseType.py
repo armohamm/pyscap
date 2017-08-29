@@ -21,15 +21,15 @@ from scap.Model import Model
 from scap.model.decorators import *
 
 from .AddressLineType import AddressLineType
-from .SubPremiseNameType import SubPremiseNameType
-from .SubPremiseLocationType import SubPremiseLocationType
-from .SubPremiseNumberType import SubPremiseNumberType
-from .SubPremiseNumberPrefixType import SubPremiseNumberPrefixType
-from .SubPremiseNumberSuffixType import SubPremiseNumberSuffixType
 from .BuildingNameType import BuildingNameType
 from .FirmType import FirmType
 from .MailStopType import MailStopType
 from .PostalCodeType import PostalCodeType
+from .SubPremiseLocationType import SubPremiseLocationType
+from .SubPremiseNameType import SubPremiseNameType
+from .SubPremiseNumberPrefixType import SubPremiseNumberPrefixType
+from .SubPremiseNumberSuffixType import SubPremiseNumberSuffixType
+from .SubPremiseNumberType import SubPremiseNumberType
 
 logger = logging.getLogger(__name__)
 

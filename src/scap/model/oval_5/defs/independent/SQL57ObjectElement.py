@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.oval_5 import DATABASE_ENGINE_ENUMERATION
 
 from ..EntityObjectType import EntityObjectType
+
 from .ObjectType import ObjectType
 
 logger = logging.getLogger(__name__)

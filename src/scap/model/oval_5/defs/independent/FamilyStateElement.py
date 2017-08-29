@@ -21,6 +21,7 @@ from scap.model.decorators import *
 from scap.model.oval_5 import FAMILY_ENUMERATION
 
 from ..EntityStateType import EntityStateType
+
 from .StateType import StateType
 
 logger = logging.getLogger(__name__)

@@ -17,13 +17,13 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
-from .WhenPatternElement import WhenPatternElement
-from .WhenChoiceElement import WhenChoiceElement
-from .WhenRangeElement import WhenRangeElement
 from .WhenBooleanElement import WhenBooleanElement
+from .WhenChoiceElement import WhenChoiceElement
+from .WhenPatternElement import WhenPatternElement
+from .WhenRangeElement import WhenRangeElement
 
 logger = logging.getLogger(__name__)
 

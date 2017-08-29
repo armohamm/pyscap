@@ -17,18 +17,19 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
-from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
+from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
+from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
 
-from .MetadataType import MetadataType
-from .CriteriaType import CriteriaType
-from ..NotesType import NotesType
-from .. import DefinitionIdPattern
 from .. import CLASS_ENUMERATION
-from ..res.DefinitionType import DefinitionType as res_DefinitionType
+from .. import DefinitionIdPattern
 from ..DefinitionIdPattern import DefinitionIdPattern
+from ..NotesType import NotesType
+from ..res.DefinitionType import DefinitionType as res_DefinitionType
+
+from .CriteriaType import CriteriaType
+from .MetadataType import MetadataType
 
 logger = logging.getLogger(__name__)
 

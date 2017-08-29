@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
-from ..ObjectIdPattern import ObjectIdPattern
 from ..NonEmptyString import NonEmptyString
+from ..ObjectIdPattern import ObjectIdPattern
 
 logger = logging.getLogger(__name__)
 

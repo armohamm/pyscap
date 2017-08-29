@@ -20,8 +20,8 @@ import logging
 from scap.Model import Model
 from scap.model.decorators import *
 
-from .PremiseNumberRangeToType import PremiseNumberRangeToType
 from .PremiseNumberRangeFromType import PremiseNumberRangeFromType
+from .PremiseNumberRangeToType import PremiseNumberRangeToType
 
 logger = logging.getLogger(__name__)
 

@@ -17,20 +17,20 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 from scap.model.xs.BooleanType import BooleanType
 from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
 
-from .NotesType import NotesType
-from .. import EXISTENCE_ENUMERATION
 from .. import CHECK_ENUMERATION
-from .. import OPERATOR_ENUMERATION
+from .. import EXISTENCE_ENUMERATION
 from .. import EXISTENCE_RESULT_ENUMERATION
-from ..res.TestType import TestType as res_TestType
+from .. import OPERATOR_ENUMERATION
 from ..NonEmptyString import NonEmptyString
 from ..TestIdPattern import TestIdPattern
+from ..res.TestType import TestType as res_TestType
 
+from .NotesType import NotesType
 
 logger = logging.getLogger(__name__)
 

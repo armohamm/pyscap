@@ -17,16 +17,16 @@
 
 import logging
 
+from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.xs.DateTimeType import DateTimeType
-from scap.Model import Model
 
-from .TextType import TextType
-from .QuestionnaireResultsType import QuestionnaireResultsType
-from .TestActionResultsType import TestActionResultsType
-from .QuestionResultsType import QuestionResultsType
 from .ArtifactResultsType import ArtifactResultsType
+from .QuestionResultsType import QuestionResultsType
+from .QuestionnaireResultsType import QuestionnaireResultsType
 from .TargetsType import TargetsType
+from .TestActionResultsType import TestActionResultsType
+from .TextType import TextType
 
 logger = logging.getLogger(__name__)
 
