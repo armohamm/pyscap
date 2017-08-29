@@ -18,13 +18,13 @@
 import logging
 
 from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
 from scap.model.rep_core_1_1.RelationshipsContainerType import RelationshipsContainerType
+from scap.model.xs.NCNameType import NCNameType
 
-from .ReportRequestsType import ReportRequestsType
 from .AssetsType import AssetsType
-from .ReportsType import ReportsType
 from .ExtendedInfosType import ExtendedInfosType
+from .ReportRequestsType import ReportRequestsType
+from .ReportsType import ReportsType
 
 logger = logging.getLogger(__name__)
 
