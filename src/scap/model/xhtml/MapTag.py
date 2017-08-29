@@ -19,6 +19,9 @@ import logging
 
 from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.xs.IdType import IdType
+from scap.model.xs.StringType import StringType
+from scap.model.xs.NMTokenType import NMTokenType
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +29,7 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='class', type=StringType)
 @attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
 @attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
-@attribute(local_name='name', type=defer_class_load('scap.model.xhtml.NMTokenType', 'NMTokenType'))
+@attribute(local_name='name', type=NMTokenType)
 @attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
 # xml:lang is defined in scap.model.Model
 @attribute(local_name='dir', enum=['ltr', 'rtl'])
@@ -57,11 +60,11 @@ logger = logging.getLogger(__name__)
 @element(local_name='address', list='_elements', max=None, cls=defer_class_load('scap.model.xhtml.AddressTag', 'AddressTag'))
 @element(local_name='fieldset', list='_elements', max=None, cls=defer_class_load('scap.model.xhtml.FieldSetTag', 'FieldSetTag'))
 @element(local_name='table', list='_elements', max=None, cls=defer_class_load('scap.model.xhtml.TableTag', 'TableTag'))
-@element(local_name='form', list='_elements', max=None, cls=defer_class_load('scap.model.xhtml.FormType', 'FormType'), max=None)
+@element(local_name='form', list='_elements', max=None, cls=defer_class_load('scap.model.xhtml.FormType', 'FormType'))
 @element(local_name='noscript', list='_elements', max=None, cls=defer_class_load('scap.model.xhtml.NoScriptTag', 'NoScriptTag'))
 @element(local_name='ins', list='_elements', max=None, cls=defer_class_load('scap.model.xhtml.InsTag', 'InsTag'))
 @element(local_name='del', list='_elements', max=None, cls=defer_class_load('scap.model.xhtml.DelTag', 'DelTag'))
 @element(local_name='script', list='_elements', max=None, cls=defer_class_load('scap.model.xhtml.ScriptTag', 'ScriptTag'))
-@element(local_name='area', list='_elements', max=None, cls=defer_class_load('scap.model.xhtml.FormType', 'FormType'), max=None)
+@element(local_name='area', list='_elements', max=None, cls=defer_class_load('scap.model.xhtml.FormType', 'FormType'))
 class MapTag(Model):
     pass

@@ -19,6 +19,8 @@ import logging
 
 from scap.model.decorators import *
 from .InlineType import InlineType
+from scap.model.xs.IdType import IdType
+from scap.model.xs.NMTokensType import NMTokensType
 
 logger = logging.getLogger(__name__)
 
@@ -26,7 +28,7 @@ logger = logging.getLogger(__name__)
 # xml:lang defined in Model
 @attribute(local_name='dir', enum=['ltr', 'rtl'], required=True)
 @attribute(local_name='id', type=IdType)
-@attribute(local_name='class', type=NMTokens)
+@attribute(local_name='class', type=NMTokensType)
 @attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
 @attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
 @attribute(local_name='onclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))

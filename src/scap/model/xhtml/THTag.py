@@ -19,24 +19,31 @@ import logging
 
 from scap.model.decorators import *
 from .FlowType import FlowType
+from scap.model.xs.IdType import IdType
+from scap.model.xs.NMTokensType import NMTokensType
+from scap.model.xs.StringType import StringType
+from scap.model.xs.IdRefsType import IdRefsType
+from . import CELL_H_ALIGN_ENUMERATION
+from . import CELL_V_ALIGN_ENUMERATION
+from . import SCOPE_ENUMERATION
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='abbr', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
 @attribute(local_name='axis', type=StringType)
-@attribute(local_name='headers', type=defer_class_load('scap.model.xhtml.IDREFS', 'IDREFS'))
+@attribute(local_name='headers', type=IdRefsType)
 @attribute(local_name='scope', enum=SCOPE_ENUMERATION)
 @attribute(local_name='rowspan', type=defer_class_load('scap.model.xhtml.NumberType', 'NumberType'), default=1)
 @attribute(local_name='colspan', type=defer_class_load('scap.model.xhtml.NumberType', 'NumberType'), default=1)
 @attribute(local_name='id', type=IdType)
-@attribute(local_name='class', type=NMTokens)
+@attribute(local_name='class', type=NMTokensType)
 @attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
 @attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
 @attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
 # xml:lang is defined in scap.model.Model
 @attribute(local_name='dir', enum=['ltr', 'rtl'])
 @attribute(local_name='onclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
-@attribute('ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 @attribute(local_name='onmousedown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 @attribute(local_name='onmouseup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 @attribute(local_name='onmouseover', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))

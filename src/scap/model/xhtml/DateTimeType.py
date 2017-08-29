@@ -24,3 +24,5 @@ logger = logging.getLogger(__name__)
 
 class DateTimeType(DateTimeType):
     pass
+
+# TODO is this class really ncessary?

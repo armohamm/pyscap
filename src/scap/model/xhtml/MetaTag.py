@@ -19,6 +19,8 @@ import logging
 
 from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.xs.IdType import IdType
+from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 

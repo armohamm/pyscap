@@ -19,20 +19,22 @@ import logging
 
 from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.xs.IdType import IdType
+from scap.model.xs.NMTokensType import NMTokensType
 
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='disabled', enum=['disabled'])
 @attribute(local_name='label', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'), required=True)
 @attribute(local_name='id', type=IdType)
-@attribute(local_name='class', type=NMTokens)
+@attribute(local_name='class', type=NMTokensType)
 @attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
 @attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
 @attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
 # xml:lang is defined in scap.model.Model
 @attribute(local_name='dir', enum=['ltr', 'rtl'])
 @attribute(local_name='onclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
-@attribute('ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
+@attribute(local_name='ondblclick', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 @attribute(local_name='onmousedown', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 @attribute(local_name='onmouseup', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
 @attribute(local_name='onmouseover', type=defer_class_load('scap.model.xhtml.ScriptType', 'ScriptType'))
