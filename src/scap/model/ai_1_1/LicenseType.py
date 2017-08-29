@@ -22,6 +22,7 @@ from scap.model.xs.StringType import StringType
 
 from .Source import Source
 from .Timestamp import Timestamp
+
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='source', type=Source)

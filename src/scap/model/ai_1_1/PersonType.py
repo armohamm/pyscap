@@ -21,9 +21,9 @@ from scap.model.decorators import *
 from scap.model.xnl_2_0.PersonNameType import PersonNameType
 
 from .AssetType import AssetType
+from .BirthdateType import BirthdateType
 from .EmailAddressType import EmailAddressType
 from .TelephoneNumberType import TelephoneNumberType
-from .BirthdateType import BirthdateType
 
 logger = logging.getLogger(__name__)
 

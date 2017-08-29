@@ -17,13 +17,13 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
-from .Timestamp import Timestamp
-from .SyntheticIDType import SyntheticIDType
-from .LocationsType import LocationsType
 from .ExtendedInformationType import ExtendedInformationType
+from .LocationsType import LocationsType
+from .SyntheticIDType import SyntheticIDType
+from .Timestamp import Timestamp
 
 logger = logging.getLogger(__name__)
 

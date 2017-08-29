@@ -19,10 +19,10 @@ import logging
 
 from scap.model.decorators import *
 
-from .ITAssetType import ITAssetType
-from .NetworkNameType import NetworkNameType
 from .IPNetRangeType import IPNetRangeType
+from .ITAssetType import ITAssetType
 from .NetworkCIDRType import NetworkCIDRType
+from .NetworkNameType import NetworkNameType
 
 logger = logging.getLogger(__name__)
 

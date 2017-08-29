@@ -19,9 +19,9 @@ import logging
 
 from scap.model.decorators import *
 
+from .CPEType import CPEType
 from .ITAssetType import ITAssetType
 from .InstallationIDType import InstallationIDType
-from .CPEType import CPEType
 from .LicenseType import LicenseType
 
 logger = logging.getLogger(__name__)

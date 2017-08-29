@@ -19,12 +19,12 @@ import logging
 
 from scap.model.decorators import *
 
-from .ITAssetType import ITAssetType
-from .DistinguishedNameType import DistinguishedNameType
 from .CPEType import CPEType
-from .ConnectionsType import ConnectionsType
-from .FQDNType import FQDNType
 from .ComputingDeviceHostnameType import ComputingDeviceHostnameType
+from .ConnectionsType import ConnectionsType
+from .DistinguishedNameType import DistinguishedNameType
+from .FQDNType import FQDNType
+from .ITAssetType import ITAssetType
 from .MotherboardGUIDType import MotherboardGUIDType
 
 logger = logging.getLogger(__name__)

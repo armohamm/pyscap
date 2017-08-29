@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
 from .IPAddressIPv4Type import IPAddressIPv4Type
 from .IPAddressIPv6Type import IPAddressIPv6Type

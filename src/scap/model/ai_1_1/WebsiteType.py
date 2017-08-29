@@ -19,8 +19,8 @@ import logging
 
 from scap.model.decorators import *
 
-from .ITAssetType import ITAssetType
 from .DocumentRootType import DocumentRootType
+from .ITAssetType import ITAssetType
 from .WebsiteLocaleType import WebsiteLocaleType
 
 logger = logging.getLogger(__name__)

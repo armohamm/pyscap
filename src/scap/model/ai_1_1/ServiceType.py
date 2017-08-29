@@ -19,11 +19,11 @@ import logging
 
 from scap.model.decorators import *
 
-from .ITAssetType import ITAssetType
 from .HostType import HostType
-from .ServicePortType import ServicePortType
+from .ITAssetType import ITAssetType
 from .PortRangeType import PortRangeType
 from .ProtocolType import ProtocolType
+from .ServicePortType import ServicePortType
 
 logger = logging.getLogger(__name__)
 

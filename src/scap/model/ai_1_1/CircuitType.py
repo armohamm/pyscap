@@ -19,8 +19,8 @@ import logging
 
 from scap.model.decorators import *
 
-from .ITAssetType import ITAssetType
 from .CircuitNameType import CircuitNameType
+from .ITAssetType import ITAssetType
 
 logger = logging.getLogger(__name__)
 
