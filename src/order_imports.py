@@ -44,13 +44,10 @@ def do_file(path):
                             g.write(''.join(sorted(one_dot_imports)))
                             g.write('\n')
                         in_imports = False
-
-                        g.write(line)
-                    elif line.startswith('class '):
+                    elif line.startswith('class ') or line.startswith('logger = '):
                         in_class = True
-                        g.write(line)
-                    else:
-                        g.write(line)
+
+                    g.write(line)
     os.remove(path)
     os.rename(path+'.new', path)
 
