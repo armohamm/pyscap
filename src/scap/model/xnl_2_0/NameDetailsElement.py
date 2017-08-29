@@ -15,20 +15,21 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xnl_2_0.NameDetailsType import NameDetailsType
 import logging
 
+from scap.model.decorators import *
+
+from .AddresseeIndicatorElement import AddresseeIndicatorElement
+from .DependencyNameElement import DependencyNameElement
+from .FunctionElement import FunctionElement
+from .NameDetailsType import NameDetailsType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='NameDetailsKey', )
+@element(local_name='AddresseeIndicator', into='adressee_indicator', cls=AddresseeIndicatorElement)
+@element(local_name='Function', into='function', cls=FunctionElement)
+@element(local_name='DependencyName', into='dependency_name', cls=DependencyNameElement)
+@element(local_name='*')
 class NameDetailsElement(NameDetailsType):
-    MODEL_MAP = {
-        'tag_name': 'NameDetails',
-        'elements': [
-            {'tag_name': 'AddresseeIndicator', 'in': 'adressee_indicator', 'class': 'AddresseeIndicatorElement'},
-            {'tag_name': 'Function', 'in': 'function', 'class': 'FunctionElement'},
-            {'tag_name': 'DependencyName', 'in': 'dependency_name', 'class': 'DependencyNameElement'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'NameDetailsKey': {},
-        },
-    }
+    pass

@@ -15,15 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Code', )
+@attribute(local_name='*', )
 class AddresseeIndicatorElement(Model):
-    MODEL_MAP = {
-        'tag_name': 'AddresseeIndicator',
-        'attributes': {
-            'Code': {},
-            '*': {},
-        }
-    }
+    pass

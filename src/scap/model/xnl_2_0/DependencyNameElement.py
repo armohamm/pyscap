@@ -15,19 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xnl_2_0.NameDetailsType import NameDetailsType
 import logging
 
+from scap.model.decorators import *
+
+from .NameDetailsType import NameDetailsType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='DependencyType', )
+@attribute(local_name='NameDetailsKeyRef', ) # from grKeyRefs
+@element(local_name='*')
 class DependencyNameElement(NameDetailsType):
-    # combining element & complexType
-    MODEL_MAP = {
-        'tag_name': 'DependencyName',
-        'elements': [
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'DependencyType': {},
-            'NameDetailsKeyRef': {}, # from grKeyRefs
-        },
-    }
+    pass

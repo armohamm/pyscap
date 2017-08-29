@@ -15,22 +15,24 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .JointPersonNameElement import JointPersonNameElement
+from .NameLineType import NameLineType
+from .OrganisationNameDetailsElement import OrganisationNameDetailsElement
+from .PersonNameElement import PersonNameElement
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='PartyType', )
+@attribute(local_name='Code', )
+@attribute(local_name='*', )
+@element(local_name='NameLine', list='name_lines', cls=NameLineType)
+@element(local_name='PersonName', into='person_name', cls=PersonNameElement)
+@element(local_name='JointPersonName', into='joint_person_name', cls=JointPersonNameElement)
+@element(local_name='OrganisationNameDetails', into='organisation_name_details', cls=OrganisationNameDetailsElement)
 class NameDetailsType(Model):
-    MODEL_MAP = {
-        'tag_name': 'NameDetails',
-        'elements': [
-            {'tag_name': 'NameLine', 'list': 'name_lines', 'class': 'NameLineType'},
-            {'tag_name': 'PersonName', 'in': 'person_name', 'class': 'PersonNameElement'},
-            {'tag_name': 'JointPersonName', 'in': 'joint_person_name', 'class': 'JointPersonNameElement'},
-            {'tag_name': 'OrganisationNameDetails', 'in': 'organisation_name_details', 'class': 'OrganisationNameDetailsElement'},
-        ],
-        'attributes': {
-            'PartyType': {},
-            'Code': {},
-            '*': {},
-        },
-    }
+    pass

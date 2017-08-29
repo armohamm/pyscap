@@ -15,21 +15,21 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xnl_2_0.PersonNameType import PersonNameType
 import logging
 
+from scap.model.decorators import *
+
+from .FormerNameElement import FormerNameElement
+from .KnownAsElement import KnownAsElement
+from .PersonNameType import PersonNameType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='Code', )
+@attribute(local_name='NameDetailsKeyRef', ) # from grKeyRefs
+@attribute(local_name='*', )
+@element(local_name='FormerName', list='former_names', cls=FormerNameElement)
+@element(local_name='KnownAs', list='known_ases', cls=KnownAsElement)
 class PersonNameElement(PersonNameType):
-    MODEL_MAP = {
-        'tag_name': 'PersonName',
-        'elements': [
-            {'tag_name': 'FormerName', 'list': 'former_names', 'class': 'FormerNameElement'},
-            {'tag_name': 'KnownAs', 'list': 'known_ases', 'class': 'KnownAsElement'},
-        ],
-        'attributes': {
-            'Type': {},
-            'Code': {},
-            'NameDetailsKeyRef': {}, # from grKeyRefs
-            '*': {},
-        }
-    }
+    pass

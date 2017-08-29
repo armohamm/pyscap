@@ -15,31 +15,41 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .AliasElement import AliasElement
+from .FirstNameElement import FirstNameElement
+from .GeneralSuffixElement import GeneralSuffixElement
+from .GenerationIdentifierElement import GenerationIdentifierElement
+from .LastNameElement import LastNameElement
+from .MiddleNameElement import MiddleNameElement
+from .NameLineType import NameLineType
+from .NamePrefixElement import NamePrefixElement
+from .OtherNameElement import OtherNameElement
+from .PrecedingTitleElement import PrecedingTitleElement
+from .SuffixElement import SuffixElement
+from .TitleElement import TitleElement
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='Code', )
+@attribute(local_name='NameDetailsKeyRef', ) # from grKeyRefs
+@attribute(local_name='*', )
+@element(local_name='NameLine', list='name_lines', cls=NameLineType)
+@element(local_name='PrecedingTitle', list='preceding_titles', cls=PrecedingTitleElement)
+@element(local_name='Title', list='titles', cls=TitleElement)
+@element(local_name='FirstName', list='first_names', cls=FirstNameElement)
+@element(local_name='MiddleName', list='middle_names', cls=MiddleNameElement)
+@element(local_name='NamePrefix', into='name_prefix', cls=NamePrefixElement)
+@element(local_name='LastName', list='last_names', cls=LastNameElement)
+@element(local_name='OtherName', list='other_names', cls=OtherNameElement)
+@element(local_name='Alias', list='aliases', cls=AliasElement)
+@element(local_name='GenerationIdentifier', list='generation_identifiers', cls=GenerationIdentifierElement)
+@element(local_name='Suffix', list='suffixes', cls=SuffixElement)
+@element(local_name='GeneralSuffix', list='general_suffix', cls=GeneralSuffixElement)
 class PersonNameType(Model):
-    MODEL_MAP = {
-        'tag_name': 'PersonName',
-        'elements': [
-            {'tag_name': 'NameLine', 'list': 'name_lines', 'class': 'NameLineType'},
-            {'tag_name': 'PrecedingTitle', 'list': 'preceding_titles', 'class': 'PrecedingTitleElement'},
-            {'tag_name': 'Title', 'list': 'titles', 'class': 'TitleElement'},
-            {'tag_name': 'FirstName', 'list': 'first_names', 'class': 'FirstNameElement'},
-            {'tag_name': 'MiddleName', 'list': 'middle_names', 'class': 'MiddleNameElement'},
-            {'tag_name': 'NamePrefix', 'in': 'name_prefix', 'class': 'NamePrefixElement'},
-            {'tag_name': 'LastName', 'list': 'last_names', 'class': 'LastNameElement'},
-            {'tag_name': 'OtherName', 'list': 'other_names', 'class': 'OtherNameElement'},
-            {'tag_name': 'Alias', 'list': 'aliases', 'class': 'AliasElement'},
-            {'tag_name': 'GenerationIdentifier', 'list': 'generation_identifiers', 'class': 'GenerationIdentifierElement'},
-            {'tag_name': 'Suffix', 'list': 'suffixes', 'class': 'SuffixElement'},
-            {'tag_name': 'GeneralSuffix', 'list': 'general_suffix', 'class': 'GeneralSuffixElement'},
-        ],
-        'attributes': {
-            'Type': {},
-            'Code': {},
-            'NameDetailsKeyRef': {}, # from grKeyRefs
-            '*': {},
-        }
-    }
+    pass

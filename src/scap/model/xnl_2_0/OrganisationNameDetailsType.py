@@ -15,20 +15,22 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .NameLineType import NameLineType
+from .OrganisationNameElement import OrganisationNameElement
+from .OrganisationTypeElement import OrganisationTypeElement
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='Type', )
+@attribute(local_name='NameDetailsKeyRef', ) # from grKeyRefs
+@attribute(local_name='*', )
+@element(local_name='NameLine', list='name_lines', cls=NameLineType)
+@element(local_name='OrganisationName', list='organisation_name', cls=OrganisationNameElement)
+@element(local_name='OrganisationType', list='organisation_type', cls=OrganisationTypeElement)
 class OrganisationNameDetailsType(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'NameLine', 'list': 'name_lines', 'class': 'NameLineType'},
-            {'tag_name': 'OrganisationName', 'list': 'organisation_name', 'class': 'OrganisationNameElement'},
-            {'tag_name': 'OrganisationType', 'list': 'organisation_type', 'class': 'OrganisationTypeElement'},
-        ],
-        'attributes': {
-            'Type': {},
-            'NameDetailsKeyRef': {}, # from grKeyRefs
-            '*': {},
-        }
-    }
+    pass

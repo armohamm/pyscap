@@ -15,21 +15,21 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
 import logging
 
+from scap.Model import Model
+from scap.model.decorators import *
+
+from .NameLineType import NameLineType
+from .PersonNameElement import PersonNameElement
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='JointNameConnector', )
+@attribute(local_name='Code', )
+@attribute(local_name='*', )
+@element(local_name='NameLine', list='name_lines', cls=NameLineType)
+@element(local_name='PersonName', list='person_names', cls=PersonNameElement)
+@element(local_name='*')
 class JointPersonNameElement(Model):
-    MODEL_MAP = {
-        'tag_name': 'JointPersonName',
-        'elements': [
-            {'tag_name': 'NameLine', 'list': 'name_lines', 'class': 'NameLineType'},
-            {'tag_name': 'PersonName', 'list': 'person_names', 'class': 'PersonNameElement'},
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'JointNameConnector': {},
-            'Code': {},
-            '*': {},
-        },
-    }
+    pass

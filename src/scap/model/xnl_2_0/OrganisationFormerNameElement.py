@@ -15,18 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xnl_2_0.OrganisationNameDetailsType import OrganisationNameDetailsType
 import logging
 
+from scap.model.decorators import *
+
+from .OrganisationNameDetailsType import OrganisationNameDetailsType
+
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='ValidFrom', )
+@attribute(local_name='ValidTo', )
+@element(local_name='*')
 class OrganisationFormerNameElement(OrganisationNameDetailsType):
-    MODEL_MAP = {
-        'tag_name': 'OrganisationNameDetails',
-        'elements': [
-            {'tag_name': '*'},
-        ],
-        'attributes': {
-            'ValidFrom': {},
-            'ValidTo': {},
-        },
-    }
+    pass
