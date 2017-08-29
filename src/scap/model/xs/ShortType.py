@@ -15,10 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.IntType import IntType
 import logging
 
+from scap.model.decorators import *
+
+from .IntType import IntType
+
 logger = logging.getLogger(__name__)
+
 class ShortType(IntType):
     def parse_value(self, value):
         value = super(ShortType, self).parse_value(value)

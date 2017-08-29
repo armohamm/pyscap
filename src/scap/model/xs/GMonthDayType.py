@@ -18,10 +18,13 @@
 import logging
 import re
 
-from scap.model.xs.SevenPropertyModel import SevenPropertyModel
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.decorators import *
+
+from .AnySimpleType import AnySimpleType
+from .SevenPropertyModel import SevenPropertyModel
 
 logger = logging.getLogger(__name__)
+
 class GMonthDayType(AnySimpleType):
     def parse_value(self, value):
         m = re.fullmatch(r'--(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])(Z|(\+|-)((0[0-9]|1[0-3]):[0-5][0-9]|14:00))?', value)

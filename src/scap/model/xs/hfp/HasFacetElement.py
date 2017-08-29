@@ -18,28 +18,13 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xs import *
-from scap.model.xs.hfp import *
+from scap.model.decorators import *
+from scap.model.types import *
+
+from . import FACET_NAME_ENUMERATION
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='name', required=True, enum=FACET_NAME_ENUMERATION)
 class HasFacetElement(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'name': {'required': True, 'enum': [
-                'length',
-                'minLength',
-                'maxLength',
-                'pattern',
-                'enumeration',
-                'maxInclusive',
-                'maxExclusive',
-                'minInclusive',
-                'minExclusive',
-                'totalDigits',
-                'fractionDigits',
-                'whiteSpace',
-                'maxScale',
-                'minScale',
-            ]},
-        }
-    }
+    pass

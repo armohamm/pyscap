@@ -18,10 +18,13 @@
 import logging
 import re
 
-from scap.model.xs.List import List
-from scap.model.xs.TokenType import TokenType
+from scap.model.decorators import *
+
+from .List import List
+from .TokenType import TokenType
 
 logger = logging.getLogger(__name__)
+
 class NamespaceListType(TokenType):
     def parse_item(self, item_value):
         if (

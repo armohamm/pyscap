@@ -17,15 +17,14 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
+from .SelectorXPath import SelectorXPath
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='xpath', type=SelectorXPath, required=True)
 class SelectorElement(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-            'xpath': {'type': 'SelectorXPath', 'required': True},
-        }
-    }
+    pass

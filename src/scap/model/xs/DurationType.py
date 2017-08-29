@@ -18,9 +18,12 @@
 import logging
 import re
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.decorators import *
+
+from .AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
+
 class DurationType(AnySimpleType):
     def parse_value(self, value):
         m = re.fullmatch(r'-?P(\d+Y)?(\d+M)?(\d+D)?(T(\d+H)?(\d+M)?(\d+(\.\d+)?S)?)?', value)

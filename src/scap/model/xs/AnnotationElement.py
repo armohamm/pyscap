@@ -17,17 +17,17 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnyTypeType import AnyTypeType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnyTypeType import AnyTypeType
+from .AppinfoElement import AppinfoElement
+from .DocumentationElement import DocumentationElement
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='id', type=IdType)
+@element(local_name='appinfo', list='tags', cls=AppinfoElement, min=0, max=None)
+@element(local_name='documentation', list='tags', cls=DocumentationElement, min=0, max=None)
 class AnnotationElement(AnyTypeType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'appinfo', 'list': 'tags', 'class': 'AppinfoElement', 'min': 0, 'max': None},
-            {'tag_name': 'documentation', 'list': 'tags', 'class': 'DocumentationElement', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'id': {'type': 'IdType'},
-        },
-    }
+    pass

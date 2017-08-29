@@ -19,9 +19,11 @@ import datetime as dt
 import logging
 import re
 
-logger = logging.getLogger(__name__)
-class SevenPropertyModel(object):
+from scap.model.decorators import *
 
+logger = logging.getLogger(__name__)
+
+class SevenPropertyModel(object):
     def __init__(
         self,
         datetime=None,

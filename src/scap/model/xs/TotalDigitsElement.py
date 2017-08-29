@@ -17,17 +17,16 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.FacetType import FacetType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotationElement import AnnotationElement
+from .FacetType import FacetType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='value', type=PositiveIntegerType, required=True)
+@attribute(local_name='*', )
+@element(local_name='annotation', list='tags', cls=AnnotationElement, min=0)
 class TotalDigitsElement(FacetType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'annotation', 'list': 'tags', 'class': 'AnnotationElement', 'min': 0},
-        ],
-        'attributes': {
-            'value': {'type': 'PositiveIntegerType', 'required': True},
-            '*': {},
-        },
-    }
+    pass

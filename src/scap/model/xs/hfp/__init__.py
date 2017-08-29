@@ -19,3 +19,27 @@ TAG_MAP = {
     '{http://www.w3.org/2001/XMLSchema-hasFacetAndProperty}hasFacet': 'HasFacetElement',
     '{http://www.w3.org/2001/XMLSchema-hasFacetAndProperty}hasProperty': 'HasPropertyElement',
 }
+
+FACET_NAME_ENUMERATION = [
+    'length',
+    'minLength',
+    'maxLength',
+    'pattern',
+    'enumeration',
+    'maxInclusive',
+    'maxExclusive',
+    'minInclusive',
+    'minExclusive',
+    'totalDigits',
+    'fractionDigits',
+    'whiteSpace',
+    'maxScale',
+    'minScale',
+]
+
+PROPERTY_NAME_ENUMERATION = [
+    'ordered',
+    'bounded',
+    'cardinality',
+    'numeric',
+]

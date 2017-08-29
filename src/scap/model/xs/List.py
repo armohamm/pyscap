@@ -18,9 +18,12 @@
 import logging
 import re
 
-from scap.model.xs.StringType import StringType
+from scap.model.decorators import *
+
+from .StringType import StringType
 
 logger = logging.getLogger(__name__)
+
 class List(StringType):
     # abstract
     def parse_value(self, value):

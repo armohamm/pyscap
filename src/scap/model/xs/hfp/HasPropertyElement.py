@@ -18,14 +18,14 @@
 import logging
 
 from scap.Model import Model
-from scap.model.xs import *
-from scap.model.xs.hfp import *
+from scap.model.decorators import *
+from scap.model.types import *
+
+from . import PROPERTY_NAME_ENUMERATION
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='name', required=True, enum=PROPERTY_NAME_ENUMERATION)
+@attribute(local_name='value', required=True, type=NormalizedStringType)
 class HasPropertyElement(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'name': {'required': True, 'enum': ['ordered', 'bounded', 'cardinality', 'numeric']},
-            'value': {'required': True, 'type': 'NormalizedStringType'},
-        }
-    }
+    pass

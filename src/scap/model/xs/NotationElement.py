@@ -17,17 +17,15 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='name', type=NCNameType, required=True)
+@attribute(local_name='public', type=TokenType)
+@attribute(local_name='system', type=AnyUriType)
 class NotationElement(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-            'name': {'type': 'NCNameType', 'required': True},
-            'public': {'type': 'TokenType'},
-            'system': {'type': 'AnyUriType'},
-        },
-    }
+    pass

@@ -18,10 +18,13 @@
 import logging
 import re
 
-from scap.model.xs.List import List
-from scap.model.xs.NMTokenType import NMTokenType
+from scap.model.decorators import *
+
+from .List import List
+from .NMTokenType import NMTokenType
 
 logger = logging.getLogger(__name__)
+
 class NMTokensType(List):
     def parse_item(self, item_value):
         return NMTokenType().parse_value(item_value)

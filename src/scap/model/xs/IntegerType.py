@@ -18,9 +18,12 @@
 import logging
 import re
 
-from scap.model.xs.DecimalType import DecimalType
+from scap.model.decorators import *
+
+from .DecimalType import DecimalType
 
 logger = logging.getLogger(__name__)
+
 class IntegerType(DecimalType):
     def parse_value(self, value):
         m = re.fullmatch(r'[\-+]?[0-9]+', value)

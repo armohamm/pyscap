@@ -17,23 +17,23 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from . import FORM_CHOICE_ENUMERATION
+from .AnnotatedType import AnnotatedType
+from .SimpleTypeType import SimpleTypeType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='name', type=NCNameType)
+@attribute(local_name='ref', type=QNameType)
+@attribute(local_name='type', type=QNameType)
+@attribute(local_name='use', enum=['prohibited', 'optional', 'required'], default='optional')
+@attribute(local_name='default', type=StringType)
+@attribute(local_name='fixed', type=StringType)
+@attribute(local_name='form', enum=FORM_CHOICE_ENUMERATION)
+@attribute(local_name='*', )
+@element(local_name='simpleType', list='tags', cls=SimpleTypeType, min=0)
 class AttributeType(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'simpleType', 'list': 'tags', 'class': 'SimpleTypeType', 'min': 0},
-        ],
-        'attributes': {
-            'name': {'type': 'NCNameType'},
-            'ref': {'type': 'QNameType'},
-            'type': {'type': 'QNameType'},
-            'use': {'enum': ['prohibited', 'optional', 'required'], 'default': 'optional'},
-            'default': {'type': 'StringType'},
-            'fixed': {'type': 'StringType'},
-            'form': {'enum': FORM_CHOICE_ENUMERATION},
-            '*': {},
-        },
-    }
+    pass

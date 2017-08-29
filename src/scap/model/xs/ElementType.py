@@ -18,37 +18,38 @@
 import logging
 import os.path
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from . import FORM_CHOICE_ENUMERATION
+from .AnnotatedType import AnnotatedType
+from .ComplexTypeType import ComplexTypeType
+from .KeyRefElement import KeyRefElement
+from .KeybaseType import KeybaseType
+from .SimpleTypeType import SimpleTypeType
 
 logger = logging.getLogger(__name__)
-class ElementType(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'simpleType', 'list': 'tags', 'class': 'SimpleTypeType', 'min': 0},
-            {'tag_name': 'complexType', 'list': 'tags', 'class': 'ComplexTypeType', 'min': 0},
-            {'tag_name': 'unique', 'list': 'tags', 'class': 'KeybaseType', 'min': 0, 'max': None},
-            {'tag_name': 'key', 'list': 'tags', 'class': 'KeybaseType', 'min': 0, 'max': None},
-            {'tag_name': 'keyref', 'list': 'tags', 'class': 'KeyRefElement', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'name': {'type': 'NCNameType'},
-            'ref': {'type': 'QNameType'},
-            'type': {'type': 'QNameType'},
-            'substitutionGroup': {'type': 'QNameType'},
-            'default': {'type': 'StringType'},
-            'fixed': {'type': 'StringType'},
-            'nillable': {'type': 'BooleanType', 'default': False},
-            'abstract': {'type': 'BooleanType', 'default': False},
-            'final': {'enum': ['#all', 'extension', 'restriction']},
-            'block': {'enum': ['#all', 'extension', 'restriction', 'substitution']},
-            'form': {'enum': FORM_CHOICE_ENUMERATION},
-            'minOccurs': {'type': 'NonNegativeIntegerType', 'default': 1},
-            'maxOccurs': {'type': 'AllNniType', 'default': 1},
-            '*': {},
-        }
-    }
 
+@element(local_name='simpleType', list='tags', cls=SimpleTypeType, min=0)
+@element(local_name='complexType', list='tags', cls=ComplexTypeType, min=0)
+@element(local_name='unique', list='tags', cls=KeybaseType, min=0, max=None)
+@element(local_name='key', list='tags', cls=KeybaseType, min=0, max=None)
+@element(local_name='keyref', list='tags', cls=KeyRefElement, min=0, max=None)
+@attribute(local_name='name', type=NCNameType)
+@attribute(local_name='ref', type=QNameType)
+@attribute(local_name='type', type=QNameType)
+@attribute(local_name='substitutionGroup', type=QNameType)
+@attribute(local_name='default', type=StringType)
+@attribute(local_name='fixed', type=StringType)
+@attribute(local_name='nillable', type=BooleanType, default=False)
+@attribute(local_name='abstract', type=BooleanType, default=False)
+@attribute(local_name='final', enum=['#all', 'extension', 'restriction'])
+@attribute(local_name='block', enum=['#all', 'extension', 'restriction', 'substitution'])
+@attribute(local_name='form', enum=FORM_CHOICE_ENUMERATION)
+@attribute(local_name='minOccurs', type=NonNegativeIntegerType, default=1)
+@attribute(local_name='maxOccurs', type=AllNniType, default=1)
+@attribute(local_name='*', )
+class ElementType(AnnotatedType):
     def stub(self, path, schema):
         class_name = ''.join(cap_first(w) for w in self.name.split('_'))
         if not class_name.endswith('Element'):

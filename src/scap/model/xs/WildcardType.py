@@ -17,19 +17,20 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
+from .AnnotationElement import AnnotationElement
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='namespace', type=NamespaceListType, default='##any')
+@attribute(local_name='processContents', enum=['skip', 'lax', 'strict'], default='strict')
+@attribute(local_name='*', )
+@element(local_name='annotation', list='tags', cls=AnnotationElement, min=0)
+@element(local_name='element', list='tags',
+    cls=defer_class_load('scap.model.xs.ElementType', 'ElementType'),
+    min=0, max=None)
 class WildcardType(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'annotation', 'list': 'tags', 'class': 'AnnotationElement', 'min': 0},
-            {'tag_name': 'element', 'list': 'tags', 'class': 'ElementType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'namespace': {'type': 'NamespaceListType', 'default': '##any'},
-            'processContents': {'enum': ['skip', 'lax', 'strict'], 'default': 'strict'},
-            '*': {},
-        }
-    }
+    pass

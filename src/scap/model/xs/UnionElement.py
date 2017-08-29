@@ -17,16 +17,16 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='memberTypes', type=QNameType)
+@element(local_name='simpleType', list='tags',
+    cls=defer_class_load('scap.model.xs.SimpleTypeType', 'SimpleTypeType'),
+    min=0, max=None)
 class UnionElement(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'simpleType', 'list': 'tags', 'class': 'SimpleTypeType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'memberTypes': {'type': 'QNameType'},
-        }
-    }
+    pass

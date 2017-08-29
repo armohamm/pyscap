@@ -17,8 +17,11 @@
 
 import logging
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.decorators import *
+
+from .AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
+
 class AnyUriType(AnySimpleType):
     pass

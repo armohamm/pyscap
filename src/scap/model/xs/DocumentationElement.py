@@ -17,22 +17,16 @@
 
 import logging
 
-from scap.model.xs import *
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.types import *
 
 logger = logging.getLogger(__name__)
-class DocumentationElement(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': '*', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'source': {'type': 'AnyUriType'},
-            # xml:lang is handled by Model
-            '*': {},
-        },
-    }
 
+@attribute(local_name='*', )
+@attribute(local_name='source', type=AnyUriType)
+@element(local_name='*', min=0, max=None)
+class DocumentationElement(Model):
     def get_defs(self, schema, top_level):
         model_map = {'elements': [], 'attributes': {}}
         return model_map

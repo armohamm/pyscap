@@ -19,9 +19,12 @@ import binascii
 import logging
 import re
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.decorators import *
+
+from .AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
+
 class HexBinaryType(AnySimpleType):
     def parse_value(self, value):
         value = super(HexBinaryType, self).parse_value(value)

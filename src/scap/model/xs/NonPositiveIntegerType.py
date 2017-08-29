@@ -17,9 +17,12 @@
 
 import logging
 
-from scap.model.xs.IntegerType import IntegerType
+from scap.model.decorators import *
+
+from .IntegerType import IntegerType
 
 logger = logging.getLogger(__name__)
+
 class NonPositiveIntegerType(IntegerType):
     def parse_value(self, value):
         value = super(NonPositiveIntegerType, self).parse_value(value)

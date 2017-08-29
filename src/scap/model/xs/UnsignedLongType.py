@@ -15,10 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
 import logging
 
+from scap.model.decorators import *
+
+from .NonNegativeIntegerType import NonNegativeIntegerType
+
 logger = logging.getLogger(__name__)
+
 class UnsignedLongType(NonNegativeIntegerType):
     def parse_value(self, value):
         value = super(UnsignedLongType, self).parse_value(value)

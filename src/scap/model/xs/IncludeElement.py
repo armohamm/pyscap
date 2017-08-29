@@ -17,13 +17,13 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='schemaLocation', type=AnyUriType, required=True)
 class IncludeElement(AnnotatedType):
-    MODEL_MAP = {
-        'attributes': {
-            'schemaLocation': {'type': 'AnyUriType', 'required': True},
-        }
-    }
+    pass

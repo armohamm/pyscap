@@ -17,17 +17,17 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
+from .ExtensionType import ExtensionType
+from .RestrictionType import RestrictionType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='mixed', type=BooleanType)
+@element(local_name='restriction', list='tags', cls=RestrictionType, min=0)
+@element(local_name='extension', list='tags', cls=ExtensionType, min=0)
 class ComplexContentElement(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'restriction', 'list': 'tags', 'class': 'RestrictionType', 'min': 0},
-            {'tag_name': 'extension', 'list': 'tags', 'class': 'ExtensionType', 'min': 0},
-        ],
-        'attributes': {
-            'mixed': {'type': 'BooleanType'},
-        }
-    }
+    pass

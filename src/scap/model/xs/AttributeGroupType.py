@@ -17,20 +17,22 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
+from .AttributeType import AttributeType
+from .WildcardType import WildcardType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='name', type=NCNameType)
+@attribute(local_name='ref', type=QNameType)
+@attribute(local_name='*', )
+@element(local_name='attribute', list='tags', cls=AttributeType, min=0, max=None)
+@element(local_name='attributeGroup', list='tags',
+    cls=defer_class_load('scap.model.xs.AttributeGroupType', 'AttributeGroupType'),
+    min=0, max=None)
+@element(local_name='anyAttribute', list='tags', cls=WildcardType, min=0)
 class AttributeGroupType(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'attribute', 'list': 'tags', 'class': 'AttributeType', 'min': 0, 'max': None},
-            {'tag_name': 'attributeGroup', 'list': 'tags', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
-            {'tag_name': 'anyAttribute', 'list': 'tags', 'class': 'WildcardType', 'min': 0},
-        ],
-        'attributes': {
-            'name': {'type': 'NCNameType'},
-            'ref': {'type': 'QNameType'},
-            '*': {},
-        }
-    }
+    pass

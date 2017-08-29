@@ -48,6 +48,3 @@ STUB_HEADER = '''# Copyright 2016 Casey Jaymes
 
 def cap_first(s):
     return s[0].upper() + s[1:]
-
-from .AnySimpleType import AnySimpleType
-from .AnyTypeType import AnyTypeType

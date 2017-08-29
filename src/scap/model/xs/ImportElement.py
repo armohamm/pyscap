@@ -17,20 +17,22 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
+from .AttributeGroupType import AttributeGroupType
+from .ComplexTypeType import ComplexTypeType
+from .GroupType import GroupType
+from .SimpleTypeType import SimpleTypeType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='namespace', type=AnyUriType)
+@attribute(local_name='schemaLocation', type=AnyUriType)
+@element(local_name='simpleType', list='tags', cls=SimpleTypeType, min=0, max=None)
+@element(local_name='complexType', list='tags', cls=ComplexTypeType, min=0, max=None)
+@element(local_name='group', list='tags', cls=GroupType, min=0, max=None)
+@element(local_name='attributeGroup', list='tags', cls=AttributeGroupType, min=0, max=None)
 class ImportElement(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'simpleType', 'list': 'tags', 'class': 'SimpleTypeType', 'min': 0, 'max': None},
-            {'tag_name': 'complexType', 'list': 'tags', 'class': 'ComplexTypeType', 'min': 0, 'max': None},
-            {'tag_name': 'group', 'list': 'tags', 'class': 'GroupType', 'min': 0, 'max': None},
-            {'tag_name': 'attributeGroup', 'list': 'tags', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'namespace': {'type': 'AnyUriType'},
-            'schemaLocation': {'type': 'AnyUriType'},
-        }
-    }
+    pass

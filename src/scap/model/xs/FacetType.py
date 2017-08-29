@@ -17,21 +17,17 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
 
 logger = logging.getLogger(__name__)
-class FacetType(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-            'value': {'required': True, 'type': 'AnySimpleType'},
-            'fixed': {'type': 'BooleanType', 'default': False},
-            '*': {},
-        }
-    }
 
+@attribute(local_name='value', required=True, type=AnySimpleType)
+@attribute(local_name='fixed', type=BooleanType, default=False)
+@attribute(local_name='*', )
+class FacetType(AnnotatedType):
     def get_defs(self, schema, top_level):
         if self.tag_name == 'enumeration':
             top_level.append_value_enumeration(self.value)

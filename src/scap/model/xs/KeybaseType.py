@@ -17,17 +17,17 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
+from .FieldElement import FieldElement
+from .SelectorElement import SelectorElement
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='name', type=NCNameType, required=True)
+@element(local_name='selector', list='tags', cls=SelectorElement)
+@element(local_name='field', list='tags', cls=FieldElement, min=1, max=None)
 class KeybaseType(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'selector', 'list': 'tags', 'class': 'SelectorElement'},
-            {'tag_name': 'field', 'list': 'tags', 'class': 'FieldElement', 'min': 1, 'max': None},
-        ],
-        'attributes': {
-            'name': {'type': 'NCNameType', 'required': True},
-        },
-    }
+    pass

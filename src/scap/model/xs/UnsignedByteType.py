@@ -15,10 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.UnsignedShortType import UnsignedShortType
 import logging
 
+from scap.model.decorators import *
+
+from .UnsignedShortType import UnsignedShortType
+
 logger = logging.getLogger(__name__)
+
 class UnsignedByteType(UnsignedShortType):
     def parse_value(self, value):
         value = super(UnsignedByteType, self).parse_value(value)

@@ -18,10 +18,12 @@
 import logging
 import re
 
-from scap.model.xs import *
-from scap.model.xs.TokenType import TokenType
+from scap.model.decorators import *
+
+from .TokenType import TokenType
 
 logger = logging.getLogger(__name__)
+
 class NameType(TokenType):
     def parse_value(self, value):
         m = re.fullmatch(i_ + c_ + '*', value)

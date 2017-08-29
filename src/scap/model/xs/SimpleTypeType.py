@@ -17,24 +17,22 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
+from .RestrictionType import RestrictionType
+from .UnionElement import UnionElement
 
 logger = logging.getLogger(__name__)
-class SimpleTypeType(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'restriction', 'list': 'tags', 'class': 'RestrictionType', 'min': 0},
-            {'tag_name': 'list', 'list': 'tags', 'class': 'ListElement', 'min': 0},
-            {'tag_name': 'union', 'list': 'tags', 'class': 'UnionElement', 'min': 0},
-        ],
-        'attributes': {
-            'final': {'enum': ['#all', 'list', 'union', 'restriction']},
-            'name': {'type': 'NCNameType'},
-            '*': {},
-        }
-    }
 
+@element(local_name='restriction', list='tags', cls=RestrictionType, min=0)
+@element(local_name='list', list='tags', cls=defer_class_load('scap.model.xs.ListElement', 'ListElement'), min=0)
+@element(local_name='union', list='tags', cls=UnionElement, min=0)
+@attribute(local_name='final', enum=['#all', 'list', 'union', 'restriction'])
+@attribute(local_name='name', type=NCNameType)
+@attribute(local_name='*', )
+class SimpleTypeType(AnnotatedType):
     def stub(self, path, schema):
         class_name = ''.join(cap_first(w) for w in self.name.split('_'))
         if not class_name.endswith('Type'):

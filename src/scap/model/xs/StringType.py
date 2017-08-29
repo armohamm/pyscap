@@ -18,9 +18,12 @@
 import logging
 import re
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.decorators import *
+
+from .AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
+
 class StringType(AnySimpleType):
     def get_value_pattern(self):
         return None

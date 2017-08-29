@@ -17,10 +17,11 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.GroupType import GroupType
+from scap.model.decorators import *
+
+from .GroupType import GroupType
 
 logger = logging.getLogger(__name__)
+
 class ChoiceElement(GroupType):
-    MODEL_MAP = {
-    }
+    pass

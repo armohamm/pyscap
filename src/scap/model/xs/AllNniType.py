@@ -17,15 +17,14 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.NMTokenType import NMTokenType
-from scap.model.xs.NonNegativeIntegerType import NonNegativeIntegerType
+from scap.model.decorators import *
+
+from .NMTokenType import NMTokenType
+from .NonNegativeIntegerType import NonNegativeIntegerType
 
 logger = logging.getLogger(__name__)
-class AllNniType(NMTokenType):
-    MODEL_MAP = {
-    }
 
+class AllNniType(NMTokenType):
     def parse_value(self, value):
         if value == 'unbounded':
             return value

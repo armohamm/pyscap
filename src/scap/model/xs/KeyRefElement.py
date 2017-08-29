@@ -17,15 +17,13 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.KeybaseType import KeybaseType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .KeybaseType import KeybaseType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='refer', type=QNameType, required=True)
 class KeyRefElement(KeybaseType):
-    MODEL_MAP = {
-        'elements': [
-        ],
-        'attributes': {
-            'refer': {'type': 'QNameType', 'required': True},
-        },
-    }
+    pass

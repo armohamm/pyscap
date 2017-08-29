@@ -15,14 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-import re
 import datetime
 import logging
+import re
 
-from scap.model.xs.SevenPropertyModel import SevenPropertyModel
-from scap.model.xs.DateTimeType import DateTimeType
+from scap.model.decorators import *
+
+from .DateTimeType import DateTimeType
+from .SevenPropertyModel import SevenPropertyModel
 
 logger = logging.getLogger(__name__)
+
 class DateTimeStampType(DateTimeType):
     def parse_value(self, value):
         m = re.fullmatch(r'(-?\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d):(\d\d(\.\d+)?)((([-+])(\d\d):(\d\d))|Z)', value)

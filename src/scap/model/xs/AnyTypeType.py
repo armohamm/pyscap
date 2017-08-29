@@ -18,11 +18,11 @@
 import logging
 
 from scap.Model import Model
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
-class AnyTypeType(Model):
-    MODEL_MAP = {}
 
+class AnyTypeType(Model):
     def get_defs(self, schema, top_level):
         model_map = {'elements': [], 'attributes': {}}
         for t in self.tags:

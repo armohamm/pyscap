@@ -18,10 +18,13 @@
 import logging
 import re
 
-from scap.model.xs.List import List
-from scap.model.xs.IdRefType import IdRefType
+from scap.model.decorators import *
+
+from .IdRefType import IdRefType
+from .List import List
 
 logger = logging.getLogger(__name__)
+
 class IdRefsType(List):
     def parse_item(self, item_value):
         return IdRefType().parse_value(item_value)

@@ -17,21 +17,23 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnyTypeType import AnyTypeType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotationElement import AnnotationElement
+from .AttributeGroupType import AttributeGroupType
+from .ComplexTypeType import ComplexTypeType
+from .GroupType import GroupType
+from .SimpleTypeType import SimpleTypeType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='schemaLocation', type=AnyUriType, required=True)
+@attribute(local_name='id', type=IdType)
+@element(local_name='annotation', list='tags', cls=AnnotationElement, min=0, max=None)
+@element(local_name='simpleType', list='tags', cls=SimpleTypeType, min=0, max=None)
+@element(local_name='complexType', list='tags', cls=ComplexTypeType, min=0, max=None)
+@element(local_name='group', list='tags', cls=GroupType, min=0, max=None)
+@element(local_name='attributeGroup', list='tags', cls=AttributeGroupType, min=0, max=None)
 class RedefineElement(AnyTypeType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'annotation', 'list': 'tags', 'class': 'AnnotationElement', 'min': 0, 'max': None},
-            {'tag_name': 'simpleType', 'list': 'tags', 'class': 'SimpleTypeType', 'min': 0, 'max': None},
-            {'tag_name': 'complexType', 'list': 'tags', 'class': 'ComplexTypeType', 'min': 0, 'max': None},
-            {'tag_name': 'group', 'list': 'tags', 'class': 'GroupType', 'min': 0, 'max': None},
-            {'tag_name': 'attributeGroup', 'list': 'tags', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'schemaLocation': {'type': 'AnyUriType', 'required': True},
-            'id': {'type': 'ID'},
-        }
-    }
+    pass

@@ -18,32 +18,37 @@
 import logging
 import os.path
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
+from .AttributeGroupType import AttributeGroupType
+from .AttributeType import AttributeType
+from .ChoiceElement import ChoiceElement
+from .ComplexContentElement import ComplexContentElement
+from .GroupType import GroupType
+from .SimpleContentElement import SimpleContentElement
+from .WildcardType import WildcardType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='name', type=NCNameType)
+@attribute(local_name='mixed', type=BooleanType, default=False)
+@attribute(local_name='abstract', type=BooleanType, default=False)
+@attribute(local_name='final', enum=['#all', 'extension', 'restriction'])
+@attribute(local_name='block', enum=['#all', 'extension', 'restriction'])
+@attribute(local_name='*', )
+@element(local_name='simpleContent', list='tags', cls=SimpleContentElement, min=0, max=None)
+@element(local_name='complexContent', list='tags', cls=ComplexContentElement, min=0, max=None)
+@element(local_name='group', list='tags', cls=GroupType, min=0)
+@element(local_name='all', list='tags',
+    cls=defer_class_load('scap.model.xs.AllType', 'AllType'), min=0)
+@element(local_name='choice', list='tags', cls=ChoiceElement, min=0)
+@element(local_name='sequence', list='tags', cls=GroupType, min=0)
+@element(local_name='attribute', list='tags', cls=AttributeType, min=0, max=None)
+@element(local_name='attributeGroup', list='tags', cls=AttributeGroupType, min=0, max=None)
+@element(local_name='anyAttribute', list='tags', cls=WildcardType, min=0)
 class ComplexTypeType(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'simpleContent', 'list': 'tags', 'class': 'SimpleContentElement', 'min': 0, 'max': None},
-            {'tag_name': 'complexContent', 'list': 'tags', 'class': 'ComplexContentElement', 'min': 0, 'max': None},
-            {'tag_name': 'group', 'list': 'tags', 'class': 'GroupType', 'min': 0},
-            {'tag_name': 'all', 'list': 'tags', 'class': 'AllType', 'min': 0},
-            {'tag_name': 'choice', 'list': 'tags', 'class': 'ChoiceElement', 'min': 0},
-            {'tag_name': 'sequence', 'list': 'tags', 'class': 'GroupType', 'min': 0},
-            {'tag_name': 'attribute', 'list': 'tags', 'class': 'AttributeType', 'min': 0, 'max': None},
-            {'tag_name': 'attributeGroup', 'list': 'tags', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
-            {'tag_name': 'anyAttribute', 'list': 'tags', 'class': 'WildcardType', 'min': 0},
-        ],
-        'attributes': {
-            'name': {'type': 'NCNameType'},
-            'mixed': {'type': 'BooleanType', 'default': False},
-            'abstract': {'type': 'BooleanType', 'default': False},
-            'final': {'enum': ['#all', 'extension', 'restriction']},
-            'block': {'enum': ['#all', 'extension', 'restriction']},
-            '*': {},
-        }
-    }
     # TODO .mixed & simpleContent sub-elements are mutulally exclusive
 
     def stub(self, path, schema):

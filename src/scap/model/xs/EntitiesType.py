@@ -18,10 +18,13 @@
 import logging
 import re
 
-from scap.model.xs.List import List
-from scap.model.xs.EntityType import EntityType
+from scap.model.decorators import *
+
+from .EntityType import EntityType
+from .List import List
 
 logger = logging.getLogger(__name__)
+
 class EntitiesType(List):
     def parse_item(self, item_value):
         return EntityType().parse_value(item_value)

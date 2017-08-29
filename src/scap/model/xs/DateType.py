@@ -19,10 +19,13 @@ import datetime
 import logging
 import re
 
-from scap.model.xs.SevenPropertyModel import SevenPropertyModel
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.decorators import *
+
+from .AnySimpleType import AnySimpleType
+from .SevenPropertyModel import SevenPropertyModel
 
 logger = logging.getLogger(__name__)
+
 class DateType(AnySimpleType):
     def parse_value(self, value):
         m = re.fullmatch(r'(-?\d\d\d\d)-(\d\d)-(\d\d)((([-+])(\d\d):(\d\d))|Z)?', value)

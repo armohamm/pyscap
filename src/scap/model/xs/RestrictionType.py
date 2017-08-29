@@ -17,39 +17,51 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
+from .ChoiceElement import ChoiceElement
+from .FacetType import FacetType
+from .GroupType import GroupType
+from .GroupType import GroupType
+from .PatternElement import PatternElement
+from .TotalDigitsElement import TotalDigitsElement
+from .WhitespaceElement import WhitespaceElement
+from .WildcardType import WildcardType
 
 logger = logging.getLogger(__name__)
-class RestrictionType(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'group', 'list': 'tags', 'class': 'GroupType', 'min': 0},
-            {'tag_name': 'all', 'list': 'tags', 'class': 'AllType', 'min': 0},
-            {'tag_name': 'choice', 'list': 'tags', 'class': 'ChoiceElement', 'min': 0},
-            {'tag_name': 'sequence', 'list': 'tags', 'class': 'GroupType', 'min': 0},
-            {'tag_name': 'simpleType', 'list': 'tags', 'class': 'SimpleTypeType', 'min': 0},
-            {'tag_name': 'minExclusive', 'list': 'tags', 'class': 'FacetType', 'min': 0, 'max': None},
-            {'tag_name': 'minInclusive', 'list': 'tags', 'class': 'FacetType', 'min': 0, 'max': None},
-            {'tag_name': 'maxExclusive', 'list': 'tags', 'class': 'FacetType', 'min': 0, 'max': None},
-            {'tag_name': 'maxInclusive', 'list': 'tags', 'class': 'FacetType', 'min': 0, 'max': None},
-            {'tag_name': 'totalDigits', 'list': 'tags', 'class': 'TotalDigitsElement', 'min': 0, 'max': None},
-            {'tag_name': 'fractionDigits', 'list': 'tags', 'class': 'FacetType', 'min': 0, 'max': None},
-            {'tag_name': 'length', 'list': 'tags', 'class': 'FacetType', 'min': 0, 'max': None},
-            {'tag_name': 'minLength', 'list': 'tags', 'class': 'FacetType', 'min': 0, 'max': None},
-            {'tag_name': 'maxLength', 'list': 'tags', 'class': 'FacetType', 'min': 0, 'max': None},
-            {'tag_name': 'enumeration', 'list': 'tags', 'class': 'FacetType', 'min': 0, 'max': None},
-            {'tag_name': 'whiteSpace', 'list': 'tags', 'class': 'WhitespaceElement', 'min': 0, 'max': None},
-            {'tag_name': 'pattern', 'list': 'tags', 'class': 'PatternElement', 'min': 0, 'max': None},
-            {'tag_name': 'attribute', 'list': 'tags', 'class': 'AttributeType', 'min': 0, 'max': None},
-            {'tag_name': 'attributeGroup', 'list': 'tags', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
-            {'tag_name': 'anyAttribute', 'list': 'tags', 'class': 'WildcardType', 'min': 0},
-        ],
-        'attributes': {
-            'base': {'type': 'QNameType'},
-        }
-    }
 
+@attribute(local_name='base', type=QNameType)
+@element(local_name='group', list='tags', cls=GroupType, min=0)
+@element(local_name='all', list='tags',
+    cls=defer_class_load('scap.model.xs.AllType', 'AllType'),
+    min=0)
+@element(local_name='choice', list='tags', cls=ChoiceElement, min=0)
+@element(local_name='sequence', list='tags', cls=GroupType, min=0)
+@element(local_name='simpleType', list='tags',
+    cls=defer_class_load('scap.model.xs.SimpleTypeType', 'SimpleTypeType'),
+    min=0)
+@element(local_name='minExclusive', list='tags', cls=FacetType, min=0, max=None)
+@element(local_name='minInclusive', list='tags', cls=FacetType, min=0, max=None)
+@element(local_name='maxExclusive', list='tags', cls=FacetType, min=0, max=None)
+@element(local_name='maxInclusive', list='tags', cls=FacetType, min=0, max=None)
+@element(local_name='totalDigits', list='tags', cls=TotalDigitsElement, min=0, max=None)
+@element(local_name='fractionDigits', list='tags', cls=FacetType, min=0, max=None)
+@element(local_name='length', list='tags', cls=FacetType, min=0, max=None)
+@element(local_name='minLength', list='tags', cls=FacetType, min=0, max=None)
+@element(local_name='maxLength', list='tags', cls=FacetType, min=0, max=None)
+@element(local_name='enumeration', list='tags', cls=FacetType, min=0, max=None)
+@element(local_name='whiteSpace', list='tags', cls=WhitespaceElement, min=0, max=None)
+@element(local_name='pattern', list='tags', cls=PatternElement, min=0, max=None)
+@element(local_name='attribute', list='tags',
+    cls=defer_class_load('scap.model.xs.AttributeType', 'AttributeType'),
+    min=0, max=None)
+@element(local_name='attributeGroup', list='tags',
+    cls=defer_class_load('scap.model.xs.AttributeGroupType', 'AttributeGroupType'),
+    min=0, max=None)
+@element(local_name='anyAttribute', list='tags', cls=WildcardType, min=0)
+class RestrictionType(AnnotatedType):
     def get_defs(self, schema, top_level):
         logger.debug('Base: ' + self.base)
         # TODO unable to map xmlns because ET doesn't retain it

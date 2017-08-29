@@ -17,19 +17,18 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.GroupType import GroupType
+from scap.model.decorators import *
+
+from .AnnotationElement import AnnotationElement
+from .ElementType import ElementType
+from .GroupType import GroupType
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='minOccurs', enum=['0', '1'], default='1')
+@attribute(local_name='maxOccurs', enum=['1'], default='1')
+@attribute(local_name='*', )
+@element(local_name='annotation', list='tags', cls=AnnotationElement, min=0)
+@element(local_name='element', list='tags', cls=ElementType, min=0, max=None)
 class AllType(GroupType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'annotation', 'list': 'tags', 'class': 'AnnotationElement', 'min': 0},
-            {'tag_name': 'element', 'list': 'tags', 'class': 'ElementType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'minOccurs': {'enum': ['0', '1'], 'default': '1'},
-            'maxOccurs': {'enum': ['1'], 'default': '1'},
-            '*': {},
-        }
-    }
+    pass

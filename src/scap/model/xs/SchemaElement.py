@@ -18,37 +18,44 @@
 import logging
 import os.path
 
-from scap.model.xs import *
-from scap.model.xs.AnyTypeType import AnyTypeType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from . import FORM_CHOICE_ENUMERATION
+from .AnnotationElement import AnnotationElement
+from .AnyTypeType import AnyTypeType
+from .AttributeGroupType import AttributeGroupType
+from .AttributeType import AttributeType
+from .ComplexTypeType import ComplexTypeType
+from .ElementType import ElementType
+from .GroupType import GroupType
+from .ImportElement import ImportElement
+from .IncludeElement import IncludeElement
+from .NotationElement import NotationElement
+from .RedefineElement import RedefineElement
+from .SimpleTypeType import SimpleTypeType
 
 logger = logging.getLogger(__name__)
-class SchemaElement(AnyTypeType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'include', 'list': 'tags', 'class': 'IncludeElement', 'min': 0, 'max': None},
-            {'tag_name': 'import', 'list': 'tags', 'class': 'ImportElement', 'min': 0, 'max': None},
-            {'tag_name': 'redefine', 'list': 'tags', 'class': 'RedefineElement', 'min': 0, 'max': None},
-            {'tag_name': 'annotation', 'list': 'tags', 'class': 'AnnotationElement', 'min': 0, 'max': None},
-            {'tag_name': 'simpleType', 'list': 'tags', 'class': 'SimpleTypeType', 'min': 0, 'max': None},
-            {'tag_name': 'complexType', 'list': 'tags', 'class': 'ComplexTypeType', 'min': 0, 'max': None},
-            {'tag_name': 'group', 'list': 'tags', 'class': 'GroupType', 'min': 0, 'max': None},
-            {'tag_name': 'attributeGroup', 'list': 'tags', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
-            {'tag_name': 'element', 'list': 'tags', 'class': 'ElementType', 'min': 0, 'max': None},
-            {'tag_name': 'attribute', 'list': 'tags', 'class': 'AttributeType', 'min': 0, 'max': None},
-            {'tag_name': 'notation', 'list': 'tags', 'class': 'NotationElement', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'targetNamespace': {'type': 'AnyUriType'},
-            'version': {'type': 'TokenType'},
-            'finalDefault': {'enum': ['#all', 'extension', 'restriction', 'list', 'union']},
-            'blockDefault': {'enum': ['#all', 'extension', 'restriction', 'substitution']},
-            'attributeFormDefault': {'enum': FORM_CHOICE_ENUMERATION, 'default': 'unqualified'},
-            'elementFormDefault': {'enum': FORM_CHOICE_ENUMERATION, 'default': 'unqualified'},
-            'id': {'type': 'IdType'},
-            # xml:lang
-        },
-    }
 
+@attribute(local_name='targetNamespace', type=AnyUriType)
+@attribute(local_name='version', type=TokenType)
+@attribute(local_name='finalDefault', enum=['#all', 'extension', 'restriction', 'list', 'union'])
+@attribute(local_name='blockDefault', enum=['#all', 'extension', 'restriction', 'substitution'])
+@attribute(local_name='attributeFormDefault', enum=FORM_CHOICE_ENUMERATION, default='unqualified')
+@attribute(local_name='elementFormDefault', enum=FORM_CHOICE_ENUMERATION, default='unqualified')
+@attribute(local_name='id', type=IdType)
+@element(local_name='include', list='tags', cls=IncludeElement, min=0, max=None)
+@element(local_name='import', list='tags', cls=ImportElement, min=0, max=None)
+@element(local_name='redefine', list='tags', cls=RedefineElement, min=0, max=None)
+@element(local_name='annotation', list='tags', cls=AnnotationElement, min=0, max=None)
+@element(local_name='simpleType', list='tags', cls=SimpleTypeType, min=0, max=None)
+@element(local_name='complexType', list='tags', cls=ComplexTypeType, min=0, max=None)
+@element(local_name='group', list='tags', cls=GroupType, min=0, max=None)
+@element(local_name='attributeGroup', list='tags', cls=AttributeGroupType, min=0, max=None)
+@element(local_name='element', list='tags', cls=ElementType, min=0, max=None)
+@element(local_name='attribute', list='tags', cls=AttributeType, min=0, max=None)
+@element(local_name='notation', list='tags', cls=NotationElement, min=0, max=None)
+class SchemaElement(AnyTypeType):
     def add_enumeration(self, name, enum):
         self._enumerations[name] = enum
 

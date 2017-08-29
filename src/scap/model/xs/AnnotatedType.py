@@ -18,20 +18,17 @@
 import logging
 import os
 
-from scap.model.xs import *
-from scap.model.xs.AnyTypeType import AnyTypeType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotationElement import AnnotationElement
+from .AnyTypeType import AnyTypeType
 
 logger = logging.getLogger(__name__)
-class AnnotatedType(AnyTypeType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'annotation', 'list': 'tags', 'class': 'AnnotationElement', 'min': 0},
-        ],
-        'attributes': {
-            'id': {'type': 'IdType'},
-        },
-    }
 
+@attribute(local_name='id', type=IdType)
+@element(local_name='annotation', list='tags', cls=AnnotationElement, min=0)
+class AnnotatedType(AnyTypeType):
     def __init__(self, *args, **kwargs):
         super(AnnotatedType, self).__init__(*args, **kwargs)
 

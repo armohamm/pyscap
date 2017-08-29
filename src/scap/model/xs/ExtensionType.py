@@ -17,26 +17,29 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
+from .AttributeGroupType import AttributeGroupType
+from .AttributeType import AttributeType
+from .ChoiceElement import ChoiceElement
+from .GroupType import GroupType
+from .WildcardType import WildcardType
 
 logger = logging.getLogger(__name__)
-class ExtensionType(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'group', 'list': 'tags', 'class': 'GroupType', 'min': 0},
-            {'tag_name': 'all', 'list': 'tags', 'class': 'AllType', 'min': 0},
-            {'tag_name': 'choice', 'list': 'tags', 'class': 'ChoiceElement', 'min': 0},
-            {'tag_name': 'sequence', 'list': 'tags', 'class': 'GroupType', 'min': 0},
-            {'tag_name': 'attribute', 'list': 'tags', 'class': 'AttributeType', 'min': 0, 'max': None},
-            {'tag_name': 'attributeGroup', 'list': 'tags', 'class': 'AttributeGroupType', 'min': 0, 'max': None},
-            {'tag_name': 'anyAttribute', 'list': 'tags', 'class': 'WildcardType', 'min': 0},
-        ],
-        'attributes': {
-            'base': {'type': 'QNameType', 'required': True},
-        }
-    }
 
+@attribute(local_name='base', type=QNameType, required=True)
+@element(local_name='group', list='tags', cls=GroupType, min=0)
+@element(local_name='all', list='tags',
+    cls=defer_class_load('scap.model.xs.AllType', 'AllType'),
+    min=0)
+@element(local_name='choice', list='tags', cls=ChoiceElement, min=0)
+@element(local_name='sequence', list='tags', cls=GroupType, min=0)
+@element(local_name='attribute', list='tags', cls=AttributeType, min=0, max=None)
+@element(local_name='attributeGroup', list='tags', cls=AttributeGroupType, min=0, max=None)
+@element(local_name='anyAttribute', list='tags', cls=WildcardType, min=0)
+class ExtensionType(AnnotatedType):
     def get_defs(self, schema, top_level):
         logger.debug('Base: ' + self.base)
         # TODO unable to map xmlns because ET doesn't retain it

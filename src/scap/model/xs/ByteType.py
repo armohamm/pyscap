@@ -15,10 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.ShortType import ShortType
 import logging
 
+from scap.model.decorators import *
+
+from .ShortType import ShortType
+
 logger = logging.getLogger(__name__)
+
 class ByteType(ShortType):
     def parse_value(self, value):
         value = super(ByteType, self).parse_value(value)

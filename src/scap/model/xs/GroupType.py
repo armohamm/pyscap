@@ -17,25 +17,34 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.AnnotatedType import AnnotatedType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .AnnotatedType import AnnotatedType
+from .AnyElement import AnyElement
 
 logger = logging.getLogger(__name__)
+
+@attribute(local_name='name', type=NCNameType)
+@attribute(local_name='ref', type=QNameType)
+@attribute(local_name='minOccurs', type=NonNegativeIntegerType, default=1)
+@attribute(local_name='maxOccurs', type=AllNniType, default=1)
+@attribute(local_name='*', )
+@element(local_name='any', list='tags', cls=AnyElement, min=0, max=None)
+@element(local_name='element', list='tags',
+    cls=defer_class_load('scap.model.xs.ElementType', 'ElementType'),
+        min=0, max=None)
+@element(local_name='group', list='tags',
+    cls=defer_class_load('scap.model.xs.GroupType', 'GroupType'),
+    min=0, max=None)
+@element(local_name='all', list='tags',
+    cls=defer_class_load('scap.model.xs.AllType', 'AllType'),
+    min=0, max=None)
+@element(local_name='choice', list='tags',
+    cls=defer_class_load('scap.model.xs.ChoiceElement', 'ChoiceElement'),
+    min=0, max=None)
+@element(local_name='sequence', list='tags',
+    cls=defer_class_load('scap.model.xs.GroupType', 'GroupType'),
+    min=0, max=None)
 class GroupType(AnnotatedType):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': 'any', 'list': 'tags', 'class': 'AnyElement', 'min': 0, 'max': None},
-            {'tag_name': 'element', 'list': 'tags', 'class': 'ElementType', 'min': 0, 'max': None},
-            {'tag_name': 'group', 'list': 'tags', 'class': 'GroupType', 'min': 0, 'max': None},
-            {'tag_name': 'all', 'list': 'tags', 'class': 'AllType', 'min': 0, 'max': None},
-            {'tag_name': 'choice', 'list': 'tags', 'class': 'ChoiceElement', 'min': 0, 'max': None},
-            {'tag_name': 'sequence', 'list': 'tags', 'class': 'GroupType', 'min': 0, 'max': None},
-        ],
-        'attributes': {
-            'name': {'type': 'NCNameType'},
-            'ref': {'type': 'QNameType'},
-            'minOccurs': {'type': 'NonNegativeIntegerType', 'default': 1},
-            'maxOccurs': {'type': 'AllNniType', 'default': 1},
-            '*': {},
-        }
-    }
+    pass

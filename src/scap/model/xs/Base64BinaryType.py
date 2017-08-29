@@ -19,9 +19,12 @@ import base64
 import logging
 import re
 
-from scap.model.xs.AnySimpleType import AnySimpleType
+from scap.model.decorators import *
+
+from .AnySimpleType import AnySimpleType
 
 logger = logging.getLogger(__name__)
+
 class Base64BinaryType(AnySimpleType):
     def parse_value(self, value):
         value = super(Base64BinaryType, self).parse_value(value)

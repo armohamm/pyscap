@@ -17,21 +17,16 @@
 
 import logging
 
-from scap.model.xs import *
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.types import *
 
 logger = logging.getLogger(__name__)
-class AppinfoElement(Model):
-    MODEL_MAP = {
-        'elements': [
-            {'tag_name': '*', 'min': 0, 'max': None, 'ignore': True},
-        ],
-        'attributes': {
-            'source': {'type': 'AnyUriType'},
-            '*': {},
-        },
-    }
 
+@attribute(local_name='source', type=AnyUriType)
+@attribute(local_name='*', )
+@element(local_name='*', min=0, max=None, ignore=True)
+class AppinfoElement(Model):
     def get_defs(self, schema, top_level):
         model_map = {'elements': [], 'attributes': {}}
         return model_map

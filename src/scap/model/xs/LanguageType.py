@@ -18,9 +18,12 @@
 import logging
 import re
 
-from scap.model.xs.TokenType import TokenType
+from scap.model.decorators import *
+
+from .TokenType import TokenType
 
 logger = logging.getLogger(__name__)
+
 class LanguageType(TokenType):
     def parse_value(self, value):
         m = re.fullmatch(r'[a-zA-Z]{1,8}(-[a-zA-Z0-9]{1,8})*', value)

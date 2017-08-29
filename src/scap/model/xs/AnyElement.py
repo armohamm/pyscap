@@ -17,18 +17,16 @@
 
 import logging
 
-from scap.model.xs import *
-from scap.model.xs.WildcardType import WildcardType
+from scap.model.decorators import *
+from scap.model.types import *
+
+from .WildcardType import WildcardType
 
 logger = logging.getLogger(__name__)
-class AnyElement(WildcardType):
-    MODEL_MAP = {
-        'attributes': {
-            'minOccurs': {'type': 'NonNegativeIntegerType', 'default': 1},
-            'maxOccurs': {'type': 'AllNniType', 'default': 1},
-        }
-    }
 
+@attribute(local_name='minOccurs', type=NonNegativeIntegerType, default=1)
+@attribute(local_name='maxOccurs', type=AllNniType, default=1)
+class AnyElement(WildcardType):
     def get_defs(self, schema):
         model_map = {'elements': [], 'attributes': {}}
 

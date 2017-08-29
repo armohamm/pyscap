@@ -15,10 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.AnySimpleType import AnySimpleType
 import logging
 
+from scap.model.decorators import *
+
+from .AnySimpleType import AnySimpleType
+
 logger = logging.getLogger(__name__)
+
 class DoubleType(AnySimpleType):
     def parse_value(self, value):
         return float(value)

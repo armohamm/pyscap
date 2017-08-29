@@ -15,9 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.model.xs.NormalizedStringType import NormalizedStringType
 import logging
 
+from scap.model.decorators import *
+
+from .NormalizedStringType import NormalizedStringType
+
 logger = logging.getLogger(__name__)
+
 class TokenType(NormalizedStringType):
     pass
