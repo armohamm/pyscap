@@ -17,9 +17,9 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.model.cpe_naming_2_3.Cpe22Type import Cpe22Type
 from scap.model.cpe_naming_2_3.Cpe23Type import Cpe23Type
+from scap.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

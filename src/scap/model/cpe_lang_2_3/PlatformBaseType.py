@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.decorators import *
 from scap.Model import Model
+from scap.model.decorators import *
 
-from .TextType import TextType
 from .LogicalTestType import LogicalTestType
+from .TextType import TextType
 
 logger = logging.getLogger(__name__)
 
