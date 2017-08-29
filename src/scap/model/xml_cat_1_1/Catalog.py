@@ -15,10 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from collections.abc import MutableMapping
 import logging
 
+from collections.abc import MutableMapping
 from scap.Model import Model
+from scap.model.decorators import *
 from scap.model.xs.IdType import IdType
 from scap.model.xs.StringType import StringType
 
@@ -27,7 +28,7 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='id', type=IdType)
 @attribute(local_name='prefer', enum=['system', 'public'])
 @attribute(local_name='*')
-@element(local_name='uri', dict='entries', key='name', 'value_attr': 'uri', type=StringType)
+@element(local_name='uri', dict='entries', key='name', value_attr='uri', type=StringType)
 @element(local_name='*', min=0)
 class Catalog(Model, MutableMapping):
     def __delitem__(self, key):
