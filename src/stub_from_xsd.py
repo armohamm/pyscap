@@ -20,7 +20,7 @@
 import argparse
 import logging
 import os
-import xml.etree.ElementTree as ET
+import expatriate
 
 from scap import register_namespaces
 from scap.ColorFormatter import ColorFormatter
@@ -53,7 +53,9 @@ if args['output'] is None or len(args['output']) == 0:
 content = args['content'][0]
 logger.debug('Loading content file: ' + content)
 with open(content, mode='r', encoding='utf_8') as f:
-    content = ET.parse(f).getroot()
+    doc = expatriate.Document()
+    doc.parse(f.read())
+    content = doc.root_element
     model = Model.load(None, content)
     if not isinstance(model, SchemaElement):
         arg_parser.error('Invalid content. Expecting xsd (XMLSchema) file')

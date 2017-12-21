@@ -18,7 +18,7 @@
 import logging
 import sys
 import urllib.request
-import xml.etree.ElementTree as ET
+import expatriate
 
 from scap.model.decorators import *
 
@@ -35,7 +35,9 @@ class Simple(Base):
         try:
             with urllib.request.urlopen(self.href) as r:
                 # TODO
-                sub_el = ET.parse(r).getroot()
+                doc = expatriate.Document()
+                doc.parse(r.read())
+                sub_el = doc.root_element
                 self._parse_element(sub_el)
         except:
             logger.warning('Could not retrieve link ' + self.href + ' for ' + str(self) + ': ' + str(sys.exc_info()[1]))

@@ -95,43 +95,42 @@ class Model(object):
 
     @staticmethod
     def load(parent, child_el, element_def=None):
-        xmlns, tag_name = Model.parse_tag(child_el.tag)
-
         # try to load the tag's module
         if parent is None:
-            if xmlns is None:
-                raise UnregisteredNamespaceException('Unable to determine namespace without fully qualified tag (' + child_el.tag + ') and parent model')
+            if child_el.namespace is None:
+                raise UnregisteredNamespaceException('Unable to determine namespace without fully qualified tag (' + child_el.name + ') and parent model')
 
-            model_package = Model.xmlns_to_package(xmlns)
+            model_package = Model.xmlns_to_package(child_el.namespace)
             model_package, module_name = Model._map_element_to_module_name(model_package, child_el)
         else:
-            if xmlns is None:
+            if child_el.namespace is None:
                 model_package = parent.get_package()
-                ns_any = '{' + parent.xmlns + '}*'
-                fq_tag = '{' + parent.xmlns + '}' + tag_name
+                ns_any = parent.xmlns, '*'
+                fq_tag = parent.xmlns, child_el.local_name
             else:
-                model_package = Model.xmlns_to_package(xmlns)
-                ns_any = '{' + xmlns + '}*'
-                fq_tag = child_el.tag
+                model_package = Model.xmlns_to_package(child_el.namespace)
+                ns_any = child_el.namespace, '*'
+                fq_tag = child_el.namespace, child_el.local_name
 
-            mmap = Model._get_model_map(parent.__class__)
+            element_lookup = Model._get_model_element_lookup(parent.__class__)
 
-            logger.debug('Checking ' + parent.__class__.__name__ + ' for tag ' + child_el.tag)
+            logger.debug('Checking ' + parent.__class__.__name__ + ' for tag ' + child_el.name)
             module_name = None
-            for name in [fq_tag, tag_name, ns_any, '*']:
-                if name not in mmap['element_lookup']:
+            for name in [fq_tag, child_el.local_name, ns_any, '*']:
+                if name not in element_lookup:
                     continue
 
-                logger.debug(child_el.tag + ' matched ' + name + ' mapping in ' + parent.__class__.__name__)
+                logger.debug(child_el.tag + ' matched ' + str(name) + ' mapping in ' + parent.__class__.__name__)
                 if name.endswith('*'):
                     model_package, module_name = Model._map_element_to_module_name(model_package, child_el)
                     break
-                elif 'class' in mmap['element_lookup'][name]:
-                    module_name = mmap['element_lookup'][name]['class']
+                elif 'class' in element_lookup[name]:
+                    module_name = element_lookup[name]['class']
                     break
 
             if module_name is None:
-                raise TagMappingException(parent.__class__.__name__ + ' does not define mapping for ' + child_el.tag + ' tag; does not match any of ' + str([fq_tag, tag_name, ns_any, '*']))
+                raise TagMappingException(parent.__class__.__name__ + ' does not define mapping for ' +
+                    child_el.tag + ' tag; does not match any of ' + str([fq_tag, child_el.local_name, ns_any, '*']))
 
         # qualify module name if needed
         if '.' not in module_name:
@@ -274,12 +273,17 @@ class Model(object):
     def _get_model_attribute_defs(model_class):
         raise NotImplementedError
 
+    def _get_model_element_lookup(model_class):
+        raise NotImplementedError
+
     @staticmethod
     def find_content(uri):
         # locate content & load it, returning the root Model
         if os.path.isfile(uri):
             try:
-                return Model.load(None, ET.parse(uri).getroot())
+                doc = expatriate.Document()
+                doc.parse_file(uri)
+                return Model.load(None, doc.root_element)
             except:
                 raise ReferenceException('Could not find content for: ' + uri)
         else:
@@ -831,7 +835,7 @@ class Model(object):
 
     def to_xml(self):
         logger.debug(str(self) + ' to xml')
-        el = ET.Element('{' + self.xmlns + '}' + self.tag_name)
+        el = expatriate.Element(self.tag_name, namespace=self.xmlns)
 
         for name in self._model_map['attributes']:
             value = self._produce_attribute(name, el)
@@ -963,7 +967,7 @@ class Model(object):
 
             if 'type' in element_def:
                 if child is None:
-                    sub_el = ET.Element('{' + xmlns + '}' + tag_name)
+                    sub_el = expatriate.Element(tag_name, namespace=xmlns)
                     sub_el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
                     el.append(sub_el)
                 else:
@@ -973,7 +977,7 @@ class Model(object):
                     el.append(child.to_xml())
             elif 'class' in element_def:
                 if child is None:
-                    sub_el = ET.Element('{' + xmlns + '}' + tag_name)
+                    sub_el = expatriate.Element(tag_name, namespace=xmlns)
                     sub_el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
                     el.append(sub_el)
                 else:
@@ -995,7 +999,7 @@ class Model(object):
                 key_name = element_def['key']
 
             if 'type' in element_def:
-                sub_el = ET.Element('{' + xmlns + '}' + tag_name)
+                sub_el = expatriate.Element(tag_name, namespace=xmlns)
                 sub_el.set(key_name, self._children_keys[child_index])
                 if 'value_attr' in element_def:
                     if child is None:
@@ -1011,7 +1015,7 @@ class Model(object):
 
             elif 'class' in element_def:
                 if child is None:
-                    sub_el = ET.Element('{' + xmlns + '}' + tag_name)
+                    sub_el = expatriate.Element(tag_name, namespace=xmlns)
                     sub_el.set(key_name, self._children_keys[child_index])
                     sub_el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
                     el.append(sub_el)
