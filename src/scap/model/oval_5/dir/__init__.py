@@ -16,5 +16,5 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    '{http://oval.mitre.org/XMLSchema/oval-directives-5}oval_directives': 'OvalResultsElement',
+    ('http://oval.mitre.org/XMLSchema/oval-directives-5', 'oval_directives'): 'OvalResultsElement',
 }

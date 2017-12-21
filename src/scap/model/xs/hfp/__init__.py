@@ -16,8 +16,8 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    '{http://www.w3.org/2001/XMLSchema-hasFacetAndProperty}hasFacet': 'HasFacetElement',
-    '{http://www.w3.org/2001/XMLSchema-hasFacetAndProperty}hasProperty': 'HasPropertyElement',
+    ('http://www.w3.org/2001/XMLSchema-hasFacetAndProperty', 'hasFacet'): 'HasFacetElement',
+    ('http://www.w3.org/2001/XMLSchema-hasFacetAndProperty', 'hasProperty'): 'HasPropertyElement',
 }
 
 FACET_NAME_ENUMERATION = [

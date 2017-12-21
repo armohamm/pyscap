@@ -16,19 +16,19 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    '{http://www.w3.org/1999/xhtml}html': 'HtmlTag',
+    ('http://www.w3.org/1999/xhtml', 'html'): 'HtmlTag',
 
-    '{http://www.w3.org/1999/xhtml}b': 'BTag',
-    '{http://www.w3.org/1999/xhtml}br': 'BrTag',
-    '{http://www.w3.org/1999/xhtml}code': 'CodeTag',
-    '{http://www.w3.org/1999/xhtml}em': 'EmTag',
-    '{http://www.w3.org/1999/xhtml}i': 'ITag',
-    '{http://www.w3.org/1999/xhtml}li': 'LiTag',
-    '{http://www.w3.org/1999/xhtml}ol': 'OlTag',
-    '{http://www.w3.org/1999/xhtml}p': 'PTag',
-    '{http://www.w3.org/1999/xhtml}pre': 'PreTag',
-    '{http://www.w3.org/1999/xhtml}strong': 'StrongTag',
-    '{http://www.w3.org/1999/xhtml}ul': 'UlTag',
+    ('http://www.w3.org/1999/xhtml', 'b'): 'BTag',
+    ('http://www.w3.org/1999/xhtml', 'br'): 'BrTag',
+    ('http://www.w3.org/1999/xhtml', 'code'): 'CodeTag',
+    ('http://www.w3.org/1999/xhtml', 'em'): 'EmTag',
+    ('http://www.w3.org/1999/xhtml', 'i'): 'ITag',
+    ('http://www.w3.org/1999/xhtml', 'li'): 'LiTag',
+    ('http://www.w3.org/1999/xhtml', 'ol'): 'OlTag',
+    ('http://www.w3.org/1999/xhtml', 'p'): 'PTag',
+    ('http://www.w3.org/1999/xhtml', 'pre'): 'PreTag',
+    ('http://www.w3.org/1999/xhtml', 'strong'): 'StrongTag',
+    ('http://www.w3.org/1999/xhtml', 'ul'): 'UlTag',
 }
 
 INPUT_TYPE_ENUMERATION = [

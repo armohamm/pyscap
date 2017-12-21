@@ -16,7 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    '{http://scap.nist.gov/schema/ocil/2.0}ocil': 'OCILElement',
+    ('http://scap.nist.gov/schema/ocil/2.0', 'ocil'): 'OCILElement',
 }
 
 BOOLEAN_QUESTION_MODEL_ENUMERATION = [

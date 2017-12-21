@@ -16,5 +16,5 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    '{http://oval.mitre.org/XMLSchema/oval-variables-5}oval_results': 'OvalVariablesElement',
+    ('http://oval.mitre.org/XMLSchema/oval-variables-5', 'oval_results'): 'OvalVariablesElement',
 }

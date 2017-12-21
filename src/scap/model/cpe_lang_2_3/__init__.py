@@ -16,5 +16,5 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    '{http://cpe.mitre.org/language/2.0}platform-specification': 'PlatformSpecificationType',
+    ('http://cpe.mitre.org/language/2.0', 'platform-specification'): 'PlatformSpecificationType',
 }

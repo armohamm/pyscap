@@ -16,16 +16,16 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 TAG_MAP = {
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}family_item': 'FamilyItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}filehash_item': 'FileHashItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}filehash58_item': 'FileHash58ItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}environmentvariable_item': 'EnvironmentVariableItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}environmentvariable58_item': 'EnvironmentVariable58ItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}ldap_item': 'LdapItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}ldap57_item': 'Ldap57ItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}sql_item': 'SqlItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}sql57_item': 'Sql57ItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}textfilecontent_item': 'TextFileContentItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}variable_item': 'VariableItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent}xmlfilecontent_item': 'XmlFileContentItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'family_item'): 'FamilyItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'filehash_item'): 'FileHashItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'filehash58_item'): 'FileHash58ItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'environmentvariable_item'): 'EnvironmentVariableItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'environmentvariable58_item'): 'EnvironmentVariable58ItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'ldap_item'): 'LdapItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'ldap57_item'): 'Ldap57ItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'sql_item'): 'SqlItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'sql57_item'): 'Sql57ItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'textfilecontent_item'): 'TextFileContentItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'variable_item'): 'VariableItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'xmlfilecontent_item'): 'XmlFileContentItemElement',
 }
