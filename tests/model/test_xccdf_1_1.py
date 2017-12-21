@@ -18,7 +18,7 @@
 import logging
 import pathlib
 import pytest
-import xml.etree.ElementTree as ET
+import expatriate
 
 from scap.Model import Model
 import scap.model.xccdf_1_1
@@ -31,4 +31,6 @@ Model.register_namespace('scap.model.cpe_lang_2_3', 'http://cpe.mitre.org/langua
 
 def test_benchmark():
     path = pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'test_xccdf_1_1.xml'
-    model = Model.load(None, ET.parse(str(path)).getroot())
+    doc = expatriate.Document()
+    doc.parse_file(str(path))
+    model = Model.load(None, doc.root_element)

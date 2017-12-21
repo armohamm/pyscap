@@ -17,7 +17,7 @@
 
 import logging
 import pytest
-import xml.etree.ElementTree as ET
+import expatriate
 
 from scap.Model import Model
 import scap.model.xml_cat_1_1
@@ -26,35 +26,38 @@ from scap.model.xml_cat_1_1.Catalog import Catalog
 logging.basicConfig(level=logging.DEBUG)
 Model.register_namespace('scap.model.xml_cat_1_1', 'urn:oasis:names:tc:entity:xmlns:xml:catalog')
 
-cat1 = Model.load(None, ET.fromstring('''<xml_cat_1_1:catalog xmlns:xml_cat_1_1="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+test_xml = '''<xml_cat_1_1:catalog xmlns:xml_cat_1_1="urn:oasis:names:tc:entity:xmlns:xml:catalog">
     <xml_cat_1_1:uri name="name1" uri="uri1"/>
     <xml_cat_1_1:uri name="name2" uri="uri2"/>
     <xml_cat_1_1:uri name="name3" uri="uri3"/>
-</xml_cat_1_1:catalog>'''))
+</xml_cat_1_1:catalog>'''
+doc = expatriate.Document()
+doc.parse(test_xml)
+model = Model.load(None, doc.root_element)
 
 def test_parsed():
-    assert 'name1' in cat1.entries
-    assert 'name2' in cat1.entries
-    assert 'name2' in cat1.entries
-    assert cat1.entries['name1'] == 'uri1'
-    assert cat1.entries['name2'] == 'uri2'
-    assert cat1.entries['name3'] == 'uri3'
-    assert 'name4' not in cat1.entries
+    assert 'name1' in model.entries
+    assert 'name2' in model.entries
+    assert 'name2' in model.entries
+    assert model.entries['name1'] == 'uri1'
+    assert model.entries['name2'] == 'uri2'
+    assert model.entries['name3'] == 'uri3'
+    assert 'name4' not in model.entries
 
 def test_dict():
-    assert 'name1' in cat1
-    assert 'name2' in cat1
-    assert 'name2' in cat1
-    assert cat1['name1'] == 'uri1'
-    assert cat1['name2'] == 'uri2'
-    assert cat1['name3'] == 'uri3'
-    assert 'name4' not in cat1
+    assert 'name1' in model
+    assert 'name2' in model
+    assert 'name2' in model
+    assert model['name1'] == 'uri1'
+    assert model['name2'] == 'uri2'
+    assert model['name3'] == 'uri3'
+    assert 'name4' not in model
 
 cat2 = Catalog()
 cat2['n1'] = 'u1'
 cat2['n2'] = 'u2'
 
 def test_to_xml():
-    xml = ET.tostring(cat2.to_xml())
+    xml = cat2.to_xml()
     print(xml)
     assert xml == b'<xml_cat_1_1:catalog xmlns:xml_cat_1_1="urn:oasis:names:tc:entity:xmlns:xml:catalog"><xml_cat_1_1:uri name="n1" uri="u1" /><xml_cat_1_1:uri name="n2" uri="u2" /></xml_cat_1_1:catalog>'

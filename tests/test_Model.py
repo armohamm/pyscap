@@ -17,7 +17,7 @@
 
 import pytest
 import logging
-import xml.etree.ElementTree as ET
+import expatriate
 import types
 import sys
 
@@ -55,13 +55,19 @@ def test_namespace_registration():
         Model.xmlns_to_package('http://jaymes.biz/derp')
 
 def test_is_nil():
-    root = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />'))
-    assert root.get_value() is None
-    assert root.is_nil()
+    test_xml = '<test:RootFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert model.get_value() is None
+    assert model.is_nil()
 
 def test_is_not_nil():
-    root = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test" />'))
-    assert not root.is_nil()
+    test_xml = '<test:RootFixture xmlns:test="http://jaymes.biz/test" />'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert not model.is_nil()
 
 def test_parse_tag():
     assert Model.parse_tag('{http://jaymes.biz/test}test') == ('http://jaymes.biz/test', 'test')
@@ -82,65 +88,95 @@ def test_xmlns_to_package():
         Model.xmlns_to_package('http://jaymes.biz/derp')
 
 def test_load_root_model():
-    root = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test" />'))
-    assert isinstance(root, RootFixture)
+    test_xml = '<test:RootFixture xmlns:test="http://jaymes.biz/test" />'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert isinstance(model, RootFixture)
 
     with pytest.raises(UnregisteredNamespaceException):
-        Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/derp" />'))
+        test_xml = '<test:RootFixture xmlns:test="http://jaymes.biz/derp" />'
+        doc = expatriate.Document()
+        doc.parse(test_xml)
+        model = Model.load(None, doc.root_element)
 
     with pytest.raises(TagMappingException):
-        Model.load(None, ET.fromstring('<test:Derp xmlns:test="http://jaymes.biz/test" />'))
+        test_xml = '<test:Derp xmlns:test="http://jaymes.biz/test" />'
+        doc = expatriate.Document()
+        doc.parse(test_xml)
+        model = Model.load(None, doc.root_element)
 
-def test_load_enclosed_model():
-    root = RootFixture()
-    el = Model.load(root, ET.fromstring('<test:EnclosedFixture xmlns:test="http://jaymes.biz/test" />'))
-    assert isinstance(el, EnclosedFixture)
-
-    el = Model.load(root, ET.fromstring('<EnclosedFixture />'))
-    assert isinstance(el, EnclosedFixture)
-
-    with pytest.raises(UnregisteredNamespaceException):
-        Model.load(root, ET.fromstring('<test:EnclosedFixture xmlns:test="http://jaymes.biz/derp" />'))
-    with pytest.raises(UnregisteredNamespaceException):
-        Model.load(None, ET.fromstring('<EnclosedFixture />'))
-    with pytest.raises(TagMappingException):
-        Model.load(root, ET.fromstring('<Derp />'))
+# def test_load_enclosed_model():
+#     root = RootFixture()
+#     el = Model.load(root, ET.fromstring('<test:EnclosedFixture xmlns:test="http://jaymes.biz/test" />'))
+#     doc = expatriate.Document()
+#     doc.parse(test_xml)
+#     model = Model.load(None, doc.root_element)
+#     assert isinstance(el, EnclosedFixture)
+#
+#     el = Model.load(root, ET.fromstring('<EnclosedFixture />'))
+#     assert isinstance(el, EnclosedFixture)
+#
+#     with pytest.raises(UnregisteredNamespaceException):
+#         Model.load(root, ET.fromstring('<test:EnclosedFixture xmlns:test="http://jaymes.biz/derp" />'))
+#     with pytest.raises(UnregisteredNamespaceException):
+#         Model.load(None, ET.fromstring('<EnclosedFixture />'))
+#     with pytest.raises(TagMappingException):
+#         Model.load(root, ET.fromstring('<Derp />'))
 
 def test_load_attribute_required():
-    attr = Model.load(None, ET.fromstring('<test:RequiredAttributeFixture xmlns:test="http://jaymes.biz/test" required_attribute="test" />'))
-    assert isinstance(attr, RequiredAttributeFixture)
-    assert hasattr(attr, 'required_attribute')
-    assert attr.required_attribute == 'test'
+    test_xml = '<test:RequiredAttributeFixture xmlns:test="http://jaymes.biz/test" required_attribute="test" />'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert isinstance(model, RequiredAttributeFixture)
+    assert hasattr(model, 'required_attribute')
+    assert model.required_attribute == 'test'
 
     with pytest.raises(RequiredAttributeException):
-        attr = Model.load(None, ET.fromstring('<test:RequiredAttributeFixture xmlns:test="http://jaymes.biz/test" />'))
+        test_xml = '<test:RequiredAttributeFixture xmlns:test="http://jaymes.biz/test" />'
+        doc = expatriate.Document()
+        doc.parse(test_xml)
+        model = Model.load(None, doc.root_element)
 
 def test_load_attribute_in():
-    attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" in_attribute="test" />'))
-    assert isinstance(attr, AttributeFixture)
-    assert hasattr(attr, 'in_test')
-    assert attr.in_test == 'test'
+    test_xml = '<test:AttributeFixture xmlns:test="http://jaymes.biz/test" in_attribute="test" />'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert isinstance(model, AttributeFixture)
+    assert hasattr(model, 'in_test')
+    assert model.in_test == 'test'
 
 def test_load_attribute_dash():
-    attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" dash-attribute="test" />'))
-    assert isinstance(attr, AttributeFixture)
-    assert hasattr(attr, 'dash_attribute')
-    assert attr.dash_attribute == 'test'
+    test_xml = '<test:AttributeFixture xmlns:test="http://jaymes.biz/test" dash-attribute="test" />'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert isinstance(model, AttributeFixture)
+    assert hasattr(model, 'dash_attribute')
+    assert model.dash_attribute == 'test'
 
 def test_load_attribute_default():
-    attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" />'))
-    assert isinstance(attr, AttributeFixture)
-    assert hasattr(attr, 'default_attribute')
-    assert attr.default_attribute == 'test'
+    test_xml = '<test:AttributeFixture xmlns:test="http://jaymes.biz/test" />'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert isinstance(model, AttributeFixture)
+    assert hasattr(model, 'default_attribute')
+    assert model.default_attribute == 'test'
 
 def test_load_attribute_no_default():
-    attr = Model.load(None, ET.fromstring('<test:AttributeFixture xmlns:test="http://jaymes.biz/test" />'))
-    assert isinstance(attr, AttributeFixture)
-    assert hasattr(attr, 'in_test')
-    assert attr.in_test is None
+    test_xml = '<test:AttributeFixture xmlns:test="http://jaymes.biz/test" />'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert isinstance(model, AttributeFixture)
+    assert hasattr(model, 'in_test')
+    assert model.in_test is None
 
 def test_load_element_min():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:MinMaxElementFixture xmlns:test="http://jaymes.biz/test">
         <test:min>test1</test:min>
         <test:min>test2</test:min>
@@ -148,33 +184,39 @@ def test_load_element_min():
         <test:max>test4</test:max>
         <test:max>test5</test:max>
         </test:MinMaxElementFixture>
-        '''))
-    assert isinstance(el, MinMaxElementFixture)
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert isinstance(model, MinMaxElementFixture)
 
-    assert hasattr(el, 'min')
-    assert isinstance(el.min, ModelList)
-    assert len(el.min) == 3
-    assert el.min[0].text == 'test1'
-    assert el.min[1].text == 'test2'
-    assert el.min[2].text == 'test3'
+    assert hasattr(model, 'min')
+    assert isinstance(model.min, ModelList)
+    assert len(model.min) == 3
+    assert model.min[0].text == 'test1'
+    assert model.min[1].text == 'test2'
+    assert model.min[2].text == 'test3'
 
-    assert hasattr(el, 'max')
-    assert isinstance(el.max, ModelList)
-    assert len(el.max) == 2
-    assert el.max[0].text == 'test4'
-    assert el.max[1].text == 'test5'
+    assert hasattr(model, 'max')
+    assert isinstance(model.max, ModelList)
+    assert len(model.max) == 2
+    assert model.max[0].text == 'test4'
+    assert model.max[1].text == 'test5'
 
     with pytest.raises(MinimumElementException):
-        el = Model.load(None, ET.fromstring('''
+        test_xml = '''
             <test:MinMaxElementFixture xmlns:test="http://jaymes.biz/test">
             <test:min>test1</test:min>
             <test:max>test4</test:max>
             <test:max>test5</test:max>
             </test:MinMaxElementFixture>
-            '''))
+            '''
+        doc = expatriate.Document()
+        doc.parse(test_xml)
+        model = Model.load(None, doc.root_element)
 
     with pytest.raises(MaximumElementException):
-        el = Model.load(None, ET.fromstring('''
+        test_xml = '''
             <test:MinMaxElementFixture xmlns:test="http://jaymes.biz/test">
             <test:min>test1</test:min>
             <test:min>test2</test:min>
@@ -183,226 +225,262 @@ def test_load_element_min():
             <test:max>test5</test:max>
             <test:max>test6</test:max>
             </test:MinMaxElementFixture>
-            '''))
+            '''
+        doc = expatriate.Document()
+        doc.parse(test_xml)
+        model = Model.load(None, doc.root_element)
 
 def test_load_element_wildcard_not_in():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:WildcardElementNotInFixture xmlns:test2="http://jaymes.biz/test2" xmlns:test="http://jaymes.biz/test">
         <test:wildcard_element>test1</test:wildcard_element>
         <test2:wildcard_element>test2</test2:wildcard_element>
         </test:WildcardElementNotInFixture>
-        '''))
-    assert isinstance(el, WildcardElementNotInFixture)
-    assert hasattr(el, '_elements')
-    assert isinstance(el._elements, ModelList)
-    assert len(el._elements) == 2
-    assert isinstance(el._elements[0], EnclosedFixture)
-    assert isinstance(el._elements[1], EnclosedFixture2)
-    assert el._elements[0].text == 'test1'
-    assert el._elements[1].text == 'test2'
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert isinstance(model, WildcardElementNotInFixture)
+    assert hasattr(model, '_elements')
+    assert isinstance(model._elements, ModelList)
+    assert len(model._elements) == 2
+    assert isinstance(model._elements[0], EnclosedFixture)
+    assert isinstance(model._elements[1], EnclosedFixture2)
+    assert model._elements[0].text == 'test1'
+    assert model._elements[1].text == 'test2'
 
 def test_load_element_wildcard_in():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:WildcardElementInFixture xmlns:test2="http://jaymes.biz/test2" xmlns:test="http://jaymes.biz/test">
         <test:wildcard_element>test1</test:wildcard_element>
         <test2:wildcard_element>test2</test2:wildcard_element>
         </test:WildcardElementInFixture>
-        '''))
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
 
-    assert isinstance(el, WildcardElementInFixture)
+    assert isinstance(model, WildcardElementInFixture)
 
-    assert hasattr(el, 'test_elements')
-    assert isinstance(el.test_elements, ModelList)
-    assert len(el.test_elements) == 1
+    assert hasattr(model, 'test_elements')
+    assert isinstance(model.test_elements, ModelList)
+    assert len(model.test_elements) == 1
 
-    assert hasattr(el, 'elements')
-    assert isinstance(el.elements, ModelList)
-    assert len(el.elements) == 1
+    assert hasattr(model, 'elements')
+    assert isinstance(model.elements, ModelList)
+    assert len(model.elements) == 1
 
-    assert isinstance(el.test_elements[0], EnclosedFixture)
-    assert el.test_elements[0].text == 'test1'
+    assert isinstance(model.test_elements[0], EnclosedFixture)
+    assert model.test_elements[0].text == 'test1'
 
-    assert isinstance(el.elements[0], EnclosedFixture2)
-    assert el.elements[0].text == 'test2'
+    assert isinstance(model.elements[0], EnclosedFixture2)
+    assert model.elements[0].text == 'test2'
 
 def test_load_element_append_nil():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:AppendElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <test:append_nil xsi:nil="true" />
         <test:append_nil>test2</test:append_nil>
         </test:AppendElementFixture>
-        '''))
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
 
-    assert isinstance(el, AppendElementFixture)
+    assert isinstance(model, AppendElementFixture)
 
-    assert hasattr(el, 'append_nil')
-    assert isinstance(el.append_nil, ModelList)
-    assert len(el.append_nil) == 2
+    assert hasattr(model, 'append_nil')
+    assert isinstance(model.append_nil, ModelList)
+    assert len(model.append_nil) == 2
 
-    assert el.append_nil[0] is None
+    assert model.append_nil[0] is None
 
-    assert isinstance(el.append_nil[1], EnclosedFixture)
-    assert el.append_nil[1].text == 'test2'
+    assert isinstance(model.append_nil[1], EnclosedFixture)
+    assert model.append_nil[1].text == 'test2'
 
 def test_load_element_append_type():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:AppendElementFixture xmlns:test="http://jaymes.biz/test">
         <test:append_type>1.1</test:append_type>
         <test:append_type>1.2</test:append_type>
         </test:AppendElementFixture>
-        '''))
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
 
-    assert isinstance(el, AppendElementFixture)
+    assert isinstance(model, AppendElementFixture)
 
-    assert hasattr(el, 'append_type')
-    assert isinstance(el.append_type, ModelList)
-    assert len(el.append_type) == 2
+    assert hasattr(model, 'append_type')
+    assert isinstance(model.append_type, ModelList)
+    assert len(model.append_type) == 2
 
-    assert isinstance(el.append_type[0], float)
-    assert el.append_type[0] == 1.1
+    assert isinstance(model.append_type[0], float)
+    assert model.append_type[0] == 1.1
 
-    assert isinstance(el.append_type[1], float)
-    assert el.append_type[1] == 1.2
+    assert isinstance(model.append_type[1], float)
+    assert model.append_type[1] == 1.2
 
 def test_load_element_append_class():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:AppendElementFixture xmlns:test="http://jaymes.biz/test">
         <test:append_class>test1</test:append_class>
         <test:append_class>test2</test:append_class>
         </test:AppendElementFixture>
-        '''))
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
 
-    assert isinstance(el, AppendElementFixture)
+    assert isinstance(model, AppendElementFixture)
 
-    assert hasattr(el, 'append_class')
-    assert isinstance(el.append_class, ModelList)
-    assert len(el.append_class) == 2
+    assert hasattr(model, 'append_class')
+    assert isinstance(model.append_class, ModelList)
+    assert len(model.append_class) == 2
 
-    assert isinstance(el.append_class[0], EnclosedFixture)
-    assert el.append_class[0].text == 'test1'
+    assert isinstance(model.append_class[0], EnclosedFixture)
+    assert model.append_class[0].text == 'test1'
 
-    assert isinstance(el.append_class[1], EnclosedFixture)
-    assert el.append_class[1].text == 'test2'
+    assert isinstance(model.append_class[1], EnclosedFixture)
+    assert model.append_class[1].text == 'test2'
 
 def test_load_element_map_key_explicit():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <test:map_explicit_key key="test1">test1</test:map_explicit_key>
         <test:map_explicit_key key="test2">test2</test:map_explicit_key>
         </test:MapElementFixture>
-        '''))
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
 
-    assert isinstance(el, MapElementFixture)
+    assert isinstance(model, MapElementFixture)
 
-    assert hasattr(el, 'map_explicit_key')
-    assert len(el.map_explicit_key) == 2
+    assert hasattr(model, 'map_explicit_key')
+    assert len(model.map_explicit_key) == 2
 
-    assert 'test1' in el.map_explicit_key
-    assert el.map_explicit_key['test1'] == 'test1'
+    assert 'test1' in model.map_explicit_key
+    assert model.map_explicit_key['test1'] == 'test1'
 
-    assert 'test2' in el.map_explicit_key
-    assert el.map_explicit_key['test2'] == 'test2'
+    assert 'test2' in model.map_explicit_key
+    assert model.map_explicit_key['test2'] == 'test2'
 
 def test_load_element_map_key_implicit():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <test:map_implicit_key id="test1">test1</test:map_implicit_key>
         <test:map_implicit_key id="test2">test2</test:map_implicit_key>
         </test:MapElementFixture>
-        '''))
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
 
-    assert isinstance(el, MapElementFixture)
+    assert isinstance(model, MapElementFixture)
 
-    assert hasattr(el, 'map_implicit_key')
-    assert len(el.map_implicit_key) == 2
+    assert hasattr(model, 'map_implicit_key')
+    assert len(model.map_implicit_key) == 2
 
-    assert 'test1' in el.map_implicit_key
-    assert el.map_implicit_key['test1'] == 'test1'
+    assert 'test1' in model.map_implicit_key
+    assert model.map_implicit_key['test1'] == 'test1'
 
     assert 'test2' in el.map_implicit_key
     assert el.map_implicit_key['test2'] == 'test2'
 
 def test_load_element_map_value_nil():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <test:map_value_nil id="test1" xsi:nil="true"/>
         <test:map_value_nil id="test2">test2</test:map_value_nil>
         </test:MapElementFixture>
-        '''))
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
 
-    assert isinstance(el, MapElementFixture)
+    assert isinstance(model, MapElementFixture)
 
-    assert hasattr(el, 'map_value_nil')
-    assert len(el.map_value_nil) == 2
+    assert hasattr(model, 'map_value_nil')
+    assert len(model.map_value_nil) == 2
 
-    assert 'test1' in el.map_value_nil
-    assert el.map_value_nil['test1'] == None
+    assert 'test1' in model.map_value_nil
+    assert model.map_value_nil['test1'] == None
 
-    assert 'test2' in el.map_value_nil
-    assert el.map_value_nil['test2'] == 'test2'
+    assert 'test2' in model.map_value_nil
+    assert model.map_value_nil['test2'] == 'test2'
 
 def test_load_element_map_value_attr():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <test:map_value_attr id="test1" value="test1"/>
         <test:map_value_attr id="test2" value="test2"/>
         </test:MapElementFixture>
-        '''))
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
 
-    assert isinstance(el, MapElementFixture)
+    assert isinstance(model, MapElementFixture)
 
-    assert hasattr(el, 'map_value_attr')
-    assert len(el.map_value_attr) == 2
+    assert hasattr(model, 'map_value_attr')
+    assert len(model.map_value_attr) == 2
 
-    assert 'test1' in el.map_value_attr
-    assert el.map_value_attr['test1'] == 'test1'
+    assert 'test1' in model.map_value_attr
+    assert model.map_value_attr['test1'] == 'test1'
 
-    assert 'test2' in el.map_value_attr
-    assert el.map_value_attr['test2'] == 'test2'
+    assert 'test2' in model.map_value_attr
+    assert model.map_value_attr['test2'] == 'test2'
 
 def test_load_element_map_value_type():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <test:map_value_type id="test1">test1</test:map_value_type>
         <test:map_value_type id="test2">test2</test:map_value_type>
         </test:MapElementFixture>
-        '''))
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
 
-    assert isinstance(el, MapElementFixture)
+    assert isinstance(model, MapElementFixture)
 
-    assert hasattr(el, 'map_value_type')
-    assert len(el.map_value_type) == 2
+    assert hasattr(model, 'map_value_type')
+    assert len(model.map_value_type) == 2
 
-    assert 'test1' in el.map_value_type
-    assert el.map_value_type['test1'] == 'test1'
+    assert 'test1' in model.map_value_type
+    assert model.map_value_type['test1'] == 'test1'
 
-    assert 'test2' in el.map_value_type
-    assert el.map_value_type['test2'] == 'test2'
+    assert 'test2' in model.map_value_type
+    assert model.map_value_type['test2'] == 'test2'
 
 def test_load_element_map_value_class():
-    el = Model.load(None, ET.fromstring('''
+    test_xml = '''
         <test:MapElementFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
         <test:map_value_class id="test1" tag="blue">text1</test:map_value_class>
         <test:map_value_class id="test2" tag="red">text2</test:map_value_class>
         </test:MapElementFixture>
-        '''))
+        '''
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
 
-    assert isinstance(el, MapElementFixture)
+    assert isinstance(model, MapElementFixture)
 
-    assert hasattr(el, 'map_value_class')
-    assert len(el.map_value_class) == 2
+    assert hasattr(model, 'map_value_class')
+    assert len(model.map_value_class) == 2
 
-    assert 'test1' in el.map_value_class
-    assert isinstance(el.map_value_class['test1'], MappableElementFixture)
-    assert el.map_value_class['test1'].id == 'test1'
-    assert el.map_value_class['test1'].tag == 'blue'
-    assert el.map_value_class['test1'].text == 'text1'
+    assert 'test1' in model.map_value_class
+    assert isinstance(model.map_value_class['test1'], MappableElementFixture)
+    assert model.map_value_class['test1'].id == 'test1'
+    assert model.map_value_class['test1'].tag == 'blue'
+    assert model.map_value_class['test1'].text == 'text1'
 
-    assert 'test2' in el.map_value_class
-    assert isinstance(el.map_value_class['test2'], MappableElementFixture)
-    assert el.map_value_class['test2'].id == 'test2'
-    assert el.map_value_class['test2'].tag == 'red'
-    assert el.map_value_class['test2'].text == 'text2'
+    assert 'test2' in model.map_value_class
+    assert isinstance(model.map_value_class['test2'], MappableElementFixture)
+    assert model.map_value_class['test2'].id == 'test2'
+    assert model.map_value_class['test2'].tag == 'red'
+    assert model.map_value_class['test2'].text == 'text2'
 
 def test_init_value():
     root = RootFixture(value='test')
@@ -498,7 +576,7 @@ def test_xmlns():
 def test_to_xml_root_enclosed():
     el = RootFixture()
     el.EnclosedFixture = EnclosedFixture(tag_name='EnclosedFixture')
-    assert ET.tostring(el.to_xml()) == \
+    assert el.to_xml() == \
         b'<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnclosedFixture /></test:RootFixture>'
 
 def test_to_xml_required_attribute():
@@ -506,7 +584,7 @@ def test_to_xml_required_attribute():
     with pytest.raises(RequiredAttributeException):
         el.to_xml()
     el.required_attribute = 'test'
-    assert ET.tostring(el.to_xml()) == \
+    assert el.to_xml() == \
         b'<test:RequiredAttributeFixture xmlns:test="http://jaymes.biz/test" required_attribute="test" />'
 
 def test_to_xml_attributes():
@@ -515,18 +593,18 @@ def test_to_xml_attributes():
     el.dash_attribute = 'test'
     el.default_attribute = 'not default'
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:AttributeFixture xmlns:test="http://jaymes.biz/test"')
     assert b'dash-attribute="test" ' in xml
     assert b'default_attribute="not default" ' in xml
     assert b'in_attribute="test" ' in xml
 
     el.in_test = None
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert b'in_attribute=' not in xml
 
     el.default_attribute = 'test'
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert b'default_attribute="test" ' not in xml
 
 def test_to_xml_min_max():
@@ -536,7 +614,7 @@ def test_to_xml_min_max():
     for i in range(0, 2):
         el.max.append(EnclosedFixture(tag_name='max'))
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:MinMaxElementFixture xmlns:test="http://jaymes.biz/test"')
     assert xml.count(b'<test:min') == 3
     assert xml.count(b'<test:max') == 2
@@ -555,7 +633,7 @@ def test_to_xml_wildcard_not_in():
     el._elements.append(EnclosedFixture(tag_name='wildcard_element'))
     el._elements.append(EnclosedFixture2(tag_name='wildcard_element'))
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:WildcardElementNotInFixture')
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'xmlns:test2="http://jaymes.biz/test2"' in xml
@@ -567,7 +645,7 @@ def test_to_xml_wildcard_in():
     el.test_elements.append(EnclosedFixture(tag_name='wildcard_element'))
     el.elements.append(EnclosedFixture2(tag_name='wildcard_element'))
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:WildcardElementInFixture')
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'xmlns:test2="http://jaymes.biz/test2"' in xml
@@ -579,7 +657,7 @@ def test_to_xml_append_nil():
     el.append_nil.append(None)
     el.append_nil.append(EnclosedFixture(value='test', tag_name='append_nil'))
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:AppendElementFixture')
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' in xml
@@ -591,7 +669,7 @@ def test_to_xml_append_type():
     el.append_type.append(1.1)
     el.append_type.append(1.2)
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:AppendElementFixture')
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'<test:append_type>1.1</test:append_type>' in xml
@@ -602,7 +680,7 @@ def test_to_xml_append_class():
     el.append_class.append(EnclosedFixture(value='test1', tag_name='append_class'))
     el.append_class.append(EnclosedFixture(value='test2', tag_name='append_class'))
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:AppendElementFixture')
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'<test:append_class>test1</test:append_class>' in xml
@@ -613,7 +691,7 @@ def test_to_xml_map_key_explicit():
     el.map_explicit_key['test1'] = 'test1'
     el.map_explicit_key['test2'] = 'test2'
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:MapElementFixture')
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'<test:map_explicit_key key="test1">test1</test:map_explicit_key>' in xml
@@ -624,7 +702,7 @@ def test_to_xml_map_key_implicit():
     el.map_implicit_key['test1'] = 'test1'
     el.map_implicit_key['test2'] = 'test2'
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:MapElementFixture')
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'<test:map_implicit_key id="test1">test1</test:map_implicit_key>' in xml
@@ -635,7 +713,7 @@ def test_to_xml_map_value_nil():
     el.map_value_nil['test1'] = None
     el.map_value_nil['test2'] = 'test2'
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:MapElementFixture')
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"' in xml
@@ -647,7 +725,7 @@ def test_to_xml_map_value_attr():
     el.map_value_attr['test1'] = 'test1'
     el.map_value_attr['test2'] = 'test2'
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:MapElementFixture')
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'<test:map_value_attr id="test1" value="test1" />' in xml
@@ -658,7 +736,7 @@ def test_to_xml_map_value_type():
     el.map_value_type['test1'] = 'test1'
     el.map_value_type['test2'] = 'test2'
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:MapElementFixture')
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'<test:map_value_type id="test1">test1</test:map_value_type>' in xml
@@ -671,7 +749,7 @@ def test_to_xml_map_value_class():
     el.map_value_class['test2'] = MappableElementFixture(value='text2', tag_name='map_value_class')
     el.map_value_class['test2'].tag = 'red'
 
-    xml = ET.tostring(el.to_xml())
+    xml = el.to_xml()
     assert xml.startswith(b'<test:MapElementFixture')
     assert b'xmlns:test="http://jaymes.biz/test"' in xml
     assert b'<test:map_value_class id="test1" tag="blue">text1</test:map_value_class>' in xml
@@ -694,29 +772,43 @@ def test_in_and_out():
         b'<test:dict id="test13" />' + \
         b'<test:list id="test14" />' + \
         b'</test:InitFixture>'
-    model = Model.load(None, ET.fromstring(test_xml))
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
 
-    out_xml = ET.tostring(model.to_xml())
+    out_xml = model.to_xml()
     print(test_xml)
     print(out_xml)
     assert out_xml == test_xml
 
 def test_load_attribute_value_in_enum():
-    el = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnumValue>bravo</test:EnumValue></test:RootFixture>'))
-    assert isinstance(el, RootFixture)
-    assert hasattr(el, 'EnumValue')
-    assert el.EnumValue.get_value() == 'bravo'
+    test_xml = '<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnumValue>bravo</test:EnumValue></test:RootFixture>'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert isinstance(model, RootFixture)
+    assert hasattr(model, 'EnumValue')
+    assert model.EnumValue.get_value() == 'bravo'
 
 def test_load_attribute_value_not_in_enum():
     with pytest.raises(ValueError):
-        Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnumValue>delta</test:EnumValue></test:RootFixture>'))
+        test_xml = '<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:EnumValue>delta</test:EnumValue></test:RootFixture>'
+        doc = expatriate.Document()
+        doc.parse(test_xml)
+        model = Model.load(None, doc.root_element)
 
 def test_load_attribute_value_matches_pattern():
-    el = Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:PatternValue>Bravo12</test:PatternValue></test:RootFixture>'))
-    assert isinstance(el, RootFixture)
-    assert hasattr(el, 'PatternValue')
-    assert el.PatternValue.get_value() == 'Bravo12'
+    test_xml = '<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:PatternValue>Bravo12</test:PatternValue></test:RootFixture>'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
+    assert isinstance(model, RootFixture)
+    assert hasattr(model, 'PatternValue')
+    assert model.PatternValue.get_value() == 'Bravo12'
 
 def test_load_attribute_value_not_matches_pattern():
     with pytest.raises(ValueError):
-        Model.load(None, ET.fromstring('<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:PatternValue>delta</test:PatternValue></test:RootFixture>'))
+        test_xml = '<test:RootFixture xmlns:test="http://jaymes.biz/test"><test:PatternValue>delta</test:PatternValue></test:RootFixture>'
+        doc = expatriate.Document()
+        doc.parse(test_xml)
+        model = Model.load(None, doc.root_element)

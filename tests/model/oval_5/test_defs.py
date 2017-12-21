@@ -19,7 +19,7 @@ import importlib
 import logging
 import pytest
 import pkgutil
-import xml.etree.ElementTree as ET
+import expatriate
 
 from scap.Model import Model
 from scap.model.oval_5.defs.SetElement import SetElement
@@ -52,7 +52,9 @@ def test_oval_5_3_detected():
         '<oval:timestamp>2008-04-10T09:00:10.653-04:00</oval:timestamp>' + \
       '</generator>' + \
       '</oval_definitions>'
-    model = Model.load(None, ET.fromstring(test_xml))
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
     from scap.model.oval_5.defs.OvalDefinitionsElement import OvalDefinitionsElement
     assert isinstance(model, OvalDefinitionsElement)
 
