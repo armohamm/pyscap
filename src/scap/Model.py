@@ -15,14 +15,16 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from collections import UserList, UserDict
-import logging
+import expatriate
 import importlib
-import sys
+import logging
 import os.path
 import re
-import xml.etree.ElementTree as ET
+import sys
 
+from scap.ModelList import ModelList
+from scap.ModelDict import ModelDict
+from scap.ModelChild import ModelChild
 from scap.model.decorators import *
 from scap.model.exceptions import *
 
@@ -38,138 +40,6 @@ XML_SPACE_ENUMERATION = [
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-class ModelList(UserList):
-    def __init__(self, model, element_def, *args, **kwargs):
-        super(ModelList, self).__init__(*args, **kwargs)
-        self._model = model
-        self.element_def = element_def
-
-    def __setitem__(self, index, value):
-        # remove former value from self._model._children_values
-        if index < len(self.data):
-            former_value = self.data[index]
-            self._model.remove_child(former_value)
-
-        # add new value to self._model._children_values
-        self._model.append_child_for(value, self.element_def)
-
-        super(ModelList, self).__setitem__(index, value)
-
-    def __delitem__(self, index):
-        # remove former value from self._model._children_values
-        if index < len(self.data):
-            former_value = self.data[index]
-            self._model.remove_child(former_value)
-
-        super(ModelList, self).__delitem__(index)
-
-    def insert(self, index, value):
-        # add new value to self._model._children_values
-        self._model.append_child_for(value, self.element_def)
-
-        super(ModelList, self).insert(index, value)
-
-    #TODO __contains__, __iter__, __reversed__, index, and count
-    #TODO reverse, and __iadd__
-
-    def append(self, value):
-        # add new value to self._model._children_values
-        self._model.append_child_for(value, self.element_def)
-
-        super(ModelList, self).append(value)
-
-    def extend(self, lst):
-        for value in lst:
-            # add new value to self._model._children_values
-            self._model.append_child_for(value, self.element_def)
-
-        super(ModelList, self).extend(lst)
-
-    def pop(self, i=-1):
-        value = super(ModelList, self).pop(i)
-
-        # remove former value from self._model._children_values
-        self._model.remove_child(value)
-        return value
-
-    def remove(self, value):
-        # remove former value from self._model._children_values
-        self._model.remove_child(value)
-
-        super(ModelList, self).remove(value)
-
-class ModelDict(UserDict):
-    def __init__(self, model, element_def, *args, **kwargs):
-        super(ModelDict, self).__init__(*args, **kwargs)
-        self._model = model
-        self.element_def = element_def
-
-    def __setitem__(self, key, value):
-        # remove former value from self._model._children_values
-        if key in self.data:
-            former_value = self.data[key]
-            self._model.remove_child(former_value)
-
-        # add new value to self._model._children_values
-        self._model.append_child_for(value, self.element_def, key)
-
-        super(ModelDict, self).__setitem__(key, value)
-
-    def __delitem__(self, key):
-        # remove former value from self._model._children_values
-        if key in self.data:
-            former_value = self.data[key]
-            self._model.remove_child(former_value)
-
-        super(ModelDict, self).__delitem__(key, value)
-
-    #TODO __contains__, keys, items, values, get, __eq__, and __ne__
-    #TODO setdefault
-
-    def pop(self, key, default=None):
-        if default is None:
-            value = super(ModelDict, self).pop(key)
-        else:
-            value = super(ModelDict, self).pop(key, default)
-
-        # remove former value from self._model._children_values
-        self._model.remove_child(value)
-        return value
-
-    def popitem(self):
-        key, value = super(ModelDict, self).popitem()
-
-        # remove former value from self._model._children_values
-        self._model.remove_child(value)
-        return key, value
-
-    def clear(self):
-        for value in self.data.values():
-            self._model.remove_child(value)
-
-        super(ModelDict, self).clear()
-
-    def update(self, other=None, **kwargs):
-        if other is None or len(other) <= 0:
-            for k,v in kwargs:
-                self.__setitem__(k, v)
-        else:
-            for k in other:
-                self.__setitem__(k, other[k])
-
-    def setdefault(self, key, default=None):
-        if default is not None and key not in self.data:
-            # add new value to self._model._children_values
-            self._model.append_child_for(value, self.element_def, key)
-
-        return super(ModelDict, self).setdefault(key, default)
-
-class ModelChild(object):
-    def __init__(self, model, element_def, value=None):
-        self._model = model
-        self.element_def = element_def
-        self.value = value
-
 @attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='lang', type='StringType', into='_xml_lang')
 @attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='space', enum=('default', 'preserve'), into='_xml_space')
 @attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='base', type='AnyUriType', into='_xml_base')
@@ -179,8 +49,6 @@ class ModelChild(object):
 @attribute(namespace='http://www.w3.org/2001/XMLSchema-instance', local_name='schemaLocation', type='AnyUriType', into='_xsi_schemaLocation')
 @attribute(namespace='http://www.w3.org/2001/XMLSchema-instance', local_name='noNamespaceSchemaLocation', type='AnyUriType', into='_xsi_noNamespaceSchemaLocation')
 class Model(object):
-    __model_mappings = {}
-
     __xmlns_to_package = {
         'http://www.w3.org/XML/1998/namespace': 'scap.model.xml',
         'http://www.w3.org/2001/XMLSchema': 'scap.model.xs',
@@ -198,8 +66,6 @@ class Model(object):
     def register_namespace(model_package, xmlns):
         Model.__xmlns_to_package[xmlns] = model_package
         Model.__package_to_xmlns[model_package] = xmlns
-        # TODO need to make sure model_package.split('.')[-1] is unique
-        ET.register_namespace(model_package.split('.')[-1], xmlns)
 
     @staticmethod
     def unregister_namespace(model_package):
@@ -210,16 +76,6 @@ class Model(object):
 
         del Model.__package_to_xmlns[model_package]
         del Model.__xmlns_to_package[xmlns]
-
-    @staticmethod
-    def parse_tag(tag):
-        # parse tag
-        if tag.startswith('{'):
-            xmlns, tag_name = tag[1:].split('}')
-        else:
-            return None, tag
-
-        return xmlns, tag_name
 
     @staticmethod
     def package_to_xmlns(model_package):
@@ -305,82 +161,118 @@ class Model(object):
     def _map_element_to_module_name(model_package, el):
         pkg_mod = importlib.import_module(model_package)
 
-        tag = el.tag
         if not hasattr(pkg_mod, 'TAG_MAP'):
             raise TagMappingException(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + tag)
-        if tag not in pkg_mod.TAG_MAP:
-            raise TagMappingException(pkg_mod.__name__ + ' does not define mapping for ' + tag + ' tag')
+        if (el.namespace, el.local_name) not in pkg_mod.TAG_MAP:
+            raise TagMappingException(pkg_mod.__name__ + ' does not define mapping for ' + el.namespace + ', ' + el.local_name + ' tag')
 
-        return pkg_mod.__name__, pkg_mod.TAG_MAP[tag]
+        return pkg_mod.__name__, pkg_mod.TAG_MAP[el.namespace, el.local_name]
+
+    # @staticmethod
+    # def _get_model_map(model_class):
+    #     # check the __model_mappings cache first, otherwise generate
+    #     fq_model_class_name = model_class.__module__ + '.' + model_class.__name__
+    #     if fq_model_class_name not in Model.__model_mappings:
+    #         at_map = {}
+    #         el_map = {}
+    #         el_order = []
+    #         xmlns = None
+    #         tag_name = None
+    #         for class_ in model_class.__mro__:
+    #             if class_ == object:
+    #                 break
+    #
+    #             if class_.__module__.startswith('collections.'):
+    #                 # skip collection classes
+    #                 continue
+    #
+    #             fq_class_name = class_.__module__ + '.' + class_.__name__
+    #
+    #             if not hasattr(class_, 'MODEL_MAP') or not isinstance(class_.MODEL_MAP, dict):
+    #                 raise TagMappingException('Class ' + fq_class_name + ' does not define MODEL_MAP dict')
+    #
+    #             # overwrite the super class' ns & tag with what we've already loaded
+    #             if xmlns is None and 'xmlns' in class_.MODEL_MAP:
+    #                 xmlns = class_.MODEL_MAP['xmlns']
+    #
+    #             if tag_name is None and 'tag_name' in class_.MODEL_MAP:
+    #                 tag_name = class_.MODEL_MAP['tag_name']
+    #
+    #             # update the super class' attribute map with subclass
+    #             if 'attributes' in class_.MODEL_MAP:
+    #                 super_atmap = class_.MODEL_MAP['attributes'].copy()
+    #                 super_atmap.update(at_map)
+    #                 at_map = super_atmap
+    #
+    #             # update the super class' element map with subclass
+    #             if 'elements' in class_.MODEL_MAP:
+    #                 super_elmap = class_.MODEL_MAP['elements'].copy()
+    #                 super_elmap.extend(el_map)
+    #                 el_map = super_elmap
+    #
+    #         if xmlns is None:
+    #             # try to auto detect from module name
+    #             xmlns = Model.package_to_xmlns(model_class.__module__.rpartition('.')[0])
+    #
+    #         el_lookup = {}
+    #         for element_def in el_map:
+    #             if not isinstance(element_def, dict):
+    #                 raise TagMappingException('Class ' + fq_model_class_name + ' has an invalid element definition: ' + str(element_def))
+    #
+    #             if 'xmlns' not in element_def and element_def['tag_name'] == '*':
+    #                 el_lookup['*'] = element_def
+    #             elif 'xmlns' in element_def:
+    #                 el_lookup['{' + element_def['xmlns'] + '}' + element_def['tag_name']] = element_def
+    #             else:
+    #                 # try using element's xmlns
+    #                 el_lookup['{' + xmlns + '}' + element_def['tag_name']] = element_def
+    #
+    #         Model.__model_mappings[fq_model_class_name] = {
+    #             'xmlns': xmlns,
+    #             'tag_name': tag_name,
+    #             'attributes': at_map,
+    #             'elements': el_map,
+    #             'element_lookup': el_lookup,
+    #         }
+    #
+    #     return Model.__model_mappings[fq_model_class_name]
 
     @staticmethod
-    def _get_model_map(model_class):
-        # check the __model_mappings cache first, otherwise generate
-        fq_model_class_name = model_class.__module__ + '.' + model_class.__name__
-        if fq_model_class_name not in Model.__model_mappings:
-            at_map = {}
-            el_map = {}
-            el_order = []
-            xmlns = None
-            tag_name = None
-            for class_ in model_class.__mro__:
-                if class_ == object:
-                    break
+    def _get_model_xmlns(model_class):
+        xmlns = None
 
-                if class_.__module__.startswith('collections.'):
-                    # skip collection classes
-                    continue
+        for class_ in model_class.__mro__:
+            if class_ == object:
+                break
 
-                fq_class_name = class_.__module__ + '.' + class_.__name__
+            if class_.__module__.startswith('collections.'):
+                # skip collection classes
+                continue
 
-                if not hasattr(class_, 'MODEL_MAP') or not isinstance(class_.MODEL_MAP, dict):
-                    raise TagMappingException('Class ' + fq_class_name + ' does not define MODEL_MAP dict')
-
-                # overwrite the super class' ns & tag with what we've already loaded
-                if xmlns is None and 'xmlns' in class_.MODEL_MAP:
-                    xmlns = class_.MODEL_MAP['xmlns']
-
-                if tag_name is None and 'tag_name' in class_.MODEL_MAP:
-                    tag_name = class_.MODEL_MAP['tag_name']
-
-                # update the super class' attribute map with subclass
-                if 'attributes' in class_.MODEL_MAP:
-                    super_atmap = class_.MODEL_MAP['attributes'].copy()
-                    super_atmap.update(at_map)
-                    at_map = super_atmap
-
-                # update the super class' element map with subclass
-                if 'elements' in class_.MODEL_MAP:
-                    super_elmap = class_.MODEL_MAP['elements'].copy()
-                    super_elmap.extend(el_map)
-                    el_map = super_elmap
-
+            # if not hasattr(class_, 'MODEL_MAP') or not isinstance(class_.MODEL_MAP, dict):
+            #     raise TagMappingException('Class ' + fq_class_name + ' does not define MODEL_MAP dict')
+            #
+            # # overwrite the super class' ns & tag with what we've already loaded
+            # if xmlns is None and 'xmlns' in class_.MODEL_MAP:
+            #     xmlns = class_.MODEL_MAP['xmlns']
+            #
             if xmlns is None:
                 # try to auto detect from module name
                 xmlns = Model.package_to_xmlns(model_class.__module__.rpartition('.')[0])
 
-            el_lookup = {}
-            for element_def in el_map:
-                if not isinstance(element_def, dict):
-                    raise TagMappingException('Class ' + fq_model_class_name + ' has an invalid element definition: ' + str(element_def))
+        return xmlns
 
-                if 'xmlns' not in element_def and element_def['tag_name'] == '*':
-                    el_lookup['*'] = element_def
-                elif 'xmlns' in element_def:
-                    el_lookup['{' + element_def['xmlns'] + '}' + element_def['tag_name']] = element_def
-                else:
-                    # try using element's xmlns
-                    el_lookup['{' + xmlns + '}' + element_def['tag_name']] = element_def
+    @staticmethod
+    def _get_model_tag(model_class):
+        raise NotImplementedError
 
-            Model.__model_mappings[fq_model_class_name] = {
-                'xmlns': xmlns,
-                'tag_name': tag_name,
-                'attributes': at_map,
-                'elements': el_map,
-                'element_lookup': el_lookup,
-            }
+    @staticmethod
+    def _get_model_element_defs(model_class):
+        raise NotImplementedError
 
-        return Model.__model_mappings[fq_model_class_name]
+    @staticmethod
+    def _get_model_attribute_defs(model_class):
+        raise NotImplementedError
 
     @staticmethod
     def find_content(uri):
