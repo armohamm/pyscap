@@ -20,7 +20,7 @@ Usage
 
 ::
 
-    pyscap.py
+    pyscap
         [--help or -h]
         [--version or -V]
         [--verbose or -v]
