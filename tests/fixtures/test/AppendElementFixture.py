@@ -20,8 +20,8 @@ from scap.model.decorators import *
 from scap.model.types import *
 from .EnclosedFixture import EnclosedFixture
 
-@element(local_name='append_nil', list='append_nil', nillable=True, cls=EnclosedFixture, min=0),
-@element(local_name='append_type', list='append_type', type=DecimalType, min=0),
-@element(local_name='append_class', list='append_class', cls=EnclosedFixture, min=0),
+@element(local_name='append_nil', list='append_nil', nillable=True, cls=EnclosedFixture, min=0)
+@element(local_name='append_type', list='append_type', type=DecimalType, min=0)
+@element(local_name='append_class', list='append_class', cls=EnclosedFixture, min=0)
 class AppendElementFixture(Model):
     pass
