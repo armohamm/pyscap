@@ -24,6 +24,43 @@ import types
 logger = logging.getLogger(__name__)
 
 class attribute(object):
+    '''
+        Decorator to map xml elements to model children
+
+        **kwargs**
+
+        namespace
+            The xml namespace to match. It can also be * to match any namespace.
+            If not specified, it defaults to the parent element.
+        local_name
+            Required. The local name of the xml element we're matching. It can
+            also be * to match any local name.
+        into
+            The python attribute to store the value of the element into.
+            Defaults to the local_name if not specified.
+        list
+            The python attribute to store the value of the element into (as a
+            list).  Defaults to the local_name if not specified.
+        dict
+            The python attribute to store the value of the element into (as a
+            dict).  Defaults to the local_name if not specified.
+
+        One of *type* or *cls* must be specified. *defer_class_load* can be
+        used to load the class upon access instead of passing the class:
+
+        type
+            The type of the expected value. Types are stored directly as data,
+            no enclosed in a model class. Types usually restrict the domain
+            values.
+        cls
+            The model class with which to load the element.
+        min
+            The minimum number of elements to be present. Can be numeric or None
+            (the  default).
+        max
+            The maximum number of elements to be present. Can be numeric or None
+            (the default).
+    '''
     def __init__(self, **kwargs):
         if 'local_name' not in kwargs:
             raise DecoratorException('Attributes need at least local_name defined')
@@ -41,6 +78,56 @@ class attribute(object):
         return cls
 
 class element(object):
+    '''
+        Decorator to map xml elements to model children
+
+        **kwargs**
+
+        namespace
+            The xml namespace to match. It can also be * to match any namespace.
+            If not specified, it defaults to the parent element.
+        local_name
+            Required. The local name of the xml element we're matching. It can
+            also be * to match any local name.
+        into
+            The python attribute to store the value of the element into.
+            Defaults to the local_name if not specified.
+        list
+            The python attribute to store the value of the element into (as a
+            list).  Defaults to the local_name if not specified.
+        dict
+            The python attribute to store the value of the element into (as a
+            dict). Defaults to the local_name if not specified.
+        key
+            The key of the sub-element to use as the key of the dict. By default
+            it is the *id* attribute.
+
+        One of *type* or *cls* must be specified. *defer_class_load* can be
+        used to load the class upon access instead of passing the class:
+
+        type
+            The type of the expected value. Types are stored directly as data,
+            no enclosed in a model class. Types usually restrict the domain
+            values.
+        cls
+            The model class with which to load the element.
+
+        min
+            The minimum number of elements to be present. Can be numeric or None
+            (the  default).
+        max
+            The maximum number of elements to be present. Can be numeric or None
+            (the default).
+
+        value_enum
+            Enumeration to which the value of the element must belong.
+        value_pattern
+            Pattern which the value of the element must match.
+
+        nillable
+            If True, the element can be nil (from the xsi spec). False
+            specifies that it cannot (the default).
+    '''
     def __init__(self, **kwargs):
         if 'local_name' not in kwargs:
             raise DecoratorException('Attributes need at least local_name defined')
@@ -63,6 +150,12 @@ class element(object):
         return cls
 
 class content(object):
+    '''
+        Decorator to map content of a xml element for use by the model
+
+        **kwargs**
+
+    '''
     def __init__(self, **kwargs):
         self._kwargs = kwargs
 
@@ -71,6 +164,10 @@ class content(object):
         return cls
 
 def defer_class_load(module, class_name):
+    '''
+        Returns a class from *module* and *class_name* specification at runtime,
+        avoiding reference loops between classes and model definitions.
+    '''
     def _load_class():
         # use cached copy of module if possible
         if module not in sys.modules:
