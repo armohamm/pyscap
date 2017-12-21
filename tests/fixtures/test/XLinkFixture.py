@@ -16,6 +16,8 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 from scap.model.xlink.Simple import Simple
+from scap.model.decorators import *
+from scap.model.types import *
 
 class XLinkFixture(Simple):
     MODEL_MAP = {
