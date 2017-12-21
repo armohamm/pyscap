@@ -18,7 +18,7 @@
 import pytest
 import logging
 
-from scap.decorators import *
+from scap.model.decorators import *
 
 logging.basicConfig(level=logging.DEBUG)
 
