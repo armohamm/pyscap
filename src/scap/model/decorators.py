@@ -99,9 +99,13 @@ class element(object):
         dict
             The python attribute to store the value of the element into (as a
             dict). Defaults to the local_name if not specified.
-        key
-            The key of the sub-element to use as the key of the dict. By default
-            it is the *id* attribute.
+
+        dict_key
+            The attribute of the sub-element to use as the key of the dict. By
+            default it is the *id* attribute.
+        dict_value
+            The attribute of the sub-element to use as the value of the dict. By
+            default it is the value of the element.
 
         Unless One of *type* or *cls* must be specified. *defer_class_load* can be
         used to load the class upon access instead of passing the class:

@@ -51,7 +51,7 @@ logger = logging.getLogger(__name__)
 @element(local_name='profile-note', list='profile_notes', min=0, max=None, cls=ProfileNoteType)
 @element(local_name='fixtext', cls=FixtextType, min=0, max=None, list='fixtexts')
 @element(local_name='fix', cls=FixType, min=0, max=None, list='fixes')# choice
-@element(local_name='check', cls=CheckType, min=0, max=None, dict='checks', key='selector')
+@element\(local_name='check', cls=CheckType, min=0, max=None, dict='checks', dict_key='selector')
 @element(local_name='complex-check', cls=ComplexCheckType, min=0, max=1)
 @element(local_name='signature', cls=SignatureType, min=0, max=1)
 class RuleType(SelectableItemType):
