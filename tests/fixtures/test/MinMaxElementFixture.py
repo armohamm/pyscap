@@ -18,6 +18,7 @@
 from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.types import *
+from .EnclosedFixture import EnclosedFixture
 
 @element(local_name='min', list='min', min=3, cls=EnclosedFixture)
 @element(local_name='max', list='max', min=0, max=2, cls=EnclosedFixture)

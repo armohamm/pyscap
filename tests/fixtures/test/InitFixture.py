@@ -29,6 +29,6 @@ from .EnclosedFixture import EnclosedFixture
 @element(local_name='in_test', into='test_in', cls=EnclosedFixture)
 @element(local_name='dash-test', cls=EnclosedFixture)
 @element(namespace='http://jaymes.biz/test2', local_name='*', into='test2_elements')
-@element(local_name='*'},
+@element(local_name='*')
 class InitFixture(Model):
     pass

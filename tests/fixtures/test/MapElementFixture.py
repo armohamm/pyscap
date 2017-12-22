@@ -18,6 +18,7 @@
 from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.types import *
+from .MappableElementFixture import MappableElementFixture
 
 @element(local_name='map_explicit_key', dict='map_explicit_key', dict_key='key', type=StringType, min=0)
 @element(local_name='map_implicit_key', dict='map_implicit_key', type=StringType, min=0)
