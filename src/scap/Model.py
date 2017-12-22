@@ -38,7 +38,7 @@ XML_SPACE_ENUMERATION = [
 ]
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
+#logger.setLevel(logging.INFO)
 
 @attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='lang', type='StringType', into='_xml_lang')
 @attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='space', enum=('default', 'preserve'), into='_xml_space')
@@ -262,19 +262,66 @@ class Model(object):
         return xmlns
 
     @staticmethod
-    def _get_model_tag(model_class):
-        raise NotImplementedError
-
-    @staticmethod
     def _get_model_element_defs(model_class):
-        raise NotImplementedError
+        el_map = {}
+
+        for class_ in model_class.__mro__:
+            if class_ == object:
+                break
+
+            if class_.__module__.startswith('collections.'):
+                # skip collection classes
+                continue
+
+            # updele the super class' elemenbt map with subclass
+            if hasattr(class_, '_model_element_definitions'):
+                super_elmap = class_._model_element_definitions.copy()
+                super_elmap.update(el_map)
+                el_map = super_elmap
+
+        logger.debug('Element defs for ' + model_class.__name__ + str(el_map))
+        return el_map
 
     @staticmethod
     def _get_model_attribute_defs(model_class):
-        raise NotImplementedError
+        at_map = {}
 
+        for class_ in model_class.__mro__:
+            if class_ == object:
+                break
+
+            if class_.__module__.startswith('collections.'):
+                # skip collection classes
+                continue
+
+            # update the super class' attribute map with subclass
+            if hasattr(class_, '_model_attributes'):
+                super_atmap = class_._model_attributes.copy()
+                super_atmap.update(at_map)
+                at_map = super_atmap
+
+        logger.debug('Attribute defs for ' + model_class.__name__ + str(at_map))
+        return at_map
+
+    @staticmethod
     def _get_model_element_lookup(model_class):
-        raise NotImplementedError
+        el_lookup = {}
+
+        for element_def in model_class._get_model_element_defs(model_class):
+            if not isinstance(element_def, dict):
+                raise TagMappingException('Class ' + fq_model_class_name + ' has an invalid element definition: ' + str(element_def))
+
+            if 'xmlns' not in element_def and element_def['local_name'] == '*':
+                el_lookup['*'] = element_def
+            elif 'xmlns' in element_def:
+                el_lookup[element_def['xmlns'], element_def['local_name']] = element_def
+            else:
+                # try using element's xmlns
+                xmlns = model_class._get_model_xmlns(model_class)
+                el_lookup[xmlns, element_def['tag_name']] = element_def
+
+        logger.debug('Element lookup for ' + model_class.__name__ + str(el_lookup))
+        return el_lookup
 
     @staticmethod
     def find_content(uri):
@@ -301,8 +348,6 @@ class Model(object):
 
         self._references = {}
 
-        self._model_map = Model._get_model_map(self.__class__)
-
         self._value_enum = None
         self._value_pattern = None
         if element_def is not None:
@@ -313,30 +358,28 @@ class Model(object):
 
         if tag_name is not None:
             self.tag_name = tag_name
-        elif 'tag_name' in self._model_map and self._model_map['tag_name'] is not None:
-            self.tag_name = self._model_map['tag_name']
 
         # must have namespace for concrete classes
-        if xmlns is not None:
-            self.xmlns = xmlns
-        elif 'xmlns' not in self._model_map or self._model_map['xmlns'] is None:
-            raise ValueError('No xmlns defined for ' + self.__class__.__name__ + ' & could not detect')
+        if xmlns is None:
+            xmlns = self._get_model_xmlns(self.__class__)
+            if xmlns is None:
+                raise ValueError('No xmlns defined for ' + self.__class__.__name__ + ' & could not detect')
+            else:
+                self.xmlns = xmlns
         else:
-            self.xmlns = self._model_map['xmlns']
+            self.xmlns = xmlns
 
         self._tag_counts = {}
 
         # initialize attribute values
-        for name in self._model_map['attributes']:
-            attr_map = self._model_map['attributes'][name]
-            if 'in' in attr_map:
-                attr_name = attr_map['in']
+        for ad in self._get_model_attribute_defs(self.__class__).values():
+            if 'into' in ad:
+                attr_name = ad['into']
             else:
-                xmlns, attr_name = Model.parse_tag(name)
-                attr_name = attr_name.replace('-', '_')
+                attr_name = ad['local_name'].replace('-', '_')
 
-            if 'default' in attr_map:
-                default_value = attr_map['default']
+            if 'default' in ad:
+                default_value = ad['default']
                 setattr(self, attr_name, default_value)
                 logger.debug('Default of attribute ' + attr_name + ' = ' + str(default_value))
             else:
@@ -344,12 +387,12 @@ class Model(object):
 
         # initialize elements; if subclass defined the corresponding attribute,
         # we don't re-define
-        for element_def in self._model_map['elements']:
-            if element_def['tag_name'].endswith('*'):
-                if 'in' not in element_def:
+        for element_def in self._get_model_element_defs(self.__class__).values():
+            if element_def['local_name'].endswith('*'):
+                if 'into' not in element_def:
                     name = '_elements'
                 else:
-                    name = element_def['in']
+                    name = element_def['into']
 
                 if name not in self._child_map:
                     logger.debug('Initializing ' + name + ' to ModelList()')
@@ -368,10 +411,10 @@ class Model(object):
                     self._child_map[element_def['dict']] = ModelDict(self, element_def)
 
             else:
-                if 'in' in element_def:
-                    name = element_def['in']
+                if 'into' in element_def:
+                    name = element_def['into']
                 else:
-                    name = element_def['tag_name'].replace('-', '_')
+                    name = element_def['local_name'].replace('-', '_')
 
                 if name not in self._child_map:
                     logger.debug('Initializing ' + name + ' to ModelChild()')
