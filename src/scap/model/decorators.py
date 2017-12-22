@@ -71,13 +71,17 @@ class attribute(object):
         self._kwargs = kwargs
 
     def __call__(self, cls):
-        if not hasattr(cls, '_model_attributes'):
-            cls._model_attributes = {}
+        if not hasattr(cls, '_model_attribute_definitions'):
+            cls._model_attribute_definitions = {}
+
         if 'namespace' in self._kwargs:
             key = (self._kwargs['namespace'], self._kwargs['local_name'])
         else:
             key = (None, self._kwargs['local_name'])
-        cls._model_attributes[key] = self._kwargs
+
+        logger.debug('Setting ' + cls.__name__ + ' ' + str(key) + ' attribute def to ' + str(self._kwargs))
+        cls._model_attribute_definitions[key] = self._kwargs
+
         return cls
 
 class element(object):
@@ -145,16 +149,21 @@ class element(object):
     def __call__(self, cls):
         if not hasattr(cls, '_model_element_definitions'):
             cls._model_element_definitions = {}
+
         if 'namespace' in self._kwargs:
             key = (self._kwargs['namespace'], self._kwargs['local_name'])
         else:
             key = (None, self._kwargs['local_name'])
+
+        logger.debug('Setting ' + cls.__name__ + ' ' + str(key) + ' element def to ' + str(self._kwargs))
         cls._model_element_definitions[key] = self._kwargs
 
         if not hasattr(cls, '_model_element_order'):
             cls._model_element_order = []
+
         # have to insert at the front because decorators are applied in reverse order
         cls._model_element_order.insert(0, key)
+
         return cls
 
 class content(object):
@@ -178,7 +187,8 @@ class content(object):
         self._kwargs = kwargs
 
     def __call__(self, cls):
-        cls._model_content = self._kwargs
+        logger.debug('Setting ' + cls.__name__ + ' content def to ' + str(self._kwargs))
+        cls._model_content_def = self._kwargs
         return cls
 
 def defer_class_load(module, class_name):
