@@ -60,6 +60,9 @@ class attribute(object):
         max
             The maximum value of the attribute. Can be numeric or None (the
             default).
+
+        prohibited
+            The attribute should not appear in the element.
     '''
     def __init__(self, **kwargs):
         if 'local_name' not in kwargs:
