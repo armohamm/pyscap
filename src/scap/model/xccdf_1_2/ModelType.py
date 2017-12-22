@@ -25,7 +25,7 @@ from .ParamType import ParamType
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='system', required=True, type=AnyUriType)
-@element\(local_name='param', cls=ParamType, dict='params', dict_key='name', min=0, max=None)
+@element(local_name='param', cls=ParamType, dict='params', dict_key='name', min=0, max=None)
 class ModelType(Model):
     def score(self, host, benchmark, profile_id):
         from scap.model.xccdf_1_1.GroupType import GroupType
