@@ -22,6 +22,6 @@ from scap.model.xs.IdType import IdType
 
 logger = logging.getLogger(__name__)
 
-@content(regex=r'scap_[^_]+_datastream_.+')
+@content(pattern=r'scap_[^_]+_datastream_.+')
 class DataStreamIDPattern(IdType):
     pass

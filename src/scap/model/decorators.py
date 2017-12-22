@@ -152,10 +152,20 @@ class element(object):
 
 class content(object):
     '''
-        Decorator to map content of a xml element for use by the model
+        Decorator to map xml element content to model data
 
         **kwargs**
 
+        enum
+            Enumeration the attribute's value must be from
+        pattern
+            Pattern which the value of the attribute must match.
+        min
+            The minimum value of the attribute. Can be numeric or None (the
+            default).
+        max
+            The maximum value of the attribute. Can be numeric or None (the
+            default).
     '''
     def __init__(self, **kwargs):
         self._kwargs = kwargs

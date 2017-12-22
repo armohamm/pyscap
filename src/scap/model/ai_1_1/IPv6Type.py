@@ -22,6 +22,6 @@ from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
 
-@content(regex=r'([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}')
+@content(pattern=r'([0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}')
 class IPv6Type(TokenType):
     pass

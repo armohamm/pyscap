@@ -22,6 +22,6 @@ from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 
-@content(regex=r'[0-9]+\.[0-9]+(\.[0-9]+)?(:[0-9]+\.[0-9]+(\.[0-9]+)?)?')
+@content(pattern=r'[0-9]+\.[0-9]+(\.[0-9]+)?(:[0-9]+\.[0-9]+(\.[0-9]+)?)?')
 class SchemaVersionPattern(StringType):
     pass

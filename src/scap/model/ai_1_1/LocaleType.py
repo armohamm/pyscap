@@ -22,6 +22,6 @@ from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
 
-@content(regex=r'[a-zA-Z]{2,3}(-([a-zA-Z]{2}|[0-9]{3}))?')
+@content(pattern=r'[a-zA-Z]{2,3}(-([a-zA-Z]{2}|[0-9]{3}))?')
 class LocaleType(TokenType):
     pass

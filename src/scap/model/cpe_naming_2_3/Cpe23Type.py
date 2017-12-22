@@ -22,6 +22,6 @@ from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 
-@content(regex=r'^cpe:2\.3:[aho](?::(?:[a-zA-Z0-9!"#$%&' + r"'" + r'()*+,\\\-_.\/;<=>?@\[\]^`{|}~]|\\:)+){10}$')
+@content(pattern=r'^cpe:2\.3:[aho](?::(?:[a-zA-Z0-9!"#$%&' + r"'" + r'()*+,\\\-_.\/;<=>?@\[\]^`{|}~]|\\:)+){10}$')
 class Cpe23Type(StringType):
     pass
