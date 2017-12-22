@@ -26,6 +26,6 @@ from .StateType import StateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='family', cls=EntityStateType, min=0, max=1, value_enum=FAMILY_ENUMERATION)
+@element(local_name='family', cls=EntityStateType, min=0, max=1, enum=FAMILY_ENUMERATION)
 class FamilyStateElement(StateType):
     pass

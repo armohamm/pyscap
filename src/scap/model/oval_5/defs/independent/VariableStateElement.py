@@ -25,7 +25,7 @@ from .StateType import StateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='var_ref', cls=EntityStateType, min=0, max=1, value_pattern=r'(oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*){0,}')
+@element(local_name='var_ref', cls=EntityStateType, min=0, max=1, pattern=r'(oval:[A-Za-z0-9_\-\.]+:var:[1-9][0-9]*){0,}')
 @element(local_name='value', cls=EntityStateType, min=0, max=1)
 class VariableStateElement(StateType):
     pass

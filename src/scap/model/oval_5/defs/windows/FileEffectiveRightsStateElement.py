@@ -48,6 +48,6 @@ logger = logging.getLogger(__name__)
 @element(local_name='file_delete_child', cls=EntityStateType, min=0)
 @element(local_name='file_read_attributes', cls=EntityStateType, min=0)
 @element(local_name='file_write_attributes', cls=EntityStateType, min=0)
-@element(local_name='windows_view', cls=EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
+@element(local_name='windows_view', cls=EntityStateType, min=0, enum=WINDOWS_VIEW_ENUMERATION)
 class FileEffectiveRightsStateElement(StateType):
     pass

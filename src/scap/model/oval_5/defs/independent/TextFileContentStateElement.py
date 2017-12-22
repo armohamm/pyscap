@@ -30,6 +30,6 @@ logger = logging.getLogger(__name__)
 @element(local_name='filename', cls=EntityStateType, min=0, max=1)
 @element(local_name='line', cls=EntityStateType, min=0, max=1)
 @element(local_name='subexpression', cls=EntityStateType, min=0, max=1)
-@element(local_name='windows_view', cls=EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
+@element(local_name='windows_view', cls=EntityStateType, min=0, enum=WINDOWS_VIEW_ENUMERATION)
 class TextFileContentStateElement(StateType):
     pass

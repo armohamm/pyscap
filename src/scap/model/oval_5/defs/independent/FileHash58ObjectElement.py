@@ -36,7 +36,7 @@ logger.setLevel(logging.DEBUG)
 @element(local_name='filepath', cls=EntityObjectType, min=0)
 @element(local_name='path', cls=EntityObjectType, min=0)
 @element(local_name='filename', cls=EntityObjectType, min=0)
-@element(local_name='hash_type', cls=EntityObjectType, min=0, value_enum=HASH_TYPE_ENUMERATION)
+@element(local_name='hash_type', cls=EntityObjectType, min=0, enum=HASH_TYPE_ENUMERATION)
 class FileHash58ObjectElement(ObjectType):
     HASH_TYPES = [
         'MD5',

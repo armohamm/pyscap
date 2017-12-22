@@ -27,7 +27,7 @@ from .StateType import StateType
 
 logger = logging.getLogger(__name__)
 
-@element(local_name='engine', cls=EntityObjectType, min=0, value_enum=DATABASE_ENGINE_ENUMERATION)
+@element(local_name='engine', cls=EntityObjectType, min=0, enum=DATABASE_ENGINE_ENUMERATION)
 @element(local_name='version', cls=EntityObjectType, min=0)
 @element(local_name='connection_string', cls=EntityObjectType, min=0)
 @element(local_name='sql', cls=EntityObjectType, min=0)
