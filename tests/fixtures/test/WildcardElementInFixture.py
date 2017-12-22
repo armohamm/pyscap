@@ -19,11 +19,7 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.types import *
 
+@element(namespace='http://jaymes.biz/test', local_name='*', into='test_elements')
+@element(local_name='*', into='elements')
 class WildcardElementInFixture(Model):
-    MODEL_MAP = {
-        'tag_name': 'WildcardElementInFixture',
-        'elements': [
-            {'xmlns': 'http://jaymes.biz/test', 'tag_name': '*', 'in': 'test_elements'},
-            {'tag_name': '*', 'in': 'elements'},
-        ],
-    }
+    pass

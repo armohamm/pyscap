@@ -19,9 +19,6 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.types import *
 
+@attribute(local_name='id', type=IdType)
 class EnclosedFixture(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'type': 'IdType'},
-        },
-    }
+    pass

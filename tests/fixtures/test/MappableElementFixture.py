@@ -19,10 +19,7 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.types import *
 
+@attribute(local_name='id')
+@attribute(local_name='tag')
 class MappableElementFixture(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {},
-            'tag': {}
-        },
-    }
+    pass

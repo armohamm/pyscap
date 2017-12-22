@@ -20,6 +20,4 @@ from scap.model.decorators import *
 from scap.model.types import *
 
 class XLinkFixture(Simple):
-    MODEL_MAP = {
-        'tag_name': 'XLinkFixture',
-    }
+    pass

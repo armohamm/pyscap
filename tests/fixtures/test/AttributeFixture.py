@@ -19,12 +19,8 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.types import *
 
+@attribute(local_name='in_attribute', into='in_test')
+@attribute(local_name='dash-attribute')
+@attribute(local_name='default_attribute', default='test')
 class AttributeFixture(Model):
-    MODEL_MAP = {
-        'tag_name': 'AttributeFixture',
-        'attributes': {
-            'in_attribute': {'in': 'in_test'},
-            'dash-attribute': {},
-            'default_attribute': {'default': 'test'},
-        },
-    }
+    pass

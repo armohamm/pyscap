@@ -19,10 +19,6 @@ from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.types import *
 
+@attribute(local_name='required_attribute', required=True)
 class RequiredAttributeFixture(Model):
-    MODEL_MAP = {
-        'tag_name': 'RequiredAttributeFixture',
-        'attributes': {
-            'required_attribute': {'required': True},
-        },
-    }
+    pass
