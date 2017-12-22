@@ -33,33 +33,33 @@ class attribute(object):
             The xml namespace to match. It can also be * to match any namespace.
             If not specified, it defaults to the parent element.
         local_name
-            Required. The local name of the xml element we're matching. It can
+            Required. The local name of the xml attribute we're matching. It can
             also be * to match any local name.
         into
-            The python attribute to store the value of the element into.
+            The python attribute to store the value of the attribute into.
             Defaults to the local_name if not specified.
-        list
-            The python attribute to store the value of the element into (as a
-            list).  Defaults to the local_name if not specified.
-        dict
-            The python attribute to store the value of the element into (as a
-            dict).  Defaults to the local_name if not specified.
-
-        One of *type* or *cls* must be specified. *defer_class_load* can be
-        used to load the class upon access instead of passing the class:
 
         type
             The type of the expected value. Types are stored directly as data,
             no enclosed in a model class. Types usually restrict the domain
             values.
-        cls
-            The model class with which to load the element.
+        enum
+            Enumeration the attribute's value must be from
+        pattern
+            Pattern which the value of the attribute must match.
+
+        required
+            True or False (default). Specifies if the attribute is required.
+        default
+            The default value of an attribute if it isn't specified. The
+            (implicit) default is None or the first item of an *enum*.
+
         min
-            The minimum number of elements to be present. Can be numeric or None
-            (the  default).
+            The minimum value of the attribute. Can be numeric or None (the
+            default).
         max
-            The maximum number of elements to be present. Can be numeric or None
-            (the default).
+            The maximum value of the attribute. Can be numeric or None (the
+            default).
     '''
     def __init__(self, **kwargs):
         if 'local_name' not in kwargs:
@@ -89,6 +89,7 @@ class element(object):
         local_name
             Required. The local name of the xml element we're matching. It can
             also be * to match any local name.
+
         into
             The python attribute to store the value of the element into.
             Defaults to the local_name if not specified.
@@ -102,7 +103,7 @@ class element(object):
             The key of the sub-element to use as the key of the dict. By default
             it is the *id* attribute.
 
-        One of *type* or *cls* must be specified. *defer_class_load* can be
+        Unless One of *type* or *cls* must be specified. *defer_class_load* can be
         used to load the class upon access instead of passing the class:
 
         type
@@ -119,9 +120,9 @@ class element(object):
             The maximum number of elements to be present. Can be numeric or None
             (the default).
 
-        value_enum
+        enum
             Enumeration to which the value of the element must belong.
-        value_pattern
+        pattern
             Pattern which the value of the element must match.
 
         nillable
