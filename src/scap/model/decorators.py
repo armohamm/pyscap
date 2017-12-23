@@ -16,6 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import importlib
+import functools
 import logging
 import os
 import sys
@@ -23,7 +24,7 @@ import types
 
 logger = logging.getLogger(__name__)
 
-class attribute(object):
+def attribute(*args, **kwargs):
     '''
         Decorator to map xml elements to model children
 
@@ -64,27 +65,22 @@ class attribute(object):
         prohibited
             The attribute should not appear in the element.
     '''
-    def __init__(self, **kwargs):
+    def wrapper(cls):
+        functools.update_wrapper(wrapper, cls)
         if 'local_name' not in kwargs:
             raise DecoratorException('Attributes need at least local_name defined')
 
-        self._kwargs = kwargs
-
-    def __call__(self, cls):
-        if not hasattr(cls, '_model_attribute_definitions'):
-            cls._model_attribute_definitions = {}
-
-        if 'namespace' in self._kwargs:
-            key = (self._kwargs['namespace'], self._kwargs['local_name'])
+        if 'namespace' in kwargs:
+            key = (kwargs['namespace'], kwargs['local_name'])
         else:
-            key = (None, self._kwargs['local_name'])
+            key = (None, kwargs['local_name'])
 
-        logger.debug('Setting ' + cls.__name__ + ' ' + str(key) + ' attribute def to ' + str(self._kwargs))
-        cls._model_attribute_definitions[key] = self._kwargs
+        cls._set_model_attribute_def(key, kwargs)
 
         return cls
+    return wrapper
 
-class element(object):
+def element(*args, **kwargs):
     '''
         Decorator to map xml elements to model children
 
@@ -140,33 +136,22 @@ class element(object):
             If True, the element can be nil (from the xsi spec). False
             specifies that it cannot (the default).
     '''
-    def __init__(self, **kwargs):
+    def wrapper(cls):
+        functools.update_wrapper(wrapper, cls)
         if 'local_name' not in kwargs:
             raise DecoratorException('Attributes need at least local_name defined')
 
-        self._kwargs = kwargs
-
-    def __call__(self, cls):
-        if not hasattr(cls, '_model_element_definitions'):
-            cls._model_element_definitions = {}
-
-        if 'namespace' in self._kwargs:
-            key = (self._kwargs['namespace'], self._kwargs['local_name'])
+        if 'namespace' in kwargs:
+            key = (kwargs['namespace'], kwargs['local_name'])
         else:
-            key = (None, self._kwargs['local_name'])
+            key = (None, kwargs['local_name'])
 
-        logger.debug('Setting ' + cls.__name__ + ' ' + str(key) + ' element def to ' + str(self._kwargs))
-        cls._model_element_definitions[key] = self._kwargs
-
-        if not hasattr(cls, '_model_element_order'):
-            cls._model_element_order = []
-
-        # have to insert at the front because decorators are applied in reverse order
-        cls._model_element_order.insert(0, key)
+        cls._set_model_element_def(key, kwargs)
 
         return cls
+    return wrapper
 
-class content(object):
+def content(*args, **kwargs):
     '''
         Decorator to map xml element content to model data
 
@@ -183,13 +168,12 @@ class content(object):
             The maximum value of the attribute. Can be numeric or None (the
             default).
     '''
-    def __init__(self, **kwargs):
-        self._kwargs = kwargs
+    def wrapper(cls):
+        functools.update_wrapper(wrapper, cls)
+        cls._set_model_content_def(kwargs)
 
-    def __call__(self, cls):
-        logger.debug('Setting ' + cls.__name__ + ' content def to ' + str(self._kwargs))
-        cls._model_content_def = self._kwargs
         return cls
+    return wrapper
 
 def defer_class_load(module, class_name):
     '''

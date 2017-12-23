@@ -37,6 +37,7 @@ from fixtures.test.MapElementFixture import MapElementFixture
 from fixtures.test.MappableElementFixture import MappableElementFixture
 from fixtures.test.InitFixture import InitFixture
 from fixtures.test.MinMaxElementFixture import MinMaxElementFixture
+from fixtures.test.InheritingFixture import InheritingFixture
 
 from fixtures.test2.EnclosedFixture import EnclosedFixture as EnclosedFixture2
 
@@ -53,6 +54,66 @@ def test_namespace_registration():
 
     with pytest.raises(UnregisteredNamespaceException):
         Model.xmlns_to_package('http://jaymes.biz/derp')
+
+def test_get_model_xmlns():
+    assert RootFixture._get_model_xmlns() == 'http://jaymes.biz/test'
+    assert EnclosedFixture2._get_model_xmlns() == 'http://jaymes.biz/test2'
+
+def test_get_model_element_defs():
+    assert RootFixture._get_model_element_defs() == {
+        (None, 'EnclosedFixture'): {
+            'local_name': 'EnclosedFixture',
+            'cls': EnclosedFixture,
+            'min': 0,
+        },
+        (None, 'EnumValue'): {
+            'local_name': 'EnumValue',
+            'cls': EnclosedFixture,
+            'min': 0,
+             'enum': ['alpha', 'bravo', 'charlie']
+        },
+        (None, 'PatternValue'): {
+            'local_name': 'PatternValue',
+            'cls': EnclosedFixture,
+            'min': 0,
+            'pattern': r'[a-zA-Z]{5}[0-9]{2}'
+        },
+    }
+
+    assert InheritingFixture._get_model_element_defs() == {
+        (None, 'EnclosedFixture'): {
+            'local_name': 'EnclosedFixture',
+            'cls': EnclosedFixture,
+            'min': 0,
+        },
+        (None, 'EnumValue'): {
+            'local_name': 'EnumValue',
+            'cls': EnclosedFixture,
+            'min': 0,
+             'enum': ['alpha', 'bravo', 'charlie']
+        },
+        (None, 'PatternValue'): {
+            'local_name': 'PatternValue',
+            'cls': EnclosedFixture,
+            'min': 0,
+            'pattern': r'[a-zA-Z]{5}[0-9]{2}'
+        },
+    }
+
+def test_get_model_attribute_defs():
+    assert AttributeFixture._get_model_attribute_defs() == {
+        (None, 'in_attribute'): {'local_name': 'in_attribute', 'into': 'in_test'},
+        (None, 'dash-attribute'): {'local_name': 'dash-attribute'},
+        (None, 'default_attribute'): {'local_name': 'default_attribute', 'default': 'test'},
+        ('http://www.w3.org/XML/1998/namespace', 'lang'): {'namespace': 'http://www.w3.org/XML/1998/namespace', 'local_name': 'lang', 'type': 'StringType', 'into': '_xml_lang'},
+        ('http://www.w3.org/XML/1998/namespace', 'space'): {'namespace': 'http://www.w3.org/XML/1998/namespace', 'local_name': 'space', 'enum': ('default', 'preserve'), 'into': '_xml_space'},
+        ('http://www.w3.org/XML/1998/namespace', 'base'): {'namespace': 'http://www.w3.org/XML/1998/namespace', 'local_name': 'base', 'type': 'AnyUriType', 'into': '_xml_base'},
+        ('http://www.w3.org/XML/1998/namespace', 'id'): {'namespace': 'http://www.w3.org/XML/1998/namespace', 'local_name': 'id', 'type': 'ID', 'into': '_xml_id'},
+        ('http://www.w3.org/2001/XMLSchema-instance', 'type'): {'namespace': 'http://www.w3.org/2001/XMLSchema-instance', 'local_name': 'type', 'type': 'QNameType', 'into': '_xsi_type'},
+        ('http://www.w3.org/2001/XMLSchema-instance', 'nil'): {'namespace': 'http://www.w3.org/2001/XMLSchema-instance', 'local_name': 'nil', 'type': 'BooleanType', 'into': '_xsi_nil', 'default': False},
+        ('http://www.w3.org/2001/XMLSchema-instance', 'schemaLocation'): {'namespace': 'http://www.w3.org/2001/XMLSchema-instance', 'local_name': 'schemaLocation', 'type': 'AnyUriType', 'into': '_xsi_schemaLocation'},
+        ('http://www.w3.org/2001/XMLSchema-instance', 'noNamespaceSchemaLocation'): {'namespace': 'http://www.w3.org/2001/XMLSchema-instance', 'local_name': 'noNamespaceSchemaLocation', 'type': 'AnyUriType', 'into': '_xsi_noNamespaceSchemaLocation'},
+    }
 
 def test_is_nil():
     test_xml = '<test:RootFixture xmlns:test="http://jaymes.biz/test" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true" />'

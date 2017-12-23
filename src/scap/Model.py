@@ -62,6 +62,11 @@ class Model(object):
         'scap.model.xs.i': 'http://www.w3.org/2001/XMLSchema-instance',
     }
 
+    _model_attribute_defs = {}
+    _model_element_defs = {}
+    _model_element_orders = {}
+    _model_content_defs = {}
+
     @staticmethod
     def register_namespace(model_package, xmlns):
         Model.__xmlns_to_package[xmlns] = model_package
@@ -72,16 +77,19 @@ class Model(object):
         try:
             xmlns = Model.__package_to_xmlns[model_package]
         except KeyError:
-            raise UnregisteredNamespaceException('Unregistered namespace: ' + model_package)
+            raise UnregisteredNamespaceException('Unregistered namespace: '
+                + model_package)
 
         del Model.__package_to_xmlns[model_package]
         del Model.__xmlns_to_package[xmlns]
 
     @staticmethod
     def package_to_xmlns(model_package):
-        logger.debug('Looking for xml namespace for model package ' + model_package)
+        logger.debug('Looking for xml namespace for model package '
+            + model_package)
         if model_package not in Model.__package_to_xmlns:
-            raise UnregisteredNamespaceException('Namespace ' + model_package + ' is not in registered namespaces')
+            raise UnregisteredNamespaceException('Namespace ' + model_package
+                + ' is not in registered namespaces')
 
         return Model.__package_to_xmlns[model_package]
 
@@ -89,7 +97,8 @@ class Model(object):
     def xmlns_to_package(xmlns):
         logger.debug('Looking for model package for xml namespace ' + xmlns)
         if xmlns not in Model.__xmlns_to_package:
-            raise UnregisteredNamespaceException('XML namespace ' + xmlns + ' is not in registered namespaces')
+            raise UnregisteredNamespaceException('XML namespace ' + xmlns
+                + ' is not in registered namespaces')
 
         return Model.__xmlns_to_package[xmlns]
 
@@ -98,10 +107,13 @@ class Model(object):
         # try to load the tag's module
         if parent is None:
             if child_el.namespace is None:
-                raise UnregisteredNamespaceException('Unable to determine namespace without fully qualified tag (' + child_el.name + ') and parent model')
+                raise UnregisteredNamespaceException(
+                    'Unable to determine namespace without fully qualified tag ('
+                    + child_el.name + ') and parent model')
 
             model_package = Model.xmlns_to_package(child_el.namespace)
-            model_package, module_name = Model._map_element_to_module_name(model_package, child_el)
+            model_package, module_name = Model._map_element_to_module_name(
+                model_package, child_el)
         else:
             if child_el.namespace is None:
                 model_package = parent.get_package()
@@ -114,23 +126,28 @@ class Model(object):
 
             element_lookup = Model._get_model_element_lookup(parent.__class__)
 
-            logger.debug('Checking ' + parent.__class__.__name__ + ' for tag ' + child_el.name)
+            logger.debug('Checking ' + parent.__class__.__name__ + ' for tag '
+                + str(child_el))
             module_name = None
-            for name in [fq_tag, child_el.local_name, ns_any, '*']:
+            for name in [fq_tag, child_el.local_name, ns_any, ('*', '*')]:
                 if name not in element_lookup:
                     continue
 
-                logger.debug(child_el.tag + ' matched ' + str(name) + ' mapping in ' + parent.__class__.__name__)
+                logger.debug(str(child_el) + ' matched ' + str(name)
+                    + ' mapping in ' + parent.__class__.__name__)
                 if name.endswith('*'):
-                    model_package, module_name = Model._map_element_to_module_name(model_package, child_el)
+                    model_package, module_name = Model._map_element_to_module_name(
+                        model_package, child_el)
                     break
                 elif 'class' in element_lookup[name]:
                     module_name = element_lookup[name]['class']
                     break
 
             if module_name is None:
-                raise TagMappingException(parent.__class__.__name__ + ' does not define mapping for ' +
-                    child_el.tag + ' tag; does not match any of ' + str([fq_tag, child_el.local_name, ns_any, '*']))
+                raise TagMappingException(parent.__class__.__name__
+                    + ' does not define mapping for '
+                    + str(child_el) + ' tag; does not match any of '
+                    + str([fq_tag, child_el.local_name, ns_any, ('*', '*')]))
 
         # qualify module name if needed
         if '.' not in module_name:
@@ -161,167 +178,116 @@ class Model(object):
         pkg_mod = importlib.import_module(model_package)
 
         if not hasattr(pkg_mod, 'TAG_MAP'):
-            raise TagMappingException(pkg_mod.__name__ + ' does not define TAG_MAP; cannot load ' + tag)
+            raise TagMappingException(pkg_mod.__name__
+                + ' does not define TAG_MAP; cannot load ' + tag)
         if (el.namespace, el.local_name) not in pkg_mod.TAG_MAP:
-            raise TagMappingException(pkg_mod.__name__ + ' does not define mapping for ' + el.namespace + ', ' + el.local_name + ' tag')
+            raise TagMappingException(pkg_mod.__name__
+                + ' does not define mapping for ' + el.namespace + ', '
+                + el.local_name + ' tag')
 
         return pkg_mod.__name__, pkg_mod.TAG_MAP[el.namespace, el.local_name]
 
-    # @staticmethod
-    # def _get_model_map(model_class):
-    #     # check the __model_mappings cache first, otherwise generate
-    #     fq_model_class_name = model_class.__module__ + '.' + model_class.__name__
-    #     if fq_model_class_name not in Model.__model_mappings:
-    #         at_map = {}
-    #         el_map = {}
-    #         el_order = []
-    #         xmlns = None
-    #         tag_name = None
-    #         for class_ in model_class.__mro__:
-    #             if class_ == object:
-    #                 break
-    #
-    #             if class_.__module__.startswith('collections.'):
-    #                 # skip collection classes
-    #                 continue
-    #
-    #             fq_class_name = class_.__module__ + '.' + class_.__name__
-    #
-    #             if not hasattr(class_, 'MODEL_MAP') or not isinstance(class_.MODEL_MAP, dict):
-    #                 raise TagMappingException('Class ' + fq_class_name + ' does not define MODEL_MAP dict')
-    #
-    #             # overwrite the super class' ns & tag with what we've already loaded
-    #             if xmlns is None and 'xmlns' in class_.MODEL_MAP:
-    #                 xmlns = class_.MODEL_MAP['xmlns']
-    #
-    #             if tag_name is None and 'tag_name' in class_.MODEL_MAP:
-    #                 tag_name = class_.MODEL_MAP['tag_name']
-    #
-    #             # update the super class' attribute map with subclass
-    #             if 'attributes' in class_.MODEL_MAP:
-    #                 super_atmap = class_.MODEL_MAP['attributes'].copy()
-    #                 super_atmap.update(at_map)
-    #                 at_map = super_atmap
-    #
-    #             # update the super class' element map with subclass
-    #             if 'elements' in class_.MODEL_MAP:
-    #                 super_elmap = class_.MODEL_MAP['elements'].copy()
-    #                 super_elmap.extend(el_map)
-    #                 el_map = super_elmap
-    #
-    #         if xmlns is None:
-    #             # try to auto detect from module name
-    #             xmlns = Model.package_to_xmlns(model_class.__module__.rpartition('.')[0])
-    #
-    #         el_lookup = {}
-    #         for element_def in el_map:
-    #             if not isinstance(element_def, dict):
-    #                 raise TagMappingException('Class ' + fq_model_class_name + ' has an invalid element definition: ' + str(element_def))
-    #
-    #             if 'xmlns' not in element_def and element_def['tag_name'] == '*':
-    #                 el_lookup['*'] = element_def
-    #             elif 'xmlns' in element_def:
-    #                 el_lookup['{' + element_def['xmlns'] + '}' + element_def['tag_name']] = element_def
-    #             else:
-    #                 # try using element's xmlns
-    #                 el_lookup['{' + xmlns + '}' + element_def['tag_name']] = element_def
-    #
-    #         Model.__model_mappings[fq_model_class_name] = {
-    #             'xmlns': xmlns,
-    #             'tag_name': tag_name,
-    #             'attributes': at_map,
-    #             'elements': el_map,
-    #             'element_lookup': el_lookup,
-    #         }
-    #
-    #     return Model.__model_mappings[fq_model_class_name]
-
-    @staticmethod
-    def _get_model_xmlns(model_class):
+    @classmethod
+    def _get_model_xmlns(cls):
         xmlns = None
 
-        for class_ in model_class.__mro__:
-            if class_ == object:
-                break
-
-            if class_.__module__.startswith('collections.'):
-                # skip collection classes
-                continue
-
-            # if not hasattr(class_, 'MODEL_MAP') or not isinstance(class_.MODEL_MAP, dict):
-            #     raise TagMappingException('Class ' + fq_class_name + ' does not define MODEL_MAP dict')
-            #
-            # # overwrite the super class' ns & tag with what we've already loaded
-            # if xmlns is None and 'xmlns' in class_.MODEL_MAP:
-            #     xmlns = class_.MODEL_MAP['xmlns']
-            #
-            if xmlns is None:
-                # try to auto detect from module name
-                xmlns = Model.package_to_xmlns(model_class.__module__.rpartition('.')[0])
+        # try to determine from package
+        if xmlns is None:
+            xmlns = Model.package_to_xmlns(cls.__module__.rpartition('.')[0])
 
         return xmlns
 
-    @staticmethod
-    def _get_model_element_defs(model_class):
-        el_map = {}
+    @classmethod
+    def _get_model_attribute_defs(cls):
+        at_defs = {}
 
-        for class_ in model_class.__mro__:
-            if class_ == object:
-                break
+        for cls_ in reversed(cls.__mro__):
+            if issubclass(cls_, Model):
+                try:
+                    logger.debug('Adding attribute defs from superclass '
+                        + cls_.__name__ + ': '
+                        + str(cls_._model_attribute_defs[cls_.__name__]))
+                    at_defs.update(cls_._model_attribute_defs[cls_.__name__].copy())
+                except AttributeError:
+                    logger.debug('Class ' + cls_.__name__ + ' does not define attributes')
 
-            if class_.__module__.startswith('collections.'):
-                # skip collection classes
-                continue
+        logger.debug('Attribute defs for ' + cls.__name__ + str(at_defs))
+        return at_defs
 
-            # updele the super class' elemenbt map with subclass
-            if hasattr(class_, '_model_element_definitions'):
-                super_elmap = class_._model_element_definitions.copy()
-                super_elmap.update(el_map)
-                el_map = super_elmap
+    @classmethod
+    def _set_model_attribute_def(cls, key, kwargs):
+        if cls.__name__ not in cls._model_attribute_defs:
+            cls._model_attribute_defs[cls.__name__] = {}
 
-        logger.debug('Element defs for ' + model_class.__name__ + str(el_map))
-        return el_map
+        logger.debug('Setting ' + str(cls) + ' ' + str(key)
+            + ' attribute def to ' + str(kwargs))
+        cls._model_attribute_defs[cls.__name__][key] = kwargs
 
-    @staticmethod
-    def _get_model_attribute_defs(model_class):
-        at_map = {}
+    @classmethod
+    def _get_model_element_defs(cls):
+        el_defs = {}
 
-        for class_ in model_class.__mro__:
-            if class_ == object:
-                break
+        for cls_ in reversed(cls.__mro__):
+            if issubclass(cls_, Model):
+                try:
+                    logger.debug('Adding element defs from superclass '
+                        + cls_.__name__ + ': '
+                        + str(cls_._model_element_defs[cls_.__name__]))
+                    el_defs.update(cls_._model_element_defs[cls_.__name__].copy())
+                except AttributeError:
+                    logger.debug('Class ' + cls_.__name__
+                        + ' does not define elements')
 
-            if class_.__module__.startswith('collections.'):
-                # skip collection classes
-                continue
+        logger.debug('Element defs for ' + cls.__name__ + str(el_defs))
+        return el_defs
 
-            # update the super class' attribute map with subclass
-            if hasattr(class_, '_model_attributes'):
-                super_atmap = class_._model_attributes.copy()
-                super_atmap.update(at_map)
-                at_map = super_atmap
+    @classmethod
+    def _set_model_element_def(cls, key, kwargs):
+        if cls.__name__ not in cls._model_element_defs:
+            cls._model_element_defs[cls.__name__] = {}
 
-        logger.debug('Attribute defs for ' + model_class.__name__ + str(at_map))
-        return at_map
+        logger.debug('Setting ' + str(cls) + ' ' + str(key)
+            + ' element def to ' + str(kwargs))
+        cls._model_element_defs[cls.__name__][key] = kwargs
 
-    @staticmethod
-    def _get_model_element_lookup(model_class):
+        # now set the order that this element was defined
+        if cls.__name__ not in cls._model_element_orders:
+            cls._model_element_orders[cls.__name__] = []
+
+        # have to insert at the front because decorators are applied in reverse
+        # order
+        cls._model_element_orders[cls.__name__].insert(0, key)
+
+    @classmethod
+    def _get_model_element_lookup(cls):
         el_lookup = {}
 
-        for element_def in model_class._get_model_element_defs(model_class):
-            if not isinstance(element_def, dict):
-                raise TagMappingException('Class ' + fq_model_class_name + ' has an invalid element definition: ' + str(element_def))
+        for el_def in cls._get_model_element_defs():
+            if not isinstance(el_def, dict):
+                raise TagMappingException('Class ' + cls.__name__
+                    + ' has an invalid element definition: ' + str(el_def))
 
-            if 'xmlns' not in element_def and element_def['local_name'] == '*':
-                el_lookup['*'] = element_def
-            elif 'xmlns' in element_def:
-                el_lookup[element_def['xmlns'], element_def['local_name']] = element_def
+            if 'xmlns' not in el_def and el_def['local_name'] == '*':
+                el_lookup['*', '*'] = el_def
+            elif 'xmlns' in el_def:
+                el_lookup[el_def['xmlns'], el_def['local_name']] = el_def
             else:
                 # try using element's xmlns
-                xmlns = model_class._get_model_xmlns(model_class)
-                el_lookup[xmlns, element_def['tag_name']] = element_def
+                xmlns = cls._get_model_xmlns()
+                el_lookup[xmlns, el_def['local_name']] = el_def
 
-        logger.debug('Element lookup for ' + model_class.__name__ + str(el_lookup))
+        logger.debug('Element lookup for ' + cls.__name__ + str(el_lookup))
         return el_lookup
+
+    @classmethod
+    def _set_model_content_def(cls, kwargs):
+        logger.debug('Setting ' + str(cls) + ' ' + str(key) + ' content def to ' + str(kwargs))
+        cls.__model_content_def = kwargs
+
+
+    @classmethod
+    def _get_model_content_def(cls):
+        return cls.__model_content_def
 
     @staticmethod
     def find_content(uri):
@@ -558,22 +524,23 @@ class Model(object):
     def from_xml(self, parent, el):
         self._parent = parent
 
-        logger.debug('Parsing ' + el.tag + ' element into ' + self.__class__.__module__ + '.' + self.__class__.__name__ + ' class')
+        logger.debug('Parsing ' + str(el) + ' element into ' + self.__class__.__module__ + '.' + self.__class__.__name__ + ' class')
 
-        self.xmlns, self.tag_name = Model.parse_tag(el.tag)
+        self.xmlns = el.namespace
+        self.tag_name = el.local_name
         if self.xmlns is None:
             # copy the parents
             self.xmlns = self._parent.xmlns
 
-        for attrib in self._model_map['attributes']:
+        for (namespace, local_name), at_def in self._get_model_attribute_defs().items():
             # check that required attributes are defined
             if (
-                'required' in self._model_map['attributes'][attrib]
-                and self._model_map['attributes'][attrib]['required']
+                'required' in at_def
+                and at_def['required']
                 and attrib not in el.keys()
                 and 'default' not in self._model_map['attributes'][attrib]
             ):
-                raise RequiredAttributeException(el.tag + ' must define ' + attrib + ' attribute')
+                raise RequiredAttributeException(str(el) + ' must define ' + attrib + ' attribute')
 
             # check that prohibited attributes are not defined
             if (
@@ -581,7 +548,7 @@ class Model(object):
                 and self._model_map['attributes'][attrib]['prohibited']
                 and attrib in el.keys()
             ):
-                raise ProhibitedAttributeException(el.tag + ' must not define ' + attrib + ' attribute')
+                raise ProhibitedAttributeException(str(el) + ' must not define ' + attrib + ' attribute')
 
         for name, value in list(el.items()):
             self._parse_attribute(name, value)
@@ -683,21 +650,22 @@ class Model(object):
         raise UnknownAttributeException('Unknown ' + str(self) + ' attribute ' + fq_attr_name + ' = ' + value)
 
     def _parse_element(self, el):
-        xmlns, tag_name = Model.parse_tag(el.tag)
+        xmlns = el.namespace
+        tag_name = el.local_name
 
         if xmlns is None:
-            ns_any = '{' + self.xmlns + '}*'
-            fq_tag = '{' + self.xmlns + '}' + tag_name
+            ns_any = (self.xmlns, '*')
+            fq_tag = (self.xmlns, tag_name)
         else:
-            ns_any = '{' + xmlns + '}*'
-            fq_tag = el.tag
+            ns_any = (xmlns, '*')
+            fq_tag = (el.namespace, el.local_name)
 
-        for tag in [fq_tag, tag_name, ns_any, '*']:
+        for tag in [fq_tag, tag_name, ns_any, ('*', '*')]:
             # check both namespace + tag_name and just tag_name
             if tag not in self._model_map['element_lookup']:
                 continue
 
-            logger.debug('Tag ' + el.tag + ' matched ' + tag)
+            logger.debug('Tag ' + str(el) + ' matched ' + tag)
             element_def = self._model_map['element_lookup'][tag]
 
             if 'ignore' in element_def and element_def['ignore'] == True:
@@ -721,7 +689,7 @@ class Model(object):
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
                     else:
-                        raise ValueError(el.tag + ' is nil, but not expecting nil value')
+                        raise ValueError(str(el) + ' is nil, but not expecting nil value')
                 elif 'type' in element_def:
                     value = self._parse_value_as_type(el.text, element_def['type'])
                 else:
@@ -744,7 +712,7 @@ class Model(object):
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
                     else:
-                        raise ValueError(el.tag + ' is nil, but not expecting nil value')
+                        raise ValueError(str(el) + ' is nil, but not expecting nil value')
                 elif 'type' in element_def:
                     value = self._parse_value_as_type(el.text, element_def['type'])
                 else:
@@ -780,14 +748,14 @@ class Model(object):
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
                     else:
-                        raise ValueError(el.tag + ' is nil, but not allowing nil value')
+                        raise ValueError(str(el) + ' is nil, but not allowing nil value')
                 elif 'value_attr' in element_def:
                     # try parsing from an attribute
                     if element_def['value_attr'] not in el.keys():
-                        raise ValueError('Could not parse value from ' + el.tag + ' attribute ' + element_def['value_attr'])
+                        raise ValueError('Could not parse value from ' + str(el) + ' attribute ' + element_def['value_attr'])
 
                     if 'type' not in element_def:
-                        raise ValueError('Could not parse value from ' + el.tag + ' attribute ' + element_def['value_attr'] + ' without explicit type')
+                        raise ValueError('Could not parse value from ' + str(el) + ' attribute ' + element_def['value_attr'] + ' without explicit type')
 
                     value = self._parse_value_as_type(el.get(element_def['value_attr']), element_def['type'])
                 else:
@@ -813,7 +781,7 @@ class Model(object):
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
                     else:
-                        raise ValueError(el.tag + ' is nil, but not expecting nil value')
+                        raise ValueError(str(el) + ' is nil, but not expecting nil value')
                 else:
                     value = Model.load(self, el, element_def=element_def)
                     value.xmlns = xmlns
@@ -837,7 +805,7 @@ class Model(object):
                     if 'nillable' in element_def and element_def['nillable']:
                         value = None
                     else:
-                        raise ValueError(el.tag + ' is nil, but not expecting nil value')
+                        raise ValueError(str(el) + ' is nil, but not expecting nil value')
                 else:
                     value = self._parse_value_as_type(el.text, element_def['type'])
 
@@ -874,51 +842,81 @@ class Model(object):
 
             return
 
-        raise UnknownElementException('Unknown ' + str(self) + ' sub-element ' + el.tag + ' does not match ' + str([fq_tag, tag_name, ns_any, '*']))
+        raise UnknownElementException('Unknown ' + str(self) + ' sub-element ' + str(el) + ' does not match ' + str([fq_tag, tag_name, ns_any, '*']))
 
     def to_xml(self):
         logger.debug(str(self) + ' to xml')
         el = expatriate.Element(self.tag_name, namespace=self.xmlns)
 
-        for name in self._model_map['attributes']:
-            value = self._produce_attribute(name, el)
+        for (namespace, local_name), at_def in self._get_model_attribute_defs().items():
+            value = self._produce_attribute(el, namespace, local_name, at_def)
 
-        for element_def in self._model_map['elements']:
-            if element_def['tag_name'].endswith('*'):
-                if 'in' in element_def:
-                    lst = getattr(self, element_def['in'])
+        for (namespace, local_name), el_def in self._get_model_element_defs().items():
+            if el_def['local_name'].endswith('*'):
+                if 'into' in el_def:
+                    lst = getattr(self, el_def['into'])
                 else:
                     lst = getattr(self, '_elements')
 
                 # check minimum tag count
-                if 'min' in element_def and element_def['min'] > len(lst):
-                    raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+                if 'min' in el_def and el_def['min'] > len(lst):
+                    raise MinimumElementException(str(self)
+                        + ' must have at least ' + str(el_def['min'])
+                        + ' ' + el_def['tag_name'] + ' elements; '
+                        + str(len(lst)) + ' found')
 
                 # check maximum tag count
-                if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(lst):
-                    raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+                if (
+                    'max' in el_def
+                    and el_def['max'] is not None
+                    and el_def['max'] < len(lst)
+                ):
+                    raise MaximumElementException(str(self)
+                        + ' may have at most ' + str(el_def['max'])
+                        + ' ' + el_def['tag_name'] + ' elements; '
+                        + str(len(lst)) + ' found')
 
-            elif 'list' in element_def:
-                lst = getattr(self, element_def['list'])
+            elif 'list' in el_def:
+                lst = getattr(self, el_def['list'])
 
                 # check minimum tag count
-                if 'min' in element_def and element_def['min'] > len(lst):
-                    raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+                if 'min' in el_def and el_def['min'] > len(lst):
+                    raise MinimumElementException(str(self)
+                        + ' must have at least ' + str(el_def['min'])
+                        + ' ' + el_def['tag_name'] + ' elements; '
+                        + str(len(lst)) + ' found')
 
                 # check maximum tag count
-                if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(lst):
-                    raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(lst)) + ' found')
+                if (
+                    'max' in el_def
+                    and el_def['max'] is not None
+                    and el_def['max'] < len(lst)
+                ):
+                    raise MaximumElementException(str(self)
+                        + ' may have at most ' + str(el_def['max'])
+                        + ' ' + el_def['tag_name'] + ' elements; '
+                        + str(len(lst)) + ' found')
 
-            elif 'dict' in element_def:
-                dct = getattr(self, element_def['dict'])
+            elif 'dict' in el_def:
+                dct = getattr(self, el_def['dict'])
 
                 # check minimum tag count
-                if 'min' in element_def and element_def['min'] > len(dct):
-                    raise MinimumElementException(str(self) + ' must have at least ' + str(element_def['min']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(dct)) + ' found')
+                if 'min' in el_def and el_def['min'] > len(dct):
+                    raise MinimumElementException(str(self)
+                        + ' must have at least ' + str(el_def['min']) + ' '
+                        + el_def['tag_name'] + ' elements; '
+                        + str(len(dct)) + ' found')
 
                 # check maximum tag count
-                if 'max' in element_def and element_def['max'] is not None and element_def['max'] < len(dct):
-                    raise MaximumElementException(str(self) + ' may have at most ' + str(element_def['max']) + ' ' + element_def['tag_name'] + ' elements; ' + str(len(dct)) + ' found')
+                if (
+                    'max' in el_def
+                    and el_def['max'] is not None
+                    and el_def['max'] < len(dct)
+                ):
+                    raise MaximumElementException(str(self)
+                        + ' may have at most ' + str(el_def['max'])
+                        + ' ' + el_def['tag_name'] + ' elements; '
+                        + str(len(dct)) + ' found')
 
         for i in range(0, len(self._children_values)):
             self._produce_child(i, el)
@@ -930,62 +928,69 @@ class Model(object):
 
         return el
 
-    def _produce_attribute(self, name, el):
-        if name.endswith('*'):
+    def _produce_attribute(self, el, namespace, local_name, at_def):
+        if local_name.endswith('*'):
             return
 
-        attr_namespace, attr_name = Model.parse_tag(name)
-        attr_map = self._model_map['attributes'][name]
-
-        if 'in' in attr_map:
-            value_name = attr_map['in']
+        if 'into' in at_def:
+            value_name = at_def['into']
         else:
-            value_name = attr_name.replace('-', '_')
+            value_name = local_name.replace('-', '_')
 
         if not hasattr(self, value_name):
-            if 'required' in attr_map and attr_map['required']:
-                raise RequiredAttributeException(str(self) + ' must assign required attribute ' + attr_name)
-            elif 'prohibited' in attr_map and attr_map['prohibited']:
-                logger.debug('Skipping prohibited attribute ' + attr_name)
+            if 'required' in at_def and at_def['required']:
+                raise RequiredAttributeException(str(self)
+                    + ' must assign required attribute ' + local_name)
+            elif 'prohibited' in at_def and at_def['prohibited']:
+                logger.debug('Skipping prohibited attribute ' + local_name)
                 return
             else:
-                logger.debug('Skipping undefined attribute ' + attr_name)
+                logger.debug('Skipping undefined attribute ' + local_name)
                 return
         else:
-            if 'prohibited' in attr_map and attr_map['prohibited']:
-                raise ProhibitedAttributeException(str(self) + ' must not assign prohibited attribute ' + attr_name)
+            if 'prohibited' in at_def and at_def['prohibited']:
+                raise ProhibitedAttributeException(str(self)
+                    + ' must not assign prohibited attribute '
+                    + local_name)
             value = getattr(self, value_name)
 
         # TODO nillable for attrs?
         if value is None:
-            if 'required' in attr_map and attr_map['required']:
-                raise RequiredAttributeException(str(self) + ' must assign required attribute ' + attr_name)
+            if 'required' in at_def and at_def['required']:
+                raise RequiredAttributeException(str(self)
+                    + ' must assign required attribute ' + local_name)
             else:
-                logger.debug(str(self) + ' Skipping unassigned attribute ' + attr_name)
+                logger.debug(str(self) + ' Skipping unassigned attribute '
+                    + local_name)
                 return
 
-        if 'default' in attr_map and value == attr_map['default']:
-            logger.debug('Skipping attribute ' + attr_name + '; remains at default ' + str(attr_map['default']))
+        if 'default' in at_def and value == at_def['default']:
+            logger.debug('Skipping attribute ' + local_name
+                + '; remains at default ' + str(at_def['default']))
             return
 
-        # if model's xmlns doesn't match attribute's, then we need to include it
-        if attr_namespace is not None and self.xmlns != attr_namespace:
-            attr_name = name
+        # # if model's xmlns doesn't match attribute's, then we need to include it
+        # if namespace is not None and self.xmlns != namespace:
+        #     attr_name = name
 
-        if 'type' in attr_map:
-            logger.debug(str(self) + ' Producing ' + str(value) + ' as ' + attr_map['type'] + ' type')
-            v = self._produce_value_as_type(value, attr_map['type'])
+        if 'type' in at_def:
+            logger.debug(str(self) + ' Producing ' + str(value) + ' as '
+                + at_def['type'] + ' type')
+            v = self._produce_value_as_type(value, at_def['type'])
 
             el.set(attr_name, v)
 
-        elif 'enum' in attr_map:
-            if value not in attr_map['enum']:
-                raise EnumerationException(str(self) + '.' + name + ' attribute must be one of ' + str(attr_map['enum']) + ': ' + str(value))
+        elif 'enum' in at_def:
+            if value not in at_def['enum']:
+                raise EnumerationException(str(self) + '.' + name
+                    + ' attribute must be one of ' + str(at_def['enum'])
+                    + ': ' + str(value))
             el.set(attr_name, value)
 
         else:
             # otherwise, we default to producing as string
-            logger.debug(str(self) + ' Producing ' + str(value) + ' as String type')
+            logger.debug(str(self) + ' Producing ' + str(value)
+                + ' as String type')
             v = self._produce_value_as_type(value, 'StringType')
             el.set(attr_name, v)
 
