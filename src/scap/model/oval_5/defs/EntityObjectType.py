@@ -167,8 +167,8 @@ class EntityObjectType(Model):
         ],
     }
 
-    def from_xml(self, parent, el):
-        super(EntityObjectType, self).from_xml(parent, el)
+    def _from_xml(self, parent, el):
+        super(EntityObjectType, self)._from_xml(parent, el)
 
         if (
             self.datatype in EntityObjectType.DATATYPE_ALLOWED_OPERATIONS

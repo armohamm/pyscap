@@ -62,8 +62,8 @@ class EntityStateType(Model):
         'version': StringType,
     }
 
-    def from_xml(self, parent, sub_el):
-        super(EntityStateType, self).from_xml(parent, sub_el)
+    def _from_xml(self, parent, sub_el):
+        super(EntityStateType, self)._from_xml(parent, sub_el)
 
         if sub_el.text is not None:
             if sub_el.text == '':

@@ -38,8 +38,8 @@ logger = logging.getLogger(__name__)
 @element(local_name='variables', cls=VariablesType, into='_variables', min=0, max=1)
 @element(namespace='http://www.w3.org/2000/09/xmldsig#', local_name='Signature', min=0, max=1)
 class OvalDefinitionsElement(Model):
-    def from_xml(self, parent, el):
-        super(OvalDefinitionsElement, self).from_xml(parent, el)
+    def _from_xml(self, parent, el):
+        super(OvalDefinitionsElement, self)._from_xml(parent, el)
 
         if self._definitions is not None:
             self.definitions = self._definitions.definitions

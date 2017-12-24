@@ -186,7 +186,7 @@ class Model(object):
             inst = class_(el_def=el_def)
         else:
             inst = class_()
-        inst.from_xml(parent, el)
+        inst._from_xml(parent, el)
 
         return inst
 
@@ -518,13 +518,13 @@ class Model(object):
         self.set_value(None)
 
     def get_value(self):
-        #TODO
+        #TODO replace for content
         logger.debug(self.__class__.__name__ + ' value currently '
             + str(self.text))
         return self.text
 
     def set_value(self, value):
-        #TODO
+        #TODO replace for content
         if self._value_enum is not None:
             if value not in self._value_enum:
                 raise ValueError(self.__class__.__name__ + ' Invalid value '
@@ -651,6 +651,10 @@ class Model(object):
             pass
 
     def find_reference(self, ref):
+        '''
+        find child that matches reference *ref*
+        '''
+
         if ref in self._references:
             return self._references[ref]
         else:
@@ -662,7 +666,7 @@ class Model(object):
 
         raise ReferenceException('Could not find reference ' + ref + ' within ' + str(self))
 
-    def from_xml(self, parent, el):
+    def _from_xml(self, parent, el):
         self._parent = parent
 
         logger.debug('Parsing ' + str(el) + ' element into ' + self.__class__.__module__ + '.' + self.__class__.__name__ + ' class')

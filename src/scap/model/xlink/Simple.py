@@ -29,8 +29,8 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='type', enum=['simple'])
 @element(local_name='*', min=0)
 class Simple(Base):
-    def from_xml(self, parent, el):
-        super(Model, self).from_xml(parent, el)
+    def _from_xml(self, parent, el):
+        super(Model, self)._from_xml(parent, el)
 
         try:
             with urllib.request.urlopen(self.href) as r:
