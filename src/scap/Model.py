@@ -525,14 +525,14 @@ class Model(object):
             # not initialzed yet, just return __getattribute__
             return object.__getattribute__(self, name)
 
-        child_map = self._child_map
-        if name in child_map:
-            if isinstance(child_map[name], ModelChild):
-                return child_map[name].value
+        if name in self._child_map:
+            if isinstance(self._child_map[name], ModelChild):
+                return self._child_map[name].value
             else:
-                return child_map[name]
+                return self._child_map[name]
         else:
-            raise AttributeError('Attribute ' + name + ' was not found in ' + self.__class__.__name__ + ': ' + str(child_map.keys()))
+            raise AttributeError('Attribute ' + name + ' was not found in '
+                + self.__class__.__name__ + ': ' + str(self._child_map.keys()))
 
     def append_child_for(self, value, el_def, key=None):
         self._children_values.append(value)
