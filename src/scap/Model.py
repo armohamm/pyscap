@@ -226,6 +226,10 @@ class Model(object):
         raise ReferenceException('Could not find content for: ' + uri)
 
     @classmethod
+    def class_from_module(cls):
+        return cls.__module__.rpartition('.')[0]
+
+    @classmethod
     def _get_model_namespace(cls):
         '''
         determine a model's namespace from a class
@@ -234,7 +238,7 @@ class Model(object):
 
         # determine from package
         if namespace is None:
-            namespace = Model.package_to_namespace(cls.__module__.rpartition('.')[0])
+            namespace = Model.package_to_namespace(cls.class_from_module())
 
         return namespace
 
@@ -741,34 +745,6 @@ class Model(object):
         if el.text is not None:
             self.set_value(self.parse_value(el.text))
 
-    def _load_type_class(self, type_):
-        ''' load the type corresponding to the *type_* '''
-        if '.' in type_:
-            module_name = type_
-            class_ = type_.rpartition('.')[2]
-            try:
-                mod = importlib.import_module(type_)
-            except ImportError:
-                raise NotImplementedError('Type class ' + type_ + ' was not found')
-            return getattr(mod, class_)
-        else:
-            try:
-                mod = importlib.import_module('scap.model.xs.' + type_)
-            except ImportError:
-                try:
-                    mod = importlib.import_module(self.get_package() + '.' + type_)
-                except ImportError:
-                    raise NotImplementedError('Type class ' + type_ + ' not defined in scap.model.xs or local package (' + self.get_package() + ')')
-            return getattr(mod, type_)
-
-    def _parse_value_as_type(self, value, type_):
-        class_ = self._load_type_class(type_)
-        return class_().parse_value(value)
-
-    def _produce_value_as_type(self, value, type_):
-        class_ = self._load_type_class(type_)
-        return class_().produce_value(value)
-
     def _parse_attribute(self, attr):
         namespace = attr.namespace
         local_name = attr.local_name
@@ -797,7 +773,8 @@ class Model(object):
             if 'type' in at_def:
                 logger.debug('Parsing ' + str(value) + ' as ' + at_def['type']
                     + ' type')
-                value = self._parse_value_as_type(value, at_def['type'])
+                type_ = at_def['type']()
+                value = type_.parse_value(value)
 
             if 'into' in at_def:
                 name = at_def['into']
@@ -855,7 +832,8 @@ class Model(object):
                     else:
                         raise ValueError(str(el) + ' is nil, but not expecting nil value')
                 elif 'type' in el_def:
-                    value = self._parse_value_as_type(el.text, el_def['type'])
+                    type_ = el_def['type']()
+                    value = type_.parse_value(el.text)
                 else:
                     value = Model.load(self, el, el_def=el_def)
                     value.namespace = namespace
@@ -878,7 +856,7 @@ class Model(object):
                     else:
                         raise ValueError(str(el) + ' is nil, but not expecting nil value')
                 elif 'type' in el_def:
-                    value = self._parse_value_as_type(el.text, el_def['type'])
+                    value = el_def['type']().parse_value(el.text)
                 else:
                     value = Model.load(self, el, el_def=el_def)
                     value.namespace = namespace
@@ -921,11 +899,13 @@ class Model(object):
                     if 'type' not in el_def:
                         raise ValueError('Could not parse value from ' + str(el) + ' attribute ' + el_def['value_attr'] + ' without explicit type')
 
-                    value = self._parse_value_as_type(el.get(el_def['value_attr']), el_def['type'])
+                    type_ = el_def['type']()
+                    value = type_.parse_value(el.get(el_def['value_attr']))
                 else:
                     # try parsing from the element itself, just mapping with the key
                     if 'type' in el_def:
-                        value = self._parse_value_as_type(el.text, el_def['type'])
+                        type_ = el_def['type']()
+                        value = type_.parse_value(el.text)
                     else:
                         # needs 'class' in el_def
                         value = Model.load(self, el, el_def=el_def)
@@ -971,7 +951,8 @@ class Model(object):
                     else:
                         raise ValueError(str(el) + ' is nil, but not expecting nil value')
                 else:
-                    value = self._parse_value_as_type(el.text, el_def['type'])
+                    type_ = el_def['type']()
+                    value = type_.parse_value(el.text)
 
                 if 'into' in el_def:
                     name = el_def['into']
@@ -1140,7 +1121,8 @@ class Model(object):
         if 'type' in at_def:
             logger.debug(str(self) + ' Producing ' + str(value) + ' as '
                 + at_def['type'] + ' type')
-            v = self._produce_value_as_type(value, at_def['type'])
+            type_ = at_def['type']()
+            v = type_.produce_value(value)
 
             el.set(attr_name, v)
 
@@ -1155,7 +1137,8 @@ class Model(object):
             # otherwise, we default to producing as string
             logger.debug(str(self) + ' Producing ' + str(value)
                 + ' as String type')
-            v = self._produce_value_as_type(value, 'StringType')
+            type_ = StringType()
+            v = type_.produce_value(value)
             el.set(attr_name, v)
 
     def _produce_child(self, child_index, el):
@@ -1184,7 +1167,7 @@ class Model(object):
                     el.append(sub_el)
                 else:
                     # wrap value in xs element
-                    class_ = self._load_type_class(el_def['type'])
+                    class_ = el_def['type']
                     child = class_(namespace=namespace, local_name=local_name, value=child)
                     el.append(child.to_xml())
             elif 'class' in el_def:
@@ -1216,13 +1199,15 @@ class Model(object):
                 if 'value_attr' in el_def:
                     if child is None:
                         raise ValueError(str(self) + ' Cannot have none for a value_attr: ' + el_def['dict'] + '[' + self._children_keys[child_index] + ']')
-                    value = self._produce_value_as_type(child, el_def['type'])
+                    type_ = el_def['type']()
+                    value = type_.produce_value(child)
                     sub_el.set(el_def['value_attr'], value)
                 else:
                     if child is None:
                         sub_el.set('{http://www.w3.org/2001/XMLSchema-instance}nil', 'true')
                     else:
-                        sub_el.text = self._produce_value_as_type(child, el_def['type'])
+                        type_ = el_def['type']()
+                        sub_el.text = type_.produce_value(child)
                 el.append(sub_el)
 
             elif 'class' in el_def:
@@ -1253,7 +1238,7 @@ class Model(object):
             else:
                 namespace = self.namespace
             local_name = el_def['local_name']
-            class_ = self._load_type_class(el_def['type'])
+            class_ = el_def['type']
             child = class_(namespace=namespace, local_name=local_name, value=child)
 
             el.append(child.to_xml())
