@@ -69,11 +69,18 @@ class Model(object):
 
     @staticmethod
     def register_namespace(model_package, namespace):
+        '''
+        register a namespace for use
+        '''
         Model.__namespace_to_package[namespace] = model_package
         Model.__package_to_namespace[model_package] = namespace
 
     @staticmethod
     def unregister_namespace(model_package):
+        '''
+        unregister a namespace; throws UnregisteredNamespaceException if
+        namespace isn't registered
+        '''
         try:
             namespace = Model.__package_to_namespace[model_package]
         except KeyError:
@@ -85,6 +92,9 @@ class Model(object):
 
     @staticmethod
     def package_to_namespace(model_package):
+        '''
+        find namespace corresponding to package
+        '''
         logger.debug('Looking for xml namespace for model package '
             + model_package)
         if model_package not in Model.__package_to_namespace:
@@ -95,6 +105,9 @@ class Model(object):
 
     @staticmethod
     def namespace_to_package(namespace):
+        '''
+        find package corresponding to namespace
+        '''
         logger.debug('Looking for model package for xml namespace ' + str(namespace))
         if namespace not in Model.__namespace_to_package:
             raise UnregisteredNamespaceException('XML namespace ' + str(namespace)
@@ -104,6 +117,10 @@ class Model(object):
 
     @staticmethod
     def load(parent, el, el_def=None):
+        '''
+        load a Model given an expatriate Element
+        '''
+
         # try to load the element's module
         if parent is None:
             if el.namespace is None:
@@ -175,6 +192,9 @@ class Model(object):
 
     @staticmethod
     def _map_element_to_module_name(model_package, el):
+        '''
+        discover the model package and model name corresponding to an element
+        '''
         pkg_mod = importlib.import_module(model_package)
 
         if not hasattr(pkg_mod, 'ELEMENT_MAP'):
@@ -187,11 +207,32 @@ class Model(object):
 
         return pkg_mod.__name__, pkg_mod.ELEMENT_MAP[el.namespace, el.local_name]
 
+    @staticmethod
+    def find_content(uri):
+        '''
+        locates content & loads it, returning the root Model
+        '''
+
+        if os.path.isfile(uri):
+            try:
+                doc = expatriate.Document()
+                doc.parse_file(uri)
+                return Model.load(None, doc.root_element)
+            except:
+                raise ReferenceException('Could not find content for: ' + uri)
+        else:
+            raise NotImplementedError('URI loading is not yet implemented')
+
+        raise ReferenceException('Could not find content for: ' + uri)
+
     @classmethod
     def _get_model_namespace(cls):
+        '''
+        determine a model's namespace from a class
+        '''
         namespace = None
 
-        # try to determine from package
+        # determine from package
         if namespace is None:
             namespace = Model.package_to_namespace(cls.__module__.rpartition('.')[0])
 
@@ -199,6 +240,10 @@ class Model(object):
 
     @classmethod
     def _get_model_attribute_defs(cls):
+        '''
+        get all the attribute definitions for a model class
+        '''
+
         at_defs = {}
 
         for cls_ in reversed(cls.__mro__):
@@ -214,7 +259,12 @@ class Model(object):
         logger.debug('Attribute defs for ' + cls.__name__ + str(at_defs))
         return at_defs
 
+    @classmethod
     def _get_model_attribute_def(cls, namespace, local_name):
+        '''
+        get a specific attribute definition for a model class
+        '''
+
         at_def = {}
         for cls_ in reversed(cls.__mro__):
             if issubclass(cls_, Model):
@@ -235,6 +285,10 @@ class Model(object):
 
     @classmethod
     def _set_model_attribute_def(cls, namespace, local_name, kwargs):
+        '''
+        set the model attribute definition for an attribute
+        '''
+
         if cls.__name__ not in cls._model_attribute_defs:
             cls._model_attribute_defs[cls.__name__] = {}
 
@@ -244,6 +298,10 @@ class Model(object):
 
     @classmethod
     def _get_model_element_defs(cls):
+        '''
+        get all the element definitions for a model class
+        '''
+
         el_defs = {}
 
         for cls_ in reversed(cls.__mro__):
@@ -260,7 +318,12 @@ class Model(object):
         logger.debug('Element defs for ' + cls.__name__ + str(el_defs))
         return el_defs
 
+    @classmethod
     def _get_model_element_def(cls, namespace, local_name):
+        '''
+        get a specific element definition for a model class
+        '''
+
         el_def = {}
         for cls_ in reversed(cls.__mro__):
             if issubclass(cls_, Model):
@@ -281,11 +344,15 @@ class Model(object):
 
     @classmethod
     def _set_model_element_def(cls, namespace, local_name, kwargs):
+        '''
+        set the model element definition for an attribute
+        '''
+
         if cls.__name__ not in cls._model_element_defs:
             cls._model_element_defs[cls.__name__] = {}
 
-        logger.debug('Setting ' + str(cls) + ' ' + str(namespace) + ', ' + local_name
-            + ' element def to ' + str(kwargs))
+        logger.debug('Setting ' + str(cls) + ' ' + str(namespace) + ', '
+            + local_name + ' element def to ' + str(kwargs))
         cls._model_element_defs[cls.__name__][namespace, local_name] = kwargs
 
         # now set the order that this element was defined
@@ -298,6 +365,10 @@ class Model(object):
 
     @classmethod
     def _get_model_element_lookup(cls):
+        '''
+        get the element lookup dict for a class
+        '''
+
         el_lookup = {}
 
         for el_def in cls._get_model_element_defs():
@@ -319,6 +390,10 @@ class Model(object):
 
     @classmethod
     def _add_model_content_def(cls, kwargs):
+        '''
+        add a model content definition for the class
+        '''
+
         logger.debug('Setting ' + str(cls) + ' content def to ' + str(kwargs))
         cls.__model_content_defs = kwargs
         if cls.__name__ not in cls._model_content_defs:
@@ -329,22 +404,11 @@ class Model(object):
 
     @classmethod
     def _get_model_content_defs(cls):
+        '''
+        get the model content definitions
+        '''
+
         return cls._model_content_defs[cls.__name__]
-
-    @staticmethod
-    def find_content(uri):
-        # locate content & load it, returning the root Model
-        if os.path.isfile(uri):
-            try:
-                doc = expatriate.Document()
-                doc.parse_file(uri)
-                return Model.load(None, doc.root_element)
-            except:
-                raise ReferenceException('Could not find content for: ' + uri)
-        else:
-            raise NotImplementedError('URI loading is not yet implemented')
-
-        raise ReferenceException('Could not find content for: ' + uri)
 
     def __init__(self, value=None, namespace=None, local_name=None, el_def=None):
         # child_map must be first to prevent recursion of __getattr__
@@ -437,35 +501,61 @@ class Model(object):
         self.tail = None
 
     def is_nil(self):
+        '''
+        determine if the model's xsi nil is set
+        '''
         return self._xsi_nil
 
     def set_nil(self):
+        '''
+        set model's xsi nil
+        '''
         self._xsi_nil = True
         self.set_value(None)
 
     def get_value(self):
-        logger.debug(self.__class__.__name__ + ' value currently ' + str(self.text))
+        #TODO
+        logger.debug(self.__class__.__name__ + ' value currently '
+            + str(self.text))
         return self.text
 
     def set_value(self, value):
+        #TODO
         if self._value_enum is not None:
             if value not in self._value_enum:
-                raise ValueError(self.__class__.__name__ + ' Invalid value ' + str(value) + '; not in ' + str(self._value_enum))
+                raise ValueError(self.__class__.__name__ + ' Invalid value '
+                    + str(value) + '; not in ' + str(self._value_enum))
         if self._value_pattern is not None:
-            if not isinstance(value, str) or not re.fullmatch(self._value_pattern, value):
-                raise ValueError(self.__class__.__name__ + ' Invalid value ' + str(value) + '; does not match ' + self._value_pattern)
+            if (
+                not isinstance(value, str)
+                or not re.fullmatch(self._value_pattern, value)
+            ):
+                raise ValueError(self.__class__.__name__ + ' Invalid value '
+                    + str(value) + '; does not match ' + self._value_pattern)
         self.text = value
-        logger.debug(self.__class__.__name__ + ' value set to ' + str(self.text))
+        logger.debug(self.__class__.__name__ + ' value set to '
+            + str(self.text))
 
     def parse_value(self, value):
+        '''
+        parse the given *value* and return; overriden for value-limiting
+        subclasses
+        '''
         return value
 
     def produce_value(self, value):
+        '''
+        produce the given *value* and return; overriden for value-limiting
+        subclasses
+        '''
         if value is None:
             return value
         return str(value)
 
     def __str__(self):
+        '''
+        string representation of the model
+        '''
         s = self.__class__.__module__ + '.' + self.__class__.__name__
         if hasattr(self, 'id') and self.id is not None:
             s += ' id: ' + self.id
@@ -479,6 +569,10 @@ class Model(object):
         return s
 
     def __setattr__(self, name, value):
+        '''
+        setattr override to keep track of indexes etc.
+        '''
+
         try:
             object.__getattribute__(self, '_child_map')
         except:
@@ -509,9 +603,9 @@ class Model(object):
                     raise ValueError('Trying to assign ' + value.__class__.__name__ + ' type to ' + name + ' attribute, but expecting dict')
             elif isinstance(self._child_map[name], ModelChild):
                 # wrapped in ModelChild
-                self.remove_child(self._child_map[name].value)
+                self._remove_child(self._child_map[name].value)
                 self._child_map[name].value = value
-                self.append_child_for(value, self._child_map[name].el_def)
+                self._append_child_for(value, self._child_map[name].el_def)
             else:
                 raise ValueError('Child map entry for ' + name + ' is set to an unsupported type')
         else:
@@ -519,6 +613,10 @@ class Model(object):
             object.__setattr__(self, name, value)
 
     def __getattr__(self, name):
+        '''
+        getattr override to keep track of indexes etc.
+        '''
+
         try:
             object.__getattribute__(self, '_child_map')
         except:
@@ -534,12 +632,12 @@ class Model(object):
             raise AttributeError('Attribute ' + name + ' was not found in '
                 + self.__class__.__name__ + ': ' + str(self._child_map.keys()))
 
-    def append_child_for(self, value, el_def, key=None):
+    def _append_child_for(self, value, el_def, key=None):
         self._children_values.append(value)
         self._children_el_defs.append(el_def)
         self._children_keys.append(key)
 
-    def remove_child(self, value):
+    def _remove_child(self, value):
         try:
             i = self._children_values.index(value)
             del self._children_values[i]

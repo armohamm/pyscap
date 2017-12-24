@@ -31,10 +31,10 @@ class List(UserList):
         # remove former value from self._model._children_values
         if index < len(self.data):
             former_value = self.data[index]
-            self._model.remove_child(former_value)
+            self._model._remove_child(former_value)
 
         # add new value to self._model._children_values
-        self._model.append_child_for(value, self.element_def)
+        self._model._append_child_for(value, self.element_def)
 
         super(List, self).__setitem__(index, value)
 
@@ -42,13 +42,13 @@ class List(UserList):
         # remove former value from self._model._children_values
         if index < len(self.data):
             former_value = self.data[index]
-            self._model.remove_child(former_value)
+            self._model._remove_child(former_value)
 
         super(List, self).__delitem__(index)
 
     def insert(self, index, value):
         # add new value to self._model._children_values
-        self._model.append_child_for(value, self.element_def)
+        self._model._append_child_for(value, self.element_def)
 
         super(List, self).insert(index, value)
 
@@ -57,14 +57,14 @@ class List(UserList):
 
     def append(self, value):
         # add new value to self._model._children_values
-        self._model.append_child_for(value, self.element_def)
+        self._model._append_child_for(value, self.element_def)
 
         super(List, self).append(value)
 
     def extend(self, lst):
         for value in lst:
             # add new value to self._model._children_values
-            self._model.append_child_for(value, self.element_def)
+            self._model._append_child_for(value, self.element_def)
 
         super(List, self).extend(lst)
 
@@ -72,11 +72,11 @@ class List(UserList):
         value = super(List, self).pop(i)
 
         # remove former value from self._model._children_values
-        self._model.remove_child(value)
+        self._model._remove_child(value)
         return value
 
     def remove(self, value):
         # remove former value from self._model._children_values
-        self._model.remove_child(value)
+        self._model._remove_child(value)
 
         super(List, self).remove(value)

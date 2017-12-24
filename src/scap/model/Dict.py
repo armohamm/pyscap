@@ -31,10 +31,10 @@ class Dict(UserDict):
         # remove former value from self._model._children_values
         if key in self.data:
             former_value = self.data[key]
-            self._model.remove_child(former_value)
+            self._model._remove_child(former_value)
 
         # add new value to self._model._children_values
-        self._model.append_child_for(value, self.element_def, key)
+        self._model._append_child_for(value, self.element_def, key)
 
         super(Dict, self).__setitem__(key, value)
 
@@ -42,7 +42,7 @@ class Dict(UserDict):
         # remove former value from self._model._children_values
         if key in self.data:
             former_value = self.data[key]
-            self._model.remove_child(former_value)
+            self._model._remove_child(former_value)
 
         super(Dict, self).__delitem__(key, value)
 
@@ -56,19 +56,19 @@ class Dict(UserDict):
             value = super(Dict, self).pop(key, default)
 
         # remove former value from self._model._children_values
-        self._model.remove_child(value)
+        self._model._remove_child(value)
         return value
 
     def popitem(self):
         key, value = super(Dict, self).popitem()
 
         # remove former value from self._model._children_values
-        self._model.remove_child(value)
+        self._model._remove_child(value)
         return key, value
 
     def clear(self):
         for value in self.data.values():
-            self._model.remove_child(value)
+            self._model._remove_child(value)
 
         super(Dict, self).clear()
 
@@ -83,6 +83,6 @@ class Dict(UserDict):
     def setdefault(self, key, default=None):
         if default is not None and key not in self.data:
             # add new value to self._model._children_values
-            self._model.append_child_for(value, self.element_def, key)
+            self._model._append_child_for(value, self.element_def, key)
 
         return super(Dict, self).setdefault(key, default)
