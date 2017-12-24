@@ -22,9 +22,9 @@ import os.path
 import re
 import sys
 
-from scap.ModelList import ModelList
-from scap.ModelDict import ModelDict
-from scap.ModelChild import ModelChild
+from scap.model.List import List as ModelList
+from scap.model.Dict import Dict as ModelDict
+from scap.model.Child import Child as ModelChild
 from scap.model.decorators import *
 from scap.model.exceptions import *
 

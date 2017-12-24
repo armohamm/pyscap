@@ -21,9 +21,9 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-class ModelList(UserList):
+class List(UserList):
     def __init__(self, model, element_def, *args, **kwargs):
-        super(ModelList, self).__init__(*args, **kwargs)
+        super(List, self).__init__(*args, **kwargs)
         self._model = model
         self.element_def = element_def
 
@@ -36,7 +36,7 @@ class ModelList(UserList):
         # add new value to self._model._children_values
         self._model.append_child_for(value, self.element_def)
 
-        super(ModelList, self).__setitem__(index, value)
+        super(List, self).__setitem__(index, value)
 
     def __delitem__(self, index):
         # remove former value from self._model._children_values
@@ -44,13 +44,13 @@ class ModelList(UserList):
             former_value = self.data[index]
             self._model.remove_child(former_value)
 
-        super(ModelList, self).__delitem__(index)
+        super(List, self).__delitem__(index)
 
     def insert(self, index, value):
         # add new value to self._model._children_values
         self._model.append_child_for(value, self.element_def)
 
-        super(ModelList, self).insert(index, value)
+        super(List, self).insert(index, value)
 
     #TODO __contains__, __iter__, __reversed__, index, and count
     #TODO reverse, and __iadd__
@@ -59,17 +59,17 @@ class ModelList(UserList):
         # add new value to self._model._children_values
         self._model.append_child_for(value, self.element_def)
 
-        super(ModelList, self).append(value)
+        super(List, self).append(value)
 
     def extend(self, lst):
         for value in lst:
             # add new value to self._model._children_values
             self._model.append_child_for(value, self.element_def)
 
-        super(ModelList, self).extend(lst)
+        super(List, self).extend(lst)
 
     def pop(self, i=-1):
-        value = super(ModelList, self).pop(i)
+        value = super(List, self).pop(i)
 
         # remove former value from self._model._children_values
         self._model.remove_child(value)
@@ -79,4 +79,4 @@ class ModelList(UserList):
         # remove former value from self._model._children_values
         self._model.remove_child(value)
 
-        super(ModelList, self).remove(value)
+        super(List, self).remove(value)

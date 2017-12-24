@@ -21,9 +21,9 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-class ModelDict(UserDict):
+class Dict(UserDict):
     def __init__(self, model, element_def, *args, **kwargs):
-        super(ModelDict, self).__init__(*args, **kwargs)
+        super(Dict, self).__init__(*args, **kwargs)
         self._model = model
         self.element_def = element_def
 
@@ -36,7 +36,7 @@ class ModelDict(UserDict):
         # add new value to self._model._children_values
         self._model.append_child_for(value, self.element_def, key)
 
-        super(ModelDict, self).__setitem__(key, value)
+        super(Dict, self).__setitem__(key, value)
 
     def __delitem__(self, key):
         # remove former value from self._model._children_values
@@ -44,23 +44,23 @@ class ModelDict(UserDict):
             former_value = self.data[key]
             self._model.remove_child(former_value)
 
-        super(ModelDict, self).__delitem__(key, value)
+        super(Dict, self).__delitem__(key, value)
 
     #TODO __contains__, keys, items, values, get, __eq__, and __ne__
     #TODO setdefault
 
     def pop(self, key, default=None):
         if default is None:
-            value = super(ModelDict, self).pop(key)
+            value = super(Dict, self).pop(key)
         else:
-            value = super(ModelDict, self).pop(key, default)
+            value = super(Dict, self).pop(key, default)
 
         # remove former value from self._model._children_values
         self._model.remove_child(value)
         return value
 
     def popitem(self):
-        key, value = super(ModelDict, self).popitem()
+        key, value = super(Dict, self).popitem()
 
         # remove former value from self._model._children_values
         self._model.remove_child(value)
@@ -70,7 +70,7 @@ class ModelDict(UserDict):
         for value in self.data.values():
             self._model.remove_child(value)
 
-        super(ModelDict, self).clear()
+        super(Dict, self).clear()
 
     def update(self, other=None, **kwargs):
         if other is None or len(other) <= 0:
@@ -85,4 +85,4 @@ class ModelDict(UserDict):
             # add new value to self._model._children_values
             self._model.append_child_for(value, self.element_def, key)
 
-        return super(ModelDict, self).setdefault(key, default)
+        return super(Dict, self).setdefault(key, default)

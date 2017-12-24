@@ -20,7 +20,7 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-class ModelChild(object):
+class Child(object):
     def __init__(self, model, element_def, value=None):
         self._model = model
         self.element_def = element_def
