@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
+ELEMENT_MAP = {
     ('http://jaymes.biz/test', 'RootFixture'): 'RootFixture',
     ('http://jaymes.biz/test', 'AttributeFixture'): 'AttributeFixture',
     ('http://jaymes.biz/test', 'RequiredAttributeFixture'): 'RequiredAttributeFixture',
