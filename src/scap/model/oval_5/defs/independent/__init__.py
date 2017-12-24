@@ -14,7 +14,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
-TAG_MAP = {
+ELEMENT_MAP = {
     ('http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'environmentvariable_test'): 'EnvironmentVariableTestElement',
     ('http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'environmentvariable58_test'): 'EnvironmentVariable58TestElement',
     ('http://oval.mitre.org/XMLSchema/oval-definitions-5#independent', 'family_test'): 'FamilyTestElement',

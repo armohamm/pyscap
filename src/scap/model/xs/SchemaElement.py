@@ -72,7 +72,7 @@ class SchemaElement(AnyTypeType):
 
         with open(os.path.join(path, '__init__.py'), 'w') as f:
             f.write(STUB_HEADER)
-            f.write('TAG_MAP = {\n')
+            f.write('ELEMENT_MAP = {\n')
             for name in sorted(self._tag_mapping.keys()):
                 f.write("    '{" + self.targetNamespace + '}' + name + "': '" + self._tag_mapping[name] + "',\n")
             f.write('}\n\n')

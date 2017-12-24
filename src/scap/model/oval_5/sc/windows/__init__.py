@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
+ELEMENT_MAP = {
     ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows', 'accesstoken_item'): 'AccessTokenItemElement',
     ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows', 'activedirectory57_item'): 'ActiveDirectory57ItemElement',
     ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#windows', 'activedirectory_item'): 'ActiveDirectoryItemElement',

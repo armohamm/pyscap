@@ -15,6 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
+ELEMENT_MAP = {
     ('http://oval.mitre.org/XMLSchema/oval-variables-5', 'oval_results'): 'OvalVariablesElement',
 }

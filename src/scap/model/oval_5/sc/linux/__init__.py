@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
+ELEMENT_MAP = {
     ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'dpkginfo_item'): 'DpkgInfoItemElement',
     ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'iflisteners_item'): 'IfListenersItemElement',
     ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'inetlisteningserver_item'): 'InetListeningServerItemElement',

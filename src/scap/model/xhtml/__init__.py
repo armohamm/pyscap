@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
+ELEMENT_MAP = {
     ('http://www.w3.org/1999/xhtml', 'html'): 'HtmlTag',
 
     ('http://www.w3.org/1999/xhtml', 'b'): 'BTag',

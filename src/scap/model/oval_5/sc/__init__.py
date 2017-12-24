@@ -18,6 +18,6 @@
 from scap.model.oval_5 import DATATYPE_ENUMERATION
 from scap.model.oval_5 import EXISTENCE_RESULT_ENUMERATION
 
-TAG_MAP = {
+ELEMENT_MAP = {
     ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5', 'oval_system_characteristics'): 'OvalSystemCharacteristicsElement',
 }

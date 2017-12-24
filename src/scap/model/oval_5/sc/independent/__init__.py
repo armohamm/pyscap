@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
+ELEMENT_MAP = {
     ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'family_item'): 'FamilyItemElement',
     ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'filehash_item'): 'FileHashItemElement',
     ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent', 'filehash58_item'): 'FileHash58ItemElement',

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
+ELEMENT_MAP = {
     ('http://purl.org/dc/elements/1.1/', 'title'): 'Title',
     ('http://purl.org/dc/elements/1.1/', 'creator'): 'Creator',
     ('http://purl.org/dc/elements/1.1/', 'subject'): 'Subject',

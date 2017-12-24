@@ -177,15 +177,15 @@ class Model(object):
     def _map_element_to_module_name(model_package, el):
         pkg_mod = importlib.import_module(model_package)
 
-        if not hasattr(pkg_mod, 'TAG_MAP'):
+        if not hasattr(pkg_mod, 'ELEMENT_MAP'):
             raise TagMappingException(pkg_mod.__name__
-                + ' does not define TAG_MAP; cannot load ' + el)
-        if (el.namespace, el.local_name) not in pkg_mod.TAG_MAP:
+                + ' does not define ELEMENT_MAP; cannot load ' + el)
+        if (el.namespace, el.local_name) not in pkg_mod.ELEMENT_MAP:
             raise TagMappingException(pkg_mod.__name__
                 + ' does not define mapping for ' + el.namespace + ', '
                 + el.local_name + ' element')
 
-        return pkg_mod.__name__, pkg_mod.TAG_MAP[el.namespace, el.local_name]
+        return pkg_mod.__name__, pkg_mod.ELEMENT_MAP[el.namespace, el.local_name]
 
     @classmethod
     def _get_model_namespace(cls):
