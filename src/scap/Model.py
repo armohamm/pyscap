@@ -667,6 +667,9 @@ class Model(object):
         raise ReferenceException('Could not find reference ' + ref + ' within ' + str(self))
 
     def _from_xml(self, parent, el):
+        '''
+        create model instance from xml element *el*
+        '''
         self._parent = parent
 
         logger.debug('Parsing ' + str(el) + ' element into ' + self.__class__.__module__ + '.' + self.__class__.__name__ + ' class')
@@ -747,6 +750,9 @@ class Model(object):
             self.set_value(self.parse_value(el.text))
 
     def _parse_attribute(self, attr):
+        '''
+        parse an attribute against the attribute definitions
+        '''
         namespace = attr.namespace
         local_name = attr.local_name
         value = attr.value
@@ -792,6 +798,9 @@ class Model(object):
             + str(namespace, local_name) + ' = ' + value)
 
     def _parse_element(self, el):
+        '''
+        parse an element against the element definitions
+        '''
         namespace = el.namespace
         local_name = el.local_name
 
@@ -991,6 +1000,10 @@ class Model(object):
         raise UnknownElementException('Unknown ' + str(self) + ' sub-element ' + str(el) + ' does not match ' + str([fq_name, local_name, ns_any, '*']))
 
     def to_xml(self):
+        '''
+        generate xml representation of the model
+        '''
+
         logger.debug(str(self) + ' to xml')
         el = expatriate.Element(self.local_name, namespace=self.namespace)
 
@@ -1075,6 +1088,9 @@ class Model(object):
         return el
 
     def _produce_attribute(self, el, namespace, local_name, at_def):
+        '''
+        produce an attribute for xml
+        '''
         if local_name.endswith('*'):
             return
 
@@ -1143,6 +1159,10 @@ class Model(object):
             el.set(attr_name, v)
 
     def _produce_child(self, child_index, el):
+        '''
+        produce child element for xml
+        '''
+
         child = self._children_values[child_index]
         el_def = self._children_el_defs[child_index]
 
