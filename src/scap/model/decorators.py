@@ -161,6 +161,8 @@ def content(*args, **kwargs):
             Enumeration the attribute's value must be from
         pattern
             Pattern which the value of the attribute must match.
+        type
+            Type against which a value must validate
 
         min
             The minimum value of the attribute. Can be numeric or None (the
