@@ -133,7 +133,7 @@ class Model(object):
                 model_package, el)
         else:
             if el.namespace is None:
-                model_package = parent.get_package()
+                model_package = parent.class_from_module()
                 ns_any = parent.namespace, '*'
                 fq_name = parent.namespace, el.local_name
             else:
@@ -649,9 +649,6 @@ class Model(object):
             del self._children_keys[i]
         except ValueError:
             pass
-
-    def get_package(self):
-        return self.__module__.rpartition('.')[0]
 
     def find_reference(self, ref):
         if ref in self._references:
