@@ -71,11 +71,11 @@ def attribute(*args, **kwargs):
             raise DecoratorException('Attributes need at least local_name defined')
 
         if 'namespace' in kwargs:
-            key = (kwargs['namespace'], kwargs['local_name'])
+            namespace = kwargs['namespace']
         else:
-            key = (None, kwargs['local_name'])
+            namespace = None
 
-        cls._set_model_attribute_def(key, kwargs)
+        cls._set_model_attribute_def(namespace, kwargs['local_name'], kwargs)
 
         return cls
     return wrapper
@@ -142,11 +142,11 @@ def element(*args, **kwargs):
             raise DecoratorException('Attributes need at least local_name defined')
 
         if 'namespace' in kwargs:
-            key = (kwargs['namespace'], kwargs['local_name'])
+            namespace = kwargs['namespace']
         else:
-            key = (None, kwargs['local_name'])
+            namespace = None
 
-        cls._set_model_element_def(key, kwargs)
+        cls._set_model_element_def(namespace, kwargs['local_name'], kwargs)
 
         return cls
     return wrapper
@@ -161,6 +161,7 @@ def content(*args, **kwargs):
             Enumeration the attribute's value must be from
         pattern
             Pattern which the value of the attribute must match.
+
         min
             The minimum value of the attribute. Can be numeric or None (the
             default).
@@ -170,7 +171,7 @@ def content(*args, **kwargs):
     '''
     def wrapper(cls):
         functools.update_wrapper(wrapper, cls)
-        cls._set_model_content_def(kwargs)
+        cls._add_model_content_def(kwargs)
 
         return cls
     return wrapper
