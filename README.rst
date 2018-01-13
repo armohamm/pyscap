@@ -10,14 +10,27 @@ addition required packages that can be installed using:
 
 ::
 
+Install (in venv)
+=================
+
+    python3 -m venv venv
+    . venv/bin/activate
+    pip install --upgrade pip
     pip install -r requirements.txt
+    python3 setup.py install
+
+Tests
+=====
+
+    pip install pytest
+    pytest
 
 Usage
 =====
 
 ::
 
-    pyscap.py
+    pyscap
         [--help or -h]
         [--version or -V]
         [--verbose or -v]

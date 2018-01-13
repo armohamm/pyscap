@@ -22,6 +22,6 @@ from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 
-@content(regex=r'[-+]?(\d+|\d+(\.\d+)?%)|[1-9]?(\d+)?\*')
+@content(pattern=r'[-+]?(\d+|\d+(\.\d+)?%)|[1-9]?(\d+)?\*')
 class MultiLengthType(StringType):
     pass

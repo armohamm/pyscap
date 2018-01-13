@@ -31,6 +31,6 @@ logger = logging.getLogger(__name__)
 @element(local_name='filename', cls=EntityStateType, min=0, max=1)
 @element(local_name='xpath', cls=EntityStateType, min=0, max=1)
 @element(local_name='value_of', cls=EntityStateType, min=0, max=1)
-@element(local_name='windows_view', cls=EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
+@element(local_name='windows_view', cls=EntityStateType, min=0, enum=WINDOWS_VIEW_ENUMERATION)
 class XMLFileContentStateElement(StateType):
     pass

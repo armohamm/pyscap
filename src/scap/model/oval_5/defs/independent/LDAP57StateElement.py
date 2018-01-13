@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 @element(local_name='relative_dn', cls=EntityStateType, min=0)
 @element(local_name='attribute', cls=EntityStateType, min=0)
 @element(local_name='object_class', cls=EntityStateType, min=0)
-@element(local_name='ldaptype', cls=EntityStateType, min=0, value_enum=LDAP_TYPE_ENUMERATION)
+@element(local_name='ldaptype', cls=EntityStateType, min=0, enum=LDAP_TYPE_ENUMERATION)
 @element(local_name='value', cls=EntityStateType, min=0)
 class Ldap57StateElement(StateType):
     pass

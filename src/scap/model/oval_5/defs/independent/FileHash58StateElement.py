@@ -30,8 +30,8 @@ logger = logging.getLogger(__name__)
 @element(local_name='filepath', cls=EntityStateType, min=0)
 @element(local_name='path', cls=EntityStateType, min=0, max=1)
 @element(local_name='filename', cls=EntityStateType, min=0, max=1)
-@element(local_name='hash_type', cls=EntityStateType, min=0, max=1, value_enum=HASH_TYPE_ENUMERATION)
+@element(local_name='hash_type', cls=EntityStateType, min=0, max=1, enum=HASH_TYPE_ENUMERATION)
 @element(local_name='hash', cls=EntityStateType, min=0, max=1)
-@element(local_name='windows_view', cls=EntityStateType, min=0, value_enum=WINDOWS_VIEW_ENUMERATION)
+@element(local_name='windows_view', cls=EntityStateType, min=0, enum=WINDOWS_VIEW_ENUMERATION)
 class FileHash58StateElement(StateType):
     pass

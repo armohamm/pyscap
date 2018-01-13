@@ -15,11 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
+from scap.model.decorators import *
+from scap.model.types import *
 from scap.Model import Model
 
+@attribute(local_name='id', type=IdType)
 class EnclosedFixture(Model):
-    MODEL_MAP = {
-        'attributes': {
-            'id': {'type': 'IdType'},
-        },
-    }
+    pass

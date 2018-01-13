@@ -15,18 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}dpkginfo_item': 'DpkgInfoItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}iflisteners_item': 'IfListenersItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}inetlisteningserver_item': 'InetListeningServerItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}partition_item': 'PartitionItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}rpminfo_item': 'RpmInfoItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}rpmverify_item': 'RpmVerifyItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}rpmverifyfile_item': 'RpmVerifyFileItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}rpmverifypackage_item': 'RpmVerifyPackageItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}selinuxboolean_item': 'SeLinuxBooleanItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}selinuxsecuritycontext_item': 'SeLinuxSecurityContextItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}slackwarepkginfo_item': 'SlackwarePkgInfoItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}systemdunitdependency_item': 'SystemDUnitDependencyItemElement',
-    '{http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux}systemdunitproperty_item': 'SystemDUnitPropertyItemElement',
+ELEMENT_MAP = {
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'dpkginfo_item'): 'DpkgInfoItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'iflisteners_item'): 'IfListenersItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'inetlisteningserver_item'): 'InetListeningServerItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'partition_item'): 'PartitionItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'rpminfo_item'): 'RpmInfoItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'rpmverify_item'): 'RpmVerifyItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'rpmverifyfile_item'): 'RpmVerifyFileItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'rpmverifypackage_item'): 'RpmVerifyPackageItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'selinuxboolean_item'): 'SeLinuxBooleanItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'selinuxsecuritycontext_item'): 'SeLinuxSecurityContextItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'slackwarepkginfo_item'): 'SlackwarePkgInfoItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'systemdunitdependency_item'): 'SystemDUnitDependencyItemElement',
+    ('http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#linux', 'systemdunitproperty_item'): 'SystemDUnitPropertyItemElement',
 }

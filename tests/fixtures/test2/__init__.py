@@ -15,6 +15,6 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
-    '{http://jaymes.biz/test2}wildcard_element': 'EnclosedFixture',
+ELEMENT_MAP = {
+    ('http://jaymes.biz/test2', 'wildcard_element'): 'EnclosedFixture',
 }

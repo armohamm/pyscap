@@ -20,7 +20,7 @@ import logging
 import pathlib
 import pkgutil
 import pytest
-import xml.etree.ElementTree as ET
+import expatriate
 
 from scap.Model import Model
 
@@ -40,6 +40,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 def test_parse_xsd():
     path = pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'test_xs_stub.xsd'
-    model = Model.load(None, ET.parse(str(path)).getroot())
+    doc = expatriate.Document()
+    doc.parse_file(str(path))
+    model = Model.load(None, doc.root_element)
 
 # TODO test stub functions; writes a file

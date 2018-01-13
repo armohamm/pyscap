@@ -23,6 +23,6 @@ from ..EntityStateType import EntityStateType
 
 logger = logging.getLogger(__name__)
 
-@content(regex=r'(\{[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}){0,}')
+@content(pattern=r'(\{[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}\}){0,}')
 class EntityStateGUIDType(EntityStateType):
     pass

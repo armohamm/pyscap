@@ -22,6 +22,6 @@ from scap.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 
-@content(regex=r'oval:[A-Za-z0-9_\-\.]+:ste:[1-9][0-9]*')
+@content(pattern=r'oval:[A-Za-z0-9_\-\.]+:ste:[1-9][0-9]*')
 class StateIdPattern(StringType):
     pass

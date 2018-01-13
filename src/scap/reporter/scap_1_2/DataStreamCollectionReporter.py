@@ -16,7 +16,7 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import xml.etree.ElementTree as ET
+import expatriate
 import uuid
 
 from scap.Reporter import Reporter
@@ -71,7 +71,7 @@ class DataStreamCollectionReporter(Reporter):
         report_request.id = 'report-request_' + uuid.uuid4().hex
 
         #report_request.content = self.checker.content.to_xml()
-        report_request.content = ET.Element('stuff')
+        report_request.content = expatriate.Element('stuff')
 
         for host in hosts:
             asset = AssetElement()

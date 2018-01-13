@@ -15,9 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
-    '{http://scap.nist.gov/schema/asset-identification/1.1}asset-related': 'AssetRelatedElement',
-    '{http://scap.nist.gov/schema/asset-identification/1.1}assets': 'AssetsElement',
+ELEMENT_MAP = {
+    ('http://scap.nist.gov/schema/asset-identification/1.1', 'asset-related'): 'AssetRelatedElement',
+    ('http://scap.nist.gov/schema/asset-identification/1.1', 'assets'): 'AssetsElement',
 }
 
 RELATIONSHIP_TYPE_URI = 'http://scap.nist.gov/specifications/ai/vocabulary/relationships/1.0'

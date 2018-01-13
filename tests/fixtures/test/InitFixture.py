@@ -16,22 +16,19 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.types import *
+from .EnclosedFixture import EnclosedFixture
 
+@attribute(local_name='attr')
+@attribute(local_name='in_attr', into='test_attr')
+@attribute(local_name='dash-attr')
+@attribute(local_name='default_attr', default='Default')
+@element(local_name='list', list='list_', cls=EnclosedFixture)
+@element(local_name='dict', dict='dict_', cls=EnclosedFixture)
+@element(local_name='in_test', into='test_in', cls=EnclosedFixture)
+@element(local_name='dash-test', cls=EnclosedFixture)
+@element(namespace='http://jaymes.biz/test2', local_name='*', into='test2_elements')
+@element(local_name='*')
 class InitFixture(Model):
-    MODEL_MAP = {
-        'tag_name': 'InitFixture',
-        'attributes': {
-            'attr': {},
-            'in_attr': {'in': 'test_attr'},
-            'dash-attr': {},
-            'default_attr': {'default': 'Default'},
-        },
-        'elements': [
-            {'tag_name': 'list',    'list': 'list_', 'class': 'EnclosedFixture'},
-            {'tag_name': 'dict',    'dict': 'dict_', 'class': 'EnclosedFixture'},
-            {'tag_name': 'in_test', 'in': 'test_in', 'class': 'EnclosedFixture'},
-            {'tag_name': 'dash-test', 'class': 'EnclosedFixture'},
-            {'xmlns': 'http://jaymes.biz/test2', 'tag_name': '*', 'in': 'test2_elements'},
-            {'tag_name': '*'},
-        ]
-    }
+    pass

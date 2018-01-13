@@ -16,12 +16,11 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.types import *
+from .EnclosedFixture import EnclosedFixture
 
+@element(local_name='min', list='min', min=3, cls=EnclosedFixture)
+@element(local_name='max', list='max', min=0, max=2, cls=EnclosedFixture)
 class MinMaxElementFixture(Model):
-    MODEL_MAP = {
-        'tag_name': 'MinMaxElementFixture',
-        'elements': [
-            {'tag_name': 'min', 'list': 'min', 'min': 3, 'class': 'EnclosedFixture'},
-            {'tag_name': 'max', 'list': 'max', 'min': 0, 'max': 2, 'class': 'EnclosedFixture'},
-        ],
-    }
+    pass

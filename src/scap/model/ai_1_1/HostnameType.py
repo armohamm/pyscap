@@ -22,6 +22,6 @@ from scap.model.xs.TokenType import TokenType
 
 logger = logging.getLogger(__name__)
 
-@content(regex=r'[\w\-]+(\.[\w\-]+){0,}')
+@content(pattern=r'[\w\-]+(\.[\w\-]+){0,}')
 class HostnameType(TokenType):
     pass

@@ -18,27 +18,27 @@
 import pytest
 import logging
 
-from scap.decorators import *
+from scap.model.decorators import *
 
 logging.basicConfig(level=logging.DEBUG)
 
 def test_attribute():
-    @attribute(None, 'local_name', type='type1')
-    @attribute('http://jaymes.biz', 'xmlns_name', type='type2')
+    @attribute(namespace=None, local_name='local_name', type='type1')
+    @attribute(namespace='http://jaymes.biz', local_name='xmlns_name', type='type2')
     class AttrClass(object):
         pass
 
-    assert hasattr(AttrClass, '_model_attributes')
+    assert hasattr(AttrClass, '_model_attribute_definitions')
 
-    assert (None, 'local_name') in AttrClass._model_attributes
-    assert AttrClass._model_attributes[(None, 'local_name')]['type'] == 'type1'
+    assert (None, 'local_name') in AttrClass._model_attribute_definitions
+    assert AttrClass._model_attribute_definitions[(None, 'local_name')]['type'] == 'type1'
 
-    assert ('http://jaymes.biz', 'xmlns_name') in AttrClass._model_attributes
-    assert AttrClass._model_attributes[('http://jaymes.biz', 'xmlns_name')]['type'] == 'type2'
+    assert ('http://jaymes.biz', 'xmlns_name') in AttrClass._model_attribute_definitions
+    assert AttrClass._model_attribute_definitions[('http://jaymes.biz', 'xmlns_name')]['type'] == 'type2'
 
 def test_element():
-    @element(None, 'local_name', type='type1')
-    @element('http://jaymes.biz', 'xmlns_name', type='type2')
+    @element(namespace=None, local_name='local_name', type='type1')
+    @element(namespace='http://jaymes.biz', local_name='xmlns_name', type='type2')
     class ElClass(object):
         pass
 

@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
-    '{http://cpe.mitre.org/naming/2.0}cpe22Type': 'Cpe22Type',
-    '{http://cpe.mitre.org/naming/2.0}cpe23Type': 'Cpe23Type',
+ELEMENT_MAP = {
+    ('http://cpe.mitre.org/naming/2.0', 'cpe22Type'): 'Cpe22Type',
+    ('http://cpe.mitre.org/naming/2.0', 'cpe23Type'): 'Cpe23Type',
 }

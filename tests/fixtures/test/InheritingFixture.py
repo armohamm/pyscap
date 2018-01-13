@@ -18,8 +18,8 @@
 from scap.Model import Model
 from scap.model.decorators import *
 from scap.model.types import *
+from .RootFixture import RootFixture
+from .AttributeFixture import AttributeFixture
 
-@element(namespace='http://jaymes.biz/test', local_name='*', into='test_elements')
-@element(local_name='*', into='elements')
-class WildcardElementInFixture(Model):
+class InheritingFixture(RootFixture, AttributeFixture):
     pass

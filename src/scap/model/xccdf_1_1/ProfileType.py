@@ -51,10 +51,10 @@ logger = logging.getLogger(__name__)
 @element(local_name='reference', cls=ReferenceType, list='references', min=0, max=None)
 @element(local_name='platform', cls=UriIdrefType, list='platforms', min=0, max=None)
 # choice
-@element(local_name='select', cls=ProfileSelectType, dict='settings', key='idref', min=0, max=None)
-@element(local_name='set-value', cls=ProfileSetValueType, dict='settings', key='idref', min=0, max=None)
-@element(local_name='refine-value', cls=ProfileRefineValueType, dict='settings', key='idref', min=0, max=None)
-@element(local_name='refine-rule', cls=ProfileRefineRuleType, dict='settings', key='idref', min=0, max=None)
+@element(local_name='select', cls=ProfileSelectType, dict='settings', dict_key='idref', min=0, max=None)
+@element(local_name='set-value', cls=ProfileSetValueType, dict='settings', dict_key='idref', min=0, max=None)
+@element(local_name='refine-value', cls=ProfileRefineValueType, dict='settings', dict_key='idref', min=0, max=None)
+@element(local_name='refine-rule', cls=ProfileRefineRuleType, dict='settings', dict_key='idref', min=0, max=None)
 @element(local_name='signature', cls=SignatureType, min=0, max=1)
 class ProfileType(Extendable):
     def __str__(self):

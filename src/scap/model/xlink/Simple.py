@@ -18,7 +18,7 @@
 import logging
 import sys
 import urllib.request
-import xml.etree.ElementTree as ET
+import expatriate
 
 from scap.model.decorators import *
 
@@ -29,13 +29,15 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='type', enum=['simple'])
 @element(local_name='*', min=0)
 class Simple(Base):
-    def from_xml(self, parent, el):
-        super(Model, self).from_xml(parent, el)
+    def _from_xml(self, parent, el):
+        super(Model, self)._from_xml(parent, el)
 
         try:
             with urllib.request.urlopen(self.href) as r:
                 # TODO
-                sub_el = ET.parse(r).getroot()
+                doc = expatriate.Document()
+                doc.parse(r.read())
+                sub_el = doc.root_element
                 self._parse_element(sub_el)
         except:
             logger.warning('Could not retrieve link ' + self.href + ' for ' + str(self) + ': ' + str(sys.exc_info()[1]))

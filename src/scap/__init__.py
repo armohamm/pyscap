@@ -57,6 +57,7 @@ def register_namespaces():
 def main():
     import argparse
     import atexit
+    import expatriate
     from io import StringIO
     import locale
     import logging
@@ -66,7 +67,6 @@ def main():
     import sys
     import time
     import xml.dom.minidom
-    import xml.etree.ElementTree as ET
 
     from scap import register_namespaces
     from scap.ColorFormatter import ColorFormatter
@@ -211,10 +211,11 @@ def main():
     elif args['parse']:
         for uri in args['parse']:
             logger.debug('Loading content file: ' + uri)
-            with open(uri, mode='r', encoding='utf_8') as f:
-                content = ET.parse(f).getroot()
-                model = Model.load(None, content)
-                logger.debug('Loaded ' + uri + ' successfully')
+            doc = expatriate.Document()
+            doc.parse_file(uri)
+            content = doc.root_element
+            model = Model.load(None, content)
+            logger.debug('Loaded ' + uri + ' successfully')
 
     elif args['detect']:
         for host in hosts:
@@ -267,7 +268,9 @@ def main():
         for uri in args['content']:
             logger.debug('Loading content file: ' + uri)
             with open(uri, mode='r', encoding='utf_8') as f:
-                content = ET.parse(f).getroot()
+                doc = expatriate.Document()
+                doc.parse_file(uri)
+                content = doc.root_element
                 model = Model.load(None, content)
 
                 if (
@@ -303,7 +306,7 @@ def main():
             host.disconnect()
 
         rep = Reporter.load(args, model)
-        report = ET.ElementTree(element=rep.report(hosts))
+        report = rep.report(hosts)
 
         logger.debug('Preferred encoding: ' + locale.getpreferredencoding())
         sio = StringIO()

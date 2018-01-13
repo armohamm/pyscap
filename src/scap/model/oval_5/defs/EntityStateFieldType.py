@@ -29,7 +29,7 @@ from ..VariableIdPattern import VariableIdPattern
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='name', required=True, type=StringType, value_regex=r'[^A-Z]+')
+@attribute(local_name='name', required=True, type=StringType, pattern=r'[^A-Z]+')
 @attribute(local_name='datatype', enum=DATATYPE_ENUMERATION, default='string')
 @attribute(local_name='operation', enum=OPERATION_ENUMERATION, default='equals')
 @attribute(local_name='mask', type=BooleanType, default=False)

@@ -15,17 +15,17 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-TAG_MAP = {
-    '{http://jaymes.biz/test}RootFixture': 'RootFixture',
-    '{http://jaymes.biz/test}AttributeFixture': 'AttributeFixture',
-    '{http://jaymes.biz/test}RequiredAttributeFixture': 'RequiredAttributeFixture',
-    '{http://jaymes.biz/test}wildcard_element': 'EnclosedFixture',
-    '{http://jaymes.biz/test}EnclosedFixture': 'EnclosedFixture',
-    '{http://jaymes.biz/test}WildcardElementNotInFixture': 'WildcardElementNotInFixture',
-    '{http://jaymes.biz/test}WildcardElementInFixture': 'WildcardElementInFixture',
-    '{http://jaymes.biz/test}AppendElementFixture': 'AppendElementFixture',
-    '{http://jaymes.biz/test}MapElementFixture': 'MapElementFixture',
-    '{http://jaymes.biz/test}InitFixture': 'InitFixture',
-    '{http://jaymes.biz/test}MinMaxElementFixture': 'MinMaxElementFixture',
-    '{http://jaymes.biz/test}XLinkFixture': 'XLinkFixture',
+ELEMENT_MAP = {
+    ('http://jaymes.biz/test', 'RootFixture'): 'RootFixture',
+    ('http://jaymes.biz/test', 'AttributeFixture'): 'AttributeFixture',
+    ('http://jaymes.biz/test', 'RequiredAttributeFixture'): 'RequiredAttributeFixture',
+    ('http://jaymes.biz/test', 'wildcard_element'): 'EnclosedFixture',
+    ('http://jaymes.biz/test', 'EnclosedFixture'): 'EnclosedFixture',
+    ('http://jaymes.biz/test', 'WildcardElementNotInFixture'): 'WildcardElementNotInFixture',
+    ('http://jaymes.biz/test', 'WildcardElementInFixture'): 'WildcardElementInFixture',
+    ('http://jaymes.biz/test', 'AppendElementFixture'): 'AppendElementFixture',
+    ('http://jaymes.biz/test', 'MapElementFixture'): 'MapElementFixture',
+    ('http://jaymes.biz/test', 'InitFixture'): 'InitFixture',
+    ('http://jaymes.biz/test', 'MinMaxElementFixture'): 'MinMaxElementFixture',
+    ('http://jaymes.biz/test', 'XLinkFixture'): 'XLinkFixture',
 }

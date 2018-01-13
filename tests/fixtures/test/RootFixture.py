@@ -16,13 +16,12 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 from scap.Model import Model
+from scap.model.decorators import *
+from scap.model.types import *
+from .EnclosedFixture import EnclosedFixture
 
+@element(local_name='EnclosedFixture', cls=EnclosedFixture, min=0)
+@element(local_name='EnumValue', cls=EnclosedFixture, min=0, enum=['alpha', 'bravo', 'charlie'])
+@element(local_name='PatternValue', cls=EnclosedFixture, min=0, pattern=r'[a-zA-Z]{5}[0-9]{2}')
 class RootFixture(Model):
-    MODEL_MAP = {
-        'tag_name': 'RootFixture',
-        'elements': [
-            {'tag_name': 'EnclosedFixture', 'class': 'EnclosedFixture', 'min': 0},
-            {'tag_name': 'EnumValue', 'class': 'EnclosedFixture', 'min': 0, 'value_enum': ['alpha', 'bravo', 'charlie']},
-            {'tag_name': 'PatternValue', 'class': 'EnclosedFixture', 'min': 0, 'value_pattern': r'[a-zA-Z]{5}[0-9]{2}'},
-        ],
-    }
+    pass

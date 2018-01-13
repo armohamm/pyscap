@@ -18,7 +18,7 @@
 import logging
 import pathlib
 import pytest
-import xml.etree.ElementTree as ET
+import expatriate
 
 from fixtures.test.RootFixture import RootFixture
 from fixtures.test.EnclosedFixture import EnclosedFixture
@@ -35,20 +35,26 @@ def test_simple_local():
     ).as_posix()
     if not path.startswith('/'):
         path = '/' + path
-    model = Model.load(None, ET.fromstring('<test:XLinkFixture ' +
+    test_xml = '<test:XLinkFixture ' +
         'xmlns:test="http://jaymes.biz/test" ' +
         'xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" ' +
-        'xlink:href="file://' + path + '" />'))
+        'xlink:href="file://' + path + '" />'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
     assert isinstance(model._elements, ModelList)
     assert len(model._elements) > 0
     assert isinstance(model._elements[0], RootFixture)
     assert isinstance(model._elements[0].EnclosedFixture, EnclosedFixture)
 
 def test_simple_remote():
-    model = Model.load(None, ET.fromstring('<test:XLinkFixture ' +
+    test_xml = '<test:XLinkFixture ' +
         'xmlns:test="http://jaymes.biz/test" ' +
         'xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" ' +
-        'xlink:href="http://jaymes.biz/test.xml" />'))
+        'xlink:href="http://jaymes.biz/test.xml" />'
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
     assert isinstance(model._elements, ModelList)
     assert len(model._elements) > 0
     assert isinstance(model._elements[0], RootFixture)

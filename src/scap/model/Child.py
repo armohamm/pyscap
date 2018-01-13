@@ -15,11 +15,13 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-from scap.Model import Model
-from scap.model.decorators import *
-from scap.model.types import *
+import logging
 
-@element(namespace='http://jaymes.biz/test', local_name='*', into='test_elements')
-@element(local_name='*', into='elements')
-class WildcardElementInFixture(Model):
-    pass
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+class Child(object):
+    def __init__(self, model, element_def, value=None):
+        self._model = model
+        self.element_def = element_def
+        self.value = value

@@ -19,7 +19,7 @@ import importlib
 import logging
 import pytest
 import pkgutil
-import xml.etree.ElementTree as ET
+import expatriate
 
 from scap.Model import Model
 from scap.Host import Host
@@ -91,6 +91,8 @@ def test_def():
 	<variables>
 	</variables>
 </oval_definitions>'''
-    model = Model.load(None, ET.fromstring(test_xml))
+    doc = expatriate.Document()
+    doc.parse(test_xml)
+    model = Model.load(None, doc.root_element)
     from scap.model.oval_5.defs.OvalDefinitionsElement import OvalDefinitionsElement
     assert isinstance(model, OvalDefinitionsElement)
