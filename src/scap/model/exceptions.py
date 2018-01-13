@@ -15,35 +15,5 @@
 # You should have received a copy of the GNU General Public License
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
-class UnregisteredNamespaceException(Exception):
-    pass
-
-class TagMappingException(Exception):
-    pass
-
-class MinimumElementException(Exception):
-    pass
-
-class MaximumElementException(Exception):
-    pass
-
-class RequiredAttributeException(Exception):
-    pass
-
-class ProhibitedAttributeException(Exception):
-    pass
-
-class UnknownAttributeException(Exception):
-    pass
-
-class UnknownElementException(Exception):
-    pass
-
-class EnumerationException(Exception):
-    pass
-
-class ReferenceException(Exception):
-    pass
-
 class CpeParseException(Exception):
     pass
