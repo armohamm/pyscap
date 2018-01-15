@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 
 from .EntityObjectSystemMetricIndexType import EntityObjectSystemMetricIndexType
 from .ObjectType import ObjectType

@@ -18,7 +18,7 @@
 import logging
 
 from .BenchmarkReferenceType import BenchmarkReferenceType
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

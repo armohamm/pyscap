@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.oval_5 import UNIX_ENCRYPT_METHOD_ENUMERATION
 
 from ..EntityStateType import EntityStateType

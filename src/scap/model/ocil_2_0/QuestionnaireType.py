@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.BooleanType import BooleanType
+from expatriate.model.decorators import *
+from expatriate.model.xs.BooleanType import BooleanType
 
 from .CompoundTestActionType import CompoundTestActionType
 from .QuestionIDPattern import QuestionIDPattern

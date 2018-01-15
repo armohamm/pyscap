@@ -21,9 +21,9 @@ from . import VALUE_TYPE_ENUMERATION
 from . import VALUE_OPERATOR_ENUMERATION
 from . import INTERFACE_HINT_ENUMERATION
 from .ItemType import ItemType
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from .ValueIdPattern import ValueIdPattern
-from scap.model.xs.BooleanType import BooleanType
+from expatriate.model.xs.BooleanType import BooleanType
 from .SelStringType import SelStringType
 from .SelComplexValueType import SelComplexValueType
 from .SelNumType import SelNumType

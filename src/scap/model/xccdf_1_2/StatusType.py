@@ -17,9 +17,9 @@
 
 import logging
 
-from scap.model.xs.StringType import StringType
-from scap.model.decorators import *
-from scap.model.xs.DateType import DateType
+from expatriate.model.xs.StringType import StringType
+from expatriate.model.decorators import *
+from expatriate.model.xs.DateType import DateType
 
 logger = logging.getLogger(__name__)
 

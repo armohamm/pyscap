@@ -20,9 +20,9 @@ import logging
 from . import FIX_STRATEGY_ENUMERATION
 from . import RATING_ENUMERATION
 from .HtmlTextWithSubType import HtmlTextWithSubType
-from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
-from scap.model.xs.BooleanType import BooleanType
+from expatriate.model.decorators import *
+from expatriate.model.xs.NCNameType import NCNameType
+from expatriate.model.xs.BooleanType import BooleanType
 
 logger = logging.getLogger(__name__)
 

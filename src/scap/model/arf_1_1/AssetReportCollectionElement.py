@@ -17,9 +17,9 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.rep_core_1_1.RelationshipsContainerType import RelationshipsContainerType
-from scap.model.xs.NCNameType import NCNameType
+from expatriate.model.xs.NCNameType import NCNameType
 
 from .AssetsType import AssetsType
 from .ExtendedInfosType import ExtendedInfosType

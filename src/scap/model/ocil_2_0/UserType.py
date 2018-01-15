@@ -17,9 +17,9 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.NormalizedStringType import NormalizedStringType
-from scap.model.xs.TokenType import TokenType
+from expatriate.model.decorators import *
+from expatriate.model.xs.NormalizedStringType import NormalizedStringType
+from expatriate.model.xs.TokenType import TokenType
 
 from .NamedItemBaseType import NamedItemBaseType
 

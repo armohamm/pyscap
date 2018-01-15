@@ -19,7 +19,7 @@ import logging
 
 from . import WARNING_CATEGORY_ENUMERATION
 from .HtmlTextWithSubType import HtmlTextWithSubType
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

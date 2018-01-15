@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.Model import Model
+from expatriate.model.Model import Model
 from . import ROLE_ENUMERATION
 from . import SEVERITY_ENUMERATION
 from . import RESULT_ENUMERATION
-from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
-from scap.model.xs.DateTimeType import DateTimeType
-from scap.model.xs.StringType import StringType
+from expatriate.model.decorators import *
+from expatriate.model.xs.NCNameType import NCNameType
+from expatriate.model.xs.DateTimeType import DateTimeType
+from expatriate.model.xs.StringType import StringType
 from .WeightType import WeightType
 from .OverrideType import OverrideType
 from .IdentType import IdentType

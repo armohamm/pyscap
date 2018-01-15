@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.AnyUriType import AnyUriType
-from scap.model.xs.DateTimeType import DateTimeType
-from scap.model.xs.StringType import StringType
+from expatriate.model.decorators import *
+from expatriate.model.xs.AnyUriType import AnyUriType
+from expatriate.model.xs.DateTimeType import DateTimeType
+from expatriate.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 

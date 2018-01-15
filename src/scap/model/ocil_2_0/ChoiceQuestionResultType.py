@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 
 from .ChoiceAnswerType import ChoiceAnswerType
 from .QuestionResultType import QuestionResultType

@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.xnl_2_0.OrganisationNameDetailsType import OrganisationNameDetailsType
 
 from .AssetType import AssetType

@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.DateType import DateType
+from expatriate.model.decorators import *
+from expatriate.model.xs.DateType import DateType
 
 from .StatusType import StatusType
 

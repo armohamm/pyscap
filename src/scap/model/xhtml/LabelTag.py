@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.IdRefType import IdRefType
-from scap.model.xs.IdType import IdType
-from scap.model.xs.NMTokensType import NMTokensType
+from expatriate.model.decorators import *
+from expatriate.model.xs.IdRefType import IdRefType
+from expatriate.model.xs.IdType import IdType
+from expatriate.model.xs.NMTokensType import NMTokensType
 
 from .InlineType import InlineType
 

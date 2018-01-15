@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.Base64BinaryType import Base64BinaryType
+from expatriate.model.decorators import *
+from expatriate.model.xs.Base64BinaryType import Base64BinaryType
 
 from .EmbeddedArtifactValueType import EmbeddedArtifactValueType
 

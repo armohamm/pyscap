@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.xal_2_0.AddressDetailsType import AddressDetailsType
 
 from .LocationType import LocationType

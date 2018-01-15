@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.IdRefsType import IdRefsType
-from scap.model.xs.IdType import IdType
-from scap.model.xs.NMTokensType import NMTokensType
-from scap.model.xs.StringType import StringType
+from expatriate.model.decorators import *
+from expatriate.model.xs.IdRefsType import IdRefsType
+from expatriate.model.xs.IdType import IdType
+from expatriate.model.xs.NMTokensType import NMTokensType
+from expatriate.model.xs.StringType import StringType
 
 from . import CELL_H_ALIGN_ENUMERATION
 from . import CELL_V_ALIGN_ENUMERATION

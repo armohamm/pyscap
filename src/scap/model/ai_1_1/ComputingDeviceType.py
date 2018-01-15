@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 
 from .CPEType import CPEType
 from .ComputingDeviceHostnameType import ComputingDeviceHostnameType

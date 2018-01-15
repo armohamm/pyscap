@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.AnyUriType import AnyUriType
+from expatriate.model.decorators import *
+from expatriate.model.xs.AnyUriType import AnyUriType
 
 from .TextType import TextType
 

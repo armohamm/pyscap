@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.oval_5 import WINDOWS_FILE_TYPE_ENUMERATION
 
 from ..EntityStateType import EntityStateType

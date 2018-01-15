@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 
 from .ChoiceGroupIDPattern import ChoiceGroupIDPattern
 from .ChoiceIDPattern import ChoiceIDPattern

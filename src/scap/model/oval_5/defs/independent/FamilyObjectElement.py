@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.oval_5.sc.independent.EntityItemFamilyType import EntityItemFamilyType
 from scap.model.oval_5.sc.independent.FamilyItemElement import FamilyItemElement
 

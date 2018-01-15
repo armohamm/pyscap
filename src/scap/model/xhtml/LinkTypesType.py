@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.NMTokensType import NMTokensType
+from expatriate.model.decorators import *
+from expatriate.model.xs.NMTokensType import NMTokensType
 
 logger = logging.getLogger(__name__)
 

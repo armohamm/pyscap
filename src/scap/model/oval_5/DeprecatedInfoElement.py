@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.oval_5.DeprecatedInfoType import DeprecatedInfoType
 
 logger = logging.getLogger(__name__)

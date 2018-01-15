@@ -18,8 +18,8 @@
 import logging
 
 from .ItemType import ItemType
-from scap.model.decorators import *
-from scap.model.xs.BooleanType import BooleanType
+from expatriate.model.decorators import *
+from expatriate.model.xs.BooleanType import BooleanType
 from .WeightType import WeightType
 from .HtmlTextWithSubType import HtmlTextWithSubType
 from .OverrideableCpe2IdRefType import OverrideableCpe2IdRefType

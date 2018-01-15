@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.xs.DecimalType import DecimalType
-from scap.model.decorators import *
+from expatriate.model.xs.DecimalType import DecimalType
+from expatriate.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

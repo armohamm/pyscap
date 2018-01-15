@@ -18,8 +18,8 @@
 import logging
 import re
 
-from scap.model.decorators import *
-from scap.model.xs.BooleanType import BooleanType
+from expatriate.model.decorators import *
+from expatriate.model.xs.BooleanType import BooleanType
 
 from .HtmlTextWithSubType import HtmlTextWithSubType
 from .IdrefListType import IdrefListType

@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.Model import Model
+from expatriate.model.Model import Model
 from scap.model.ai_1_1.AssetType import AssetType
-from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
+from expatriate.model.decorators import *
+from expatriate.model.xs.NCNameType import NCNameType
 
 from .RemoteResourceElement import RemoteResourceElement
 

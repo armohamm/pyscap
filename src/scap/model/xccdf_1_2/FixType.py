@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.Model import Model
+from expatriate.model.Model import Model
 from . import FIX_STRATEGY_ENUMERATION
 from . import RATING_ENUMERATION
 from . import FIX_SYSTEM_ENUMERATION
-from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
-from scap.model.xs.BooleanType import BooleanType
-from scap.model.xs.AnyUriType import AnyUriType
+from expatriate.model.decorators import *
+from expatriate.model.xs.NCNameType import NCNameType
+from expatriate.model.xs.BooleanType import BooleanType
+from expatriate.model.xs.AnyUriType import AnyUriType
 from .SubType import SubType
 from .InstanceFixType import InstanceFixType
 

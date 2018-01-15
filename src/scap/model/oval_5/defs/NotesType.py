@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.oval_5.NotesType import NotesType as oval_5_NotesType
 
 logger = logging.getLogger(__name__)

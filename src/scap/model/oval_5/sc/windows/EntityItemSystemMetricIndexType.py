@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.oval_5 import WINDOWS_SYSTEM_METRIC_INDEX_ENUMERATION
 
 from ..EntityItemType import EntityItemType

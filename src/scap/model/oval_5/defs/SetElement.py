@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.decorators import *
+from expatriate.model.Model import Model
+from expatriate.model.decorators import *
 
 from .. import SET_OPERATOR_ENUMERATION
 from ..ObjectIdPattern import ObjectIdPattern

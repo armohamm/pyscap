@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.NormalizedStringType import NormalizedStringType
+from expatriate.model.decorators import *
+from expatriate.model.xs.NormalizedStringType import NormalizedStringType
 
 from .Source import Source
 from .Timestamp import Timestamp

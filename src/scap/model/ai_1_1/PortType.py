@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.IntegerType import IntegerType
+from expatriate.model.decorators import *
+from expatriate.model.xs.IntegerType import IntegerType
 
 logger = logging.getLogger(__name__)
 

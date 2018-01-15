@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.oval_5 import WINDOWS_USER_RIGHT_ENUMERATION
 
 from ..EntityItemType import EntityItemType

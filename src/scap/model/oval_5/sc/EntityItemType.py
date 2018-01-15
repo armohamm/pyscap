@@ -17,14 +17,14 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.decorators import *
+from expatriate.model.Model import Model
+from expatriate.model.decorators import *
 from scap.model.oval_5 import DATATYPE_ENUMERATION, EXISTENCE_RESULT_ENUMERATION
-from scap.model.xs.BooleanType import BooleanType
-from scap.model.xs.FloatType import FloatType
-from scap.model.xs.HexBinaryType import HexBinaryType
-from scap.model.xs.IntegerType import IntegerType
-from scap.model.xs.StringType import StringType
+from expatriate.model.xs.BooleanType import BooleanType
+from expatriate.model.xs.FloatType import FloatType
+from expatriate.model.xs.HexBinaryType import HexBinaryType
+from expatriate.model.xs.IntegerType import IntegerType
+from expatriate.model.xs.StringType import StringType
 
 from .EntityItemFieldType import EntityItemFieldType
 

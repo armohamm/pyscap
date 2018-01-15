@@ -17,15 +17,15 @@
 
 import logging
 
-from scap.Model import Model
+from expatriate.model.Model import Model
 from . import ROLE_ENUMERATION
 from . import SEVERITY_ENUMERATION
 from .SelectableItemType import SelectableItemType
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from .RuleIdPattern import RuleIdPattern
-from scap.model.xs.BooleanType import BooleanType
+from expatriate.model.xs.BooleanType import BooleanType
 from .IdentType import IdentType
-from scap.model.xs.StringType import StringType
+from expatriate.model.xs.StringType import StringType
 from .ProfileNoteType import ProfileNoteType
 from .FixType import FixType
 from .FixtextType import FixtextType

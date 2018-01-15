@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.decorators import *
+from expatriate.model.Model import Model
+from expatriate.model.decorators import *
 from scap.model.oval_5.sc.ItemType import ItemType
 
 from ..EntityItemIPAddressStringType import EntityItemIPAddressStringType

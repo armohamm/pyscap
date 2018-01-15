@@ -17,13 +17,13 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.decorators import *
+from expatriate.model.Model import Model
+from expatriate.model.decorators import *
 from .BenchmarkIdPattern import BenchmarkIdPattern
-from scap.model.xs.IdType import IdType
-from scap.model.xs.BooleanType import BooleanType
-from scap.model.xs.StringType import StringType
-from scap.model.xs.AnyUriType import AnyUriType
+from expatriate.model.xs.IdType import IdType
+from expatriate.model.xs.BooleanType import BooleanType
+from expatriate.model.xs.StringType import StringType
+from expatriate.model.xs.AnyUriType import AnyUriType
 from .StatusType import StatusType
 from .TextType import TextType
 from .HtmlTextWithSubType import HtmlTextWithSubType

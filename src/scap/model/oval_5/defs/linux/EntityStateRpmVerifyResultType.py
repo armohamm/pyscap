@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.oval_5 import RPM_VERIFY_RESULT_ENUMERATION
 
 from ..EntityStateType import EntityStateType

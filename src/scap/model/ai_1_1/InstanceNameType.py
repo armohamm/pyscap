@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.TokenType import TokenType
+from expatriate.model.decorators import *
+from expatriate.model.xs.TokenType import TokenType
 
 from .Source import Source
 from .Timestamp import Timestamp

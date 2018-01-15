@@ -17,12 +17,12 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.decorators import *
+from expatriate.model.Model import Model
+from expatriate.model.decorators import *
 from .ProfileIdPattern import ProfileIdPattern
-from scap.model.xs.BooleanType import BooleanType
-from scap.model.xs.NCNameType import NCNameType
-from scap.model.xs.IdType import IdType
+from expatriate.model.xs.BooleanType import BooleanType
+from expatriate.model.xs.NCNameType import NCNameType
+from expatriate.model.xs.IdType import IdType
 from .StatusType import StatusType
 from .DcStatusType import DcStatusType
 from .VersionType import VersionType

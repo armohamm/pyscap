@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.decorators import *
+from expatriate.model.Model import Model
+from expatriate.model.decorators import *
 from scap.model.oval_5 import SIMPLE_DATATYPE_ENUMERATION
-from scap.model.xs.AnySimpleType import AnySimpleType
-from scap.model.xs.StringType import StringType
+from expatriate.model.xs.AnySimpleType import AnySimpleType
+from expatriate.model.xs.StringType import StringType
 
 from ..NotesType import NotesType
 from ..VariableIdPattern import VariableIdPattern

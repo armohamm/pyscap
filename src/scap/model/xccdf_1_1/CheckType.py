@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.decorators import *
-from scap.model.xs.AnyUriType import AnyUriType
-from scap.model.xs.NCNameType import NCNameType
-from scap.model.xs.StringType import StringType
+from expatriate.model.Model import Model
+from expatriate.model.decorators import *
+from expatriate.model.xs.AnyUriType import AnyUriType
+from expatriate.model.xs.NCNameType import NCNameType
+from expatriate.model.xs.StringType import StringType
 
 from .CheckContentRefType import CheckContentRefType
 from .CheckContentType import CheckContentType

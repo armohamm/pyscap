@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.Model import Model
+from expatriate.model.Model import Model
 from . import VALUE_OPERATOR_ENUMERATION
-from scap.model.decorators import *
-from scap.model.xs.NCNameType import NCNameType
-from scap.model.xs.StringType import StringType
+from expatriate.model.decorators import *
+from expatriate.model.xs.NCNameType import NCNameType
+from expatriate.model.xs.StringType import StringType
 from .TextType import TextType
 
 logger = logging.getLogger(__name__)

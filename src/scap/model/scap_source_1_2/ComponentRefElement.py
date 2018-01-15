@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.xlink.Simple import Simple
 
 from .ComponentRefIDPattern import ComponentRefIDPattern

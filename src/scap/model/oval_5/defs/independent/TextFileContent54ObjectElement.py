@@ -18,7 +18,7 @@
 import logging
 import re
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.oval_5.sc.EntityItemType import EntityItemType
 from scap.model.oval_5.sc.independent.TextFileContentItemElement import TextFileContentItemElement
 

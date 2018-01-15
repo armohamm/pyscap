@@ -17,9 +17,9 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from scap.model.oval_5 import MESSAGE_LEVEL_ENUMERATION
-from scap.model.xs.StringType import StringType
+from expatriate.model.xs.StringType import StringType
 
 logger = logging.getLogger(__name__)
 

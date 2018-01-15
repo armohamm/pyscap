@@ -17,8 +17,8 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.DoubleType import DoubleType
+from expatriate.model.decorators import *
+from expatriate.model.xs.DoubleType import DoubleType
 
 from .LocationType import LocationType
 from .Source import Source

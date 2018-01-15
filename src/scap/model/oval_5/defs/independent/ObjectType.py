@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 
 from ..ObjectType import ObjectType as oval_def_5_ObjectType
 

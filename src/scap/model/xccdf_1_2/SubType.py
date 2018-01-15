@@ -19,7 +19,7 @@ import logging
 
 from . import SUB_USE_ENUMERATION
 from .IdRefType import IdRefType
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

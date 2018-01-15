@@ -18,8 +18,8 @@
 import logging
 
 from . import MESSAGE_SEVERITY_ENUMERATION
-from scap.model.xs.StringType import StringType
-from scap.model.decorators import *
+from expatriate.model.xs.StringType import StringType
+from expatriate.model.decorators import *
 
 logger = logging.getLogger(__name__)
 

@@ -17,11 +17,11 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.BooleanType import BooleanType
-from scap.model.xs.IdType import IdType
-from scap.model.xs.NCNameType import NCNameType
-from scap.model.xs.StringType import StringType
+from expatriate.model.decorators import *
+from expatriate.model.xs.BooleanType import BooleanType
+from expatriate.model.xs.IdType import IdType
+from expatriate.model.xs.NCNameType import NCNameType
+from expatriate.model.xs.StringType import StringType
 
 from .Extendable import Extendable
 from .HtmlTextWithSubType import HtmlTextWithSubType

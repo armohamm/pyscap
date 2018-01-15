@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.decorators import *
-from scap.model.xs.DateTimeType import DateTimeType
-from scap.model.xs.StringType import StringType
+from expatriate.model.Model import Model
+from expatriate.model.decorators import *
+from expatriate.model.xs.DateTimeType import DateTimeType
+from expatriate.model.xs.StringType import StringType
 
 from .SchemaVersionType import SchemaVersionType
 

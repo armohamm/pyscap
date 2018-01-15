@@ -18,7 +18,7 @@
 import logging
 import re
 
-from ..exceptions import *
+from .exceptions import *
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)

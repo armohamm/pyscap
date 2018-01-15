@@ -20,7 +20,7 @@ import sys
 import urllib.request
 import expatriate
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 
 from .Base import Base
 

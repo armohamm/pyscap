@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.model.decorators import *
-from scap.model.xs.IdType import IdType
-from scap.model.xs.NMTokensType import NMTokensType
-from scap.model.xs.StringType import StringType
+from expatriate.model.decorators import *
+from expatriate.model.xs.IdType import IdType
+from expatriate.model.xs.NMTokensType import NMTokensType
+from expatriate.model.xs.StringType import StringType
 
 from .ButtonContentType import ButtonContentType
 

@@ -18,7 +18,7 @@
 import logging
 
 from .SelectableItemType import SelectableItemType
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 from .GroupIdPattern import GroupIdPattern
 from .ValueType import ValueType
 from .RuleType import RuleType

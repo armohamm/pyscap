@@ -17,7 +17,7 @@
 
 import logging
 
-from scap.model.decorators import *
+from expatriate.model.decorators import *
 
 from ..GeneratorType import GeneratorType as oval_5_GeneratorType
 

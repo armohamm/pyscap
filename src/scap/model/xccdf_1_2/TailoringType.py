@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.Model import Model
-from scap.model.decorators import *
+from expatriate.model.Model import Model
+from expatriate.model.decorators import *
 from .TailoringIdPattern import TailoringIdPattern
-from scap.model.xs.IdType import IdType
+from expatriate.model.xs.IdType import IdType
 from .TailoringBenchmarkReferenceType import TailoringBenchmarkReferenceType
 from .StatusType import StatusType
 from .DcStatusType import DcStatusType

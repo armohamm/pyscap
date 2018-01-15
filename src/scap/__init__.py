@@ -18,7 +18,7 @@
 VERSION = '0.1'
 
 def register_namespaces():
-    from scap.Model import Model
+    from expatriate.model.Model import Model
 
     Model.register_namespace('scap.model.ai_1_1', 'http://scap.nist.gov/schema/asset-identification/1.1')
     Model.register_namespace('scap.model.arf_1_1', 'http://scap.nist.gov/schema/asset-reporting-format/1.1')
@@ -70,7 +70,7 @@ def main():
 
     from scap import register_namespaces
     from scap.ColorFormatter import ColorFormatter
-    from scap.Model import Model
+    from expatriate.model.Model import Model
     from scap.Host import Host
     from scap.Inventory import Inventory
     from scap.Reporter import Reporter

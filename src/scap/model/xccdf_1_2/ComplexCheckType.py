@@ -17,10 +17,10 @@
 
 import logging
 
-from scap.Model import Model
+from expatriate.model.Model import Model
 from . import CHECK_OPERATOR_ENUMERATION
-from scap.model.decorators import *
-from scap.model.xs.BooleanType import BooleanType
+from expatriate.model.decorators import *
+from expatriate.model.xs.BooleanType import BooleanType
 from .CheckType import CheckType
 
 logger = logging.getLogger(__name__)
