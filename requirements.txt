@@ -9,5 +9,5 @@ pyasn1==0.3.2
 pycparser==2.18
 pynacl==1.1.2
 six==1.10.0
-expatriate==0.2
+expatriate==0.3
 pypiwin32>=220;platform_system=="Windows"
