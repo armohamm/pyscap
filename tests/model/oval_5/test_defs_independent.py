@@ -17,6 +17,7 @@
 
 import importlib
 import logging
+import logging.handlers
 import os
 import pathlib
 import pkgutil
@@ -24,22 +25,22 @@ import sys
 
 import pytest
 # import all the classes in the package
-import scap.model.oval_5.defs.independent as pkg
-import scap.model.oval_5.sc.independent as pkg
+import scap.model.oval_5.defs.independent as defspkg
+import scap.model.oval_5.sc.independent as scpkg
 from expatriate.model.Model import Model
 from scap.Host import Host
 from scap.Inventory import Inventory
 from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
 
-for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
+for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=defspkg.__path__):
     try:
-        mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
+        mod = importlib.import_module(defspkg.__name__ + '.' + m_name, defspkg.__name__)
         globals()[m_name] = getattr(mod, m_name)
     except AttributeError:
         pass
-for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
+for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=scpkg.__path__):
     try:
-        mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
+        mod = importlib.import_module(scpkg.__name__ + '.' + m_name, scpkg.__name__)
         globals()[m_name] = getattr(mod, m_name)
     except AttributeError:
         pass
@@ -50,8 +51,16 @@ Model.register_namespace('scap.model.oval_5.defs.independent', 'http://oval.mitr
 Model.register_namespace('scap.model.oval_5.sc', 'http://oval.mitre.org/XMLSchema/oval-system-characteristics-5')
 Model.register_namespace('scap.model.oval_5.sc.independent', 'http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent')
 
-logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger('')
+def filter(record):
+    if record.name.startswith('expatriate'):
+        return 0
+    else:
+        return 1
+hndlr = logging.StreamHandler()
+hndlr.setFormatter(logging.Formatter(fmt='%(asctime)s: %(name)s %(filename)s: %(lineno)d: %(levelname)s %(message)s', style='%'))
+hndlr.addFilter(filter)
+logger.addHandler(hndlr)
 
 filename = str(pathlib.Path(os.path.expanduser('~')) / '.pyscap' / 'inventory.ini')
 try:
