@@ -24,9 +24,9 @@ from expatriate.model.xs.IdType import IdType
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='id', type=IdType)
-@attribute(local_name='charset', type=defer_class_load('scap.model.xhtml.CharsetType', 'CharsetType'))
-@attribute(local_name='type', type=defer_class_load('scap.model.xhtml.ContentTypeType', 'ContentTypeType'), required=True)
-@attribute(local_name='src', type=defer_class_load('scap.model.xhtml.UriType', 'UriType'))
+@attribute(local_name='charset', type=('scap.model.xhtml.CharsetType', 'CharsetType'))
+@attribute(local_name='type', type=('scap.model.xhtml.ContentTypeType', 'ContentTypeType'), required=True)
+@attribute(local_name='src', type=('scap.model.xhtml.UriType', 'UriType'))
 @attribute(local_name='defer', enum=['defer'])
 @attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='space', enum=['preserve'])
 class ScriptTag(Model):

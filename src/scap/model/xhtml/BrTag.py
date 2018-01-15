@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 
 @attribute(local_name='id', type=IdType)
 @attribute(local_name='class', type=NMTokensType)
-@attribute(local_name='style', type=defer_class_load('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
-@attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(local_name='style', type=('scap.model.xhtml.StyleSheetType', 'StyleSheetType'))
+@attribute(local_name='title', type=('scap.model.xhtml.TextType', 'TextType'))
 class BrTag(Model):
     pass

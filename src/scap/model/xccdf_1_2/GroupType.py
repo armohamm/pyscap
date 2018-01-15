@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='id', required=True, type=GroupIdPattern)
 @element(local_name='Value', cls=ValueType, dict='values', min=0, max=None)
 @element(local_name='Group',
-    cls=defer_class_load('scap.model.xccdf_1_2.GroupType', 'GroupType'),
+    cls=('scap.model.xccdf_1_2.GroupType', 'GroupType'),
     dict='groups', min=0, max=None)
 @element(local_name='Rule', cls=RuleType, dict='rules', min=0, max=None)
 @element(local_name='signature', cls=SignatureType, min=0, max=1)

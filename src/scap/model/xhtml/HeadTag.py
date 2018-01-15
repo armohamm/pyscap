@@ -24,16 +24,16 @@ from expatriate.model.xs.IdType import IdType
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='id', type=IdType)
-@attribute(local_name='profile', type=defer_class_load('scap.model.xhtml.UriType', 'UriType'))
-@attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+@attribute(local_name='profile', type=('scap.model.xhtml.UriType', 'UriType'))
+@attribute(local_name='lang', type=('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
 # xml:lang is defined in scap.model.Model
 @attribute(local_name='dir', enum=['ltr', 'rtl'])
-@element(local_name='script', list='_elements', cls=defer_class_load('scap.model.xhtml.ScriptTag', 'ScriptTag'))
-@element(local_name='style', list='_elements', min=0, cls=defer_class_load('scap.model.xhtml.StyleTag', 'StyleTag'))
-@element(local_name='meta', list='_elements', min=0, cls=defer_class_load('scap.model.xhtml.MetaTag', 'MetaTag'))
-@element(local_name='link', list='_elements', min=0, cls=defer_class_load('scap.model.xhtml.LinkTag', 'LinkTag'))
-@element(local_name='object', list='_elements', min=0, cls=defer_class_load('scap.model.xhtml.ObjectTag', 'ObjectTag'))
-@element(local_name='base', list='_elements', min=0, cls=defer_class_load('scap.model.xhtml.BaseTag', 'BaseTag'))
-@element(local_name='title', list='_elements', cls=defer_class_load('scap.model.xhtml.TitleTag', 'TitleTag'))
+@element(local_name='script', list='_elements', cls=('scap.model.xhtml.ScriptTag', 'ScriptTag'))
+@element(local_name='style', list='_elements', min=0, cls=('scap.model.xhtml.StyleTag', 'StyleTag'))
+@element(local_name='meta', list='_elements', min=0, cls=('scap.model.xhtml.MetaTag', 'MetaTag'))
+@element(local_name='link', list='_elements', min=0, cls=('scap.model.xhtml.LinkTag', 'LinkTag'))
+@element(local_name='object', list='_elements', min=0, cls=('scap.model.xhtml.ObjectTag', 'ObjectTag'))
+@element(local_name='base', list='_elements', min=0, cls=('scap.model.xhtml.BaseTag', 'BaseTag'))
+@element(local_name='title', list='_elements', cls=('scap.model.xhtml.TitleTag', 'TitleTag'))
 class HeadTag(Model):
     pass

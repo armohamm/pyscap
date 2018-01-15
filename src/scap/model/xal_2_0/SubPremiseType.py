@@ -45,7 +45,7 @@ logger = logging.getLogger(__name__)
 @element(local_name='Firm', into='firm', cls=FirmType)
 @element(local_name='MailStop', into='firm', cls=MailStopType)
 @element(local_name='PostalCode', into='postal_code', cls=PostalCodeType)
-@element(local_name='SubPremise', list='sub_premises', cls=defer_class_load('scap.model.xal_2_0.SubPremiseType', 'SubPremiseType'))
+@element(local_name='SubPremise', list='sub_premises', cls=('scap.model.xal_2_0.SubPremiseType', 'SubPremiseType'))
 @element(local_name='*')
 class SubPremiseType(Model):
     pass

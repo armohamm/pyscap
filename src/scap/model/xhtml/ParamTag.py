@@ -28,6 +28,6 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='name', type=StringType)
 @attribute(local_name='value', type=StringType)
 @attribute(local_name='valuetype', enum=['data', 'ref', 'object'], default='data')
-@attribute(local_name='type', type=defer_class_load('scap.model.xhtml.ContentTypeType', 'ContentTypeType'))
+@attribute(local_name='type', type=('scap.model.xhtml.ContentTypeType', 'ContentTypeType'))
 class ParamTag(Model):
     pass

@@ -28,7 +28,7 @@ from .FilterElement import FilterElement
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='set_operator', enum=SET_OPERATOR_ENUMERATION, default='UNION')
-@element(local_name='set', list='sets', cls=defer_class_load('scap.model.oval_5.defs.SetElement', 'SetElement'), min=0, max=2)
+@element(local_name='set', list='sets', cls=('scap.model.oval_5.defs.SetElement', 'SetElement'), min=0, max=2)
 @element(local_name='object_reference', list='object_references', type=ObjectIdPattern, min=0, max=2)
 @element(local_name='filter', list='filters', cls=FilterElement, min=0, max=None)
 class SetElement(Model):

@@ -52,7 +52,7 @@ logger = logging.getLogger(__name__)
 @element(local_name='Firm', into='firm', cls=FirmType)
 @element(local_name='MailStop', into='mail_stop', cls=MailStopType)
 @element(local_name='PostalCode', into='postal_code', cls=PostalCodeType)
-@element(local_name='Premise', into='premise', cls=defer_class_load('scap.model.xal_2_0.PremiseType', 'PremiseType'))
+@element(local_name='Premise', into='premise', cls=('scap.model.xal_2_0.PremiseType', 'PremiseType'))
 @element(local_name='*')
 class PremiseType(Model):
     pass

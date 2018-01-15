@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 @element(local_name='BuildingName', list='building_names', cls=BuildingNameType)
 @element(local_name='Department', into='department', cls=DepartmentType)
 @element(local_name='PostBox', into='post_box', cls=PostBoxType)
-@element(local_name='Thoroughfare', into='thoroughfare', cls=defer_class_load('scap.model.xal_2_0.ThoroughfareType', 'ThoroughfareType'))
+@element(local_name='Thoroughfare', into='thoroughfare', cls=('scap.model.xal_2_0.ThoroughfareType', 'ThoroughfareType'))
 @element(local_name='PostalCode', into='postal_code', cls=PostalCodeType)
 @element(local_name='*')
 class LargeMailUserType(Model):

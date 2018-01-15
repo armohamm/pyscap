@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='Type', )
 @attribute(local_name='*', )
 @element(local_name='AddressLine', list='address_lines', cls=AddressLineType)
-@element(local_name='PostTownName', list='post_town_names', cls=defer_class_load('scap.model.xal_2_0.PostTownType', 'PostTownType'))
+@element(local_name='PostTownName', list='post_town_names', cls=('scap.model.xal_2_0.PostTownType', 'PostTownType'))
 @element(local_name='PostTownSuffix', into='post_town_suffix', cls=PostTownSuffixType)
 @element(local_name='*')
 class PostTownType(Model):

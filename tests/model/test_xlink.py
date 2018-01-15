@@ -35,10 +35,10 @@ def test_simple_local():
     ).as_posix()
     if not path.startswith('/'):
         path = '/' + path
-    test_xml = '<test:XLinkFixture ' +
-        'xmlns:test="http://jaymes.biz/test" ' +
-        'xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" ' +
-        'xlink:href="file://' + path + '" />'
+    test_xml = '<test:XLinkFixture ' \
+        + 'xmlns:test="http://jaymes.biz/test" ' \
+        + 'xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" ' \
+        + 'xlink:href="file://' + path + '" />'
     doc = expatriate.Document()
     doc.parse(test_xml)
     model = Model.load(None, doc.root_element)

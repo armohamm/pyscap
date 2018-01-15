@@ -23,7 +23,7 @@ from expatriate.model.xs.IdType import IdType
 
 logger = logging.getLogger(__name__)
 
-@attribute(local_name='href', type=defer_class_load('scap.model.xhtml.UriType', 'UriType'))
+@attribute(local_name='href', type=('scap.model.xhtml.UriType', 'UriType'))
 @attribute(local_name='id', type=IdType)
 class BaseTag(Model):
     pass

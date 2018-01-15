@@ -24,11 +24,11 @@ from expatriate.model.xs.IdType import IdType
 logger = logging.getLogger(__name__)
 
 @attribute(local_name='id', type=IdType)
-@attribute(local_name='type', type=defer_class_load('scap.model.xhtml.ContentTypeType', 'ContentTypeType'), required=True)
-@attribute(local_name='media', type=defer_class_load('scap.model.xhtml.MediaDescType', 'MediaDescType'))
-@attribute(local_name='title', type=defer_class_load('scap.model.xhtml.TextType', 'TextType'))
+@attribute(local_name='type', type=('scap.model.xhtml.ContentTypeType', 'ContentTypeType'), required=True)
+@attribute(local_name='media', type=('scap.model.xhtml.MediaDescType', 'MediaDescType'))
+@attribute(local_name='title', type=('scap.model.xhtml.TextType', 'TextType'))
 @attribute(namespace='http://www.w3.org/XML/1998/namespace', local_name='space', enum=['preserve'])
-@attribute(local_name='lang', type=defer_class_load('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
+@attribute(local_name='lang', type=('scap.model.xhtml.LanguageCodeType', 'LanguageCodeType'))
 # xml:lang is defined in scap.model.Model
 @attribute(local_name='dir', enum=['ltr', 'rtl'])
 class StyleTag(Model):

@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='negate', type=BooleanType, default=False)
 # TODO: ensure checks has at least 1
 @element(local_name='check', cls=CheckType, min=0, max=None, list='checks')
-@element(local_name='complex-check', cls=defer_class_load('scap.model.xccdf_1_1.ComplexCheckType', 'ComplexCheckType'), min=0, max=None, list='checks')
+@element(local_name='complex-check', cls=('scap.model.xccdf_1_1.ComplexCheckType', 'ComplexCheckType'), min=0, max=None, list='checks')
 class ComplexCheckType(Model):
     def check(self, benchmark, host):
         if len(self.checks) < 1:

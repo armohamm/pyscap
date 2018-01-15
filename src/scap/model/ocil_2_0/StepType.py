@@ -30,6 +30,6 @@ logger = logging.getLogger(__name__)
 @attribute(local_name='is_required', type=BooleanType, default=True)
 @element(local_name='description', cls=TextType, min=0, max=1)
 @element(local_name='reference', list='references', cls=ReferenceType, min=0, max=None)
-@element(local_name='step', list='steps', cls=defer_class_load('scap.model.ocil_2_0.StepType', 'StepType'), min=0, max=None)
+@element(local_name='step', list='steps', cls=('scap.model.ocil_2_0.StepType', 'StepType'), min=0, max=None)
 class StepType(Model):
     pass
