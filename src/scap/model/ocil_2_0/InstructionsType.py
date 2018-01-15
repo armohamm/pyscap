@@ -17,8 +17,8 @@
 
 import logging
 
-from expatriate.model.Model import Model
 from expatriate.model.decorators import *
+from expatriate.model.Model import Model
 
 from .StepType import StepType
 from .TextType import TextType
@@ -27,5 +27,5 @@ logger = logging.getLogger(__name__)
 
 @element(local_name='title', cls=TextType, min=1, max=1)
 @element(local_name='step', list='steps', cls=StepType, min=1, max=None)
-class InstructionsType(object):
+class InstructionsType(Model):
     pass

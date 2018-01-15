@@ -17,9 +17,9 @@
 
 import logging
 
-from expatriate.model.Model import Model
-from ..exceptions import *
 from expatriate.model.decorators import *
+from expatriate.model.exceptions import *
+from expatriate.model.Model import Model
 from expatriate.model.xs.AnyUriType import AnyUriType
 from expatriate.model.xs.StringType import StringType
 
