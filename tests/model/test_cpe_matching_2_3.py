@@ -16,11 +16,11 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import pytest
 
+import pytest
 import scap.model.cpe_matching_2_3
 from scap.model.cpe_matching_2_3.CPE import CPE
-from scap.model.exceptions import *
+from scap.model.cpe_matching_2_3.exceptions import *
 
 logging.basicConfig(level=logging.DEBUG)
 

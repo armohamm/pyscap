@@ -17,11 +17,11 @@
 
 import logging
 import pathlib
-import pytest
-import expatriate
 
-from scap.Model import Model
+import expatriate
+import pytest
 import scap.model.xccdf_1_1
+from expatriate.model.Model import Model
 
 logging.basicConfig(level=logging.DEBUG)
 Model.register_namespace('scap.model.xccdf_1_1', 'http://checklists.nist.gov/xccdf/1.1')

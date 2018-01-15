@@ -19,25 +19,24 @@ import importlib
 import logging
 import os
 import pathlib
-import pytest
 import pkgutil
 import sys
-import xml.etree.ElementTree as ET
 
-from scap.Host import Host
-from scap.Inventory import Inventory
-from scap.Model import Model
-from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
-
+import pytest
 # import all the classes in the package
 import scap.model.oval_5.defs.independent as pkg
+import scap.model.oval_5.sc.independent as pkg
+from expatriate.model.Model import Model
+from scap.Host import Host
+from scap.Inventory import Inventory
+from scap.model.oval_5.defs.EntityObjectType import EntityObjectType
+
 for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     try:
         mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
         globals()[m_name] = getattr(mod, m_name)
     except AttributeError:
         pass
-import scap.model.oval_5.sc.independent as pkg
 for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     try:
         mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)

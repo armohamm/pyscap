@@ -19,13 +19,13 @@ import datetime
 import importlib
 import logging
 import pkgutil
-import pytest
 import xml.etree.ElementTree as ET
 
-from scap.Model import Model
-
 # import all the classes in the package
-import scap.model.xs as pkg
+import expatriate.model.xs as pkg
+import pytest
+from expatriate.model.Model import Model
+
 for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     try:
         mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
@@ -36,7 +36,7 @@ for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
 logging.basicConfig(level=logging.DEBUG)
 
 # NOTE: this namespace is registered by default
-#Model.register_namespace('scap.model.xs', 'http://www.w3.org/2001/XMLSchema')
+#Model.register_namespace('expatriate.model.xs', 'http://www.w3.org/2001/XMLSchema')
 
 def test_SevenPropertyModel_init():
     spm = SevenPropertyModel()

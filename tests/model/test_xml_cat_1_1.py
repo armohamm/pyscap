@@ -16,11 +16,11 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import logging
-import pytest
-import expatriate
 
-from scap.Model import Model
+import expatriate
+import pytest
 import scap.model.xml_cat_1_1
+from expatriate.model.Model import Model
 from scap.model.xml_cat_1_1.Catalog import Catalog
 
 logging.basicConfig(level=logging.DEBUG)

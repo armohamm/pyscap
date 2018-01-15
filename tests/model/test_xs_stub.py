@@ -19,13 +19,13 @@ import importlib
 import logging
 import pathlib
 import pkgutil
-import pytest
+
 import expatriate
-
-from scap.Model import Model
-
 # import all the classes in the package
-import scap.model.xs as pkg
+import expatriate.model.xs as pkg
+import pytest
+from expatriate.model.Model import Model
+
 for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     try:
         mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
@@ -34,9 +34,6 @@ for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
         pass
 
 logging.basicConfig(level=logging.DEBUG)
-
-# NOTE: this namespace is registered by default
-#Model.register_namespace('scap.model.xs', 'http://www.w3.org/2001/XMLSchema')
 
 def test_parse_xsd():
     path = pathlib.Path(str(pytest.config.rootdir)) / 'tests' / 'model' / 'test_xs_stub.xsd'

@@ -16,9 +16,9 @@
 # along with PySCAP.  If not, see <http://www.gnu.org/licenses/>.
 
 import pytest
-
 from scap.Host import Host
 from scap.host.cli.LocalHost import LocalHost
+
 
 def test_host_detection():
     host = Host.load('localhost')

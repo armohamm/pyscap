@@ -17,15 +17,15 @@
 
 import importlib
 import logging
-import pytest
 import pkgutil
+
 import expatriate
-
-from scap.Model import Model
-from scap.model.oval_5.defs.SetElement import SetElement
-
+import pytest
 # import all the classes in the package
 import scap.model.oval_5 as pkg
+from expatriate.model.Model import Model
+from scap.model.oval_5.defs.SetElement import SetElement
+
 for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     try:
         mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)

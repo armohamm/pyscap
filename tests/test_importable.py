@@ -22,6 +22,7 @@ import sys
 
 import scap
 
+
 def iter_packages(pkg):
     if sys.platform != 'win32' and 'collector.windows' in pkg.__name__.lower():
         # windows collector modules usually fail to import on non-windows

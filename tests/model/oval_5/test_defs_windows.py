@@ -17,14 +17,13 @@
 
 import importlib
 import logging
-import pytest
 import pkgutil
-import xml.etree.ElementTree as ET
 
-from scap.Model import Model
-
+import pytest
 # import all the classes in the package
 import scap.model.oval_5.defs.windows as pkg
+from expatriate.model.Model import Model
+
 for m_finder, m_name, m_ispkg in pkgutil.iter_modules(path=pkg.__path__):
     try:
         mod = importlib.import_module(pkg.__name__ + '.' + m_name, pkg.__name__)
