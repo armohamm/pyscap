@@ -51,16 +51,11 @@ Model.register_namespace('scap.model.oval_5.defs.independent', 'http://oval.mitr
 Model.register_namespace('scap.model.oval_5.sc', 'http://oval.mitre.org/XMLSchema/oval-system-characteristics-5')
 Model.register_namespace('scap.model.oval_5.sc.independent', 'http://oval.mitre.org/XMLSchema/oval-system-characteristics-5#independent')
 
-logger = logging.getLogger('')
-def filter(record):
-    if record.name.startswith('expatriate'):
-        return 0
-    else:
-        return 1
-hndlr = logging.StreamHandler()
-hndlr.setFormatter(logging.Formatter(fmt='%(asctime)s: %(name)s %(filename)s: %(lineno)d: %(levelname)s %(message)s', style='%'))
-hndlr.addFilter(filter)
-logger.addHandler(hndlr)
+for name in ('expatriate.model.Model', 'expatriate.model.AttributeMapper', 'expatriate.model.ElementMapper'):
+    logger = logging.getLogger(name)
+    logger.setLevel(logging.INFO)
+
+logger = logging.getLogger(__name__)
 
 filename = str(pathlib.Path(os.path.expanduser('~')) / '.pyscap' / 'inventory.ini')
 try:
